@@ -1,0 +1,263 @@
+ <!-- <ng-container *ngIf="!isLoginPage()">        -->
+  <!--navbar don't show in only login page -->
+    <!-- <app-nav-bar></app-nav-bar>
+  </ng-container>
+
+<router-outlet></router-outlet> -->
+
+<ng-container *ngIf="!isLoginPage()">       <!--navbar don't show in only login page -->
+  <mat-toolbar color="primary" class="position">
+    <ng-container *ngIf="!loginService.isLoggedIn()">
+      <span><a class="color" mat-icon-button routerLink="/">HRMS</a></span>
+    
+      <span class="example-spacer"></span>
+      
+    </ng-container>
+  
+  
+   
+  
+    <!-- Navbar items for super admin role when logged in -->
+    <ng-container *ngIf="loginService.isLoggedIn()">
+      <span><a class="color" mat-icon-button (click)="redirectTOHome()">HRMS</a></span>
+      <span class="example-spacer"></span>
+      <form role="search" class="d-md-none d-none d-lg-block">
+        <input class="form-control" id="border" type="search" placeholder="Search here..." aria-label="Search">
+      </form>
+      <a class="color" mat-icon-button>
+        <i class="fa-solid fa-bell"></i>
+        <br>
+       <span class="d-md-block d-none d-lg-block">Notification</span> </a>
+  
+      <a *ngIf="!(isProfilePage() || isRegisterationPage())" class="color" mat-icon-button [matMenuTriggerFor]="menu">
+        <i class="fa-regular fa-circle-user"></i>
+        <!-- <img src="/assets/🦆 icon _profile circle_.png" alt=""> -->
+        <br><span class="d-md-block d-none d-lg-block">My Account</span></a>
+      <mat-menu #menu="matMenu" class="dropdown-menu">
+        <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
+          <li><a class="dropdown-item rounded-2 " [routerLink]="['/profile', '']" (click)="loginService.showTable('profile')">View Profile</a></li>
+          <!-- <li><a class="dropdown-item rounded-2 " routerLink="/profile" >View Profile</a></li> -->
+
+          <li><a class="dropdown-item rounded-2" [routerLink]="['/test', 'changePassword']" (click)="loginService.showTable('changePassword')">Change Password</a></li>
+        </ul>
+      </mat-menu>
+      <div class="profile-header-img">
+        <!-- <img [routerLink]="['/profile', '']" (click)="loginService.showTable('profile')" [src]="imageUrl" alt="" class="profile-img" /> -->
+        <img [src]="imageUrl || defaultImageURL" alt="" class="profile-img" (error)="handleImageError($event)"/>
+
+      </div>
+      <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span class="d-md-block d-none d-lg-block">Logout</span></a>
+  
+    </ng-container>
+     
+  
+    <!-- Navbar items for when not logged in -->
+  
+    <ng-container *ngIf="!loginService.isLoggedIn()">
+  
+      <a class="color" mat-icon-button routerLink="/login">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <br>
+        Login
+      </a>
+  
+    </ng-container>
+  </mat-toolbar>
+  
+  <div class="row col-12" *ngIf="!isHomePage() && loginService.getRole === 'SUPERADMIN'">
+    <!-- <div class="row col-md-12" *ngIf="!isHomePage()"> -->
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="sideBar">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
+          <li class="nav-item text-center">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 5.png"
+                  alt="">
+                  <br>
+                <span class="image-name">Home</span>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/test', 'createRole']" (click)="loginService.showTable('createRole')">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/createRole.png"
+                  alt="">
+                  <br>
+                <span class="image-name">Create Role</span>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/registration">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 8.png"
+                  alt="">
+                  <!-- <br>
+                  New Registration -->
+                  <br>
+                <span class="image-name">Registration</span>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/test', 'employee']" (click)="loginService.showTable('employee')">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 7.png"
+                  alt="" >
+                  <br>
+                <span class="image-name">All Employees</span>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/test', 'teamleave']" (click)="loginService.showTable('teamleave')">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 9.png"
+                  alt="">
+                  <br>
+                <span class="image-name">Team Leave</span>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/test', 'teamwfh']" (click)="loginService.showTable('teamwfh')">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Mask group.png"
+                  alt="">
+                  <br>
+                <span class="image-name">Team WFH</span>
+              </div>
+            </a>
+          </li>
+         
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/test', 'reports']" (click)="loginService.showTable('reports')">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                src="/assets/report3.png"
+                alt="">
+                <br>
+                <span class="image-name">Reports</span>
+              </div>
+          
+            </a>
+          </li>
+
+          
+
+          <li class="nav-item text-center">
+            <label class="nav-link px-0 align-middle" for="pdfFileInput">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+                <br>
+                <span class="image-name" id="pdfFile">Upload Pdf</span>
+              </div>
+            </label>
+            <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
+          </li>
+
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/test', 'calendar']" (click)="loginService.showTable('calendar')">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 11.png"
+                  alt="">
+                  <br>
+                <span class="image-name">View Holiday</span>
+              </div>
+            </a>
+          </li>
+          
+        </ul>
+        <hr>
+      </div>
+    </div>
+ 
+    <div class="col-auto col-md-9 col-xl-10 px-sm-2 px-0" id="dashboard">
+    <router-outlet></router-outlet>
+    </div>
+    
+  </div>
+  
+
+
+  <div class="row col-12" *ngIf="!isHomePage() && loginService.getRole !== 'SUPERADMIN'">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="sideBar">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
+          <li class="nav-item text-center">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 5.png"
+                  alt="">
+                  <br>
+                <span class="image-name">Home</span>
+              </div>
+            </a>
+          </li>
+          <!-- <li>
+            <a class="nav-link px-0 align-middle" routerLink="/registration">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="https://cdn-icons-png.flaticon.com/128/9634/9634123.png"
+                  alt="">
+                <span class="image-name">New Registration</span>
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item text-center" *ngFor="let option of filteredOptions">
+            <a class="nav-link px-0 align-middle" [routerLink]="[option.router]">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="{{option.src}}" alt="" (click)="loginService.showTable(option.function)" />
+                <br>
+                <span class="image-name">{{option.imgName}}</span>
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/admin" (click)="scrollToHoliday()">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 11.png"
+                  alt="">
+                  <br>
+                <span class="image-name">View Holiday</span>
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/test', 'calendar']" (click)="loginService.showTable('calendar')">
+              <div class="image-container">
+                <img class="sidebarPageLogo"
+                  src="/assets/Group 11.png"
+                  alt="">
+                  <br>
+                <span class="image-name">View Holiday</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      </div>
+    </div>
+  
+    <div class="col-auto col-md-9 col-xl-10 px-sm-2 px-0" id="dashboard">
+    <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+</ng-container>
+
+
+<app-login *ngIf="isLoginPage()"></app-login>
+<app-home *ngIf="isHomePage()"></app-home>

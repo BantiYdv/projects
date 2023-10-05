@@ -1,0 +1,455 @@
+<!-- profile -->
+
+      <div [ngSwitch]="loginService.tableType">
+        <div *ngSwitchCase="'Profile'">
+<div class="container " >
+    <div id="content" class="content p-2 mt-5">
+        <div class="profile-header">
+            <div class="profile-header-cover"></div>
+
+            <div class="profile-header-content">
+                <div class="profile-header-img mb-2">
+                    <img class="rounded-circle img-fluid" [src]="imageUrl || defaultImageURL" alt="" />
+                    <div class="upload-overlay">
+                      <label class="add-to-cart" for="fileInput">
+                        <i class="fas fa-camera"></i> Upload Image
+                      </label>
+                      <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none"
+                        (change)="handleFileInput($event)">
+                        
+                      </div>
+                    </div>
+
+                <div class="profile-header-info mt-4">
+                    <p><span id="firstname" >{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</span> </p>
+                    <p><span id="designation1">{{ profileDetails?.designation }}</span></p>
+                                      <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</span></p> 
+
+                </div>
+            </div>
+
+           
+        </div>
+
+        <div class="profile-container" >
+            <div class="row row-space-20">
+                <div class="col-md-8">
+                    <div class="tab-content p-0">
+                        <div class="tab-pane active show" id="profile-about">
+                            
+                            <table class="table table-profile">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Joining
+                                            Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="field">Role :</td>
+                                        <td class="value">
+                                            <p><span id="role">{{ profileDetails?.role.name }}</span></p>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Department :</td>
+                                        <td class="value">
+                                            <p><span id="department">{{ profileDetails?.department }}</span></p>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Reporting To :</td>
+                                        <td class="value">
+                                            <p><span id="teamlead">{{ profileDetails?.teamlead }}</span></p>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Joined On :</td>
+                                        <td class="value">
+                                            <p><span id="dateofjoining">{{ profileDetails?.dateofjoining }}</span></p>
+
+
+                                        </td>
+                                    </tr>
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">BASIC INFORMATION</th> 
+                                            
+                                        </tr>
+                                    </thead>
+                                 
+                                  
+                                    <tr>
+                                        <td class="field">Marital Status :</td>
+                                        <td class="value">
+                                            <p><span id="maritalStatus">{{ profileDetails?.maritalStatus }}</span></p>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Blood Group :</td>
+                                        <td class="value">
+                                            <p><span id="bloodGroup">{{ profileDetails?.bloodGroup }}</span></p>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Skills :</td>
+                                        <td class="value">
+                                            <p><span id="skills">{{ profileDetails?.skills }}</span></p>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field">Address :</td>
+                                        <td class="value">
+                                          <p><span id="address">{{ profileDetails?.address }}</span></p>
+                                        </td>
+                                      </tr>
+                                      
+                                    <tr>
+                                        <td class="field">Emergency Contact :</td>
+                                        <td class="value">
+                                            <p><span id="emergencyContact">{{ profileDetails?.emergencyContact }}</span>
+                                            </p>
+
+                                        </td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+
+                            <a ><button class="btn btn-primary rounded-pill px-3" type="button" style="margin:1rem;" [routerLink]="['/profile', 'addProfile']" (click)="loginService.showTable('addProfile')"><i
+                                class="fa-solid fa-pen-to-square"></i>Add</button></a> 
+                               
+                           <a> <button class="btn btn-primary rounded-pill px-3" type="button"  (click)="deletePersonalData()"><i class="fa-solid fa-trash"></i>Delete</button></a>
+
+                        </div>
+                    </div>
+                </div>
+
+               
+
+                <div class="col-md-4 hidden-xs hidden-sm">
+                    <ul class="profile-info-list">
+                        <li class="title"><h3>PERSONAL INFORMATION</h3></li>
+                        <li>
+                            <div class="field">Full Name:</div>
+                            <div class="value">
+                                <p><span id="firstname">{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field">Phone No.:</div>
+                            <div class="value">
+                                <p><span id="phonenumber">{{ profileDetails?.phonenumber }}</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field">Email:</div>
+                            <div class="value">
+                                <p><span id="emailid">{{ profileDetails?.emailid }}</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field">Designation:</div>
+                            <div class="value">
+                                <p><span id="designation">{{ profileDetails?.designation }}</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="field">Birth Day:</div>
+                            <div class="value">
+                                <p><span id="dob">{{ profileDetails?.dob }}</span></p>
+                            </div>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
+<!-- profile Add start-->
+
+              
+                <div *ngSwitchCase="'addProfile'">
+                <div class="container" id="addProfile">
+                    <div class="row gutters">
+                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="account-settings">
+                                        <div class="user-profile">
+                                            <div class="user-avatar">
+                                                <img [src]="imageUrl" alt=""/>
+                                            </div>
+                                            <p><span id="firstname" >{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</span> </p>
+                    <p><span id="designation1">{{ profileDetails?.designation }}</span></p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h2 class="mb-2 text-primary">Personal Details</h2>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="phone">Contact</label>
+                                               
+                                                    <input type="tel" class="form-control" name="phonenumber" id="phonenumber" placeholder="Enter your phone number" maxlength="10"
+                                                    minlength="10" required pattern="[0-9]{10}" [(ngModel)]="phonenumber">
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="Marital">Marital Status</label>
+                                                <select class="form-control" id="maritalStatus" name="maritalStatus" [(ngModel)]="maritalStatus">
+                                                    <option value="">Select marital status</option>
+                                                    <option value="single">Single</option>
+                                                    <option value="married">Married</option>
+                                                    
+                                                  </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="Blood">Blood Group</label>
+                                                <input type="text" class="form-control" id="bloodGroup" name="bloodGroup" placeholder="Enter your bloodGroup" [(ngModel)]="bloodGroup">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="skill">Skills</label>
+                                                <input type="text" class="form-control" id="skills" name="skills" placeholder="Enter your skills" [(ngModel)]="skills">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="Emergency">Emergency Contact</label>
+                                                <input type="tel" class="form-control" id="emergencyContact" name="emergencyContact" placeholder="Enter your emergency Contact" [(ngModel)]="emergencyContact">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h2 class="mt-3 mb-2 text-primary">Address</h2>
+                                        </div>
+                                        
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label for="Street">Address</label>
+                                                <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" [(ngModel)]="address">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="text-right mt-2">
+                                                                                               <button type="button" id="submit" name="submit"
+                                                    class="btn btn-primary" (click)="editProfile()">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+           <!-- view profile with specific id start -->
+           <div *ngSwitchCase="'viewProfile'">
+            <div class="container" style="margin-top: 2rem;">
+              <div id="content" class="content p-0">
+                <div class="profile-header">
+                  <div class="profile-header-cover"></div>
+      
+                  <div class="profile-header-content">
+                    <div class="profile-header-img">
+                      <img class="rounded-circle img-fluid" [src]="imageUrl || defaultImageURL" alt="" />
+                    </div>
+      
+                    <div class="profile-header-info">
+                      <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname }}</span> </p>
+                      <p><span id="designation1">{{ profileDetailsUser?.designation }}</span></p>
+                      
+      
+                    </div>
+                  </div>
+      
+      
+                </div>
+      
+                <div class="profile-container">
+                  <div class="row row-space-20">
+                    <div class="col-md-8">
+                      <div class="tab-content p-0">
+                        <div class="tab-pane active show" id="profile-about">
+      
+                          <table class="table table-profile">
+                            <thead>
+                              <tr>
+                                <th colspan="2">Joining
+                                  Detail</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="field">Role :</td>
+                                <td class="value">
+                                  <p><span id="role">{{ profileDetailsUser?.role.name }}</span></p>
+      
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="field">Department :</td>
+                                <td class="value">
+                                  <p><span id="department">{{ profileDetailsUser?.department }}</span></p>
+      
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="field">Reporting To :</td>
+                                <td class="value">
+                                  <p><span id="teamlead">{{ profileDetailsUser?.teamlead }}</span></p>
+      
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="field">Joined On :</td>
+                                <td class="value">
+                                  <p><span id="dateofjoining">{{ profileDetailsUser?.dateofjoining }}</span></p>
+      
+      
+                                </td>
+                              </tr>
+                              <thead>
+                                <tr>
+                                  <th colspan="2">BASIC INFORMATION</th>
+                                 
+                                </tr>
+                              </thead>
+      
+                              <tr>
+                                <td class="field">Marital Status :</td>
+                                <td class="value">
+                                  <p><span id="maritalStatus">{{ profileDetailsUser?.maritalStatus }}</span></p>
+      
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="field">Blood Group :</td>
+                                <td class="value">
+                                  <p><span id="bloodGroup">{{ profileDetailsUser?.bloodGroup }}</span></p>
+      
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="field">Skills :</td>
+                                <td class="value">
+                                  <p><span id="skills">{{ profileDetailsUser?.skills }}</span></p>
+      
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="field">Address :</td>
+                                <td class="value">
+                                  <p><span id="address">{{ profileDetailsUser?.address }}</span></p>
+                                </td>
+                              </tr>
+      
+                              <tr>
+                                <td class="field">Emergency Contact :</td>
+                                <td class="value">
+                                  <p><span id="emergencyContact">{{ profileDetailsUser?.emergencyContact }}</span>
+                                  </p>
+      
+                                </td>
+                              </tr>
+      
+                            </tbody>
+                          </table>
+      
+                        </div>
+                      </div>
+                    </div>
+      
+      
+      
+                    <div class="col-md-4 hidden-xs hidden-sm">
+                      <ul class="profile-info-list">
+                        <li class="title">
+                          <h3>PERSONAL INFORMATION</h3>
+                        </li>
+                        <li>
+                          <div class="field">Full Name:</div>
+                          <div class="value">
+                            <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname }}</span>
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="field">Phone No.:</div>
+                          <div class="value">
+                            <p><span id="phonenumber">{{ profileDetailsUser?.phonenumber1 }}</span></p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="field">Email:</div>
+                          <div class="value">
+                            <p><span id="emailid">{{ profileDetailsUser?.emailid }}</span></p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="field">Designation:</div>
+                          <div class="value">
+                            <p><span id="designation">{{ profileDetailsUser?.designation }}</span></p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="field">Birth Day:</div>
+                          <div class="value">
+                              <p><span id="dob">{{ profileDetailsUser?.dob }}</span></p>
+                          </div>
+                      </li>
+                      
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+      <!-- view profile with specific id end -->
+      
+      
+      
+              </div>
+           
+<!-- profile Add end -->
+
+

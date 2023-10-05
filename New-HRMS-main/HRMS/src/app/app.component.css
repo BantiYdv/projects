@@ -1,0 +1,401 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.color {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+/* .position{
+      position: fixed;
+  } */
+
+.dropdown-item,
+.rounded-2,
+.color:hover {
+  cursor: pointer;
+}
+
+
+/* profile image show in navbar start */
+.profile-header-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 1rem;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* profile image show in navbar end */
+
+
+
+/* design */
+.color {
+  color: #FFF;
+  font-size: 15px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 118%;
+  letter-spacing: 0.6px;
+  text-align: center;
+}
+
+.logo {
+  width: 34px;
+  height: 34px;
+}
+
+.logonotification {
+  width: 23.501px;
+  height: 29.475px;
+}
+
+#border {
+  width: 300px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 26px;
+  background: #FFF;
+}
+
+input::placeholder {
+  color: #a5a5a5;
+  font-size: 15px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.6px;
+}
+
+
+
+
+/* Mobile L (425px) */
+/* @media (max-width: 425px) {
+
+  .mat-toolbar.mat-primary {
+    width: max-content;
+  }
+
+  #border {
+    width: auto;
+    margin-left: 1rem;
+  }
+
+  .profile-header-img {
+    margin-left: 1rem;
+  }
+
+} */
+
+/* Mobile M (325px) */
+@media (max-width: 325px) {
+  /* Adjust the styles as per your requirements */
+}
+
+/* Mobile S (320px) */
+@media (max-width: 320px) {
+  /* Adjust the styles as per your requirements */
+}
+
+
+/* side bar design */
+/* .sidebarLogo{
+  width: 30px;
+  height: 29px;
+  flex-shrink: 0;
+  }
+  
+  #sidebarMenu{
+    display: flex;
+  width: 332px;
+  padding: 7px 10px 7px 30px;
+  align-items: center;
+  gap: 68px;
+  } */
+
+
+/* #sideBar{
+    width: 10%;
+    background-color: #3f51b5;
+  } */
+
+/* .sidelogo {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+  } */
+
+/* side bar design */
+.sidebarLogo {
+  width: 30px;
+  height: 29px;
+  flex-shrink: 0;
+}
+
+#sidebarMenu {
+  display: flex;
+  width: 332px;
+  padding: 7px 10px 7px 30px;
+  align-items: center;
+  gap: 68px;
+}
+
+.nav-link {
+  display: flex;
+}
+
+.sidebarPageLogo {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  margin-left: 0rem;
+  /* background-color: #a7a7a7; */
+}
+
+
+
+
+/* show if user is not log in start */
+.pt-4 {
+  padding-top: 6rem !important;
+}
+
+
+/*side bar css  */
+.ms-1 {
+  margin-left: 1.25rem !important;
+  font-size: 15px;
+}
+
+.form-control {
+  border: var(--bs-border-width) solid #7c7d7e;
+}
+
+.sidebar .nav:not(.sub-menu)>.nav-item>.nav-link {
+  margin: 8px;
+}
+
+.sidebar .nav .nav-item .nav-link i#menu-icon {
+  font-size: 1rem;
+  line-height: 1;
+  margin-right: 2rem;
+  color: #787878;
+}
+
+.sidebar .nav .nav-item .nav-link i.fa-angle-right {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: auto;
+  margin-right: 0;
+  color: #686868;
+}
+
+.page-body-wrapper {
+  padding-top: 0px;
+}
+
+.card1 {
+  box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.751);
+  background-color: white;
+}
+
+.card1:hover {
+  transform: scale(1.08);
+}
+
+li a {
+  cursor: pointer;
+}
+
+.modal {
+  background-color: #797a7a;
+}
+
+.modal-content {
+  width: 100%;
+  margin: 2rem auto 2rem auto;
+}
+
+.feature .col,
+a {
+  cursor: pointer;
+}
+
+/* .sidebar{
+    margin-top: 4rem;
+    position: fixed;
+} */
+li {
+  padding: 8px;
+
+}
+
+.nav-item {
+  margin-left: -1%;
+}
+
+#exampleModalFullscreenXxlLabel,
+#TeamWFHLabel {
+  margin-left: 33rem;
+}
+
+#sideBar {
+  width: 13%;
+  background-color: #3f51b5;
+}
+
+/* .sidelogo {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+} */
+
+/* side bar design */
+.sidebarLogo {
+  width: 40px;
+  height: 39px;
+  flex-shrink: 0;
+}
+
+#sidebarMenu {
+  display: flex;
+  width: 332px;
+  padding: 7px 10px 7px 30px;
+  align-items: center;
+  gap: 68px;
+}
+
+.nav-link {
+  display: flex;
+}
+
+.sidebarPageLogo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-left: 0rem;
+  /* background-color: #a7a7a7; */
+}
+
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* .image-name {
+    position: absolute;
+    width: max-content;
+    top: 10%;
+    transform: translateX(6%);
+    border: 1px solid gray;
+    border-radius: 10%;
+    color: rgb(19, 18, 18);
+    padding: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease;
+  } */
+
+.image-name {
+  /* position: absolute;
+  width: max-content;
+  top: 98%; */
+  /* left: 200%; */
+  /* transform: translateX(-58%); */
+  /* border: 1px solid gray; */
+  /* border-radius: 10%; */
+  color: rgb(255, 255, 255);
+  font-family: "poppins";
+  padding: 5px;
+  /* visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease; */
+}
+
+/* .image-container:hover .image-name {
+  visibility: visible;
+  opacity: 1;
+} */
+
+/* side bar icon hover end */
+
+
+@media (max-width: 1024px) {
+
+  #sideBar {
+    width: 18%;
+    background-color: #3f51b5;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  #sideBar {
+    width: 20%;
+    background-color: #3f51b5;
+  }
+
+}
+
+@media (max-width: 425px) {
+
+  #sideBar {
+    width: 17%;
+    background-color: #3f51b5;
+  }
+
+  #dashboard {
+    width: 83%;
+    margin-top: -3rem;
+  }
+
+  .nav-item {
+    margin-left: 10%;
+  }
+  .image-name {
+    font-size: 10px;
+  }
+
+}
+
+
+
+
+
+
+.nav-link{
+  color: #FFF;
+  font-size: 15px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 118%;
+  letter-spacing: 0.6px;
+  text-align: center;
+}
+
+#sideNav{
+  background-color: blue;
+}
+#border{
+  width: 300px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 26px;
+  background: #FFF;
+}
