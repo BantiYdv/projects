@@ -1,7 +1,4 @@
 
-
-
-
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';

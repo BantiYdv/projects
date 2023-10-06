@@ -42,9 +42,9 @@
         </ul>
       </mat-menu>
       <div class="profile-header-img">
-        <!-- <img [routerLink]="['/profile', '']" (click)="loginService.showTable('profile')" [src]="imageUrl" alt="" class="profile-img" /> -->
-        <img [src]="imageUrl || defaultImageURL" alt="" class="profile-img" (error)="handleImageError($event)"/>
-
+        <a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']" (click)="loginService.showTable('Profile')">
+          <img [src]="imageUrl || defaultImageURL" alt="" class="profile-img" (error)="handleImageError($event)"/>
+  </a>
       </div>
       <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span class="d-md-block d-none d-lg-block">Logout</span></a>
   

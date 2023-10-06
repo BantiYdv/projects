@@ -67,7 +67,15 @@ export class AppComponent {
       // Token has expired, remove it from local storage
       localStorage.removeItem('jwtToken');
       localStorage.removeItem('tokenExpiration');
-      location.reload();
+      const permissionLength = localStorage.getItem('permissionLength');
+      const permissionLengthNumber = Number(permissionLength);
+      for (let i = 0; i < permissionLengthNumber; i++) {
+        localStorage.removeItem("permissions" + `${i}`);
+      }
+      localStorage.removeItem('role');
+      localStorage.removeItem('permissionLength');
+      // location.reload();
+      this.router.navigate(['/']);
 
       // Redirect the user to the login page or perform any other necessary action
     } else {

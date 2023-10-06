@@ -34,38 +34,45 @@ const routes: Routes = [
     path: "registration",
     component: RegistrationComponent,
     pathMatch: "full",
+    canActivate:[authGuard]
   },
  
   {
     path:"update",
     component: UpdateComponent,
     pathMatch: "full",
+    canActivate:[authGuard]
   },
   {
     path:"admin",
     component: AdminComponent,
     pathMatch: "full",
+    canActivate:[authGuard]
   },
   {
     path:"profile",
     component: ProfileComponent,
     pathMatch: "full",
+    canActivate:[authGuard]
   },
   {
     path:"profile/:tableType",
     component: ProfileComponent,
     pathMatch: "full",
+    canActivate:[authGuard]
   },
   {
     path:"profile/:id",
     component: ProfileComponent,
     pathMatch: "full",
+    canActivate:[authGuard]
   },
   
   {
     path:"test/:tableType",
     component: TestComponent,
     pathMatch: "full",
+    canActivate:[authGuard]
   },
   {
     path:"**",
@@ -74,7 +81,7 @@ const routes: Routes = [
   },
   
     // Other routes
-    { path: 'update/:id', component: UpdateComponent },
+    { path: 'update/:id', component: UpdateComponent, canActivate:[authGuard] },
   
   
 ];
