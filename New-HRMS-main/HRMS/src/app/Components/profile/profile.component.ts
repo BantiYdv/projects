@@ -68,11 +68,11 @@ this.getUserPhoto();
     this.dashboardService.getShowData().subscribe(
       (response: any) => {
         this.profileDetails = response;
-        console.log("data >>>>>>", response);
+    
        
       },
       (error) => {
-        console.error('Failed to fetch data:', error);
+      
       }
     );
   }
@@ -90,18 +90,18 @@ userProfile(): void {
       // Use the 'id' variable to fetch data
       this.RegisterAndUpdate.fetchData(+id).subscribe(
         (response) => {
-          console.log('User Profile:', response);
+        
           // Handle the response and update the input fields accordingly
           this.profileDetailsUser = response;
-          console.log("profile", this.profileDetailsUser);
+         
         },
         (error) => {
-          console.error('Error:', error);
+         
           // Handle the error here
         }
       );
     } else {
-      console.error('Employee ID not found in URL');
+     
     }
   });
 
@@ -112,7 +112,7 @@ userProfile(): void {
 BasicInfo(){
   this.route.queryParams.subscribe(params => {
     const id = params['id'];
-console.log("User Basic Info id", id);
+
     if (id) {
       // Use the 'id' variable to fetch data
       this.profileService.userBasicInfo(id).subscribe(
@@ -120,8 +120,7 @@ console.log("User Basic Info id", id);
           
           // Handle the response and update the input fields accordingly
           this.profileDetailsUser = response;
-          console.log("User Basic Info", response);
-          console.log("profile Basic Info", this.profileDetailsUser);
+         
         },
         (error) => {
           // Swal.fire('Error', error.error, 'error');  
@@ -129,7 +128,7 @@ console.log("User Basic Info id", id);
         }
       );
     } else {
-      console.error('Employee ID not found in URL');
+     
     }
   });
 }
@@ -158,7 +157,7 @@ console.log("User Basic Info id", id);
           // Optionally, you can reload the profile data or perform any other action after the update
         },
         (error) => {
-          console.error('Failed to edit profile:', error);
+        
         }
       );
     }
@@ -174,11 +173,11 @@ console.log("User Basic Info id", id);
           this.skills = response[0].skills;
           this.emergencyContact = response[0].emergencyContact;
           this.address = response[0].address;
-          console.log("<<<<<<<<<updated>>>>>>>>>", response);
+        
           
         },
         (error) => {
-          console.error('Failed to fetch data:', error);
+         
         }
       );
     }
@@ -201,10 +200,10 @@ console.log("User Basic Info id", id);
       (response) => {
         // Handle the response from the server after image upload
         Swal.fire('Success!', 'Image uploaded successfully!', 'success');
-        console.log("photo upload>>>>>>",response);
+       
       },
       (error) => {
-        console.error('API error:', error);
+       
         // Handle the error here
         Swal.fire('Error', 'Image upload failed.', 'error');
       }
@@ -224,18 +223,18 @@ console.log("User Basic Info id", id);
           const dataArray = Object.values(response);
        
           const reversedData = dataArray.reverse();
-          console.log("aaaaaaaa>>>>", response);
+         
                 // Set the reversed array as the data source
                 this.profileDetails = reversedData;
-                console.log(">>>>>>>>>>>>>>", this.profileDetails);
+               
           },
           (error) => {
-            console.error('Error:', error);
+           
             // Handle the error here
           }
         );
       } else {
-        console.error('Employee ID not found in URL');
+        
       }
     });
   }
@@ -246,8 +245,7 @@ console.log("User Basic Info id", id);
           const objectURL = URL.createObjectURL(response);
           this.imageUrl = objectURL;
         },
-        (error) => {
-          console.error('API error:', error);
+        (error) => {  
           // Handle the error here
         }
       );
@@ -266,7 +264,7 @@ console.log("User Basic Info id", id);
         if (result.isConfirmed) {
           this.profileService.deletePersonalDetails().subscribe(
             () => {
-              console.log('Basic Information deleted successfully.');
+             
               Swal.fire({
                 title: 'Deleted!',
                 text: 'Basic Information has been deleted.',
@@ -282,7 +280,7 @@ console.log("User Basic Info id", id);
               });
             },
             (error) => {
-              console.error('An error occurred while deleting the Basic Information:', error);
+             
             }
           );
         }

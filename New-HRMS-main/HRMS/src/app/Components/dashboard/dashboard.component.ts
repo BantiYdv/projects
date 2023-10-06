@@ -128,10 +128,10 @@ export class DashboardComponent {
     this.dashboardService.getShowData().subscribe(
       (response: any) => {
         this.profileDetails = response;
-        console.log("data >>>>>>", response);
+       
       },
       (error) => {
-        console.error('Failed to fetch data:', error);
+        
       }
     );
   }

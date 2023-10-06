@@ -48,7 +48,7 @@ export class LoginComponent {
     if (this.login.username && this.login.password) {
       this.loginService.signin(this.login.username, this.login.password).subscribe(
         (response: any) => {
-          console.log("test",response);
+         
 
           const token = response.jwtToken;
           localStorage.setItem("jwtToken", token);
@@ -137,7 +137,7 @@ export class LoginComponent {
 
         },
         (error: any) => {
-          console.log("err", error);
+        
           // Handle the error case
           if (error.status === 400) {
             Swal.fire({

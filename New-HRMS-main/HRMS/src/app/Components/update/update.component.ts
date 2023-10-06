@@ -84,11 +84,11 @@ export class UpdateComponent {
     this.RegisterAndUpdate.getTeamLeads().subscribe(
       (response: any) => {
         this.teamlead = response;
-        console.log('Team lead:', this.teamlead);
+      
         this.token = response.token;
       },
       (error) => {
-        console.error('Failed to fetch team leads:', error);
+        
       }
     );
   }
@@ -101,11 +101,11 @@ export class UpdateComponent {
     this.RegisterAndUpdate.getdepartment().subscribe(
       (response: any) => {
         this.departments = response; // Assuming the API response is an array of team leads
-        console.log('Department:', this.departments);
+     
         this.token = response.token;
       },
       (error) => {
-        console.error('Failed to fetch Department:', error);
+      
       }
     );
   }
@@ -118,11 +118,11 @@ export class UpdateComponent {
     this.RegisterAndUpdate.getdesignation().subscribe(
       (response: any) => {
         this.designation = response; // Assuming the API response is an array of team leads
-        console.log('Designation:', this.designation);
+       
         this.token = response.token;
       },
       (error) => {
-        console.error('Failed to fetch designation:', error);
+        
       }
     );
   }
@@ -135,11 +135,11 @@ export class UpdateComponent {
     this.RegisterAndUpdate.getrole().subscribe(
       (response: any) => {
         this.role = response; // Assuming the API response is an array of team leads
-        console.log('Role:', this.role);
+      
         this.token = response.token;
       },
       (error) => {
-        console.error('Failed to fetch team leads:', error);
+      
       }
     );
 
@@ -175,17 +175,17 @@ export class UpdateComponent {
         // Use the 'id' variable to fetch data
         this.RegisterAndUpdate.fetchData(+id).subscribe(
           (response) => {
-            console.log('Updated data:', response);
+          
             // Handle the response and update the input fields accordingly
             this.user = response;
           },
           (error) => {
-            console.error('Error:', error);
+   
             // Handle the error here
           }
         );
       } else {
-        console.error('Employee ID not found in URL');
+     
       }
     });
   
@@ -208,18 +208,18 @@ export class UpdateComponent {
           const dataArray = Object.values(response);
        
           const reversedData = dataArray.reverse();
-          console.log("aaaaaaaa>>>>", response);
+         
                 // Set the reversed array as the data source
                 this.profileDetails = reversedData;
-                console.log(">>>>>>>>>>>>>>", this.profileDetails);
+            
           },
           (error) => {
-            console.error('Error:', error);
+           
             // Handle the error here
           }
         );
       } else {
-        console.error('Employee ID not found in URL');
+       
       }
     });
   }
@@ -231,7 +231,7 @@ export class UpdateComponent {
   updateEmployeeData(): void {
     this.route.queryParams.subscribe(params => {
       const employeeId = params['id'];
-      console.log("update id", employeeId);
+    
   
       if (employeeId) {
         const data = {
@@ -256,16 +256,16 @@ export class UpdateComponent {
                 // Refresh page 
                 location.reload();
               });
-            console.log("skaksjasja");
+       
           },
           error => {
             // Handle the error if the API request fails
-            console.error('Update API error:', error);
+   
             // Add any error handling logic you need
           }
         );
       } else {
-        console.error('Employee ID not found in URL');
+   
       }
     });
   }

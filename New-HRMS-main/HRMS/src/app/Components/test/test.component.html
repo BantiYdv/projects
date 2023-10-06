@@ -65,38 +65,39 @@
 
   <!-- create role end -->
 
-    <!-- view role start -->
-    <div *ngSwitchCase="'viewRole'">
-      <div class="container px-4 py-0 text-center" >
-  
-      <div class="table-responsive m-2">
-        <table class="table table-bordered">
-          <thead class="table-dark">
-            <tr>
-              <th>S.No</th>
-              <th>Role</th>
-              <th>Permissions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of AllRoleData; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.name }}</td>
-              <td>
-                <ul>
-                  <li *ngFor="let permission of item.permissions">{{ permission.permissionName }}</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-        </div>
-      </div>
+  <!-- view role start -->
+  <div *ngSwitchCase="'viewRole'">
+    <div class="container px-4 py-0 text-center" >
+
+    <div class="table-responsive m-2">
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>S.No</th>
+            <th>Role</th>
+            <th>Permissions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of AllRoleData; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.name }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let permission of item.permissions">{{ permission.permissionName }}</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
-    <!-- view role end  -->
+    </div>
+  </div>
+  <!-- view role end  -->
+
   
 
   <!-- view Admin list start -->

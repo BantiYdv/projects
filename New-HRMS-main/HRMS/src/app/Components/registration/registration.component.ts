@@ -97,11 +97,11 @@ teamLead() {
   this.RegisterAndUpdate.getTeamLeads().subscribe(
     (response: any) => {
       this.teamlead = response;
-      console.log('Team lead:', this.teamlead);
+    
       this.token = response.token;
     },
     (error) => {
-      console.error('Failed to fetch team leads:', error);
+     
     }
   );
 }
@@ -114,11 +114,11 @@ designations(){
   this.RegisterAndUpdate.getdesignation().subscribe(
       (response: any) => {
         this.designation = response; // Assuming the API response is an array of team leads
-        console.log('Designation:', this.designation);
+       
         this.token = response.token;
       },
       (error) => {
-        console.error('Failed to fetch designation:', error);
+       
       }
     );
 }
@@ -135,11 +135,11 @@ department(){
   this.RegisterAndUpdate.getdepartment().subscribe(
       (response: any) => {
         this.departments = response; // Assuming the API response is an array of team leads
-        console.log('Department:', this.departments);
+       
         this.token = response.token;
       },
       (error) => {
-        console.error('Failed to fetch Department:', error);
+       
       }
     );
 }
@@ -153,11 +153,11 @@ Getrole() {
   this.RegisterAndUpdate.getrole().subscribe(
       (response: any) => {
         this.role = response; // Assuming the API response is an array of team leads
-        console.log('Role:', this.role);
+      
         this.token = response.token;
       },
       (error) => {
-        console.error('Failed to fetch team leads:', error);
+       
       }
     );
 
@@ -167,7 +167,7 @@ Getrole() {
 
 onSubmit() {
   this.isLoading = true;
-  console.log(">>>>>>>>>>>>>>>>",this.user);
+ 
 
   const registrationData = {
         firstname: this.user.firstname,
@@ -204,13 +204,13 @@ onSubmit() {
           this.router.navigate(['/admin']);
         }
       });
-      console.log("user data", response);
+     
       this.isLoading = false;
     },
     (error) => {
       
         Swal.fire('Error', error.error, 'error');
-        console.log("error signup", error);
+      
        
         this.isLoading = false;
     }

@@ -159,7 +159,7 @@ getUserPhoto(): void {
       this.imageUrl = objectURL;
     },
     (error) => {
-      console.error('API error:', error);
+  
       // Handle the error here
     }
   );
@@ -180,7 +180,7 @@ getUserPhoto(): void {
       },
       (error) => {
         // Handle any errors that occur during the logout process.
-        console.error('Logout error:', error);
+      
       }
     );
   }
@@ -188,36 +188,6 @@ getUserPhoto(): void {
   //API for sign out end
 
 
-//API for team Leave start
-// teamleave(): void {
-//   this.showTeamLeaveTable = !this.showTeamLeaveTable;
-
-//   if (this.showTeamLeaveTable) {
-//     this.loginService.getTeamLeaveData().subscribe(
-//       (response) => {
-//         // Assign the received data to the TeamLeaveData property
-//         this.TeamLeaveData = response;
-//         console.log("leave", response);
-//       },
-//       (error) => {
-//         if (error.status === 403) {
-//           // Handle the 403 Forbidden error
-//           Swal.fire({
-//             icon: 'error',
-//             title: 'Token Expired!',
-//             text: 'Access denied. Please check your permissions.',
-//           });
-//           console.error('Access denied. Please check your permissions.');
-//         } else {
-//           // Handle other errors
-//           console.error('API error:', error);
-//         }
-//         this.showTeamLeaveTable = false; // Hide the table if an error occurs
-//       }
-//     );
-//   }
-// }
-//API for team Leave end
 
 // close team leave list start
 closeleavelist(): void {
@@ -250,7 +220,7 @@ onFileChange(event: any) {
       title: 'Can not uploaded!',
       text: 'Please select a valid PDF file.',
     });
-    console.error('Please select a valid PDF file.');
+ 
   }
 }
 // API for upload PDF end

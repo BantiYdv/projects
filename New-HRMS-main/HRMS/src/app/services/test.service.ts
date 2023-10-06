@@ -105,15 +105,7 @@ createRole(name: string, permissionNames: string[]): Observable<any> {
 }
 // create role end
 
-// view role start 
-ViewRole() {
-  const url = `${this.api.RoleShow}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  
-  return this.http.get(url, { headers });
-}
-// view role end
+
 
 // view role with permissions start 
 ViewRolewithPermission(){
