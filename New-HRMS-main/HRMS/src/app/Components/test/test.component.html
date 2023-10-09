@@ -461,7 +461,7 @@
                   <div class="mb-3">
                     <label for="leaveType" class="col-form-label">Leave Type:</label>
                     
-                    <select class="form-control" name="leaveType" id="leaveType" formControlName="leaveType">
+                    <select class="form-control" name="leaveType" id="leaveType" [(ngModel)]="selectedLeaveType" (change)="updateNumberOfDays()" formControlName="leaveType">
                       <option value="" selected disabled>--select--</option>
                       <option value="SICK">Sick Leave</option>
                       <option value="CASUAL">Casual Leave</option>
@@ -470,19 +470,20 @@
                     </select>
                   </div>
 
-                  <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                 
                     <div class="mb-3">
                       <label for="numberOfDays" class="col-form-label">Number of Days:</label>
-                      <input type="number" class="form-control" name="noOfDays" id="noOfDays" formControlName="noOfDays"
+                      <input type="number" class="form-control" name="noOfDays" id="noOfDays" [readonly]="selectedLeaveType === 'HALFDAY'" formControlName="noOfDays"
                         min="1" (change)="updateEndDate()">
-                      
+                      <!-- <div *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched" class="text-danger">
+              Number of days must be a positive number.
+            </div> -->
                       <div
                         *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched && leaveForm.get('leaveType').value !== 'HALFDAY'"
                         class="text-danger">
                         Number of days must be a positive number.
                       </div>
                     </div>
-                  </ng-container>
 
                   <div class="mb-3">
                     <label for="startDate" class="col-form-label">Start Date:</label>

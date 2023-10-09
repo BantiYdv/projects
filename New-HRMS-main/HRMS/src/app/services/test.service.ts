@@ -38,7 +38,7 @@ approveLeave(id: number): Observable<any> {
     approval: 'Approved'
   };
   const url = `${this.api.ApproveLeave}/${id}`;
-  return this.http.post(url, requestBody, { headers });
+  return this.http.put(url, requestBody, { headers });
 }
 //Approve leave end
 
@@ -50,7 +50,7 @@ rejectLeave(id: number): Observable<any> {
     approval: 'Rejected'
   };
   const url = `${this.api.RejectLeave}/${id}`;
-  return this.http.post(url, requestBody, { headers });
+  return this.http.put(url, requestBody, { headers });
 }
 //Reject leave end
 

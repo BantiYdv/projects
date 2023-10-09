@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { Router } from '@angular/router';
+import { TestService } from 'src/app/services/test.service';
 
 
 
@@ -46,19 +47,29 @@ export class RegistrationComponent {
 
   validateEmail() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const existingEmails = ['']; // Replace with your existing email check logic
-
-
+  
     if (!emailRegex.test(this.user.emailid)) {
       this.emailError = true;
       this.emailErrorMessage = 'Please enter a valid email address.';
-    } else if (existingEmails.includes(this.user.emailid)) {
-      this.emailError = true;
-      this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
-    } else {
-      this.emailError = false;
-      this.emailErrorMessage = '';
+      return; // Exit early if the email is not valid
     }
+
+    this.testService.getEmployeeList().subscribe(
+      (response: any) => {
+        const existingEmails = response.map((employee: any) => employee.emailid);
+        if (existingEmails.includes(this.user.emailid)) {
+          this.emailError = true;
+          this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
+        } else {
+          this.emailError = false;
+          this.emailErrorMessage = '';
+        }
+      },
+      (error) => {
+        console.error('Error fetching employee list:', error);
+        // Handle the error as needed
+      }
+    );
   }
   //eamil id error end 
 
@@ -71,7 +82,7 @@ export class RegistrationComponent {
   // departments: string[] = [];
   // designationControl = new FormControl();
   userForm: FormGroup;
-  constructor(private http: HttpClient, public loginService: LoginService,public RegisterAndUpdate: RegisterAndUpdateService, private router: Router) { 
+  constructor(private http: HttpClient, public loginService: LoginService,public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, public testService: TestService) { 
     this.userForm = new FormGroup({
       designation: new FormControl('')
     });

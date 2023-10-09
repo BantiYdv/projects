@@ -595,6 +595,19 @@ export class TestComponent {
     //for set end date when select halfday
   }
 
+// when select halday then number of days show 0.5 start
+selectedLeaveType: string = '';
+updateNumberOfDays() {
+  if (this.selectedLeaveType === 'HALFDAY') {
+    this.leaveForm.controls.noOfDays.setValue(0.5);
+  } else {
+    // You can set the default value for other leave types here if needed
+    this.leaveForm.controls.noOfDays.setValue(null); // Set to null for other types
+  }
+}
+// when select halday then number of days show 0.5 end
+
+
 
   calculateEndDate(): string {
     const noOfDays = this.leaveForm.get('noOfDays').value;
