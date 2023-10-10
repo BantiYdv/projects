@@ -22,7 +22,7 @@
     background-color: #0069d9;
   }
   
-  @media (max-width: 767px) {
+  /* @media (max-width: 767px) {
     .form-group {
       margin-bottom: 15px;
     }
@@ -31,7 +31,7 @@
       width: 100%;
     }
   }
-  
+   */
 
   @keyframes fadeIn {
     0% {
@@ -86,7 +86,7 @@
   
 
 
-  @media screen and (max-width: 1050px){
+  /* @media screen and (max-width: 1050px){
     .container{
       grid-gap: 5rem;
     }
@@ -119,10 +119,6 @@
       width: 415px;
       margin-left: -2rem;
     }
-  }
-
-
-
-  /* .img{
-    width: max-content;
   } */
+
+

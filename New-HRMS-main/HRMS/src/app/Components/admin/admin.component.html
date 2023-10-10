@@ -1,84 +1,59 @@
 <div class="container-fluid">
-
   <div class="row flex-nowrap">
-
-    
     <div class="col py-3">
-
-
       <div class="b-example-divider"></div>
-
       <div class="container px-4 py-5" id="hanging-icons">
         <h2 class="pb-2 border-bottom">Hello,
-          <span id="firstname" style="color: blue;">{{ profileDetails?.firstname + " " + profileDetails?.lastname
-            }}</span>
+          <span id="firstname" style="color: blue;">{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</span>
         </h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
           <div class="col d-flex align-items-start mt-3">
             <div class="cardAdmin">
-              <img class="CardImg"
+              <img class="CardImg img-fluid"
                 src="/assets/Group 12.svg" alt="">
               <h3 class="fs-2 text-body-emphasis">Leave</h3>
-              <p class="Para">Total Leaves = <span id="totalleaves">{{ profileDetails?.totalleaves }}</span>
-              </p>
-              <p class="Para">Sick Leave = <span id="sickLeavesPerMonth">{{ profileDetails?.sickLeavesPerMonth }}</span>
-                </p>
-              <p class="Para">Casual Leave = <span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span>
-                </p>
-              <div class="mb-3  d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary apply-leave-btn Apply" [routerLink]="['/test', 'applyLeave']" (click)="loginService.showTable('applyLeave')">Apply Leave</button>
-
-              </div>
-              <button type="submit" class="btn btn-primary view-leave-btn ViewLeave"
-                data-bs-toggle="modal" [routerLink]="['/test', 'viewLeave']" (click)="loginService.showTable('viewLeave')">View
-                Leave</button>
+              <p class="Para">Total Leaves = <span id="totalleaves">{{ profileDetails?.totalleaves }}</span></p>
+              <p class="Para">Sick Leave = <span id="sickLeavesPerMonth">{{ profileDetails?.sickLeavesPerMonth }}</span> <br> Casual Leave = <span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span></p>
+              <!-- <p class="Para">Casual Leave = <span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span></p> -->
+              <!-- <div class="mb-3  d-flex justify-content-between"> -->
+                <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12" [routerLink]="['/test', 'applyLeave']" (click)="loginService.showTable('applyLeave')">Apply Leave</button>
+              <!-- </div> -->
+              <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12"
+                data-bs-toggle="modal" [routerLink]="['/test', 'viewLeave']" (click)="loginService.showTable('viewLeave')">View Leave</button>
             </div>
           </div>
           <div class="col d-flex align-items-start mt-3">
-            
             <div class="cardAdmin">
-              <img class="CardImg"
+              <img class="CardImg img-fluid"
                 src="/assets/Confirmed attendance-bro 1.svg" alt="">
               <h3 class="fs-2 text-body-emphasis">Attendance</h3>
-              <p class="Para">Easily record and manage attendance data in real-time.</p>
-
-              <button type="submit" class="btn btn-primary view-leave-btn col-md-12 p-0 Apply"
-                 [routerLink]="['/test', 'viewAtt']" (click)="loginService.showTable('viewAtt')">View
-                Attendance</button>
-
-              <div class="d-flex justify-content-between mt-4">
-                <button type="submit" class="btn btn-primary apply-leave-btn col-md-5 p-0 checkIn"
+              <p class="Para mb-4">Easily record and manage attendance data in real-time.</p>
+              <button type="submit" class="btn btn-primary view-leave-btn Apply m-1 col-12 mt-4"
+                [routerLink]="['/test', 'viewAtt']" (click)="loginService.showTable('viewAtt')">View Attendance</button>
+              <div class="d-flex justify-content-between m-2">
+                <button type="submit" class="btn btn-primary apply-leave-btn col-6 checkIn mt-1 m-1" 
                   (click)="checkin()">Check-In</button>
-                <button type="submit" class="btn btn-primary apply-leave-btn col-md-5 p-0 checkOut"
+                <button type="submit" class="btn btn-secondary apply-leave-btn col-6 checkOut mt-1 m-1"
                   (click)="checkout()">Check-Out</button>
               </div>
             </div>
           </div>
-
           <div class="col d-flex align-items-start mt-3">
-           
             <div class="cardAdmin">
-              <img class="CardImg"
+              <img class="CardImg img-fluid"
                 src="/assets/Group 14 (1).svg" alt="">
               <h3 class="fs-2 text-body-emphasis">WFH</h3>
-              <p class="Para">Total WFH = <span id="totalwfh">{{ profileDetails?.totalwfh }}</span> 
-              </p>
-              <p class="Para">Remaining WFH = <span id="totalwfh">{{ profileDetails?.totalwfh }}</span> 
-              </p>
-              
-              <div class="mb-3  d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary apply-leave-btn col-md-10 p-0 Apply" [routerLink]="['/test', 'applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
-
-              </div>
-              <button type="submit" class="btn btn-primary view-leave-btn col-md-10 p-0 ViewLeave"
-              [routerLink]="['/test', 'viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
+              <p class="Para">Total WFH = <span id="totalwfh">{{ profileDetails?.totalwfh }}</span></p>
+              <p class="Para mb-4">Remaining WFH = <span id="remainingwfh">{{ profileDetails?.remainingwfh }}</span></p>
+              <!-- <div class="mb-3  d-flex justify-content-between"> -->
+                <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12" [routerLink]="['/test', 'applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
+              <!-- </div> -->
+              <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12"
+                [routerLink]="['/test', 'viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
             </div>
           </div>
-
         </div>
-       
       </div>
     </div>
   </div>
-
 </div>
