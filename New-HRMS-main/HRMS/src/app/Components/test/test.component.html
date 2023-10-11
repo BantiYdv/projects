@@ -69,8 +69,8 @@
   <div *ngSwitchCase="'viewRole'">
     <div class="container px-4 py-0 text-center" >
 
-    <div class="table-responsive m-2">
-      <table class="table table-bordered">
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered table-sm">
         <thead class="table-dark">
           <tr>
             <th>S.No</th>
@@ -87,12 +87,17 @@
                 <li *ngFor="let permission of item.permissions">{{ permission.permissionName }}</li>
               </ul>
             </td>
+            <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
+              <button type="button" class="btn btn-link">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div>
     </div>
   </div>
@@ -102,8 +107,8 @@
 
   <!-- view Admin list start -->
   <div *ngSwitchCase="'employee'">
-    <div class="table-responsive m-2">
-      <table class="table table-bordered">
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered table-sm">
         <thead class="table-dark">
           <tr>
             <th>S.No</th>
@@ -123,7 +128,7 @@
             <td>{{item.lastname}}</td>
             <td>{{item.department}}</td>
             <td>{{item.role.name }}</td>
-                         <td class="pointer" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }"
+            <td class="pointer" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }"
               >{{ item.emailid }}</td>
             <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
               <button type="button" class="btn btn-link">
@@ -138,9 +143,9 @@
           </tr>
         </tbody>
       </table>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div>
   </div>
 
@@ -159,8 +164,8 @@
 
 
   <div *ngSwitchCase="'teamleave'">
-    <div class="table-responsive m-2">
-      <table class="table table-bordered">
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered table-sm">
 
         <thead class="table-dark">
           <tr>
@@ -197,9 +202,9 @@
           </tr>
         </tbody>
       </table>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div>
 
   </div>
@@ -211,8 +216,8 @@
 
 
   <div *ngSwitchCase="'teamwfh'">
-    <div class="table-responsive m-2">
-      <table class="table table-bordered">
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered table-sm">
         <thead class="table-dark">
           <tr>
             <th>S.No</th>
@@ -245,9 +250,9 @@
           </tr>
         </tbody>
       </table>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div>
   </div>
   <!-- view team wfh end -->
@@ -540,8 +545,8 @@
   <div *ngSwitchCase="'viewLeave'">
     <div class="container px-4 py-0 text-center" *ngIf="showAdminLeaveTable" id="viewLeave">
 
-      <div class="table-responsive m-2">
-        <table class="table table-bordered">
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm">
           <thead class="table-dark">
             <tr>
               <th>S.No</th>
@@ -571,9 +576,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
   </div>
@@ -585,8 +590,8 @@
   <div *ngSwitchCase="'viewAtt'">
     <div class="container px-4 py-0 text-center" *ngIf="showAttTable" id="viewAtt">
 
-      <div class="table-responsive m-2">
-        <table class="table table-bordered">
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm">
           <thead class="table-dark">
             <tr>
               <th>S.No</th>
@@ -614,9 +619,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
   </div>
@@ -682,8 +687,8 @@
     <div class="container px-4 py-0 text-center" *ngIf="showWfhTable" id="viewWfh">
 
 
-      <div class="table-responsive m-2">
-        <table class="table table-bordered">
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm">
           <thead class="table-dark">
             <tr>
               <th>S.No</th>
@@ -711,9 +716,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
   </div>
@@ -724,8 +729,8 @@
   <div *ngSwitchCase="'viewAllAtt'">
     <div class="container px-4 py-0 text-center" *ngIf="showAllAttTable" id="viewAllAtt">
 
-      <div class="table-responsive m-2">
-        <table class="table table-bordered">
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm">
           <thead class="table-dark">
             <tr>
               <th>S.No</th>
@@ -753,9 +758,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
   </div>
@@ -767,8 +772,8 @@
     <div class="container px-4 py-0 text-center" *ngIf="showAllWfhTable" id="viewAllWfh">
 
 
-      <div class="table-responsive m-2">
-        <table class="table table-bordered">
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm">
           <thead class="table-dark">
             <tr>
               <th>S.No</th>
@@ -801,9 +806,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
   </div>
@@ -813,8 +818,8 @@
   <!-- view All leave start -->
   <div *ngSwitchCase="'viewAllLeave'">
     <div class="container px-4 py-0 text-center" *ngIf="showAllLeaveTable" id="AllviewLeave">
-      <div class="table-responsive m-2">
-        <table class="table table-bordered">
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm">
           <thead class="table-dark">
             <tr>
               <th>S.No</th>
@@ -850,9 +855,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
   </div>

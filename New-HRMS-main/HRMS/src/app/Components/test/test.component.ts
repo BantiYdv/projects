@@ -143,7 +143,7 @@ export class TestComponent {
 
           // Set the reversed array as the data source
           this.EmployeeData = reversedData;
-
+console.log("employe>>>", response);
         },
         error => {
           if (error.status === 403) {
