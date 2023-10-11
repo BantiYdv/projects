@@ -34,7 +34,7 @@
           <div class="form-group">
             <label for="emailid">Email <span style="color: red;">*</span></label>
             <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email" required
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="user.emailid" (input)="validateEmail()"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="user.emailid" 
               #emailnameInput="ngModel" (blur)="validateEmail()">
             <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
             <div *ngIf="emailnameInput.invalid && (emailnameInput.dirty || emailnameInput.touched)" class="text-danger">
