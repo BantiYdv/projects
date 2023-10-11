@@ -3,7 +3,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="img d-none d-md-block">
-              <img decoding="async" src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp">
+              <img decoding="async" src="/assets/image/update.webp">
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="emailid">Email</label>
-                    <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="user.emailid" value="{{profileDetails?.emailid}}" (input)="validateEmail()">
+                    <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email" required  [(ngModel)]="user.emailid" value="{{profileDetails?.emailid}}" (input)="validateEmail()">
                     <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
                 
                   </div>

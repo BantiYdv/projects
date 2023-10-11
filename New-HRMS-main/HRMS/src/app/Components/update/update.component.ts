@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ActivatedRoute } from '@angular/router';
+import { TestService } from 'src/app/services/test.service';
 
 
 
@@ -65,7 +66,7 @@ export class UpdateComponent {
 
   departments: string[] = [];
   designations: string[] = [];
-  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService) { }
 
   ngOnInit() {
 

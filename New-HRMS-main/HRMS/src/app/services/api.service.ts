@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class ApiService {
 
   public apiUrl = 'https://hrms.prilient.com/';
-
+  // public apiUrl = 'http://192.168.1.11:9191/';
 
   public login = `${this.apiUrl}gateway/login`;
   public forgetPassword = `${this.apiUrl}gateway/hrms/forgot-password`;
@@ -54,10 +54,6 @@ export class ApiService {
   public USerBasicInfo = `${this.apiUrl}gateway/hrms/findUSerAdditionalInfo`;
   public DeletepersonalDetails = `${this.apiUrl}gateway/hrms/deleteMydetail`;
   public uploadPhoto = `${this.apiUrl}gateway/hrms/upload-photo`;
-
-
-
- 
 
 
   constructor(private http: HttpClient) { }
