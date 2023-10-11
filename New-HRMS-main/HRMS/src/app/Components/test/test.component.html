@@ -87,11 +87,7 @@
                 <li *ngFor="let permission of item.permissions">{{ permission.permissionName }}</li>
               </ul>
             </td>
-            <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
-              <button type="button" class="btn btn-link">
-                <i class="fas fa-edit"></i>
-              </button>
-            </td>
+           
           </tr>
         </tbody>
       </table>
@@ -148,12 +144,6 @@
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div>
   </div>
-
-
-
-
-
-
 
   <!-- view Admin list end -->
 
