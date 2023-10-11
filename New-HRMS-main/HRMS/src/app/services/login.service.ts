@@ -51,7 +51,7 @@ export class LoginService {
       const permission = localStorage.getItem("permissions" + `${i}`);
       permissions.push(permission);
     }
-    console.log("sdfsfffd", permissions);
+    
 return permissions;
   }
   
