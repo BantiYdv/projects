@@ -29,7 +29,7 @@ export class RegistrationComponent {
   // date of birth select only 18 years old only start
   dobError: boolean = false;
   // router: any;
-  isLoading = false;
+  // isLoading = false;
 
   validateDateOfBirth() {
     const currentDate = new Date();
@@ -79,13 +79,18 @@ this.department();
     this.testService.getEmployeeList().subscribe(
       (response: any) => {
         const existingEmails = response.map((employee: any) => employee.emailid);
+        console.log("exist emails", existingEmails);
         if (existingEmails.includes(this.user.emailid)) {
           this.emailError = true;
+          console.log("email error is true",this.emailError);
           this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
         } else {
           this.emailError = false;
           this.emailErrorMessage = '';
+          console.log("email error is false",this.emailError);
         }
+        
+        console.log("email error message", this.emailErrorMessage);
       },
       (error) => {
         console.error('Error fetching employee list:', error);
@@ -171,7 +176,7 @@ Getrole() {
 
 
 onSubmit() {
-  this.isLoading = true;
+  // this.isLoading = true;
  
 
   const registrationData = {
@@ -193,7 +198,7 @@ onSubmit() {
         role: this.user.role,
         permissions: this.user.role.permissions
       };
-     
+     console.log("register form", registrationData);
 
   this.RegisterAndUpdate.registerUser(registrationData).subscribe(
     (response: any) => {
@@ -209,15 +214,15 @@ onSubmit() {
           this.router.navigate(['/admin']);
         }
       });
-     
-      this.isLoading = false;
+     console.log("registered", response);
+      // this.isLoading = false;
     },
     (error) => {
       
         Swal.fire('Error', error.error, 'error');
       
        
-        this.isLoading = false;
+        // this.isLoading = false;
     }
   );
 }
