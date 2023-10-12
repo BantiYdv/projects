@@ -19,30 +19,32 @@ import { TestService } from 'src/app/services/test.service';
 
 
 export class RegistrationComponent {
+  @ViewChild('firstnameInput') firstnameInput: ElementRef | any;
+  @ViewChild('lastnameInput') lastnameInput: ElementRef | any;
+  @ViewChild('emailidInput') emailidInput: ElementRef | any;
+  @ViewChild('phonenumberInput') phonenumberInput: ElementRef | any;
+  @ViewChild('teamleadInput') teamleadInput: ElementRef | any;
+  @ViewChild('dateofjoiningInput') dateofjoiningInput: ElementRef | any;
+  @ViewChild('designationInput') designationInput: ElementRef | any;
+  @ViewChild('dobInput') dobInput: ElementRef | any;
+  @ViewChild('departmentInput') departmentInput: ElementRef | any;
+  @ViewChild('usernameInput') usernameInput: ElementRef | any;
+  @ViewChild('passwordInput') passwordInput: ElementRef | any;
+  @ViewChild('totalleavesInput') totalleavesInput: ElementRef | any;
+  @ViewChild('totalwfhInput') totalwfhInput: ElementRef | any;
+  @ViewChild('roleInput') roleInput: ElementRef | any;
+  @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: ElementRef | any;
+  @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: ElementRef | any;
+
+
   user: any = {                                              // Object to store the user registration data
-  
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
     designation: '',
    
   };
   
   // @ViewChild('designationInput') designationInput: ElementRef | undefined;
-  @ViewChild('firstnameInput') firstnameInput: any;
-  @ViewChild('lastnameInput') lastnameInput: any;
-  @ViewChild('emailidInput') emailidInput: any;
-  @ViewChild('phonenumberInput') phonenumberInput: any;
-  @ViewChild('teamleadInput') teamleadInput: any;
-  @ViewChild('dateofjoiningInput') dateofjoiningInput: any;
-  @ViewChild('designationInput') designationInput: any;
-  @ViewChild('dobInput') dobInput: any;
-  @ViewChild('departmentInput') departmentInput: any;
-  @ViewChild('usernameInput') usernameInput: any;
-  @ViewChild('passwordInput') passwordInput: any;
-  @ViewChild('totalleavesInput') totalleavesInput: any;
-  @ViewChild('totalwfhInput') totalwfhInput: any;
-  @ViewChild('roleInput') roleInput: any;
-  @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: any;
-  @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: any;
+ 
 
 
 
@@ -82,7 +84,7 @@ export class RegistrationComponent {
       designation: new FormControl('')
     });
   }
-
+  
 
   //API for getting teamlead start
   ngOnInit() {
@@ -204,22 +206,22 @@ onSubmit() {
  
 
   const registrationData = {
-        firstname: this.firstnameInput.nativeElement.value,
-        lastname: this.lastnameInput.nativeElement.value,
-        emailid: this.emailidInput.nativeElement.value,
-        phonenumber: this.phonenumberInput.nativeElement.value,
-        teamlead: this.teamleadInput.nativeElement.value,
-        dateofjoining: this.dateofjoiningInput.nativeElement.value,
+        firstname: this.user.firstname,
+        lastname: this.user.lastname,
+        emailid: this.user.emailid,
+        phonenumber: this.user.phonenumber,
+        teamlead: this.user.teamlead,
+        dateofjoining: this.user.dateofjoining,
         designation: this.designationInput.nativeElement.value,
-        dob: this.dobInput.nativeElement.value,
+        dob: this.user.dob,
         department: this.departmentInput.nativeElement.value,
-        username: this.usernameInput.nativeElement.value,
-        password: this.passwordInput.nativeElement.value,
-        totalleaves: this.totalleavesInput.nativeElement.value,
-        totalwfh: this.totalwfhInput.nativeElement.value,
-        sickLeavesPerMonth: this.sickLeavesPerMonthInput.nativeElement.value / 2,
-        casualLeavesPerMonth: this.casualLeavesPerMonthInput.nativeElement.value / 2,
-        role: this.roleInput.nativeElement.value,
+        username: this.user.username,
+        password: this.user.password,
+        totalleaves: this.user.totalleaves,
+        totalwfh: this.user.totalwfh,
+        sickLeavesPerMonth: this.user.totalleaves / 2,
+        casualLeavesPerMonth: this.user.totalleaves / 2,
+        role: this.user.role,
         
       };
      console.log("register form", registrationData);

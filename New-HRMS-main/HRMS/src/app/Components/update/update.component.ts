@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
@@ -6,6 +6,7 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ActivatedRoute } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
+import { ViewChild } from '@angular/core';
 
 
 
@@ -16,6 +17,22 @@ import { TestService } from 'src/app/services/test.service';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent {
+  @ViewChild('firstnameInput') firstnameInput: ElementRef | any;
+  @ViewChild('lastnameInput') lastnameInput: ElementRef | any;
+  @ViewChild('emailidInput') emailidInput: ElementRef | any;
+  @ViewChild('phonenumberInput') phonenumberInput: ElementRef | any;
+  @ViewChild('teamleadInput') teamleadInput: ElementRef | any;
+  @ViewChild('dateofjoiningInput') dateofjoiningInput: ElementRef | any;
+  @ViewChild('designationInput') designationInput: ElementRef | any;
+  @ViewChild('dobInput') dobInput: ElementRef | any;
+  @ViewChild('departmentInput') departmentInput: ElementRef | any;
+  @ViewChild('usernameInput') usernameInput: ElementRef | any;
+  @ViewChild('passwordInput') passwordInput: ElementRef | any;
+  @ViewChild('totalleavesInput') totalleavesInput: ElementRef | any;
+  @ViewChild('totalwfhInput') totalwfhInput: ElementRef | any;
+  @ViewChild('roleInput') roleInput: ElementRef | any;
+  @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: ElementRef | any;
+  @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: ElementRef | any;
   user: any = {                                              // Object to store the user registration data
     // dateofjoining: new Date().toISOString().split('T')[0],  //bydefault show current date in date of joining
     // designation: '--Select--'
@@ -118,7 +135,7 @@ export class UpdateComponent {
 
     this.RegisterAndUpdate.getdesignation().subscribe(
       (response: any) => {
-        this.designation = response; // Assuming the API response is an array of team leads
+        this.designations = response; // Assuming the API response is an array of team leads
        
         this.token = response.token;
       },

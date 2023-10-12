@@ -36,9 +36,9 @@
             <label for="emailid">Email <span style="color: red;">*</span></label>
             <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email" required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="user.emailid" 
-              #emailnameInput="ngModel" (keyup)="validateEmail()">
+              #emailidInput="ngModel" (keyup)="validateEmail()">
               <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
-            <div *ngIf="emailnameInput.invalid && (emailnameInput.dirty || emailnameInput.touched)" class="text-danger">
+            <div *ngIf="emailidInput.invalid && (emailidInput.dirty || emailidInput.touched)" class="text-danger">
              Please enter valid Email id.
             </div>
           </div>
@@ -49,8 +49,8 @@
             <label for="phonenumber">Contact <span style="color: red;">*</span></label>
             <input type="tel" class="form-control" name="phonenumber" id="phonenumber"
               placeholder="Enter your phone number" maxlength="10" minlength="10" required pattern="[0-9]{10}"
-              [(ngModel)]="user.phonenumber" #contactnameInput="ngModel">
-            <div *ngIf="contactnameInput.invalid && (contactnameInput.dirty || contactnameInput.touched)"
+              [(ngModel)]="user.phonenumber" #phonenumberInput="ngModel">
+            <div *ngIf="phonenumberInput.invalid && (phonenumberInput.dirty || phonenumberInput.touched)"
               class="text-danger">
               Contact number is required.
             </div>
@@ -61,7 +61,7 @@
           <div class="form-group">
             <label for="teamlead">Team Lead</label>
             <select class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
-              (ngModelChange)="teamLead()">
+              (ngModelChange)="teamLead()" #teamleadInput>
               <option value="">--Select--</option>
               <option *ngFor="let teamlead of teamlead" [value]="teamlead">{{ teamlead }} </option>
             </select>
@@ -73,8 +73,8 @@
             <label for="dateofjoining">Date Of Joining <span style="color: red;">*</span></label>
             <input type="date" class="form-control" id="dateofjoining" name="dateofjoining" required
               placeholder="Enter your Date Of Joining" [(ngModel)]="user.dateofjoining" 
-              max="{{ getMaxDate() }}" #dojnameInput="ngModel">
-            <div *ngIf="dojnameInput.invalid && (dojnameInput.dirty || dojnameInput.touched)" class="text-danger">
+              max="{{ getMaxDate() }}" #dateofjoiningInput="ngModel">
+            <div *ngIf="dateofjoiningInput.invalid && (dateofjoiningInput.dirty || dateofjoiningInput.touched)" class="text-danger">
               Date of Joining is required.
             </div>
           </div>
@@ -99,7 +99,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="dob">Date of Birth <span style="color: red;">*</span></label>
-            <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth" required
+            <input #dobInput type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth" required
               [(ngModel)]="user.dob" (change)="validateDateOfBirth()">
             <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
           </div>
@@ -109,7 +109,7 @@
           <div class="form-group">
             <label for="role">Role</label>
             <select class="form-control" name="role" id="role" [(ngModel)]="user.role"
-              (ngModelChange)="ngOnInit()">
+              (ngModelChange)="ngOnInit()" #roleInput>
               <option value="">--Select--</option>
               <option *ngFor="let role of role" [value]="role">{{ role }} </option>
             </select>
@@ -135,14 +135,14 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="totalleaves">Leaves</label>
-            <input type="text" class="form-control" name="totalleaves" id="totalleaves" placeholder="Leaves" required
+            <input #totalleavesInput type="text" class="form-control" name="totalleaves" id="totalleaves" placeholder="Leaves" required
               [(ngModel)]="user.totalleaves">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="totalwfh">Work From Home</label>
-            <input type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH" required
+            <input #totalwfhInput type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH" required
               [(ngModel)]="user.totalwfh">
           </div>
         </div>
