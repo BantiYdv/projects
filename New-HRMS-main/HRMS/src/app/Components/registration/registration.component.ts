@@ -20,9 +20,23 @@ import { TestService } from 'src/app/services/test.service';
 
 export class RegistrationComponent {
   user: any = {                                              // Object to store the user registration data
+    firstname: '',
+    lastname: '',
+    emailid: '',
+    phonenumber: '',
+    teamlead: '',
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
-    designation: ''
+    designation: '',
+    dob: '',
+    username: '',
+    password: '',
+    totalleaves: 0, // You can set this to the default number of total leaves
+    totalwfh: 0,    // You can set this to the default number of total WFH
+    sickLeavesPerMonth: 0, // This can be calculated based on totalleaves
+    casualLeavesPerMonth: 0, // This can be calculated based on totalleaves
+    role: ''
   };
+  
   // @ViewChild('designationInput') designationInput: ElementRef | undefined;
   @ViewChild('designationInput') designationInput: any;
   @ViewChild('departmentInput') departmentInput: any;
@@ -74,32 +88,60 @@ this.department();
   }
 
   // email id already exist error start
-  validateEmail() {
+  // validateEmail() {
    
+  //   this.testService.getEmployeeList().subscribe(
+  //     (response: any) => {
+  //       const existingEmails = response.map((employee: any) => employee.emailid);
+  //       console.log("exist emails", existingEmails);
+
+  //       if (existingEmails.includes(this.user.emailid)) {
+          
+  //         this.emailError = true;
+  //         console.log("email error is true",this.emailError);
+  //         this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
+  //       } else {
+  //         this.emailError = false;
+  //         this.emailErrorMessage = '';
+  //         console.log("email error is false",this.emailError);
+  //       }
+        
+  //       console.log("email error message", this.emailErrorMessage);
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching employee list:', error);
+  //       // Handle the error as needed
+  //     }
+  //   );
+  // }
+  validateEmail() {
+    const userEmail = this.user.emailid; // Store the user's email before the HTTP request
+  
     this.testService.getEmployeeList().subscribe(
       (response: any) => {
         const existingEmails = response.map((employee: any) => employee.emailid);
-        console.log("exist emails", existingEmails);
-
-        if (existingEmails.includes(this.user.emailid)) {
-          
-          this.emailError = true;
-          console.log("email error is true",this.emailError);
-          this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
+        console.log("Existing emails", existingEmails);
+  
+        if (existingEmails.includes(userEmail)) { // Check the stored user email
+          this.handleEmailError(true, 'Email already exists. Please enter a different email address.');
         } else {
-          this.emailError = false;
-          this.emailErrorMessage = '';
-          console.log("email error is false",this.emailError);
+          this.handleEmailError(false, '');
         }
-        
-        console.log("email error message", this.emailErrorMessage);
       },
       (error) => {
         console.error('Error fetching employee list:', error);
-        // Handle the error as needed
+       
       }
     );
   }
+  
+  private handleEmailError(hasError: boolean, errorMessage: string) {
+    this.emailError = hasError;
+    this.emailErrorMessage = errorMessage;
+    console.log("Email error is", this.emailError);
+    console.log("Email error message", this.emailErrorMessage);
+  }
+  
   // email id already exist error end
   
   //API for getting teamlead start
