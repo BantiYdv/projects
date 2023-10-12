@@ -20,26 +20,32 @@ import { TestService } from 'src/app/services/test.service';
 
 export class RegistrationComponent {
   user: any = {                                              // Object to store the user registration data
-    firstname: '',
-    lastname: '',
-    emailid: '',
-    phonenumber: '',
-    teamlead: '',
+  
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
     designation: '',
-    dob: '',
-    username: '',
-    password: '',
-    totalleaves: 0, // You can set this to the default number of total leaves
-    totalwfh: 0,    // You can set this to the default number of total WFH
-    sickLeavesPerMonth: 0, // This can be calculated based on totalleaves
-    casualLeavesPerMonth: 0, // This can be calculated based on totalleaves
-    role: ''
+   
   };
   
   // @ViewChild('designationInput') designationInput: ElementRef | undefined;
+  @ViewChild('firstnameInput') firstnameInput: any;
+  @ViewChild('lastnameInput') lastnameInput: any;
+  @ViewChild('emailidInput') emailidInput: any;
+  @ViewChild('phonenumberInput') phonenumberInput: any;
+  @ViewChild('teamleadInput') teamleadInput: any;
+  @ViewChild('dateofjoiningInput') dateofjoiningInput: any;
   @ViewChild('designationInput') designationInput: any;
+  @ViewChild('dobInput') dobInput: any;
   @ViewChild('departmentInput') departmentInput: any;
+  @ViewChild('usernameInput') usernameInput: any;
+  @ViewChild('passwordInput') passwordInput: any;
+  @ViewChild('totalleavesInput') totalleavesInput: any;
+  @ViewChild('totalwfhInput') totalwfhInput: any;
+  @ViewChild('roleInput') roleInput: any;
+  @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: any;
+  @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: any;
+
+
+
   // date of birth select only 18 years old only start
   dobError: boolean = false;
   // router: any;
@@ -88,59 +94,33 @@ this.department();
   }
 
   // email id already exist error start
-  // validateEmail() {
-   
-  //   this.testService.getEmployeeList().subscribe(
-  //     (response: any) => {
-  //       const existingEmails = response.map((employee: any) => employee.emailid);
-  //       console.log("exist emails", existingEmails);
-
-  //       if (existingEmails.includes(this.user.emailid)) {
-          
-  //         this.emailError = true;
-  //         console.log("email error is true",this.emailError);
-  //         this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
-  //       } else {
-  //         this.emailError = false;
-  //         this.emailErrorMessage = '';
-  //         console.log("email error is false",this.emailError);
-  //       }
-        
-  //       console.log("email error message", this.emailErrorMessage);
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching employee list:', error);
-  //       // Handle the error as needed
-  //     }
-  //   );
-  // }
   validateEmail() {
-    const userEmail = this.user.emailid; // Store the user's email before the HTTP request
-  
+   
     this.testService.getEmployeeList().subscribe(
       (response: any) => {
         const existingEmails = response.map((employee: any) => employee.emailid);
-        console.log("Existing emails", existingEmails);
-  
-        if (existingEmails.includes(userEmail)) { // Check the stored user email
-          this.handleEmailError(true, 'Email already exists. Please enter a different email address.');
+        console.log("exist emails", existingEmails);
+
+        if (existingEmails.includes(this.user.emailid)) {
+          
+          this.emailError = true;
+          console.log("email error is true",this.emailError);
+          this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
         } else {
-          this.handleEmailError(false, '');
+          this.emailError = false;
+          this.emailErrorMessage = '';
+          console.log("email error is false",this.emailError);
         }
+        
+        console.log("email error message", this.emailErrorMessage);
       },
       (error) => {
         console.error('Error fetching employee list:', error);
-       
+        // Handle the error as needed
       }
     );
   }
-  
-  private handleEmailError(hasError: boolean, errorMessage: string) {
-    this.emailError = hasError;
-    this.emailErrorMessage = errorMessage;
-    console.log("Email error is", this.emailError);
-    console.log("Email error message", this.emailErrorMessage);
-  }
+ 
   
   // email id already exist error end
   
@@ -224,22 +204,22 @@ onSubmit() {
  
 
   const registrationData = {
-        firstname: this.user.firstname,
-        lastname: this.user.lastname,
-        emailid: this.user.emailid,
-        phonenumber: this.user.phonenumber,
-        teamlead: this.user.teamlead,
-        dateofjoining: this.user.dateofjoining,
+        firstname: this.firstnameInput.nativeElement.value,
+        lastname: this.lastnameInput.nativeElement.value,
+        emailid: this.emailidInput.nativeElement.value,
+        phonenumber: this.phonenumberInput.nativeElement.value,
+        teamlead: this.teamleadInput.nativeElement.value,
+        dateofjoining: this.dateofjoiningInput.nativeElement.value,
         designation: this.designationInput.nativeElement.value,
-        dob: this.user.dob,
+        dob: this.dobInput.nativeElement.value,
         department: this.departmentInput.nativeElement.value,
-        username: this.user.username,
-        password: this.user.password,
-        totalleaves: this.user.totalleaves,
-        totalwfh: this.user.totalwfh,
-        sickLeavesPerMonth: this.user.totalleaves / 2,
-        casualLeavesPerMonth: this.user.totalleaves / 2,
-        role: this.user.role,
+        username: this.usernameInput.nativeElement.value,
+        password: this.passwordInput.nativeElement.value,
+        totalleaves: this.totalleavesInput.nativeElement.value,
+        totalwfh: this.totalwfhInput.nativeElement.value,
+        sickLeavesPerMonth: this.sickLeavesPerMonthInput.nativeElement.value / 2,
+        casualLeavesPerMonth: this.casualLeavesPerMonthInput.nativeElement.value / 2,
+        role: this.roleInput.nativeElement.value,
         
       };
      console.log("register form", registrationData);
@@ -270,6 +250,8 @@ onSubmit() {
     }
   );
 }
+
+// disable date from date of joining start
   getMaxDate(): string {
     const currentDate = new Date();
     currentDate.setDate(currentDate.getDate() + 0);
