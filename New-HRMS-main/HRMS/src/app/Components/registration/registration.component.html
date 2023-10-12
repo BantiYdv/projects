@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="col-md-12 col-lg-6">
-    <form id="registration-form" class="form mt-4" >
+    <form id="registration-form" class="form mt-4" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -19,6 +19,7 @@
             </div>
           </div>
         </div>
+        
         <div class="col-md-6">
           <div class="form-group">
             <label for="lastname">Last Name <span style="color: red;">*</span></label>
@@ -35,7 +36,7 @@
             <label for="emailid">Email <span style="color: red;">*</span></label>
             <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email" required
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="user.emailid" 
-              #emailnameInput="ngModel" (blur)="validateEmail()">
+              #emailnameInput="ngModel" (keyup)="validateEmail()">
             <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
             <div *ngIf="emailnameInput.invalid && (emailnameInput.dirty || emailnameInput.touched)" class="text-danger">
              Please enter valid Email id.
@@ -70,7 +71,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="dateofjoining">Date Of Joining <span style="color: red;">*</span></label>
-            <input type="date" class="form-control" id="dateofjoining" name="dateofjoining"
+            <input type="date" class="form-control" id="dateofjoining" name="dateofjoining" required
               placeholder="Enter your Date Of Joining" [(ngModel)]="user.dateofjoining" 
               max="{{ getMaxDate() }}" #dojnameInput="ngModel">
             <div *ngIf="dojnameInput.invalid && (dojnameInput.dirty || dojnameInput.touched)" class="text-danger">
@@ -150,7 +151,7 @@
       
       <div class="form-group">
         <button type="submit" mat-raised-button color="primary"
-        class="btn btn-primary btn-sm col-md-12" (click)="onSubmit()">Register</button>
+        class="btn btn-primary btn-sm col-md-12" >Register</button>
         <!-- <button type="submit"
           mat-raised-button
           color="primary"

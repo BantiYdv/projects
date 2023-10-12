@@ -80,7 +80,9 @@ this.department();
       (response: any) => {
         const existingEmails = response.map((employee: any) => employee.emailid);
         console.log("exist emails", existingEmails);
+
         if (existingEmails.includes(this.user.emailid)) {
+          
           this.emailError = true;
           console.log("email error is true",this.emailError);
           this.emailErrorMessage = 'Email already exists. Please enter a different email address.';
@@ -196,7 +198,7 @@ onSubmit() {
         sickLeavesPerMonth: this.user.totalleaves / 2,
         casualLeavesPerMonth: this.user.totalleaves / 2,
         role: this.user.role,
-        permissions: this.user.role.permissions
+        
       };
      console.log("register form", registrationData);
 
