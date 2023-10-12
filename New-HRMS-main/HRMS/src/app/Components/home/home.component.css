@@ -3,21 +3,3 @@
     padding-top: 6rem!important;
 }
 
-
-/* Mobile L and M (425px) */
-@media (max-width: 425px) {
-    .align-items-center{
-    margin-left: 2rem;
-    }
-
-    .img-fluid {
-        max-width: 150%;
-        height: auto;
-    }
-
-    .text-md-start{
-        margin-left: -2rem;
-        width: 162%;
-    }
-}
-
