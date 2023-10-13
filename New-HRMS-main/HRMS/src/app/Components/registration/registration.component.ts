@@ -39,7 +39,7 @@ export class RegistrationComponent {
 
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
-    designation: '',
+  
    
   };
   
@@ -203,7 +203,7 @@ Getrole() {
 
 onSubmit() {
   // this.isLoading = true;
- 
+ console.log("<<<<<<user>>>>>", this.user);
 
   const registrationData = {
         // firstname: this.user.firstname,
@@ -224,14 +224,14 @@ onSubmit() {
         // role: this.user.role,
         firstname: 'satyam',
         lastname: 'kakra',
-        emailid: 'abcef@gmail.com',
+        emailid: 'abc@gmail.com',
         phonenumber: '1234567890',
         teamlead: 'ankit ola',
         dateofjoining: '2023-09-18',
         designation: 'front end',
         dob: '2002-09-18',
         department: 'IT',
-        username: 'abcef@gmail.com',
+        username: 'abc@gmail.com',
         password: '123456789',
         totalleaves: '24',
         totalwfh: '24',
@@ -256,6 +256,22 @@ onSubmit() {
         }
       });
      console.log("registered", response);
+      // this.isLoading = false;
+    },
+    (error) => {
+      
+        Swal.fire('Error', error.error, 'error');
+      
+       
+        // this.isLoading = false;
+    }
+  );
+
+
+  this.RegisterAndUpdate.registerUser(this.user).subscribe(
+    (response: any) => {
+      
+     console.log("test user", response);
       // this.isLoading = false;
     },
     (error) => {
