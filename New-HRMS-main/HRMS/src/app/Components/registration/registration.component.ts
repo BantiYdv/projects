@@ -236,7 +236,7 @@ onSubmit() {
   }
 );
   const registrationData = {
-        // firstname: this.user.firstname,
+        firstname: this.user.firstname,
         // lastname: this.user.lastname,
         // emailid: this.user.emailid,
         // phonenumber: this.user.phonenumber,
@@ -252,11 +252,11 @@ onSubmit() {
         // sickLeavesPerMonth: this.user.totalleaves / 2,
         // casualLeavesPerMonth: this.user.totalleaves / 2,
         // role: this.user.role,
-        firstname: 'Satyam',
+        // firstname: 'Satyam',
         lastname: 'kakra',
         emailid: 'abc@gmail.com',
         phonenumber: '1234567890',
-        teamlead: 'ankit ola',
+        teamlead: 'Ankit Ola',
         dateofjoining: '2023-09-18',
         designation: 'front end',
         dob: '2002-09-18',
