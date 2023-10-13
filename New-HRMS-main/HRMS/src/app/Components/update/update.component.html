@@ -8,25 +8,25 @@
           </div>
         </div>
           <div class="col-md-12 col-lg-6">
-            <form id="registration-form" class="form"  >
+            <form id="registration-form" class="form mt-5"  >
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="firstname">First Name</label>
-                    <input #firstnameInput type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter your first name" required [(ngModel)]="user.firstname"  value="{{profileDetails?.firstname}}">
+                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter your first name"  [(ngModel)]="user.firstname"  value="{{profileDetails?.firstname}}">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="lastname">Last Name</label>
-                    <input #lastnameInput type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter your last name" required [(ngModel)]="user.lastname" value="{{profileDetails?.lastname}}">
+                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter your last name"  [(ngModel)]="user.lastname" value="{{profileDetails?.lastname}}">
                   </div>
                 </div>
                 
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="emailid">Email</label>
-                    <input #emailidInput type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email" required  [(ngModel)]="user.emailid" value="{{profileDetails?.emailid}}" (input)="validateEmail()">
+                    <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email"   [(ngModel)]="user.emailid" value="{{profileDetails?.emailid}}" (input)="validateEmail()">
                     <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
                 
                   </div>
@@ -35,14 +35,14 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="phonenumber">Contact</label>
-                    <input #phonenumberInput type="tel" class="form-control" name="phonenumber" id="phonenumber" placeholder="Enter your phone number" maxlength="10" minlength="10" required pattern="[0-9]{10}" [(ngModel)]="user.phonenumber" value="{{profileDetails?.phonenumber}}">
+                    <input type="tel" class="form-control" name="phonenumber" id="phonenumber" placeholder="Enter your phone number" maxlength="10" minlength="10"  pattern="[0-9]{10}" [(ngModel)]="user.phonenumber" value="{{profileDetails?.phonenumber}}">
                   </div>
                 </div>
       
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="teamlead">Team Lead</label>
-                    <select #teamleadInput class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
+                    <select class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
                       (ngModelChange)="teamLead()">
                       <option value="">--Select--</option>
                       <option *ngFor="let teamlead of teamlead" [value]="teamlead">{{ teamlead }} </option>
@@ -53,14 +53,14 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="dateofjoining">Date Of Joining</label>
-                    <input #dateofjoiningInput type="date" class="form-control" id="dateofjoining" name="dateofjoining" placeholder="Enter your Date Of Joining"  [(ngModel)]="user.dateofjoining" value="{{profileDetails?.dateofjoining}}" [min]="getMinDate()" max="{{ getMaxDate() }}">
+                    <input type="date" class="form-control" id="dateofjoining" name="dateofjoining" placeholder="Enter your Date Of Joining"  [(ngModel)]="user.dateofjoining" value="{{profileDetails?.dateofjoining}}" [min]="getMinDate()" max="{{ getMaxDate() }}">
                   </div>
                 </div>
       
                 <div class="col-md-6" (ngSubmit)="designation()">
                   <div class="form-group">
                     <label for="designation">Designation</label>
-                    <input #designationInput type="text" class="form-control" name="designation" id="designation" placeholder="designation" required
+                    <input type="text" class="form-control" name="designation" id="designation" placeholder="designation" 
                             [matAutocomplete]="auto" [(ngModel)]="user.designation" >
                     <mat-autocomplete #auto="matAutocomplete">
                       <mat-option *ngFor="let designation of designations" [value]="designation">
@@ -73,7 +73,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="dob">Date of Birth</label>
-                    <input #dobInput type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth" required [(ngModel)]="user.dob" value="{{profileDetails?.dob}}" (change)="validateDateOfBirth()">
+                    <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth"  [(ngModel)]="user.dob" value="{{profileDetails?.dob}}" (change)="validateDateOfBirth()">
                     <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
                   </div>
                 </div>
@@ -82,7 +82,7 @@
                   <div class="form-group">
                     <label for="role">Role</label>
                     <select class="form-control" name="role" id="role" [(ngModel)]="user.role.name"
-                      (ngModelChange)="ngOnInit()" #roleInput>
+                      (ngModelChange)="ngOnInit()">
                       <option value="">--Select--</option>
                       <option *ngFor="let role of role" [value]="role">{{ role }} </option>
                     </select>
@@ -92,7 +92,7 @@
                 <div class="col-md-6" (ngSubmit)="department()">
                   <div class="form-group">
                     <label for="department">Department</label>
-                    <input #departmentInput type="text" class="form-control" name="department" id="department" placeholder="department" required
+                    <input type="text" class="form-control" name="department" id="department" placeholder="department" 
                      [matAutocomplete]="auto1" [(ngModel)]="user.department">
                     <mat-autocomplete #auto1="matAutocomplete">
                       <mat-option *ngFor="let department of departments" [value]="department">
@@ -102,17 +102,19 @@
                   </div>
                   </div>
       
+                 
+
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="totalleaves">Leaves</label>
-                    <input #totalleavesInput type="text" class="form-control" name="totalleaves" id="totalleaves" placeholder="Leaves" required
+                    <input type="text" class="form-control" name="totalleaves" id="totalleaves" placeholder="Leaves" 
                       [(ngModel)]="user.totalleaves">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="totalwfh">Work From Home</label>
-                    <input #totalwfhInput type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH" required
+                    <input type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH" 
                       [(ngModel)]="user.totalwfh">
                   </div>
                 </div>
@@ -122,7 +124,7 @@
             
               <div class="form-group">
                
-                <button type="submit" mat-raised-button color="primary" class="btn btn-primary btn-sm col-md-12" 
+                <button type="submit" color="primary" class="btn btn-primary btn-sm col-md-12" 
                 (click)="updateEmployeeData()">Update</button>
               </div>
             </form>

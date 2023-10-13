@@ -6,7 +6,7 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ActivatedRoute } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
-import { ViewChild } from '@angular/core';
+
 
 
 
@@ -17,25 +17,24 @@ import { ViewChild } from '@angular/core';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent {
-  @ViewChild('firstnameInput') firstnameInput: ElementRef | any;
-  @ViewChild('lastnameInput') lastnameInput: ElementRef | any;
-  @ViewChild('emailidInput') emailidInput: ElementRef | any;
-  @ViewChild('phonenumberInput') phonenumberInput: ElementRef | any;
-  @ViewChild('teamleadInput') teamleadInput: ElementRef | any;
-  @ViewChild('dateofjoiningInput') dateofjoiningInput: ElementRef | any;
-  @ViewChild('designationInput') designationInput: ElementRef | any;
-  @ViewChild('dobInput') dobInput: ElementRef | any;
-  @ViewChild('departmentInput') departmentInput: ElementRef | any;
-  @ViewChild('usernameInput') usernameInput: ElementRef | any;
-  @ViewChild('passwordInput') passwordInput: ElementRef | any;
-  @ViewChild('totalleavesInput') totalleavesInput: ElementRef | any;
-  @ViewChild('totalwfhInput') totalwfhInput: ElementRef | any;
-  @ViewChild('roleInput') roleInput: ElementRef | any;
-  @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: ElementRef | any;
-  @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: ElementRef | any;
+ 
   user: any = {                                              // Object to store the user registration data
-    // dateofjoining: new Date().toISOString().split('T')[0],  //bydefault show current date in date of joining
-    // designation: '--Select--'
+    firstname: '',
+        lastname: '',
+        emailid: '',
+        phonenumber: '',
+        teamlead: '',
+        dateofjoining:'',
+        designation: '',
+        dob: '',
+        department: '',
+        username: '',
+        password: '',
+        totalleaves: 0,
+        totalwfh: '',
+        sickLeavesPerMonth: '',
+        casualLeavesPerMonth: '',
+        role: '',
   };
 
   profileDetails: any;
@@ -252,29 +251,31 @@ export class UpdateComponent {
     
   
       if (employeeId) {
-        const data = {
-          firstname: this.user.firstname,
-          lastname: this.user.lastname,
-          emailid: this.user.emailid,
-          phonenumber: this.user.phonenumber,
-          teamlead: this.user.teamlead,
-          dateofjoining: this.user.dateofjoining,
-          designation: this.user.designation,
-          dob: this.user.dob,
-          role: this.user.role,
-          department: this.user.department,
-          totalleaves: this.user.totalleaves,
-          totalwfh: this.user.totalwfh,
-        };
+        // const data = {
+        //   firstname: this.user.firstname,
+        //   lastname: this.user.lastname,
+        //   emailid: this.user.emailid,
+        //   phonenumber: this.user.phonenumber,
+        //   teamlead: this.user.teamlead,
+        //   dateofjoining: this.user.dateofjoining,
+        //   designation: this.user.designation,
+        //   dob: this.user.dob,
+        //   role: this.user.role,
+        //   department: this.user.department,
+        //   totalleaves: this.user.totalleaves,
+        //   totalwfh: this.user.totalwfh,
+        // };
+
+        console.log("update>>>>>>", this.user);
         // Use the 'employeeId' variable to fetch data
-        this.RegisterAndUpdate.updateEmployee(employeeId, data).subscribe(
-          () => {
+        this.RegisterAndUpdate.updateEmployee(employeeId, this.user).subscribe(
+          (response) => {
             Swal.fire('Update!', 'User Update successfully!', 'success')
               .then(() => {
                 // Refresh page 
                 location.reload();
               });
-       
+       console.log("updated", response);
           },
           error => {
             // Handle the error if the API request fails

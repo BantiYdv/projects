@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="col-md-12 col-lg-6">
-    <form id="registration-form" class="form mt-4" (ngSubmit)="onSubmit()">
+    <form id="registration-form" class="form mt-5" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -61,7 +61,7 @@
           <div class="form-group">
             <label for="teamlead">Team Lead</label>
             <select class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
-              (ngModelChange)="teamLead()" #teamleadInput>
+              (ngModelChange)="teamLead()" >
               <option value="">--Select--</option>
               <option *ngFor="let teamlead of teamlead" [value]="teamlead">{{ teamlead }} </option>
             </select>
@@ -83,7 +83,7 @@
         <div class="col-md-6" (ngSubmit)="designations()">
           <div class="form-group" >
             <label for="designation">Designation</label>
-            <input #designationInput type="text" class="form-control" name="designation" id="designation" placeholder="Designation"  
+            <input type="text" class="form-control" name="designation" id="designation" placeholder="Designation"  
                     [matAutocomplete]="auto" [(ngModel)]="user.designation">
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let designation of designation" [value]="designation">
@@ -96,7 +96,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="dob">Date of Birth <span style="color: red;">*</span></label>
-            <input #dobInput type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth" 
+            <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth" 
               [(ngModel)]="user.dob" (change)="validateDateOfBirth()">
             <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
           </div>
@@ -106,7 +106,7 @@
           <div class="form-group">
             <label for="role">Role</label>
             <select class="form-control" name="role" id="role" [(ngModel)]="user.role"
-              (ngModelChange)="ngOnInit()" #roleInput>
+              (ngModelChange)="ngOnInit()" >
               <option value="">--Select--</option>
               <option *ngFor="let role of role" [value]="role">{{ role }} </option>
             </select>
@@ -119,7 +119,7 @@
         <div class="col-md-6" (ngSubmit)="department()">
           <div class="form-group">
             <label for="department">Department</label>
-            <input #departmentInput type="text" class="form-control" name="department" id="department" placeholder="Department" 
+            <input type="text" class="form-control" name="department" id="department" placeholder="Department" 
             [matAutocomplete]="auto1" [(ngModel)]="user.department">
             <mat-autocomplete #auto1="matAutocomplete">
               <mat-option *ngFor="let department of departments" [value]="department">

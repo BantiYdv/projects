@@ -3,7 +3,7 @@
   <!-- create role start -->
 
   <div *ngSwitchCase="'createRole'">
-    <div class="content m-2">
+    <div class="content m-1 mt-4">
       <div class="container applyLeave">
         <div class="row justify-content-center">
           <div class="col-md-10">
@@ -103,7 +103,7 @@
 
   <!-- view Admin list start -->
   <div *ngSwitchCase="'employee'">
-    <div class="table-responsive mt-4">
+    <div class="table-responsive m-1 mt-4">
       <table class="table table-bordered table-sm">
         <thead class="table-dark">
           <tr>
@@ -124,7 +124,7 @@
             <td>{{item.lastname}}</td>
             <td>{{item.department}}</td>
             <td>{{item.role.name }}</td>
-            <td class="pointer" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }"
+            <td class="pointer" style="cursor: pointer;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }"
               >{{ item.emailid }}</td>
             <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
               <button type="button" class="btn btn-link">
@@ -154,7 +154,7 @@
 
 
   <div *ngSwitchCase="'teamleave'">
-    <div class="table-responsive mt-4">
+    <div class="table-responsive m-1 mt-4">
       <table class="table table-bordered table-sm">
 
         <thead class="table-dark">
@@ -206,7 +206,7 @@
 
 
   <div *ngSwitchCase="'teamwfh'">
-    <div class="table-responsive mt-4">
+    <div class="table-responsive m-1 mt-4">
       <table class="table table-bordered table-sm">
         <thead class="table-dark">
           <tr>
@@ -249,7 +249,7 @@
 
   <!-- change password start-->
   <div *ngSwitchCase="'changePassword'">
-    <div class="content m-2">
+    <div class="content m-1 mt-4">
       <div class="container applyLeave">
         <div class="row justify-content-center">
           <div class="col-md-10">

@@ -19,22 +19,7 @@ import { TestService } from 'src/app/services/test.service';
 
 
 export class RegistrationComponent {
-  // @ViewChild('firstnameInput') firstnameInput: ElementRef | any;
-  // @ViewChild('lastnameInput') lastnameInput: ElementRef | any;
-  // @ViewChild('emailidInput') emailidInput: ElementRef | any;
-  // @ViewChild('phonenumberInput') phonenumberInput: ElementRef | any;
-  // @ViewChild('teamleadInput') teamleadInput: ElementRef | any;
-  // @ViewChild('dateofjoiningInput') dateofjoiningInput: ElementRef | any;
-  // @ViewChild('designationInput') designationInput: ElementRef | any;
-  // @ViewChild('dobInput') dobInput: ElementRef | any;
-  // @ViewChild('departmentInput') departmentInput: ElementRef | any;
-  // @ViewChild('usernameInput') usernameInput: ElementRef | any;
-  // @ViewChild('passwordInput') passwordInput: ElementRef | any;
-  // @ViewChild('totalleavesInput') totalleavesInput: ElementRef | any;
-  // @ViewChild('totalwfhInput') totalwfhInput: ElementRef | any;
-  // @ViewChild('roleInput') roleInput: ElementRef | any;
-  // @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: ElementRef | any;
-  // @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: ElementRef | any;
+  
 
 
   user: any = {                                              // Object to store the user registration data
@@ -59,9 +44,7 @@ export class RegistrationComponent {
    
   };
   
-  // @ViewChild('designationInput') designationInput: ElementRef | undefined;
- 
-
+  
 
 
   // date of birth select only 18 years old only start
@@ -221,57 +204,9 @@ onSubmit() {
   // this.isLoading = true;
   
  console.log("<<<<<<user>>>>>", this.user);
- this.RegisterAndUpdate.registerUser(this.user).subscribe(
-  (response: any) => {
-    
-   console.log("test user", response);
-    // this.isLoading = false;
-  },
-  (error) => {
-    
-      Swal.fire('Error', error.error, 'error');
-    
-     
-      // this.isLoading = false;
-  }
-);
-  const registrationData = {
-        firstname: this.user.firstname,
-        // lastname: this.user.lastname,
-        // emailid: this.user.emailid,
-        // phonenumber: this.user.phonenumber,
-        // teamlead: this.user.teamlead,
-        // dateofjoining: this.user.dateofjoining,
-        // designation: this.designationInput.nativeElement.value,
-        // dob: this.user.dob,
-        // department: this.departmentInput.nativeElement.value,
-        // username: this.user.username,
-        // password: this.user.password,
-        // totalleaves: this.user.totalleaves,
-        // totalwfh: this.user.totalwfh,
-        // sickLeavesPerMonth: this.user.totalleaves / 2,
-        // casualLeavesPerMonth: this.user.totalleaves / 2,
-        // role: this.user.role,
-        // firstname: 'Satyam',
-        lastname: 'kakra',
-        emailid: 'abc@gmail.com',
-        phonenumber: '1234567890',
-        teamlead: 'Ankit Ola',
-        dateofjoining: '2023-09-18',
-        designation: 'front end',
-        dob: '2002-09-18',
-        department: 'IT',
-        username: 'abc@gmail.com',
-        password: '123456789',
-        totalleaves: '24',
-        totalwfh: '24',
-        sickLeavesPerMonth: '12',
-        casualLeavesPerMonth: '12',
-        role: 'EMPLOYEE',
-      };
-     console.log("register form", registrationData);
-
-  this.RegisterAndUpdate.registerUser(registrationData).subscribe(
+ 
+  
+  this.RegisterAndUpdate.registerUser(this.user).subscribe(
     (response: any) => {
       Swal.fire({
         icon: 'success',
