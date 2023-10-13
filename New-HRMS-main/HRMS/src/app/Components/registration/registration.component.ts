@@ -19,26 +19,42 @@ import { TestService } from 'src/app/services/test.service';
 
 
 export class RegistrationComponent {
-  @ViewChild('firstnameInput') firstnameInput: ElementRef | any;
-  @ViewChild('lastnameInput') lastnameInput: ElementRef | any;
-  @ViewChild('emailidInput') emailidInput: ElementRef | any;
-  @ViewChild('phonenumberInput') phonenumberInput: ElementRef | any;
-  @ViewChild('teamleadInput') teamleadInput: ElementRef | any;
-  @ViewChild('dateofjoiningInput') dateofjoiningInput: ElementRef | any;
-  @ViewChild('designationInput') designationInput: ElementRef | any;
-  @ViewChild('dobInput') dobInput: ElementRef | any;
-  @ViewChild('departmentInput') departmentInput: ElementRef | any;
-  @ViewChild('usernameInput') usernameInput: ElementRef | any;
-  @ViewChild('passwordInput') passwordInput: ElementRef | any;
-  @ViewChild('totalleavesInput') totalleavesInput: ElementRef | any;
-  @ViewChild('totalwfhInput') totalwfhInput: ElementRef | any;
-  @ViewChild('roleInput') roleInput: ElementRef | any;
-  @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: ElementRef | any;
-  @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: ElementRef | any;
+  // @ViewChild('firstnameInput') firstnameInput: ElementRef | any;
+  // @ViewChild('lastnameInput') lastnameInput: ElementRef | any;
+  // @ViewChild('emailidInput') emailidInput: ElementRef | any;
+  // @ViewChild('phonenumberInput') phonenumberInput: ElementRef | any;
+  // @ViewChild('teamleadInput') teamleadInput: ElementRef | any;
+  // @ViewChild('dateofjoiningInput') dateofjoiningInput: ElementRef | any;
+  // @ViewChild('designationInput') designationInput: ElementRef | any;
+  // @ViewChild('dobInput') dobInput: ElementRef | any;
+  // @ViewChild('departmentInput') departmentInput: ElementRef | any;
+  // @ViewChild('usernameInput') usernameInput: ElementRef | any;
+  // @ViewChild('passwordInput') passwordInput: ElementRef | any;
+  // @ViewChild('totalleavesInput') totalleavesInput: ElementRef | any;
+  // @ViewChild('totalwfhInput') totalwfhInput: ElementRef | any;
+  // @ViewChild('roleInput') roleInput: ElementRef | any;
+  // @ViewChild('sickLeavesPerMonthInput') sickLeavesPerMonthInput: ElementRef | any;
+  // @ViewChild('casualLeavesPerMonthInput') casualLeavesPerMonthInput: ElementRef | any;
 
 
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
+    firstname: '',
+        lastname: '',
+        emailid: '',
+        phonenumber: '',
+        teamlead: '',
+        
+        designation: '',
+        dob: '',
+        department: '',
+        username: '',
+        password: '',
+        totalleaves: '',
+        totalwfh: '',
+        sickLeavesPerMonth: '',
+        casualLeavesPerMonth: '',
+        role: '',
   
    
   };
@@ -68,7 +84,7 @@ export class RegistrationComponent {
   emailErrorMessage: string = '';
 
   
-  //eamil id error end 
+  // email id error end 
 
   token: string = ''; // Variable to store the token
   teamlead: string[] = [];
@@ -203,8 +219,22 @@ Getrole() {
 
 onSubmit() {
   // this.isLoading = true;
+  
  console.log("<<<<<<user>>>>>", this.user);
-
+ this.RegisterAndUpdate.registerUser(this.user).subscribe(
+  (response: any) => {
+    
+   console.log("test user", response);
+    // this.isLoading = false;
+  },
+  (error) => {
+    
+      Swal.fire('Error', error.error, 'error');
+    
+     
+      // this.isLoading = false;
+  }
+);
   const registrationData = {
         // firstname: this.user.firstname,
         // lastname: this.user.lastname,
@@ -222,7 +252,7 @@ onSubmit() {
         // sickLeavesPerMonth: this.user.totalleaves / 2,
         // casualLeavesPerMonth: this.user.totalleaves / 2,
         // role: this.user.role,
-        firstname: 'satyam',
+        firstname: 'Satyam',
         lastname: 'kakra',
         emailid: 'abc@gmail.com',
         phonenumber: '1234567890',
@@ -268,20 +298,7 @@ onSubmit() {
   );
 
 
-  this.RegisterAndUpdate.registerUser(this.user).subscribe(
-    (response: any) => {
-      
-     console.log("test user", response);
-      // this.isLoading = false;
-    },
-    (error) => {
-      
-        Swal.fire('Error', error.error, 'error');
-      
-       
-        // this.isLoading = false;
-    }
-  );
+  
 }
 
 // disable date from date of joining start

@@ -84,7 +84,7 @@
           <div class="form-group" >
             <label for="designation">Designation</label>
             <input #designationInput type="text" class="form-control" name="designation" id="designation" placeholder="Designation"  
-                   formControlName="designation" [matAutocomplete]="auto" [(ngModel)]="user.designation">
+                    [matAutocomplete]="auto" [(ngModel)]="user.designation">
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let designation of designation" [value]="designation">
                 {{ designation }}
@@ -120,7 +120,7 @@
           <div class="form-group">
             <label for="department">Department</label>
             <input #departmentInput type="text" class="form-control" name="department" id="department" placeholder="Department" 
-            formControlName="department" [matAutocomplete]="auto1" >
+            [matAutocomplete]="auto1" [(ngModel)]="user.department">
             <mat-autocomplete #auto1="matAutocomplete">
               <mat-option *ngFor="let department of departments" [value]="department">
                 {{ department }}
