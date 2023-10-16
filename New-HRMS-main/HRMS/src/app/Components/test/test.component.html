@@ -66,7 +66,7 @@
   <!-- create role end -->
 
   <!-- view role start -->
-  <div *ngSwitchCase="'viewRole'">
+  <!-- <div *ngSwitchCase="'viewRole'">
     <div class="container px-4 py-0 text-center" >
 
     <div class="table-responsive mt-4">
@@ -96,10 +96,176 @@
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div>
     </div>
+  </div> -->
+
+  <div *ngSwitchCase="'viewRole'">
+    <div class="container px-4 py-0 text-center">
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm">
+          <thead class="table-dark">
+            <tr>
+              <th>S.No</th>
+              <th>Role</th>
+              <th>Permissions</th>
+              <th>Actions</th> <!-- New column for actions -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of AllRoleData; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.name }}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let permission of item.permissions">
+                    {{ permission.permissionName }}
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <!-- Edit and Delete buttons for permissions -->
+                <button class="btn btn-primary" [routerLink]="['/test', 'addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)">Add</button>
+
+                <button class="btn btn-danger" [routerLink]="['/test', 'removePermission' ]" [queryParams]="{ id: item.id }"  (click)="openDeletePermission(item)">Remove</button>
+                <button type="button" class="btn btn-link" (click)="deleteRole(item.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+      </div>
+    </div>
   </div>
+  
   <!-- view role end  -->
 
-  
+  <!-- add permission start -->
+  <div *ngSwitchCase="'addPermission'">
+    <div class="content m-1 mt-4">
+      <div class="container applyLeave">
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <h1 class="text-center">Add Permission</h1>
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <p><img src="assets/Organizing projects-rafiki.svg" alt="Image" class="img-fluid"></p>
+              </div>
+              <div class="col-md-6 mt-4">
+                <form [formGroup]="form" novalidate>
+                  <div class="mb-3">
+                    <label for="role" class="col-form-label">Role:</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Role"
+                      formControlName="role" readonly [(ngModel)]="selectedRole.name">
+                  </div>
+                  
+             
+                 
+                  <div class="mb-3">
+                    <div class="form-group">
+                      <label for="url" class="col-form-label">Permission:</label>
+                    
+                      <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
+                          <mat-option value="NO_ACCESS">No Access</mat-option>
+                          <mat-option value="ALL_EMPLOYEES_DATA">All Employee Data</mat-option>
+                          <mat-option value="NEW_REGISTRATION" >New Registration</mat-option>
+                          <mat-option value="ALL_EMPLOYEES_ATTENDANCE">All Employee Attendance</mat-option>
+                          <mat-option value="LEAVE_SHOW_TEAMLEAD">Leave Teamlead</mat-option>
+                          <mat-option value="WFH_SHOW_TEAMLEAD">WFH Teamlead</mat-option>
+                          <mat-option value="ALL_WFH_EMPLOYEES">All Employee WFH</mat-option>
+                          <mat-option value="VIEW_ALL_LEAVE">All Employee Leave</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      
+                      
+                    </div>
+                  </div>
+                </form>
+
+
+                <div class="mb-3 col-md-12 d-flex justify-content-between">
+                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="AddPermission(id)">Add</button>
+                  <button type="button" class="btn btn-secondary flex-fill m-1" data-bs-dismiss="modal"
+                    (click)="closeForm()">Close</button>
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- add permission end -->
+
+  <!-- remove permission start -->
+  <div *ngSwitchCase="'removePermission'">
+    <div class="content m-1 mt-4">
+      <div class="container applyLeave">
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <h1 class="text-center">Remove Permission</h1>
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <p><img src="assets/Organizing projects-rafiki.svg" alt="Image" class="img-fluid"></p>
+              </div>
+              <div class="col-md-6 mt-4">
+                <form [formGroup]="form" novalidate>
+                  <div class="mb-3">
+                    <label for="role" class="col-form-label">Role:</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Role"
+                      formControlName="role" readonly [(ngModel)]="selectedRole.name">
+                  </div>
+                  
+             
+                 
+                  <div class="mb-3">
+                    <div class="form-group">
+                      <label for="url" class="col-form-label">Permission:</label>
+                    
+                      <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
+                          <mat-option value="NO_ACCESS">No Access</mat-option>
+                          <mat-option value="ALL_EMPLOYEES_DATA">All Employee Data</mat-option>
+                          <mat-option value="NEW_REGISTRATION" >New Registration</mat-option>
+                          <mat-option value="ALL_EMPLOYEES_ATTENDANCE">All Employee Attendance</mat-option>
+                          <mat-option value="LEAVE_SHOW_TEAMLEAD">Leave Teamlead</mat-option>
+                          <mat-option value="WFH_SHOW_TEAMLEAD">WFH Teamlead</mat-option>
+                          <mat-option value="ALL_WFH_EMPLOYEES">All Employee WFH</mat-option>
+                          <mat-option value="VIEW_ALL_LEAVE">All Employee Leave</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      
+                      
+                    </div>
+                  </div>
+                </form>
+
+
+                <div class="mb-3 col-md-12 d-flex justify-content-between">
+                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="deletePermission(id)">Remove</button>
+                  <button type="button" class="btn btn-secondary flex-fill m-1" data-bs-dismiss="modal"
+                    (click)="closeForm()">Close</button>
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- remove permission end -->
 
   <!-- view Admin list start -->
   <div *ngSwitchCase="'employee'">

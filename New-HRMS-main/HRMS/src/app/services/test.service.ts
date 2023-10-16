@@ -117,6 +117,47 @@ ViewRolewithPermission(){
 }
 // view role with permissions end
 
+viewRole(id: number): Observable<any> {
+  const url = `${this.api.RoleWithPermission}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+}
+
+// add permission start
+
+AddPermissionName(id: number) {
+  const url = `${this.api.AddPermission}/${id}/addPermission`; // Correct the URL
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const requestBody = {
+    permissionNames: ''
+  };
+  return this.http.post(url, requestBody, { headers });
+}
+
+// add permission end
+
+// Remove permission start removePermission
+RemovePermission(id: number): Observable<any> {
+  const url = `${this.api.RemovePermission}/removePermission/${id}`;
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(url, { headers });
+}
+// Remove permission end
+
+// delete role start
+deleteRole(id: number): Observable<any> {
+  const url = `${this.api.DeleteRole}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.delete(url, { headers });
+}
+// delete role end
+
+
 // download employee list in excel start
 getEmployeeListExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
   return this.http.get(this.api.EmpListExcel, {
@@ -248,4 +289,9 @@ deleteEmployee(id: number): Observable<any> {
   return this.http.delete(url, { headers });
 }
 //Delete Employee end
+
+
+
+
+
 }

@@ -7,14 +7,15 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.11:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.11:9191/';
 
   public login = `${this.apiUrl}gateway/login`;
   public forgetPassword = `${this.apiUrl}gateway/hrms/forgot-password`;
   public currentPhoto = `${this.apiUrl}gateway/hrms/photo/current`;
   public signOut = `${this.apiUrl}gateway/hrms/signout`;
   public uploadPdfUrl = `${this.apiUrl}gateway/hrms/upload-pdf`;
+  public DownloadPdf = `${this.apiUrl}gateway/hrms/download`;
   public EmpListExcel = `${this.apiUrl}gateway/hrms/employeeslist/excel`;
   public EmpLeaveExcel = `${this.apiUrl}gateway/hrms/leavelist/excel`;
   public EmpAttExcel = `${this.apiUrl}gateway/hrms/attendancelist/excel`;
@@ -28,6 +29,9 @@ export class ApiService {
   public RejectWfh = `${this.apiUrl}gateway/hrms/wfh`;
   public DeleteEmp = `${this.apiUrl}gateway/hrms/delete`;
   public Role = `${this.apiUrl}gateway/hrms/role`;
+  public AddPermission = `${this.apiUrl}gateway/hrms/role`;
+  public RemovePermission = `${this.apiUrl}gateway/hrms/role`;
+  public DeleteRole = `${this.apiUrl}gateway/hrms/role`;
   public Empdetail = `${this.apiUrl}gateway/hrms/employeemail`;
   public EmpNameShow = `${this.apiUrl}gateway/hrms/show`;
   public TeamLeadShow = `${this.apiUrl}gateway/hrms/names`;

@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';    //for navbar don't show in login page
 import { LoginService } from './services/login.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { DashboardService } from './services/dashboard.service';
+import { AdminService } from './services/admin.service';
+import { saveAs } from 'file-saver';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,11 +18,11 @@ import { DashboardService } from './services/dashboard.service';
 export class AppComponent {
   title = 'HRMS';
 
-
+id: any;
   // remove navbar from login page start...
   checkIfLoginPage: any;
   isLoggedIn!: boolean;
-  constructor(private http: HttpClient, private router: Router, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService) {
+  constructor(private http: HttpClient, private router: Router, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public adminService: AdminService) {
     this.checkTokenExpiration();
     // Subscribe to route changes to update the navbar visibility
     this.router.events
@@ -233,6 +237,29 @@ onFileChange(event: any) {
 }
 // API for upload PDF end
 
+// API for download leave policy start
+
+LeavePolicyPdf() {
+
+  this.adminService.DownloadLeavePolicy().subscribe((response: HttpResponse<Blob>) => {
+    if (response.body) {
+      const contentDisposition = response.headers.get('content-disposition');
+      const fileName = contentDisposition
+        ? contentDisposition.split('filename=')[1]
+        : 'LeavePolicy.pdf'; 
+
+      saveAs(response.body, fileName); 
+    } else {
+      console.error('Response body is null.');
+    }
+  }, (error) => {
+    Swal.fire('Error', error.error, 'error');  
+    console.error(error);
+  });
+ 
+}
+
+// API for download leave policy end
 
 
 

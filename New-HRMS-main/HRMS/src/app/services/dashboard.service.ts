@@ -24,7 +24,7 @@ export class DashboardService {
 // upload pdf start
 uploadPdf(file: File): void {
   const formData = new FormData();
-  formData.append('pdfFile', file, file.name);
+  formData.append('file', file, file.name);
 
   const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

@@ -146,5 +146,19 @@ editUserProfile(requestBody: any) {
 }
 // edit user profile end
 
+// download leave policy pdf start
+
+DownloadLeavePolicy(): Observable<HttpResponse<Blob>> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const url = `${this.api.DownloadPdf}`;
+  return this.http.get(url, {
+    headers,
+    observe: 'response', // This ensures you get the full HTTP response
+    responseType: 'blob', // This tells Angular to expect a binary response
+  });
+}
+// download leave policy pdf end
+
 
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router, NavigationEnd, ParamMap } from '@angular/router';
+import { Router, NavigationEnd, ParamMap, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';    //for navbar don't show in login page
 import { LoginService } from 'src/app/services/login.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -43,7 +43,7 @@ export class TestComponent {
   AllwfhData: any;                //for show all wfh
   showAllLeaveTable: any;         //for show all leave
   leaveAllData: any;              //for show all leave
-  route: any;
+  // route: any;
   url: any;
   profileDetails: any;
   //for create role start
@@ -53,12 +53,16 @@ export class TestComponent {
   // for create role end
   passwordForm: any;              //for change password
   leaveForm!: any;                //for change password
+  
+  selectedRole: any;
+  selectedPermissions: string[] = []; // Variable to store the selected permissions
+
 
   showcalendar: any;            // for calendar
   roles: string[] = ['ADMIN', 'EMPLOYEE', 'MANAGER', 'TEAM LEAD'];
   roleControl = new FormControl();
   AllRoleData: any;
-
+  id: any;
   // change password validation start
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
@@ -81,7 +85,7 @@ export class TestComponent {
   }
   // change password validation end
 
-  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService) {
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -101,6 +105,7 @@ export class TestComponent {
     this.toggleAllLeaveTable();
     this.togglecalendar();
     this.viewRole();
+    
 
     this.leaveForm = this.formBuilder.group({
       leaveType: ['', Validators.required],
@@ -120,6 +125,7 @@ export class TestComponent {
       url: [],
 
     });
+    
   }
 
 
@@ -395,6 +401,103 @@ console.log("employe>>>", response);
 
   // API for view role with permission end
 
+
+
+  //  API for add permission start
+  AddPermission(id: number) {
+    this.route.queryParams.subscribe(params => {
+      const id = params['id'];
+
+      if (id) {
+        this.testService.AddPermissionName(id).subscribe(
+          (response) => {
+           
+
+          },
+          (error) => {
+            console.error('Error fetching role data:', error);
+          }
+        );
+      } else {
+        // Handle the case when 'id' is not available
+      }
+    });
+  }
+    //  API for add permission end
+
+    // API for delete permission start
+ 
+  deletePermission(id: any): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to remove this permission?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, remove it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.testService.RemovePermission(id).subscribe(
+          () => {
+            console.log('Permission removed successfully.');
+            Swal.fire({
+              title: 'Removed!',
+              text: 'Permission has been removed.',
+              icon: 'success'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+                
+              }
+            });
+          },
+          (error) => {
+            Swal.fire('Error', error.error, 'error');
+          }
+        );
+      }
+    });
+  }
+  // API for delete permission end
+
+  // API for delete role start
+  deleteRole(id: any): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to delete this Role?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.testService.deleteRole(id).subscribe(
+          (response) => {
+            console.log('Role deleted successfully.');
+            console.log("delete role", response);
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Role has been deleted.',
+              icon: 'success'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // location.reload();
+                
+
+                this.viewRole()
+              }
+            });
+          },
+          (error) => {
+            Swal.fire('Error', error.error, 'error');
+          }
+        );
+      }
+    });
+  }
+  // API for delete role end
 
   //API for change Password start
 
@@ -1071,4 +1174,19 @@ updateNumberOfDays() {
   togglecalendar(): void {
     this.showcalendar = !this.showcalendar;
   }
+
+
+  openAddPermission(item: any) {  
+    this.selectedRole = item;       
+    this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+    this.loginService.showTable('addPermission');
+
+
+  }
+  openDeletePermission(item: any){
+    this.selectedRole = item;       
+    this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+    this.loginService.showTable('removePermission');
+  }
+  
 }

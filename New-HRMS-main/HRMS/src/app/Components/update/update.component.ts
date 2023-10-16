@@ -195,6 +195,7 @@ export class UpdateComponent {
           
             // Handle the response and update the input fields accordingly
             this.user = response;
+            console.log(";;;;;",this.user);
           },
           (error) => {
    
@@ -228,7 +229,7 @@ export class UpdateComponent {
          
                 // Set the reversed array as the data source
                 this.profileDetails = reversedData;
-            
+          
           },
           (error) => {
            
