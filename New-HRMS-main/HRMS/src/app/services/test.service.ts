@@ -127,25 +127,45 @@ viewRole(id: number): Observable<any> {
 
 // add permission start
 
-AddPermissionName(id: number) {
+AddPermissionName(id: number, permissionNames: string[]) {
   const url = `${this.api.AddPermission}/${id}/addPermission`; // Correct the URL
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   const requestBody = {
-    permissionNames: ''
+    permissionNames: permissionNames
   };
+  console.log("permission body", requestBody);
+  console.log("permission name", permissionNames);
   return this.http.post(url, requestBody, { headers });
 }
 
 // add permission end
 
 // Remove permission start removePermission
-RemovePermission(id: number): Observable<any> {
+// RemovePermission(id: number): Observable<any> {
+//   const url = `${this.api.RemovePermission}/removePermission/${id}`;
+//     const token = localStorage.getItem('jwtToken');
+//     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//     return this.http.post(url, { headers });
+// }
+// RemovePermission(id: number, selectedPermissions: string[]): Observable<any> {
+//   const url = `${this.api.RemovePermission}/removePermission/${id}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   return this.http.post(url, { selectedPermissions }, { headers });
+// }
+RemovePermission(id: number, permissionNames: string[]): Observable<any> {
   const url = `${this.api.RemovePermission}/removePermission/${id}`;
-    const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(url, { headers });
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const requestBody = {
+    permissionNames: permissionNames
+  };
+  console.log("remove permission body", requestBody);
+  console.log("remove permission name", permissionNames);
+  return this.http.post(url, requestBody, { headers });
 }
+
 // Remove permission end
 
 // delete role start

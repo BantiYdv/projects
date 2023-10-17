@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
 
 
@@ -82,7 +82,7 @@ export class UpdateComponent {
 
   departments: string[] = [];
   designations: string[] = [];
-  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService) { }
+  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router) { }
 
   ngOnInit() {
 
@@ -274,7 +274,9 @@ export class UpdateComponent {
             Swal.fire('Update!', 'User Update successfully!', 'success')
               .then(() => {
                 // Refresh page 
-                location.reload();
+                // location.reload();
+                this.router.navigate(['/test', 'employee']);
+                this.testService.getEmployeeList();
               });
        console.log("updated", response);
           },

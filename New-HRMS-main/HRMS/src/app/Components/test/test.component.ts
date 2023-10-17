@@ -56,17 +56,20 @@ export class TestComponent {
   
   selectedRole: any;
   selectedPermissions: string[] = []; // Variable to store the selected permissions
-
+  availablePermissions: string[] = [];
 
   showcalendar: any;            // for calendar
   roles: string[] = ['ADMIN', 'EMPLOYEE', 'MANAGER', 'TEAM LEAD'];
   roleControl = new FormControl();
   AllRoleData: any;
   id: any;
+  permissionNames: any;
+  
   // change password validation start
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
   showconfirmPassword: boolean = false;
+  availablePermissionOptions: string[] = [];
 
   toggleoldPasswordVisibility(field: string) {
     if (field === 'oldPassword') {
@@ -127,7 +130,10 @@ export class TestComponent {
     });
     
   }
-
+  
+  ngOnInit() {
+    this.viewRole();
+  }
 
 
   // API for view employee list start
@@ -404,15 +410,22 @@ console.log("employe>>>", response);
 
 
   //  API for add permission start
-  AddPermission(id: number) {
+  AddPermission(id: number, permissionName:string) {
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
 
       if (id) {
-        this.testService.AddPermissionName(id).subscribe(
+        this.testService.AddPermissionName(id, this.selectedPermissions).subscribe(
           (response) => {
-           
-
+            Swal.fire({
+              icon: 'success',
+              title: 'Added',
+              text: 'Permissions added successfully',
+            }).then(() => {
+              this.router.navigate(['/test', 'viewRole']);
+              this.viewRole();
+            });
+console.log("permission added", response);
           },
           (error) => {
             console.error('Error fetching role data:', error);
@@ -427,28 +440,64 @@ console.log("employe>>>", response);
 
     // API for delete permission start
  
+  // deletePermission(id: any): void {
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     text: 'Are you sure you want to remove this permission?',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, remove it!'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.testService.RemovePermission(id).subscribe(
+  //         () => {
+  //           console.log('Permission removed successfully.');
+  //           Swal.fire({
+  //             title: 'Removed!',
+  //             text: 'Permission has been removed.',
+  //             icon: 'success',
+  //             showConfirmButton: false, 
+  //           timer: 1500 
+  //           }).then((result) => {
+  //             if (result.isConfirmed) {
+  //               // location.reload();
+  //               this.viewRole();
+  //             }
+  //           });
+  //         },
+  //         (error) => {
+  //           Swal.fire('Error', error.error, 'error');
+  //         }
+  //       );
+  //     }
+  //   });
+  // }
   deletePermission(id: any): void {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'Are you sure you want to remove this permission?',
+      text: 'Are you sure you want to remove these permissions?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, remove it!'
+      confirmButtonText: 'Yes, remove them!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.testService.RemovePermission(id).subscribe(
+        this.testService.RemovePermission(id, this.selectedPermissions).subscribe(
           () => {
-            console.log('Permission removed successfully.');
+            console.log('Permissions removed successfully.');
             Swal.fire({
               title: 'Removed!',
-              text: 'Permission has been removed.',
-              icon: 'success'
+              text: 'Permissions have been removed.',
+              icon: 'success',
+              showConfirmButton: false, 
+              timer: 1500 
             }).then((result) => {
               if (result.isConfirmed) {
-                location.reload();
-                
+                this.router.navigate(['/test', 'viewRole']);
+                this.viewRole();
               }
             });
           },
@@ -459,6 +508,7 @@ console.log("employe>>>", response);
       }
     });
   }
+  
   // API for delete permission end
 
   // API for delete role start
@@ -1176,17 +1226,40 @@ updateNumberOfDays() {
   }
 
 
-  openAddPermission(item: any) {  
-    this.selectedRole = item;       
+  // openAddPermission(item: any) {  
+  //   this.selectedRole = item;       
+  //   this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+  //   this.loginService.showTable('addPermission');
+  // }
+  openAddPermission(item: any) {
+    this.selectedRole = item;
     this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+  
+    // Define an array of available permission options, excluding the selectedPermissions
+    const availablePermissionOptions = [
+      "NO_ACCESS",
+      "ALL_EMPLOYEES_DATA",
+      "NEW_REGISTRATION",
+      "ALL_EMPLOYEES_ATTENDANCE",
+      "LEAVE_SHOW_TEAMLEAD",
+      "WFH_SHOW_TEAMLEAD",
+      "ALL_WFH_EMPLOYEES",
+      "VIEW_ALL_LEAVE"
+    ].filter(option => !this.selectedPermissions.includes(option));
+  
+    // Assign the available options to a new property (e.g., availablePermissionOptions)
+    this.availablePermissionOptions = availablePermissionOptions;
+  
     this.loginService.showTable('addPermission');
-
-
   }
+ 
+  
+  
   openDeletePermission(item: any){
     this.selectedRole = item;       
-    this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+    this.availablePermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
     this.loginService.showTable('removePermission');
   }
+  
   
 }

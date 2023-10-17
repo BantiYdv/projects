@@ -107,7 +107,9 @@
               <th>S.No</th>
               <th>Role</th>
               <th>Permissions</th>
-              <th>Actions</th> <!-- New column for actions -->
+              <th>Permission</th> 
+              <th>Role</th> 
+
             </tr>
           </thead>
           <tbody>
@@ -123,14 +125,17 @@
               </td>
               <td>
                 <!-- Edit and Delete buttons for permissions -->
-                <button class="btn btn-primary" [routerLink]="['/test', 'addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)">Add</button>
+                <button class="btn btn-primary m-1" [routerLink]="['/test', 'addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)">Add</button>
 
-                <button class="btn btn-danger" [routerLink]="['/test', 'removePermission' ]" [queryParams]="{ id: item.id }"  (click)="openDeletePermission(item)">Remove</button>
-                <button type="button" class="btn btn-link" (click)="deleteRole(item.id)">
-                  <i class="fas fa-trash"></i>
-                </button>
-
+                <button class="btn btn-danger" [routerLink]="['/test', 'removePermission' ]" [queryParams]="{ id: item.id }"  (click)="openDeletePermission(item)">Remove <i class="fas fa-trash"></i></button>
               </td>
+                <td>
+
+                  <button type="button" class="btn btn-danger m-1" (click)="deleteRole(item.id)">Role
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+
             </tr>
           </tbody>
         </table>
@@ -168,20 +173,30 @@
                     <div class="form-group">
                       <label for="url" class="col-form-label">Permission:</label>
                     
+
+                      <!-- <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
+                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option">{{ option }}</mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+
+                      <!-- <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
+                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS'">{{ option }}</mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
                       <mat-form-field>
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
-                          <mat-option value="NO_ACCESS">No Access</mat-option>
-                          <mat-option value="ALL_EMPLOYEES_DATA">All Employee Data</mat-option>
-                          <mat-option value="NEW_REGISTRATION" >New Registration</mat-option>
-                          <mat-option value="ALL_EMPLOYEES_ATTENDANCE">All Employee Attendance</mat-option>
-                          <mat-option value="LEAVE_SHOW_TEAMLEAD">Leave Teamlead</mat-option>
-                          <mat-option value="WFH_SHOW_TEAMLEAD">WFH Teamlead</mat-option>
-                          <mat-option value="ALL_WFH_EMPLOYEES">All Employee WFH</mat-option>
-                          <mat-option value="VIEW_ALL_LEAVE">All Employee Leave</mat-option>
+                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS'">{{ option }}</mat-option>
                         </mat-select>
                       </mat-form-field>
-
+                      
+                      
+                      
+                    
                       
                       
                     </div>
@@ -190,7 +205,7 @@
 
 
                 <div class="mb-3 col-md-12 d-flex justify-content-between">
-                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="AddPermission(id)">Add</button>
+                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="AddPermission(id, permissionNames)">Add</button>
                   <button type="button" class="btn btn-secondary flex-fill m-1" data-bs-dismiss="modal"
                     (click)="closeForm()">Close</button>
                   
@@ -230,7 +245,7 @@
                     <div class="form-group">
                       <label for="url" class="col-form-label">Permission:</label>
                     
-                      <mat-form-field>
+                      <!-- <mat-form-field>
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
                           <mat-option value="NO_ACCESS">No Access</mat-option>
@@ -242,8 +257,23 @@
                           <mat-option value="ALL_WFH_EMPLOYEES">All Employee WFH</mat-option>
                           <mat-option value="VIEW_ALL_LEAVE">All Employee Leave</mat-option>
                         </mat-select>
-                      </mat-form-field>
+                      </mat-form-field> -->
 
+                      <!-- <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" >
+                          <mat-option *ngFor="let permission of selectedPermissions" [value]="permission">{{ permission }}</mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+                      
+                      <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
+                          <mat-option *ngFor="let permission of availablePermissions" [value]="permission">
+                            {{ permission }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                       
                       
                     </div>
@@ -252,7 +282,9 @@
 
 
                 <div class="mb-3 col-md-12 d-flex justify-content-between">
-                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="deletePermission(id)">Remove</button>
+                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="deletePermission(selectedRole.id)">Remove</button>
+
+                  <!-- <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="deletePermission(selectedRole.id)">Remove</button> -->
                   <button type="button" class="btn btn-secondary flex-fill m-1" data-bs-dismiss="modal"
                     (click)="closeForm()">Close</button>
                   
@@ -274,8 +306,7 @@
         <thead class="table-dark">
           <tr>
             <th>S.No</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
             <th>Department</th>
             <th>Role</th>
             <th>Email Id</th>
@@ -286,12 +317,10 @@
         <tbody>
           <tr *ngFor="let item of EmployeeData; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ item.firstname }}</td>
-            <td>{{item.lastname}}</td>
+            <td class="pointer" style="cursor: pointer;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname1+' '+item.lastname }}</td>
             <td>{{item.department}}</td>
             <td>{{item.role.name }}</td>
-            <td class="pointer" style="cursor: pointer;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }"
-              >{{ item.emailid }}</td>
+            <td>{{ item.emailid }}</td>
             <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
               <button type="button" class="btn btn-link">
                 <i class="fas fa-edit"></i>
