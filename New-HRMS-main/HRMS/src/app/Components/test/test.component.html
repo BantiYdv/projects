@@ -307,8 +307,8 @@
           <tr>
             <th>S.No</th>
             <th>Name</th>
-            <th>Department</th>
-            <th>Role</th>
+            <th>Employee id</th>
+            <th>Designation</th>
             <th>Email Id</th>
             <th>Update</th>
             <th>Delete</th>
@@ -317,9 +317,9 @@
         <tbody>
           <tr *ngFor="let item of EmployeeData; let i = index">
             <td>{{ i + 1 }}</td>
-            <td class="pointer" style="cursor: pointer;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname1+' '+item.lastname }}</td>
-            <td>{{item.department}}</td>
-            <td>{{item.role.name }}</td>
+            <td class="pointer" style="cursor: pointer; text-decoration: underline; color: blue;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname+' '+item.lastname }}</td>
+            <td>{{item.employeeId}}</td>
+            <td>{{item.designation }}</td>
             <td>{{ item.emailid }}</td>
             <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
               <button type="button" class="btn btn-link">

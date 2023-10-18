@@ -37,6 +37,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
+import {MatStepperModule} from '@angular/material/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
 
 
 @NgModule({
@@ -79,7 +82,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MatSelectModule,
     MatTableModule,
     MatAutocompleteModule,
-   
+    MatStepperModule
 
     
     
@@ -88,7 +91,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     
     
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, 
+    {provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

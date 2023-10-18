@@ -1238,6 +1238,7 @@ updateNumberOfDays() {
     // Define an array of available permission options, excluding the selectedPermissions
     const availablePermissionOptions = [
       "NO_ACCESS",
+      "ALL_ACCESS",
       "ALL_EMPLOYEES_DATA",
       "NEW_REGISTRATION",
       "ALL_EMPLOYEES_ATTENDANCE",

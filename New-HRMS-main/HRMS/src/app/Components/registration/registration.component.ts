@@ -3,7 +3,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
@@ -20,6 +20,18 @@ import { TestService } from 'src/app/services/test.service';
 
 export class RegistrationComponent {
   
+  firstFormGroup = this._formBuilder.group({
+    // firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    // secondCtrl: ['', Validators.required],
+  });
+  thirdFormGroup = this._formBuilder.group({
+    // secondCtrl: ['', Validators.required],
+  });
+  forthFormGroup = this._formBuilder.group({
+    // secondCtrl: ['', Validators.required],
+  });
 
 
   user: any = {                                              // Object to store the user registration data
@@ -40,8 +52,29 @@ export class RegistrationComponent {
         sickLeavesPerMonth: '',
         casualLeavesPerMonth: '',
         role: '',
-  
-   
+        address: '',
+        emergencyContact: '',
+        jobType: '',
+        totalDaysOfProbation: '',
+        startDateOfProbation:'',
+        endDateOfProbation: '',
+        modeOfWorking: '',
+        shifttimingstart: '',
+        shifttimingend:'',
+        accountNumber:'',
+        ifsccode:'',
+        holderName:'',
+        bankName:'',
+        esicno:'',
+        pfno:'',
+        academicDocument1:'',
+        academicDocument2:'',
+        academicDocument3:'',
+        academicDocument4:'',
+        identityDocument1:'',
+        identityDocument2:'',
+
+
   };
   
   
@@ -78,12 +111,36 @@ export class RegistrationComponent {
   // departments: string[] = [];
   // designationControl = new FormControl();
   userForm: FormGroup;
-  constructor(private http: HttpClient, public loginService: LoginService,public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, public testService: TestService) { 
+  constructor(private http: HttpClient, public loginService: LoginService,public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, public testService: TestService, private _formBuilder: FormBuilder) { 
     this.userForm = new FormGroup({
       designation: new FormControl('')
     });
   }
   
+  errorMessage: string = '';    // pdf error
+
+  // upload pdf file formate start
+handleFileInput(event: any) {
+  const allowedExtensions = ['pdf', 'doc', 'docx'];
+  const file = event.target.files[0];
+  
+  if (file) {
+    const fileName = file.name.toLowerCase();
+    const extension = fileName.split('.').pop();
+
+    if (extension && !allowedExtensions.includes(extension)) {
+      // Display an error message
+      this.errorMessage = 'Invalid file format. Please choose a PDF, DOC, or DOCX file.';
+      
+      // Clear the file input field
+      event.target.value = null;
+    } else {
+      // Clear the error message if a valid file is selected
+      this.errorMessage = '';
+    }
+  }
+}
+// upload pdf file formate end
 
   //API for getting teamlead start
   ngOnInit() {
