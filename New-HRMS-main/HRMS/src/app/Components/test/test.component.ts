@@ -71,6 +71,18 @@ export class TestComponent {
   showconfirmPassword: boolean = false;
   availablePermissionOptions: string[] = [];
 
+ 
+  editName: boolean = false;
+  enterEditMode() {
+    this.editName = true;
+  }
+
+  exitEditMode() {
+    this.editName = false;
+  }
+  nameFilter: string = '';
+
+
   toggleoldPasswordVisibility(field: string) {
     if (field === 'oldPassword') {
       this.showoldPassword = !this.showoldPassword;
@@ -1253,6 +1265,44 @@ updateNumberOfDays() {
   
     this.loginService.showTable('addPermission');
   }
+
+
+
+
+  onPermissionSelectionChange() {
+    if (this.selectedPermissions.includes("ALL_ACCESS")) {
+      // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"
+      this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
+    }
+  }
+  
+  isOptionDisabled(option: string): boolean {
+   
+    if (
+      (this.selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_ACCESS') && option === 'NO_ACCESS' ) ||
+      (this.selectedPermissions.includes('ALL_ACCESS') && option !== 'ALL_ACCESS' ) ||
+      (this.selectedPermissions.includes('ALL_EMPLOYEES_DATA') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('NEW_REGISTRATION') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_EMPLOYEES_ATTENDANCE') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('LEAVE_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('WFH_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_WFH_EMPLOYEES') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS') 
+
+    ) {
+      return true; // Disable the option
+    } else {
+      return false; // Enable the option
+    }
+  }
+  
+  
+  
+  
+    
+  
+  
  
   
   

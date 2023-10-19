@@ -232,7 +232,7 @@ export class DashboardComponent {
 
     // Create the request headers with the token
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const url = 'http://192.168.1.11:9191/';
+    const url = 'http://192.168.1.11:9191/gateway/hrms/downloadAllDocuments';
 
     this.http.get(url, {
       headers,
@@ -241,6 +241,7 @@ export class DashboardComponent {
       // Handle the API response here
       const fileName = ''; // Specify the file name with extension
       saveAs(response, fileName); // Use the 'file-saver' library to save the file
+      console.log("download", response);
     }, (error) => {
       // Handle any errors that occurred during the API call
       console.error(error);

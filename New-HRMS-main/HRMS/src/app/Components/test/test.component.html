@@ -187,12 +187,26 @@
                           <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS'">{{ option }}</mat-option>
                         </mat-select>
                       </mat-form-field> -->
+
+
+                      <!-- <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
+                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="option === 'NO_ACCESS' && selectedPermissions.includes('ALL_ACCESS') || selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS'">
+                            {{ option }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field> -->
+                      
                       <mat-form-field>
                         <mat-label>Permission</mat-label>
-                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
-                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS'">{{ option }}</mat-option>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
+                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
+                            {{ option }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
+                      
                       
                       
                       
@@ -306,7 +320,10 @@
         <thead class="table-dark">
           <tr>
             <th>S.No</th>
-            <th>Name</th>
+            <th><span *ngIf="!editName">Name
+              <span></span> <i class="fas fa-search" (click)="editName = true"></i></span>
+              <input *ngIf="editName" (blur)="editName = false" (keyup.enter)="editName = false" [(ngModel)]="nameFilter" placeholder="Search" >
+            </th>
             <th>Employee id</th>
             <th>Designation</th>
             <th>Email Id</th>
@@ -315,7 +332,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of EmployeeData; let i = index">
+          <tr *ngFor="let item of EmployeeData; let i = index" [style.display]="(!nameFilter || (item.firstname + ' ' + item.lastname).toLowerCase().includes(nameFilter.toLowerCase())) ? 'table-row' : 'none'">
             <td>{{ i + 1 }}</td>
             <td class="pointer" style="cursor: pointer; text-decoration: underline; color: blue;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname+' '+item.lastname }}</td>
             <td>{{item.employeeId}}</td>
