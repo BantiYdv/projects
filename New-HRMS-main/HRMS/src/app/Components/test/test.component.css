@@ -224,3 +224,9 @@ h3,
 /* apply leave form end */
 
 
+/* for search icon in right side start */
+.search-icon-right {
+    float: right;
+    cursor: pointer;
+  }
+  /* for search icon in right side end */

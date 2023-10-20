@@ -53,7 +53,7 @@ export class TestComponent {
   // for create role end
   passwordForm: any;              //for change password
   leaveForm!: any;                //for change password
-  
+
   selectedRole: any;
   selectedPermissions: string[] = []; // Variable to store the selected permissions
   availablePermissions: string[] = [];
@@ -64,24 +64,36 @@ export class TestComponent {
   AllRoleData: any;
   id: any;
   permissionNames: any;
-  
+
   // change password validation start
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
   showconfirmPassword: boolean = false;
   availablePermissionOptions: string[] = [];
 
- 
+  // search start
   editName: boolean = false;
+  editDesignation: boolean = false;
   enterEditMode() {
     this.editName = true;
+    this.editDesignation = true;
   }
 
   exitEditMode() {
     this.editName = false;
+    this.editDesignation = false;
   }
   nameFilter: string = '';
+  nameDesignationFilter: string = '';
 
+  isItemVisible(item: any): boolean {
+    const nameMatch = !this.nameFilter || (item.firstname + ' ' + item.lastname).toLowerCase().includes(this.nameFilter.toLowerCase());
+    const designationMatch = !this.nameDesignationFilter || item.designation.toLowerCase().includes(this.nameDesignationFilter.toLowerCase());
+
+    return nameMatch && designationMatch;
+  }
+
+  // search end
 
   toggleoldPasswordVisibility(field: string) {
     if (field === 'oldPassword') {
@@ -119,8 +131,8 @@ export class TestComponent {
     this.toggleAllWfhTable();
     this.toggleAllLeaveTable();
     this.togglecalendar();
-    this.viewRole();
-    
+    // this.viewRole();
+
 
     this.leaveForm = this.formBuilder.group({
       leaveType: ['', Validators.required],
@@ -140,9 +152,9 @@ export class TestComponent {
       url: [],
 
     });
-    
+
   }
-  
+
   ngOnInit() {
     this.viewRole();
   }
@@ -167,7 +179,7 @@ export class TestComponent {
 
           // Set the reversed array as the data source
           this.EmployeeData = reversedData;
-console.log("employe>>>", response);
+          console.log("employe>>>", response);
         },
         error => {
           if (error.status === 403) {
@@ -422,7 +434,7 @@ console.log("employe>>>", response);
 
 
   //  API for add permission start
-  AddPermission(id: number, permissionName:string) {
+  AddPermission(id: number, permissionName: string) {
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
 
@@ -434,10 +446,11 @@ console.log("employe>>>", response);
               title: 'Added',
               text: 'Permissions added successfully',
             }).then(() => {
+              this.loginService.showTable('viewRole');
               this.router.navigate(['/test', 'viewRole']);
               this.viewRole();
             });
-console.log("permission added", response);
+            console.log("permission added", response);
           },
           (error) => {
             console.error('Error fetching role data:', error);
@@ -448,10 +461,10 @@ console.log("permission added", response);
       }
     });
   }
-    //  API for add permission end
+  //  API for add permission end
 
-    // API for delete permission start
- 
+  // API for delete permission start
+
   // deletePermission(id: any): void {
   //   Swal.fire({
   //     title: 'Are you sure?',
@@ -504,13 +517,14 @@ console.log("permission added", response);
               title: 'Removed!',
               text: 'Permissions have been removed.',
               icon: 'success',
-              showConfirmButton: false, 
-              timer: 1500 
-            }).then((result) => {
-              if (result.isConfirmed) {
-                this.router.navigate(['/test', 'viewRole']);
-                this.viewRole();
-              }
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              this.loginService.showTable('viewRole');
+              this.router.navigate(['/test', 'viewRole']);
+              this.viewRole();
+
+
             });
           },
           (error) => {
@@ -520,7 +534,7 @@ console.log("permission added", response);
       }
     });
   }
-  
+
   // API for delete permission end
 
   // API for delete role start
@@ -545,10 +559,9 @@ console.log("permission added", response);
               icon: 'success'
             }).then((result) => {
               if (result.isConfirmed) {
-                // location.reload();
-                
-
-                this.viewRole()
+                this.loginService.showTable('viewRole');
+                this.router.navigate(['/test', 'viewRole']);
+                this.viewRole();
               }
             });
           },
@@ -760,17 +773,17 @@ console.log("permission added", response);
     //for set end date when select halfday
   }
 
-// when select halday then number of days show 0.5 start
-selectedLeaveType: string = '';
-updateNumberOfDays() {
-  if (this.selectedLeaveType === 'HALFDAY') {
-    this.leaveForm.controls.noOfDays.setValue(0.5);
-  } else {
-    // You can set the default value for other leave types here if needed
-    this.leaveForm.controls.noOfDays.setValue(null); // Set to null for other types
+  // when select halday then number of days show 0.5 start
+  selectedLeaveType: string = '';
+  updateNumberOfDays() {
+    if (this.selectedLeaveType === 'HALFDAY') {
+      this.leaveForm.controls.noOfDays.setValue(0.5);
+    } else {
+      // You can set the default value for other leave types here if needed
+      this.leaveForm.controls.noOfDays.setValue(null); // Set to null for other types
+    }
   }
-}
-// when select halday then number of days show 0.5 end
+  // when select halday then number of days show 0.5 end
 
 
 
@@ -1246,7 +1259,7 @@ updateNumberOfDays() {
   openAddPermission(item: any) {
     this.selectedRole = item;
     this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
-  
+
     // Define an array of available permission options, excluding the selectedPermissions
     const availablePermissionOptions = [
       "NO_ACCESS",
@@ -1259,10 +1272,10 @@ updateNumberOfDays() {
       "ALL_WFH_EMPLOYEES",
       "VIEW_ALL_LEAVE"
     ].filter(option => !this.selectedPermissions.includes(option));
-  
+
     // Assign the available options to a new property (e.g., availablePermissionOptions)
     this.availablePermissionOptions = availablePermissionOptions;
-  
+
     this.loginService.showTable('addPermission');
   }
 
@@ -1275,20 +1288,20 @@ updateNumberOfDays() {
       this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
     }
   }
-  
+
   isOptionDisabled(option: string): boolean {
-   
+
     if (
       (this.selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('ALL_ACCESS') && option === 'NO_ACCESS' ) ||
-      (this.selectedPermissions.includes('ALL_ACCESS') && option !== 'ALL_ACCESS' ) ||
+      (this.selectedPermissions.includes('ALL_ACCESS') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_ACCESS') && option !== 'ALL_ACCESS') ||
       (this.selectedPermissions.includes('ALL_EMPLOYEES_DATA') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('NEW_REGISTRATION') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('ALL_EMPLOYEES_ATTENDANCE') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('LEAVE_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('WFH_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('ALL_WFH_EMPLOYEES') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS') 
+      (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS')
 
     ) {
       return true; // Disable the option
@@ -1296,21 +1309,21 @@ updateNumberOfDays() {
       return false; // Enable the option
     }
   }
-  
-  
-  
-  
-    
-  
-  
- 
-  
-  
-  openDeletePermission(item: any){
-    this.selectedRole = item;       
+
+
+
+
+
+
+
+
+
+
+  openDeletePermission(item: any) {
+    this.selectedRole = item;
     this.availablePermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
     this.loginService.showTable('removePermission');
   }
-  
-  
+
+
 }

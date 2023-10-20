@@ -321,18 +321,21 @@
           <tr>
             <th>S.No</th>
             <th><span *ngIf="!editName">Name
-              <span></span> <i class="fas fa-search" (click)="editName = true"></i></span>
+              <span></span> <i class="fas fa-search search-icon-right" (click)="editName = true"></i></span>
               <input *ngIf="editName" (blur)="editName = false" (keyup.enter)="editName = false" [(ngModel)]="nameFilter" placeholder="Search" >
             </th>
             <th>Employee id</th>
-            <th>Designation</th>
+            <th><span *ngIf="!editDesignation">Designation
+              <span></span> <i class="fas fa-search search-icon-right" (click)="editDesignation = true"></i></span>
+              <input *ngIf="editDesignation" (blur)="editDesignation = false" (keyup.enter)="editDesignation = false" [(ngModel)]="nameDesignationFilter" placeholder="Search" >
+            </th>
             <th>Email Id</th>
             <th>Update</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of EmployeeData; let i = index" [style.display]="(!nameFilter || (item.firstname + ' ' + item.lastname).toLowerCase().includes(nameFilter.toLowerCase())) ? 'table-row' : 'none'">
+          <tr *ngFor="let item of EmployeeData; let i = index" [style.display]="(isItemVisible(item)) ? 'table-row' : 'none'">
             <td>{{ i + 1 }}</td>
             <td class="pointer" style="cursor: pointer; text-decoration: underline; color: blue;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname+' '+item.lastname }}</td>
             <td>{{item.employeeId}}</td>
