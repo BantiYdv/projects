@@ -69,7 +69,17 @@ export class TestComponent {
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
   showconfirmPassword: boolean = false;
-  availablePermissionOptions: string[] = [];
+  availablePermissionOptions: string[] = [
+    "NO_ACCESS",
+      "ALL_ACCESS",
+      "ALL_EMPLOYEES_DATA",
+      "NEW_REGISTRATION",
+      "ALL_EMPLOYEES_ATTENDANCE",
+      "LEAVE_SHOW_TEAMLEAD",
+      "WFH_SHOW_TEAMLEAD",
+      "ALL_WFH_EMPLOYEES",
+      "VIEW_ALL_LEAVE"
+  ];
 
   // search start
   editName: boolean = false;
@@ -1256,6 +1266,11 @@ export class TestComponent {
   //   this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
   //   this.loginService.showTable('addPermission');
   // }
+
+  
+
+
+
   openAddPermission(item: any) {
     this.selectedRole = item;
     this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
@@ -1279,9 +1294,11 @@ export class TestComponent {
     this.loginService.showTable('addPermission');
   }
 
+  
 
 
-
+  
+ 
   onPermissionSelectionChange() {
     if (this.selectedPermissions.includes("ALL_ACCESS")) {
       // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"

@@ -424,6 +424,29 @@
           </div>
         </div>
 
+        <h1 class="text-center">Assigning assets (optional)</h1>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="form-group">
+           <mat-form-field class="form-control">
+                        <mat-label>Assets</mat-label>
+                        <mat-select name="assetName" id="assetName" class="custom-select-class" multiple [(ngModel)]="user.assetName">
+                          <mat-option value="no">No Assets</mat-option>
+                          <mat-option value="Laptop">Laptop</mat-option>
+                          <mat-option value="LaptopCharger">Laptop Charger</mat-option>
+                          <mat-option value="mouse">Mouse</mat-option>
+                          <mat-option value="keyboard">Keyboard</mat-option>
+                          <mat-option value="phone">Phone</mat-option>
+                          <mat-option value="phoneCharger">Phone Charger</mat-option>
+                          <mat-option value="headPhone">Head Phone</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+          </div>
+        </div>
+
+       
+        </div>
+
       </div>
 
 
@@ -492,7 +515,9 @@
         <div class="col-md-9 d-flex justify-content-end">
 
           <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
-          <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button>
+          <button type="submit" color="primary"
+          class="btn btn-primary" (click)="onSubmit()">Register</button>
+          <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
         </div>
       </div>
     </form>
@@ -668,16 +693,16 @@
 
       </div>
 
-      <h1 class="text-center">Assigning assets (optional)</h1>
+      <!-- <h1 class="text-center">Assigning assets (optional)</h1>
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="form-group">
            <mat-form-field class="form-control">
                         <mat-label>Assets</mat-label>
-                        <mat-select name="assets" id="assets" class="custom-select-class" multiple formControlName="assets">
+                        <mat-select name="assetName" id="assetName" class="custom-select-class" multiple [(ngModel)]="user.assetName">
                           <mat-option value="no">No Assets</mat-option>
-                          <mat-option value="laptop">Laptop</mat-option>
-                          <mat-option value="laptoCharger">Laptop Charger</mat-option>
+                          <mat-option value="Laptop">Laptop</mat-option>
+                          <mat-option value="LaptopCharger">Laptop Charger</mat-option>
                           <mat-option value="mouse">Mouse</mat-option>
                           <mat-option value="keyboard">Keyboard</mat-option>
                           <mat-option value="phone">Phone</mat-option>
@@ -689,7 +714,7 @@
         </div>
 
        
-        </div>
+        </div> -->
 
         <div class="row justify-content-center">
           <div class="col-md-8 d-flex justify-content-end">

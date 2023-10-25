@@ -27,10 +27,11 @@
                     <div class="form-group">
                       <label for="url" class="col-form-label">Permission:</label>
                     
-                      <mat-form-field>
+                      <!-- <mat-form-field>
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url">
                           <mat-option value="NO_ACCESS">No Access</mat-option>
+                          <mat-option value="ALL_ACCESS">All Access</mat-option>
                           <mat-option value="ALL_EMPLOYEES_DATA">All Employee Data</mat-option>
                           <mat-option value="NEW_REGISTRATION">New Registration</mat-option>
                           <mat-option value="ALL_EMPLOYEES_ATTENDANCE">All Employee Attendance</mat-option>
@@ -39,8 +40,16 @@
                           <mat-option value="ALL_WFH_EMPLOYEES">All Employee WFH</mat-option>
                           <mat-option value="VIEW_ALL_LEAVE">All Employee Leave</mat-option>
                         </mat-select>
-                      </mat-form-field>
+                      </mat-form-field> -->
 
+                      <mat-form-field>
+                        <mat-label>Permission</mat-label>
+                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
+                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
+                            {{ option }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                       
                       
                     </div>

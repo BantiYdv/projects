@@ -73,7 +73,7 @@ export class RegistrationComponent {
         academicDocument4:'',
         identityDocument1:'',
         identityDocument2:'',
-
+        assetName:[]
 
   };
   
@@ -262,7 +262,9 @@ onSubmit() {
   
  console.log("<<<<<<user>>>>>", this.user);
  
+  this.user.assetName = this.user.assetName.join(', ');
   
+
   this.RegisterAndUpdate.registerUser(this.user).subscribe(
     (response: any) => {
       Swal.fire({
