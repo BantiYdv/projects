@@ -1,11 +1,11 @@
 <div [ngSwitch]="loginService.tableType">
   <div *ngSwitchCase="'Profile'">
-<div class="container m-1 mt-5">
-  <div class="main-body">
-  
-       
-  
-        <div class="row gutters-sm " >
+    <div class="container m-1 mt-5">
+      <div class="main-body">
+
+
+
+        <div class="row gutters-sm ">
           <div class="col-md-4 mb-3 card-with-shadow">
             <div class="card">
               <div class="card-body mb-5">
@@ -19,14 +19,19 @@
                       </label>
                       <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none"
                         (change)="handleFileInput($event)">
-      
+
                     </div>
                   </div>
                   <div class="mt-3">
-                    <p><span id="firstname"><h1>{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</h1></span> </p>
-                    <p><span id="designation1"><h3>{{ profileDetails?.designation }}</h3></span></p>
-                    <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>                  
+                    <p><span id="firstname">
+                        <h1>{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</h1>
+                      </span> </p>
+                    <p><span id="designation1">
+                        <h3>{{ profileDetails?.designation }}</h3>
+                      </span></p>
+                    <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{
+                        errorMessage
+                        }}</span></p>
                   </div>
                 </div>
               </div>
@@ -58,11 +63,11 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">WFH
                   <p><span id="dateofjoining">{{ profileDetails?.totalwfh }}</span></p>
                 </li>
-                
+
               </ul>
             </div>
           </div>
-          <div class="col-md-8" >
+          <div class="col-md-8">
             <div class="card mb-3 card-with-shadow" id="shadow">
               <div class="card-body">
                 <div class="row">
@@ -71,7 +76,8 @@
                     <h4 class="mb-0">Full Name</h4>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                  <span id="firstname"><strong>{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</strong></span>
+                    <span id="firstname"><strong>{{ profileDetails?.firstname + " " + profileDetails?.lastname
+                        }}</strong></span>
 
                   </div>
                 </div>
@@ -180,11 +186,11 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <a><button class="btn btn-primary rounded-pill px-3" type="button" style="margin:1rem;"
-                      [routerLink]="['/profile', 'addProfile']" (click)="loginService.showTable('addProfile')" ><i
-                        class="fa-solid fa-pen-to-square"></i>Add</button></a>
+                        [routerLink]="['/profile', 'addProfile']" (click)="loginService.showTable('addProfile')"><i
+                          class="fa-solid fa-pen-to-square"></i>Add</button></a>
 
-                  <a> <button class="btn btn-primary rounded-pill px-3" type="button" (click)="deletePersonalData()"><i
-                        class="fa-solid fa-trash"></i>Delete</button></a>
+                    <a> <button class="btn btn-primary rounded-pill px-3" type="button"
+                        (click)="deletePersonalData()"><i class="fa-solid fa-trash"></i>Delete</button></a>
                   </div>
                 </div>
               </div>
@@ -196,13 +202,13 @@
         </div>
 
       </div>
+    </div>
   </div>
-  </div>
-  
 
-<!-- profile -->
 
-<!-- <div [ngSwitch]="loginService.tableType"> -->
+  <!-- profile -->
+
+  <!-- <div [ngSwitch]="loginService.tableType"> -->
   <!-- <div *ngSwitchCase="'Profile'">
     <div class="container ">
       <div id="content" class="content p-2 mt-5">
@@ -413,7 +419,7 @@
                   <p><span id="firstname">{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</span> </p>
                   <p><span id="designation1">{{ profileDetails?.designation }}</span></p>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -447,11 +453,12 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group">
                     <label for="Marital">Marital Status</label>
-                    <select class="form-control" id="maritalStatus" name="maritalStatus" [(ngModel)]="profileDetails.maritalStatus" #maritalStatus>
+                    <select class="form-control" id="maritalStatus" name="maritalStatus"
+                      [(ngModel)]="profileDetails.maritalStatus" #maritalStatus>
                       <option value="">Select</option>
                       <option value="single">Single</option>
                       <option value="married">Married</option>
-                   
+
                     </select>
                   </div>
                 </div>
@@ -472,10 +479,11 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group mt-2">
                     <label for="Emergency">Emergency Contact</label>
-                      <input type="tel" class="form-control" name="emergencyContact" id="emergencyContact"
+                    <input type="tel" class="form-control" name="emergencyContact" id="emergencyContact"
                       placeholder="Emergency Contact number" maxlength="10" minlength="10" required pattern="[0-9]{10}"
                       [(ngModel)]="profileDetails.emergencyContact" #emergencyContactInput="ngModel" #emergencyContact>
-                    <div *ngIf="emergencyContactInput.invalid && (emergencyContactInput.dirty || emergencyContactInput.touched)"
+                    <div
+                      *ngIf="emergencyContactInput.invalid && (emergencyContactInput.dirty || emergencyContactInput.touched)"
                       class="text-danger mt-2">
                       Please enter valid Emergency Contact number.
                     </div>
@@ -484,8 +492,8 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div class="form-group mt-2">
                     <label for="Street">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" #address
-                      [(ngModel)]="profileDetails.address">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address"
+                      #address [(ngModel)]="profileDetails.address">
                   </div>
                 </div>
               </div>
@@ -688,26 +696,30 @@
       </div>
     </div> -->
 
+    <mat-stepper #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <!-- <h1 class="text-center">Profile</h1> -->
+        <div class="container m-1 mt-5">
+          <div class="main-body">
 
-    <div class="container m-1 mt-5">
-      <div class="main-body">
-      
-           
-      
-            <div class="row gutters-sm " >
+
+            <ng-template matStepLabel>Profile</ng-template>
+            <div class="row gutters-sm ">
               <div class="col-md-4 mb-3 card-with-shadow">
                 <div class="card">
                   <div class="card-body mb-5">
                     <div class="d-flex flex-column align-items-center text-center">
                       <div class="profile-header-img mb-2">
-                        <img class="rounded-circle img-fluid" [src]="profileDetailsUser?.profilePhotoUrl || defaultImageURL" alt="" />
-                        
+                        <img class="rounded-circle img-fluid"
+                          [src]="profileDetailsUser?.profilePhotoUrl || defaultImageURL" alt="" />
+
                       </div>
                       <div class="mt-3">
-                        <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname }}</span>
+                        <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
+                            }}</span>
                         </p>
                         <p><span id="designation1">{{ profileDetailsUser?.designation }}</span></p>
-                                                  
+
                       </div>
                     </div>
                   </div>
@@ -742,7 +754,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="col-md-8" >
+              <div class="col-md-8">
                 <div class="card mb-3 card-with-shadow" id="shadow">
                   <div class="card-body">
                     <div class="row">
@@ -752,8 +764,8 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
-                        }}</span>
-                    </p>    
+                            }}</span>
+                        </p>
                       </div>
                     </div>
                     <hr>
@@ -763,7 +775,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="emailid">{{ profileDetailsUser?.emailid }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -773,7 +785,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="phonenumber">{{ profileDetailsUser?.phonenumber }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -783,7 +795,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="designation">{{ profileDetailsUser?.designation }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -793,14 +805,14 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="dob">{{ profileDetailsUser?.dob }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
-                   
+
                   </div>
                 </div>
-    
+
                 <div class="card mb-3 card-with-shadow">
                   <div class="card-body">
                     <div class="row">
@@ -810,7 +822,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="maritalStatus">{{ profileDetailsUser?.maritalStatus }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -820,7 +832,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="bloodGroup">{{ profileDetailsUser?.bloodGroup }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -830,7 +842,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="skills">{{ profileDetailsUser?.skills }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -840,7 +852,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="address">{{ profileDetailsUser?.address }}</span></p>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -854,23 +866,80 @@
                       </div>
                     </div>
                     <hr>
-                    
+
                   </div>
                 </div>
-    
-    
-    
+
+
+
               </div>
             </div>
-    
           </div>
-      </div>
+          <div class="row justify-content-center">
 
+            <!-- <button mat-button matStepperNext>Next</button> -->
+            <div class="col-md-9 d-flex justify-content-end">
+              <button class="btn btn-primary" mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+          
+          <mat-step [stepControl]="secondFormGroup">
+            <!-- <h1 class="text-center">Documents</h1> -->
+            <ng-template matStepLabel>Documents</ng-template>
+            <div class="container px-4 py-0 text-center">
+
+              <div class="table-responsive mt-4">
+                <table class="table table-bordered table-sm">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>S.No</th>
+                      <th>Document Name</th>
+                      <th>Download</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of profileDetailsUser; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ profileDetailsUser?.academicDocument1 }}</td>
+                      <td>{{ profileDetailsUser?.academicDocument2 }}</td>
+                      <td>{{ profileDetailsUser?.academicDocument3 }}</td>
+                      <td>{{ profileDetailsUser?.academicDocument4 }}</td>
+                      <td>{{ profileDetailsUser?.aadharCard }}</td>
+                      <td>{{ profileDetailsUser?.panCard }}</td>
+                      <td>{{ profileDetailsUser?.signature }}</td>
+                      <td>{{ profileDetailsUser?.userImage }}</td>
+                      <td>{{ profileDetailsUser?.offerLetter }}</td>
+                      <td>{{ profileDetailsUser?.resignationLetter }}</td>
+                      <td>{{ profileDetailsUser?.apprisalLetter }}</td>
+                      <td>{{ profileDetailsUser?.salarySlip1 }}</td>
+                      <td>{{ profileDetailsUser?.salarySlip2 }}</td>
+                      <td>{{ profileDetailsUser?.salarySlip3 }}</td>
+
+                      <td>
+                        <button type="button" class="btn btn-link" (click)="DownloadDocs(id)">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                  (click)="closeForm()">Close</button>
+              </div>
+            </div>
+          </mat-step>
+        </div>
+      </mat-step>
+    </mat-stepper>
 
   </div>
 
 
-  
+
 
   <!-- view profile with specific id end -->
 

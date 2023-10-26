@@ -229,4 +229,9 @@ h3,
     float: right;
     cursor: pointer;
   }
+
+  .rounded{
+    border-radius: 20px;
+    border: solid 1px black;
+  }
   /* for search icon in right side end */

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Injectable({
@@ -86,4 +87,18 @@ empdetails(id: number): Observable<any> {
   return this.http.get(url, { headers });
 }
 // employee details end
+
+// upload pdf start
+uploadDocs(formData: any) {
+  
+  const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const url = `${this.api.uploadDocsUrl}`;
+
+ return this.http.post(url, formData, { headers });
+
+}
+// upload pdf end
+
+
 }

@@ -7,6 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
+import { SafeUrl } from '@angular/platform-browser';
 
 
 
@@ -77,9 +78,12 @@ export class RegistrationComponent {
 
   };
   
-  
+  imageUrl: SafeUrl | undefined;
+  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
 
+username: any;
 
+ 
   // date of birth select only 18 years old only start
   dobError: boolean = false;
   // router: any;
@@ -113,8 +117,35 @@ export class RegistrationComponent {
   userForm: FormGroup;
   constructor(private http: HttpClient, public loginService: LoginService,public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, public testService: TestService, private _formBuilder: FormBuilder) { 
     this.userForm = new FormGroup({
-      designation: new FormControl('')
+      designation: new FormControl(''),
+      
     });
+  }
+  
+
+  // duration of probation count total days start
+  calculateTotalDays() {
+    if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
+      const startDate = new Date(this.user.startDateOfProbation);
+      const endDate = new Date(this.user.endDateOfProbation);
+      const timeDifference = endDate.getTime() - startDate.getTime();
+      const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // Adding 1 to include the start date
+      this.user.totalDaysOfProbation = daysDifference;
+    } else {
+      this.user.totalDaysOfProbation = null;
+    }
+  }
+   // duration of probation count total days end
+
+   invalidIFSC = false;
+   validateIFSC() {
+    const ifscPattern = /^[A-Z]{4}[0][0-9A-Z]{6}$/; // Regular expression for IFSC code
+
+    if (!ifscPattern.test(this.user.ifsccode)) {
+      this.invalidIFSC = true;
+    } else {
+      this.invalidIFSC = false;
+    }
   }
   
   errorMessage: string = '';    // pdf error
@@ -271,16 +302,12 @@ onSubmit() {
         icon: 'success',
         title: 'Registration successful',
         text: 'New User Registered Successfully',
-      }).then(() => {
-        const role = localStorage.getItem("role");
-        if (role === "SUPERADMIN") {
-          this.router.navigate(['/dashboard']);
-        } else {
-          this.router.navigate(['/admin']);
-        }
-      });
+      })
      console.log("registered", response);
-      // this.isLoading = false;
+      
+this.username = response.username
+
+console.log("user name", this.username);
     },
     (error) => {
       
@@ -305,6 +332,75 @@ onSubmit() {
   // disable date from date of joining end
 
 
+  // API for upload PDF start
+
+
+// DocumentUpload(event: any) {
+//   const file = event.target.files[0]; // Get the selected file (assuming single selection)
+//   if (file && file.type === 'application/pdf') {
+//     this.RegisterAndUpdate.uploadDocs(file);
+//   } else {
+//     Swal.fire({
+//       icon: 'error',
+//       title: 'Can not uploaded!',
+//       text: 'Please select a valid PDF file.',
+//     });
+ 
+//   }
+// }
+// API for upload PDF end
+
+  // Function to handle file input change
+  DocumentUpload(event: Event, controlName: string) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
+      // Here you can perform file validation and other checks
+
+      // Assign the selected file to the user object or form control
+      this.user[controlName] = file;
+    }
+  }
+
+  // Function to submit the form with file uploads
+  submitForm() {
+    // Create a FormData object to send files to the server
+    const formData = new FormData();
+   
+    // Append the selected files to the FormData object
+    formData.append('username', this.username);
+    formData.append('academicDocument1', this.user.academicDocument1);
+    formData.append('academicDocument2', this.user.academicDocument2);
+    formData.append('academicDocument3', this.user.academicDocument3);
+    formData.append('academicDocument4', this.user.academicDocument4);
+    formData.append('signature', this.user.signature);
+    formData.append('aadharCard', this.user.aadharCard);
+    formData.append('panCard', this.user.panCard);
+    formData.append('offerLetter', this.user.offerLetter);
+    formData.append('resignationLetter', this.user.resignationLetter);
+    formData.append('apprisalLetter', this.user.apprisalLetter);
+    formData.append('salarySlip1', this.user.salarySlip1);
+    formData.append('salarySlip2', this.user.salarySlip2);
+    formData.append('salarySlip3', this.user.salarySlip3);
+    formData.append('userImage', this.user.userImage);
+  
+
+    // Make an HTTP POST request to the API endpoint
+    this.RegisterAndUpdate.uploadDocs(formData).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'File Upload',
+          text: 'File Upload Successfully',
+        })
+        console.log('Files uploaded successfully:', response);
+      },
+      (error) => {
+        // Handle error
+        console.error('Error uploading files:', error);
+      }
+    );
+  }
 
 }
 

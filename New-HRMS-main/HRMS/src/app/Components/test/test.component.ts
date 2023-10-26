@@ -81,6 +81,7 @@ export class TestComponent {
       "VIEW_ALL_LEAVE"
   ];
 
+  showAllDocsTable: any;
   // search start
   editName: boolean = false;
   editDesignation: boolean = false;
@@ -122,6 +123,22 @@ export class TestComponent {
   }
   // change password validation end
 
+  searchTerm: string = '';
+
+  
+  filterTable() {
+    const filteredData = this.EmployeeData.filter((item: { firstname: string; }) => {
+      // Customize the filtering criteria as per your requirements
+      return (
+        item.firstname.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+       
+      );
+    });
+
+    // Assign the filtered data to the EmployeeData array
+    this.EmployeeData = filteredData;
+  }
+
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
@@ -141,7 +158,7 @@ export class TestComponent {
     this.toggleAllWfhTable();
     this.toggleAllLeaveTable();
     this.togglecalendar();
-    // this.viewRole();
+    
 
 
     this.leaveForm = this.formBuilder.group({
@@ -1341,6 +1358,70 @@ export class TestComponent {
     this.availablePermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
     this.loginService.showTable('removePermission');
   }
+
+
+  // API for download Docs start
+
+DownloadDocs(id: number) {
+
+  this.testService.DownloadDocs(1).subscribe((response: HttpResponse<Blob>) => {
+    if (response.body) {
+      const contentDisposition = response.headers.get('content-disposition');
+      const fileName = contentDisposition
+        ? contentDisposition.split('filename=')[1]
+        : 'Docs.pdf'; 
+
+      saveAs(response.body, fileName); 
+    } else {
+      console.error('Response body is null.');
+    }
+  }, (error) => {
+    Swal.fire('Error', error.error, 'error');  
+    console.error(error);
+  });
+ 
+}
+
+// API for download Docs end
+
+// // API for all Docs start
+// Docs(): void {
+//   this.showAllDocsTable = !this.showAllDocsTable;
+//   this.isModalOpen = true;
+
+//   if (this.showAllDocsTable) {
+
+
+//     // Call the service method to fetch the list of employees
+//     this.testService.getAllDocs().subscribe(
+//       (response: any) => {
+//         // Convert the response object to an array
+//         const dataArray = Object.values(response);
+//         // Reverse the received array
+//         const reversedData = dataArray.reverse();
+
+//         // Set the reversed array as the data source
+//         this.EmployeeData = reversedData;
+//         console.log("Documents>>>", response);
+//       },
+//       error => {
+//         if (error.status === 403) {
+//           // Handle the 403 Forbidden error
+//           Swal.fire({
+//             icon: 'error',
+//             title: 'Token Expired!',
+//             text: 'Access denied. Please check your permissions.',
+//           });
+
+//         } else {
+//           // Handle other errors
+
+//         }
+//       }
+//     );
+//   }
+// }
+// // API for all docs end
 
 
 }

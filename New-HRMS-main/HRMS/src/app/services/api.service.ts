@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class ApiService {
 
   // public apiUrl = 'https://hrms.prilient.com/';
-  public apiUrl = 'http://192.168.1.11:9191/';
+  public apiUrl = 'http://192.168.1.5:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -41,6 +41,9 @@ export class ApiService {
   public RoleShow = `${this.apiUrl}gateway/hrms/getAllRole`;
   public RoleWithPermission = `${this.apiUrl}gateway/hrms/getRoleWithPermission`;
   public Registration = `${this.apiUrl}gateway/hrms/signup`;
+  public uploadDocsUrl = `${this.apiUrl}gateway/hrms/addPersonalDocument`;
+  public AllDocsUrl = `${this.apiUrl}gateway/hrms/getAllPersonalDocuments`;
+  public DownloadDocs = `${this.apiUrl}gateway/hrms/downloadPersonalDocument1`;
   public Userdatashow = `${this.apiUrl}gateway/hrms/findAll`;
   public UpdateEmp = `${this.apiUrl}gateway/hrms/pass`;
   public ApplyLeave = `${this.apiUrl}gateway/hrms/leave`;

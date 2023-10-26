@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
@@ -8,7 +8,8 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { TestService } from 'src/app/services/test.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
-
+import { FormBuilder } from '@angular/forms';
+import * as saveAs from 'file-saver';
 
 // interface BasicInfo{
 //   phonenumber:any;
@@ -26,6 +27,16 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+
+  firstFormGroup = this._formBuilder.group({
+    // firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    // secondCtrl: ['', Validators.required],
+  });
+
+
+
   profileDetails: any;
   profileDetailsUser: any;
   // profileUpdateDetails:any;
@@ -49,6 +60,7 @@ defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.p
   public emergencyContact: string = '';
   // router: any;
   item: any;
+  id: any;
 
   // when add profile then show basic info in form start
   @ViewChild('phonenumber') phonenumberInfo: ElementRef | any;
@@ -62,7 +74,7 @@ defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.p
   // when add profile then show basic info in form end
 
   
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer, public loginService: LoginService, public profileService: ProfileService, public dashboardService: DashboardService, public testService: TestService, private route: ActivatedRoute, public RegisterAndUpdate: RegisterAndUpdateService, private router: Router) {
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer, public loginService: LoginService, public profileService: ProfileService, public dashboardService: DashboardService, public testService: TestService, private route: ActivatedRoute, public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, private _formBuilder: FormBuilder) {
 
 // Initialize the imageUrl with the default image URL as a SafeUrl object
 // this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.defaultImageUrl);
@@ -70,7 +82,15 @@ this.getUserPhoto();
   }
 
 
-  
+  closeForm() {
+    const role = localStorage.getItem("role");
+    if (role === "SUPERADMIN") {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/admin']);
+    }
+
+  }
 
 
   // API for show profile data start
@@ -565,4 +585,29 @@ userProfile(): void {
       });
     }
     // API for delete personal information end
+
+
+    // API for download Docs start
+
+DownloadDocs(id: number) {
+
+  this.testService.DownloadDocs(1).subscribe((response: HttpResponse<Blob>) => {
+    if (response.body) {
+      const contentDisposition = response.headers.get('content-disposition');
+      const fileName = contentDisposition
+        ? contentDisposition.split('filename=')[1]
+        : 'Docs.pdf'; 
+
+      saveAs(response.body, fileName); 
+    } else {
+      console.error('Response body is null.');
+    }
+  }, (error) => {
+    Swal.fire('Error', error.error, 'error');  
+    console.error(error);
+  });
+ 
+}
+
+// API for download Docs end
 }

@@ -261,6 +261,33 @@ LeavePolicyPdf() {
 
 // API for download leave policy end
 
+// API for get all personal docs start
+
+// API for get all personal docs end
+
+// // API for download Docs start
+
+// DownloadDocs(id: number) {
+
+//   this.adminService.DownloadDocs(1).subscribe((response: HttpResponse<Blob>) => {
+//     if (response.body) {
+//       const contentDisposition = response.headers.get('content-disposition');
+//       const fileName = contentDisposition
+//         ? contentDisposition.split('filename=')[1]
+//         : 'Docs.pdf'; 
+
+//       saveAs(response.body, fileName); 
+//     } else {
+//       console.error('Response body is null.');
+//     }
+//   }, (error) => {
+//     Swal.fire('Error', error.error, 'error');  
+//     console.error(error);
+//   });
+ 
+// }
+
+// API for download Docs end
 
 
 }
