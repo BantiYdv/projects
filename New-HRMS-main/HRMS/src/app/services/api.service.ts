@@ -44,6 +44,7 @@ export class ApiService {
   public uploadDocsUrl = `${this.apiUrl}gateway/hrms/addPersonalDocument`;
   public AllDocsUrl = `${this.apiUrl}gateway/hrms/getAllPersonalDocuments`;
   public DownloadDocs = `${this.apiUrl}gateway/hrms/downloadPersonalDocument1`;
+  public Docs = `${this.apiUrl}gateway/hrms/downloadd`;
   public Userdatashow = `${this.apiUrl}gateway/hrms/findAll`;
   public UpdateEmp = `${this.apiUrl}gateway/hrms/pass`;
   public ApplyLeave = `${this.apiUrl}gateway/hrms/leave`;

@@ -329,6 +329,8 @@
       <div class="d-flex justify-content-end m-1">
         <div class="table-search">
           <input [(ngModel)]="searchTerm" (keyup)="filterTable()" placeholder="Search..." class="form-control rounded">
+          <!-- <input [(ngModel)]="searchTerm" (ngModelChange)="filterTable()" placeholder="Search..." class="form-control rounded"> -->
+
         </div>
       </div>
       
@@ -336,22 +338,25 @@
         <thead class="table-dark">
           <tr>
             <th>S.No</th>
-            <th><span *ngIf="!editName">Name
+            <!-- <th><span *ngIf="!editName">Name
               <span></span> <i class="fas fa-search search-icon-right" (click)="editName = true"></i></span>
               <input *ngIf="editName" (blur)="editName = false" (keyup.enter)="editName = false" [(ngModel)]="nameFilter" placeholder="Search" >
-            </th>
+            </th> -->
+            <th>Name</th>
             <th>Employee id</th>
-            <th><span *ngIf="!editDesignation">Designation
+            <!-- <th><span *ngIf="!editDesignation">Designation
               <span></span> <i class="fas fa-search search-icon-right" (click)="editDesignation = true"></i></span>
               <input *ngIf="editDesignation" (blur)="editDesignation = false" (keyup.enter)="editDesignation = false" [(ngModel)]="nameDesignationFilter" placeholder="Search" >
-            </th>
+            </th> -->
+            <th>Designation</th>
             <th>Email Id</th>
             <th>Update</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of EmployeeData; let i = index" [style.display]="(isItemVisible(item)) ? 'table-row' : 'none'">
+          <!-- <tr *ngFor="let item of EmployeeData; let i = index" [style.display]="(isItemVisible(item)) ? 'table-row' : 'none'"> -->
+            <tr *ngFor="let item of EmployeeData; let i = index">
             <td>{{ i + 1 }}</td>
             <td class="pointer" style="cursor: pointer; text-decoration: underline; color: blue;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname+' '+item.lastname }}</td>
             <td>{{item.employeeId}}</td>
@@ -1102,7 +1107,7 @@
           <tbody>
             <tr *ngFor="let item of EmployeeData; let i = index">
               <td>{{ i + 1 }}</td>
-              <td>{{ item.academicDocument1 }}</td>
+              <td>academicDocument1 </td>
               <td>
                 <button type="button" class="btn btn-link" (click)="DownloadDocs(id)">
                   <i class="fa-solid fa-download"></i>

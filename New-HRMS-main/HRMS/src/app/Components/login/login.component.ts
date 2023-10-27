@@ -102,6 +102,7 @@ export class LoginComponent {
     } else {
       alert('Fields are empty');
     }
+    
   }
 
   //forget password popup strat

@@ -6,7 +6,7 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
-
+import { FormBuilder} from '@angular/forms';
 
 
 
@@ -17,6 +17,13 @@ import { TestService } from 'src/app/services/test.service';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent {
+
+  firstFormGroup = this._formBuilder.group({
+    // firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    // secondCtrl: ['', Validators.required],
+  });
  
   user: any = {                                              // Object to store the user registration data
     firstname: '',
@@ -35,6 +42,29 @@ export class UpdateComponent {
         sickLeavesPerMonth: '',
         casualLeavesPerMonth: '',
         role: '',
+        address: '',
+        emergencyContact: '',
+        jobType: '',
+        totalDaysOfProbation: '',
+        startDateOfProbation:'',
+        endDateOfProbation: '',
+        modeOfWorking: '',
+        shifttimingstart: '',
+        shifttimingend:'',
+        accountNumber:'',
+        ifsccode:'',
+        holderName:'',
+        bankName:'',
+        esicno:'',
+        pfno:'',
+        academicDocument1:'',
+        academicDocument2:'',
+        academicDocument3:'',
+        academicDocument4:'',
+        identityDocument1:'',
+        identityDocument2:'',
+        assetName:[]
+
   };
 
   profileDetails: any;
@@ -45,6 +75,7 @@ export class UpdateComponent {
   role: any;
 
   totalleaves: any;
+  response: any;
 
   validateDateOfBirth() {
     const currentDate = new Date();
@@ -55,6 +86,34 @@ export class UpdateComponent {
   }
   // date of birth select only 18 years old only end
 
+  // duration of probation count total days start
+  calculateTotalDays() {
+    if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
+      const startDate = new Date(this.user.startDateOfProbation);
+      const endDate = new Date(this.user.endDateOfProbation);
+      const timeDifference = endDate.getTime() - startDate.getTime();
+      const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // Adding 1 to include the start date
+      this.user.totalDaysOfProbation = daysDifference;
+    } else {
+      this.user.totalDaysOfProbation = null;
+    }
+  }
+   // duration of probation count total days end
+
+   // ifsc code start
+   invalidIFSC = false;
+   validateIFSC() {
+    const ifscPattern = /^[A-Z]{4}[0][0-9A-Z]{6}$/; // Regular expression for IFSC code
+
+    if (!ifscPattern.test(this.user.ifsccode)) {
+      this.invalidIFSC = true;
+    } else {
+      this.invalidIFSC = false;
+    }
+  }
+   // ifsc code end
+
+  
 
   // email id error start
   emailError: boolean = false;
@@ -82,7 +141,7 @@ export class UpdateComponent {
 
   departments: string[] = [];
   designations: string[] = [];
-  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router) { }
+  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -92,6 +151,8 @@ export class UpdateComponent {
     this.designation();
     this.teamLead();
     this.updatedData();
+    
+
   }
 
   //API for getting teamlead start
@@ -181,12 +242,24 @@ export class UpdateComponent {
 
 
   // API for show user data automatic when update him start
+  // availableAssetOptions: string[] = [
+    
+  //   'Laptop',
+  //   'Laptop Charger',
+  //   'Mouse',
+  //   'Keyboard',
+  //   'Phone',
+  //   'Phone Charger',
+  //   'Head Phone'
+  // ];
 
-  
-
+ 
   updatedData(): void {
+
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
+     
+
 
       if (id) {
         // Use the 'id' variable to fetch data
@@ -195,7 +268,9 @@ export class UpdateComponent {
           
             // Handle the response and update the input fields accordingly
             this.user = response;
+          
             console.log(";;;;;",this.user);
+            
           },
           (error) => {
    
@@ -250,7 +325,7 @@ export class UpdateComponent {
     this.route.queryParams.subscribe(params => {
       const employeeId = params['id'];
     
-  
+     
       if (employeeId) {
         // const data = {
         //   firstname: this.user.firstname,

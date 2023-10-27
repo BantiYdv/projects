@@ -514,8 +514,17 @@
         <div class="col-md-9 d-flex justify-content-end">
 
           <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
-          <button type="submit" color="primary"
-          class="btn btn-primary m-1" (click)="onSubmit()">Register</button>
+          <!-- <button type="submit" color="primary"
+          class="btn btn-primary m-1" (click)="onSubmit()">Register</button> -->
+          <button type="submit"
+          mat-raised-button
+          color="primary"
+          class="btn btn-primary m-1"
+          [disabled]="isLoading"
+          (click)="onSubmit()">
+    <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Register
+  </button>
           <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
         </div>
       </div>

@@ -83,26 +83,26 @@ export class TestComponent {
 
   showAllDocsTable: any;
   // search start
-  editName: boolean = false;
-  editDesignation: boolean = false;
-  enterEditMode() {
-    this.editName = true;
-    this.editDesignation = true;
-  }
+  // editName: boolean = false;
+  // editDesignation: boolean = false;
+  // enterEditMode() {
+  //   this.editName = true;
+  //   this.editDesignation = true;
+  // }
 
-  exitEditMode() {
-    this.editName = false;
-    this.editDesignation = false;
-  }
-  nameFilter: string = '';
-  nameDesignationFilter: string = '';
+  // exitEditMode() {
+  //   this.editName = false;
+  //   this.editDesignation = false;
+  // }
+  // nameFilter: string = '';
+  // nameDesignationFilter: string = '';
 
-  isItemVisible(item: any): boolean {
-    const nameMatch = !this.nameFilter || (item.firstname + ' ' + item.lastname).toLowerCase().includes(this.nameFilter.toLowerCase());
-    const designationMatch = !this.nameDesignationFilter || item.designation.toLowerCase().includes(this.nameDesignationFilter.toLowerCase());
+  // isItemVisible(item: any): boolean {
+  //   const nameMatch = !this.nameFilter || (item.firstname + ' ' + item.lastname).toLowerCase().includes(this.nameFilter.toLowerCase());
+  //   const designationMatch = !this.nameDesignationFilter || item.designation.toLowerCase().includes(this.nameDesignationFilter.toLowerCase());
 
-    return nameMatch && designationMatch;
-  }
+  //   return nameMatch && designationMatch;
+  // }
 
   // search end
 
@@ -123,21 +123,26 @@ export class TestComponent {
   }
   // change password validation end
 
+   // search start
   searchTerm: string = '';
 
-  
   filterTable() {
     const filteredData = this.EmployeeData.filter((item: { firstname: string; }) => {
+      // Check if the search term is empty, if it is, return true to include all items
+      if (this.searchTerm.trim() === '') {
+        return true;
+      }
+      
       // Customize the filtering criteria as per your requirements
       return (
         item.firstname.toLowerCase().includes(this.searchTerm.toLowerCase()) 
-       
       );
     });
-
+  
     // Assign the filtered data to the EmployeeData array
     this.EmployeeData = filteredData;
   }
+   // search end
 
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute) {
     //for change password start
@@ -1362,25 +1367,25 @@ export class TestComponent {
 
   // API for download Docs start
 
-DownloadDocs(id: number) {
+// DownloadDocs(id: number) {
 
-  this.testService.DownloadDocs(1).subscribe((response: HttpResponse<Blob>) => {
-    if (response.body) {
-      const contentDisposition = response.headers.get('content-disposition');
-      const fileName = contentDisposition
-        ? contentDisposition.split('filename=')[1]
-        : 'Docs.pdf'; 
+//   this.testService.DownloadDocs(2).subscribe((response: HttpResponse<Blob>) => {
+//     if (response.body) {
+//       const contentDisposition = response.headers.get('content-disposition');
+//       const fileName = contentDisposition
+//         ? contentDisposition.split('filename=')[1]
+//         : 'Docs.png'; 
 
-      saveAs(response.body, fileName); 
-    } else {
-      console.error('Response body is null.');
-    }
-  }, (error) => {
-    Swal.fire('Error', error.error, 'error');  
-    console.error(error);
-  });
+//       saveAs(response.body, fileName); 
+//     } else {
+//       console.error('Response body is null.');
+//     }
+//   }, (error) => {
+//     Swal.fire('Error', error.error, 'error');  
+//     console.error(error);
+//   });
  
-}
+// }
 
 // API for download Docs end
 
@@ -1422,6 +1427,7 @@ DownloadDocs(id: number) {
 //   }
 // }
 // // API for all docs end
+
 
 
 }

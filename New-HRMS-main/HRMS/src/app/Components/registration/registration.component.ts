@@ -82,7 +82,7 @@ export class RegistrationComponent {
   defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
 
 username: any;
-
+registerId: any;
  
   // date of birth select only 18 years old only start
   dobError: boolean = false;
@@ -105,7 +105,7 @@ username: any;
 
   
   // email id error end 
-
+  isLoading = false;   // for loader
   token: string = ''; // Variable to store the token
   teamlead: string[] = [];
   role: string[] = [];
@@ -137,6 +137,7 @@ username: any;
   }
    // duration of probation count total days end
 
+   // ifsc code start
    invalidIFSC = false;
    validateIFSC() {
     const ifscPattern = /^[A-Z]{4}[0][0-9A-Z]{6}$/; // Regular expression for IFSC code
@@ -147,6 +148,7 @@ username: any;
       this.invalidIFSC = false;
     }
   }
+   // ifsc code end
   
   errorMessage: string = '';    // pdf error
 
@@ -289,11 +291,14 @@ Getrole() {
 
 
 onSubmit() {
-  // this.isLoading = true;
+  this.isLoading = true;
   
  console.log("<<<<<<user>>>>>", this.user);
  
+ // Check if this.user.assetName is an array before using join
+ if (Array.isArray(this.user.assetName)) {
   this.user.assetName = this.user.assetName.join(', ');
+}
   
 
   this.RegisterAndUpdate.registerUser(this.user).subscribe(
@@ -306,15 +311,16 @@ onSubmit() {
      console.log("registered", response);
       
 this.username = response.username
-
+this.registerId = response.id
 console.log("user name", this.username);
+this.isLoading = false;
     },
     (error) => {
       
         Swal.fire('Error', error.error, 'error');
       
        
-        // this.isLoading = false;
+        this.isLoading = false;
     }
   );
 
@@ -363,6 +369,7 @@ console.log("user name", this.username);
   }
 
   // Function to submit the form with file uploads
+  
   submitForm() {
     // Create a FormData object to send files to the server
     const formData = new FormData();
@@ -386,7 +393,7 @@ console.log("user name", this.username);
   
 
     // Make an HTTP POST request to the API endpoint
-    this.RegisterAndUpdate.uploadDocs(formData).subscribe(
+    this.RegisterAndUpdate.uploadDocs(formData, this.registerId).subscribe(
       (response) => {
         Swal.fire({
           icon: 'success',

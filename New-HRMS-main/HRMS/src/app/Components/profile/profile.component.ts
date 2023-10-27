@@ -35,7 +35,8 @@ export class ProfileComponent {
     // secondCtrl: ['', Validators.required],
   });
 
-
+  showdocumentTable!: any;
+  documentData: any;
 
   profileDetails: any;
   profileDetailsUser: any;
@@ -51,7 +52,9 @@ export class ProfileComponent {
 defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
   errorMessage: string = ''; // for invalid image formate
 
-  
+  EmployeeData: any;
+  showAllAdminTable: any;
+
   public address: string = '';
   public birthDay: string = '';
   public maritalStatus: string = '';
@@ -103,7 +106,8 @@ this.getUserPhoto();
     this.EmployeeProfile(this.item);
     this.userProfile();
     this.BasicInfo();
-  
+    this.openEmployee();
+
     // Get the token from localStorage
   }
 
@@ -175,6 +179,50 @@ userProfile(): void {
 }
 // API for show user Profile to admin / super admin end
 
+DownloadDocs() {
+
+  this.route.queryParams.subscribe(params => {
+    const id = params['id'];
+
+    if (id) {
+      console.log("id docs", id);
+      this.profileService.DownloadDocs(id).subscribe((response: HttpResponse<Blob>) => {
+        if (response.body) {
+          const contentDisposition = response.headers.get('content-disposition');
+          const fileName = contentDisposition
+            ? contentDisposition.split('filename=')[1]
+            : 'Docs.png' && 'Docs.pdf'; 
+    
+          saveAs(response.body, fileName); 
+          console.log("document", response);
+        } else {
+          console.error('Response body is null.');
+        }
+      }, (error) => {
+        Swal.fire('Error', error.error, 'error');  
+        console.error(error);
+      });
+    } else {
+      console.error('Employee ID not found in URL');
+    }
+  });
+
+  // this.showdocumentTable = !this.showdocumentTable;
+
+  // if (this.showdocumentTable) {
+  //   this.profileService.getdocumentData(+id).subscribe(
+  //     (response) => {
+  //       // Assign the received data to the TeamLeaveData property
+  //       this.documentData = response;
+  //       console.log("document", response);
+  //     },
+  //     (error) => {
+  //       Swal.fire('Error', error.error, 'error');
+  //       this.showdocumentTable = false; // Hide the table if an error occurs
+  //     }
+  //   );
+  // }
+}
 
     //  API for Edit profile data start
     // editProfile() {
@@ -589,25 +637,63 @@ userProfile(): void {
 
     // API for download Docs start
 
-DownloadDocs(id: number) {
+// DownloadDocs(id: number) {
 
-  this.testService.DownloadDocs(1).subscribe((response: HttpResponse<Blob>) => {
-    if (response.body) {
-      const contentDisposition = response.headers.get('content-disposition');
-      const fileName = contentDisposition
-        ? contentDisposition.split('filename=')[1]
-        : 'Docs.pdf'; 
+//   this.testService.DownloadDocs(1).subscribe((response: HttpResponse<Blob>) => {
+//     if (response.body) {
+//       const contentDisposition = response.headers.get('content-disposition');
+//       const fileName = contentDisposition
+//         ? contentDisposition.split('filename=')[1]
+//         : 'Docs.pdf'; 
 
-      saveAs(response.body, fileName); 
-    } else {
-      console.error('Response body is null.');
-    }
-  }, (error) => {
-    Swal.fire('Error', error.error, 'error');  
-    console.error(error);
-  });
+//       saveAs(response.body, fileName); 
+//     } else {
+//       console.error('Response body is null.');
+//     }
+//   }, (error) => {
+//     Swal.fire('Error', error.error, 'error');  
+//     console.error(error);
+//   });
  
-}
+// }
 
 // API for download Docs end
+
+openEmployee(): void {
+  this.showAllAdminTable = !this.showAllAdminTable;
+  
+
+  if (this.showAllAdminTable) {
+
+
+    // Call the service method to fetch the list of employees
+    this.testService.getEmployeeList().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.EmployeeData = reversedData;
+        console.log("employe>>>", response);
+      },
+      error => {
+        if (error.status === 403) {
+          // Handle the 403 Forbidden error
+          Swal.fire({
+            icon: 'error',
+            title: 'Token Expired!',
+            text: 'Access denied. Please check your permissions.',
+          });
+
+        } else {
+          // Handle other errors
+
+        }
+      }
+    );
+  }
+}
+
 }

@@ -89,11 +89,11 @@ empdetails(id: number): Observable<any> {
 // employee details end
 
 // upload pdf start
-uploadDocs(formData: any) {
+uploadDocs(formData: any, id: number) {
   
   const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  const url = `${this.api.uploadDocsUrl}`;
+  const url = `${this.api.uploadDocsUrl}/${id}`;
 
  return this.http.post(url, formData, { headers });
 

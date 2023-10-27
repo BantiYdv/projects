@@ -870,7 +870,7 @@
                   </div>
                 </div>
 
-
+                
 
               </div>
             </div>
@@ -899,22 +899,22 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of profileDetailsUser; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td>{{ profileDetailsUser?.academicDocument1 }}</td>
-                      <td>{{ profileDetailsUser?.academicDocument2 }}</td>
-                      <td>{{ profileDetailsUser?.academicDocument3 }}</td>
-                      <td>{{ profileDetailsUser?.academicDocument4 }}</td>
-                      <td>{{ profileDetailsUser?.aadharCard }}</td>
-                      <td>{{ profileDetailsUser?.panCard }}</td>
-                      <td>{{ profileDetailsUser?.signature }}</td>
-                      <td>{{ profileDetailsUser?.userImage }}</td>
-                      <td>{{ profileDetailsUser?.offerLetter }}</td>
-                      <td>{{ profileDetailsUser?.resignationLetter }}</td>
-                      <td>{{ profileDetailsUser?.apprisalLetter }}</td>
-                      <td>{{ profileDetailsUser?.salarySlip1 }}</td>
-                      <td>{{ profileDetailsUser?.salarySlip2 }}</td>
-                      <td>{{ profileDetailsUser?.salarySlip3 }}</td>
+                    <!-- <tr >
+                      <td>{{ 1 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument1 ? 'academicDocument1' : null }} </td>
+                      <td>{{ profileDetailsUser?.academicDocument2 ? 'academicDocument2' : null  }}</td>
+                      <td>{{ profileDetailsUser?.academicDocument3 ? 'academicDocument3' : null  }}</td>
+                      <td>{{ profileDetailsUser?.academicDocument4 ? 'academicDocument4' : null }}</td>
+                      <td>{{ profileDetailsUser?.aadharCard ? 'aadharCard' : null }}</td>
+                      <td>{{ profileDetailsUser?.panCard ? 'panCard' : null }}</td>
+                      <td>{{ profileDetailsUser?.signature ? 'signature' : null }}</td>
+                      <td>{{ profileDetailsUser?.userImage ? 'userImage' : null }}</td>
+                      <td>{{ profileDetailsUser?.offerLetter ? 'offerLetter' : null }}</td>
+                      <td>{{ profileDetailsUser?.resignationLetter ? 'resignationLetter' : null }}</td>
+                      <td>{{ profileDetailsUser?.apprisalLetter ? 'apprisalLetter' : null }}</td>
+                      <td>{{ profileDetailsUser?.salarySlip1 ? 'salarySlip1' : null }}</td>
+                      <td>{{ profileDetailsUser?.salarySlip2 ? 'salarySlip2' : null }}</td>
+                      <td>{{ profileDetailsUser?.salarySlip3 ? 'salarySlip3' : null }}</td>
 
                       <td>
                         <button type="button" class="btn btn-link" (click)="DownloadDocs(id)">
@@ -922,7 +922,17 @@
                         </button>
                       </td>
 
-                    </tr>
+                    </tr> -->
+                    
+                      <tr *ngIf="profileDetailsUser?.academicDocument1">
+                        <td>{{ 1 }}</td>
+                        <td>{{profileDetailsUser?.academicDocument1 ? 'academicDocument1' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs()">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
                   </tbody>
                 </table>
               </div>

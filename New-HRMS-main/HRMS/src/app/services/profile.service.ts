@@ -61,4 +61,21 @@ userBasicInfo(id: number): Observable<any>{
 
 // show other user basic info end
 
+// getdocumentData(id: number): Observable<any>{
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const url = `${this.api.Docs}/${id}`;
+//   return this.http.get(url, { headers });
+// }
+DownloadDocs(id: number): Observable<HttpResponse<Blob>> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const url = `${this.api.Docs}/${id}`;
+  return this.http.get(url, {
+    headers,
+    observe: 'response', // This ensures you get the full HTTP response
+    responseType: 'blob', // This tells Angular to expect a binary response
+  });
+}
+
 }
