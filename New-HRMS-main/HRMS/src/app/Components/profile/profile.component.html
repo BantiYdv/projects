@@ -928,15 +928,137 @@
                         <td>{{ 1 }}</td>
                         <td>{{profileDetailsUser?.academicDocument1 ? 'academicDocument1' : null }} </td>
                         <td>
-                          <button type="button" class="btn btn-link" (click)="DownloadDocs()">
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument1.pdf')">
                             <i class="fa-solid fa-download"></i>
                           </button>
                         </td>
                       </tr>
+                      <tr *ngIf="profileDetailsUser?.academicDocument2">
+                        <td>{{ 2 }}</td>
+                        <td>{{profileDetailsUser?.academicDocument2 ? 'academicDocument2' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument2.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.academicDocument3">
+                        <td>{{ 3 }}</td>
+                        <td>{{profileDetailsUser?.academicDocument3 ? 'academicDocument3' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument3.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.academicDocument4">
+                        <td>{{ 4 }}</td>
+                        <td>{{profileDetailsUser?.academicDocument4 ? 'academicDocument4' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument4.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.signature">
+                        <td>{{ 5 }}</td>
+                        <td>{{profileDetailsUser?.signature ? 'signature' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'signature.png')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.aadharCard">
+                        <td>{{ 6 }}</td>
+                        <td>{{profileDetailsUser?.aadharCard ? 'aadharCard' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'aadharCard.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.panCard">
+                        <td>{{ 7 }}</td>
+                        <td>{{profileDetailsUser?.panCard ? 'panCard' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'panCard.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.offerLetter">
+                        <td>{{ 8 }}</td>
+                        <td>{{profileDetailsUser?.offerLetter ? 'offerLetter' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'offerLetter.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.resignationLetter">
+                        <td>{{ 9 }}</td>
+                        <td>{{profileDetailsUser?.resignationLetter ? 'resignationLetter' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'resignationLetter.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.apprisalLetter">
+                        <td>{{ 10 }}</td>
+                        <td>{{profileDetailsUser?.apprisalLetter ? 'apprisalLetter' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'apprisalLetter.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.salarySlip1">
+                        <td>{{ 11 }}</td>
+                        <td>{{profileDetailsUser?.salarySlip1 ? 'salarySlip1' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'salarySlip1.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.salarySlip2">
+                        <td>{{ 12 }}</td>
+                        <td>{{profileDetailsUser?.salarySlip2 ? 'salarySlip2' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'salarySlip2.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.salarySlip3">
+                        <td>{{ 13 }}</td>
+                        <td>{{profileDetailsUser?.salarySlip3 ? 'salarySlip3' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'salarySlip3.pdf')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr *ngIf="profileDetailsUser?.userImage">
+                        <td>{{ 14 }}</td>
+                        <td>{{profileDetailsUser?.userImage ? 'userImage' : null }} </td>
+                        <td>
+                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'userImage.png')">
+                            <i class="fa-solid fa-download"></i>
+                          </button>
+                        </td>
+                      </tr>
+
+
+                      
                   </tbody>
                 </table>
               </div>
               <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                  (click)="AllDocsDownload()"> <i class="fa-solid fa-download"></i>All Download</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                   (click)="closeForm()">Close</button>
               </div>

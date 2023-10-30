@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
@@ -7,6 +7,8 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
 import { FormBuilder} from '@angular/forms';
+import { SafeUrl } from '@angular/platform-browser';
+import { MatStepper } from '@angular/material/stepper';
 
 
 
@@ -24,7 +26,14 @@ export class UpdateComponent {
   secondFormGroup = this._formBuilder.group({
     // secondCtrl: ['', Validators.required],
   });
- 
+  thirdFormGroup = this._formBuilder.group({
+    // secondCtrl: ['', Validators.required],
+  });
+  forthFormGroup = this._formBuilder.group({
+    // secondCtrl: ['', Validators.required],
+  });
+  @ViewChild('stepper') stepper!: MatStepper;                 // go to document step after register
+
   user: any = {                                              // Object to store the user registration data
     firstname: '',
         lastname: '',
@@ -66,7 +75,57 @@ export class UpdateComponent {
         assetName:[]
 
   };
+  // user: any = {                                              // Object to store the user registration data
+  //   dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
+  //   firstname: '',
+  //       lastname: '',
+  //       emailid: '',
+  //       phonenumber: '',
+  //       teamlead: '',
+        
+  //       designation: '',
+  //       dob: '',
+  //       department: '',
+  //       username: '',
+  //       password: '',
+  //       totalleaves: '',
+  //       totalwfh: '',
+  //       sickLeavesPerMonth: '',
+  //       casualLeavesPerMonth: '',
+  //       role: '',
+  //       address: '',
+  //       emergencyContact: '',
+  //       jobType: '',
+  //       totalDaysOfProbation: '',
+  //       startDateOfProbation:'',
+  //       endDateOfProbation: '',
+  //       modeOfWorking: '',
+  //       shifttimingstart: '',
+  //       shifttimingend:'',
+  //       accountNumber:'',
+  //       ifsccode:'',
+  //       holderName:'',
+  //       bankName:'',
+  //       esicno:'',
+  //       pfno:'',
+  //       userImage:'',
+  //       academicDocument1:'',
+  //       academicDocument2:'',
+  //       academicDocument3:'',
+  //       academicDocument4:'',
+  //       aadharCard:'',
+  //       panCard:'',
+  //       signature:'',
+  //       offerLetter:'',
+  //       resignationLetter:'',
+  //       apprisalLetter:'',
+  //       salarySlip1:'',
+  //       assetName:[]
 
+  // };
+
+  username: any;
+  registerId: any;
   profileDetails: any;
   employeeId!: string;
   // date of birth select only 18 years old only start
@@ -135,6 +194,24 @@ export class UpdateComponent {
     }
   }
   //eamil id error end 
+
+  imageUrl: SafeUrl | undefined;
+  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
+  
+  errorMessage: string = '';    // pdf error
+   // Function to handle file input change
+   DocumentUpload(event: Event, controlName: string) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
+      // Here you can perform file validation and other checks
+
+      // Assign the selected file to the user object or form control
+      this.user[controlName] = file;
+    }
+  }
+
+  // Function to submit the form with file uploads
 
   token: string = ''; // Variable to store the token
   teamlead: string[] = [];
@@ -268,7 +345,9 @@ export class UpdateComponent {
           
             // Handle the response and update the input fields accordingly
             this.user = response;
-          
+          this.username = response.username
+this.registerId = response.id
+console.log("id", this.registerId);
             console.log(";;;;;",this.user);
             
           },
@@ -350,8 +429,10 @@ export class UpdateComponent {
               .then(() => {
                 // Refresh page 
                 // location.reload();
-                this.router.navigate(['/test', 'employee']);
-                this.testService.getEmployeeList();
+                // this.router.navigate(['/test', 'employee']);
+                // this.testService.getEmployeeList();
+                // Move to the next step
+this.stepper.next(); // Move to the next step
               });
        console.log("updated", response);
           },
@@ -368,6 +449,49 @@ export class UpdateComponent {
   }
   
   // API for update user details end
+
+  // Function to submit the form with file uploads
+  
+  submitForm() {
+    // Create a FormData object to send files to the server
+    const formData = new FormData();
+   
+    // Append the selected files to the FormData object
+    formData.append('username', this.username);
+    formData.append('academicDocument1', this.user.academicDocument1);
+    formData.append('academicDocument2', this.user.academicDocument2);
+    formData.append('academicDocument3', this.user.academicDocument3);
+    formData.append('academicDocument4', this.user.academicDocument4);
+    formData.append('signature', this.user.signature);
+    formData.append('aadharCard', this.user.aadharCard);
+    formData.append('panCard', this.user.panCard);
+    formData.append('offerLetter', this.user.offerLetter);
+    formData.append('resignationLetter', this.user.resignationLetter);
+    formData.append('apprisalLetter', this.user.apprisalLetter);
+    formData.append('salarySlip1', this.user.salarySlip1);
+    formData.append('salarySlip2', this.user.salarySlip2);
+    formData.append('salarySlip3', this.user.salarySlip3);
+    formData.append('userImage', this.user.userImage);
+  
+
+    // Make an HTTP POST request to the API endpoint
+    this.RegisterAndUpdate.uploadDocs(formData, this.registerId).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'File Upload',
+          text: 'File Upload Successfully',
+        })
+        // Move to the next step
+this.stepper.next(); // Move to the next step
+        console.log('Files uploaded successfully:', response);
+      },
+      (error) => {
+        // Handle error
+        console.error('Error uploading files:', error);
+      }
+    );
+  }
   
 }
 

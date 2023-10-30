@@ -8,6 +8,7 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
 import { Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { MatStepper } from '@angular/material/stepper';
 
 
 
@@ -33,7 +34,7 @@ export class RegistrationComponent {
   forthFormGroup = this._formBuilder.group({
     // secondCtrl: ['', Validators.required],
   });
-
+  @ViewChild('stepper') stepper!: MatStepper;                 // go to document step after register
 
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
@@ -68,12 +69,18 @@ export class RegistrationComponent {
         bankName:'',
         esicno:'',
         pfno:'',
+        userImage:'',
         academicDocument1:'',
         academicDocument2:'',
         academicDocument3:'',
         academicDocument4:'',
-        identityDocument1:'',
-        identityDocument2:'',
+        aadharCard:'',
+        panCard:'',
+        signature:'',
+        offerLetter:'',
+        resignationLetter:'',
+        apprisalLetter:'',
+        salarySlip1:'',
         assetName:[]
 
   };
@@ -115,14 +122,28 @@ registerId: any;
   // departments: string[] = [];
   // designationControl = new FormControl();
   userForm: FormGroup;
+
+  currentDate: string;    // set probation start date
+
+
   constructor(private http: HttpClient, public loginService: LoginService,public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, public testService: TestService, private _formBuilder: FormBuilder) { 
     this.userForm = new FormGroup({
       designation: new FormControl(''),
       
     });
-  }
-  
+    this.currentDate = new Date().toISOString().split('T')[0]; // set probation start date
 
+  }
+
+  // set probation end date start
+  endDateEnabled: boolean = false;
+
+  startDateSelected() {
+    // Set the minimum allowed end date as the selected start date
+    this.endDateEnabled = true;
+  }
+ // set probation end date end
+ 
   // duration of probation count total days start
   calculateTotalDays() {
     if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
@@ -300,7 +321,6 @@ onSubmit() {
   this.user.assetName = this.user.assetName.join(', ');
 }
   
-
   this.RegisterAndUpdate.registerUser(this.user).subscribe(
     (response: any) => {
       Swal.fire({
@@ -314,6 +334,10 @@ this.username = response.username
 this.registerId = response.id
 console.log("user name", this.username);
 this.isLoading = false;
+
+// Move to the next step
+this.stepper.next(); // Move to the next step
+
     },
     (error) => {
       
@@ -324,8 +348,6 @@ this.isLoading = false;
     }
   );
 
-
-  
 }
 
 // disable date from date of joining start
@@ -357,17 +379,51 @@ this.isLoading = false;
 // API for upload PDF end
 
   // Function to handle file input change
+  // DocumentUpload(event: Event, controlName: string) {
+  //   const inputElement = event.target as HTMLInputElement;
+  //   if (inputElement.files && inputElement.files.length > 0) {
+  //     const file = inputElement.files[0];
+  //     // Here you can perform file validation and other checks
+
+  //     // Assign the selected file to the user object or form control
+  //     this.user[controlName] = file;
+  //   }
+  // }
+
+  // Initialize errorMessage as an empty string in your component
+
+
+  errorMessages: { [key: string]: string } = {};
+  
+  
   DocumentUpload(event: Event, controlName: string) {
     const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files.length > 0) {
-      const file = inputElement.files[0];
-      // Here you can perform file validation and other checks
-
-      // Assign the selected file to the user object or form control
-      this.user[controlName] = file;
+    const file = inputElement.files && inputElement.files.length > 0 ? inputElement.files[0] : null;
+  
+    // Check if the file type is 'application/pdf'
+    const isPDF = file && file.type === 'application/pdf';
+  
+    // Check if the file type is 'image/png'
+    const isPNG = file && file.type === 'image/png';
+  
+    if ((controlName === 'signature' || controlName === 'userImage') && isPDF) {
+      this.errorMessages[controlName] = "Please upload a PNG file.";
+      inputElement.value = ''; // Clear the input field
+      this.user[controlName] = null; // Clear the user data for this field
+    } else if ((controlName !== 'signature' && controlName !== 'userImage') && isPNG) {
+      this.errorMessages[controlName] = "Please upload a PDF file.";
+      inputElement.value = ''; // Clear the input field
+      this.user[controlName] = null; // Clear the user data for this field
+    } else {
+      this.errorMessages[controlName] = ''; // Clear the error message
+      this.user[controlName] = file; // Assign the selected file to the user object or form control
     }
   }
-
+  
+  
+  
+  
+  
   // Function to submit the form with file uploads
   
   submitForm() {
@@ -400,6 +456,8 @@ this.isLoading = false;
           title: 'File Upload',
           text: 'File Upload Successfully',
         })
+        // Move to the next step
+this.stepper.next(); // Move to the next step
         console.log('Files uploaded successfully:', response);
       },
       (error) => {

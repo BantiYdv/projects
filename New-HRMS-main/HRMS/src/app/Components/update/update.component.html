@@ -191,7 +191,7 @@
                   placeholder="Enter your Emergency Contact" maxlength="10" minlength="10" pattern="[0-9]{10}"
                   [(ngModel)]="user.emergencyContact" value="{{profileDetails?.emergencyContact}}">
                 
-                <div *ngIf="user.phonenumber === user.emergencyContact"
+                <div *ngIf="user.phonenumber === user.emergencyContact && user.emergencyContact"
                 class="text-danger">
                 Contact and Emergency Contact number are the same.
               </div>
@@ -236,9 +236,9 @@
           </div>
     
           <div class="row justify-content-center">
-            <div class="col-md-10">
+            <!-- <div class="col-md-10">
               <label for="probation" class="probation">Duration of probation:</label>
-            </div>
+            </div> -->
     
            
     
@@ -258,8 +258,8 @@
     
             <div class="col-md-3">
               <div class="form-group">
-                <label for="totalDaysOfProbation" class="col-form-label">Total Days</label>
-                <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" value="{{profileDetails?.totalDaysOfProbation}}" readonly>
+                <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
+                <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" value="{{profileDetails?.totalDaysOfProbation}}" readonly placeholder="Total days">
               </div>
             </div>
     
@@ -471,5 +471,228 @@
         </form>
       </mat-step>
     
+      <mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
+        <h1 class="text-center">Academic documents</h1>
+        <form id="registration-form" class="form mt-5">
+          <ng-template matStepLabel>Documents</ng-template>
+    
+          <div class="row justify-content-center">
+    
+            <!-- <div class="col-md-4">
+              <div class="form-group">
+                <div class="profile-header-img mb-2">
+                  <img class="rounded img-fluid square-image" [src]="imageUrl || defaultImageURL" alt="" />
+                  <div class="upload-overlay">
+                    <label class="add-to-cart" for="fileInput">
+                      <i class="fas fa-camera"></i> Upload Image
+                    </label>
+                    <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none"
+                    (change)="DocumentUpload($event, 'userImage')">
+    
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="userImage" class="form-label">Upload Photo:</label>
+                <input class="form-control" type="file" id="userImage" name="userImage"
+                  accept=".png" (change)="DocumentUpload($event, 'userImage')"  placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.userImage">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="academicDocument1" class="form-label">10 th marksheet:</label>
+                <input class="form-control" type="file" id="academicDocument1" name="academicDocument1"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument1')"  placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument1" value="{{profileDetails?.academicDocument1}}">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="academicDocument2" class="form-label">12 th marksheet:</label>
+                <input class="form-control" type="file" id="academicDocument2" name="academicDocument2"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument2')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument2">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+          </div>
+    
+    
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="academicDocument3" class="form-label">Graduation marksheet:</label>
+                <input class="form-control" type="file" id="academicDocument3" name="academicDocument3"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument3')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument3">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="academicDocument4" class="form-label">Higher education marksheet:</label>
+                <input class="form-control" type="file" id="academicDocument4" name="academicDocument4"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument4')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument4">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+    
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="signature" class="form-label">Signature:</label>
+                <input class="form-control" type="file" id="signature" name="signature"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'signature')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.signature">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+    
+              </div>
+            </div>
+    
+    
+          </div>
+    
+          <h1 class="text-center">Identity documents</h1>
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="aadharCard" class="form-label">Adhar card:</label>
+                        <input class="form-control" type="file" id="aadharCard" name="aadharCard" accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'aadharCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.identityDocument1">
+                        <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</span></p> 
+    
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="panCard" class="form-label">Pan card:</label>
+                <input class="form-control" type="file" id="panCard" name="panCard" accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'panCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.identityDocument2">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</span></p> 
+    
+              </div>
+            </div>
+    
+            </div>
+    
+            <div class="row justify-content-center">
+              <div class="col-md-8 d-flex justify-content-end">
+      
+                <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
+                <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button>
+              </div>
+            </div>
+        </form>
+      </mat-step>
+    
+      <mat-step [stepControl]="forthFormGroup" errorMessage="Onboarding is required.">
+        <h1 class="text-center">Employment history</h1>
+        <form id="registration-form" class="form mt-5">
+          <ng-template matStepLabel>Onboarding Managment</ng-template>
+    
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="offerLetter" class="form-label">Past organization offer letter</label>
+                <input class="form-control" type="file" id="offerLetter" name="offerLetter"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'offerLetter')"  placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.offerLetter">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="resignationLetter" class="form-label">Resignation letter</label>
+                <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'resignationLetter')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.resignationLetter">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+          
+    
+         
+        </div>
+    
+    
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="apprisalLetter" class="form-label">Apprisal letter (Optional)</label>
+                <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.apprisalLetter">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="salarySlip1" class="form-label">Salary slip</label>
+                <input class="form-control" type="file" id="salarySlip1" name="salarySlip1"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip1')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.salarySlip1">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+              </div>
+            </div>
+    </div>
+            <div class="row justify-content-center">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="salarySlip2" class="form-label">Salary slip</label>
+                <input class="form-control" type="file" id="salarySlip2" name="salarySlip2"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip2')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.salarySlip2">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+    
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="salarySlip3" class="form-label">Salary slip</label>
+                <input class="form-control" type="file" id="salarySlip3" name="salarySlip3"
+                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip3')" placeholder="Your Placeholder Text"
+                  style="color: #ada4a4;" [(ngModel)]="user.salarySlip3">
+                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                    }}</span></p>
+    
+              </div>
+            </div>
+    
+          </div>
+    
+        
+            <div class="row justify-content-center">
+              <div class="col-md-8 d-flex justify-content-end">
+      
+                <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
+                <button type="submit" color="primary"
+                class="btn btn-primary m-1" (click)="submitForm()">Upload</button>
+                <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
+              </div>
+            </div>
+        </form>
+      </mat-step>
      
       </mat-stepper>

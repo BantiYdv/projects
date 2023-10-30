@@ -67,15 +67,36 @@ userBasicInfo(id: number): Observable<any>{
 //   const url = `${this.api.Docs}/${id}`;
 //   return this.http.get(url, { headers });
 // }
-DownloadDocs(id: number): Observable<HttpResponse<Blob>> {
+DownloadDocs(id: number, filename: string): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  const url = `${this.api.Docs}/${id}`;
+  const url = `${this.api.Docs}`;
   return this.http.get(url, {
     headers,
+    params: {id, filename },
     observe: 'response', // This ensures you get the full HTTP response
     responseType: 'blob', // This tells Angular to expect a binary response
   });
 }
+
+// download all docs start
+// getAllDocs(id: number) {
+//   const url = `${this.api.AllDocsUrl}/${id}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+//   return this.http.get(url, { headers });
+// }
+getAllDocs(id: string): Observable<Blob> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const url = `${this.api.AllDocsUrl}/${id}`;
+
+  return this.http.get(url, {
+    headers,
+    responseType: 'blob', // This specifies the response type as Blob
+  });
+}
+// download all docs end
 
 }

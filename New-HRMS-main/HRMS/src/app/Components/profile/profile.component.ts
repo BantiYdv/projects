@@ -179,14 +179,22 @@ userProfile(): void {
 }
 // API for show user Profile to admin / super admin end
 
-DownloadDocs() {
+
+
+DownloadDocs(id: number, filename: string) {
 
   this.route.queryParams.subscribe(params => {
     const id = params['id'];
+    const formData = new FormData();
+   
+    // Append the selected files to the FormData object
+   
+    formData.append('academicDocument1', this.profileDetailsUser.academicDocument1);
+   
 
     if (id) {
       console.log("id docs", id);
-      this.profileService.DownloadDocs(id).subscribe((response: HttpResponse<Blob>) => {
+      this.profileService.DownloadDocs(id, filename).subscribe((response: HttpResponse<Blob>) => {
         if (response.body) {
           const contentDisposition = response.headers.get('content-disposition');
           const fileName = contentDisposition
@@ -207,21 +215,6 @@ DownloadDocs() {
     }
   });
 
-  // this.showdocumentTable = !this.showdocumentTable;
-
-  // if (this.showdocumentTable) {
-  //   this.profileService.getdocumentData(+id).subscribe(
-  //     (response) => {
-  //       // Assign the received data to the TeamLeaveData property
-  //       this.documentData = response;
-  //       console.log("document", response);
-  //     },
-  //     (error) => {
-  //       Swal.fire('Error', error.error, 'error');
-  //       this.showdocumentTable = false; // Hide the table if an error occurs
-  //     }
-  //   );
-  // }
 }
 
     //  API for Edit profile data start
@@ -269,6 +262,44 @@ DownloadDocs() {
     //     );
     // }
     
+// download one document end
+
+    // download all docs start
+    // AllDocsDownload() {
+
+    //   this.route.queryParams.subscribe(params => {
+    //     const id = params['id'];
+   
+      
+    //       console.log("id docs", id);
+    //       this.profileService.getAllDocs(id).subscribe((response) => {
+    //         console.log("all docs", response);
+    //       }, (error) => {
+    //         Swal.fire('Error', error.error, 'error');  
+    //         console.error(error.error.text);
+    //       });
+       
+    //   });
+    // }
+    AllDocsDownload() {
+      this.route.queryParams.subscribe(params => {
+        const id = params['id'];
+    
+        if (id) {
+          console.log("id docs", id);
+          this.profileService.getAllDocs(id).subscribe((response: Blob) => {
+            saveAs(response, 'allDocuments.zip'); // Save the received blob as a file
+            console.log("all docs", response);
+          }, (error) => {
+            Swal.fire('Error', error.error, 'error');
+            console.error(error.error.text);
+          });
+        } else {
+          console.error('Employee ID not found in URL');
+        }
+      });
+    }
+    // download all docs end
     
     editProfile() {
    

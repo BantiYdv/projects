@@ -168,7 +168,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="firstname">First Name <span style="color: red;">*</span></label>
-            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter your first name"
+            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter first name"
               [(ngModel)]="user.firstname" #firstnameInput="ngModel">
             <div *ngIf="firstnameInput.invalid && (firstnameInput.dirty || firstnameInput.touched)" class="text-danger">
               First Name is required.
@@ -179,7 +179,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="lastname">Last Name <span style="color: red;">*</span></label>
-            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter your last name"
+            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter last name"
               [(ngModel)]="user.lastname" #lastnameInput="ngModel">
             <div *ngIf="lastnameInput.invalid && (lastnameInput.dirty || lastnameInput.touched)" class="text-danger">
               Last Name is required.
@@ -190,7 +190,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="emailid">Email <span style="color: red;">*</span></label>
-            <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email"
+            <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="user.emailid" #emailidInput="ngModel"
               (keyup)="validateEmail()">
             <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
@@ -205,7 +205,7 @@
           <div class="form-group">
             <label for="phonenumber">Contact <span style="color: red;">*</span></label>
             <input type="tel" class="form-control" name="phonenumber" id="phonenumber"
-              placeholder="Enter your phone number" maxlength="10" minlength="10" pattern="[0-9]{10}"
+              placeholder="Enter phone number" maxlength="10" minlength="10" pattern="[0-9]{10}"
               [(ngModel)]="user.phonenumber" #phonenumberInput="ngModel">
             <div *ngIf="phonenumberInput.invalid && (phonenumberInput.dirty || phonenumberInput.touched)"
               class="text-danger">
@@ -217,7 +217,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="address">Address<span style="color: red;">*</span></label>
-            <input type="text" class="form-control" name="address" id="address" placeholder="Enter your Address"
+            <input type="text" class="form-control" name="address" id="address" placeholder="Enter address"
               [(ngModel)]="user.address" #addressInput="ngModel">
             <div *ngIf="addressInput.invalid && (addressInput.dirty || addressInput.touched)" class="text-danger">
               Address is required.
@@ -229,13 +229,13 @@
           <div class="form-group">
             <label for="emergencyContact">Emergency Contact <span style="color: red;">*</span></label>
             <input type="tel" class="form-control" name="emergencyContact" id="emergencyContact"
-              placeholder="Enter your Emergency Contact" maxlength="10" minlength="10" pattern="[0-9]{10}"
+              placeholder="Enter emergency contact" maxlength="10" minlength="10" pattern="[0-9]{10}"
               [(ngModel)]="user.emergencyContact" #emergencyContactInput="ngModel">
             <div *ngIf="emergencyContactInput.invalid && (emergencyContactInput.dirty || emergencyContactInput.touched)"
               class="text-danger">
               Emergency Contact number is required.
             </div>
-            <div *ngIf="user.phonenumber === user.emergencyContact"
+            <div *ngIf="user.phonenumber === user.emergencyContact && user.emergencyContact"
             class="text-danger">
             Contact and Emergency Contact number are the same.
           </div>
@@ -248,7 +248,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="dob">Date of Birth <span style="color: red;">*</span></label>
-            <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth"
+            <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter date of birth"
               [(ngModel)]="user.dob" (change)="validateDateOfBirth()">
             <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
           </div>
@@ -258,7 +258,7 @@
           <div class="form-group">
             <label for="dateofjoining">Date Of Joining <span style="color: red;">*</span></label>
             <input type="date" class="form-control" id="dateofjoining" name="dateofjoining"
-              placeholder="Enter your Date Of Joining" [(ngModel)]="user.dateofjoining" max="{{ getMaxDate() }}"
+              placeholder="Enter Date Of Joining" [(ngModel)]="user.dateofjoining" max="{{ getMaxDate() }}"
               #dateofjoiningInput="ngModel">
             <div *ngIf="dateofjoiningInput.invalid && (dateofjoiningInput.dirty || dateofjoiningInput.touched)"
               class="text-danger">
@@ -286,30 +286,30 @@
       </div>
 
       <div class="row justify-content-center">
-        <div class="col-md-10">
+        <!-- <div class="col-md-10">
           <label for="probation" class="probation">Duration of probation:</label>
-        </div>
+        </div> -->
 
        
 
         <div class="col-md-3">
           <div class="form-group">
             <label for="startDateOfProbation" class="col-form-label">Start date</label>
-            <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" min="1" [(ngModel)]="user.startDateOfProbation" (change)="calculateTotalDays()">
+            <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation" (change)="startDateSelected(); calculateTotalDays()">
           </div>
         </div>
 
         <div class="col-md-3">
           <div class="form-group">
             <label for="endDateOfProbation" class="col-form-label">End date</label>
-            <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" min="1" [(ngModel)]="user.endDateOfProbation" (change)="calculateTotalDays()">
+            <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" [min]="user.startDateOfProbation" [(ngModel)]="user.endDateOfProbation" (change)="calculateTotalDays()" >
           </div>
         </div>
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="totalDaysOfProbation" class="col-form-label">Total Days</label>
-            <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" readonly>
+            <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
+            <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" readonly placeholder="Total Days">
           </div>
         </div>
 
@@ -532,30 +532,38 @@
   </mat-step>
 
   <mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
-    <h1 class="text-center">Academic documents</h1>
+    <h1 class="text-center">Academic Documents</h1>
     <form id="registration-form" class="form mt-5">
       <ng-template matStepLabel>Documents</ng-template>
 
       <div class="row justify-content-center">
 
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
-            <!-- <label for="uploadphoto" class="form-label">Upload Photo:</label> -->
             <div class="profile-header-img mb-2">
               <img class="rounded img-fluid square-image" [src]="imageUrl || defaultImageURL" alt="" />
               <div class="upload-overlay">
                 <label class="add-to-cart" for="fileInput">
                   <i class="fas fa-camera"></i> Upload Image
                 </label>
-                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none"
+                <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none" 
                 (change)="DocumentUpload($event, 'userImage')">
-
               </div>
             </div>
           </div>
+        </div> -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="userImage" class="form-label">Upload Photo:</label>
+            <input class="form-control" type="file" id="userImage" name="userImage"
+              accept=".png" (change)="DocumentUpload($event, 'userImage')"  placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.userImage">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+          </div>
         </div>
 
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="academicDocument1" class="form-label">10 th marksheet:</label>
             <input class="form-control" type="file" id="academicDocument1" name="academicDocument1"
@@ -564,9 +572,24 @@
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-md-4">
+          <div class="form-group">
+            <label for="academicDocument1" class="form-label">10th marksheet:</label>
+            <input class="form-control" type="file" id="academicDocument1" name="academicDocument1"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument1')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['academicDocument1']" class="error-message" style="color: red;">
+                {{ errorMessages['academicDocument1'] }}
+              </span>
+            </p>
+          </div>
+        </div>
+        
+
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="academicDocument2" class="form-label">12 th marksheet:</label>
             <input class="form-control" type="file" id="academicDocument2" name="academicDocument2"
@@ -575,12 +598,26 @@
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
           </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="academicDocument2" class="form-label">12th marksheet:</label>
+            <input class="form-control" type="file" id="academicDocument2" name="academicDocument2"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument2')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['academicDocument2']" class="error-message" style="color: red;">
+                {{ errorMessages['academicDocument2'] }}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
 
 
       <div class="row justify-content-center">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="academicDocument3" class="form-label">Graduation marksheet:</label>
             <input class="form-control" type="file" id="academicDocument3" name="academicDocument3"
@@ -589,9 +626,23 @@
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-md-4">
+          <div class="form-group">
+            <label for="academicDocument3" class="form-label">Graduation marksheet:</label>
+            <input class="form-control" type="file" id="academicDocument3" name="academicDocument3"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument3')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['academicDocument3']" class="error-message" style="color: red;">
+                {{ errorMessages['academicDocument3'] }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="academicDocument4" class="form-label">Higher education marksheet:</label>
             <input class="form-control" type="file" id="academicDocument4" name="academicDocument4"
@@ -601,9 +652,22 @@
                 }}</span></p>
 
           </div>
+        </div> -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="academicDocument4" class="form-label">Higher education marksheet:</label>
+            <input class="form-control" type="file" id="academicDocument4" name="academicDocument4"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument4')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['academicDocument4']" class="error-message" style="color: red;">
+                {{ errorMessages['academicDocument4'] }}
+              </span>
+            </p>
+          </div>
         </div>
 
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="signature" class="form-label">Signature:</label>
             <input class="form-control" type="file" id="signature" name="signature"
@@ -613,6 +677,20 @@
                 }}</span></p>
 
           </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="signature" class="form-label">Signature:</label>
+            <input class="form-control" type="file" id="signature" name="signature"
+              accept=".png" (change)="DocumentUpload($event, 'signature')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['signature']" class="error-message" style="color: red;">
+                {{ errorMessages['signature'] }}
+              </span>
+            </p>
+          </div>
         </div>
 
 
@@ -620,21 +698,48 @@
 
       <h1 class="text-center">Identity documents</h1>
       <div class="row justify-content-center">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="aadharCard" class="form-label">Adhar card:</label>
                     <input class="form-control" type="file" id="aadharCard" name="aadharCard" accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'aadharCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.identityDocument1">
                     <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</span></p> 
 
           </div>
-        </div>
+        </div> -->
 
         <div class="col-md-4">
+          <div class="form-group">
+            <label for="aadharCard" class="form-label">Adhar card:</label>
+            <input class="form-control" type="file" id="aadharCard" name="aadharCard"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'aadharCard')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['aadharCard']" class="error-message" style="color: red;">
+                {{ errorMessages['aadharCard'] }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="panCard" class="form-label">Pan card:</label>
             <input class="form-control" type="file" id="panCard" name="panCard" accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'panCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.identityDocument2">
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</span></p> 
 
+          </div>
+        </div> -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="panCard" class="form-label">Pan card:</label>
+            <input class="form-control" type="file" id="panCard" name="panCard"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'panCard')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['panCard']" class="error-message" style="color: red;">
+                {{ errorMessages['panCard'] }}
+              </span>
+            </p>
           </div>
         </div>
 
@@ -656,7 +761,7 @@
       <ng-template matStepLabel>Onboarding Managment</ng-template>
 
       <div class="row justify-content-center">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="offerLetter" class="form-label">Past organization offer letter</label>
             <input class="form-control" type="file" id="offerLetter" name="offerLetter"
@@ -665,9 +770,22 @@
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
           </div>
+        </div> -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="offerLetter" class="form-label">Past organization offer letter:</label>
+            <input class="form-control" type="file" id="offerLetter" name="offerLetter"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'offerLetter')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['offerLetter']" class="error-message" style="color: red;">
+                {{ errorMessages['offerLetter'] }}
+              </span>
+            </p>
+          </div>
         </div>
 
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="resignationLetter" class="form-label">Resignation letter</label>
             <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
@@ -675,6 +793,20 @@
               style="color: #ada4a4;" [(ngModel)]="user.resignationLetter">
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
+          </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="resignationLetter" class="form-label">Resignation letter:</label>
+            <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'resignationLetter')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['resignationLetter']" class="error-message" style="color: red;">
+                {{ errorMessages['resignationLetter'] }}
+              </span>
+            </p>
           </div>
         </div>
       
@@ -684,7 +816,7 @@
 
 
       <div class="row justify-content-center">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="apprisalLetter" class="form-label">Apprisal letter (Optional)</label>
             <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter"
@@ -693,9 +825,23 @@
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-md-4">
+          <div class="form-group">
+            <label for="apprisalLetter" class="form-label">Apprisal letter (Optional):</label>
+            <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['apprisalLetter']" class="error-message" style="color: red;">
+                {{ errorMessages['apprisalLetter'] }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="salarySlip1" class="form-label">Salary slip</label>
             <input class="form-control" type="file" id="salarySlip1" name="salarySlip1"
@@ -704,10 +850,23 @@
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
           </div>
+        </div> -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="salarySlip1" class="form-label">Salary slip:</label>
+            <input class="form-control" type="file" id="salarySlip1" name="salarySlip1"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip1')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['salarySlip1']" class="error-message" style="color: red;">
+                {{ errorMessages['salarySlip1'] }}
+              </span>
+            </p>
+          </div>
         </div>
 </div>
         <div class="row justify-content-center">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="salarySlip2" class="form-label">Salary slip</label>
             <input class="form-control" type="file" id="salarySlip2" name="salarySlip2"
@@ -717,9 +876,23 @@
                 }}</span></p>
 
           </div>
-        </div>
+        </div> -->
 
         <div class="col-md-4">
+          <div class="form-group">
+            <label for="salarySlip2" class="form-label">Salary slip:</label>
+            <input class="form-control" type="file" id="salarySlip2" name="salarySlip2"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip2')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['salarySlip2']" class="error-message" style="color: red;">
+                {{ errorMessages['salarySlip2'] }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="salarySlip3" class="form-label">Salary slip</label>
             <input class="form-control" type="file" id="salarySlip3" name="salarySlip3"
@@ -728,6 +901,20 @@
             <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
                 }}</span></p>
 
+          </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="salarySlip3" class="form-label">Salary slip:</label>
+            <input class="form-control" type="file" id="salarySlip3" name="salarySlip3"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip3')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;">
+            <p class="mt-3">
+              <span *ngIf="errorMessages['salarySlip3']" class="error-message" style="color: red;">
+                {{ errorMessages['salarySlip3'] }}
+              </span>
+            </p>
           </div>
         </div>
 
@@ -738,7 +925,9 @@
           <div class="col-md-8 d-flex justify-content-end">
   
             <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
-            <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button>
+            <button type="submit" color="primary"
+        class="btn btn-primary m-1" (click)="submitForm()">Upload</button>
+            <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
           </div>
         </div>
     </form>
@@ -754,8 +943,8 @@
     <div class="text-center mt-4">
       <button class="btn btn-primary mx-2" mat-button matStepperPrevious>Back</button>
       <button class="btn btn-secondary mx-2" mat-button (click)="stepper.reset()">Reset</button>
-      <button type="submit" color="primary"
-        class="btn btn-primary" (click)="submitForm()">Upload</button>
+      <!-- <button type="submit" color="primary"
+        class="btn btn-primary" (click)="submitForm()">Upload</button> -->
     </div>
   </mat-step>
   
