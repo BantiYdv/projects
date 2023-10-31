@@ -1,5 +1,4 @@
- 
-    <!-- <div class="container">
+<!-- <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="img d-none d-md-block">
@@ -132,242 +131,256 @@
       
     </div> -->
 
-    
 
 
-    <!-- test -->
-    <mat-stepper #stepper>
-      <mat-step [stepControl]="firstFormGroup" errorMessage="Information is required.">
-        <h1 class="text-center">Update Form</h1>
-        <form id="registration-form" class="form mt-5">
-          <ng-template matStepLabel>Personal Information</ng-template>
-    
-          <div class="row justify-content-center">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="firstname">First Name </label>
-                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter your first name"
-                  [(ngModel)]="user.firstname" value="{{profileDetails?.firstname}}">
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="lastname">Last Name </label>
-                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter your last name"
-                  [(ngModel)]="user.lastname" value="{{profileDetails?.lastname}}">
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="emailid">Email </label>
-                <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your email"
-                   [(ngModel)]="user.emailid" value="{{profileDetails?.emailid}}" (input)="validateEmail()">
-                   <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
-              </div>
+
+<!-- test -->
+<mat-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup" errorMessage="Information is required.">
+    <h1 class="text-center">Update Form</h1>
+    <form id="registration-form" class="form mt-5">
+      <ng-template matStepLabel>Personal Information</ng-template>
+
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="firstname">First Name </label>
+            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter first name"
+              [(ngModel)]="user.firstname" value="{{profileDetails?.firstname}}">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="lastname">Last Name </label>
+            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter last name"
+              [(ngModel)]="user.lastname" value="{{profileDetails?.lastname}}">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="emailid">Email </label>
+            <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter email"
+              [(ngModel)]="user.emailid" value="{{profileDetails?.emailid}}" (input)="validateEmail()">
+            <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="phonenumber">Contact </label>
+            <input type="tel" class="form-control" name="phonenumber" id="phonenumber" placeholder="Enter phone number"
+              maxlength="10" minlength="10" pattern="[0-9]{10}" [(ngModel)]="user.phonenumber"
+              value="{{profileDetails?.phonenumber}}">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="address">Address<span style="color: red;">*</span></label>
+            <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address"
+              [(ngModel)]="user.address" value="{{profileDetails?.address}}">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="emergencyContact">Emergency Contact </label>
+            <input type="tel" class="form-control" name="emergencyContact" id="emergencyContact"
+              placeholder="Enter emergency contact" maxlength="10" minlength="10" pattern="[0-9]{10}"
+              [(ngModel)]="user.emergencyContact" value="{{profileDetails?.emergencyContact}}">
+
+            <div *ngIf="user.phonenumber === user.emergencyContact && user.emergencyContact" class="text-danger">
+              Contact and Emergency Contact number are the same.
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="phonenumber">Contact </label>
-                <input type="tel" class="form-control" name="phonenumber" id="phonenumber" placeholder="Enter your phone number" maxlength="10" minlength="10"  pattern="[0-9]{10}" [(ngModel)]="user.phonenumber" value="{{profileDetails?.phonenumber}}">
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="address">Address<span style="color: red;">*</span></label>
-                <input type="text" class="form-control" name="address" id="address" placeholder="Enter your Address"
-                  [(ngModel)]="user.address" value="{{profileDetails?.address}}">
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="emergencyContact">Emergency Contact </label>
-                <input type="tel" class="form-control" name="emergencyContact" id="emergencyContact"
-                  placeholder="Enter your Emergency Contact" maxlength="10" minlength="10" pattern="[0-9]{10}"
-                  [(ngModel)]="user.emergencyContact" value="{{profileDetails?.emergencyContact}}">
-                
-                <div *ngIf="user.phonenumber === user.emergencyContact && user.emergencyContact"
-                class="text-danger">
-                Contact and Emergency Contact number are the same.
-              </div>
-              </div>
-            </div>
-    
+        </div>
+
+      </div>
+      <div class="row justify-content-center">
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="dob">Date of Birth </label>
+            <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter date of birth"
+              [(ngModel)]="user.dob" value="{{profileDetails?.dob}}" (change)="validateDateOfBirth()">
+            <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
           </div>
-          <div class="row justify-content-center">
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="dob">Date of Birth </label>
-                <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth"  [(ngModel)]="user.dob" value="{{profileDetails?.dob}}" (change)="validateDateOfBirth()">
-                <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="dateofjoining">Date Of Joining </label>
-                <input type="date" class="form-control" id="dateofjoining" name="dateofjoining" placeholder="Enter your Date Of Joining"  [(ngModel)]="user.dateofjoining" value="{{profileDetails?.dateofjoining}}" [min]="getMinDate()" max="{{ getMaxDate() }}">
-              
-              </div>
-            </div>
-    
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="jobType">Job Type</label>
-                <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType" value="{{profileDetails?.jobType}}">
-                  <option value="">Select</option>
-                  <option value="fulltime">Full-Time</option>
-                  <option value="parttime">Part-Time</option>
-                  <option value="trainee">Trainee</option>
-    
-                </select>
-              </div>
-            </div>
-    
-    
-    
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="dateofjoining">Date Of Joining </label>
+            <input type="date" class="form-control" id="dateofjoining" name="dateofjoining"
+              placeholder="Enter date of joining" [(ngModel)]="user.dateofjoining"
+              value="{{profileDetails?.dateofjoining}}" [min]="getMinDate()" max="{{ getMaxDate() }}">
+
           </div>
-    
-          <div class="row justify-content-center">
-            <!-- <div class="col-md-10">
+        </div>
+
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="jobType">Job Type</label>
+            <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType"
+              value="{{profileDetails?.jobType}}">
+              <option value="">Select</option>
+              <option value="fulltime">Full-Time</option>
+              <option value="parttime">Part-Time</option>
+              <option value="trainee">Trainee</option>
+
+            </select>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="row justify-content-center">
+        <!-- <div class="col-md-10">
               <label for="probation" class="probation">Duration of probation:</label>
             </div> -->
-    
-           
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="startDateOfProbation" class="col-form-label">Start date</label>
-                <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [(ngModel)]="user.startDateOfProbation" value="{{profileDetails?.startDateOfProbation}}" >
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="endDateOfProbation" class="col-form-label">End date</label>
-                <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" min="1" [(ngModel)]="user.endDateOfProbation" value="{{profileDetails?.endDateOfProbation}}" >
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
-                <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" value="{{profileDetails?.totalDaysOfProbation}}" readonly placeholder="Total days">
-              </div>
-            </div>
-    
+
+
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="startDateOfProbation" class="col-form-label">Start date</label>
+            <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation"
+              [(ngModel)]="user.startDateOfProbation" value="{{profileDetails?.startDateOfProbation}}"
+              [max]="currentDate" (change)="startDateSelected(); calculateTotalDays()">
           </div>
-    
-          <div class="row justify-content-center">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="modeOfWorking">Mode of working</label>
-                <select class="form-control" id="modeOfWorking" name="modeOfWorking" [(ngModel)]="user.modeOfWorking" value="{{profileDetails?.modeOfWorking}}">
-                  <option value="">Select</option>
-                  <option value="office">Office</option>
-                  <option value="remote">Remote</option>
-                  <option value="wfh">WFH</option>
-    
-                </select>
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="shifttiming">Shift Timing start</label>
-                <input type="time" class="form-control" name="shifttimingstart" id="shifttimingstart" [(ngModel)]="user.shifttimingstart" value="{{profileDetails?.shifttimingstart}}">
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="shifttiming">Shift Timing end</label>
-                <input type="time" class="form-control" name="shifttimingend" id="shifttimingend" [(ngModel)]="user.shifttimingend" value="{{profileDetails?.shifttimingend}}">
-              </div>
-            </div>
-    
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="endDateOfProbation" class="col-form-label">End date</label>
+            <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation"
+              [min]="user.startDateOfProbation" [(ngModel)]="user.endDateOfProbation"
+              value="{{profileDetails?.endDateOfProbation}}" (change)="calculateTotalDays()">
           </div>
-    
-    
-          <div class="row justify-content-center">
-            <div class="col-md-3" (ngSubmit)="designation()">
-              <div class="form-group">
-                <label for="designation">Designation</label>
-                <input type="text" class="form-control" name="designation" id="designation" placeholder="designation" 
-                [matAutocomplete]="auto" [(ngModel)]="user.designation" >
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let designation of designations" [value]="designation">
-            {{ designation }}
-          </mat-option>
-        </mat-autocomplete>
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="teamlead">Team Lead</label>
-                <select class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
-                (ngModelChange)="teamLead()">
-                <option value="">--Select--</option>
-                <option *ngFor="let teamlead of teamlead" [value]="teamlead">{{ teamlead }} </option>
-              </select>
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="role">Role</label>
-                <select class="form-control" name="role" id="role" [(ngModel)]="user.role.name"
-                      (ngModelChange)="ngOnInit()">
-                      <option value="">--Select--</option>
-                      <option *ngFor="let role of role" [value]="role">{{ role }} </option>
-                    </select>
-              </div>
-            </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
+            <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1"
+              [(ngModel)]="user.totalDaysOfProbation" value="{{profileDetails?.totalDaysOfProbation}}" readonly
+              placeholder="Total days">
           </div>
-    
-          <div class="row justify-content-center">
-    
-            <div class="col-md-3" (ngSubmit)="department()">
-              <div class="form-group">
-                <label for="department">Department</label>
-                <input type="text" class="form-control" name="department" id="department" placeholder="department" 
-                     [matAutocomplete]="auto1" [(ngModel)]="user.department">
-                    <mat-autocomplete #auto1="matAutocomplete">
-                      <mat-option *ngFor="let department of departments" [value]="department">
-                        {{ department }}
-                      </mat-option>
-                    </mat-autocomplete>
-              </div>
-    
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="totalleaves">Leaves</label>
-                <input type="text" class="form-control" name="totalleaves" id="totalleaves" placeholder="Leaves" 
-                      [(ngModel)]="user.totalleaves" value="{{profileDetails?.totalleaves}}">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="totalwfh">Work From Home</label>
-                <input type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH" 
-                [(ngModel)]="user.totalwfh" value="{{profileDetails?.totalwfh}}">
-              </div>
-            </div>
-    
-            <h1 class="text-center">Assigning assets (optional)</h1>
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <div class="form-group">
-               <mat-form-field class="form-control">
+        </div>
+
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="modeOfWorking">Mode of working</label>
+            <select class="form-control" id="modeOfWorking" name="modeOfWorking" [(ngModel)]="user.modeOfWorking"
+              value="{{profileDetails?.modeOfWorking}}">
+              <option value="">Select</option>
+              <option value="office">Office</option>
+              <option value="remote">Remote</option>
+              <option value="wfh">WFH</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="shifttiming">Shift Timing start</label>
+            <input type="time" class="form-control" name="shifttimingstart" id="shifttimingstart"
+              [(ngModel)]="user.shifttimingstart" value="{{profileDetails?.shifttimingstart}}">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="shifttiming">Shift Timing end</label>
+            <input type="time" class="form-control" name="shifttimingend" id="shifttimingend"
+              [(ngModel)]="user.shifttimingend" value="{{profileDetails?.shifttimingend}}">
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="row justify-content-center">
+        <div class="col-md-3" (ngSubmit)="designation()">
+          <div class="form-group">
+            <label for="designation">Designation</label>
+            <input type="text" class="form-control" name="designation" id="designation" placeholder="designation"
+              [matAutocomplete]="auto" [(ngModel)]="user.designation">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let designation of designations" [value]="designation">
+                {{ designation }}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="teamlead">Team Lead</label>
+            <select class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
+              (ngModelChange)="teamLead()">
+              <option value="">--Select--</option>
+              <option *ngFor="let teamlead of teamlead" [value]="teamlead">{{ teamlead }} </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select class="form-control" name="role" id="role" [(ngModel)]="user.role.name"
+              (ngModelChange)="ngOnInit()">
+              <option value="">--Select--</option>
+              <option *ngFor="let role of role" [value]="role">{{ role }} </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+
+        <div class="col-md-3" (ngSubmit)="department()">
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" class="form-control" name="department" id="department" placeholder="department"
+              [matAutocomplete]="auto1" [(ngModel)]="user.department">
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option *ngFor="let department of departments" [value]="department">
+                {{ department }}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="totalleaves">Leaves</label>
+            <input type="text" class="form-control" name="totalleaves" id="totalleaves" placeholder="Leaves"
+              [(ngModel)]="user.totalleaves" value="{{profileDetails?.totalleaves}}">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="totalwfh">Work From Home</label>
+            <input type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH"
+              [(ngModel)]="user.totalwfh" value="{{profileDetails?.totalwfh}}">
+          </div>
+        </div>
+
+        <h1 class="text-center">Assigning assets (optional)</h1>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="form-group">
+              <!-- <mat-form-field class="form-control">
                             <mat-label>Assets</mat-label>
                             <mat-select name="assetName" id="assetName" class="custom-select-class" multiple [(ngModel)]="user.assetName" value="{{profileDetails?.assetName}}">
                               <mat-option value="no">No Assets</mat-option>
@@ -379,106 +392,125 @@
                               <mat-option value="phoneCharger">Phone Charger</mat-option>
                               <mat-option value="headPhone">Head Phone</mat-option>
                             </mat-select>
-                          </mat-form-field>
-              </div>
-            </div>
-    
-           
-            </div>
-    
-          </div>
-    
-    
-          <div class="row justify-content-center">
-    
-            <!-- <button mat-button matStepperNext>Next</button> -->
-            <div class="col-md-9 d-flex justify-content-end">
-              <button class="btn btn-primary" mat-button matStepperNext>Next</button>
-            </div>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup" errorMessage="Bank details is required.">
-        <h1 class="text-center">Bank details</h1>
-        <form id="registration-form" class="form mt-5">
-          <ng-template matStepLabel>Bank details</ng-template>
-          <div class="row justify-content-center">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="accountNumber" class="col-form-label">Account Number :</label>
-                <input type="text" class="form-control" name="accountNumber" id="accountNumber"
-                [(ngModel)]="user.accountNumber" value="{{profileDetails?.accountNumber}}">
-              </div>
-            </div>
-    
-           
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="ifsccode" class="col-form-label">IFSC code :</label>
-                <input type="text" class="form-control" name="ifsccode" id="ifsccode" [(ngModel)]="user.ifsccode" value="{{profileDetails?.ifsccode}}" (input)="validateIFSC()" >
-                <div *ngIf="invalidIFSC" class="text-danger">
-                  Invalid IFSC code format.
-                </div>
-              </div>
-            </div>
-            
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="holderName" class="col-form-label">Bank holder name :</label>
-                <input type="text" class="form-control" name="holderName" id="holderName" [(ngModel)]="user.holderName" value="{{profileDetails?.holderName}}">
-              </div>
-            </div>
-          </div>
-    
-          <div class="row justify-content-center">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="bankName" class="col-form-label">Bank Name :</label>
-                <input type="text" class="form-control" name="bankName" id="bankName" [(ngModel)]="user.bankName" value="{{profileDetails?.bankName}}">
-    
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="esicno" class="col-form-label">ESIC no. (Optional ) :</label>
-                <input type="text" class="form-control" name="esicno" id="esicno" [(ngModel)]="user.esicno" value="{{profileDetails?.esicno}}">
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="pfno" class="col-form-label">P.F. No (Optional ) :</label>
-                <input type="text" class="form-control" name="pfno" id="pfno" [(ngModel)]="user.pfno" value="{{profileDetails?.pfno}}">
-              </div>
-            </div>
-          </div>
-    
+                          </mat-form-field> -->
+              <mat-form-field class="form-control">
+                <mat-label>Assets</mat-label>
+                <mat-select name="assetName" id="assetName" class="custom-select-class" multiple
+                  [(ngModel)]="user.assetName">
+                  <mat-option *ngFor="let asset of allAssets" [value]="asset">
+                    {{ asset }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
 
-          
-          <div class="row justify-content-center">
-            <div class="col-md-9 d-flex justify-content-end">
-    
-              <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
-              <button type="submit" color="primary" class="btn btn-primary m-1" 
-              (click)="updateEmployeeData()">Update</button>
-                            <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
+
+
+
             </div>
           </div>
-        </form>
-      </mat-step>
-    
-      <mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
-        <h1 class="text-center">Academic documents</h1>
-        <form id="registration-form" class="form mt-5">
-          <ng-template matStepLabel>Documents</ng-template>
-    
-          <div class="row justify-content-center">
-    
-            <!-- <div class="col-md-4">
+
+
+        </div>
+
+      </div>
+
+
+      <div class="row justify-content-center">
+
+        <!-- <button mat-button matStepperNext>Next</button> -->
+        <div class="col-md-9 d-flex justify-content-end">
+          <button class="btn btn-primary" mat-button matStepperNext>Next</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" errorMessage="Bank details is required.">
+    <h1 class="text-center">Bank details</h1>
+    <form id="registration-form" class="form mt-5">
+      <ng-template matStepLabel>Bank Details</ng-template>
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="accountNumber" class="col-form-label">Account Number :</label>
+            <input type="text" class="form-control" name="accountNumber" id="accountNumber"
+              [(ngModel)]="user.accountNumber" value="{{profileDetails?.accountNumber}}" placeholder="Ex:611920944449">
+          </div>
+        </div>
+
+
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="ifsccode" class="col-form-label">IFSC code :</label>
+            <input type="text" class="form-control" name="ifsccode" id="ifsccode" [(ngModel)]="user.ifsccode"
+              value="{{profileDetails?.ifsccode}}" (input)="validateIFSC()" placeholder="Ex:BARB0NASIRA">
+            <div *ngIf="invalidIFSC" class="text-danger">
+              Invalid IFSC code format.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="holderName" class="col-form-label">Bank holder name :</label>
+            <input type="text" class="form-control" name="holderName" id="holderName" [(ngModel)]="user.holderName"
+              value="{{profileDetails?.holderName}}" placeholder="Name">
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="bankName" class="col-form-label">Bank Name :</label>
+            <input type="text" class="form-control" name="bankName" id="bankName" [(ngModel)]="user.bankName"
+              value="{{profileDetails?.bankName}}" placeholder="Bank Name">
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="esicno" class="col-form-label">ESIC no.:</label>
+            <input type="text" class="form-control" name="esicno" id="esicno" [(ngModel)]="user.esicno"
+              value="{{profileDetails?.esicno}}" placeholder="Ex:1234567890">
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="pfno" class="col-form-label">P.F. No.:</label>
+            <input type="text" class="form-control" name="pfno" id="pfno" [(ngModel)]="user.pfno"
+              value="{{profileDetails?.pfno}}" placeholder="Ex:123456789012">
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="row justify-content-center">
+        <div class="col-md-9 d-flex justify-content-end">
+
+          <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
+          <button type="submit" color="primary" class="btn btn-primary m-1"
+            (click)="updateEmployeeData()">Update</button>
+          <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
+    <h1 class="text-center">Academic documents</h1>
+    <form id="registration-form" class="form mt-5">
+      <ng-template matStepLabel>Documents</ng-template>
+
+      <div class="row justify-content-center">
+
+        <!-- <div class="col-md-4">
               <div class="form-group">
                 <div class="profile-header-img mb-2">
                   <img class="rounded img-fluid square-image" [src]="imageUrl || defaultImageURL" alt="" />
@@ -493,206 +525,286 @@
                 </div>
               </div>
             </div> -->
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="userImage" class="form-label">Upload Photo:</label>
-                <input class="form-control" type="file" id="userImage" name="userImage"
-                  accept=".png" (change)="DocumentUpload($event, 'userImage')"  placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.userImage">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-              </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="userImage" class="form-label">Upload Photo: <div *ngIf="user.userImage != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
             </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="academicDocument1" class="form-label">10 th marksheet:</label>
-                <input class="form-control" type="file" id="academicDocument1" name="academicDocument1"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument1')"  placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument1" value="{{profileDetails?.academicDocument1}}">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-              </div>
+            <div *ngIf="user.userImage == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
             </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="academicDocument2" class="form-label">12 th marksheet:</label>
-                <input class="form-control" type="file" id="academicDocument2" name="academicDocument2"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument2')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument2">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-              </div>
-            </div>
+          </label>
+            <input class="form-control" type="file" id="userImage" name="userImage" accept=".png"
+              (change)="DocumentUpload($event, 'userImage')" placeholder="Your Placeholder Text" style="color: #ada4a4;"
+              [(ngModel)]="user.userImage" value="{{profileDetails?.userImage}}">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
           </div>
-    
-    
-          <div class="row justify-content-center">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="academicDocument3" class="form-label">Graduation marksheet:</label>
-                <input class="form-control" type="file" id="academicDocument3" name="academicDocument3"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument3')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument3">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-              </div>
-            </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="academicDocument4" class="form-label">Higher education marksheet:</label>
-                <input class="form-control" type="file" id="academicDocument4" name="academicDocument4"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument4')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.academicDocument4">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-    
-              </div>
-            </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="signature" class="form-label">Signature:</label>
-                <input class="form-control" type="file" id="signature" name="signature"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'signature')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.signature">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-    
-              </div>
-            </div>
-    
-    
-          </div>
-    
-          <h1 class="text-center">Identity documents</h1>
-          <div class="row justify-content-center">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="aadharCard" class="form-label">Adhar card:</label>
-                        <input class="form-control" type="file" id="aadharCard" name="aadharCard" accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'aadharCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.identityDocument1">
-                        <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</span></p> 
-    
-              </div>
-            </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="panCard" class="form-label">Pan card:</label>
-                <input class="form-control" type="file" id="panCard" name="panCard" accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'panCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.identityDocument2">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</span></p> 
-    
-              </div>
-            </div>
-    
-            </div>
-    
-            <div class="row justify-content-center">
-              <div class="col-md-8 d-flex justify-content-end">
-      
-                <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
-                <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button>
-              </div>
-            </div>
-        </form>
-      </mat-step>
-    
-      <mat-step [stepControl]="forthFormGroup" errorMessage="Onboarding is required.">
-        <h1 class="text-center">Employment history</h1>
-        <form id="registration-form" class="form mt-5">
-          <ng-template matStepLabel>Onboarding Managment</ng-template>
-    
-          <div class="row justify-content-center">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="offerLetter" class="form-label">Past organization offer letter</label>
-                <input class="form-control" type="file" id="offerLetter" name="offerLetter"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'offerLetter')"  placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.offerLetter">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-              </div>
-            </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="resignationLetter" class="form-label">Resignation letter</label>
-                <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'resignationLetter')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.resignationLetter">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-              </div>
-            </div>
-          
-    
-         
         </div>
-    
-    
-          <div class="row justify-content-center">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="apprisalLetter" class="form-label">Apprisal letter (Optional)</label>
-                <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.apprisalLetter">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            
+              <label style="display: flex; flex-direction: row;" for="academicDocument1" class="form-label">10 th marksheet:  <div *ngIf="user.academicDocument1 != ''">
+                <p class="text-success">&nbsp;  Uploaded</p>
               </div>
-            </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="salarySlip1" class="form-label">Salary slip</label>
-                <input class="form-control" type="file" id="salarySlip1" name="salarySlip1"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip1')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.salarySlip1">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
+              <div *ngIf="user.academicDocument1 == ''">
+                <p class="text-danger">&nbsp; Not Uploaded</p>
               </div>
-            </div>
-    </div>
-            <div class="row justify-content-center">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="salarySlip2" class="form-label">Salary slip</label>
-                <input class="form-control" type="file" id="salarySlip2" name="salarySlip2"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip2')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.salarySlip2">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-    
-              </div>
-            </div>
-    
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="salarySlip3" class="form-label">Salary slip</label>
-                <input class="form-control" type="file" id="salarySlip3" name="salarySlip3"
-                  accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'salarySlip3')" placeholder="Your Placeholder Text"
-                  style="color: #ada4a4;" [(ngModel)]="user.salarySlip3">
-                <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                    }}</span></p>
-    
-              </div>
-            </div>
-    
+            </label>
+
+            <input class="form-control" type="file" id="academicDocument1" name="academicDocument1"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument1')"
+              placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument1"
+              value="{{user.academicDocument1}}">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
           </div>
-    
-        
-            <div class="row justify-content-center">
-              <div class="col-md-8 d-flex justify-content-end">
-      
-                <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
-                <button type="submit" color="primary"
-                class="btn btn-primary m-1" (click)="submitForm()">Upload</button>
-                <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
-              </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="academicDocument2" class="form-label">12 th marksheet: <div *ngIf="user.academicDocument2 != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
             </div>
-        </form>
-      </mat-step>
-     
-      </mat-stepper>
+            <div *ngIf="user.academicDocument2 == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="academicDocument2" name="academicDocument2"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument2')"
+              placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument2">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="academicDocument3" class="form-label">Graduation marksheet: <div *ngIf="user.academicDocument3 != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.academicDocument3 == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="academicDocument3" name="academicDocument3"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument3')"
+              placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument3">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="academicDocument4" class="form-label">Higher education marksheet: <div *ngIf="user.academicDocument4 != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.academicDocument4 == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="academicDocument4" name="academicDocument4"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument4')"
+              placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument4">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="signature" class="form-label">Signature: <div *ngIf="user.signature != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.signature == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="signature" name="signature" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'signature')" placeholder="Your Placeholder Text" style="color: #ada4a4;"
+              [(ngModel)]="user.signature">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+
+          </div>
+        </div>
+
+
+      </div>
+
+      <h1 class="text-center">Identity documents</h1>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="aadharCard" class="form-label">Adhar card: <div *ngIf="user.aadharCard != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.aadharCard == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="aadharCard" name="aadharCard" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'aadharCard')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.identityDocument1">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="panCard" class="form-label">Pan card: <div *ngIf="user.panCard != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.panCard == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="panCard" name="panCard" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'panCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;"
+              [(ngModel)]="user.identityDocument2">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 d-flex justify-content-end">
+
+          <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
+          <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="forthFormGroup" errorMessage="Onboarding is required.">
+    <h1 class="text-center">Employment history</h1>
+    <form id="registration-form" class="form mt-5">
+      <ng-template matStepLabel>Onboarding Managment</ng-template>
+
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="offerLetter" class="form-label">Past organization offer letter <div *ngIf="user.offerLetter != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.offerLetter == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="offerLetter" name="offerLetter" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'offerLetter')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.offerLetter">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="resignationLetter" class="form-label">Resignation letter <div *ngIf="user.resignationLetter != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.resignationLetter == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'resignationLetter')"
+              placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.resignationLetter">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="apprisalLetter" class="form-label">Apprisal letter <div *ngIf="user.apprisalLetter != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.apprisalLetter == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.apprisalLetter">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label style="display: flex; flex-direction: row;" for="salarySlip1" class="form-label">Salary slip <div *ngIf="user.salarySlip1 != ''">
+              <p class="text-success">&nbsp;  Uploaded</p>
+            </div>
+            <div *ngIf="user.salarySlip1 == ''">
+              <p class="text-danger">&nbsp; Not Uploaded</p>
+            </div>
+          </label>
+            <input class="form-control" type="file" id="salarySlip1" name="salarySlip1" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'salarySlip1')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.salarySlip1">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="salarySlip2" class="form-label">Salary slip</label>
+            <input class="form-control" type="file" id="salarySlip2" name="salarySlip2" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'salarySlip2')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.salarySlip2">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="salarySlip3" class="form-label">Salary slip</label>
+            <input class="form-control" type="file" id="salarySlip3" name="salarySlip3" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'salarySlip3')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.salarySlip3">
+            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
+                }}</span></p>
+
+          </div>
+        </div>
+
+      </div> -->
+
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 d-flex justify-content-end">
+
+          <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
+          <button type="submit" color="primary" class="btn btn-primary m-1" (click)="submitForm()">Upload</button>
+          <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+</mat-stepper>

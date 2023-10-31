@@ -102,9 +102,19 @@ registerId: any;
     const eighteenYearsAgo = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
 
     this.dobError = selectedDate > eighteenYearsAgo;
+    
   }
+ 
   // date of birth select only 18 years old only end
 
+  // yyyy is not exeed 4 digit start
+  onDateInput(event: any): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length > 10) {
+      input.value = input.value.slice(0, 10); // Limit the input length to 10 characters (yyyy-mm-dd)
+    }
+  }
+ // yyyy is not exeed 4 digit end
 
   // email id error start
   emailError: boolean = false;

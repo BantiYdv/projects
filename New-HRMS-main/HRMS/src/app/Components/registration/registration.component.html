@@ -249,7 +249,7 @@
           <div class="form-group">
             <label for="dob">Date of Birth <span style="color: red;">*</span></label>
             <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter date of birth"
-              [(ngModel)]="user.dob" (change)="validateDateOfBirth()">
+              [(ngModel)]="user.dob" (change)="validateDateOfBirth()" (input)="onDateInput($event)">
             <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
           </div>
         </div>
@@ -412,7 +412,7 @@
           </div>
         </div>
 
-        <h1 class="text-center">Assigning assets (optional)</h1>
+        <h1 class="text-center">Assigning assets</h1>
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="form-group">
@@ -448,15 +448,15 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" errorMessage="Bank details is required.">
-    <h1 class="text-center">Bank details</h1>
+    <h1 class="text-center">Bank Details</h1>
     <form id="registration-form" class="form mt-5">
-      <ng-template matStepLabel>Bank details</ng-template>
+      <ng-template matStepLabel>Bank Details</ng-template>
       <div class="row justify-content-center">
         <div class="col-md-3">
           <div class="form-group">
             <label for="accountNumber" class="col-form-label">Account Number :</label>
             <input type="text" class="form-control" name="accountNumber" id="accountNumber"
-            [(ngModel)]="user.accountNumber">
+            [(ngModel)]="user.accountNumber" placeholder="Ex:611920944449">
           </div>
         </div>
 
@@ -470,7 +470,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="ifsccode" class="col-form-label">IFSC code :</label>
-            <input type="text" class="form-control" name="ifsccode" id="ifsccode" [(ngModel)]="user.ifsccode" (input)="validateIFSC()">
+            <input type="text" class="form-control" name="ifsccode" id="ifsccode" [(ngModel)]="user.ifsccode" (input)="validateIFSC()" placeholder="Ex:BARB0NASIRA">
             <div *ngIf="invalidIFSC" class="text-danger">
               Invalid IFSC code format.
             </div>
@@ -481,7 +481,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="holderName" class="col-form-label">Bank holder name :</label>
-            <input type="text" class="form-control" name="holderName" id="holderName" [(ngModel)]="user.holderName">
+            <input type="text" class="form-control" name="holderName" id="holderName" [(ngModel)]="user.holderName" placeholder="Name">
           </div>
         </div>
       </div>
@@ -490,22 +490,22 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="bankName" class="col-form-label">Bank Name :</label>
-            <input type="text" class="form-control" name="bankName" id="bankName" [(ngModel)]="user.bankName">
+            <input type="text" class="form-control" name="bankName" id="bankName" [(ngModel)]="user.bankName" placeholder="Bank Name">
 
           </div>
         </div>
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="esicno" class="col-form-label">ESIC no. (Optional ) :</label>
-            <input type="text" class="form-control" name="esicno" id="esicno" [(ngModel)]="user.esicno">
+            <label for="esicno" class="col-form-label">ESIC no.:</label>
+            <input type="text" class="form-control" name="esicno" id="esicno" [(ngModel)]="user.esicno" placeholder="Ex:1234567890">
           </div>
         </div>
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="pfno" class="col-form-label">P.F. No (Optional ) :</label>
-            <input type="text" class="form-control" name="pfno" id="pfno" [(ngModel)]="user.pfno">
+            <label for="pfno" class="col-form-label">P.F. No:</label>
+            <input type="text" class="form-control" name="pfno" id="pfno" [(ngModel)]="user.pfno" placeholder="Ex:123456789012">
           </div>
         </div>
       </div>
@@ -756,7 +756,7 @@
   </mat-step>
 
   <mat-step [stepControl]="forthFormGroup" errorMessage="Onboarding is required.">
-    <h1 class="text-center">Employment history</h1>
+    <h1 class="text-center">Employment History</h1>
     <form id="registration-form" class="form mt-5">
       <ng-template matStepLabel>Onboarding Managment</ng-template>
 
@@ -878,7 +878,7 @@
           </div>
         </div> -->
 
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="salarySlip2" class="form-label">Salary slip:</label>
             <input class="form-control" type="file" id="salarySlip2" name="salarySlip2"
@@ -890,7 +890,7 @@
               </span>
             </p>
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="col-md-4">
           <div class="form-group">
@@ -904,7 +904,7 @@
           </div>
         </div> -->
 
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="form-group">
             <label for="salarySlip3" class="form-label">Salary slip:</label>
             <input class="form-control" type="file" id="salarySlip3" name="salarySlip3"
@@ -916,7 +916,7 @@
               </span>
             </p>
           </div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -927,6 +927,16 @@
             <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
             <button type="submit" color="primary"
         class="btn btn-primary m-1" (click)="submitForm()">Upload</button>
+
+        <!-- <button type="submit"
+          mat-raised-button
+          color="primary"
+          class="btn btn-primary m-1"
+          [disabled]="isLoading"
+          (click)="onSubmit()">
+    <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Register
+  </button> -->
             <!-- <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button> -->
           </div>
         </div>
@@ -935,10 +945,10 @@
 
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <div class="text-center">
+    <div class="text-center mt-5">
       <h2 class="text-success">Congratulations!</h2>
       <p class="lead">You have successfully completed the registration process.</p>
-      <p class="text-muted">Please Register your details</p>
+      <!-- <p class="text-muted">Please Register your details</p> -->
     </div>
     <div class="text-center mt-4">
       <button class="btn btn-primary mx-2" mat-button matStepperPrevious>Back</button>

@@ -350,3 +350,8 @@ body .fc-widget-header a {
   padding: 1.5625rem;
 }
 /* upload image in document end */
+
+
+::placeholder {
+  font-weight: lighter;
+}

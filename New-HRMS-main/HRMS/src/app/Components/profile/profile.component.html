@@ -8,7 +8,7 @@
         <div class="row gutters-sm ">
           <div class="col-md-4 mb-3 card-with-shadow">
             <div class="card">
-              <div class="card-body mb-5">
+              <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
                   <div class="profile-header-img mb-2">
                     <!-- <img [src]="imageUrl ? imageUrl : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg'" alt=""/> -->
@@ -36,9 +36,9 @@
                 </div>
               </div>
             </div>
-            <div class="card mt-5">
-              <h3 class="text-left">Joining Detail</h3>
-              <ul class="list-group list-group-flush">
+            <div class="card">
+              <h3 class="text-center">Joining Detail</h3>
+              <!-- <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Role
                   <p><span id="role">{{ profileDetails?.role.name }}</span></p>
                 </li>
@@ -64,7 +64,37 @@
                   <p><span id="dateofjoining">{{ profileDetails?.totalwfh }}</span></p>
                 </li>
 
-              </ul>
+              </ul> -->
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Role
+                    <p class="m-0"><span id="role">{{ profileDetails?.role.name }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Department
+                    <p class="m-0"><span id="department">{{ profileDetails?.department }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Reporting To
+                    <p class="m-0"><span id="teamlead">{{ profileDetails?.teamlead }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Joined On
+                    <p class="m-0"><span id="dateofjoining">{{ profileDetails?.dateofjoining }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Total Leaves
+                    <p class="m-0"><span id="totalleaves">{{ profileDetails?.totalleaves }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Sick Leave
+                    <p class="m-0"><span id="sickLeavesPerMonth">{{ profileDetails?.sickLeavesPerMonth }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Casual Leave
+                    <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">WFH
+                    <p class="m-0"><span id="totalwfh">{{ profileDetails?.totalwfh }}</span></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Assigning assets
+                  <p class="m-0"><span id="assetName">{{ profileDetailsUser?.assetName }}</span></p>
+              </li>
+            </ul>
+            
             </div>
           </div>
           <div class="col-md-8">
@@ -72,14 +102,14 @@
               <div class="card-body">
                 <div class="row">
                   <h3 class="text-left">PERSONAL INFORMATION</h3>
-                  <div class="col-sm-3">
+                  <!-- <div class="col-sm-3">
                     <h4 class="mb-0">Full Name</h4>
                   </div>
                   <div class="col-sm-9 text-secondary">
                     <span id="firstname"><strong>{{ profileDetails?.firstname + " " + profileDetails?.lastname
                         }}</strong></span>
 
-                  </div>
+                  </div> -->
                 </div>
                 <hr>
                 <div class="row">
@@ -102,7 +132,7 @@
                   </div>
                 </div>
                 <hr>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-sm-3">
                     <h4 class="mb-0">Designation</h4>
                   </div>
@@ -110,8 +140,7 @@
                     <span id="designation"><strong>{{ profileDetails?.designation }}</strong></span>
 
                   </div>
-                </div>
-                <hr>
+                </div> -->
                 <div class="row">
                   <div class="col-sm-3">
                     <h4 class="mb-0">Birth Day</h4>
@@ -122,6 +151,25 @@
                   </div>
                 </div>
                 <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h4 class="mb-0">Emergency Contact</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <p><span id="emergencyContact"><strong>{{ profileDetails?.emergencyContact }}</strong></span>
+                    </p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h4 class="mb-0">Address</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <p><span id="address"><strong>{{ profileDetails?.address }}</strong></span></p>
+
+                  </div>
+                </div>
                 <!-- <div class="row">
                   <div class="col-sm-12">
                     <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
@@ -163,7 +211,7 @@
                   </div>
                 </div>
                 <hr>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-sm-3">
                     <h4 class="mb-0">Address</h4>
                   </div>
@@ -171,8 +219,8 @@
                     <p><span id="address"><strong>{{ profileDetails?.address }}</strong></span></p>
 
                   </div>
-                </div>
-                <hr>
+                </div> -->
+                <!-- <hr>
                 <div class="row">
                   <div class="col-sm-3">
                     <h4 class="mb-0">Emergency Contact</h4>
@@ -182,7 +230,7 @@
                     </p>
                   </div>
                 </div>
-                <hr>
+                <hr> -->
                 <div class="row">
                   <div class="col-sm-12">
                     <a><button class="btn btn-primary rounded-pill px-3" type="button" style="margin:1rem;"
@@ -196,6 +244,21 @@
               </div>
             </div>
 
+            <!-- <div class="col-md-12">
+              <div class="card mb-12 card-with-shadow" id="shadow">
+                <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4 class="mb-0">Assigning assets</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <p><span id="address">{{ profileDetails?.assetName }}</span></p>
+
+              </div>
+            </div>
+            </div>
+            </div>
+          </div> -->
 
 
           </div>
@@ -707,7 +770,7 @@
             <div class="row gutters-sm ">
               <div class="col-md-4 mb-3 card-with-shadow">
                 <div class="card">
-                  <div class="card-body mb-5">
+                  <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                       <div class="profile-header-img mb-2">
                         <img class="rounded-circle img-fluid"
@@ -724,9 +787,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mt-5">
-                  <h3 class="text-left">Joining Detail</h3>
-                  <ul class="list-group list-group-flush">
+                <div class="card">
+                  <h3 class="text-center">Joining Detail</h3>
+                  <!-- <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Role
                       <p><span id="role">{{ profileDetailsUser?.role.name }}</span></p>
                     </li>
@@ -751,7 +814,35 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">WFH
                       <p><span id="dateofjoining">{{ profileDetailsUser?.totalwfh }}</span></p>
                     </li>
-                  </ul>
+                  </ul> -->
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Role
+                        <p class="m-0"><span id="role">{{ profileDetailsUser?.role.name }}</span></p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Department
+                        <p class="m-0"><span id="department">{{ profileDetailsUser?.department }}</span></p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Reporting To
+                        <p class="m-0"><span id="teamlead">{{ profileDetailsUser?.teamlead }}</span></p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Joined On
+                        <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.dateofjoining }}</span></p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Total Leaves
+                        <p class="m-0"><span id="totalleaves">{{ profileDetailsUser?.totalleaves }}</span></p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Sick Leave
+                        <p class="m-0"><span id="sickLeavesPerMonth">{{ profileDetailsUser?.sickLeavesPerMonth }}</span></p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Casual Leave
+                        <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetailsUser?.casualLeavesPerMonth }}</span></p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">WFH
+                        <p class="m-0"><span id="totalwfh">{{ profileDetailsUser?.totalwfh }}</span></p>
+                    </li>
+                    
+                </ul>
+                
                 </div>
               </div>
               <div class="col-md-8">
@@ -759,14 +850,14 @@
                   <div class="card-body">
                     <div class="row">
                       <h3 class="text-left">PERSONAL INFORMATION</h3>
-                      <div class="col-sm-3">
+                      <!-- <div class="col-sm-3">
                         <h4 class="mb-0">Full Name</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
                             }}</span>
                         </p>
-                      </div>
+                      </div> -->
                     </div>
                     <hr>
                     <div class="row">
@@ -789,7 +880,7 @@
                       </div>
                     </div>
                     <hr>
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-sm-3">
                         <h4 class="mb-0">Designation</h4>
                       </div>
@@ -797,8 +888,7 @@
                         <p><span id="designation">{{ profileDetailsUser?.designation }}</span></p>
 
                       </div>
-                    </div>
-                    <hr>
+                    </div> -->
                     <div class="row">
                       <div class="col-sm-3">
                         <h4 class="mb-0">Birth Day</h4>
@@ -808,7 +898,27 @@
 
                       </div>
                     </div>
+                    
                     <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h4 class="mb-0">Emergency Contact</h4>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        <p><span id="emergencyContact">{{ profileDetailsUser?.emergencyContact }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h4 class="mb-0">Address</h4>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        <p><span id="address">{{ profileDetailsUser?.address }}</span></p>
+
+                      </div>
+                    </div>
 
                   </div>
                 </div>
@@ -845,18 +955,18 @@
 
                       </div>
                     </div>
-                    <hr>
+                    <!-- <hr>
                     <div class="row">
                       <div class="col-sm-3">
-                        <h4 class="mb-0">Address</h4>
+                        <h4 class="mb-0">Assigning assets</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="address">{{ profileDetailsUser?.address }}</span></p>
+                        <p><span id="address">{{ profileDetailsUser?.assetName }}</span></p>
 
                       </div>
                     </div>
-                    <hr>
-                    <div class="row">
+                    <hr> -->
+                    <!-- <div class="row">
                       <div class="col-sm-3">
                         <h4 class="mb-0">Emergency Contact</h4>
                       </div>
@@ -864,16 +974,34 @@
                         <p><span id="emergencyContact">{{ profileDetailsUser?.emergencyContact }}</span>
                         </p>
                       </div>
-                    </div>
-                    <hr>
+                    </div> -->
+                    <!-- <hr> -->
 
                   </div>
                 </div>
 
-                
+                <div class="col-md-12">
+                  <div class="card mb-12 card-with-shadow" id="shadow">
+                    <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4 class="mb-0">Assigning assets</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <p><span id="address">{{ profileDetailsUser?.assetName }}</span></p>
+
+                  </div>
+                </div>
+                </div>
+                </div>
+              </div>
+
+
 
               </div>
             </div>
+
+            
           </div>
           <div class="row justify-content-center">
 
@@ -926,7 +1054,7 @@
                     
                       <tr *ngIf="profileDetailsUser?.academicDocument1">
                         <td>{{ 1 }}</td>
-                        <td>{{profileDetailsUser?.academicDocument1 ? 'academicDocument1' : null }} </td>
+                        <td>{{profileDetailsUser?.academicDocument1 ? '10th marksheet' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument1.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -935,7 +1063,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.academicDocument2">
                         <td>{{ 2 }}</td>
-                        <td>{{profileDetailsUser?.academicDocument2 ? 'academicDocument2' : null }} </td>
+                        <td>{{profileDetailsUser?.academicDocument2 ? '12th marksheet' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument2.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -944,7 +1072,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.academicDocument3">
                         <td>{{ 3 }}</td>
-                        <td>{{profileDetailsUser?.academicDocument3 ? 'academicDocument3' : null }} </td>
+                        <td>{{profileDetailsUser?.academicDocument3 ? 'Graduation marksheet' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument3.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -953,7 +1081,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.academicDocument4">
                         <td>{{ 4 }}</td>
-                        <td>{{profileDetailsUser?.academicDocument4 ? 'academicDocument4' : null }} </td>
+                        <td>{{profileDetailsUser?.academicDocument4 ? 'Higher education marksheet' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument4.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -962,7 +1090,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.signature">
                         <td>{{ 5 }}</td>
-                        <td>{{profileDetailsUser?.signature ? 'signature' : null }} </td>
+                        <td>{{profileDetailsUser?.signature ? 'Signature' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'signature.png')">
                             <i class="fa-solid fa-download"></i>
@@ -971,7 +1099,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.aadharCard">
                         <td>{{ 6 }}</td>
-                        <td>{{profileDetailsUser?.aadharCard ? 'aadharCard' : null }} </td>
+                        <td>{{profileDetailsUser?.aadharCard ? 'Aadhar Card' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'aadharCard.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -980,7 +1108,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.panCard">
                         <td>{{ 7 }}</td>
-                        <td>{{profileDetailsUser?.panCard ? 'panCard' : null }} </td>
+                        <td>{{profileDetailsUser?.panCard ? 'Pan Card' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'panCard.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -989,7 +1117,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.offerLetter">
                         <td>{{ 8 }}</td>
-                        <td>{{profileDetailsUser?.offerLetter ? 'offerLetter' : null }} </td>
+                        <td>{{profileDetailsUser?.offerLetter ? 'Offer Letter' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'offerLetter.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -998,7 +1126,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.resignationLetter">
                         <td>{{ 9 }}</td>
-                        <td>{{profileDetailsUser?.resignationLetter ? 'resignationLetter' : null }} </td>
+                        <td>{{profileDetailsUser?.resignationLetter ? 'Resignation Letter' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'resignationLetter.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -1007,7 +1135,7 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.apprisalLetter">
                         <td>{{ 10 }}</td>
-                        <td>{{profileDetailsUser?.apprisalLetter ? 'apprisalLetter' : null }} </td>
+                        <td>{{profileDetailsUser?.apprisalLetter ? 'Apprisal Letter' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'apprisalLetter.pdf')">
                             <i class="fa-solid fa-download"></i>
@@ -1016,14 +1144,14 @@
                       </tr>
                       <tr *ngIf="profileDetailsUser?.salarySlip1">
                         <td>{{ 11 }}</td>
-                        <td>{{profileDetailsUser?.salarySlip1 ? 'salarySlip1' : null }} </td>
+                        <td>{{profileDetailsUser?.salarySlip1 ? 'Salary Slip' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'salarySlip1.pdf')">
                             <i class="fa-solid fa-download"></i>
                           </button>
                         </td>
                       </tr>
-                      <tr *ngIf="profileDetailsUser?.salarySlip2">
+                      <!-- <tr *ngIf="profileDetailsUser?.salarySlip2">
                         <td>{{ 12 }}</td>
                         <td>{{profileDetailsUser?.salarySlip2 ? 'salarySlip2' : null }} </td>
                         <td>
@@ -1040,10 +1168,10 @@
                             <i class="fa-solid fa-download"></i>
                           </button>
                         </td>
-                      </tr>
+                      </tr> -->
                       <tr *ngIf="profileDetailsUser?.userImage">
-                        <td>{{ 14 }}</td>
-                        <td>{{profileDetailsUser?.userImage ? 'userImage' : null }} </td>
+                        <td>{{ 12 }}</td>
+                        <td>{{profileDetailsUser?.userImage ? 'User Image' : null }} </td>
                         <td>
                           <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'userImage.png')">
                             <i class="fa-solid fa-download"></i>
@@ -1057,9 +1185,9 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                  (click)="AllDocsDownload()"> <i class="fa-solid fa-download"></i>All Download</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                <button type="button" class="btn btn-primary m-1" data-bs-dismiss="modal"
+                  (click)="AllDocsDownload()"> All Download</button>
+                <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal"
                   (click)="closeForm()">Close</button>
               </div>
             </div>

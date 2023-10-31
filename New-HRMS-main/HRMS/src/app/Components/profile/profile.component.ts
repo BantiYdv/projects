@@ -196,12 +196,9 @@ DownloadDocs(id: number, filename: string) {
       console.log("id docs", id);
       this.profileService.DownloadDocs(id, filename).subscribe((response: HttpResponse<Blob>) => {
         if (response.body) {
-          const contentDisposition = response.headers.get('content-disposition');
-          const fileName = contentDisposition
-            ? contentDisposition.split('filename=')[1]
-            : 'Docs.png' && 'Docs.pdf'; 
+         
     
-          saveAs(response.body, fileName); 
+          saveAs(response.body, filename); 
           console.log("document", response);
         } else {
           console.error('Response body is null.');

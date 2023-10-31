@@ -15,6 +15,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import timeGridWeek from '@fullcalendar/timegrid';
 import timeGridDay from '@fullcalendar/timegrid';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-test',
@@ -125,23 +126,17 @@ export class TestComponent {
 
    // search start
   searchTerm: string = '';
+  filteredEmployeeData: any[] = [];
 
-  filterTable() {
-    const filteredData = this.EmployeeData.filter((item: { firstname: string; }) => {
-      // Check if the search term is empty, if it is, return true to include all items
-      if (this.searchTerm.trim() === '') {
-        return true;
-      }
-      
-      // Customize the filtering criteria as per your requirements
-      return (
-        item.firstname.toLowerCase().includes(this.searchTerm.toLowerCase()) 
-      );
-    });
-  
-    // Assign the filtered data to the EmployeeData array
-    this.EmployeeData = filteredData;
+  applyFilter() {
+    this.filteredEmployeeData = this.EmployeeData.filter((item: { firstname: string; lastname: string; designation: string; emailid: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.designation.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+      // || item.emailid.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
+
    // search end
 
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute) {
@@ -211,6 +206,7 @@ export class TestComponent {
 
           // Set the reversed array as the data source
           this.EmployeeData = reversedData;
+          this.filteredEmployeeData = reversedData; 
           console.log("employe>>>", response);
         },
         error => {

@@ -6,7 +6,7 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { SafeUrl } from '@angular/platform-browser';
 import { MatStepper } from '@angular/material/stepper';
 
@@ -34,19 +34,61 @@ export class UpdateComponent {
   });
   @ViewChild('stepper') stepper!: MatStepper;                 // go to document step after register
 
+  // user: any = {                                              // Object to store the user registration data
+  //   firstname: '',
+  //   lastname: '',
+  //   emailid: '',
+  //   phonenumber: '',
+  //   teamlead: '',
+  //   dateofjoining: '',
+  //   designation: '',
+  //   dob: '',
+  //   department: '',
+  //   username: '',
+  //   password: '',
+  //   totalleaves: 0,
+  //   totalwfh: '',
+  //   sickLeavesPerMonth: '',
+  //   casualLeavesPerMonth: '',
+  //   role: '',
+  //   address: '',
+  //   emergencyContact: '',
+  //   jobType: '',
+  //   totalDaysOfProbation: '',
+  //   startDateOfProbation: '',
+  //   endDateOfProbation: '',
+  //   modeOfWorking: '',
+  //   shifttimingstart: '',
+  //   shifttimingend: '',
+  //   accountNumber: '',
+  //   ifsccode: '',
+  //   holderName: '',
+  //   bankName: '',
+  //   esicno: '',
+  //   pfno: '',
+  //   academicDocument1: '',
+  //   academicDocument2: '',
+  //   academicDocument3: '',
+  //   academicDocument4: '',
+  //   identityDocument1: '',
+  //   identityDocument2: '',
+  //   assetName: []
+
+  // };
   user: any = {                                              // Object to store the user registration data
+    dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
     firstname: '',
         lastname: '',
         emailid: '',
         phonenumber: '',
         teamlead: '',
-        dateofjoining:'',
+        
         designation: '',
         dob: '',
         department: '',
         username: '',
         password: '',
-        totalleaves: 0,
+        totalleaves: '',
         totalwfh: '',
         sickLeavesPerMonth: '',
         casualLeavesPerMonth: '',
@@ -66,63 +108,21 @@ export class UpdateComponent {
         bankName:'',
         esicno:'',
         pfno:'',
+        userImage:'',
         academicDocument1:'',
         academicDocument2:'',
         academicDocument3:'',
         academicDocument4:'',
-        identityDocument1:'',
-        identityDocument2:'',
+        aadharCard:'',
+        panCard:'',
+        signature:'',
+        offerLetter:'',
+        resignationLetter:'',
+        apprisalLetter:'',
+        salarySlip1:'',
         assetName:[]
 
   };
-  // user: any = {                                              // Object to store the user registration data
-  //   dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
-  //   firstname: '',
-  //       lastname: '',
-  //       emailid: '',
-  //       phonenumber: '',
-  //       teamlead: '',
-        
-  //       designation: '',
-  //       dob: '',
-  //       department: '',
-  //       username: '',
-  //       password: '',
-  //       totalleaves: '',
-  //       totalwfh: '',
-  //       sickLeavesPerMonth: '',
-  //       casualLeavesPerMonth: '',
-  //       role: '',
-  //       address: '',
-  //       emergencyContact: '',
-  //       jobType: '',
-  //       totalDaysOfProbation: '',
-  //       startDateOfProbation:'',
-  //       endDateOfProbation: '',
-  //       modeOfWorking: '',
-  //       shifttimingstart: '',
-  //       shifttimingend:'',
-  //       accountNumber:'',
-  //       ifsccode:'',
-  //       holderName:'',
-  //       bankName:'',
-  //       esicno:'',
-  //       pfno:'',
-  //       userImage:'',
-  //       academicDocument1:'',
-  //       academicDocument2:'',
-  //       academicDocument3:'',
-  //       academicDocument4:'',
-  //       aadharCard:'',
-  //       panCard:'',
-  //       signature:'',
-  //       offerLetter:'',
-  //       resignationLetter:'',
-  //       apprisalLetter:'',
-  //       salarySlip1:'',
-  //       assetName:[]
-
-  // };
 
   username: any;
   registerId: any;
@@ -145,6 +145,15 @@ export class UpdateComponent {
   }
   // date of birth select only 18 years old only end
 
+  // set probation end date start
+  endDateEnabled: boolean = false;
+
+  startDateSelected() {
+    // Set the minimum allowed end date as the selected start date
+    this.endDateEnabled = true;
+  }
+ // set probation end date end
+
   // duration of probation count total days start
   calculateTotalDays() {
     if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
@@ -157,11 +166,11 @@ export class UpdateComponent {
       this.user.totalDaysOfProbation = null;
     }
   }
-   // duration of probation count total days end
+  // duration of probation count total days end
 
-   // ifsc code start
-   invalidIFSC = false;
-   validateIFSC() {
+  // ifsc code start
+  invalidIFSC = false;
+  validateIFSC() {
     const ifscPattern = /^[A-Z]{4}[0][0-9A-Z]{6}$/; // Regular expression for IFSC code
 
     if (!ifscPattern.test(this.user.ifsccode)) {
@@ -170,9 +179,9 @@ export class UpdateComponent {
       this.invalidIFSC = false;
     }
   }
-   // ifsc code end
+  // ifsc code end
 
-  
+
 
   // email id error start
   emailError: boolean = false;
@@ -196,11 +205,11 @@ export class UpdateComponent {
   //eamil id error end 
 
   imageUrl: SafeUrl | undefined;
-  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
-  
+  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+
   errorMessage: string = '';    // pdf error
-   // Function to handle file input change
-   DocumentUpload(event: Event, controlName: string) {
+  // Function to handle file input change
+  DocumentUpload(event: Event, controlName: string) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
@@ -218,83 +227,109 @@ export class UpdateComponent {
 
   departments: string[] = [];
   designations: string[] = [];
-  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder) { }
+
+  currentDate: string;    // set probation start date
+
+  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder) { 
+    this.currentDate = new Date().toISOString().split('T')[0]; // set probation start date
+  }
 
   ngOnInit() {
 
     this.Getrole();
-    this.EmployeeProfile(this.id);
+    // this.EmployeeProfile(this.id);
     this.department();
     this.designation();
     this.teamLead();
     this.updatedData();
-    
+this.calculateTotalDays();
+// this.populateSelectedAssets();
 
   }
 
-  //API for getting teamlead start
+  // assetName: string[] = [];
+  allAssets: string[] = [
+    'no',
+    'Laptop',
+    'LaptopCharger',
+    'mouse',
+    'keyboard',
+    'phone',
+    'phoneCharger',
+    'headPhone',
+  ];
+
+  // Function to get selected assets from allAssets
+  getSelectedAssets(): string[] {
+    return this.allAssets.filter((asset) => this.user.assetName.includes(asset));
+  }
   
+
+  
+
+  //API for getting teamlead start
+
   teamLead() {
     // Call the getTeamLeads function from the service to fetch team leads
     this.RegisterAndUpdate.getTeamLeads().subscribe(
       (response: any) => {
         this.teamlead = response;
-      
+
         this.token = response.token;
       },
       (error) => {
-        
+
       }
     );
   }
   //API for getting teamlead end
 
   //API for getting department start
- 
+
   department() {
 
     this.RegisterAndUpdate.getdepartment().subscribe(
       (response: any) => {
         this.departments = response; // Assuming the API response is an array of team leads
-     
+
         this.token = response.token;
       },
       (error) => {
-      
+
       }
     );
   }
   //API for getting department end
 
   //API for getting designation start
- 
+
   designation() {
 
     this.RegisterAndUpdate.getdesignation().subscribe(
       (response: any) => {
         this.designations = response; // Assuming the API response is an array of team leads
-       
+
         this.token = response.token;
       },
       (error) => {
-        
+
       }
     );
   }
   //API for getting designation end
 
   //API for getting role start
-  
+
   Getrole() {
 
     this.RegisterAndUpdate.getrole().subscribe(
       (response: any) => {
         this.role = response; // Assuming the API response is an array of team leads
-      
+
         this.token = response.token;
       },
       (error) => {
-      
+
       }
     );
 
@@ -319,92 +354,92 @@ export class UpdateComponent {
 
 
   // API for show user data automatic when update him start
-  // availableAssetOptions: string[] = [
-    
-  //   'Laptop',
-  //   'Laptop Charger',
-  //   'Mouse',
-  //   'Keyboard',
-  //   'Phone',
-  //   'Phone Charger',
-  //   'Head Phone'
-  // ];
-
- 
+  
   updatedData(): void {
 
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
-     
+
+      
 
 
       if (id) {
         // Use the 'id' variable to fetch data
         this.RegisterAndUpdate.fetchData(+id).subscribe(
           (response) => {
-          
+
             // Handle the response and update the input fields accordingly
             this.user = response;
-          this.username = response.username
-this.registerId = response.id
-console.log("id", this.registerId);
-            console.log(";;;;;",this.user);
+            this.username = response.username
+            this.registerId = response.id
+this.user.assetName = response.assetName.split(', ').filter(Boolean);
             
+            this.user.startDateOfProbation = new Date(this.user.startDateOfProbation).toISOString().slice(0, 10);
+            this.user.endDateOfProbation = new Date(this.user.endDateOfProbation).toISOString().slice(0, 10);
+
+            console.log("selected", this.user.assetName);
+            console.log("start date", this.user.startDateOfProbation);
+
+            console.log("id for update", this.registerId);
+            console.log("username for update", this.username);
+            console.log("updated user", this.user);
+
           },
           (error) => {
-   
+
             // Handle the error here
           }
         );
       } else {
-     
+
       }
     });
-  
+
   }
-  
+
 
   // API for show user data automatic when update him end
 
   // API for show user profile  when click on email id start
 
-  
-  EmployeeProfile(item: any): void {
-    this.route.queryParams.subscribe(params => {
-      const id = params['id'];
 
-      if (id) {
-        // Use the 'id' variable to fetch data
-        this.RegisterAndUpdate.empdetails(id).subscribe(
-        (response: any) => {
-          const dataArray = Object.values(response);
-       
-          const reversedData = dataArray.reverse();
-         
-                // Set the reversed array as the data source
-                this.profileDetails = reversedData;
-          
-          },
-          (error) => {
-           
-            // Handle the error here
-          }
-        );
-      } else {
-       
-      }
-    });
-  }
- 
+  // EmployeeProfile(item: any): void {
+  //   this.route.queryParams.subscribe(params => {
+  //     const id = params['id'];
+
+  //     if (id) {
+  //       // Use the 'id' variable to fetch data
+  //       this.RegisterAndUpdate.empdetails(id).subscribe(
+  //         (response: any) => {
+  //           const dataArray = Object.values(response);
+
+  //           const reversedData = dataArray.reverse();
+
+  //           // Set the reversed array as the data source
+  //           this.profileDetails = reversedData;
+  //         },
+  //         (error) => {
+
+  //           // Handle the error here
+  //         }
+  //       );
+  //     } else {
+
+  //     }
+  //   });
+  // }
+
   // API for show user profile  when click on email id end
 
   // API for update user details start
- 
+
   updateEmployeeData(): void {
     this.route.queryParams.subscribe(params => {
       const employeeId = params['id'];
-    
-     
+      if (Array.isArray(this.user.assetName)) {
+        this.user.assetName = this.user.assetName.join(', ');
+      }
+
       if (employeeId) {
         // const data = {
         //   firstname: this.user.firstname,
@@ -432,30 +467,30 @@ console.log("id", this.registerId);
                 // this.router.navigate(['/test', 'employee']);
                 // this.testService.getEmployeeList();
                 // Move to the next step
-this.stepper.next(); // Move to the next step
+                this.stepper.next(); // Move to the next step
               });
-       console.log("updated", response);
+            console.log("updated", response);
           },
           error => {
             // Handle the error if the API request fails
-   
+
             // Add any error handling logic you need
           }
         );
       } else {
-   
+
       }
     });
   }
-  
+
   // API for update user details end
 
   // Function to submit the form with file uploads
-  
+
   submitForm() {
     // Create a FormData object to send files to the server
     const formData = new FormData();
-   
+
     // Append the selected files to the FormData object
     formData.append('username', this.username);
     formData.append('academicDocument1', this.user.academicDocument1);
@@ -472,7 +507,7 @@ this.stepper.next(); // Move to the next step
     formData.append('salarySlip2', this.user.salarySlip2);
     formData.append('salarySlip3', this.user.salarySlip3);
     formData.append('userImage', this.user.userImage);
-  
+
 
     // Make an HTTP POST request to the API endpoint
     this.RegisterAndUpdate.uploadDocs(formData, this.registerId).subscribe(
@@ -483,7 +518,7 @@ this.stepper.next(); // Move to the next step
           text: 'File Upload Successfully',
         })
         // Move to the next step
-this.stepper.next(); // Move to the next step
+        this.stepper.next(); // Move to the next step
         console.log('Files uploaded successfully:', response);
       },
       (error) => {
@@ -492,7 +527,7 @@ this.stepper.next(); // Move to the next step
       }
     );
   }
-  
+
 }
 
 
