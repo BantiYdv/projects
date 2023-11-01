@@ -357,7 +357,7 @@
         <tbody>
             <tr *ngFor="let item of filteredEmployeeData; let i = index">
             <td>{{ i + 1 }}</td>
-            <td class="pointer" style="cursor: pointer; text-decoration: underline; color: blue;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname+' '+item.lastname }}</td>
+            <td class="pointer" style="cursor: pointer; color: blue;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">{{ item.firstname+' '+item.lastname }}</td>
             <td>{{item.designation }}</td>
             <td>{{ item.emailid }}</td>
             <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">

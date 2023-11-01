@@ -160,14 +160,30 @@
 
         <div class="col-md-3">
           <div class="form-group">
+            <label for="gender">Gender<span style="color: red;">*</span></label>
+              <select class="form-control" id="gender" name="gender" [(ngModel)]="user.gender" value="{{profileDetails?.gender}}">
+                <option value="">Select</option>
+                <option value="gender">Male</option>
+                <option value="gender">Female</option>
+  
+              </select>
+          </div>
+        </div>
+
+
+       
+      </div>
+      <div class="row justify-content-center">
+
+        <div class="col-md-3">
+          <div class="form-group">
             <label for="emailid">Email </label>
             <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter email"
               [(ngModel)]="user.emailid" value="{{profileDetails?.emailid}}" (input)="validateEmail()">
             <div *ngIf="emailError" class="text-danger">{{ emailErrorMessage }}</div>
           </div>
         </div>
-      </div>
-      <div class="row justify-content-center">
+
         <div class="col-md-3">
           <div class="form-group">
             <label for="phonenumber">Contact </label>
@@ -185,6 +201,11 @@
           </div>
         </div>
 
+        
+
+      </div>
+      <div class="row justify-content-center">
+
         <div class="col-md-3">
           <div class="form-group">
             <label for="emergencyContact">Emergency Contact </label>
@@ -197,9 +218,6 @@
             </div>
           </div>
         </div>
-
-      </div>
-      <div class="row justify-content-center">
 
         <div class="col-md-3">
           <div class="form-group">
@@ -221,20 +239,7 @@
         </div>
 
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="jobType">Job Type</label>
-            <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType"
-              value="{{profileDetails?.jobType}}">
-              <option value="">Select</option>
-              <option value="fulltime">Full-Time</option>
-              <option value="parttime">Part-Time</option>
-              <option value="trainee">Trainee</option>
-
-            </select>
-          </div>
-        </div>
-
+      
 
 
       </div>
@@ -244,9 +249,28 @@
               <label for="probation" class="probation">Duration of probation:</label>
             </div> -->
 
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
+                <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" (ngModelChange)="updateEndDate()" value="{{profileDetails?.totalDaysOfProbation}}" placeholder="Total Days">
+              </div>
+            </div>
+          
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="startDateOfProbation" class="col-form-label">Probation Start date</label>
+                <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation" (ngModelChange)="updateEndDate()" value="{{profileDetails?.startDateOfProbation}}">
+              </div>
+            </div>
+          
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="endDateOfProbation" class="col-form-label">Probation End date</label>
+                <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" [min]="user.startDateOfProbation" [(ngModel)]="user.endDateOfProbation"  value="{{profileDetails?.endDateOfProbation}}"  readonly>
+              </div>
+            </div>
 
-
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
           <div class="form-group">
             <label for="startDateOfProbation" class="col-form-label">Start date</label>
             <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation"
@@ -271,7 +295,7 @@
               [(ngModel)]="user.totalDaysOfProbation" value="{{profileDetails?.totalDaysOfProbation}}" readonly
               placeholder="Total days">
           </div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -376,9 +400,24 @@
           </div>
         </div>
 
-        <h1 class="text-center">Assigning assets (optional)</h1>
+        <!-- <h1 class="text-center">Assigning assets (optional)</h1> -->
         <div class="row justify-content-center">
-          <div class="col-md-6">
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="jobType">Job Type</label>
+              <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType"
+                value="{{profileDetails?.jobType}}">
+                <option value="">Select</option>
+                <option value="fulltime">Full-Time</option>
+                <option value="parttime">Part-Time</option>
+                <option value="trainee">Trainee</option>
+  
+              </select>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
             <div class="form-group">
               <!-- <mat-form-field class="form-control">
                             <mat-label>Assets</mat-label>
@@ -719,18 +758,18 @@
 
         <div class="col-md-4">
           <div class="form-group">
-            <label style="display: flex; flex-direction: row;" for="resignationLetter" class="form-label">Resignation letter <div *ngIf="user.resignationLetter != ''">
+            <label style="display: flex; flex-direction: row;" for="RelievingLetter" class="form-label">Relieving Letter <div *ngIf="user.RelievingLetter != ''">
               <p class="text-success">&nbsp;  Uploaded</p>
             </div>
-            <div *ngIf="user.resignationLetter == ''">
+            <div *ngIf="user.RelievingLetter == ''">
               <p class="text-danger">&nbsp; Not Uploaded</p>
             </div>
           </label>
-            <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
-              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'resignationLetter')"
-              placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.resignationLetter">
-            <p class="mt-3"> <span *ngIf="errorMessages['resignationLetter']" class="error-message" style="color: red;">
-              {{ errorMessages['resignationLetter'] }}
+            <input class="form-control" type="file" id="RelievingLetter" name="RelievingLetter"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'RelievingLetter')"
+              placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.RelievingLetter">
+            <p class="mt-3"> <span *ngIf="errorMessages['RelievingLetter']" class="error-message" style="color: red;">
+              {{ errorMessages['RelievingLetter'] }}
             </span></p>
           </div>
         </div>
@@ -743,18 +782,18 @@
       <div class="row justify-content-center">
         <div class="col-md-4">
           <div class="form-group">
-            <label style="display: flex; flex-direction: row;" for="apprisalLetter" class="form-label">Apprisal letter <div *ngIf="user.apprisalLetter != ''">
+            <label style="display: flex; flex-direction: row;" for="ExperienceLetter" class="form-label">Experience Letter <div *ngIf="user.ExperienceLetter != ''">
               <p class="text-success">&nbsp;  Uploaded</p>
             </div>
-            <div *ngIf="user.apprisalLetter == ''">
+            <div *ngIf="user.ExperienceLetter == ''">
               <p class="text-danger">&nbsp; Not Uploaded</p>
             </div>
           </label>
-            <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter" accept=".pdf, .doc, .docx"
-              (change)="DocumentUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
-              style="color: #ada4a4;" [(ngModel)]="user.apprisalLetter">
-            <p class="mt-3">  <span *ngIf="errorMessages['apprisalLetter']" class="error-message" style="color: red;">
-              {{ errorMessages['apprisalLetter'] }}
+            <input class="form-control" type="file" id="ExperienceLetter" name="ExperienceLetter" accept=".pdf, .doc, .docx"
+              (change)="DocumentUpload($event, 'ExperienceLetter')" placeholder="Your Placeholder Text"
+              style="color: #ada4a4;" [(ngModel)]="user.ExperienceLetter">
+            <p class="mt-3">  <span *ngIf="errorMessages['ExperienceLetter']" class="error-message" style="color: red;">
+              {{ errorMessages['ExperienceLetter'] }}
             </span></p>
           </div>
         </div>

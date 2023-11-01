@@ -97,6 +97,18 @@ this.getUserPhoto();
 
 
   // API for show profile data start
+  showEditForm: boolean = false;
+ 
+  saveChanges() {
+    // Implement saving changes functionality when the "Save" button is clicked
+    console.log('Changes saved:', this.profileDetails);
+    // You can add logic here to save the updated profileDetails
+    // For example, call an API to update the user's data
+    // this.userService.updateProfileDetails(this.profileDetails).subscribe(response => {
+    //   // Handle the response after the data is updated
+    // });
+    this.showEditForm = false; // Hide the form after saving changes
+  }
 
   ngOnInit() {
     this.viewProfile();
@@ -303,13 +315,13 @@ DownloadDocs(id: number, filename: string) {
 
       // Prepare the data to be sent in the request body
       const requestBody = {
-        phonenumber: this.phonenumberInfo.nativeElement.value,
+        // phonenumber: this.phonenumberInfo.nativeElement.value,
         // birthDay: this.birthDayInfo.nativeElement.value,
         maritalStatus: this.maritalStatusInfo.nativeElement.value,
         bloodGroup: this.bloodGroupInfo.nativeElement.value,
         skills: this.skillsInfo.nativeElement.value,
-        emergencyContact: this.emergencyContactInfo.nativeElement.value,
-        address: this.addressInfo.nativeElement.value
+        // emergencyContact: this.emergencyContactInfo.nativeElement.value,
+        // address: this.addressInfo.nativeElement.value
       };
   console.log("request body", requestBody);
       // Call the service method to edit the user profile

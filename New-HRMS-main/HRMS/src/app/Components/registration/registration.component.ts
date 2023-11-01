@@ -40,6 +40,7 @@ export class RegistrationComponent {
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
     firstname: '',
     lastname: '',
+    gender:'',
     emailid: '',
     phonenumber: '',
     teamlead: '',
@@ -78,8 +79,8 @@ export class RegistrationComponent {
     panCard: '',
     signature: '',
     offerLetter: '',
-    resignationLetter: '',
-    apprisalLetter: '',
+    RelievingLetter: '',
+    ExperienceLetter: '',
     salarySlip1: '',
     assetName: []
 
@@ -146,24 +147,33 @@ export class RegistrationComponent {
   }
 
   // set probation end date start
-  endDateEnabled: boolean = false;
+  // endDateEnabled: boolean = false;
 
-  startDateSelected() {
-    // Set the minimum allowed end date as the selected start date
-    this.endDateEnabled = true;
-  }
+  // startDateSelected() {
+  //   // Set the minimum allowed end date as the selected start date
+  //   this.endDateEnabled = true;
+  // }
   // set probation end date end
 
   // duration of probation count total days start
-  calculateTotalDays() {
-    if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
+  // calculateTotalDays() {
+  //   if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
+  //     const startDate = new Date(this.user.startDateOfProbation);
+  //     const endDate = new Date(this.user.endDateOfProbation);
+  //     const timeDifference = endDate.getTime() - startDate.getTime();
+  //     const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // Adding 1 to include the start date
+  //     this.user.totalDaysOfProbation = daysDifference;
+  //   } else {
+  //     this.user.totalDaysOfProbation = null;
+  //   }
+  // }
+
+  updateEndDate() {
+    if (this.user.totalDaysOfProbation && this.user.startDateOfProbation) {
       const startDate = new Date(this.user.startDateOfProbation);
-      const endDate = new Date(this.user.endDateOfProbation);
-      const timeDifference = endDate.getTime() - startDate.getTime();
-      const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // Adding 1 to include the start date
-      this.user.totalDaysOfProbation = daysDifference;
-    } else {
-      this.user.totalDaysOfProbation = null;
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + this.user.totalDaysOfProbation);
+      this.user.endDateOfProbation = endDate.toISOString().split('T')[0]; // Set end date in ISO format (YYYY-MM-DD)
     }
   }
   // duration of probation count total days end

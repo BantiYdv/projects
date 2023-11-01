@@ -34,53 +34,54 @@ export class UpdateComponent {
   });
   @ViewChild('stepper') stepper!: MatStepper;                 // go to document step after register
 
- 
+
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
     firstname: '',
-        lastname: '',
-        emailid: '',
-        phonenumber: '',
-        teamlead: '',
-        
-        designation: '',
-        dob: '',
-        department: '',
-        username: '',
-        password: '',
-        totalleaves: '',
-        totalwfh: '',
-        sickLeavesPerMonth: '',
-        casualLeavesPerMonth: '',
-        role: '',
-        address: '',
-        emergencyContact: '',
-        jobType: '',
-        totalDaysOfProbation: '',
-        startDateOfProbation:'',
-        endDateOfProbation: '',
-        modeOfWorking: '',
-        shifttimingstart: '',
-        shifttimingend:'',
-        accountNumber:'',
-        ifsccode:'',
-        holderName:'',
-        bankName:'',
-        esicno:'',
-        pfno:'',
-        userImage:'',
-        academicDocument1:'',
-        academicDocument2:'',
-        academicDocument3:'',
-        academicDocument4:'',
-        aadharCard:'',
-        panCard:'',
-        signature:'',
-        offerLetter:'',
-        resignationLetter:'',
-        apprisalLetter:'',
-        salarySlip1:'',
-        assetName:[]
+    lastname: '',
+    gender:'',
+    emailid: '',
+    phonenumber: '',
+    teamlead: '',
+
+    designation: '',
+    dob: '',
+    department: '',
+    username: '',
+    password: '',
+    totalleaves: '',
+    totalwfh: '',
+    sickLeavesPerMonth: '',
+    casualLeavesPerMonth: '',
+    role: '',
+    address: '',
+    emergencyContact: '',
+    jobType: '',
+    totalDaysOfProbation: '',
+    startDateOfProbation: '',
+    endDateOfProbation: '',
+    modeOfWorking: '',
+    shifttimingstart: '',
+    shifttimingend: '',
+    accountNumber: '',
+    ifsccode: '',
+    holderName: '',
+    bankName: '',
+    esicno: '',
+    pfno: '',
+    userImage: '',
+    academicDocument1: '',
+    academicDocument2: '',
+    academicDocument3: '',
+    academicDocument4: '',
+    aadharCard: '',
+    panCard: '',
+    signature: '',
+    offerLetter: '',
+    RelievingLetter: '',
+    ExperienceLetter: '',
+    salarySlip1: '',
+    assetName: []
 
   };
 
@@ -106,24 +107,33 @@ export class UpdateComponent {
   // date of birth select only 18 years old only end
 
   // set probation end date start
-  endDateEnabled: boolean = false;
+  // endDateEnabled: boolean = false;
 
-  startDateSelected() {
-    // Set the minimum allowed end date as the selected start date
-    this.endDateEnabled = true;
-  }
- // set probation end date end
+  // startDateSelected() {
+  //   // Set the minimum allowed end date as the selected start date
+  //   this.endDateEnabled = true;
+  // }
+  // set probation end date end
 
   // duration of probation count total days start
-  calculateTotalDays() {
-    if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
+  // calculateTotalDays() {
+  //   if (this.user.startDateOfProbation && this.user.endDateOfProbation) {
+  //     const startDate = new Date(this.user.startDateOfProbation);
+  //     const endDate = new Date(this.user.endDateOfProbation);
+  //     const timeDifference = endDate.getTime() - startDate.getTime();
+  //     const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // Adding 1 to include the start date
+  //     this.user.totalDaysOfProbation = daysDifference;
+  //   } else {
+  //     this.user.totalDaysOfProbation = null;
+  //   }
+  // }
+
+  updateEndDate() {
+    if (this.user.totalDaysOfProbation && this.user.startDateOfProbation) {
       const startDate = new Date(this.user.startDateOfProbation);
-      const endDate = new Date(this.user.endDateOfProbation);
-      const timeDifference = endDate.getTime() - startDate.getTime();
-      const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1; // Adding 1 to include the start date
-      this.user.totalDaysOfProbation = daysDifference;
-    } else {
-      this.user.totalDaysOfProbation = null;
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + this.user.totalDaysOfProbation);
+      this.user.endDateOfProbation = endDate.toISOString().split('T')[0]; // Set end date in ISO format (YYYY-MM-DD)
     }
   }
   // duration of probation count total days end
@@ -176,34 +186,34 @@ export class UpdateComponent {
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
       // Here you can perform file validation and other checks
-  // Check if the file type is 'application/pdf'
-  const isPDF = file && file.type === 'application/pdf';
-  
-  // Check if the file type is 'image/png'
-  const isPNG = file && file.type === 'image/png';
+      // Check if the file type is 'application/pdf'
+      const isPDF = file && file.type === 'application/pdf';
 
-  const isFileSizeValid = file && file.size <= 5 * 1024 * 1024 && file.size >= 20 * 1024;
-  if ((controlName === 'signature' || controlName === 'userImage') && isPDF) {
-    this.errorMessages[controlName] = "Please upload a PNG file.";
-    inputElement.value = ''; // Clear the input field
-    this.user[controlName] = null; // Clear the user data for this field
-  } else if ((controlName !== 'signature' && controlName !== 'userImage') && isPNG) {
-    this.errorMessages[controlName] = "Please upload a PDF file.";
-    inputElement.value = ''; // Clear the input field
-    this.user[controlName] = null; // Clear the user data for this field
-  } else if (!isPDF && !isPNG || !isFileSizeValid) {
-            if (!isPDF && !isPNG) {
-                this.errorMessages[controlName] = "Please upload a valid file.";
-            } else {
-                this.errorMessages[controlName] = "Please upload a PDF file below 5MB and up to 20KB.";
-            }
-            inputElement.value = ''; // Clear the input field
-            this.user[controlName] = null; // Clear the user data for this field
+      // Check if the file type is 'image/png'
+      const isPNG = file && file.type === 'image/png';
 
-          }else {
-    this.errorMessages[controlName] = ''; // Clear the error message
-    this.user[controlName] = file; // Assign the selected file to the user object or form control
-  }
+      const isFileSizeValid = file && file.size <= 5 * 1024 * 1024 && file.size >= 20 * 1024;
+      if ((controlName === 'signature' || controlName === 'userImage') && isPDF) {
+        this.errorMessages[controlName] = "Please upload a PNG file.";
+        inputElement.value = ''; // Clear the input field
+        this.user[controlName] = null; // Clear the user data for this field
+      } else if ((controlName !== 'signature' && controlName !== 'userImage') && isPNG) {
+        this.errorMessages[controlName] = "Please upload a PDF file.";
+        inputElement.value = ''; // Clear the input field
+        this.user[controlName] = null; // Clear the user data for this field
+      } else if (!isPDF && !isPNG || !isFileSizeValid) {
+        if (!isPDF && !isPNG) {
+          this.errorMessages[controlName] = "Please upload a valid file.";
+        } else {
+          this.errorMessages[controlName] = "Please upload a PDF file below 5MB and up to 20KB.";
+        }
+        inputElement.value = ''; // Clear the input field
+        this.user[controlName] = null; // Clear the user data for this field
+
+      } else {
+        this.errorMessages[controlName] = ''; // Clear the error message
+        this.user[controlName] = file; // Assign the selected file to the user object or form control
+      }
       // Assign the selected file to the user object or form control
       this.user[controlName] = file;
     }
@@ -212,15 +222,15 @@ export class UpdateComponent {
   // DocumentUpload(event: Event, controlName: string) {
   //   const inputElement = event.target as HTMLInputElement;
   //   const file = inputElement.files && inputElement.files.length > 0 ? inputElement.files[0] : null;
-  
+
   //   // Check if the file type is 'application/pdf'
   //   const isPDF = file && file.type === 'application/pdf';
-  
+
   //   // Check if the file type is 'image/png'
   //   const isPNG = file && file.type === 'image/png';
 
   //   const isFileSizeValid = file && file.size <= 5 * 1024 * 1024 && file.size >= 20 * 1024;
-  
+
   //   if ((controlName === 'signature' || controlName === 'userImage') && isPDF) {
   //     this.errorMessages[controlName] = "Please upload a PNG file.";
   //     inputElement.value = ''; // Clear the input field
@@ -254,7 +264,7 @@ export class UpdateComponent {
 
   currentDate: string;    // set probation start date
 
-  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder) { 
+  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder) {
     this.currentDate = new Date().toISOString().split('T')[0]; // set probation start date
   }
 
@@ -266,8 +276,8 @@ export class UpdateComponent {
     this.designation();
     this.teamLead();
     this.updatedData();
-this.calculateTotalDays();
-// this.populateSelectedAssets();
+    // this.calculateTotalDays();
+    // this.populateSelectedAssets();
 
   }
 
@@ -287,9 +297,9 @@ this.calculateTotalDays();
   getSelectedAssets(): string[] {
     return this.allAssets.filter((asset) => this.user.assetName.includes(asset));
   }
-  
 
-  
+
+
 
   //API for getting teamlead start
 
@@ -378,13 +388,13 @@ this.calculateTotalDays();
 
 
   // API for show user data automatic when update him start
-  
+
   updatedData(): void {
 
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
 
-      
+
 
 
       if (id) {
@@ -396,8 +406,8 @@ this.calculateTotalDays();
             this.user = response;
             this.username = response.username
             this.registerId = response.id
-this.user.assetName = response.assetName.split(', ').filter(Boolean);
-            
+            this.user.assetName = response.assetName.split(', ').filter(Boolean);
+
             this.user.startDateOfProbation = new Date(this.user.startDateOfProbation).toISOString().slice(0, 10);
             this.user.endDateOfProbation = new Date(this.user.endDateOfProbation).toISOString().slice(0, 10);
 
@@ -543,7 +553,7 @@ this.user.assetName = response.assetName.split(', ').filter(Boolean);
         })
         // Move to the next step
         this.router.navigate(['/test', 'employee']);
-                this.testService.getEmployeeList();
+        this.testService.getEmployeeList();
         console.log('Files uploaded successfully:', response);
       },
       (error) => {

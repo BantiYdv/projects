@@ -319,10 +319,10 @@ body .fc-widget-header a {
     font-size: 0.825rem;
 }
 .form-control {
-    border: 1px solid #cfd1d8;
+    border: 1px solid #6c6c6e;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
-    border-radius: 2px;
+    border-radius: 50px;
     font-size: .825rem;
     background: #ffffff;
     color: #2e323c;

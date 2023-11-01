@@ -189,6 +189,22 @@
 
         <div class="col-md-3">
           <div class="form-group">
+            <label for="gender">Gender<span style="color: red;">*</span></label>
+              <select class="form-control" id="gender" name="gender" [(ngModel)]="user.gender">
+                <option value="">Select</option>
+                <option value="gender">Male</option>
+                <option value="gender">Female</option>
+  
+              </select>
+          </div>
+        </div>
+
+       
+      </div>
+      <div class="row justify-content-center">
+
+        <div class="col-md-3">
+          <div class="form-group">
             <label for="emailid">Email <span style="color: red;">*</span></label>
             <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="user.emailid" #emailidInput="ngModel"
@@ -199,8 +215,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row justify-content-center">
+
         <div class="col-md-3">
           <div class="form-group">
             <label for="phonenumber">Contact <span style="color: red;">*</span></label>
@@ -225,6 +240,11 @@
           </div>
         </div>
 
+       
+
+      </div>
+      <div class="row justify-content-center">
+
         <div class="col-md-3">
           <div class="form-group">
             <label for="emergencyContact">Emergency Contact <span style="color: red;">*</span></label>
@@ -241,9 +261,6 @@
           </div>
           </div>
         </div>
-
-      </div>
-      <div class="row justify-content-center">
 
         <div class="col-md-3">
           <div class="form-group">
@@ -268,18 +285,7 @@
         </div>
 
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="jobType">Job Type</label>
-            <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType">
-              <option value="">Select</option>
-              <option value="fulltime">Full-Time</option>
-              <option value="parttime">Part-Time</option>
-              <option value="trainee">Trainee</option>
-
-            </select>
-          </div>
-        </div>
+       
 
 
 
@@ -289,29 +295,52 @@
         <!-- <div class="col-md-10">
           <label for="probation" class="probation">Duration of probation:</label>
         </div> -->
-
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
+            <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" placeholder="Total Days">
+          </div>
+        </div>
        
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="startDateOfProbation" class="col-form-label">Start date</label>
-            <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation" (change)="startDateSelected(); calculateTotalDays()">
+            <label for="startDateOfProbation" class="col-form-label">Probation Start date</label>
+            <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation">
           </div>
         </div>
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="endDateOfProbation" class="col-form-label">End date</label>
-            <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" [min]="user.startDateOfProbation" [(ngModel)]="user.endDateOfProbation" (change)="calculateTotalDays()" >
+            <label for="endDateOfProbation" class="col-form-label">Probation End date</label>
+            <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" [min]="user.startDateOfProbation" [(ngModel)]="user.endDateOfProbation">
           </div>
-        </div>
+        </div> -->
+       
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
+              <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" (ngModelChange)="updateEndDate()" placeholder="Total Days">
+            </div>
+          </div>
+        
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="startDateOfProbation" class="col-form-label">Probation Start date</label>
+              <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation" (ngModelChange)="updateEndDate()">
+            </div>
+          </div>
+        
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="endDateOfProbation" class="col-form-label">Probation End date</label>
+              <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" [min]="user.startDateOfProbation" [(ngModel)]="user.endDateOfProbation" readonly>
+            </div>
+          </div>
+      
+        
 
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="totalDaysOfProbation" class="col-form-label">Duration of probation</label>
-            <input type="number" class="form-control" name="totalDaysOfProbation" id="totalDaysOfProbation" min="1" [(ngModel)]="user.totalDaysOfProbation" readonly placeholder="Total Days">
-          </div>
-        </div>
+        
 
       </div>
 
@@ -412,9 +441,22 @@
           </div>
         </div>
 
-        <h1 class="text-center">Assigning assets</h1>
+        <!-- <h1 class="text-center">Assigning assets</h1> -->
       <div class="row justify-content-center">
-        <div class="col-md-6">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="jobType">Job Type</label>
+            <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType">
+              <option value="">Select</option>
+              <option value="fulltime">Full-Time</option>
+              <option value="parttime">Part-Time</option>
+              <option value="trainee">Trainee</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4">
           <div class="form-group">
            <mat-form-field class="form-control">
                         <mat-label>Assets</mat-label>
@@ -552,7 +594,7 @@
         </div> -->
         <div class="col-md-4">
           <div class="form-group">
-            <label for="userImage" class="form-label">Upload Photo:</label>
+            <label for="userImage" class="form-label">Upload Photo: <span style="color: rgb(228, 109, 109);">PNG/20kb to 5mb</span></label>
             <input class="form-control" type="file" id="userImage" name="userImage"
               accept=".png" (change)="DocumentUpload($event, 'userImage')"  placeholder="Your Placeholder Text"
               style="color: #ada4a4;" [(ngModel)]="user.userImage">
@@ -574,7 +616,7 @@
 
         <div class="col-md-4">
           <div class="form-group">
-            <label for="academicDocument1" class="form-label">10th marksheet:</label>
+            <label for="academicDocument1" class="form-label">10th marksheet: <span style="color: rgb(228, 109, 109);">PDF/20kb to 5mb</span></label>
             <input class="form-control" type="file" id="academicDocument1" name="academicDocument1"
               accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument1')" placeholder="Your Placeholder Text"
               style="color: #ada4a4;">
@@ -796,13 +838,13 @@
 
         <div class="col-md-4">
           <div class="form-group">
-            <label for="resignationLetter" class="form-label">Resignation letter:</label>
-            <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
-              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'resignationLetter')" placeholder="Your Placeholder Text"
+            <label for="RelievingLetter" class="form-label">Relieving Letter:</label>
+            <input class="form-control" type="file" id="RelievingLetter" name="RelievingLetter"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'RelievingLetter')" placeholder="Your Placeholder Text"
               style="color: #ada4a4;">
             <p class="mt-3">
-              <span *ngIf="errorMessages['resignationLetter']" class="error-message" style="color: red;">
-                {{ errorMessages['resignationLetter'] }}
+              <span *ngIf="errorMessages['RelievingLetter']" class="error-message" style="color: red;">
+                {{ errorMessages['RelievingLetter'] }}
               </span>
             </p>
           </div>
@@ -827,13 +869,13 @@
 
         <div class="col-md-4">
           <div class="form-group">
-            <label for="apprisalLetter" class="form-label">Apprisal letter (Optional):</label>
-            <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter"
-              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
+            <label for="ExperienceLetter" class="form-label">Experience letter:</label>
+            <input class="form-control" type="file" id="ExperienceLetter" name="ExperienceLetter"
+              accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'ExperienceLetter')" placeholder="Your Placeholder Text"
               style="color: #ada4a4;">
             <p class="mt-3">
-              <span *ngIf="errorMessages['apprisalLetter']" class="error-message" style="color: red;">
-                {{ errorMessages['apprisalLetter'] }}
+              <span *ngIf="errorMessages['ExperienceLetter']" class="error-message" style="color: red;">
+                {{ errorMessages['ExperienceLetter'] }}
               </span>
             </p>
           </div>
