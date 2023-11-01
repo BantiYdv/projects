@@ -166,7 +166,7 @@ export class TestComponent {
       noOfDays: ['', [Validators.required, Validators.min(1)]],
       fromDate: ['', Validators.required],
       toDate: ['', Validators.required],
-      reason: [null, Validators.required], // Add the reason field with Validators.required
+      reason: ['', Validators.required], // Add the reason field with Validators.required
     });
     this.wfhForm = this.formBuilder.group({
       noofday: ['', [Validators.required, Validators.min(1)]],
@@ -895,7 +895,7 @@ export class TestComponent {
 
 
       },
-      (error) => {
+      (error: any) => {
         Swal.fire('Error', error.error, 'error');
 
       }

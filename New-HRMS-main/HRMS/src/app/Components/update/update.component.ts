@@ -34,47 +34,7 @@ export class UpdateComponent {
   });
   @ViewChild('stepper') stepper!: MatStepper;                 // go to document step after register
 
-  // user: any = {                                              // Object to store the user registration data
-  //   firstname: '',
-  //   lastname: '',
-  //   emailid: '',
-  //   phonenumber: '',
-  //   teamlead: '',
-  //   dateofjoining: '',
-  //   designation: '',
-  //   dob: '',
-  //   department: '',
-  //   username: '',
-  //   password: '',
-  //   totalleaves: 0,
-  //   totalwfh: '',
-  //   sickLeavesPerMonth: '',
-  //   casualLeavesPerMonth: '',
-  //   role: '',
-  //   address: '',
-  //   emergencyContact: '',
-  //   jobType: '',
-  //   totalDaysOfProbation: '',
-  //   startDateOfProbation: '',
-  //   endDateOfProbation: '',
-  //   modeOfWorking: '',
-  //   shifttimingstart: '',
-  //   shifttimingend: '',
-  //   accountNumber: '',
-  //   ifsccode: '',
-  //   holderName: '',
-  //   bankName: '',
-  //   esicno: '',
-  //   pfno: '',
-  //   academicDocument1: '',
-  //   academicDocument2: '',
-  //   academicDocument3: '',
-  //   academicDocument4: '',
-  //   identityDocument1: '',
-  //   identityDocument2: '',
-  //   assetName: []
-
-  // };
+ 
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
     firstname: '',
@@ -208,17 +168,81 @@ export class UpdateComponent {
   defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
 
   errorMessage: string = '';    // pdf error
+  errorMessages: { [key: string]: string } = {};
+
   // Function to handle file input change
   DocumentUpload(event: Event, controlName: string) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
       // Here you can perform file validation and other checks
+  // Check if the file type is 'application/pdf'
+  const isPDF = file && file.type === 'application/pdf';
+  
+  // Check if the file type is 'image/png'
+  const isPNG = file && file.type === 'image/png';
 
+  const isFileSizeValid = file && file.size <= 5 * 1024 * 1024 && file.size >= 20 * 1024;
+  if ((controlName === 'signature' || controlName === 'userImage') && isPDF) {
+    this.errorMessages[controlName] = "Please upload a PNG file.";
+    inputElement.value = ''; // Clear the input field
+    this.user[controlName] = null; // Clear the user data for this field
+  } else if ((controlName !== 'signature' && controlName !== 'userImage') && isPNG) {
+    this.errorMessages[controlName] = "Please upload a PDF file.";
+    inputElement.value = ''; // Clear the input field
+    this.user[controlName] = null; // Clear the user data for this field
+  } else if (!isPDF && !isPNG || !isFileSizeValid) {
+            if (!isPDF && !isPNG) {
+                this.errorMessages[controlName] = "Please upload a valid file.";
+            } else {
+                this.errorMessages[controlName] = "Please upload a PDF file below 5MB and up to 20KB.";
+            }
+            inputElement.value = ''; // Clear the input field
+            this.user[controlName] = null; // Clear the user data for this field
+
+          }else {
+    this.errorMessages[controlName] = ''; // Clear the error message
+    this.user[controlName] = file; // Assign the selected file to the user object or form control
+  }
       // Assign the selected file to the user object or form control
       this.user[controlName] = file;
     }
   }
+
+  // DocumentUpload(event: Event, controlName: string) {
+  //   const inputElement = event.target as HTMLInputElement;
+  //   const file = inputElement.files && inputElement.files.length > 0 ? inputElement.files[0] : null;
+  
+  //   // Check if the file type is 'application/pdf'
+  //   const isPDF = file && file.type === 'application/pdf';
+  
+  //   // Check if the file type is 'image/png'
+  //   const isPNG = file && file.type === 'image/png';
+
+  //   const isFileSizeValid = file && file.size <= 5 * 1024 * 1024 && file.size >= 20 * 1024;
+  
+  //   if ((controlName === 'signature' || controlName === 'userImage') && isPDF) {
+  //     this.errorMessages[controlName] = "Please upload a PNG file.";
+  //     inputElement.value = ''; // Clear the input field
+  //     this.user[controlName] = null; // Clear the user data for this field
+  //   } else if ((controlName !== 'signature' && controlName !== 'userImage') && isPNG) {
+  //     this.errorMessages[controlName] = "Please upload a PDF file.";
+  //     inputElement.value = ''; // Clear the input field
+  //     this.user[controlName] = null; // Clear the user data for this field
+  //   } else if (!isPDF && !isPNG || !isFileSizeValid) {
+  //             if (!isPDF && !isPNG) {
+  //                 this.errorMessages[controlName] = "Please upload a valid file.";
+  //             } else {
+  //                 this.errorMessages[controlName] = "Please upload a PDF file below 5MB and up to 20KB.";
+  //             }
+  //             inputElement.value = ''; // Clear the input field
+  //             this.user[controlName] = null; // Clear the user data for this field
+
+  //           }else {
+  //     this.errorMessages[controlName] = ''; // Clear the error message
+  //     this.user[controlName] = file; // Assign the selected file to the user object or form control
+  //   }
+  // }
 
   // Function to submit the form with file uploads
 
@@ -518,7 +542,8 @@ this.user.assetName = response.assetName.split(', ').filter(Boolean);
           text: 'File Upload Successfully',
         })
         // Move to the next step
-        this.stepper.next(); // Move to the next step
+        this.router.navigate(['/test', 'employee']);
+                this.testService.getEmployeeList();
         console.log('Files uploaded successfully:', response);
       },
       (error) => {

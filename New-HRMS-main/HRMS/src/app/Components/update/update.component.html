@@ -537,8 +537,8 @@
             <input class="form-control" type="file" id="userImage" name="userImage" accept=".png"
               (change)="DocumentUpload($event, 'userImage')" placeholder="Your Placeholder Text" style="color: #ada4a4;"
               [(ngModel)]="user.userImage" value="{{profileDetails?.userImage}}">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['userImage']" class="error-message" style="color: red;">
+              {{ errorMessages['userImage'] }}</span></p>
           </div>
         </div>
 
@@ -557,8 +557,8 @@
               accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument1')"
               placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument1"
               value="{{user.academicDocument1}}">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['academicDocument1']" class="error-message" style="color: red;">
+              {{ errorMessages['academicDocument1'] }}</span></p>
           </div>
         </div>
 
@@ -574,8 +574,8 @@
             <input class="form-control" type="file" id="academicDocument2" name="academicDocument2"
               accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument2')"
               placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument2">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['academicDocument2']" class="error-message" style="color: red;">
+              {{ errorMessages['academicDocument2'] }}</span></p>
           </div>
         </div>
       </div>
@@ -594,8 +594,9 @@
             <input class="form-control" type="file" id="academicDocument3" name="academicDocument3"
               accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument3')"
               placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument3">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['academicDocument3']" class="error-message" style="color: red;">
+              {{ errorMessages['academicDocument3'] }}
+            </span></p>
           </div>
         </div>
 
@@ -611,8 +612,9 @@
             <input class="form-control" type="file" id="academicDocument4" name="academicDocument4"
               accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument4')"
               placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.academicDocument4">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['academicDocument4']" class="error-message" style="color: red;">
+              {{ errorMessages['academicDocument4'] }}
+            </span></p>
 
           </div>
         </div>
@@ -629,8 +631,9 @@
             <input class="form-control" type="file" id="signature" name="signature" accept=".pdf, .doc, .docx"
               (change)="DocumentUpload($event, 'signature')" placeholder="Your Placeholder Text" style="color: #ada4a4;"
               [(ngModel)]="user.signature">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3">  <span *ngIf="errorMessages['signature']" class="error-message" style="color: red;">
+              {{ errorMessages['signature'] }}
+            </span></p>
 
           </div>
         </div>
@@ -652,8 +655,9 @@
             <input class="form-control" type="file" id="aadharCard" name="aadharCard" accept=".pdf, .doc, .docx"
               (change)="DocumentUpload($event, 'aadharCard')" placeholder="Your Placeholder Text"
               style="color: #ada4a4;" [(ngModel)]="user.identityDocument1">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3">  <span *ngIf="errorMessages['aadharCard']" class="error-message" style="color: red;">
+              {{ errorMessages['aadharCard'] }}
+            </span></p>
 
           </div>
         </div>
@@ -670,8 +674,9 @@
             <input class="form-control" type="file" id="panCard" name="panCard" accept=".pdf, .doc, .docx"
               (change)="DocumentUpload($event, 'panCard')" placeholder="Your Placeholder Text" style="color: #ada4a4;"
               [(ngModel)]="user.identityDocument2">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['panCard']" class="error-message" style="color: red;">
+              {{ errorMessages['panCard'] }}
+            </span></p>
 
           </div>
         </div>
@@ -706,8 +711,9 @@
             <input class="form-control" type="file" id="offerLetter" name="offerLetter" accept=".pdf, .doc, .docx"
               (change)="DocumentUpload($event, 'offerLetter')" placeholder="Your Placeholder Text"
               style="color: #ada4a4;" [(ngModel)]="user.offerLetter">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['offerLetter']" class="error-message" style="color: red;">
+              {{ errorMessages['offerLetter'] }}
+            </span></p>
           </div>
         </div>
 
@@ -723,8 +729,9 @@
             <input class="form-control" type="file" id="resignationLetter" name="resignationLetter"
               accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'resignationLetter')"
               placeholder="Your Placeholder Text" style="color: #ada4a4;" [(ngModel)]="user.resignationLetter">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['resignationLetter']" class="error-message" style="color: red;">
+              {{ errorMessages['resignationLetter'] }}
+            </span></p>
           </div>
         </div>
 
@@ -746,8 +753,9 @@
             <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter" accept=".pdf, .doc, .docx"
               (change)="DocumentUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
               style="color: #ada4a4;" [(ngModel)]="user.apprisalLetter">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3">  <span *ngIf="errorMessages['apprisalLetter']" class="error-message" style="color: red;">
+              {{ errorMessages['apprisalLetter'] }}
+            </span></p>
           </div>
         </div>
 
@@ -763,8 +771,9 @@
             <input class="form-control" type="file" id="salarySlip1" name="salarySlip1" accept=".pdf, .doc, .docx"
               (change)="DocumentUpload($event, 'salarySlip1')" placeholder="Your Placeholder Text"
               style="color: #ada4a4;" [(ngModel)]="user.salarySlip1">
-            <p class="mt-3"> <span *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage
-                }}</span></p>
+            <p class="mt-3"> <span *ngIf="errorMessages['salarySlip1']" class="error-message" style="color: red;">
+              {{ errorMessages['salarySlip1'] }}
+            </span></p>
           </div>
         </div>
       </div>
