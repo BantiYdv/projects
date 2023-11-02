@@ -1,6 +1,6 @@
 
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/services/login.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
 import { SafeUrl } from '@angular/platform-browser';
 import { MatStepper } from '@angular/material/stepper';
+import * as saveAs from 'file-saver';
 
 
 
@@ -29,12 +30,30 @@ export class RegistrationComponent {
     // secondCtrl: ['', Validators.required],
   });
   thirdFormGroup = this._formBuilder.group({
-    // secondCtrl: ['', Validators.required],
+    // thirdCtrl: ['', Validators.required],
   });
   forthFormGroup = this._formBuilder.group({
-    // secondCtrl: ['', Validators.required],
+    // forthCtrl: ['', Validators.required],
   });
   @ViewChild('stepper') stepper!: MatStepper;                 // go to document step after register
+
+
+  // mandatory fields start
+  showErrorAlert: boolean = false; // Flag to control error alert
+
+  validateFields() {
+    const mandatoryFields = ['firstname', 'lastname', 'emailid', 'phonenumber', 'address', 'emergencyContact', 'dob', 'dateofjoining', 'role'];
+
+    // Check if any mandatory field is empty
+    const emptyFields = mandatoryFields.filter(field => !this.user[field]);
+
+    if (emptyFields.length > 0) {
+      alert('Mandatory fields are required. Please fill in all mandatory fields.');
+    } else {
+      this.stepper.next(); // Move to the next step if all mandatory fields are filled
+    }
+  }
+  // mandatory fields end
 
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
@@ -83,8 +102,13 @@ export class RegistrationComponent {
     ExperienceLetter: '',
     salarySlip1: '',
     assetName: []
-
+    
   };
+
+  testing: any = {
+    photo:'',
+    apprisalLetter:''
+  }
 
   imageUrl: SafeUrl | undefined;
   defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
@@ -476,13 +500,10 @@ export class RegistrationComponent {
     formData.append('aadharCard', this.user.aadharCard);
     formData.append('panCard', this.user.panCard);
     formData.append('offerLetter', this.user.offerLetter);
-    formData.append('resignationLetter', this.user.resignationLetter);
-    formData.append('apprisalLetter', this.user.apprisalLetter);
+    formData.append('RelievingLetter', this.user.RelievingLetter);
+    formData.append('ExperienceLetter', this.user.ExperienceLetter);
     formData.append('salarySlip1', this.user.salarySlip1);
-    formData.append('salarySlip2', this.user.salarySlip2);
-    formData.append('salarySlip3', this.user.salarySlip3);
     formData.append('userImage', this.user.userImage);
-
 
     // Make an HTTP POST request to the API endpoint
     this.RegisterAndUpdate.uploadDocs(formData, this.registerId).subscribe(
@@ -502,6 +523,108 @@ export class RegistrationComponent {
       }
     );
   }
+
+
+
+
+
+  // testing upload
+  // DocUpload(event: Event, controlName: string) {
+  //     const inputElement = event.target as HTMLInputElement;
+  //     if (inputElement.files && inputElement.files.length > 0) {
+  //       const file = inputElement.files[0];
+  //       // Here you can perform file validation and other checks
+  
+  //       // Assign the selected file to the user object or form control
+  //       this.testing[controlName] = file;
+  //     }
+  //   }
+  DocUpload(event: Event, controlName: string) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files && inputElement.files.length > 0 ? inputElement.files[0] : null;
+  
+    let allowedTypes: string[];
+    let errorMessage: string;
+  
+    if (controlName === 'photo') {
+      allowedTypes = ['application/pdf'];
+      errorMessage = 'Please upload a PNG file.';
+    } else if (controlName === 'apprisalLetter') {
+      allowedTypes = ['application/pdf'];
+      errorMessage = 'Please upload a PDF, DOC, or DOCX file.';
+    } else {
+      // Handle other fields or default case if necessary
+      return;
+    }
+  
+    const isAllowedType = file && allowedTypes.includes(file.type);
+    const isFileSizeValid = file && file.size <= 5 * 1024 * 1024 && file.size >= 20 * 1024;
+  
+    if (!isAllowedType || !isFileSizeValid) {
+      if (!isAllowedType) {
+        this.errorMessages[controlName] = errorMessage;
+      } else {
+        this.errorMessages[controlName] = 'Please upload a file below 5MB and at least 20KB.';
+      }
+      inputElement.value = ''; // Clear the input field
+      this.testing[controlName] = null; // Clear the user data for this field
+    } else {
+      this.errorMessages[controlName] = ''; // Clear the error message
+      this.testing[controlName] = file; // Assign the selected file to the user object or form control
+    }
+  }
+  
+
+  Upload() {
+    // Create a FormData object to send files to the server
+    const formData = new FormData();
+
+    // Append the selected files to the FormData object
+    formData.append('photo', this.testing.photo);
+    formData.append('apprisalLetter', this.testing.apprisalLetter);
+    console.log("testing", this.testing);
+    console.log("gfgfghfhfghf", formData);
+    // Make an HTTP POST request to the API endpoint
+    this.RegisterAndUpdate.upload(formData).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'File Upload',
+          text: 'File Upload Successfully',
+        })
+       
+        
+        console.log('Files uploaded successfully:', response);
+      },
+      (error) => {
+        // Handle error
+        console.error('Error uploading files:', error);
+      }
+    );
+  }
+
+// testing download
+download() {
+
+  this.RegisterAndUpdate.Download(14).subscribe((response: HttpResponse<Blob>) => {
+    if (response.body) {
+     
+      const blob = response.body;
+      
+            let filename = 'downloaded_file.pdf'; // Default file name
+      saveAs(blob, filename);
+      console.log("document", response);
+    } else {
+      console.error('Response body is null.');
+    }
+  }, (error) => {
+    Swal.fire('Error', error.error, 'error');  
+    console.error(error);
+  });
+
+}
+
+
 
 }
 

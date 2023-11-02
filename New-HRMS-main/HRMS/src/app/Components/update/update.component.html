@@ -208,7 +208,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="emergencyContact">Emergency Contact </label>
+            <label for="emergencyContact">Emergency contact </label>
             <input type="tel" class="form-control" name="emergencyContact" id="emergencyContact"
               placeholder="Enter emergency contact" maxlength="10" minlength="10" pattern="[0-9]{10}"
               [(ngModel)]="user.emergencyContact" value="{{profileDetails?.emergencyContact}}">
@@ -221,7 +221,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="dob">Date of Birth </label>
+            <label for="dob">Date of birth </label>
             <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter date of birth"
               [(ngModel)]="user.dob" value="{{profileDetails?.dob}}" (change)="validateDateOfBirth()">
             <div *ngIf="dobError" class="text-danger">You must be at least 18 years old.</div>
@@ -230,7 +230,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="dateofjoining">Date Of Joining </label>
+            <label for="dateofjoining">Date of joining </label>
             <input type="date" class="form-control" id="dateofjoining" name="dateofjoining"
               placeholder="Enter date of joining" [(ngModel)]="user.dateofjoining"
               value="{{profileDetails?.dateofjoining}}" [min]="getMinDate()" max="{{ getMaxDate() }}">
@@ -258,14 +258,14 @@
           
             <div class="col-md-3">
               <div class="form-group">
-                <label for="startDateOfProbation" class="col-form-label">Probation Start date</label>
+                <label for="startDateOfProbation" class="col-form-label">Probation start date</label>
                 <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation" (ngModelChange)="updateEndDate()" value="{{profileDetails?.startDateOfProbation}}">
               </div>
             </div>
           
             <div class="col-md-3">
               <div class="form-group">
-                <label for="endDateOfProbation" class="col-form-label">Probation End date</label>
+                <label for="endDateOfProbation" class="col-form-label">Probation end date</label>
                 <input type="date" class="form-control" name="endDateOfProbation" id="endDateOfProbation" [min]="user.startDateOfProbation" [(ngModel)]="user.endDateOfProbation"  value="{{profileDetails?.endDateOfProbation}}"  readonly>
               </div>
             </div>
@@ -316,7 +316,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="shifttiming">Shift Timing start</label>
+            <label for="shifttiming">Shift timing start</label>
             <input type="time" class="form-control" name="shifttimingstart" id="shifttimingstart"
               [(ngModel)]="user.shifttimingstart" value="{{profileDetails?.shifttimingstart}}">
           </div>
@@ -324,7 +324,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="shifttiming">Shift Timing end</label>
+            <label for="shifttiming">Shift timing end</label>
             <input type="time" class="form-control" name="shifttimingend" id="shifttimingend"
               [(ngModel)]="user.shifttimingend" value="{{profileDetails?.shifttimingend}}">
           </div>
@@ -349,7 +349,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="teamlead">Team Lead</label>
+            <label for="teamlead">Team lead</label>
             <select class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
               (ngModelChange)="teamLead()">
               <option value="">--Select--</option>
@@ -394,7 +394,7 @@
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label for="totalwfh">Work From Home</label>
+            <label for="totalwfh">Work from home</label>
             <input type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH"
               [(ngModel)]="user.totalwfh" value="{{profileDetails?.totalwfh}}">
           </div>
@@ -405,7 +405,7 @@
 
           <div class="col-md-4">
             <div class="form-group">
-              <label for="jobType">Job Type</label>
+              <label for="jobType">Job type</label>
               <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType"
                 value="{{profileDetails?.jobType}}">
                 <option value="">Select</option>
@@ -471,7 +471,7 @@
       <div class="row justify-content-center">
         <div class="col-md-3">
           <div class="form-group">
-            <label for="accountNumber" class="col-form-label">Account Number :</label>
+            <label for="accountNumber" class="col-form-label">Account Number</label>
             <input type="text" class="form-control" name="accountNumber" id="accountNumber"
               [(ngModel)]="user.accountNumber" value="{{profileDetails?.accountNumber}}" placeholder="Ex:611920944449">
           </div>
@@ -481,7 +481,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="ifsccode" class="col-form-label">IFSC code :</label>
+            <label for="ifsccode" class="col-form-label">IFSC code</label>
             <input type="text" class="form-control" name="ifsccode" id="ifsccode" [(ngModel)]="user.ifsccode"
               value="{{profileDetails?.ifsccode}}" (input)="validateIFSC()" placeholder="Ex:BARB0NASIRA">
             <div *ngIf="invalidIFSC" class="text-danger">
@@ -493,7 +493,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="holderName" class="col-form-label">Bank holder name :</label>
+            <label for="holderName" class="col-form-label">Bank holder name</label>
             <input type="text" class="form-control" name="holderName" id="holderName" [(ngModel)]="user.holderName"
               value="{{profileDetails?.holderName}}" placeholder="Name">
           </div>
@@ -503,7 +503,7 @@
       <div class="row justify-content-center">
         <div class="col-md-3">
           <div class="form-group">
-            <label for="bankName" class="col-form-label">Bank Name :</label>
+            <label for="bankName" class="col-form-label">Bank Name</label>
             <input type="text" class="form-control" name="bankName" id="bankName" [(ngModel)]="user.bankName"
               value="{{profileDetails?.bankName}}" placeholder="Bank Name">
 
@@ -512,7 +512,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="esicno" class="col-form-label">ESIC no.:</label>
+            <label for="esicno" class="col-form-label">ESIC no.</label>
             <input type="text" class="form-control" name="esicno" id="esicno" [(ngModel)]="user.esicno"
               value="{{profileDetails?.esicno}}" placeholder="Ex:1234567890">
           </div>
@@ -520,7 +520,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <label for="pfno" class="col-form-label">P.F. No.:</label>
+            <label for="pfno" class="col-form-label">P.F. No.</label>
             <input type="text" class="form-control" name="pfno" id="pfno" [(ngModel)]="user.pfno"
               value="{{profileDetails?.pfno}}" placeholder="Ex:123456789012">
           </div>

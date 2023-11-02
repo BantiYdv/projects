@@ -83,6 +83,11 @@ export class TestComponent {
   ];
 
   showAllDocsTable: any;
+  
+  imageUrl: SafeUrl | undefined;
+  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
+
+  
   // search start
   // editName: boolean = false;
   // editDesignation: boolean = false;
@@ -1423,6 +1428,7 @@ export class TestComponent {
 //   }
 // }
 // // API for all docs end
+
 
 
 

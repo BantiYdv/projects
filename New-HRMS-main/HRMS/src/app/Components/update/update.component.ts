@@ -535,11 +535,9 @@ export class UpdateComponent {
     formData.append('aadharCard', this.user.aadharCard);
     formData.append('panCard', this.user.panCard);
     formData.append('offerLetter', this.user.offerLetter);
-    formData.append('resignationLetter', this.user.resignationLetter);
-    formData.append('apprisalLetter', this.user.apprisalLetter);
+    formData.append('RelievingLetter', this.user.RelievingLetter);
+    formData.append('ExperienceLetter', this.user.ExperienceLetter);
     formData.append('salarySlip1', this.user.salarySlip1);
-    formData.append('salarySlip2', this.user.salarySlip2);
-    formData.append('salarySlip3', this.user.salarySlip3);
     formData.append('userImage', this.user.userImage);
 
 

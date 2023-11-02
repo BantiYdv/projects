@@ -366,3 +366,15 @@ body .fc-widget-header a {
 ::placeholder {
   font-weight: lighter;
 }
+
+
+.custom-mat-field {
+  padding: 0; /* Adjust the padding to your desired value */
+}
+
+/* Or, you can directly target the mat-select element */
+.custom-select-class {
+  padding: 0; /* Adjust the padding to your desired value */
+}
+
+

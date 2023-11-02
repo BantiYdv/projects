@@ -98,7 +98,30 @@ uploadDocs(formData: any, id: number) {
  return this.http.post(url, formData, { headers });
 
 }
-// upload pdf end
+// upload pdf end 
 
+
+// testing upload 
+upload(formData: any) {
+  
+  const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const url = `${this.api.uploadUrl}`;
+
+ return this.http.post(url, formData, { headers });
+
+}
+// testing download
+Download(id: number): Observable<HttpResponse<Blob>> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`).set('Content-Type', 'multipart/form-data; boundary=<calculated when request is sent>');
+  const url = `${this.api.Download}/${id}`;
+  return this.http.get(url, {
+    headers,
+    
+    observe: 'response', // This ensures you get the full HTTP response
+    responseType: 'blob', // This tells Angular to expect a binary response
+  });
+}
 
 }
