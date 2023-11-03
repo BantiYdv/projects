@@ -67,18 +67,28 @@ userBasicInfo(id: number): Observable<any>{
 //   const url = `${this.api.Docs}/${id}`;
 //   return this.http.get(url, { headers });
 // }
-DownloadDocs(id: number, filename: string): Observable<HttpResponse<Blob>> {
+// DownloadDocs(id: number, filename: string): Observable<HttpResponse<Blob>> {
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const url = `${this.api.Docs}`;
+//   return this.http.get(url, {
+//     headers,
+//     params: {id, filename },
+//     observe: 'response', // This ensures you get the full HTTP response
+//     responseType: 'blob', // This tells Angular to expect a binary response
+//   });
+// }
+DownloadDocs(id: number,downloadName:string, filename: string): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   const url = `${this.api.Docs}`;
   return this.http.get(url, {
     headers,
-    params: {id, filename },
+    params: {id,downloadName, filename },
     observe: 'response', // This ensures you get the full HTTP response
     responseType: 'blob', // This tells Angular to expect a binary response
   });
 }
-
 // download all docs start
 // getAllDocs(id: number) {
 //   const url = `${this.api.AllDocsUrl}/${id}`;

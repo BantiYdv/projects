@@ -54,6 +54,7 @@ export class RegistrationComponent {
     }
   }
   // mandatory fields end
+  
 
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
@@ -166,14 +167,12 @@ export class RegistrationComponent {
 
   }
 
-  // set probation end date start
-  // endDateEnabled: boolean = false;
-
-  // startDateSelected() {
-  //   // Set the minimum allowed end date as the selected start date
-  //   this.endDateEnabled = true;
-  // }
-  // set probation end date end
+  // set probation start date according to date of joining start
+  syncProbationStartDate() {
+    // Synchronize Probation start date with Date of joining
+    this.user.startDateOfProbation = this.user.dateofjoining;
+  }
+  // set probation start date according to date of joining end
 
   // duration of probation count total days start
   // calculateTotalDays() {
@@ -521,7 +520,8 @@ export class RegistrationComponent {
   }
 
 
-
+  
+  
 
 
   

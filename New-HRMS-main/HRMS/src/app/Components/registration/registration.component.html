@@ -193,8 +193,8 @@
             <label for="gender">Gender<span style="color: red;">*</span></label>
               <select class="form-control" id="gender" name="gender" [(ngModel)]="user.gender" #genderInput="ngModel" required>
                 <option value="">--Select--</option>
-                <option value="gender">Male</option>
-                <option value="gender">Female</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
               <div *ngIf="genderInput.invalid && (genderInput.dirty || genderInput.touched)" class="text-danger">
                 Gender is required.
@@ -282,7 +282,7 @@
           <div class="form-group">
             <label for="dateofjoining">Date of joining <span style="color: red;">*</span></label>
             <input type="date" class="form-control" id="dateofjoining" name="dateofjoining"
-              placeholder="Enter Date Of Joining" [(ngModel)]="user.dateofjoining" max="{{ getMaxDate() }}"
+              placeholder="Enter Date Of Joining" [(ngModel)]="user.dateofjoining" (ngModelChange)="syncProbationStartDate()" max="{{ getMaxDate() }}"
               #dateofjoiningInput="ngModel" required>
             <div *ngIf="dateofjoiningInput.invalid && (dateofjoiningInput.dirty || dateofjoiningInput.touched)"
               class="text-danger">
@@ -334,7 +334,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="startDateOfProbation" class="col-form-label">Probation start date</label>
-              <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation" (ngModelChange)="updateEndDate()">
+              <input type="date" class="form-control" name="startDateOfProbation" id="startDateOfProbation" [max]="currentDate" [(ngModel)]="user.startDateOfProbation" (ngModelChange)="updateEndDate()" required>
             </div>
           </div>
         

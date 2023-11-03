@@ -12,7 +12,7 @@
                 <div class="d-flex flex-column align-items-center text-center">
                   <div class="profile-header-img mb-2">
                     <!-- <img [src]="imageUrl ? imageUrl : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg'" alt=""/> -->
-                    <img class="rounded-circle img-fluid" [src]="imageUrl || defaultImageURL" alt="" />
+                    <img class="img-fluid circular-image" [src]="imageUrl || defaultImageURL" alt="" />
                     <div class="upload-overlay">
                       <label class="add-to-cart" for="fileInput">
                         <i class="fas fa-camera"></i> Upload Image
@@ -157,6 +157,16 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
+                    <h4 class="mb-0">Gender</h4>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <span id="dob"><strong>{{ profileDetails?.gender }}</strong></span>
+
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
                     <h4 class="mb-0">Emergency Contact</h4>
                   </div>
                   <div class="col-sm-9 text-secondary">
@@ -272,7 +282,7 @@
                   </div>
                   <div class="col-sm-9 text-secondary">
                     <p><span id="bloodGroup"><strong>{{ profileDetails?.bloodGroup }}</strong>
-                        <input type="text" class="form-control" id="bloodGroupInput" [(ngModel)]="profileDetails.bloodGroup"></span></p>
+                        <input type="text" class="form-control" id="bloodGroup" name="bloodGroup" [(ngModel)]="profileDetails.bloodGroup" #bloodGroup></span></p>
                   </div> 
                 </div>                     
                 </div>
@@ -288,12 +298,12 @@
                   </div>
                   <div class="col-sm-9 text-secondary">
                     <p><span id="skills"><strong>{{ profileDetails?.skills }}</strong>
-                        <input type="text" class="form-control" id="skillsInput" [(ngModel)]="profileDetails.skills"></span></p>
+                        <input type="text" class="form-control" id="skills" name="skills" [(ngModel)]="profileDetails.skills" #skills></span></p>
                   </div> 
                 </div>                     
                 </div>
                 
-                      <button class="btn btn-primary" type="submit" (click)="editProfile()">Save</button>
+                      <button class="btn btn-primary" type="submit" id="submit" name="submit" (click)="editProfile()">Save</button>
                     </form>
                     <div *ngIf="!showEditForm">
                       <!-- <div class="card mb-3 card-with-shadow"> -->
@@ -928,14 +938,14 @@
                     <div class="d-flex flex-column align-items-center text-center">
                       <div class="profile-header-img mb-2">
                         <img class="rounded-circle img-fluid"
-                          [src]="profileDetailsUser?.profilePhotoUrl || defaultImageURL" alt="" />
+                          [src]="'https://hrms.prilient.com' + profileDetailsUser?.profilePhotoUrl || defaultImageURL" alt="" />
 
                       </div>
                       <div class="mt-3">
-                        <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
-                            }}</span>
+                        <p><span id="firstname"><strong>{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
+                            }}</strong></span>
                         </p>
-                        <p><span id="designation1">{{ profileDetailsUser?.designation }}</span></p>
+                        <p><span id="designation1"><strong>{{ profileDetailsUser?.designation }}</strong></span></p>
 
                       </div>
                     </div>
@@ -971,36 +981,36 @@
                   </ul> -->
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Role
-                      <p class="m-0"><span id="role">{{ profileDetailsUser?.role.name }}</span></p>
+                      <p class="m-0"><span id="role"><strong>{{ profileDetailsUser?.role.name }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">
                       Department
-                      <p class="m-0"><span id="department">{{ profileDetailsUser?.department }}</span></p>
+                      <p class="m-0"><span id="department"><strong>{{ profileDetailsUser?.department }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">
                       Reporting To
-                      <p class="m-0"><span id="teamlead">{{ profileDetailsUser?.teamlead }}</span></p>
+                      <p class="m-0"><span id="teamlead"><strong>{{ profileDetailsUser?.teamlead }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Joined
                       On
-                      <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.dateofjoining }}</span></p>
+                      <p class="m-0"><span id="dateofjoining"><strong>{{ profileDetailsUser?.dateofjoining }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Total
                       Leaves
-                      <p class="m-0"><span id="totalleaves">{{ profileDetailsUser?.totalleaves }}</span></p>
+                      <p class="m-0"><span id="totalleaves"><strong>{{ profileDetailsUser?.totalleaves }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Sick
                       Leave
-                      <p class="m-0"><span id="sickLeavesPerMonth">{{ profileDetailsUser?.sickLeavesPerMonth }}</span>
+                      <p class="m-0"><span id="sickLeavesPerMonth"><strong>{{ profileDetailsUser?.sickLeavesPerMonth }}</strong></span>
                       </p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Casual
                       Leave
-                      <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetailsUser?.casualLeavesPerMonth
-                          }}</span></p>
+                      <p class="m-0"><span id="casualLeavesPerMonth"><strong>{{ profileDetailsUser?.casualLeavesPerMonth
+                          }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">WFH
-                      <p class="m-0"><span id="totalwfh">{{ profileDetailsUser?.totalwfh }}</span></p>
+                      <p class="m-0"><span id="totalwfh"><strong>{{ profileDetailsUser?.totalwfh }}</strong></span></p>
                     </li>
 
                   </ul>
@@ -1027,7 +1037,7 @@
                         <h4 class="mb-0">Email</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="emailid">{{ profileDetailsUser?.emailid }}</span></p>
+                        <p><span id="emailid"><strong>{{ profileDetailsUser?.emailid }}</strong></span></p>
 
                       </div>
                     </div>
@@ -1037,7 +1047,7 @@
                         <h4 class="mb-0">Phone</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="phonenumber">{{ profileDetailsUser?.phonenumber }}</span></p>
+                        <p><span id="phonenumber"><strong>{{ profileDetailsUser?.phonenumber }}</strong></span></p>
 
                       </div>
                     </div>
@@ -1056,7 +1066,7 @@
                         <h4 class="mb-0">Birth Day</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="dob">{{ profileDetailsUser?.dob }}</span></p>
+                        <p><span id="dob"><strong>{{ profileDetailsUser?.dob }}</strong></span></p>
 
                       </div>
                     </div>
@@ -1064,10 +1074,20 @@
                     <hr>
                     <div class="row">
                       <div class="col-sm-3">
+                        <h4 class="mb-0">Gender</h4>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        <span id="dob"><strong>{{ profileDetailsUser?.gender }}</strong></span>
+    
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
                         <h4 class="mb-0">Emergency Contact</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="emergencyContact">{{ profileDetailsUser?.emergencyContact }}</span>
+                        <p><span id="emergencyContact"><strong>{{ profileDetailsUser?.emergencyContact }}</strong></span>
                         </p>
                       </div>
                     </div>
@@ -1077,7 +1097,7 @@
                         <h4 class="mb-0">Address</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="address">{{ profileDetailsUser?.address }}</span></p>
+                        <p><span id="address"><strong>{{ profileDetailsUser?.address }}</strong></span></p>
 
                       </div>
                     </div>
@@ -1093,7 +1113,7 @@
                         <h4 class="mb-0">Marital Status</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="maritalStatus">{{ profileDetailsUser?.maritalStatus }}</span></p>
+                        <p><span id="maritalStatus"><strong>{{ profileDetailsUser?.maritalStatus }}</strong></span></p>
 
                       </div>
                     </div>
@@ -1103,7 +1123,7 @@
                         <h4 class="mb-0">Blood Group</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="bloodGroup">{{ profileDetailsUser?.bloodGroup }}</span></p>
+                        <p><span id="bloodGroup"><strong>{{ profileDetailsUser?.bloodGroup }}</strong></span></p>
 
                       </div>
                     </div>
@@ -1113,7 +1133,7 @@
                         <h4 class="mb-0">Skills</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="skills">{{ profileDetailsUser?.skills }}</span></p>
+                        <p><span id="skills"><strong>{{ profileDetailsUser?.skills }}</strong></span></p>
 
                       </div>
                     </div>
@@ -1150,7 +1170,7 @@
                           <h4 class="mb-0">Assigning assets</h4>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                          <p><span id="address">{{ profileDetailsUser?.assetName }}</span></p>
+                          <p><span id="address"><strong>{{ profileDetailsUser?.assetName }}</strong></span></p>
 
                         </div>
                       </div>
@@ -1214,7 +1234,7 @@
 
                     </tr> -->
 
-                    <tr *ngIf="profileDetailsUser?.academicDocument1">
+                    <!-- <tr *ngIf="profileDetailsUser?.academicDocument1">
                       <td>{{ 1 }}</td>
                       <td>{{profileDetailsUser?.academicDocument1 ? '10th marksheet' : null }} </td>
                       <td>
@@ -1222,6 +1242,17 @@
                           (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument1.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
+                      </td>
+                    </tr> -->
+
+                    <tr *ngIf="profileDetailsUser?.academicDocument1">
+                      <td>{{ 1 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument1 ? '10th marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, '10th_Marksheet_' , 'academicDocument1.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                        
                       </td>
                     </tr>
 
@@ -1231,7 +1262,7 @@
                       <td>{{profileDetailsUser?.academicDocument2 ? '12th marksheet' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument2.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, '12th_Marksheet_', 'academicDocument2.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
@@ -1241,7 +1272,7 @@
                       <td>{{profileDetailsUser?.academicDocument3 ? 'Graduation marksheet' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument3.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Gradutaion_Marksheet_', 'academicDocument3.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
@@ -1251,7 +1282,7 @@
                       <td>{{profileDetailsUser?.academicDocument4 ? 'Higher education marksheet' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument4.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Higher_Education_Marksheet_', 'academicDocument4.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
@@ -1261,7 +1292,7 @@
                       <td>{{profileDetailsUser?.signature ? 'Signature' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'signature.png')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Signature_', 'signature.png')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
@@ -1271,7 +1302,7 @@
                       <td>{{profileDetailsUser?.aadharCard ? 'Aadhar Card' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'aadharCard.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'AadharCard_', 'aadharCard.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
@@ -1281,7 +1312,7 @@
                       <td>{{profileDetailsUser?.panCard ? 'Pan Card' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'panCard.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'PanCard_', 'panCard.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
@@ -1291,27 +1322,27 @@
                       <td>{{profileDetailsUser?.offerLetter ? 'Offer Letter' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'offerLetter.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Offer_Letter_', 'offerLetter.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
                     </tr>
-                    <tr *ngIf="profileDetailsUser?.resignationLetter">
+                    <tr *ngIf="profileDetailsUser?.RelievingLetter">
                       <td>{{ 9 }}</td>
-                      <td>{{profileDetailsUser?.resignationLetter ? 'Resignation Letter' : null }} </td>
+                      <td>{{profileDetailsUser?.RelievingLetter ? 'Relieving Letter' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'resignationLetter.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Relieving_Letter_', 'RelievingLetter.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
                     </tr>
-                    <tr *ngIf="profileDetailsUser?.apprisalLetter">
+                    <tr *ngIf="profileDetailsUser?.ExperienceLetter">
                       <td>{{ 10 }}</td>
-                      <td>{{profileDetailsUser?.apprisalLetter ? 'Apprisal Letter' : null }} </td>
+                      <td>{{profileDetailsUser?.ExperienceLetter ? 'Experience Letter' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'apprisalLetter.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Experience_Letter_', 'ExperienceLetter.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
@@ -1321,35 +1352,18 @@
                       <td>{{profileDetailsUser?.salarySlip1 ? 'Salary Slip' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'salarySlip1.pdf')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Salary_Slip_', 'salarySlip1.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>
                     </tr>
-                    <!-- <tr *ngIf="profileDetailsUser?.salarySlip2">
-                        <td>{{ 12 }}</td>
-                        <td>{{profileDetailsUser?.salarySlip2 ? 'salarySlip2' : null }} </td>
-                        <td>
-                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'salarySlip2.pdf')">
-                            <i class="fa-solid fa-download"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr *ngIf="profileDetailsUser?.salarySlip3">
-                        <td>{{ 13 }}</td>
-                        <td>{{profileDetailsUser?.salarySlip3 ? 'salarySlip3' : null }} </td>
-                        <td>
-                          <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, 'salarySlip3.pdf')">
-                            <i class="fa-solid fa-download"></i>
-                          </button>
-                        </td>
-                      </tr> -->
+                   
                     <tr *ngIf="profileDetailsUser?.userImage">
                       <td>{{ 12 }}</td>
                       <td>{{profileDetailsUser?.userImage ? 'User Image' : null }} </td>
                       <td>
                         <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'userImage.png')">
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'User_Image_', 'userImage.png')">
                           <i class="fa-solid fa-download"></i>
                         </button>
                       </td>

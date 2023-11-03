@@ -153,16 +153,7 @@ export class TestComponent {
       confirmPassword: ['', Validators.required]
     });
     // for change password end
-    this.openEmployee();
-    this.teamleave();
-    this.teamwfh();
-    this.toggleAdminLeaveTable();
-    this.viewattendance();
-    this.toggleWfhTable();
-    this.viewAllattendance();          // for view all attendance list
-    this.toggleAllWfhTable();
-    this.toggleAllLeaveTable();
-    this.togglecalendar();
+  
     
 
 
@@ -189,6 +180,16 @@ export class TestComponent {
 
   ngOnInit() {
     this.viewRole();
+    this.openEmployee();
+    this.teamleave();
+    this.teamwfh();
+    this.toggleAdminLeaveTable();
+    this.viewattendance();
+    this.toggleWfhTable();
+    this.viewAllattendance();          // for view all attendance list
+    this.toggleAllWfhTable();
+    this.toggleAllLeaveTable();
+    this.togglecalendar();
   }
 
 
@@ -942,8 +943,7 @@ export class TestComponent {
   viewattendance() {
     this.showAttTable = !this.showAttTable;
 
-    if (this.showAttTable) {
-
+    if (this.showAttTable){
 
       // Call the service method to fetch attendance data
       this.testService.getAttendance().subscribe(
@@ -959,7 +959,7 @@ export class TestComponent {
         error => {
           Swal.fire('Error', error.error, 'error');
           // Hide the table if an error occurs
-          this.showAttTable = false;
+          // this.showAttTable = false;
         }
       );
     }
@@ -1021,11 +1021,11 @@ export class TestComponent {
   // API for view WFH end
 
 
-
+// API for view All Attendance start
   viewAllattendance() {
     this.showAllAttTable = !this.showAllAttTable;
 
-    if (this.showAllAttTable) {
+    if (this.showAllAttTable && '#/test/viewAllAtt' === window.location.hash) {
 
 
       // Call the service method to fetch all attendance data
@@ -1038,6 +1038,7 @@ export class TestComponent {
 
           // Set the reversed array as the data source
           this.AllAttData = reversedData;
+          console.log("atttttttt",response);
         },
         error => {
           // Swal.fire('Error', error.error, 'error');  
@@ -1047,6 +1048,7 @@ export class TestComponent {
       );
     }
   }
+  
   // API for view All Attendance end
 
   // API for view All WFH start
@@ -1054,7 +1056,7 @@ export class TestComponent {
   toggleAllWfhTable(): void {
     this.showAllWfhTable = !this.showAllWfhTable;
 
-    if (this.showAllWfhTable) {
+    if (this.showAllWfhTable && '#/test/viewAllWfh' === window.location.hash) {
 
       // Call the service method to fetch all WFH data for administrators
       this.testService.getAllWfhData().subscribe(
@@ -1083,7 +1085,7 @@ export class TestComponent {
   toggleAllLeaveTable(): void {
     this.showAllLeaveTable = !this.showAllLeaveTable;
 
-    if (this.showAllLeaveTable) {
+    if (this.showAllLeaveTable && '#/test/viewAllLeave' === window.location.hash) {
 
 
       // Call the service method to fetch all leave data

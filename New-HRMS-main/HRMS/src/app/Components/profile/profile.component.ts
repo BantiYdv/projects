@@ -66,12 +66,12 @@ defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.p
   id: any;
 
   // when add profile then show basic info in form start
-  @ViewChild('phonenumber') phonenumberInfo: ElementRef | any;
+  // @ViewChild('phonenumber') phonenumberInfo: ElementRef | any;
   @ViewChild('maritalStatus') maritalStatusInfo: ElementRef | any;
   @ViewChild('bloodGroup') bloodGroupInfo: ElementRef | any;
   @ViewChild('skills') skillsInfo: ElementRef | any;
-  @ViewChild('emergencyContact') emergencyContactInfo: ElementRef | any;
-  @ViewChild('address') addressInfo: ElementRef | any;
+  // @ViewChild('emergencyContact') emergencyContactInfo: ElementRef | any;
+  // @ViewChild('address') addressInfo: ElementRef | any;
 
 
   // when add profile then show basic info in form end
@@ -193,38 +193,66 @@ userProfile(): void {
 
 
 
-DownloadDocs(id: number, filename: string) {
+// DownloadDocs(id: number, filename: string) {
 
-  this.route.queryParams.subscribe(params => {
-    const id = params['id'];
-    const formData = new FormData();
+//   this.route.queryParams.subscribe(params => {
+//     const id = params['id'];
+//     const formData = new FormData();
    
-    // Append the selected files to the FormData object
+//     // Append the selected files to the FormData object
    
-    formData.append('academicDocument1', this.profileDetailsUser.academicDocument1);
+//     formData.append('academicDocument1', this.profileDetailsUser.academicDocument1);
    
 
-    if (id) {
-      console.log("id docs", id);
-      this.profileService.DownloadDocs(id, filename).subscribe((response: HttpResponse<Blob>) => {
-        if (response.body) {
+//     if (id) {
+//       console.log("id docs", id);
+//       this.profileService.DownloadDocs(id, filename).subscribe((response: HttpResponse<Blob>) => {
+//         if (response.body) {
          
     
-          saveAs(response.body, filename); 
-          console.log("document", response);
-        } else {
-          console.error('Response body is null.');
-        }
-      }, (error) => {
-        Swal.fire('Error', error.error, 'error');  
-        console.error(error);
-      });
-    } else {
-      console.error('Employee ID not found in URL');
-    }
-  });
+//           saveAs(response.body, filename); 
+//           console.log("document", response);
+//         } else {
+//           console.error('Response body is null.');
+//         }
+//       }, (error) => {
+//         Swal.fire('Error', error.error, 'error');  
+//         console.error(error);
+//       });
+//     } else {
+//       console.error('Employee ID not found in URL');
+//     }
+//   });
 
+// }
+
+
+DownloadDocs(id: number, downloadName: string, filename: string) {
+  // Fetch the user details to access first and last name
+  const firstName = this.profileDetailsUser?.firstname || '';
+  const lastName = this.profileDetailsUser?.lastname || '';
+
+  // Concatenate the first name, last name, and desired filename extension
+  const concatenatedFilename = downloadName + firstName + lastName + '.' + filename.split('.').pop();
+
+  if (id) {
+    console.log("id docs", id);
+    this.profileService.DownloadDocs(id, downloadName, filename).subscribe((response: HttpResponse<Blob>) => {
+      if (response.body) {
+        saveAs(response.body, concatenatedFilename);
+        console.log("document", response);
+      } else {
+        console.error('Response body is null.');
+      }
+    }, (error) => {
+      Swal.fire('Error', error.error, 'error');
+      console.error(error);
+    });
+  } else {
+    console.error('Employee ID not found in URL');
+  }
 }
+
 
     //  API for Edit profile data start
     // editProfile() {
@@ -370,12 +398,9 @@ DownloadDocs(id: number, filename: string) {
     fetchProfileDetails() {
       this.profileService.personaldetail().subscribe(
         (response: any) => {
-          this.phonenumber = response[0].phonenumber;
           this.maritalStatus = response[0].maritalStatus;
           this.bloodGroup = response[0].bloodGroup;
           this.skills = response[0].skills;
-          this.emergencyContact = response[0].emergencyContact;
-          this.address = response[0].address;
           console.log("<<<<<<<<<updated>>>>>>>>>", response);
          
         },
@@ -466,7 +491,9 @@ DownloadDocs(id: number, filename: string) {
     this.profileService.uploadPhoto(file).subscribe(
       (response) => {
         // Handle the response from the server after image upload
-        Swal.fire('Success!', 'Image uploaded successfully!', 'success');
+        Swal.fire('Success!', 'Image successfully uploaded!', 'success');
+        
+this.getUserPhoto();
         console.log("photo upload>>>>>>",response);
       },
       (error) => {

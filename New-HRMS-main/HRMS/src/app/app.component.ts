@@ -107,7 +107,7 @@ id: any;
   // }
 // for show side nav bar according to user login with permission start
 permissionSet = [
-  { name: 'ALL_EMPLOYEES_DATA', router: '/test/employee', function: "employee", imgName: "All Employees", src: '/assets/Group 7.png'},
+  { name: 'ALL_EMPLOYEES_DATA', router: '/test/employee', function: "employee",  imgName: "All Employees", src: '/assets/Group 7.png'},
   { name: 'NEW_REGISTRATION', router: '/registration', function: "registration", imgName: "Registeration", src: '/assets/Group 8.png'},
   { name: 'ALL_EMPLOYEES_ATTENDANCE', router: '/test/viewAllAtt', function: "viewAllAtt", imgName: "All Attendance", src: '/assets/allAtt.png'},
   { name: 'LEAVE_SHOW_TEAMLEAD', router: '/test/teamleave', function: 'teamleave', imgName: "Team Leaves", src: '/assets/Group 9.png' },
