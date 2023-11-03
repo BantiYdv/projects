@@ -154,37 +154,7 @@
     </form>
   </div>
 </div> -->
-<div class="col-md-4">
-  <div class="form-group">
-    <label for="photo" class="form-label">Upload Photo: </label>
-    <input class="form-control" type="file" id="photo" name="photo"
-      accept=".png" (change)="DocUpload($event, 'photo')"  placeholder="Your Placeholder Text"
-      style="color: #ada4a4;" [(ngModel)]="testing.photo">
-    <p class="mt-3"> <span *ngIf="errorMessages['photo']" class="error-message" style="color: red;">
-      {{ errorMessages['photo'] }}</span></p>
-  </div>
-</div>
 
-<div class="col-md-4">
-  <div class="form-group">
-    <label for="apprisalLetter" class="form-label">appraisal Letter:</label>
-    <input class="form-control" type="file" id="apprisalLetter" name="apprisalLetter"
-      accept=".pdf, .doc, .docx" (change)="DocUpload($event, 'apprisalLetter')" placeholder="Your Placeholder Text"
-      style="color: #ada4a4;" [(ngModel)]="testing.apprisalLetter">
-    <p class="mt-3">
-      <span *ngIf="errorMessages['apprisalLetter']" class="error-message" style="color: red;">
-        {{ errorMessages['apprisalLetter'] }}
-      </span>
-    </p>
-  </div>
-</div>
-
-<button type="submit" color="primary"
-        class="btn btn-primary m-1" (click)="Upload()">Upload</button>
-
-
-        <button type="submit" color="primary"
-        class="btn btn-primary m-1" (click)="download()">Download</button>
 
 
 

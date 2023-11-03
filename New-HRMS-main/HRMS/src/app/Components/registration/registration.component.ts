@@ -105,11 +105,7 @@ export class RegistrationComponent {
     
   };
 
-  testing: any = {
-    photo:'',
-    apprisalLetter:''
-  }
-
+ 
   imageUrl: SafeUrl | undefined;
   defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
 
@@ -528,101 +524,7 @@ export class RegistrationComponent {
 
 
 
-  // testing upload
-  // DocUpload(event: Event, controlName: string) {
-  //     const inputElement = event.target as HTMLInputElement;
-  //     if (inputElement.files && inputElement.files.length > 0) {
-  //       const file = inputElement.files[0];
-  //       // Here you can perform file validation and other checks
   
-  //       // Assign the selected file to the user object or form control
-  //       this.testing[controlName] = file;
-  //     }
-  //   }
-  DocUpload(event: Event, controlName: string) {
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files && inputElement.files.length > 0 ? inputElement.files[0] : null;
-  
-    let allowedTypes: string[];
-    let errorMessage: string;
-  
-    if (controlName === 'photo') {
-      allowedTypes = ['application/pdf'];
-      errorMessage = 'Please upload a PNG file.';
-    } else if (controlName === 'apprisalLetter') {
-      allowedTypes = ['application/pdf'];
-      errorMessage = 'Please upload a PDF, DOC, or DOCX file.';
-    } else {
-      // Handle other fields or default case if necessary
-      return;
-    }
-  
-    const isAllowedType = file && allowedTypes.includes(file.type);
-    const isFileSizeValid = file && file.size <= 5 * 1024 * 1024 && file.size >= 20 * 1024;
-  
-    if (!isAllowedType || !isFileSizeValid) {
-      if (!isAllowedType) {
-        this.errorMessages[controlName] = errorMessage;
-      } else {
-        this.errorMessages[controlName] = 'Please upload a file below 5MB and at least 20KB.';
-      }
-      inputElement.value = ''; // Clear the input field
-      this.testing[controlName] = null; // Clear the user data for this field
-    } else {
-      this.errorMessages[controlName] = ''; // Clear the error message
-      this.testing[controlName] = file; // Assign the selected file to the user object or form control
-    }
-  }
-  
-
-  Upload() {
-    // Create a FormData object to send files to the server
-    const formData = new FormData();
-
-    // Append the selected files to the FormData object
-    formData.append('photo', this.testing.photo);
-    formData.append('apprisalLetter', this.testing.apprisalLetter);
-    console.log("testing", this.testing);
-    console.log("gfgfghfhfghf", formData);
-    // Make an HTTP POST request to the API endpoint
-    this.RegisterAndUpdate.upload(formData).subscribe(
-      (response) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'File Upload',
-          text: 'File Upload Successfully',
-        })
-       
-        
-        console.log('Files uploaded successfully:', response);
-      },
-      (error) => {
-        // Handle error
-        console.error('Error uploading files:', error);
-      }
-    );
-  }
-
-// testing download
-download() {
-
-  this.RegisterAndUpdate.Download(14).subscribe((response: HttpResponse<Blob>) => {
-    if (response.body) {
-     
-      const blob = response.body;
-      
-            let filename = 'downloaded_file.pdf'; // Default file name
-      saveAs(blob, filename);
-      console.log("document", response);
-    } else {
-      console.error('Response body is null.');
-    }
-  }, (error) => {
-    Swal.fire('Error', error.error, 'error');  
-    console.error(error);
-  });
-
-}
 
 
 

@@ -65,8 +65,7 @@ export class ApiService {
   public uploadPhoto = `${this.apiUrl}gateway/hrms/upload-photo`;
 
 
-  public uploadUrl = `${this.apiUrl}gateway/hrms/upload-personal-document`;
-  public Download = `${this.apiUrl}gateway/hrms/download-offer-letter`;
+  
 
   constructor(private http: HttpClient) { }
 
