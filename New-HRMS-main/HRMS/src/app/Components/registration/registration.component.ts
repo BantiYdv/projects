@@ -42,7 +42,7 @@ export class RegistrationComponent {
   showErrorAlert: boolean = false; // Flag to control error alert
 
   validateFields() {
-    const mandatoryFields = ['firstname', 'lastname', 'emailid', 'phonenumber', 'address', 'emergencyContact', 'dob', 'dateofjoining', 'role'];
+    const mandatoryFields = ['firstname', 'lastname', 'gender', 'emailid', 'phonenumber', 'address', 'emergencyContact', 'dob', 'dateofjoining', 'role'];
 
     // Check if any mandatory field is empty
     const emptyFields = mandatoryFields.filter(field => !this.user[field]);
@@ -51,6 +51,7 @@ export class RegistrationComponent {
       alert('Mandatory fields are required. Please fill in all mandatory fields.');
     } else {
       this.stepper.next(); // Move to the next step if all mandatory fields are filled
+      this.firstFormGroup;
     }
   }
   // mandatory fields end
@@ -110,6 +111,8 @@ export class RegistrationComponent {
   imageUrl: SafeUrl | undefined;
   defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
 
+
+  
   username: any;
   registerId: any;
 

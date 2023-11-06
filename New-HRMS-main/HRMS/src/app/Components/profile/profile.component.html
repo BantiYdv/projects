@@ -243,14 +243,26 @@
             <!-- testing for edit in form start -->
             <div class="card mb-3 card-with-shadow">
               <div class="card-body">
-                <div class="row">
+                <!-- <div class="row">
                   <h3 class="d-flex justify-content-between align-items-center w-100">
                     BASIC INFORMATION
                     <button class="btn btn-primary rounded-pill px-3" (click)="showEditForm = !showEditForm"><i class="fas fa-edit"></i></button>
                   </h3>
                 </div>
+                <hr> -->
+                <div class="row">
+                  <h3 class="d-flex justify-content-between align-items-center w-100">
+                    BASIC INFORMATION
+                    <button *ngIf="!showEditForm" class="btn btn-primary rounded-pill px-3" (click)="showEditForm = true">
+                      <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button *ngIf="showEditForm" class="btn btn-secondary rounded-pill px-3" (click)="showEditForm = false">
+                      <i class="fas fa-times"></i> Close
+                    </button>
+                  </h3>
+                </div>
                 <hr>
-            
+                
                 <div class="row">
                   <div class="col-sm-12">
                     <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
@@ -1189,7 +1201,8 @@
 
             <!-- <button mat-button matStepperNext>Next</button> -->
             <div class="col-md-9 d-flex justify-content-end">
-              <button class="btn btn-primary" mat-button matStepperNext>Next</button>
+              <button class="btn btn-primary m-1" mat-button [routerLink]="['/test', 'employee']" (click)="loginService.showTable('employee')">Back</button>
+              <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button>
             </div>
           </div>
 
@@ -1375,6 +1388,7 @@
                 </table>
               </div>
               <div class="modal-footer">
+                <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
                 <button type="button" class="btn btn-primary m-1" data-bs-dismiss="modal" (click)="AllDocsDownload()">
                   All Download</button>
                 <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal"

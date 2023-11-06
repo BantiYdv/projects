@@ -162,9 +162,9 @@
           <div class="form-group">
             <label for="gender">Gender<span style="color: red;">*</span></label>
               <select class="form-control" id="gender" name="gender" [(ngModel)]="user.gender" value="{{profileDetails?.gender}}">
-                <option value="">Select</option>
-                <option value="gender">Male</option>
-                <option value="gender">Female</option>
+                <option value="" disabled selected>--Select--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
   
               </select>
           </div>
@@ -459,7 +459,8 @@
 
         <!-- <button mat-button matStepperNext>Next</button> -->
         <div class="col-md-9 d-flex justify-content-end">
-          <button class="btn btn-primary" mat-button matStepperNext>Next</button>
+          <button class="btn btn-primary m-1" mat-button [routerLink]="['/test', 'employee']" (click)="loginService.showTable('employee')">Back</button>
+          <button class="btn btn-primary m-1" mat-button matStepperNext (click)="validateFields()">Next</button>
         </div>
       </div>
     </form>

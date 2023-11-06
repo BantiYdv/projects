@@ -35,6 +35,25 @@ export class UpdateComponent {
   @ViewChild('stepper') stepper!: MatStepper;                 // go to document step after register
 
 
+   // mandatory fields start
+   showErrorAlert: boolean = false; // Flag to control error alert
+
+   validateFields() {
+     const mandatoryFields = ['firstname', 'lastname', 'gender', 'emailid', 'phonenumber', 'address', 'emergencyContact', 'dob', 'dateofjoining', 'role'];
+ 
+     // Check if any mandatory field is empty
+     const emptyFields = mandatoryFields.filter(field => !this.user[field]);
+ 
+     if (emptyFields.length > 0) {
+       alert('Mandatory fields are required. Please fill in all mandatory fields.');
+     } else {
+       this.stepper.next(); // Move to the next step if all mandatory fields are filled
+       this.firstFormGroup;
+     }
+   }
+   // mandatory fields end
+
+
   user: any = {                                              // Object to store the user registration data
     dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
     firstname: '',

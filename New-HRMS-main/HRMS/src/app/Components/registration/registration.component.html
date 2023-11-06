@@ -192,7 +192,7 @@
           <div class="form-group">
             <label for="gender">Gender<span style="color: red;">*</span></label>
               <select class="form-control" id="gender" name="gender" [(ngModel)]="user.gender" #genderInput="ngModel" required>
-                <option value="">--Select--</option>
+                <option value="" disabled selected>--Select--</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
@@ -474,12 +474,12 @@
                         <mat-select name="assetName" id="assetName" class="custom-select-class" multiple [(ngModel)]="user.assetName">
                           <mat-option value="no">No Assets</mat-option>
                           <mat-option value="Laptop">Laptop</mat-option>
-                          <mat-option value="LaptopCharger">Laptop Charger</mat-option>
+                          <mat-option value="Laptop Charger">Laptop Charger</mat-option>
                           <mat-option value="mouse">Mouse</mat-option>
                           <mat-option value="keyboard">Keyboard</mat-option>
                           <mat-option value="phone">Phone</mat-option>
-                          <mat-option value="phoneCharger">Phone Charger</mat-option>
-                          <mat-option value="headPhone">Head Phone</mat-option>
+                          <mat-option value="phone Charger">Phone Charger</mat-option>
+                          <mat-option value="head Phone">Head Phone</mat-option>
                         </mat-select>
                       </mat-form-field>
           </div>
