@@ -110,6 +110,14 @@ getAllDocs(id: string): Observable<Blob> {
 // download all docs end
 
 
+// show profile name in top start
+getShowData(): Observable<any> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.EmpNameShow}`, { headers });
+}
+// show profile name in top end
+
 
 
 }

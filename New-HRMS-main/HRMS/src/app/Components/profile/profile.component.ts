@@ -148,7 +148,7 @@ this.getUserPhoto();
      
   viewProfile() {
     // Call the getShowData function from the service to fetch data
-    this.dashboardService.getShowData().subscribe(
+    this.profileService.getShowData().subscribe(
       (response: any) => {
         this.profileDetails = response;
         console.log("data >>>>>>", response);

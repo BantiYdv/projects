@@ -121,7 +121,6 @@ return permissions;
  // login start
  signin(username: string, password: string) {
 
-
   //for remove token from local storage in 5 hours start
   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -186,6 +185,8 @@ SignOut(): Observable<any> {
                 localStorage.removeItem("permissions" + `${i}`);
               }
               localStorage.removeItem('role');
+              localStorage.removeItem('tokenExpiration');
+              localStorage.removeItem('permissionLength')
               observer.next(); // Notify the observer that the logout was successful
               this.router.navigate(['/login']);
             });

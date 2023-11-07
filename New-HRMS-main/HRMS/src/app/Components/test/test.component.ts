@@ -199,9 +199,9 @@ export class TestComponent {
     this.showAllAdminTable = !this.showAllAdminTable;
     this.isModalOpen = true;
 
-    if (this.showAllAdminTable) {
+    if (this.showAllAdminTable && '#/test/employee' === window.location.hash) {
 
-
+   
       // Call the service method to fetch the list of employees
       this.testService.getEmployeeList().subscribe(
         (response: any) => {

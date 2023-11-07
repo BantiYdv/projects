@@ -272,11 +272,11 @@
                     <h4 class="mb-0">Marital Status</h4>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <p><span id="maritalStatus"><strong>{{ profileDetails?.maritalStatus }}</strong>
+                    <p><span id="maritalStatus">
                         <!-- <input type="text" class="form-control" id="maritalStatusInput" [(ngModel)]="profileDetails.maritalStatus" #maritalStatus> -->
                         <select class="form-control" id="maritalStatus" name="maritalStatus"
                         [(ngModel)]="profileDetails.maritalStatus" #maritalStatus>
-                        <option value="">--Select--</option>
+                        <option value="" disabled selected>--Select--</option>
                         <option value="single">Single</option>
                         <option value="married">Married</option>
   
@@ -293,7 +293,7 @@
                     <h4 class="mb-0">Blood Group</h4>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <p><span id="bloodGroup"><strong>{{ profileDetails?.bloodGroup }}</strong>
+                    <p><span id="bloodGroup">
                         <input type="text" class="form-control" id="bloodGroup" name="bloodGroup" [(ngModel)]="profileDetails.bloodGroup" #bloodGroup></span></p>
                   </div> 
                 </div>                     
@@ -309,7 +309,7 @@
                     <h4 class="mb-0">Skills</h4>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <p><span id="skills"><strong>{{ profileDetails?.skills }}</strong>
+                    <p><span id="skills">
                         <input type="text" class="form-control" id="skills" name="skills" [(ngModel)]="profileDetails.skills" #skills></span></p>
                   </div> 
                 </div>                     
