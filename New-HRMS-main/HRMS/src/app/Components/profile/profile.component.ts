@@ -115,7 +115,7 @@ this.getUserPhoto();
     this.fetchProfileDetails();
     this.getUserPhoto();
     // this.particulardetail();
-    this.EmployeeProfile(this.item);
+    // this.EmployeeProfile(this.item);
     this.userProfile();
     this.BasicInfo();
     this.openEmployee();
@@ -506,32 +506,32 @@ this.getUserPhoto();
     // API for upload image end
 
 
-    EmployeeProfile(item: any): void {
-    this.route.queryParams.subscribe(params => {
-      const id = params['id'];
+  //   EmployeeProfile(item: any): void {
+  //   this.route.queryParams.subscribe(params => {
+  //     const id = params['id'];
 
-      if (id) {
-        // Use the 'id' variable to fetch data
-        this.RegisterAndUpdate.empdetails(id).subscribe(
-        (response: any) => {
-          const dataArray = Object.values(response);
+  //     if (id) {
+  //       // Use the 'id' variable to fetch data
+  //       this.RegisterAndUpdate.empdetails(id).subscribe(
+  //       (response: any) => {
+  //         const dataArray = Object.values(response);
        
-          const reversedData = dataArray.reverse();
-          console.log("aaaaaaaa>>>>", response);
-                // Set the reversed array as the data source
-                this.profileDetails = reversedData;
-                console.log(">>>>>>>>>>>>>>", this.profileDetails);
-          },
-          (error) => {
-            console.error('Error:', error);
-            // Handle the error here
-          }
-        );
-      } else {
-        console.error('Employee ID not found in URL');
-      }
-    });
-  }
+  //         const reversedData = dataArray.reverse();
+  //         console.log("aaaaaaaa>>>>", response);
+  //               // Set the reversed array as the data source
+  //               this.profileDetails = reversedData;
+  //               console.log(">>>>>>>>>>>>>>", this.profileDetails);
+  //         },
+  //         (error) => {
+  //           console.error('Error:', error);
+  //           // Handle the error here
+  //         }
+  //       );
+  //     } else {
+  //       console.error('Employee ID not found in URL');
+  //     }
+  //   });
+  // }
     // EmployeeProfile(item: any): void {
     //   // Assuming 'item' has an 'id' property
     //   const id = item.id;

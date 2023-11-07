@@ -713,9 +713,7 @@
                       <label for="numberOfDays" class="col-form-label">Number of Days:</label>
                       <input type="number" class="form-control" name="noOfDays" id="noOfDays" [readonly]="selectedLeaveType === 'HALFDAY'" formControlName="noOfDays"
                         min="1" (change)="updateEndDate()">
-                      <!-- <div *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched" class="text-danger">
-              Number of days must be a positive number.
-            </div> -->
+                      
                       <div
                         *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched && leaveForm.get('leaveType').value !== 'HALFDAY'"
                         class="text-danger">

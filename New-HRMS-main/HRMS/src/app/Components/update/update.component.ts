@@ -170,6 +170,16 @@ export class UpdateComponent {
   }
   // ifsc code end
 
+// total leave calculate start
+calculateTotalLeaves() {
+  // Parse the input values to integers
+  const sickLeaves = parseInt(this.user.sickLeavesPerMonth, 10) || 0;
+  const casualLeaves = parseInt(this.user.casualLeavesPerMonth, 10) || 0;
+
+  // Calculate the total leaves
+  this.user.totalleaves = sickLeaves + casualLeaves;
+}
+// total leave calculate end
 
 
   // email id error start
@@ -300,16 +310,17 @@ export class UpdateComponent {
 
   }
 
+  // asset name show for update start
   // assetName: string[] = [];
   allAssets: string[] = [
-    'no',
+    'No',
     'Laptop',
-    'LaptopCharger',
-    'mouse',
-    'keyboard',
-    'phone',
-    'phoneCharger',
-    'headPhone',
+    'Laptop Charger',
+    'Mouse',
+    'Keyboard',
+    'Phone',
+    'Phone Charger',
+    'Head Phone',
   ];
 
   // Function to get selected assets from allAssets
@@ -317,7 +328,7 @@ export class UpdateComponent {
     return this.allAssets.filter((asset) => this.user.assetName.includes(asset));
   }
 
-
+// asset name show for update end
 
 
   //API for getting teamlead start

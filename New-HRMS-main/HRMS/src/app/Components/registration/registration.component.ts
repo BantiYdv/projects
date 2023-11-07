@@ -147,6 +147,20 @@ export class RegistrationComponent {
 
 
   // email id error end 
+
+
+  // total leave calculate start
+  calculateTotalLeaves() {
+    // Parse the input values to integers
+    const sickLeaves = parseInt(this.user.sickLeavesPerMonth, 10) || 0;
+    const casualLeaves = parseInt(this.user.casualLeavesPerMonth, 10) || 0;
+
+    // Calculate the total leaves
+    this.user.totalleaves = sickLeaves + casualLeaves;
+  }
+  // total leave calculate end
+
+
   isLoading = false;   // for loader
   token: string = ''; // Variable to store the token
   teamlead: string[] = [];
@@ -525,7 +539,24 @@ export class RegistrationComponent {
 
   
   
-
+  // onAssetSelectionChange() {
+  //   if (this.user.assetName.includes('No')) {
+  //     // If 'No' is selected, clear other selections
+  //     this.user.assetName = ['No'];
+  //   } else {
+  //     // If any other asset is selected, disable 'No' option
+  //     const noIndex = this.user.assetName.indexOf('No');
+  //     if (noIndex > -1) {
+  //       this.user.assetName.splice(noIndex, 1);
+  //     }
+  //   }
+  // }
+  onAssetSelectionChange() {
+    if (this.user.assetName.includes('No')) {
+      // If 'No' is selected, clear other selections except 'No'
+      this.user.assetName = ['No'];
+    }
+  }
 
   
 

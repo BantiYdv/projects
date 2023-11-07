@@ -162,7 +162,7 @@ export class TestComponent {
       noOfDays: ['', [Validators.required, Validators.min(1)]],
       fromDate: ['', Validators.required],
       toDate: ['', Validators.required],
-      reason: ['', Validators.required], // Add the reason field with Validators.required
+      reason: [null, Validators.required], // Add the reason field with Validators.required
     });
     this.wfhForm = this.formBuilder.group({
       noofday: ['', [Validators.required, Validators.min(1)]],
@@ -177,7 +177,7 @@ export class TestComponent {
     });
 
   }
-
+ 
   ngOnInit() {
     this.viewRole();
     this.openEmployee();
@@ -885,10 +885,10 @@ export class TestComponent {
   // API for Apply Leave start
 
   onSubmit() {
-
+console.log("leave form", this.leaveForm);
     // Call the service method to apply leave with form data and token
     this.testService.applyLeave(this.leaveForm.value).subscribe(
-      () => {
+      (response) => {
         // Handle the API response here
         Swal.fire('Applied!', 'Leave Applied successfully!', 'success');
         // Reset the form
@@ -897,7 +897,7 @@ export class TestComponent {
         this.showAdminLeaveTable = false;
         this.toggleAdminLeaveTable();
         this.loginService.showTable('viewLeave')
-
+console.log("leave apply", response);
 
 
       },
@@ -1112,28 +1112,28 @@ export class TestComponent {
 
   // API for show user details to admin / super admin start
 
-  EmployeeProfile(item: any): void {
-    // Assuming 'item' has an 'id' property
-    const id = item.id;
-    console.log("id", id);
-    this.RegisterAndUpdate.empdetails(id).subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
-        console.log("aaaaaaaa>>>>", response);
-        // Set the reversed array as the data source
-        this.profileDetails = reversedData;
+  // EmployeeProfile(item: any): void {
+  //   // Assuming 'item' has an 'id' property
+  //   const id = item.id;
+  //   console.log("id", id);
+  //   this.RegisterAndUpdate.empdetails(id).subscribe(
+  //     (response: any) => {
+  //       // Convert the response object to an array
+  //       const dataArray = Object.values(response);
+  //       // Reverse the received array
+  //       const reversedData = dataArray.reverse();
+  //       console.log("aaaaaaaa>>>>", response);
+  //       // Set the reversed array as the data source
+  //       this.profileDetails = reversedData;
 
-        console.log(">>>>>>>>>>>>>>", this.profileDetails);
-      },
-      (error) => {
-        Swal.fire('Error', error.error, 'error');
+  //       console.log(">>>>>>>>>>>>>>", this.profileDetails);
+  //     },
+  //     (error) => {
+  //       Swal.fire('Error', error.error, 'error');
 
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
   // API for show user details to admin / super admin end
 
   // API for delete employee start

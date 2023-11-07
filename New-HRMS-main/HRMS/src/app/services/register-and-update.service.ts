@@ -79,13 +79,13 @@ console.log("wwswswewe", token);
   // update employee end
 
     // employee details start
-empdetails(id: number): Observable<any> {
-  const url = `${this.api.Empdetail}/${id}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+// empdetails(id: number): Observable<any> {
+//   const url = `${this.api.Empdetail}/${id}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-  return this.http.get(url, { headers });
-}
+//   return this.http.get(url, { headers });
+// }
 // employee details end
 
 // upload pdf start
