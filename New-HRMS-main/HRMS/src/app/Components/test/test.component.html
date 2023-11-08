@@ -324,6 +324,7 @@
 
   <!-- view Admin list start -->
   <div *ngSwitchCase="'employee'">
+  <!-- <div *ngIf="isHashEqualTo('/test/employee')"> -->
    
     <div class="table-responsive m-1 mt-4">
       <div class="d-flex justify-content-end mb-3">
@@ -332,22 +333,11 @@
 
         </div>
       </div>
-     
-      
       <table class="table table-bordered table-sm">
         <thead class="table-dark">
           <tr>
             <th>S.No</th>
-            <!-- <th><span *ngIf="!editName">Name
-              <span></span> <i class="fas fa-search search-icon-right" (click)="editName = true"></i></span>
-              <input *ngIf="editName" (blur)="editName = false" (keyup.enter)="editName = false" [(ngModel)]="nameFilter" placeholder="Search" >
-            </th> -->
             <th>Name</th>
-            <!-- <th>Employee id</th> -->
-            <!-- <th><span *ngIf="!editDesignation">Designation
-              <span></span> <i class="fas fa-search search-icon-right" (click)="editDesignation = true"></i></span>
-              <input *ngIf="editDesignation" (blur)="editDesignation = false" (keyup.enter)="editDesignation = false" [(ngModel)]="nameDesignationFilter" placeholder="Search" >
-            </th> -->
             <th>Designation</th>
             <th>Email Id</th>
             <th>Update</th>
@@ -357,18 +347,14 @@
         <tbody>
             <tr *ngFor="let item of filteredEmployeeData; let i = index">
             <td>{{ i + 1 }}</td>
-            <!-- <td class="pointer" style="cursor: pointer; color: blue;" [routerLink]="['/profile', 'viewProfile' ]" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }"><a class="dropdown-item rounded-2 "><img class="rounded-circle img-fluid"
-              [src]="item.profilePhotoUrl || defaultImageURL" alt="" /></a>{{ item.firstname+' '+item.lastname }}</td> -->
               <td class="pointer d-flex align-items-center" style="cursor: pointer; color: blue;" [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">
                 <a class="dropdown-item rounded-2 d-flex align-items-center m-1">
                   <img class="rounded-circle img-fluid " [src]="imageUrl || defaultImageURL" alt="" />
                   
                 </a><span class="m-1">{{ item.firstname + ' ' + item.lastname }}</span>
               </td>
-              
-              
-            <td>{{item.designation }}</td>
-            <td>{{ item.emailid }}</td>
+            <td class="align-middle">{{item.designation }}</td>
+            <td class="align-middle">{{ item.emailid }}</td>
             <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
               <button type="button" class="btn btn-link">
                 <i class="fas fa-edit"></i>
@@ -395,8 +381,10 @@
 
 
 
-
+  
+ 
   <div *ngSwitchCase="'teamleave'">
+    <!-- <div *ngIf="isHashEqualTo('/test/teamleave')"> -->
     <div class="table-responsive m-1 mt-4">
       <table class="table table-bordered table-sm">
 
@@ -439,7 +427,6 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div>
-
   </div>
 
   <!-- view team leave end -->
@@ -449,6 +436,7 @@
 
 
   <div *ngSwitchCase="'teamwfh'">
+    <!-- <div *ngIf="isHashEqualTo('/test/teamwfh')"> -->
     <div class="table-responsive m-1 mt-4">
       <table class="table table-bordered table-sm">
         <thead class="table-dark">
@@ -492,6 +480,7 @@
 
   <!-- change password start-->
   <div *ngSwitchCase="'changePassword'">
+    <!-- <div *ngIf="isHashEqualTo('/test/changePassword')"> -->
     <div class="content m-1 mt-4">
       <div class="container applyLeave">
         <div class="row justify-content-center">
@@ -593,7 +582,7 @@
 
 
   <div *ngSwitchCase="'reports'">
-
+    <!-- <div *ngIf="isHashEqualTo('/test/reports')"> -->
     <div class="container px-4 py-5" id="hanging-icons">
       <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         <div class="col d-flex align-items-start mt-2">
@@ -684,6 +673,7 @@
 
   <!-- Apply Leave start -->
   <div *ngSwitchCase="'applyLeave'">
+    <!-- <div *ngIf="isHashEqualTo('/test/applyLeave')"> -->
     <div class="content m-2">
       <div class="container applyLeave">
         <div class="row justify-content-center">
@@ -713,7 +703,7 @@
                       <label for="numberOfDays" class="col-form-label">Number of Days:</label>
                       <input type="number" class="form-control" name="noOfDays" id="noOfDays" [readonly]="selectedLeaveType === 'HALFDAY'" formControlName="noOfDays"
                         min="1" (change)="updateEndDate()">
-                      
+              
                       <div
                         *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched && leaveForm.get('leaveType').value !== 'HALFDAY'"
                         class="text-danger">
@@ -774,6 +764,7 @@
 
   <!-- view leave start -->
   <div *ngSwitchCase="'viewLeave'">
+    <!-- <div *ngIf="isHashEqualTo('/test/viewLeave')"> -->
     <div class="container px-4 py-0 text-center" *ngIf="showAdminLeaveTable" id="viewLeave">
 
       <div class="table-responsive mt-4">
@@ -819,6 +810,7 @@
 
   <!-- view attendance start -->
   <div *ngSwitchCase="'viewAtt'">
+    <!-- <div *ngIf="isHashEqualTo('/test/viewAtt')"> -->
     <div class="container px-4 py-0 text-center" *ngIf="showAttTable" id="viewAtt">
 
       <div class="table-responsive mt-4">
@@ -863,6 +855,7 @@
   <!-- Apply WFH start -->
 
   <div *ngSwitchCase="'applyWfh'">
+    <!-- <div *ngIf="isHashEqualTo('/test/applyWfh')"> -->
     <div class="content m-2">
       <div class="container applyLeave">
         <div class="row justify-content-center">
@@ -915,6 +908,7 @@
 
   <!-- view WFH start -->
   <div *ngSwitchCase="'viewWfh'">
+    <!-- <div *ngIf="isHashEqualTo('/test/viewWfh')"> -->
     <div class="container px-4 py-0 text-center" *ngIf="showWfhTable" id="viewWfh">
 
 
@@ -958,6 +952,7 @@
 
   <!-- view All attendance start -->
   <div *ngSwitchCase="'viewAllAtt'">
+    <!-- <div *ngIf="isHashEqualTo('/test/viewAllAtt')"> -->
     <div class="container px-4 py-0 text-center" *ngIf="showAllAttTable" id="viewAllAtt">
 
       <div class="table-responsive mt-4">
@@ -1000,6 +995,7 @@
 
   <!-- view All WFH start -->
   <div *ngSwitchCase="'viewAllWfh'">
+    <!-- <div *ngIf="isHashEqualTo('/test/viewAllWfh')"> -->
     <div class="container px-4 py-0 text-center" *ngIf="showAllWfhTable" id="viewAllWfh">
 
 
@@ -1048,6 +1044,7 @@
 
   <!-- view All leave start -->
   <div *ngSwitchCase="'viewAllLeave'">
+    <!-- <div *ngIf="isHashEqualTo('/test/viewAllLeave')"> -->
     <div class="container px-4 py-0 text-center" *ngIf="showAllLeaveTable" id="AllviewLeave">
       <div class="table-responsive mt-4">
         <table class="table table-bordered table-sm">
@@ -1133,6 +1130,7 @@
 
   <!-- view holiday calendar start-->
   <div *ngSwitchCase="'calendar'">
+    <!-- <div *ngIf="isHashEqualTo('/test/calendar')"> -->
     <div class="col-xl-12 col-lg-12 col-md-12 mb-4" id="Holidaycal" *ngIf="showcalendar" id="calendar">
       <div class="card mt-4" id="calendar">
         <div class="container mt-3">
@@ -1148,8 +1146,8 @@
 
 
 
-  <div *ngSwitchDefault>
+  <!-- <div *ngSwitchDefault>
     <p>No data to display.</p>
-  </div>
+  </div> -->
 
 </div>

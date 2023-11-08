@@ -14,7 +14,7 @@ export class ApiService {
   public login = `${this.apiUrl}gateway/login`;
   public forgetPassword = `${this.apiUrl}gateway/hrms/forgot-password`;
   public currentPhoto = `${this.apiUrl}gateway/hrms/photo/current`;
-  public signOut = `${this.apiUrl}gateway/hrms/signout`;
+  public signOut = `${this.apiUrl}gateway/hrms/logout`;
   public uploadPdfUrl = `${this.apiUrl}gateway/hrms/upload-pdf`;
   public DownloadPdf = `${this.apiUrl}gateway/hrms/download`;
   public EmpListExcel = `${this.apiUrl}gateway/hrms/employeeslist/excel`;

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ApiService } from './api.service';
-
+// import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -168,7 +168,7 @@ SignOut(): Observable<any> {
         const token = localStorage.getItem('jwtToken');
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-        this.http.post(this.api.signOut, {}, { headers }).subscribe(
+        this.http.get(this.api.signOut,  { headers }).subscribe(
           () => {
             Swal.fire({
               title: 'Logged Out',
@@ -186,7 +186,11 @@ SignOut(): Observable<any> {
               }
               localStorage.removeItem('role');
               localStorage.removeItem('tokenExpiration');
-              localStorage.removeItem('permissionLength')
+              localStorage.removeItem('permissionLength');
+              localStorage.removeItem('checkedOut');
+              localStorage.removeItem('checkedIn')
+              // this.cookieService.delete('JSESSIONID');
+              
               observer.next(); // Notify the observer that the logout was successful
               this.router.navigate(['/login']);
             });

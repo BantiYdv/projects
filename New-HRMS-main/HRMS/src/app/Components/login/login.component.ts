@@ -49,7 +49,6 @@ export class LoginComponent {
       this.loginService.signin(this.login.username, this.login.password).subscribe(
         (response: any) => {
          
-
           const token = response.jwtToken;
           localStorage.setItem("jwtToken", token);
           const role = response.registration.role;

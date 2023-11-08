@@ -192,6 +192,11 @@ export class TestComponent {
     this.togglecalendar();
   }
 
+    // // after reload to show
+    // isHashEqualTo(hash: string): boolean {
+    //   return window.location.hash === `#${hash}`;
+    // }
+    // API for view employee list start
 
   // API for view employee list start
 

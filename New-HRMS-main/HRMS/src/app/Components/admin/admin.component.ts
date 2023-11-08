@@ -152,7 +152,8 @@ export class AdminComponent {
   isModalOpen = false; // Variable to track the modal state
   // for view employee list end
 
- 
+  checkedIn: boolean = false;
+  checkedOut: boolean = false;
 
   ngOnInit() {
    
@@ -173,6 +174,21 @@ export class AdminComponent {
     });
 
     this.loginService.getPermission();
+
+
+// check in and check out start
+    const storedCheckInStatus = localStorage.getItem('checkedIn');
+    const storedCheckOutStatus = localStorage.getItem('checkedOut');
+
+    if (storedCheckInStatus) {
+      this.checkedIn = JSON.parse(storedCheckInStatus);
+    }
+
+    if (storedCheckOutStatus) {
+      this.checkedOut = JSON.parse(storedCheckOutStatus);
+    }
+    // check in and check out end
+    
   }
 
 
@@ -365,6 +381,10 @@ export class AdminComponent {
    
     this.adminService.performCheckin().subscribe(
       () => {
+       this.checkedIn = true;
+        this.checkedOut = false;
+        localStorage.setItem('checkedIn', JSON.stringify(true));
+        localStorage.setItem('checkedOut', JSON.stringify(false));
         Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
        
       },
@@ -387,6 +407,10 @@ export class AdminComponent {
     // Call the service method to perform check-out
     this.adminService.performCheckout().subscribe(
       () => {
+        this.checkedOut = true;
+        this.checkedIn = false;
+        localStorage.setItem('checkedOut', JSON.stringify(true));
+        localStorage.setItem('checkedIn', JSON.stringify(false));
         Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
       },
       (error: any) => {
