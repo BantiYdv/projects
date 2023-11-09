@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ApiService } from './api.service';
-import { ɵparseCookieValue } from '@angular/common';
-import { CookieService } from 'ngx-cookie-service';
+// import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -40,7 +39,7 @@ export class LoginService {
 
 
 
-  constructor(private http: HttpClient,private router: Router, public api: ApiService, private cookieService: CookieService) { }
+  constructor(private http: HttpClient,private router: Router, public api: ApiService) { }
 
 
   getPermission() {
@@ -152,7 +151,14 @@ getCurrentPhoto(): Observable<Blob> {
 }
 // current photo end
 
-
+deleteCookie(name: string) {
+  document.cookie.split(';').forEach(cookie => {
+    const [cookieName, cookieValue] = cookie.split('=').map(c => c.trim());
+    if (cookieName === name) {
+      document.cookie = `${cookieName}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+    }
+  });
+}
 // sign out start
 SignOut(): Observable<any> {
   return new Observable((observer) => {
@@ -189,9 +195,9 @@ SignOut(): Observable<any> {
               localStorage.removeItem('tokenExpiration');
               localStorage.removeItem('permissionLength');
               localStorage.removeItem('checkedOut');
-              localStorage.removeItem('checkedIn')
-              this.cookieService.delete('JSESSIONID');
-            
+              localStorage.removeItem('checkedIn');
+              // this.cookieService.deleteAll();
+              this.deleteCookie('JSESSIONID');
               observer.next(); // Notify the observer that the logout was successful
               this.router.navigate(['/login']);
             });

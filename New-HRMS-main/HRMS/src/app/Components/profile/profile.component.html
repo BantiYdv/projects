@@ -12,7 +12,7 @@
                 <div class="d-flex flex-column align-items-center text-center">
                   <div class="profile-header-img mb-2">
                     <!-- <img [src]="imageUrl ? imageUrl : 'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg'" alt=""/> -->
-                    <img class="img-fluid circular-image" [src]="imageUrl || defaultImageURL" alt="" />
+                    <img class="img-fluid circular-image" [src]="imageUrl || generateDefaultImage()" alt="" />
                     <div class="upload-overlay">
                       <label class="add-to-cart" for="fileInput">
                         <i class="fas fa-camera"></i> Upload Image

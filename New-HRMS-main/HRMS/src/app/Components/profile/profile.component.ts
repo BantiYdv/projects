@@ -475,6 +475,19 @@ DownloadDocs(id: number, downloadName: string, filename: string) {
   //     }
   //     );
   //   }
+
+  firstname: string = ''; // Replace with user's first name
+  lastname: string = ''; // Replace with user's last name
+
+  generateDefaultImage(): string {
+    if (this.profileDetails.firstname && this.profileDetails.lastname) {
+      const initials = this.profileDetails.firstname.charAt(0) + this.profileDetails.lastname.charAt(0);
+      return `https://via.placeholder.com/150/000000/FFFFFF/?text=${initials}`;
+    } else {
+      return 'https://via.placeholder.com/150/000000/FFFFFF/?text=User';
+    }
+  }
+
   handleFileInput(event: any) {
     const file: File = event.target.files[0];
 
