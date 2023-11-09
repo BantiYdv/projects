@@ -39,6 +39,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import {MatStepperModule} from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -91,7 +92,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, 
-    {provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }}
+    {provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }}, CookieService
   ],
   bootstrap: [AppComponent]
 })

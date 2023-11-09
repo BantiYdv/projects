@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ApiService } from './api.service';
-// import { CookieService } from 'ngx-cookie-service';
+import { ɵparseCookieValue } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -39,7 +40,7 @@ export class LoginService {
 
 
 
-  constructor(private http: HttpClient,private router: Router, public api: ApiService) { }
+  constructor(private http: HttpClient,private router: Router, public api: ApiService, private cookieService: CookieService) { }
 
 
   getPermission() {
@@ -189,8 +190,8 @@ SignOut(): Observable<any> {
               localStorage.removeItem('permissionLength');
               localStorage.removeItem('checkedOut');
               localStorage.removeItem('checkedIn')
-              // this.cookieService.delete('JSESSIONID');
-              
+              this.cookieService.delete('JSESSIONID');
+            
               observer.next(); // Notify the observer that the logout was successful
               this.router.navigate(['/login']);
             });
