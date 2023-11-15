@@ -4,13 +4,28 @@ import { ApiService } from './api.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import {  from, throwError } from 'rxjs';
+import { mergeMap, catchError, map, switchMap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+  // ipAddress:any;
 
-  constructor(private http: HttpClient,private router: Router, private api: ApiService) { }
+  constructor(private http: HttpClient,private router: Router, private api: ApiService) {
+    // this.http.get<{ip:string}>('https://httpbin.org/ip')
+    // .subscribe( data => {
+    //   console.log('th data', data);
+    //   this.ipAddress = data
+    // })
+  
+   }
+
+
+  browserName: string | undefined;
+
 
   // show profile name in top start
 getShowData(): Observable<any> {
@@ -51,16 +66,134 @@ getShowData(): Observable<any> {
 // // view all leave end
 
 // check in start
-performCheckin() {
-  const url = `${this.api.CheckIn}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  const requestData = {
-    checkedIn: 'checkedIn' // Remove the curly braces
-  };
+// performCheckin() {
+//   const url = `${this.api.CheckIn}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const requestData = {
+//     checkedIn: 'checkedIn' // Remove the curly braces
+//   };
   
-  return this.http.post(url, requestData, { headers });
+//   return this.http.post(url, requestData, { headers });
+// }
+
+
+private currentBrowser: any ;
+private ipAddress: string | any ;
+
+//   performCheckin() {
+//     this.http.get("https://httpbin.org/ip").subscribe((res:any)=>{
+    
+//       this.ipAddress = res.origin;
+//     })
+//     const url = `${this.api.CheckIn}`;
+//     const token = localStorage.getItem('jwtToken');
+
+//     // Determine the browser name
+//     this.currentBrowser = this.getBrowserName();
+// console.log("current browser", this.currentBrowser);
+
+
+//     const headers = new HttpHeaders()
+//       .set('Authorization', `Bearer ${token}`);
+
+//     const requestData = {
+//       checkedIn: 'checkedIn',
+//       browser: this.currentBrowser,  // Include browser name in the request payload if needed
+//       ipAddress: this.ipAddress
+//     };
+//     console.log("browser name", this.currentBrowser);
+//     console.log("req data", requestData);
+
+//     return this.http.post(url, requestData, { headers });
+//   }
+performCheckin() {
+  return this.http.get("https://httpbin.org/ip").pipe(
+    switchMap((res: any) => {
+      this.ipAddress = res.origin;
+
+      const url = `${this.api.CheckIn}`;
+      const token = localStorage.getItem('jwtToken');
+
+      // Determine the browser name
+      this.currentBrowser = this.getBrowserName();
+      console.log("current browser", this.currentBrowser);
+
+      const headers = new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`);
+
+      const requestData = {
+        checkedIn: 'checkedIn',
+        browser: this.currentBrowser,
+        ipAddress: this.ipAddress
+      };
+      console.log("browser name", this.currentBrowser);
+      console.log("req data", requestData);
+
+      return this.http.post(url, requestData, { headers });
+    })
+  );
 }
+
+
+  public getBrowserName() {
+   
+    const agent = window.navigator.userAgent.toLowerCase()
+    switch (true) {
+      case agent.indexOf('edg') > -1:
+        return 'edge';
+      case agent.indexOf('opr') > -1 && !!(<any>window).opr:
+        return 'opera';
+      case agent.indexOf('chrome') > -1 && !!(<any>window).chrome:
+        return 'chrome';
+      case agent.indexOf('trident') > -1:
+        return 'ie';
+      case agent.indexOf('firefox') > -1:
+        return 'firefox';
+      case agent.indexOf('safari') > -1:
+        return 'safari';
+      default:
+        return 'other';
+    }
+}
+  
+  
+  
+
+  // Add a method to retrieve the stored browser name
+  getStoredBrowserName(): string {
+    return this.currentBrowser || 'Unknown';
+  }
+
+  
+
+
+public getPublicIpAddress() {
+  this.http.get("https://httpbin.org/ip").subscribe((res:any)=>{
+
+  this.ipAddress = res.origin;
+  console.log("ip",this.ipAddress)
+  return this.ipAddress
+});
+}
+
+// getBrowserName(): string {
+//   const agent = window.navigator.userAgent;
+
+//   if(agent.indexOf("Firefox") > -1) {
+//     return "Mozilla Firefox";
+//   } else if(agent.indexOf("Chrome") > -1) {
+//     return "Google Chrome";
+//   } else if(agent.indexOf("Safari") > -1) {
+//     return "Safari";
+//   } else if(agent.indexOf("Edg") > -1) {
+//     return "Microsoft Edge";
+//   } else {
+//     return "Unknown";
+//   }
+// }
+
+
 // check in end
 
 //check out start
