@@ -78,8 +78,8 @@ getShowData(): Observable<any> {
 // }
 
 
-private currentBrowser: any ;
-private ipAddress: string | any ;
+private userAgent: any ;
+private deviceIpAddress: string | any ;
 
 //   performCheckin() {
 //     this.http.get("https://httpbin.org/ip").subscribe((res:any)=>{
@@ -110,24 +110,32 @@ private ipAddress: string | any ;
 performCheckin() {
   return this.http.get("https://httpbin.org/ip").pipe(
     switchMap((res: any) => {
-      this.ipAddress = res.origin;
+      this.deviceIpAddress = res.origin;
 
       const url = `${this.api.CheckIn}`;
       const token = localStorage.getItem('jwtToken');
 
       // Determine the browser name
-      this.currentBrowser = this.getBrowserName();
-      console.log("current browser", this.currentBrowser);
+      this.userAgent = this.getBrowserName();
+      console.log("current browser", this.userAgent);
+
+      // Determine the OS details
+      const osDetails = this.getOSDetails();
+      console.log("OS details", osDetails);
 
       const headers = new HttpHeaders()
         .set('Authorization', `Bearer ${token}`);
 
       const requestData = {
         checkedIn: 'checkedIn',
-        browser: this.currentBrowser,
-        ipAddress: this.ipAddress
+        userAgent: this.userAgent,
+        deviceIpAddress: this.deviceIpAddress,
+        osName: osDetails.osName,
+        osVersion: osDetails.osVersion,
+        cpuArch: osDetails.cpuArch,
+        systemName: osDetails.systemName
       };
-      console.log("browser name", this.currentBrowser);
+      console.log("browser name", this.userAgent);
       console.log("req data", requestData);
 
       return this.http.post(url, requestData, { headers });
@@ -135,6 +143,47 @@ performCheckin() {
   );
 }
 
+// Helper function to get OS details
+getOSDetails() {
+  const userAgent = window.navigator.userAgent;
+  let osName = 'Unknown';
+  let osVersion = 'Unknown';
+  let cpuArch = 'Unknown';
+  let systemName = 'Unknown';
+
+  if (userAgent.indexOf("Win") != -1) {
+    osName = "Windows";
+    if (userAgent.indexOf("Windows NT 5.0") != -1) osVersion = "2000";
+    else if (userAgent.indexOf("Windows NT 5.1") != -1) osVersion = "XP";
+    else if (userAgent.indexOf("Windows NT 6.0") != -1) osVersion = "Vista";
+    else if (userAgent.indexOf("Windows NT 6.1") != -1) osVersion = "7";
+    else if (userAgent.indexOf("Windows NT 6.2") != -1) osVersion = "8";
+    else if (userAgent.indexOf("Windows NT 10.0") != -1) osVersion = "10";
+  } else if (userAgent.indexOf("Mac") != -1) {
+    osName = "MacOS";
+    osVersion = this.getMacOSVersion(userAgent);
+  } else if (userAgent.indexOf("Linux") != -1) {
+    osName = "Linux";
+  }
+
+ 
+  // Determine the CPU architecture
+  const platform = navigator.platform;
+  const is64Bit = userAgent.includes("Win64") || userAgent.includes("x64") || userAgent.includes("x86_64") || userAgent.includes("WOW64");
+  cpuArch = is64Bit ? "64-bit" : "32-bit";
+
+  if (platform) {
+    systemName = platform;
+  }
+
+  return { osName, osVersion, cpuArch, systemName };
+}
+
+// Helper function to get MacOS version
+getMacOSVersion(userAgent: string) {
+  const match = userAgent.match(/Mac OS X (\d+(_\d+)*)/);
+  return match ? match[1].replace(/_/g, '.') : 'Unknown';
+}
 
   public getBrowserName() {
    
@@ -162,7 +211,7 @@ performCheckin() {
 
   // Add a method to retrieve the stored browser name
   getStoredBrowserName(): string {
-    return this.currentBrowser || 'Unknown';
+    return this.userAgent || 'Unknown';
   }
 
   
@@ -171,9 +220,9 @@ performCheckin() {
 public getPublicIpAddress() {
   this.http.get("https://httpbin.org/ip").subscribe((res:any)=>{
 
-  this.ipAddress = res.origin;
-  console.log("ip",this.ipAddress)
-  return this.ipAddress
+  this.deviceIpAddress = res.origin;
+  console.log("ip",this.deviceIpAddress)
+  return this.deviceIpAddress
 });
 }
 
