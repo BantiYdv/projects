@@ -19,6 +19,9 @@
   
     <!-- Navbar items for super admin role when logged in -->
     <ng-container *ngIf="loginService.isLoggedIn()">
+      <button class="navbar-toggler p-0 border-0 d-block d-sm-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideBar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <span><a class="color" mat-icon-button (click)="redirectTOHome()">HRMS</a></span>
       <span class="example-spacer"></span>
       <!-- <form role="search" class="d-md-none d-none d-lg-block">
@@ -65,8 +68,139 @@
   </mat-toolbar>
   
   <div class="row col-12" *ngIf="!isHomePage() && loginService.getRole === 'SUPERADMIN'">
-    <!-- <div class="row col-md-12" *ngIf="!isHomePage()"> -->
-    <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0" id="sideBar">
+    <!-- <button class="navbar-toggler p-0 border-0 d-block d-sm-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideBar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+  
+    <!-- Sidebar for Small Screens -->
+    <div class="col-12 d-sm-none">
+      <div class="offcanvas offcanvas-start" id="sideBar" style="max-height: 100vh; overflow-y: auto;">
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <div class="offcanvas-header">
+            <h3 class="offcanvas-title m-0" style="color: white;" id="offcanvasNavbarDarkLabel">HRMS</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
+            <li class="nav-item text-center">
+              <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 5.png"
+                    alt="">
+                    
+                  <span class="image-name">Home</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/createRole.png"
+                    alt="">
+                   
+                  <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span>
+                  <div class="collapse" id="dashboard-role">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test" [routerLink]="['/test', 'createRole']" (click)="loginService.showTable('createRole')">Create Role</a></li>
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test" [routerLink]="['/test', 'viewRole']" (click)="loginService.showTable('viewRole')">View Role</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" routerLink="/registration">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 8.png"
+                    alt="">
+                    
+                    
+                  <span class="image-name">Registration</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/test', 'employee']" (click)="loginService.showTable('employee')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 7.png"
+                    alt="" >
+                    
+                  <span class="image-name">All Employees</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/test', 'teamleave']" (click)="loginService.showTable('teamleave')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 9.png"
+                    alt="">
+                    
+                  <span class="image-name">Team Leave</span>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/test', 'teamwfh']" (click)="loginService.showTable('teamwfh')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Mask group.png"
+                    alt="">
+                  
+                  <span class="image-name">Team WFH</span>
+                </div>
+              </a>
+            </li>
+           
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/test', 'reports']" (click)="loginService.showTable('reports')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                  src="/assets/report3.png"
+                  alt="">
+                 
+                  <span class="image-name">Reports</span>
+                </div>
+            
+              </a>
+            </li>
+  
+            
+  
+            <li class="nav-item text-center">
+              <label class="nav-link px-0 align-middle" for="pdfFileInput">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+                 
+                  <span class="image-name" id="pdfFile">Upload Pdf</span>
+                </div>
+              </label>
+              <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
+            </li>
+  
+  
+  
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/test', 'calendar']" (click)="loginService.showTable('calendar')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 11.png"
+                    alt="">
+                    
+                  <span class="image-name">View Holiday</span>
+                </div>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
           <li class="nav-item text-center">
@@ -103,8 +237,7 @@
                 <img class="sidebarPageLogo"
                   src="/assets/Group 8.png"
                   alt="">
-                  <!-- <br>
-                  New Registration -->
+                  
                   <br>
                 <span class="image-name">Registration</span>
               </div>
@@ -170,18 +303,6 @@
             <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
           </li>
 
-          <!-- <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/test', 'Documents']" (click)="loginService.showTable('Documents')">
-              <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 11.png"
-                  alt="">
-                  <br>
-                <span class="image-name">Download Docs</span>
-              </div>
-            </a>
-          </li> -->
-          
 
 
           <li class="nav-item text-center">
@@ -201,7 +322,7 @@
       </div>
     </div>
  
-    <div class="col-9 col-md-9 col-xl-10 px-sm-2 px-0" id="dashboard">
+    <div class="col-12 col-md-9 col-xl-10 px-sm-2 px-0" id="dashboard">
     <router-outlet></router-outlet>
     </div>
     

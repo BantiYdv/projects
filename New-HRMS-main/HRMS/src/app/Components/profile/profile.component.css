@@ -157,7 +157,7 @@ body .fc-widget-header a {
     -webkit-border-radius: 0.25rem;
     -moz-border-radius: 0.25rem;
     border-radius: 50%;
-    background: #fff;
+    /* background: #fff; */
 }
 .profile-header-info h4 {
     font-weight: 500;

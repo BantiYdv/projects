@@ -355,14 +355,14 @@ li {
 @media (max-width: 425px) {
 
   #sideBar {
-    width: 17%;
+    width: 50%;
     background-color: #3f51b5;
   }
 
-  #dashboard {
+  /* #dashboard {
     width: 83%;
     margin-top: -3rem;
-  }
+  } */
 
   .nav-item {
     margin-left: 10%;

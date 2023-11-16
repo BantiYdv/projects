@@ -482,9 +482,18 @@ DownloadDocs(id: number, downloadName: string, filename: string) {
   generateDefaultImage(): string {
     if (this.profileDetails.firstname && this.profileDetails.lastname) {
       const initials = this.profileDetails.firstname.charAt(0) + this.profileDetails.lastname.charAt(0);
-      return `https://via.placeholder.com/150/000000/FFFFFF/?text=${initials}`;
+      return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
     } else {
-      return 'https://via.placeholder.com/150/000000/FFFFFF/?text=User';
+      return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
+    }
+  }
+
+  generateDefaultImageUser(): string {
+    if (this.profileDetailsUser.firstname && this.profileDetailsUser.lastname) {
+      const initials = this.profileDetailsUser.firstname.charAt(0) + this.profileDetailsUser.lastname.charAt(0);
+      return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
+    } else {
+      return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
     }
   }
 

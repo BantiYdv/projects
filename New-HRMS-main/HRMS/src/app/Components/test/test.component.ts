@@ -71,15 +71,15 @@ export class TestComponent {
   showoldPassword: boolean = false;
   showconfirmPassword: boolean = false;
   availablePermissionOptions: string[] = [
-    "NO_ACCESS",
-      "ALL_ACCESS",
-      "ALL_EMPLOYEES_DATA",
-      "NEW_REGISTRATION",
-      "ALL_EMPLOYEES_ATTENDANCE",
-      "LEAVE_SHOW_TEAMLEAD",
-      "WFH_SHOW_TEAMLEAD",
-      "ALL_WFH_EMPLOYEES",
-      "VIEW_ALL_LEAVE"
+    "NO ACCESS",
+      "ALL ACCESS",
+      "ALL EMPLOYEES DATA",
+      "NEW REGISTRATION",
+      "ALL EMPLOYEES ATTENDANCE",
+      "LEAVE SHOW TEAMLEAD",
+      "WFH SHOW TEAMLEAD",
+      "ALL WFH EMPLOYEES",
+      "VIEW ALL LEAVE"
   ];
 
   showAllDocsTable: any;
@@ -251,7 +251,7 @@ export class TestComponent {
   teamleave(): void {
     this.showTeamLeaveTable = !this.showTeamLeaveTable;
 
-    if (this.showTeamLeaveTable) {
+    if (this.showTeamLeaveTable && '#/test/teamleave' === window.location.hash) {
       this.testService.getTeamLeaveData().subscribe(
         (response) => {
           // Assign the received data to the TeamLeaveData property
@@ -328,7 +328,7 @@ export class TestComponent {
   teamwfh(): void {
     this.showTeamWfhTable = !this.showTeamWfhTable;
 
-    if (this.showTeamWfhTable) {
+    if (this.showTeamWfhTable && '#/test/teamwfh' === window.location.hash) {
       this.testService.getTeamWfhData().subscribe(
         (response) => {
           // Assign the received data to the TeamLeaveData property
@@ -424,12 +424,15 @@ export class TestComponent {
           title: 'Created',
           text: 'Role and Permissions assigned successfully',
         }).then(() => {
-          const role = localStorage.getItem("role");
-          if (role === "SUPERADMIN") {
-            this.router.navigate(['/dashboard']);
-          } else {
-            this.router.navigate(['/admin']);
-          }
+          // const role = localStorage.getItem("role");
+          // if (role === "SUPERADMIN") {
+          //   this.router.navigate(['/dashboard']);
+          // } else {
+          //   this.router.navigate(['/admin']);
+          // }
+          this.loginService.showTable('viewRole');
+          this.router.navigate(['/test', 'viewRole']);
+          this.viewRole();
         });
 
 
@@ -695,9 +698,20 @@ export class TestComponent {
       // Check if the response body is not null
       if (response.body) {
         const contentDisposition = response.headers.get('content-disposition');
-        const fileName = contentDisposition
-          ? contentDisposition.split('filename=')[1]
-          : 'employeesLeave.xlsx'; // Use the filename from content-disposition header or a default name
+
+        // const fileName = contentDisposition
+        //   ? contentDisposition.split('filename=')[1]
+        //   : 'employeesLeave.xlsx'; // Use the filename from content-disposition header or a default name
+
+        let fileName = 'employeesLeave.xlsx';
+
+        if (contentDisposition) {
+          const matches = /filename=([^;]+)/i.exec(contentDisposition);
+          if (matches && matches[1]) {
+            fileName = matches[1].trim();
+          }
+        }
+
 
         saveAs(response.body, fileName); // Use the 'file-saver' library to save the file
       } else {
@@ -1307,15 +1321,15 @@ console.log("leave apply", response);
 
     // Define an array of available permission options, excluding the selectedPermissions
     const availablePermissionOptions = [
-      "NO_ACCESS",
-      "ALL_ACCESS",
-      "ALL_EMPLOYEES_DATA",
-      "NEW_REGISTRATION",
-      "ALL_EMPLOYEES_ATTENDANCE",
-      "LEAVE_SHOW_TEAMLEAD",
-      "WFH_SHOW_TEAMLEAD",
-      "ALL_WFH_EMPLOYEES",
-      "VIEW_ALL_LEAVE"
+      "NO ACCESS",
+      "ALL ACCESS",
+      "ALL EMPLOYEES DATA",
+      "NEW REGISTRATION",
+      "ALL EMPLOYEES ATTENDANCE",
+      "LEAVE SHOW TEAMLEAD",
+      "WFH SHOW TEAMLEAD",
+      "ALL WFH EMPLOYEES",
+      "VIEW ALL LEAVE"
     ].filter(option => !this.selectedPermissions.includes(option));
 
     // Assign the available options to a new property (e.g., availablePermissionOptions)
@@ -1330,25 +1344,25 @@ console.log("leave apply", response);
   
  
   onPermissionSelectionChange() {
-    if (this.selectedPermissions.includes("ALL_ACCESS")) {
+    if (this.selectedPermissions.includes("ALL ACCESS")) {
       // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"
-      this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
+      this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO ACCESS");
     }
   }
 
   isOptionDisabled(option: string): boolean {
 
     if (
-      (this.selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('ALL_ACCESS') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('ALL_ACCESS') && option !== 'ALL_ACCESS') ||
-      (this.selectedPermissions.includes('ALL_EMPLOYEES_DATA') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('NEW_REGISTRATION') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('ALL_EMPLOYEES_ATTENDANCE') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('LEAVE_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('WFH_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('ALL_WFH_EMPLOYEES') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS')
+      (this.selectedPermissions.includes('NO ACCESS') && option !== 'NO ACCESS') ||
+      (this.selectedPermissions.includes('ALL ACCESS') && option === 'NO ACCESS') ||
+      (this.selectedPermissions.includes('ALL ACCESS') && option !== 'ALL ACCESS') ||
+      (this.selectedPermissions.includes('ALL EMPLOYEES DATA') && option === 'NO ACCESS') ||
+      (this.selectedPermissions.includes('NEW REGISTRATION') && option === 'NO ACCESS') ||
+      (this.selectedPermissions.includes('ALL EMPLOYEES ATTENDANCE') && option === 'NO ACCESS') ||
+      (this.selectedPermissions.includes('LEAVE SHOW TEAMLEAD') && option === 'NO ACCESS') ||
+      (this.selectedPermissions.includes('WFH SHOW TEAMLEAD') && option === 'NO ACCESS') ||
+      (this.selectedPermissions.includes('ALL WFH EMPLOYEES') && option === 'NO ACCESS') ||
+      (this.selectedPermissions.includes('VIEW ALL LEAVE') && option === 'NO ACCESS')
 
     ) {
       return true; // Disable the option

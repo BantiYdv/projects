@@ -123,6 +123,10 @@ performCheckin() {
       const osDetails = this.getOSDetails();
       console.log("OS details", osDetails);
 
+       // Determine the device type
+       const deviceType = this.getDeviceType();
+       console.log("Device type", deviceType);
+
       const headers = new HttpHeaders()
         .set('Authorization', `Bearer ${token}`);
 
@@ -133,7 +137,8 @@ performCheckin() {
         osName: osDetails.osName,
         osVersion: osDetails.osVersion,
         cpuArch: osDetails.cpuArch,
-        systemName: osDetails.systemName
+        systemName: osDetails.systemName,
+        deviceType: deviceType
       };
       console.log("browser name", this.userAgent);
       console.log("req data", requestData);
@@ -185,6 +190,23 @@ getMacOSVersion(userAgent: string) {
   return match ? match[1].replace(/_/g, '.') : 'Unknown';
 }
 
+
+// Helper function to get device type
+getDeviceType() {
+  const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+  if (screenWidth < 600) {
+    return 'Mobile';
+  } else if (screenWidth >= 600 && screenWidth < 992) {
+    return 'Tablet';
+  } else if (screenWidth >= 992 && screenWidth < 1200) {
+    return 'Small Laptop';
+  } else {
+    return 'Desktop/Large Laptop';
+  }
+}
+
+
   public getBrowserName() {
    
     const agent = window.navigator.userAgent.toLowerCase()
@@ -216,31 +238,18 @@ getMacOSVersion(userAgent: string) {
 
   
 
+// for gettting IP Address start
+// public getPublicIpAddress() {
+//   this.http.get("https://httpbin.org/ip").subscribe((res:any)=>{
 
-public getPublicIpAddress() {
-  this.http.get("https://httpbin.org/ip").subscribe((res:any)=>{
-
-  this.deviceIpAddress = res.origin;
-  console.log("ip",this.deviceIpAddress)
-  return this.deviceIpAddress
-});
-}
-
-// getBrowserName(): string {
-//   const agent = window.navigator.userAgent;
-
-//   if(agent.indexOf("Firefox") > -1) {
-//     return "Mozilla Firefox";
-//   } else if(agent.indexOf("Chrome") > -1) {
-//     return "Google Chrome";
-//   } else if(agent.indexOf("Safari") > -1) {
-//     return "Safari";
-//   } else if(agent.indexOf("Edg") > -1) {
-//     return "Microsoft Edge";
-//   } else {
-//     return "Unknown";
-//   }
+//   this.deviceIpAddress = res.origin;
+//   console.log("ip",this.deviceIpAddress)
+//   return this.deviceIpAddress
+// });
 // }
+// for gettting IP Address end
+
+
 
 
 // check in end

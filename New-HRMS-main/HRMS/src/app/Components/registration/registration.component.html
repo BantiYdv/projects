@@ -452,8 +452,8 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="totalwfh">Work from home</label>
-            <input #totalwfhInput type="text" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH"
-              [(ngModel)]="user.totalwfh">
+            <input #totalwfhInput type="number" class="form-control" name="totalwfh" id="totalwfh" placeholder="WFH"
+              [(ngModel)]="user.totalwfh" min="0">
           </div>
         </div>
 </div>
@@ -555,7 +555,7 @@
     <form id="registration-form" class="form mt-5">
       <ng-template matStepLabel>Bank Details</ng-template>
       <div class="row justify-content-center">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="accountNumber" class="col-form-label">Account Number</label>
             <input type="text" class="form-control" name="accountNumber" id="accountNumber"
@@ -570,7 +570,7 @@
           </div>
         </div> -->
 
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="ifsccode" class="col-form-label">IFSC code</label>
             <input type="text" class="form-control" name="ifsccode" id="ifsccode" [(ngModel)]="user.ifsccode" (input)="validateIFSC()" placeholder="Ex:BARB0NASIRA">
@@ -581,16 +581,16 @@
         </div>
         
 
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
-            <label for="holderName" class="col-form-label">Bank holder name </label>
+            <label for="holderName" class="col-form-label">Account holder name </label>
             <input type="text" class="form-control" name="holderName" id="holderName" [(ngModel)]="user.holderName" placeholder="Name">
           </div>
         </div>
       </div>
 
       <div class="row justify-content-center">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="bankName" class="col-form-label">Bank Name </label>
             <input type="text" class="form-control" name="bankName" id="bankName" [(ngModel)]="user.bankName" placeholder="Bank Name">
@@ -598,14 +598,14 @@
           </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="esicno" class="col-form-label">ESIC no.</label>
             <input type="text" class="form-control" name="esicno" id="esicno" [(ngModel)]="user.esicno" placeholder="Ex:1234567890">
           </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="pfno" class="col-form-label">P.F. No</label>
             <input type="text" class="form-control" name="pfno" id="pfno" [(ngModel)]="user.pfno" placeholder="Ex:123456789012">
@@ -1036,13 +1036,14 @@
 
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <div class="text-center mt-5">
+    <div class="text-center" style="margin-top: 8rem;">
       <h2 class="text-success">Congratulations!</h2>
       <p class="lead">You have successfully completed the registration process.</p>
       <!-- <p class="text-muted">Please Register your details</p> -->
     </div>
     <div class="text-center mt-4">
       <button class="btn btn-primary mx-2" mat-button matStepperPrevious>Back</button>
+      <button class="btn btn-primary mx-2" [routerLink]="['/test', 'employee']" (click)="loginService.showTable('employee')">View Employee</button>
       <!-- <button class="btn btn-secondary mx-2" mat-button (click)="stepper.reset()">Reset</button> -->
       <!-- <button type="submit" color="primary"
         class="btn btn-primary" (click)="submitForm()">Upload</button> -->
