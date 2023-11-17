@@ -974,6 +974,7 @@ console.log("leave apply", response);
 
           // Set the reversed array as the data source
           this.AttData = reversedData;
+          console.log("attendance", response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');

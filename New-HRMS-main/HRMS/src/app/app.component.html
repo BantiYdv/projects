@@ -19,9 +19,13 @@
   
     <!-- Navbar items for super admin role when logged in -->
     <ng-container *ngIf="loginService.isLoggedIn()">
+      
+      <!-- toggle button for mobile screen start -->
       <button class="navbar-toggler p-0 border-0 d-block d-sm-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideBar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa-solid fa-bars"></i>
       </button>
+      <!-- toggle button for mobile screen end -->
+
       <span><a class="color" mat-icon-button (click)="redirectTOHome()">HRMS</a></span>
       <span class="example-spacer"></span>
       <!-- <form role="search" class="d-md-none d-none d-lg-block">
@@ -44,11 +48,17 @@
           <li><a class="dropdown-item rounded-2" [routerLink]="['/test', 'changePassword']" (click)="loginService.showTable('changePassword')">Change Password</a></li>
         </ul>
       </mat-menu>
-      <div class="profile-header-img">
+      <!-- <div class="profile-header-img">
         <a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']" (click)="loginService.showTable('Profile')">
           <img [src]="imageUrl || defaultImageURL" alt="" class="profile-img" (error)="handleImageError($event)"/>
   </a>
+      </div> -->
+      <div class="profile-header-img">
+        <a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']" (click)="loginService.showTable('Profile')">
+          <img [src]="imageUrl || generateDefaultImage()" alt="" class="profile-img" (error)="handleImageError($event)" />
+        </a>
       </div>
+      
       <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span class="d-md-block d-none d-lg-block">Logout</span></a>
   
     </ng-container>
@@ -68,11 +78,9 @@
   </mat-toolbar>
   
   <div class="row col-12" *ngIf="!isHomePage() && loginService.getRole === 'SUPERADMIN'">
-    <!-- <button class="navbar-toggler p-0 border-0 d-block d-sm-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideBar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
+   
   
-    <!-- Sidebar for Small Screens -->
+     <!-- for mobile screen start --> 
     <div class="col-12 d-sm-none">
       <div class="offcanvas offcanvas-start" id="sideBar" style="max-height: 100vh; overflow-y: auto;">
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
@@ -199,7 +207,8 @@
         </div>
       </div>
     </div>
-  
+  <!-- for mobile screen end -->
+
     <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
@@ -322,7 +331,7 @@
       </div>
     </div>
  
-    <div class="col-12 col-md-9 col-xl-10 px-sm-2 px-0" id="dashboard">
+    <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
     <router-outlet></router-outlet>
     </div>
     
@@ -331,7 +340,68 @@
 
 
   <div class="row col-12" *ngIf="!isHomePage() && loginService.getRole !== 'SUPERADMIN'">
-    <div class="col-9 col-md-3 col-xl-2 px-sm-2 px-0" id="sideBar">
+
+    <!-- for mobile screen start -->
+    <div class="col-12 d-sm-none">
+      <div class="offcanvas offcanvas-start" id="sideBar" style="max-height: 100vh; overflow-y: auto;">
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <div class="offcanvas-header">
+            <h3 class="offcanvas-title m-0" style="color: white;" id="offcanvasNavbarDarkLabel">HRMS</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
+            <li class="nav-item text-center">
+              <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 5.png"
+                    alt="">
+                 
+                  <span class="image-name">Home</span>
+                </div>
+              </a>
+            </li>
+           
+            <li class="nav-item text-center" *ngFor="let option of filteredOptions">
+              <a class="nav-link align-middle px-0" [routerLink]="[option.router]">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="{{option.src}}" alt="" (click)="loginService.showTable(option.function)" />
+                
+                  <span class="image-name">{{option.imgName}}</span>
+                </div>
+              </a>
+            </li>
+  
+            <li class="nav-item text-center">
+              <a class="nav-link align-middle px-0" (click)="LeavePolicyPdf()">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 11.png"
+                    alt="">
+                 
+                  <span class="image-name">Download Leave Policy</span>
+                </div>
+              </a>
+            </li>
+  
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/test', 'calendar']" (click)="loginService.showTable('calendar')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo"
+                    src="/assets/Group 11.png"
+                    alt="">
+               
+                  <span class="image-name">View Holiday</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<!-- for mobile screen end -->
+
+    <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
           <li class="nav-item text-center">
@@ -345,16 +415,7 @@
               </div>
             </a>
           </li>
-          <!-- <li>
-            <a class="nav-link px-0 align-middle" routerLink="/registration">
-              <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="https://cdn-icons-png.flaticon.com/128/9634/9634123.png"
-                  alt="">
-                <span class="image-name">New Registration</span>
-              </div>
-            </a>
-          </li> -->
+          
           <li class="nav-item text-center" *ngFor="let option of filteredOptions">
             <a class="nav-link px-0 align-middle" [routerLink]="[option.router]">
               <div class="image-container">
@@ -393,7 +454,7 @@
       </div>
     </div>
   
-    <div class="col-9 col-md-9 col-xl-10 px-sm-2 px-0" id="dashboard">
+    <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
     <router-outlet></router-outlet>
     </div>
   </div>

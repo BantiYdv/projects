@@ -336,5 +336,4 @@ deleteEmployee(id: number): Observable<any> {
 // // view all docs end
 
 
-
 }

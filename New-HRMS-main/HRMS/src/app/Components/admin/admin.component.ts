@@ -74,6 +74,7 @@ export class AdminComponent {
   casualLeavesPerMonth: any;
   permissions: any;
 
+
   validateDateOfBirth() {
     const currentDate = new Date();
     const selectedDate = new Date(this.user.dob);
@@ -177,18 +178,10 @@ export class AdminComponent {
 
 
 // check in and check out start
-    const storedCheckInStatus = localStorage.getItem('checkedIn');
-    const storedCheckOutStatus = localStorage.getItem('checkedOut');
 
-    if (storedCheckInStatus) {
-      this.checkedIn = JSON.parse(storedCheckInStatus);
-    }
-
-    if (storedCheckOutStatus) {
-      this.checkedOut = JSON.parse(storedCheckOutStatus);
-    }
     // check in and check out end
     
+
   }
 
 
@@ -372,21 +365,16 @@ export class AdminComponent {
 
   //API for show leave remaining end
 
-  
-
-
+ 
   // API for alert box check-in-out start
  
   checkin() {
    
     this.adminService.performCheckin().subscribe(
       () => {
-       this.checkedIn = true;
-        this.checkedOut = false;
-        localStorage.setItem('checkedIn', JSON.stringify(true));
-        localStorage.setItem('checkedOut', JSON.stringify(false));
+   
         Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
-       
+        
       },
       (error: any) => {
         if (error.status === 400) {
@@ -407,11 +395,12 @@ export class AdminComponent {
     // Call the service method to perform check-out
     this.adminService.performCheckout().subscribe(
       () => {
-        this.checkedOut = true;
-        this.checkedIn = false;
-        localStorage.setItem('checkedOut', JSON.stringify(true));
-        localStorage.setItem('checkedIn', JSON.stringify(false));
+        // this.checkedOut = true;
+        // this.checkedIn = false;
+        // localStorage.setItem('checkedOut', JSON.stringify(true));
+        // localStorage.setItem('checkedIn', JSON.stringify(false));
         Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
+        
       },
       (error: any) => {
         if (error.status === 400) {

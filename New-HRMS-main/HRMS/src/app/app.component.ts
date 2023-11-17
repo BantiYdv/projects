@@ -8,6 +8,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { DashboardService } from './services/dashboard.service';
 import { AdminService } from './services/admin.service';
 import { saveAs } from 'file-saver';
+import { ProfileService } from './services/profile.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ id: any;
   // remove navbar from login page start...
   checkIfLoginPage: any;
   isLoggedIn!: boolean;
-  constructor(private http: HttpClient, private router: Router, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public adminService: AdminService) {
+  constructor(private http: HttpClient, private router: Router, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public adminService: AdminService, public profileService: ProfileService) {
     this.checkTokenExpiration();
     // Subscribe to route changes to update the navbar visibility
     this.router.events
@@ -138,11 +139,36 @@ scrollToHoliday() {
 }
 // click on holiday button to go on holiday calendar div end
 
+// for getting user firstname and lastname for default image in navbar start
+firstname: string = ''; // Replace with user's first name
+lastname: string = ''; // Replace with user's last name
 
+generateDefaultImage(): string {
+  if (this.profileDetails.firstname && this.profileDetails.lastname) {
+    const initials = this.profileDetails.firstname.charAt(0) + this.profileDetails.lastname.charAt(0);
+    return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
+  } else {
+    return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
+  }
+}
+viewProfile() {
+  // Call the getShowData function from the service to fetch data
+  this.profileService.getShowData().subscribe(
+    (response: any) => {
+      this.profileDetails = response;
+      console.log("data >>>>>>", response);
+     
+    },
+    (error) => {
+      console.error('Failed to fetch data:', error);
+    }
+  );
+}
+// for getting user firstname and lastname for default image in navbar end
   
   ngOnInit(): void {
     this.getUserPhoto();
-    // this.teamleave();
+    this.viewProfile();    // for getting user firstname and lastname for default image in navbar
   }
 
   // for changepassword and view profile not show when i am on profile page start

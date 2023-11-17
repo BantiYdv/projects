@@ -194,8 +194,6 @@ SignOut(): Observable<any> {
               localStorage.removeItem('role');
               localStorage.removeItem('tokenExpiration');
               localStorage.removeItem('permissionLength');
-              localStorage.removeItem('checkedOut');
-              localStorage.removeItem('checkedIn');
               // this.cookieService.deleteAll();
               this.deleteCookie('JSESSIONID');
               observer.next(); // Notify the observer that the logout was successful

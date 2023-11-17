@@ -326,13 +326,13 @@
   <div *ngSwitchCase="'employee'">
   <!-- <div *ngIf="isHashEqualTo('/test/employee')"> -->
    
-    <div class="table-responsive m-1 mt-4">
-      <div class="d-flex justify-content-end mb-3">
-        <div class="table-search">
-          <input [(ngModel)]="searchTerm" (input)="applyFilter()"  placeholder="Search..." class="form-control rounded">
+    <div class="d-flex justify-content-end m-1 mt-4">
+      <div class="table-search">
+        <input [(ngModel)]="searchTerm" (input)="applyFilter()"  placeholder="Search..." class="form-control rounded">
 
-        </div>
       </div>
+    </div>
+    <div class="table-responsive m-1">
       <table class="table table-bordered table-sm">
         <thead class="table-dark">
           <tr>
@@ -385,7 +385,7 @@
  
   <div *ngSwitchCase="'teamleave'">
     <!-- <div *ngIf="isHashEqualTo('/test/teamleave')"> -->
-    <div class="table-responsive m-1 mt-4">
+    <div class="table-responsive mt-4">
       <table class="table table-bordered table-sm">
 
         <thead class="table-dark">
@@ -811,7 +811,7 @@
   <!-- view attendance start -->
   <div *ngSwitchCase="'viewAtt'">
     <!-- <div *ngIf="isHashEqualTo('/test/viewAtt')"> -->
-    <div class="container px-4 py-0 text-center" *ngIf="showAttTable" id="viewAtt">
+    <div class="container px-2 py-0 text-center" *ngIf="showAttTable" id="viewAtt">
 
       <div class="table-responsive mt-4">
         <table class="table table-bordered table-sm">
@@ -820,7 +820,6 @@
               <th>S.No</th>
               <th>Name</th>
               <th>Email Id</th>
-              <!-- <th>User Name</th> -->
               <th>Date</th>
               <th>Check-In</th>
               <th>Check-Out</th>
@@ -833,7 +832,6 @@
               <td>{{ i + 1 }}</td>
               <td>{{ item.firstname+' '+item.lastname }}</td>
               <td>{{ item.emailid }}</td>
-              <!-- <td>{{ item.username1 }}</td> -->
               <td>{{ item.checkDate }}</td>
               <td>{{ item.checkin }}</td>
               <td>{{ item.checkout }}</td>
@@ -955,7 +953,7 @@
     <!-- <div *ngIf="isHashEqualTo('/test/viewAllAtt')"> -->
     <div class="container px-4 py-0 text-center" *ngIf="showAllAttTable" id="viewAllAtt">
 
-      <div class="table-responsive mt-4">
+      <div class="table-responsive m-1 mt-4">
         <table class="table table-bordered table-sm">
           <thead class="table-dark">
             <tr>
