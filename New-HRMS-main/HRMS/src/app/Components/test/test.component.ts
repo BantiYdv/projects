@@ -71,17 +71,23 @@ export class TestComponent {
   showoldPassword: boolean = false;
   showconfirmPassword: boolean = false;
   availablePermissionOptions: string[] = [
-    "NO ACCESS",
-      "ALL ACCESS",
-      "ALL EMPLOYEES DATA",
-      "NEW REGISTRATION",
-      "ALL EMPLOYEES ATTENDANCE",
-      "LEAVE SHOW TEAMLEAD",
-      "WFH SHOW TEAMLEAD",
-      "ALL WFH EMPLOYEES",
-      "VIEW ALL LEAVE"
+    "NO_ACCESS",
+      "ALL_ACCESS",
+      "ALL_EMPLOYEES_DATA",
+      "NEW_REGISTRATION",
+      "ALL_EMPLOYEES_ATTENDANCE",
+      "LEAVE_SHOW_TEAMLEAD",
+      "WFH_SHOW_TEAMLEAD",
+      "ALL_WFH_EMPLOYEES",
+      "VIEW_ALL_LEAVE"
   ];
 
+  // remove underscore from permission name start
+  formatOption(option: string): string {
+    return option.replace(/_/g, ' ');
+  }
+// remove underscore from permission name end
+  
   showAllDocsTable: any;
   
   imageUrl: SafeUrl | undefined;
@@ -178,6 +184,14 @@ export class TestComponent {
 
   }
  
+  selectedPermission: any; 
+  showDropdown = false;
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  
   ngOnInit() {
     this.viewRole();
     this.openEmployee();
@@ -192,6 +206,20 @@ export class TestComponent {
     this.togglecalendar();
   }
 
+
+ 
+  firstname: string = ''; // Replace with user's first name
+  lastname: string = ''; // Replace with user's last name
+
+  generateDefaultImageUser(): string {
+    if (this.EmployeeData.firstname && this.EmployeeData.lastname) {
+      const initials = this.EmployeeData.firstname.charAt(0) + this.EmployeeData.lastname.charAt(0);
+      return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
+    } else {
+      return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
+    }
+  }
+  
     // // after reload to show
     // isHashEqualTo(hash: string): boolean {
     //   return window.location.hash === `#${hash}`;
@@ -204,7 +232,7 @@ export class TestComponent {
     this.showAllAdminTable = !this.showAllAdminTable;
     this.isModalOpen = true;
 
-    if (this.showAllAdminTable && '#/test/employee' === window.location.hash) {
+    if (this.showAllAdminTable && '#/employee' === window.location.hash) {
 
    
       // Call the service method to fetch the list of employees
@@ -251,7 +279,7 @@ export class TestComponent {
   teamleave(): void {
     this.showTeamLeaveTable = !this.showTeamLeaveTable;
 
-    if (this.showTeamLeaveTable && '#/test/teamleave' === window.location.hash) {
+    if (this.showTeamLeaveTable && '#/teamleave' === window.location.hash) {
       this.testService.getTeamLeaveData().subscribe(
         (response) => {
           // Assign the received data to the TeamLeaveData property
@@ -328,7 +356,7 @@ export class TestComponent {
   teamwfh(): void {
     this.showTeamWfhTable = !this.showTeamWfhTable;
 
-    if (this.showTeamWfhTable && '#/test/teamwfh' === window.location.hash) {
+    if (this.showTeamWfhTable && '#/teamwfh' === window.location.hash) {
       this.testService.getTeamWfhData().subscribe(
         (response) => {
           // Assign the received data to the TeamLeaveData property
@@ -431,7 +459,7 @@ export class TestComponent {
           //   this.router.navigate(['/admin']);
           // }
           this.loginService.showTable('viewRole');
-          this.router.navigate(['/test', 'viewRole']);
+          this.router.navigate(['/viewRole']);
           this.viewRole();
         });
 
@@ -489,7 +517,7 @@ export class TestComponent {
               text: 'Permissions added successfully',
             }).then(() => {
               this.loginService.showTable('viewRole');
-              this.router.navigate(['/test', 'viewRole']);
+              this.router.navigate(['/viewRole']);
               this.viewRole();
             });
             console.log("permission added", response);
@@ -563,7 +591,7 @@ export class TestComponent {
               timer: 1500
             }).then(() => {
               this.loginService.showTable('viewRole');
-              this.router.navigate(['/test', 'viewRole']);
+              this.router.navigate(['/viewRole']);
               this.viewRole();
 
 
@@ -602,7 +630,7 @@ export class TestComponent {
             }).then((result) => {
               if (result.isConfirmed) {
                 this.loginService.showTable('viewRole');
-                this.router.navigate(['/test', 'viewRole']);
+                this.router.navigate(['/viewRole']);
                 this.viewRole();
               }
             });
@@ -912,7 +940,7 @@ console.log("leave form", this.leaveForm);
         Swal.fire('Applied!', 'Leave Applied successfully!', 'success');
         // Reset the form
         // this.leaveForm.reset();
-        this.router.navigate(['/test', 'viewLeave']);
+        this.router.navigate(['/viewLeave']);
         this.showAdminLeaveTable = false;
         this.toggleAdminLeaveTable();
         this.loginService.showTable('viewLeave')
@@ -998,7 +1026,7 @@ console.log("leave apply", response);
         // handle the API response here
         Swal.fire('Success!', 'Work From Home Applied successfully, Waiting for response!', 'success');
         // this.wfhForm.reset()
-        this.router.navigate(['/test', 'viewWfh']);
+        this.router.navigate(['/viewWfh']);
         this.showWfhTable = false;
         this.toggleWfhTable();
         this.loginService.showTable('viewWfh')
@@ -1045,7 +1073,7 @@ console.log("leave apply", response);
   viewAllattendance() {
     this.showAllAttTable = !this.showAllAttTable;
 
-    if (this.showAllAttTable && '#/test/viewAllAtt' === window.location.hash) {
+    if (this.showAllAttTable && '#/viewAllAtt' === window.location.hash) {
 
 
       // Call the service method to fetch all attendance data
@@ -1076,7 +1104,7 @@ console.log("leave apply", response);
   toggleAllWfhTable(): void {
     this.showAllWfhTable = !this.showAllWfhTable;
 
-    if (this.showAllWfhTable && '#/test/viewAllWfh' === window.location.hash) {
+    if (this.showAllWfhTable && '#/viewAllWfh' === window.location.hash) {
 
       // Call the service method to fetch all WFH data for administrators
       this.testService.getAllWfhData().subscribe(
@@ -1105,7 +1133,7 @@ console.log("leave apply", response);
   toggleAllLeaveTable(): void {
     this.showAllLeaveTable = !this.showAllLeaveTable;
 
-    if (this.showAllLeaveTable && '#/test/viewAllLeave' === window.location.hash) {
+    if (this.showAllLeaveTable && '#/viewAllLeave' === window.location.hash) {
 
 
       // Call the service method to fetch all leave data
@@ -1322,15 +1350,15 @@ console.log("leave apply", response);
 
     // Define an array of available permission options, excluding the selectedPermissions
     const availablePermissionOptions = [
-      "NO ACCESS",
-      "ALL ACCESS",
-      "ALL EMPLOYEES DATA",
-      "NEW REGISTRATION",
-      "ALL EMPLOYEES ATTENDANCE",
-      "LEAVE SHOW TEAMLEAD",
-      "WFH SHOW TEAMLEAD",
-      "ALL WFH EMPLOYEES",
-      "VIEW ALL LEAVE"
+      "NO_ACCESS",
+      "ALL_ACCESS",
+      "ALL_EMPLOYEES_DATA",
+      "NEW_REGISTRATION",
+      "ALL_EMPLOYEES_ATTENDANCE",
+      "LEAVE_SHOW_TEAMLEAD",
+      "WFH_SHOW_TEAMLEAD",
+      "ALL_WFH_EMPLOYEES",
+      "VIEW_ALL_LEAVE"
     ].filter(option => !this.selectedPermissions.includes(option));
 
     // Assign the available options to a new property (e.g., availablePermissionOptions)
@@ -1345,25 +1373,25 @@ console.log("leave apply", response);
   
  
   onPermissionSelectionChange() {
-    if (this.selectedPermissions.includes("ALL ACCESS")) {
+    if (this.selectedPermissions.includes("ALL_ACCESS")) {
       // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"
-      this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO ACCESS");
+      this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
     }
   }
 
   isOptionDisabled(option: string): boolean {
 
     if (
-      (this.selectedPermissions.includes('NO ACCESS') && option !== 'NO ACCESS') ||
-      (this.selectedPermissions.includes('ALL ACCESS') && option === 'NO ACCESS') ||
-      (this.selectedPermissions.includes('ALL ACCESS') && option !== 'ALL ACCESS') ||
-      (this.selectedPermissions.includes('ALL EMPLOYEES DATA') && option === 'NO ACCESS') ||
-      (this.selectedPermissions.includes('NEW REGISTRATION') && option === 'NO ACCESS') ||
-      (this.selectedPermissions.includes('ALL EMPLOYEES ATTENDANCE') && option === 'NO ACCESS') ||
-      (this.selectedPermissions.includes('LEAVE SHOW TEAMLEAD') && option === 'NO ACCESS') ||
-      (this.selectedPermissions.includes('WFH SHOW TEAMLEAD') && option === 'NO ACCESS') ||
-      (this.selectedPermissions.includes('ALL WFH EMPLOYEES') && option === 'NO ACCESS') ||
-      (this.selectedPermissions.includes('VIEW ALL LEAVE') && option === 'NO ACCESS')
+      (this.selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_ACCESS') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_ACCESS') && option !== 'ALL_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_EMPLOYEES_DATA') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('NEW_REGISTRATION') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_EMPLOYEES_ATTENDANCE') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('LEAVE_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('WFH_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ALL_WFH_EMPLOYEES') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS')
 
     ) {
       return true; // Disable the option

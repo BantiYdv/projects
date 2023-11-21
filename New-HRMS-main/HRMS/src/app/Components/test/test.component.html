@@ -46,7 +46,7 @@
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
                           <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
-                            {{ option }}
+                            {{  formatOption(option) }}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -108,7 +108,7 @@
   </div> -->
 
   <div *ngSwitchCase="'viewRole'">
-    <div class="container px-4 py-0 text-center" style="width: 80%;">
+    <div class="container px-4 py-0 text-center" style="width: 90%;">
       <div class="table-responsive mt-4">
         <table class="table table-bordered table-sm">
           <thead class="table-dark">
@@ -126,11 +126,31 @@
               <td class="align-middle">{{ i + 1 }}</td>
               <td class="align-middle">{{ item.name }}</td>
               <td>
-                <ul>
+                <!-- <ul>
                   <li *ngFor="let permission of item.permissions">
-                    {{ permission.permissionName }}
+                    {{ formatOption(permission.permissionName) }}
                   </li>
+                </ul> -->
+               
+                <ul>
+                  <li class="first-permission">
+                    {{ formatOption(item.permissions[0].permissionName) }}
+                    <span *ngIf="item.permissions.length > 1" class="dropdown-icon" (click)="toggleDropdown()">
+                      <i class="fa-solid" [ngClass]="{'fa-caret-down': !showDropdown, 'fa-caret-up': showDropdown}"></i>
+                    </span>
+                  </li>
+                  <div *ngIf="showDropdown" class="dropdown-content">
+                    <!-- Render the dropdown content here -->
+                    <ul>
+                      <li class="first-permission" *ngFor="let permission of item.permissions.slice(1)">
+                        {{ formatOption(permission.permissionName) }}
+                      </li>
+                    </ul>
+                  </div>
                 </ul>
+                
+                
+                
               </td>
               <td class="align-middle">
                 <!-- Edit and Delete buttons for permissions -->
@@ -211,7 +231,7 @@
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
                           <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
-                            {{ option }}
+                            {{ formatOption(option) }}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -293,7 +313,7 @@
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
                           <mat-option *ngFor="let permission of availablePermissions" [value]="permission">
-                            {{ permission }}
+                            {{ formatOption(permission) }}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -349,7 +369,7 @@
             <td class="align-middle">{{ i + 1 }}</td>
               <td class="pointer d-flex align-items-center" style="cursor: pointer; color: blue;" [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">
                 <a class="dropdown-item rounded-2 d-flex align-items-center m-1">
-                  <img class="rounded-circle img-fluid " [src]="imageUrl || defaultImageURL" alt="" />
+                  <img class="rounded-circle img-fluid " [src]="imageUrl || generateDefaultImageUser()" alt="" />
                   
                 </a><span class="m-1">{{ item.firstname + ' ' + item.lastname }}</span>
               </td>

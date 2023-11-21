@@ -103,13 +103,15 @@ export class DashboardComponent {
 
 
 
+ data: any;
 
   ngOnInit(): void {
-    this.createChart();
+    this.createChart(this.data);
     this.createLineChart();
     this.viewEmployeeProfile();
-    
+    this.viewAllAttendance();
   }
+ 
 
   // for view employee list start
   isModalOpen = false; // Variable to track the modal state
@@ -164,34 +166,100 @@ export class DashboardComponent {
 
 
   // bar chart start
-  createChart() {
+  // createChart() {
 
+  //   this.chart = new Chart("MyChart", {
+  //     type: 'bar', //this denotes tha type of chart
+  //     data: {// values on X-Axis
+  //       labels: ['Jan', 'Fab', 'Mar', 'Apr',
+  //         'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+  //       datasets: [
+  //         {
+  //           label: "persent",
+  //           data: ['31', '28', '31', '30', '31',
+  //             '30', '31', '31', '30', '31', '30', '31'],
+  //           backgroundColor: 'blue'
+  //         },
+  //         {
+  //           label: "absent",
+  //           data: ['25', '22', '31', '29', '25',
+  //             '30', '28', '25', '29', '22', '26', '27'],
+  //           backgroundColor: 'limegreen'
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5
+  //     }
+
+  //   });
+  // }
+
+ 
+
+  viewAllAttendance() {
+   
+      // Call the service method to fetch all attendance data
+      this.testService.getAllAttendance().subscribe(
+        (response: any) => {
+          const responseData: any[] = response as any[]; // Explicitly cast to any[]
+          console.log('Attendance Data:', responseData);
+          // Call the createChart function with the response data
+          this.createChart(responseData);
+          console.log("chart att", response);
+        },
+        error => {
+          // Handle errors here
+          console.error('Error fetching attendance data:', error);
+      
+        }
+      );
+    
+  }
+  
+  
+  
+  
+  createChart(data: any[]) {
+    // Ensure that data is an array before proceeding
+    if (!data || !Array.isArray(data)) {
+      console.error('Invalid or undefined data for chart.');
+      return;
+    }
+  
+    // Count occurrences of each status
+    const statusCounts = data.reduce((acc, item) => {
+      acc[item.status] = (acc[item.status] || 0) + 1;
+      return acc;
+    }, {});
+  
+    // Create the chart
     this.chart = new Chart("MyChart", {
-      type: 'bar', //this denotes tha type of chart
-      data: {// values on X-Axis
+      type: 'bar',
+      data: {
         labels: ['Jan', 'Fab', 'Mar', 'Apr',
-          'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+           'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
         datasets: [
           {
             label: "persent",
-            data: ['31', '28', '31', '30', '31',
-              '30', '31', '31', '30', '31', '30', '31'],
-            backgroundColor: 'blue'
+            data: Object.values(statusCounts),
+            backgroundColor: ['blue']
           },
           {
             label: "absent",
-            data: ['25', '22', '31', '29', '25',
-              '30', '28', '25', '29', '22', '26', '27'],
-            backgroundColor: 'limegreen'
+            data: Object.values(statusCounts),
+            backgroundColor: ['limegreen']
           }
         ]
       },
       options: {
         aspectRatio: 1.5
       }
-
     });
   }
+  
+  
+  
   // bar chart end
 
   //line chart start

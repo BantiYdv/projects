@@ -254,4 +254,25 @@ h3,
   }
   
   /* profile image show in navbar end */
+
+
+  /* show dropdown permission in view role list start */
+  .hidden-permission {
+    display: none;
+  }
   
+  .dropdown-icon {
+    cursor: pointer;
+    color: rgb(12, 12, 14); /* Customize the color as needed */
+  }
+  .first-permission {
+    list-style: none;
+  }
+  
+  .dropdown-icon {
+    cursor: pointer;
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  /* show dropdown permission in view role list end */
+  
+    

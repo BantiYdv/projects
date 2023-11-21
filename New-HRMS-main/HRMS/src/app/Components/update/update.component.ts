@@ -580,7 +580,7 @@ calculateTotalLeaves() {
           text: 'File Upload Successfully',
         })
         // Move to the next step
-        this.router.navigate(['/test', 'employee']);
+        this.router.navigate(['/employee']);
         this.testService.getEmployeeList();
         console.log('Files uploaded successfully:', response);
       },

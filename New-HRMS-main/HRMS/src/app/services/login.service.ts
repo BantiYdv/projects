@@ -151,6 +151,7 @@ getCurrentPhoto(): Observable<Blob> {
 }
 // current photo end
 
+// remove cookies from storage start
 deleteCookie(name: string) {
   document.cookie.split(';').forEach(cookie => {
     const [cookieName, cookieValue] = cookie.split('=').map(c => c.trim());
@@ -159,6 +160,8 @@ deleteCookie(name: string) {
     }
   });
 }
+// remove cookies from storage end
+
 // sign out start
 SignOut(): Observable<any> {
   return new Observable((observer) => {

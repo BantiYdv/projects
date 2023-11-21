@@ -8,7 +8,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { DashboardService } from './services/dashboard.service';
 import { AdminService } from './services/admin.service';
 import { saveAs } from 'file-saver';
-import { ProfileService } from './services/profile.service';
+
 
 
 @Component({
@@ -23,7 +23,7 @@ id: any;
   // remove navbar from login page start...
   checkIfLoginPage: any;
   isLoggedIn!: boolean;
-  constructor(private http: HttpClient, private router: Router, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public adminService: AdminService, public profileService: ProfileService) {
+  constructor(private http: HttpClient, private router: Router, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public adminService: AdminService) {
     this.checkTokenExpiration();
     // Subscribe to route changes to update the navbar visibility
     this.router.events
@@ -55,14 +55,16 @@ id: any;
   isHomePage(): boolean {
     return this.router.url === '/';
   }
-
+  notFound(): boolean {
+    return this.router.url === '/login/**';
+  }
 
   // default image strat
-  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
+//   defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
 
-  handleImageError(event: any) {
-    event.target.src = this.defaultImageURL;
-}
+//   handleImageError(event: any) {
+//     event.target.src = this.defaultImageURL;
+// }
 // default image end
 
   //for remove token from local storage in 5 hours start
@@ -108,15 +110,15 @@ id: any;
   // }
 // for show side nav bar according to user login with permission start
 permissionSet = [
-  { name: 'ALL EMPLOYEES DATA', router: '/test/employee', function: "employee",  imgName: "All Employees", src: '/assets/Group 7.png'},
-  { name: 'NEW REGISTRATION', router: '/registration', function: "registration", imgName: "Registeration", src: '/assets/Group 8.png'},
-  { name: 'ALL EMPLOYEES ATTENDANCE', router: '/test/viewAllAtt', function: "viewAllAtt", imgName: "All Attendance", src: '/assets/allAtt.png'},
-  { name: 'LEAVE SHOW TEAMLEAD', router: '/test/teamleave', function: 'teamleave', imgName: "Team Leaves", src: '/assets/Group 9.png' },
-  { name: 'WFH SHOW TEAMLEAD', router: '/test/teamwfh', function: 'teamwfh', imgName: "Team WFH", src: '/assets/Mask group.png'},
-  { name: 'ALL WFH EMPLOYEES', router: '/test/viewAllWfh', function: 'viewAllWfh', imgName: "All WFH", src: '/assets/allWfh.png'},
-  { name: 'ADMIN LEAVES', router: '/test/', function: '', imgName: "Admin Leave", src: 'https://cdn-icons-png.flaticon.com/128/5590/5590545.png'},
-  { name: 'ADMIN WFH', router: '/test/', function: '', imgName: "Admin WFH", src: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRGwlYfdcbTYW72vNkR7gkq8iXUmDEtd0bl_ohNaZZA7RMq92QE'},
-  { name: 'VIEW ALL LEAVE', router: '/test/viewAllLeave', function: 'viewAllLeave', imgName: "All Leaves", src: '/assets/allLeaves.png'},
+  { name: 'ALL_EMPLOYEES_DATA', router: '/employee', function: "employee",  imgName: "All Employees", src: '/assets/Group 7.png'},
+  { name: 'NEW_REGISTRATION', router: '/registration', function: "registration", imgName: "Registeration", src: '/assets/Group 8.png'},
+  { name: 'ALL_EMPLOYEES_ATTENDANCE', router: '/viewAllAtt', function: "viewAllAtt", imgName: "All Attendance", src: '/assets/allAtt.png'},
+  { name: 'LEAVE_SHOW_TEAMLEAD', router: '/teamleave', function: 'teamleave', imgName: "Team Leaves", src: '/assets/Group 9.png' },
+  { name: 'WFH_SHOW_TEAMLEAD', router: '/teamwfh', function: 'teamwfh', imgName: "Team WFH", src: '/assets/Mask group.png'},
+  { name: 'ALL_WFH_EMPLOYEES', router: '/viewAllWfh', function: 'viewAllWfh', imgName: "All WFH", src: '/assets/allWfh.png'},
+  { name: 'ADMIN_LEAVES', router: '/test/', function: '', imgName: "Admin Leave", src: 'https://cdn-icons-png.flaticon.com/128/5590/5590545.png'},
+  { name: 'ADMIN_WFH', router: '/test/', function: '', imgName: "Admin WFH", src: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRGwlYfdcbTYW72vNkR7gkq8iXUmDEtd0bl_ohNaZZA7RMq92QE'},
+  { name: 'VIEW_ALL_LEAVE', router: '/viewAllLeave', function: 'viewAllLeave', imgName: "All Leaves", src: '/assets/allLeaves.png'},
 ]
 
 // for show side nav bar according to user login with permission end
@@ -139,36 +141,36 @@ scrollToHoliday() {
 }
 // click on holiday button to go on holiday calendar div end
 
-// for getting user firstname and lastname for default image in navbar start
-firstname: string = ''; // Replace with user's first name
-lastname: string = ''; // Replace with user's last name
+// // for getting user firstname and lastname for default image in navbar start
+// firstname: string = ''; // Replace with user's first name
+// lastname: string = ''; // Replace with user's last name
 
-generateDefaultImage(): string {
-  if (this.profileDetails.firstname && this.profileDetails.lastname) {
-    const initials = this.profileDetails.firstname.charAt(0) + this.profileDetails.lastname.charAt(0);
-    return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
-  } else {
-    return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
-  }
-}
-viewProfile() {
-  // Call the getShowData function from the service to fetch data
-  this.profileService.getShowData().subscribe(
-    (response: any) => {
-      this.profileDetails = response;
-      console.log("data >>>>>>", response);
+// generateDefaultImage(): string {
+//   if (this.profileDetails.firstname && this.profileDetails.lastname) {
+//     const initials = this.profileDetails.firstname.charAt(0) + this.profileDetails.lastname.charAt(0);
+//     return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
+//   } else {
+//     return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
+//   }
+// }
+// viewProfile() {
+//   // Call the getShowData function from the service to fetch data
+//   this.profileService.getShowData().subscribe(
+//     (response: any) => {
+//       this.profileDetails = response;
+//       console.log("data >>>>>>", response);
      
-    },
-    (error) => {
-      console.error('Failed to fetch data:', error);
-    }
-  );
-}
-// for getting user firstname and lastname for default image in navbar end
+//     },
+//     (error) => {
+//       console.error('Failed to fetch data:', error);
+//     }
+//   );
+// }
+// // for getting user firstname and lastname for default image in navbar end
   
   ngOnInit(): void {
     this.getUserPhoto();
-    this.viewProfile();    // for getting user firstname and lastname for default image in navbar
+    // this.viewProfile();    // for getting user firstname and lastname for default image in navbar
   }
 
   // for changepassword and view profile not show when i am on profile page start

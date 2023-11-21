@@ -356,7 +356,7 @@
           <div class="form-group">
             <label for="modeOfWorking">Mode of working</label>
             <select class="form-control" id="modeOfWorking" name="modeOfWorking" [(ngModel)]="user.modeOfWorking">
-              <option value="">--Select--</option>
+              <option value="" disabled selected>--Select--</option>
               <option value="office">Office</option>
               <option value="remote">Remote</option>
               <option value="wfh">WFH</option>
@@ -401,7 +401,7 @@
             <label for="teamlead">Team lead</label>
             <select class="form-control" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
               (ngModelChange)="teamLead()">
-              <option value="">--Select--</option>
+              <option value="" disabled selected>--Select--</option>
               <option *ngFor="let teamlead of teamlead" [value]="teamlead">{{ teamlead }} </option>
             </select>
           </div>
@@ -411,7 +411,7 @@
           <div class="form-group">
             <label for="role">Role<span style="color: red;">*</span></label>
             <select class="form-control" name="role" id="role" [(ngModel)]="user.role" (ngModelChange)="ngOnInit()" #roleInput="ngModel" required>
-              <option value="">--Select--</option>
+              <option value="" disabled selected>--Select--</option>
               <option *ngFor="let role of role" [value]="role">{{ role }} </option>
             </select>
             <div *ngIf="roleInput.invalid && (roleInput.dirty || roleInput.touched)"

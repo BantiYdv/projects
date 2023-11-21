@@ -19,11 +19,11 @@
               <!-- <p class="Para">Casual Leave = <span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span></p> -->
               <!-- <div class="mb-3  d-flex justify-content-between"> -->
               <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12"
-                [routerLink]="['/test', 'applyLeave']" (click)="loginService.showTable('applyLeave')">Apply
+                [routerLink]="['/applyLeave']" (click)="loginService.showTable('applyLeave')">Apply
                 Leave</button>
               <!-- </div> -->
               <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12" data-bs-toggle="modal"
-                [routerLink]="['/test', 'viewLeave']" (click)="loginService.showTable('viewLeave')">View Leave</button>
+                [routerLink]="['/viewLeave']" (click)="loginService.showTable('viewLeave')">View Leave</button>
             </div>
           </div>
           <div class="col d-flex align-items-start mt-3">
@@ -32,7 +32,7 @@
               <h3 class="fs-2 text-body-emphasis">Attendance</h3>
               <p class="Para mb-4">Easily record and manage attendance data in real-time.</p>
               <button type="submit" class="btn btn-primary view-leave-btn Apply m-1 col-12 mt-4"
-                [routerLink]="['/test', 'viewAtt']" (click)="loginService.showTable('viewAtt')">View Attendance</button>
+                [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">View Attendance</button>
               <!-- <div class="d-flex justify-content-between m-2">
                 <button type="submit" class="btn btn-primary "
                   (click)="checkin()">Check-In</button>
@@ -69,10 +69,10 @@
               <!-- <p class="Para mb-4">Remaining WFH = <span id="remainingwfh">{{ profileDetails?.remainingwfh }}</span></p> -->
               <div class="mt-5">
                 <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12 mt-3"
-                  [routerLink]="['/test', 'applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
+                  [routerLink]="['/applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
                 <!--  -->
                 <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12"
-                  [routerLink]="['/test', 'viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
+                  [routerLink]="['/viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
 
               </div>
             </div>

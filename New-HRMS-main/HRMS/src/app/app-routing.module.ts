@@ -69,7 +69,7 @@ const routes: Routes = [
   },
   
   {
-    path:"test/:tableType",
+    path:":tableType",
     component: TestComponent,
     pathMatch: "full",
     canActivate:[authGuard]
@@ -79,6 +79,7 @@ const routes: Routes = [
     component: NotFoundComponent,
     pathMatch: "full",
   },
+  
   
     // Other routes
     { path: 'update/:id', component: UpdateComponent, canActivate:[authGuard] },
