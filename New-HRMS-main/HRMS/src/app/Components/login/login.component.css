@@ -226,4 +226,7 @@ a:hover{
 
 
   /*  */
-  
+  .field{
+	border-radius: 25px 0 0 25px !important;
+	border-color: #333;
+  }

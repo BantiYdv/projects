@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +24,76 @@ export class LoginComponent {
     const target = event.target as HTMLInputElement;
     this.showPassword = target.checked;
   }
-  constructor(private loginService: LoginService, private router: Router, private http: HttpClient, private snack: MatSnackBar) { }
+  constructor(private loginService: LoginService, private router: Router, private http: HttpClient, private snack: MatSnackBar,private formBuilder: FormBuilder) {
+     //for change password start
+     this.passwordForm = this.formBuilder.group({
+      oldPassword: ['', Validators.required],
+      // newPassword: ['', [Validators.required, Validators.minLength(8), this.passwordPatternValidator()]],
+      newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/)]],
+      confirmPassword: ['', Validators.required]
+    });
+    // for change password end
+   }
 
+  // UserLoggedIn: boolean = false;
+  passwordForm: any;              //for change password
+  showNewPassword: boolean = false;
+  showoldPassword: boolean = false;
+  showconfirmPassword: boolean = false;
+  toggleoldPasswordVisibility(field: string) {
+    if (field === 'oldPassword') {
+      this.showoldPassword = !this.showoldPassword;
+    }
+  }
+  togglenewPasswordVisibility(field: string) {
+    if (field === 'newPassword') {
+      this.showNewPassword = !this.showNewPassword;
+    }
+  }
+  toggleoldCnfPasswordVisibility(field: string) {
+    if (field === 'confirmPassword') {
+      this.showconfirmPassword = !this.showconfirmPassword;
+    }
+  }
+   //API for change Password start
+
+   changePassword() {
+
+    const oldPassword = this.passwordForm.get('oldPassword').value;
+    const newPassword = this.passwordForm.get('newPassword').value;
+    const confirmPassword = this.passwordForm.get('confirmPassword').value;
+
+    // Call the service method to change the password
+    this.loginService.changePassword(oldPassword, newPassword, confirmPassword).subscribe(
+      () => {
+
+        Swal.fire({
+          title: 'Changed',
+          text: 'Password changed successfully'
+        }).then(() => {
+          // Redirect based on user role
+          localStorage.removeItem('jwtToken');
+          localStorage.removeItem('permissionLength');
+          this.router.navigate(['/login']);
+          // location.reload();
+        });
+      },
+      (error) => {
+        if (error.status === 400) {
+          Swal.fire({
+            title: 'Error',
+            text: 'Old password is incorrect'
+          });
+        }
+        // Handle the error response
+
+        // Additional error handling...
+      }
+    );
+  }
+  //API for change Password end
+
+  isChangePasswordModalOpen = true;
   onSubmit() {
     if (
       this.login.username.trim() == '' ||
@@ -53,12 +122,15 @@ export class LoginComponent {
           localStorage.setItem("jwtToken", token);
           const role = response.registration.role;
           localStorage.setItem("role", role.name);
-          
+          const userLoggedIn = response.registration.userLoggedIn; // Correct property access
+        // localStorage.setItem("isUserLogin", userLoggedIn.toString()); // Store as a string
+        console.log("is user login", userLoggedIn);
+
           localStorage.setItem("permissionLength", role.permissions.length);
           for (let i = 0; i < role.permissions.length; i++) {
             localStorage.setItem("permissions"+ `${i}`, role.permissions[i].permissionName);
           }
-         
+         console.log("login response", response);
 
           Swal.fire({
             icon: 'success',
@@ -69,7 +141,17 @@ export class LoginComponent {
           })
             .then(() => {
               // Redirect based on user role
-              this.redirectBasedOnRole(role.name);
+
+              if (!userLoggedIn) {
+                // Redirect to change password page
+                // this.router.navigate(['/changePassword']);
+                // this.loginService.showTable('changePassword');
+                this.isChangePasswordModalOpen = true;
+              } else {
+                // Redirect based on user role
+                this.redirectBasedOnRole(role.name);
+              }
+              // this.redirectBasedOnRole(role.name);
               
 
             });

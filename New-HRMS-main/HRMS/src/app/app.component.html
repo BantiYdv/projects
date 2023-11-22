@@ -1,27 +1,28 @@
- <!-- <ng-container *ngIf="!isLoginPage()">        -->
-  <!--navbar don't show in only login page -->
-    <!-- <app-nav-bar></app-nav-bar>
+<!-- <ng-container *ngIf="!isLoginPage()">        -->
+<!--navbar don't show in only login page -->
+<!-- <app-nav-bar></app-nav-bar>
   </ng-container>
 
 <router-outlet></router-outlet> -->
 
-<ng-container *ngIf="!isLoginPage()">       <!--navbar don't show in only login page -->
+<ng-container *ngIf="!isLoginPage()"> <!--navbar don't show in only login page -->
   <mat-toolbar color="primary" class="position">
     <ng-container *ngIf="!loginService.isLoggedIn() ">
       <span><a class="color" mat-icon-button routerLink="/">HRMS</a></span>
-    
+
       <span class="example-spacer"></span>
-      
+
     </ng-container>
-  
-  
-   
-  
+
+
+
+
     <!-- Navbar items for super admin role when logged in -->
     <ng-container *ngIf="loginService.isLoggedIn()">
-      
+
       <!-- toggle button for mobile screen start -->
-      <button class="navbar-toggler p-0 border-0 d-block d-sm-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideBar" aria-label="Toggle navigation">
+      <button class="navbar-toggler p-0 border-0 d-block d-sm-none" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sideBar" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>
       </button>
       <!-- toggle button for mobile screen end -->
@@ -34,18 +35,20 @@
       <a class="color" mat-icon-button>
         <i class="fa-solid fa-bell"></i>
         <br>
-       <span class="d-md-block d-none d-lg-block">Notification</span> </a>
-  
+        <span class="d-md-block d-none d-lg-block">Notification</span> </a>
+
       <a *ngIf="!(isProfilePage() || isRegisterationPage())" class="color" mat-icon-button [matMenuTriggerFor]="menu">
         <i class="fa-regular fa-circle-user"></i>
         <!-- <img src="/assets/🦆 icon _profile circle_.png" alt=""> -->
         <br><span class="d-md-block d-none d-lg-block">My Account</span></a>
       <mat-menu #menu="matMenu" class="dropdown-menu">
         <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
-          <li><a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']" (click)="loginService.showTable('Profile')">View Profile</a></li>
+          <li><a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']"
+              (click)="loginService.showTable('Profile')">View Profile</a></li>
           <!-- <li><a class="dropdown-item rounded-2 " routerLink="/profile" >View Profile</a></li> -->
 
-          <li><a class="dropdown-item rounded-2" [routerLink]="['/changePassword']" (click)="loginService.showTable('changePassword')">Change Password</a></li>
+          <li><a class="dropdown-item rounded-2" [routerLink]="['/changePassword']"
+              (click)="loginService.showTable('changePassword')">Change Password</a></li>
         </ul>
       </mat-menu>
       <!-- <div class="profile-header-img">
@@ -58,60 +61,64 @@
           <img [src]="imageUrl || generateDefaultImage()" alt="" class="profile-img" (error)="handleImageError($event)" />
         </a>
       </div> -->
-      
-      <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span class="d-md-block d-none d-lg-block">Logout</span></a>
-  
+
+      <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span
+          class="d-md-block d-none d-lg-block">Logout</span></a>
+
     </ng-container>
-     
-  
+
+
     <!-- Navbar items for when not logged in -->
-  
+
     <ng-container *ngIf="!loginService.isLoggedIn()">
-  
+
       <a class="color" mat-icon-button routerLink="/login">
         <i class="fa-solid fa-right-to-bracket"></i>
         <br>
         Login
       </a>
-  
+
     </ng-container>
   </mat-toolbar>
-  
+
   <div class="row col-12" *ngIf="!isHomePage() &&  loginService.getRole === 'SUPERADMIN'">
-   
-  
-     <!-- for mobile screen start --> 
+
+
+    <!-- for mobile screen start -->
     <div class="col-12 d-sm-none">
       <div class="offcanvas offcanvas-start" id="sideBar" style="max-height: 100vh; overflow-y: auto;">
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
           <div class="offcanvas-header">
             <h3 class="offcanvas-title m-0" style="color: white;" id="offcanvasNavbarDarkLabel">HRMS</h3>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
           </div>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
             <li class="nav-item text-center">
               <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 5.png"
-                    alt="">
-                    
+                  <img class="sidebarPageLogo" src="/assets/Group 5.png" alt="">
+
                   <span class="image-name">Home</span>
                 </div>
               </a>
             </li>
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role" aria-expanded="false">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+                aria-expanded="false">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/createRole.png"
-                    alt="">
-                   
-                  <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span>
+                  <img class="sidebarPageLogo" src="/assets/createRole.png" alt="">
+
+                  <span
+                    class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span>
                   <div class="collapse" id="dashboard-role">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test" [routerLink]="['/createRole']" (click)="loginService.showTable('createRole')">Create Role</a></li>
-                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test" [routerLink]="['/viewRole']" (click)="loginService.showTable('viewRole')">View Role</a></li>
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                          routerLink="/test" [routerLink]="['/createRole']"
+                          (click)="loginService.showTable('createRole')">Create Role</a></li>
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                          routerLink="/test" [routerLink]="['/viewRole']"
+                          (click)="loginService.showTable('viewRole')">View Role</a></li>
                     </ul>
                   </div>
                 </div>
@@ -120,94 +127,112 @@
             <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" routerLink="/registration">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 8.png"
-                    alt="">
-                    
-                    
+                  <img class="sidebarPageLogo" src="/assets/Group 8.png" alt="">
+
+
                   <span class="image-name">Registration</span>
                 </div>
               </a>
             </li>
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
+                (click)="loginService.showTable('employee')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 7.png"
-                    alt="" >
-                    
+                  <img class="sidebarPageLogo" src="/assets/Group 7.png" alt="">
+
                   <span class="image-name">All Employees</span>
                 </div>
               </a>
             </li>
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']" (click)="loginService.showTable('teamleave')">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
+                (click)="loginService.showTable('teamleave')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 9.png"
-                    alt="">
-                    
+                  <img class="sidebarPageLogo" src="/assets/Group 9.png" alt="">
+
                   <span class="image-name">Team Leave</span>
                 </div>
               </a>
             </li>
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']" (click)="loginService.showTable('teamwfh')">
+              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
+                (click)="loginService.showTable('teamwfh')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Mask group.png"
-                    alt="">
-                  
+                  <img class="sidebarPageLogo" src="/assets/Mask group.png" alt="">
+
                   <span class="image-name">Team WFH</span>
                 </div>
               </a>
             </li>
-           
+
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" [routerLink]="['/reports']" (click)="loginService.showTable('reports')">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
+                (click)="loginService.showTable('reports')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                  src="/assets/report3.png"
-                  alt="">
-                 
+                  <img class="sidebarPageLogo" src="/assets/report3.png" alt="">
+
                   <span class="image-name">Reports</span>
                 </div>
-            
+
               </a>
             </li>
-  
-            
-  
+
+
             <li class="nav-item text-center">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+                <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
+                  <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Attendance</span>
+                </label>
+                <div class="collapse" id="dashboard-rule">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li>
+                      <!-- Use a label to trigger file input -->
+                      <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
+                      <label for="pdfFileInput">
+                        <span class="image-name" id="pdfFile">Upload Pdf</span>
+                      </label></a>
+                      <!-- Visually hidden file input -->
+                      <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
+                    </li>
+                    <li>
+                      <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
+                        [routerLink]="['/viewRole']" (click)="loginService.showTable('viewRole')">Attendance Ruls</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            
+            
+            <!-- <li class="nav-item text-center">
               <label class="nav-link px-0 align-middle" for="pdfFileInput">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
-                 
                   <span class="image-name" id="pdfFile">Upload Pdf</span>
                 </div>
               </label>
               <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
-            </li>
-  
-  
-  
+            </li> -->
+
+
+
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']" (click)="loginService.showTable('calendar')">
+              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
+                (click)="loginService.showTable('calendar')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 11.png"
-                    alt="">
-                    
+                  <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+
                   <span class="image-name">View Holiday</span>
                 </div>
               </a>
             </li>
-            
+
           </ul>
         </div>
       </div>
     </div>
-  <!-- for mobile screen end -->
+    <!-- for mobile screen end -->
 
     <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
@@ -215,26 +240,28 @@
           <li class="nav-item text-center">
             <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 5.png"
-                  alt="">
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 5.png" alt="">
+                <br>
                 <span class="image-name">Home</span>
               </div>
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role" aria-expanded="false">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+              aria-expanded="false">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/createRole.png"
-                  alt="">
-                  <br>
-                <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span>
+                <img class="sidebarPageLogo" src="/assets/createRole.png" alt="">
+                <br>
+                <span
+                  class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span>
                 <div class="collapse" id="dashboard-role">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test" [routerLink]="['/createRole']" (click)="loginService.showTable('createRole')">Create Role</a></li>
-                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test" [routerLink]="['/viewRole']" (click)="loginService.showTable('viewRole')">View Role</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/createRole']"
+                        (click)="loginService.showTable('createRole')">Create Role</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/viewRole']"
+                        (click)="loginService.showTable('viewRole')">View Role</a></li>
                   </ul>
                 </div>
               </div>
@@ -243,65 +270,86 @@
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" routerLink="/registration">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 8.png"
-                  alt="">
-                  
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 8.png" alt="">
+
+                <br>
                 <span class="image-name">Registration</span>
               </div>
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
+              (click)="loginService.showTable('employee')">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 7.png"
-                  alt="" >
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 7.png" alt="">
+                <br>
                 <span class="image-name">All Employees</span>
               </div>
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']" (click)="loginService.showTable('teamleave')">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
+              (click)="loginService.showTable('teamleave')">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 9.png"
-                  alt="">
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 9.png" alt="">
+                <br>
                 <span class="image-name">Team Leave</span>
               </div>
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']" (click)="loginService.showTable('teamwfh')">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
+              (click)="loginService.showTable('teamwfh')">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Mask group.png"
-                  alt="">
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Mask group.png" alt="">
+                <br>
                 <span class="image-name">Team WFH</span>
               </div>
             </a>
           </li>
-         
+
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" [routerLink]="['/reports']" (click)="loginService.showTable('reports')">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
+              (click)="loginService.showTable('reports')">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                src="/assets/report3.png"
-                alt="">
+                <img class="sidebarPageLogo" src="/assets/report3.png" alt="">
                 <br>
                 <span class="image-name">Reports</span>
               </div>
-          
+
             </a>
           </li>
 
-          
 
           <li class="nav-item text-center">
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+              <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
+                <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Attendance</span>
+              </label>
+              <div class="collapse" id="dashboard-rule">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li >
+                    <!-- Use a label to trigger file input -->
+                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
+                    <label for="pdfFileInput">
+                      <span class="image-name" id="pdfFile">Upload Pdf</span>
+                    </label></a>
+                    <!-- Visually hidden file input -->
+                    <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
+                  </li>
+                  <li>
+                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
+                      [routerLink]="['/viewRole']" (click)="loginService.showTable('viewRole')">Attendance Ruls</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          
+          
+
+          <!-- <li class="nav-item text-center">
             <label class="nav-link px-0 align-middle" for="pdfFileInput">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
@@ -310,33 +358,32 @@
               </div>
             </label>
             <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
-          </li>
+          </li> -->
 
 
 
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']" (click)="loginService.showTable('calendar')">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
+              (click)="loginService.showTable('calendar')">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 11.png"
-                  alt="">
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+                <br>
                 <span class="image-name">View Holiday</span>
               </div>
             </a>
           </li>
-          
+
         </ul>
         <hr>
       </div>
     </div>
- 
+
     <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
-    <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
-    
+
   </div>
-  
+
 
 
   <div class="row col-12" *ngIf="!isHomePage() && loginService.getRole !== 'SUPERADMIN'">
@@ -347,50 +394,47 @@
         <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
           <div class="offcanvas-header">
             <h3 class="offcanvas-title m-0" style="color: white;" id="offcanvasNavbarDarkLabel">HRMS</h3>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
           </div>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
             <li class="nav-item text-center">
               <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 5.png"
-                    alt="">
-                 
+                  <img class="sidebarPageLogo" src="/assets/Group 5.png" alt="">
+
                   <span class="image-name">Home</span>
                 </div>
               </a>
             </li>
-           
+
             <li class="nav-item text-center" *ngFor="let option of filteredOptions">
               <a class="nav-link align-middle px-0" [routerLink]="[option.router]">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="{{option.src}}" alt="" (click)="loginService.showTable(option.function)" />
-                
+                  <img class="sidebarPageLogo" src="{{option.src}}" alt=""
+                    (click)="loginService.showTable(option.function)" />
+
                   <span class="image-name">{{option.imgName}}</span>
                 </div>
               </a>
             </li>
-  
+
             <li class="nav-item text-center">
               <a class="nav-link align-middle px-0" (click)="LeavePolicyPdf()">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 11.png"
-                    alt="">
-                 
+                  <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+
                   <span class="image-name">Download Leave Policy</span>
                 </div>
               </a>
             </li>
-  
+
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']" (click)="loginService.showTable('calendar')">
+              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
+                (click)="loginService.showTable('calendar')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo"
-                    src="/assets/Group 11.png"
-                    alt="">
-               
+                  <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+
                   <span class="image-name">View Holiday</span>
                 </div>
               </a>
@@ -399,7 +443,7 @@
         </div>
       </div>
     </div>
-<!-- for mobile screen end -->
+    <!-- for mobile screen end -->
 
     <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
@@ -407,19 +451,18 @@
           <li class="nav-item text-center">
             <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 5.png"
-                  alt="">
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 5.png" alt="">
+                <br>
                 <span class="image-name">Home</span>
               </div>
             </a>
           </li>
-          
+
           <li class="nav-item text-center" *ngFor="let option of filteredOptions">
             <a class="nav-link px-0 align-middle" [routerLink]="[option.router]">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="{{option.src}}" alt="" (click)="loginService.showTable(option.function)" />
+                <img class="sidebarPageLogo" src="{{option.src}}" alt=""
+                  (click)="loginService.showTable(option.function)" />
                 <br>
                 <span class="image-name">{{option.imgName}}</span>
               </div>
@@ -429,22 +472,19 @@
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" (click)="LeavePolicyPdf()">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 11.png"
-                  alt="">
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+                <br>
                 <span class="image-name">Download Leave Policy</span>
               </div>
             </a>
           </li>
 
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']" (click)="loginService.showTable('calendar')">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
+              (click)="loginService.showTable('calendar')">
               <div class="image-container">
-                <img class="sidebarPageLogo"
-                  src="/assets/Group 11.png"
-                  alt="">
-                  <br>
+                <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+                <br>
                 <span class="image-name">View Holiday</span>
               </div>
             </a>
@@ -453,12 +493,12 @@
         <hr>
       </div>
     </div>
-  
+
     <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
-    <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
   </div>
-  
+
 </ng-container>
 
 

@@ -220,6 +220,90 @@ export class DashboardComponent {
   
   
   
+  // createChart(data: any[]) {
+  //   // Ensure that data is an array before proceeding
+  //   if (!data || !Array.isArray(data)) {
+  //     console.error('Invalid or undefined data for chart.');
+  //     return;
+  //   }
+  
+  //   // Count occurrences of each status
+  //   const statusCounts = data.reduce((acc, item) => {
+  //     acc[item.status] = (acc[item.status] || 0) + 1;
+  //     return acc;
+  //   }, {});
+  
+  //   // Create the chart
+  //   this.chart = new Chart("MyChart", {
+  //     type: 'bar',
+  //     data: {
+  //       labels: ['Jan', 'Fab', 'Mar', 'Apr',
+  //          'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+  //       datasets: [
+  //         {
+  //           label: "persent",
+  //           data: Object.values(statusCounts),
+  //           backgroundColor: ['blue']
+  //         },
+  //         {
+  //           label: "absent",
+  //           data: Object.values(statusCounts),
+  //           backgroundColor: ['limegreen']
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5
+  //     }
+  //   });
+  // }
+  
+  // createChart(data: any[]) {
+  //   // Ensure that data is an array before proceeding
+  //   if (!data || !Array.isArray(data)) {
+  //     console.error('Invalid or undefined data for chart.');
+  //     return;
+  //   }
+  
+  //   // Group data by month and count occurrences of each status
+  //   const monthlyStatusCounts: Record<string, { present: number; absent: number }> = {};
+  //   data.forEach(item => {
+  //     const month = new Date(item.checkDate).getMonth();
+  //     console.log("month", month);
+  //     const status = item.status.toUpperCase(); // Convert to uppercase for consistency
+  //     if (!monthlyStatusCounts[month]) {
+  //       monthlyStatusCounts[month] = { present: 15, absent: 0 };
+  //     }
+  //     if (status === 'PRESENT') {
+  //       monthlyStatusCounts[month].present += 1;
+  //     } else if (status === 'ABSENT') {
+  //       monthlyStatusCounts[month].absent += 1;
+  //     }
+  //   });
+  
+  //   // Create the chart
+  //   this.chart = new Chart("MyChart", {
+  //     type: 'bar',
+  //     data: {
+  //       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  //       datasets: [
+  //         {
+  //           label: "Present",
+  //           data: Object.values(monthlyStatusCounts).map(counts => counts.present || 0),
+  //           backgroundColor: 'blue',
+  //         },
+  //         {
+  //           label: "Absent",
+  //           data: Object.values(monthlyStatusCounts).map(counts => counts.absent || 0),
+  //           backgroundColor: 'limegreen',
+  //         }
+  //       ],
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5,
+  //     },
+  //   });
+  // }
   createChart(data: any[]) {
     // Ensure that data is an array before proceeding
     if (!data || !Array.isArray(data)) {
@@ -227,37 +311,49 @@ export class DashboardComponent {
       return;
     }
   
-    // Count occurrences of each status
-    const statusCounts = data.reduce((acc, item) => {
-      acc[item.status] = (acc[item.status] || 0) + 1;
-      return acc;
-    }, {});
+    // Group data by month and count occurrences of each status
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
+    const monthlyStatusCounts: Record<string, { present: number; absent: number }> = {};
+    data.forEach(item => {
+      const monthIndex = new Date(item.checkDate).getMonth();
+      const monthName = monthNames[monthIndex];
+      const status = item.status.toUpperCase(); // Convert to uppercase for consistency
+  
+      if (!monthlyStatusCounts[monthName]) {
+        monthlyStatusCounts[monthName] = { present: 0, absent: 0 };
+      }
+  
+      if (status === 'PRESENT') {
+        monthlyStatusCounts[monthName].present += 1;
+      } else if (status === 'ABSENT') {
+        monthlyStatusCounts[monthName].absent += 1;
+      }
+    });
   
     // Create the chart
     this.chart = new Chart("MyChart", {
       type: 'bar',
       data: {
-        labels: ['Jan', 'Fab', 'Mar', 'Apr',
-           'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        labels: monthNames,
         datasets: [
           {
-            label: "persent",
-            data: Object.values(statusCounts),
-            backgroundColor: ['blue']
+            label: "Present",
+            data: monthNames.map(month => monthlyStatusCounts[month]?.present || 0),
+            backgroundColor: 'blue',
           },
           {
-            label: "absent",
-            data: Object.values(statusCounts),
-            backgroundColor: ['limegreen']
+            label: "Absent",
+            data: monthNames.map(month => monthlyStatusCounts[month]?.absent || 0),
+            backgroundColor: 'limegreen',
           }
-        ]
+        ],
       },
       options: {
-        aspectRatio: 1.5
-      }
+        aspectRatio: 1.5,
+      },
     });
   }
-  
   
   
   // bar chart end
