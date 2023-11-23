@@ -8,9 +8,10 @@
   margin-left: 1rem;
 }
 
-/* .position{
-      position: fixed;
-  } */
+
+.position{
+  background: linear-gradient(90deg, #421CDD 4.99%, #2F37A4 86.71%);
+  }
 
 .dropdown-item,
 .rounded-2,

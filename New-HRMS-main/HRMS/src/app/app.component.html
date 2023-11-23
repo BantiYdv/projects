@@ -8,7 +8,7 @@
 <ng-container *ngIf="!isLoginPage()"> <!--navbar don't show in only login page -->
   <mat-toolbar color="primary" class="position">
     <ng-container *ngIf="!loginService.isLoggedIn() ">
-      <span><a class="color" mat-icon-button routerLink="/">HRMS</a></span>
+      <span class="m-3"><a class="color" mat-icon-button routerLink="/"><img src="/assets/image/logo.png" alt=""><img src="/assets/image/HRMS.png" alt=""></a></span>
 
       <span class="example-spacer"></span>
 
@@ -72,12 +72,20 @@
 
     <ng-container *ngIf="!loginService.isLoggedIn()">
 
-      <a class="color" mat-icon-button routerLink="/login">
-        <i class="fa-solid fa-right-to-bracket"></i>
-        <br>
-        Login
+      <a class="color m-4" mat-icon-button [matMenuTriggerFor]="menu">
+       
+        <img src="/assets/image/homedot.png" alt="">
       </a>
+      <mat-menu #menu="matMenu" class="dropdown-menu">
+        <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
+          <li><a class="dropdown-item rounded-2 " [routerLink]="['/', '']"
+              (click)="loginService.showTable('')">About Us</a></li>
+        
 
+          <li><a class="dropdown-item rounded-2" [routerLink]="['/faq']"
+              >FAQs</a></li>
+        </ul>
+      </mat-menu>
     </ng-container>
   </mat-toolbar>
 
@@ -197,7 +205,7 @@
                     </li>
                     <li>
                       <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
-                        [routerLink]="['/viewRole']" (click)="loginService.showTable('viewRole')">Attendance Ruls</a>
+                        [routerLink]="['/shifttime']" (click)="loginService.showTable('shifttime')">Attendance Ruls</a>
                     </li>
                   </ul>
                 </div>
@@ -340,7 +348,7 @@
                   </li>
                   <li>
                     <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
-                      [routerLink]="['/viewRole']" (click)="loginService.showTable('viewRole')">Attendance Ruls</a>
+                      [routerLink]="['/shifttime']" (click)="loginService.showTable('shifttime')">Attendance Ruls</a>
                   </li>
                 </ul>
               </div>

@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="col-6">
-              <a class="forget" (click)="changepassword()">Forgot Password?</a>
+              <a class="forget" (click)="forgetpassword()">Forgot Password?</a>
             </div>
           </div>
           
@@ -83,7 +83,7 @@
                         <div class="input-group">
                           <input type="{{ showoldPassword ? 'text' : 'password' }}" class="form-control field"  name="oldPassword"
                             id="oldPassword" formControlName="oldPassword" [(ngModel)]="passwordForm.oldPassword">
-                          <button class="btn-outline-secondary" type="button"
+                          <button class="btn-outline-secondary btnPass" type="button"
                             (click)="toggleoldPasswordVisibility('oldPassword')">
                             <i class="fa-solid fa-eye{{ showoldPassword ? '' : '-slash' }}"></i>
                           </button>
@@ -101,7 +101,7 @@
                         <div class="input-group">
                           <input type="{{ showNewPassword ? 'text' : 'password' }}" class="form-control field" name="newPassword"
                             id="newPassword" formControlName="newPassword" [(ngModel)]="passwordForm.newPassword">
-                          <button class="btn-outline-secondary" type="button"
+                          <button class="btn-outline-secondary btnPass" type="button"
                             (click)="togglenewPasswordVisibility('newPassword')">
                             <i class="fa-solid fa-eye{{ showNewPassword ? '' : '-slash' }}"></i>
                           </button>
@@ -122,10 +122,10 @@
                         <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
                         
                         <div class="input-group">
-                          <input type="{{ showconfirmPassword ? 'text' : 'password' }}" class="form-control"
+                          <input type="{{ showconfirmPassword ? 'text' : 'password' }}" class="form-control field"
                             name="confirmPassword" id="confirmPassword" formControlName="confirmPassword"
                             [(ngModel)]="passwordForm.confirmPassword">
-                          <button class="btn-outline-secondary" type="button"
+                          <button class="btn-outline-secondary btnPass" type="button"
                             (click)="toggleoldCnfPasswordVisibility('confirmPassword')">
                             <i class="fa-solid fa-eye{{ showconfirmPassword ? '' : '-slash' }}"></i>
                           </button>

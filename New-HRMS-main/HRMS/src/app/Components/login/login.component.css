@@ -230,3 +230,7 @@ a:hover{
 	border-radius: 25px 0 0 25px !important;
 	border-color: #333;
   }
+
+  .btnPass{
+	border-radius: 0 25px 25px 0 !important;
+  }

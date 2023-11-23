@@ -63,6 +63,8 @@ export class ApiService {
   public USerBasicInfo = `${this.apiUrl}gateway/hrms/findUSerAdditionalInfo`;
   public DeletepersonalDetails = `${this.apiUrl}gateway/hrms/deleteMydetail`;
   public uploadPhoto = `${this.apiUrl}gateway/hrms/upload-photo`;
+  public shift = `${this.apiUrl}gateway/hrms/addShiftTiming`;
+
 
 
   

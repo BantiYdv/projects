@@ -182,6 +182,14 @@ export class TestComponent {
 
     });
 
+// shift time start
+    this.form = this.formBuilder.group({
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
+      workDuration: ['', Validators.required]
+    });
+    this.formArray = this.formBuilder.array([]);
+    // shift time end
   }
  
   selectedPermission: any; 
@@ -1416,70 +1424,31 @@ console.log("leave apply", response);
   }
 
 
-  // API for download Docs start
 
-// DownloadDocs(id: number) {
+  //  shift time start
+  formArray: FormArray;
+  // shift time 
+  addMore(): void {
+    // Clone the form values and reset them
+    const formValues = { ...this.form.value };
+    this.form.reset();
 
-//   this.testService.DownloadDocs(2).subscribe((response: HttpResponse<Blob>) => {
-//     if (response.body) {
-//       const contentDisposition = response.headers.get('content-disposition');
-//       const fileName = contentDisposition
-//         ? contentDisposition.split('filename=')[1]
-//         : 'Docs.png'; 
+    // Create a new set of form controls with the cloned values
+    const newForm = this.formBuilder.group({
+      startTime: [formValues.startTime, Validators.required],
+      endTime: [formValues.endTime, Validators.required],
+      role: [formValues.role, Validators.required]
+    });
 
-//       saveAs(response.body, fileName); 
-//     } else {
-//       console.error('Response body is null.');
-//     }
-//   }, (error) => {
-//     Swal.fire('Error', error.error, 'error');  
-//     console.error(error);
-//   });
- 
-// }
+    // Add the new form group to the form array
+    this.formArray.push(newForm);
 
-// API for download Docs end
+    console.log("shift", this.formArray.value);
+  }
 
-// // API for all Docs start
-// Docs(): void {
-//   this.showAllDocsTable = !this.showAllDocsTable;
-//   this.isModalOpen = true;
+  AssinShift(){
 
-//   if (this.showAllDocsTable) {
-
-
-//     // Call the service method to fetch the list of employees
-//     this.testService.getAllDocs().subscribe(
-//       (response: any) => {
-//         // Convert the response object to an array
-//         const dataArray = Object.values(response);
-//         // Reverse the received array
-//         const reversedData = dataArray.reverse();
-
-//         // Set the reversed array as the data source
-//         this.EmployeeData = reversedData;
-//         console.log("Documents>>>", response);
-//       },
-//       error => {
-//         if (error.status === 403) {
-//           // Handle the 403 Forbidden error
-//           Swal.fire({
-//             icon: 'error',
-//             title: 'Token Expired!',
-//             text: 'Access denied. Please check your permissions.',
-//           });
-
-//         } else {
-//           // Handle other errors
-
-//         }
-//       }
-//     );
-//   }
-// }
-// // API for all docs end
-
-
-
+  }
+// shift time end
 
 }

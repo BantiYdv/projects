@@ -1160,6 +1160,55 @@
     <!-- view holiday calendar end-->
 
 
+<!-- attendance shifttime rules start -->
+<div *ngSwitchCase="'shifttime'">
+  <div class="content m-1 mt-4">
+    <div class="container applyLeave">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <h1 class="text-center">Shift Timing</h1>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <p><img src="/assets/image/shiftTime.svg" alt="Image" class="img-fluid"></p>
+            </div>
+            <div class="col-md-6 mt-4">
+              <form [formGroup]="form" novalidate>
+                <div class="mb-3">
+                  <label for="startTime" class="col-form-label">Start Time:</label>
+                  <input type="time" class="form-control" name="startTime" id="startTime" placeholder="Start time"
+                    formControlName="startTime" >
+                </div>
+              
+                <div class="mb-3">
+                  <label for="endTime" class="col-form-label">End Time</label>
+                  <input type="time" class="form-control" name="endTime" id="endTime" placeholder="End time"
+                    formControlName="endTime" >
+                </div>
+
+                <div class="mb-3">
+                  <label for="workDuration" class="col-form-label">Work Duration</label>
+                  <input type="text" class="form-control" name="workDuration" id="workDuration" placeholder="Work duration"
+                    formControlName="workDuration" >
+                </div>
+                <button *ngIf="form.valid" (click)="addMore()">Add More</button>
+              </form>
+
+
+              <div class="mb-3 col-md-12 d-flex justify-content-between">
+                <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="AssinShift()">Submit</button>
+                <button type="button" class="btn btn-secondary flex-fill m-1" data-bs-dismiss="modal"
+                  (click)="closeForm()">Close</button>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- attendance shifttime rules end -->
   
 
 

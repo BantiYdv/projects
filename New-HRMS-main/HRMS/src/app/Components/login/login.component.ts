@@ -25,17 +25,17 @@ export class LoginComponent {
     this.showPassword = target.checked;
   }
   constructor(private loginService: LoginService, private router: Router, private http: HttpClient, private snack: MatSnackBar,private formBuilder: FormBuilder) {
-     //for change password start
+     //for change password modal start
      this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
       // newPassword: ['', [Validators.required, Validators.minLength(8), this.passwordPatternValidator()]],
       newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/)]],
       confirmPassword: ['', Validators.required]
     });
-    // for change password end
+    // for change password modal end
    }
 
-  // UserLoggedIn: boolean = false;
+  // for change password modal start
   passwordForm: any;              //for change password
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
@@ -55,6 +55,9 @@ export class LoginComponent {
       this.showconfirmPassword = !this.showconfirmPassword;
     }
   }
+
+  // for change password modal end
+
    //API for change Password start
 
    changePassword() {
@@ -66,16 +69,19 @@ export class LoginComponent {
     // Call the service method to change the password
     this.loginService.changePassword(oldPassword, newPassword, confirmPassword).subscribe(
       () => {
-
+        this.isChangePasswordModalOpen = false;
         Swal.fire({
           title: 'Changed',
-          text: 'Password changed successfully'
+          text: 'Password changed successfully',
+          showConfirmButton: false,
+          timer: 1000
         }).then(() => {
           // Redirect based on user role
+
           localStorage.removeItem('jwtToken');
           localStorage.removeItem('permissionLength');
           this.router.navigate(['/login']);
-          // location.reload();
+          location.reload();
         });
       },
       (error) => {
@@ -93,7 +99,7 @@ export class LoginComponent {
   }
   //API for change Password end
 
-  isChangePasswordModalOpen = true;
+  isChangePasswordModalOpen = false;
   onSubmit() {
     if (
       this.login.username.trim() == '' ||
@@ -132,31 +138,57 @@ export class LoginComponent {
           }
          console.log("login response", response);
 
-          Swal.fire({
-            icon: 'success',
-            title: 'Successfully Login',
-            text: 'You have successfully logged in!',
-            showConfirmButton: false,
-            timer: 1000 // Display for 1 second
-          })
-            .then(() => {
+        
               // Redirect based on user role
 
-              if (!userLoggedIn) {
-                // Redirect to change password page
-                // this.router.navigate(['/changePassword']);
-                // this.loginService.showTable('changePassword');
+              if (!userLoggedIn && role.name != 'SUPERADMIN') {
+               
                 this.isChangePasswordModalOpen = true;
               } else {
-                // Redirect based on user role
-                this.redirectBasedOnRole(role.name);
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Successfully Login',
+                  text: 'You have successfully logged in!',
+                  showConfirmButton: false,
+                  timer: 1000 // Display for 1 second
+                }).then(() => {
+
+                  // Redirect based on user role
+                  this.redirectBasedOnRole(role.name);
+                })
               }
               // this.redirectBasedOnRole(role.name);
               
 
-            });
+           
 
         },
+
+      //   if (userLoggedIn) { // Display success message only if user is logged in
+      //     Swal.fire({
+      //       icon: 'success',
+      //       title: 'Successfully Login',
+      //       text: 'You have successfully logged in!',
+      //       showConfirmButton: false,
+      //       timer: 1000 // Display for 1 second
+      //     }).then(() => {
+      //       // Redirect based on user role
+      //       console.log("role", role.name);
+      //       if (!userLoggedIn) {
+      //         this.isChangePasswordModalOpen = true;
+              
+      //       } else {
+      //         // Redirect based on user role
+      //         this.redirectBasedOnRole(role.name);
+      //       }
+      //     });
+      //   } 
+      //   else {
+      //     if (!userLoggedIn) {
+      //       this.isChangePasswordModalOpen = true;
+      //     }
+      //   }
+      // },
         (error: any) => {
           if (error.status === 400) {
             Swal.fire({
@@ -189,7 +221,7 @@ export class LoginComponent {
   //forget password popup strat
 
 
-  async changepassword() {
+  async forgetpassword() {
     const { value: emailid } = await Swal.fire({
       title: 'Input email address',
       input: 'email',
