@@ -1,56 +1,68 @@
 
 
-<img decoding="async" class="wave" src="https://i.stack.imgur.com/WhXKT.png">
-<div class="container">
-    <div class="img">
-        <img decoding="async" src="/assets/image/login (1).svg">
-    </div>
-    <div class="login-content">
+<!-- <img decoding="async" class="wave" src="https://i.stack.imgur.com/WhXKT.png"> -->
+<div class="container-fluid">
+  <div class="row align-items-center">
+    <div class="col-12 col-md-6">
+      <div class="login-content">
         <form (ngSubmit)="onSubmit()">
-            <img decoding="async" src="/assets/image/logintest2.png">
-            <h3 class="title">Login Here</h3>
-            <div class="form-outline mb-4">
-              <mat-form-field class="full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
-                  <input [(ngModel)]="login.username" name="username" id="username"  type="text" matInput required>
-                  <mat-icon matPrefix>account_circle</mat-icon>
-                </mat-form-field>
-            
+          <!-- <img decoding="async" src="/assets/image/Login Here!.png"> -->
+          <h1 class="display-3 text-center  pt-5 mb-0">
+           <span class="text" style="font-weight: 700;">Login Here!</span> <br>
+          </h1>
+          <p class="lead text-center mb-lg-8 mb-4">
+            Let's start, if you are registered.
+          </p>
+          <!-- <h3 class="title">Login Here</h3> -->
+          <div class="form-outline ">
+            <label for="username" class="username">Username:</label>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input [(ngModel)]="login.username" name="username" id="username" type="text" class="inputfield" matInput required>
+              <mat-icon matPrefix>account_circle</mat-icon>
+            </mat-form-field>
           </div>
-          <div class="form-outline">
+          <div class="form-outline mt-2">
+            <label for="password" class="password">Password:</label>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Enter your password</mat-label>
               <input [(ngModel)]="login.password" name="password" id="password" required type="password" matInput type="{{ showPassword ? 'text' : 'password' }}">
-            
-              
               <mat-icon matPrefix>lock</mat-icon>
             </mat-form-field>
           </div>
-
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-6">
               <div class="form-outline">
                 <div class="mb-0">
                   <div class="custom-control custom-checkbox small">
-                    <input class="form-check-input" style="border: 1px solid black;" type="checkbox" value="" id="customCheck" (change)="togglePasswordVisibility($event)">
-                    <label class="form-check-label" for="customCheck">Show Password</label>
+                    <input class="form-check-input m-1" style="border: 1px solid black;" type="checkbox" value="" id="customCheck" (change)="togglePasswordVisibility($event)">
+                    <label class="form-check-label m-1" for="customCheck">Show Password</label>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-6">
-              <a class="forget" (click)="forgetpassword()">Forgot Password?</a>
+              <a class="forget m-1" (click)="forgetpassword()">Forgot Password?</a>
             </div>
           </div>
-          
-          
-           <div class="text-center text-lg-start mt-4 pt-2">
-             
-                <button type="submit" mat-raised-button color="primary" class="btn btn-primary btn-lg"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            </div>
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" mat-raised-button  class="btn-lg login" >Login</button>
+          </div>
         </form>
+      </div>
     </div>
+    <div class="col-12 col-md-6" style="height: 550px; overflow: hidden;">
+      <div class="animated-image loginleft2">
+        <img src="/assets/image/loginleft2.png">
+      </div>
+      <div class="animated-image loginMiddle2">
+        <img src="/assets/image/loginMiddle2.png">
+      </div>
+      <div class="animated-image loginRight2">
+        <img src="/assets/image/loginRight2.png">
+      </div>
+    </div>
+  </div>
 </div>
 
 

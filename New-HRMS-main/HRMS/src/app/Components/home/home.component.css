@@ -27,8 +27,8 @@ margin-top: 5rem;
 }
 
 .lead{
-    font-size: 24px;
-    line-height: normal;
+font-size: 24px;
+line-height: normal;
 letter-spacing: 0.48px;
 margin-bottom: 20px;
 }
@@ -87,6 +87,7 @@ transform: rotate(360deg);
     right: 22px;
     z-index: -1;
     animation: vector1 5s infinite linear;
+   
 }
 
 .vector3{
@@ -98,4 +99,17 @@ transform: rotate(360deg);
     top: 295px;
     left: 0;
     z-index: -1;
+    
 }
+
+/* @media screen and (min-width: 1024px) {
+    .vector1 {
+        top: -103px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .vector1 {
+        top: -170px;
+    }
+} */

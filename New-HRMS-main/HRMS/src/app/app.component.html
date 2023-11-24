@@ -5,7 +5,7 @@
 
 <router-outlet></router-outlet> -->
 
-<ng-container *ngIf="!isLoginPage()"> <!--navbar don't show in only login page -->
+<ng-container *ngIf="isLoginPage()"> <!--navbar don't show in only login page -->
   <mat-toolbar color="primary" class="position">
     <ng-container *ngIf="!loginService.isLoggedIn() ">
       <span class="m-3"><a class="color" mat-icon-button routerLink="/"><img src="/assets/image/logo.png" alt=""><img src="/assets/image/HRMS.png" alt=""></a></span>
@@ -77,19 +77,18 @@
         <img src="/assets/image/homedot.png" alt="">
       </a>
       <mat-menu #menu="matMenu" class="dropdown-menu">
-        <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
-          <li><a class="dropdown-item rounded-2 " [routerLink]="['/', '']"
+        <ul class="dropdown-menu position-static d-grid p-2 rounded-3 mx-0 w-auto" data-bs-theme="light" style="text-align: center;height: auto; gap: 0.5rem;">
+          <li class="p-0"><a class="dropdown-item rounded-2 " [routerLink]="['/', '']"
               (click)="loginService.showTable('')">About Us</a></li>
         
-
-          <li><a class="dropdown-item rounded-2" [routerLink]="['/faq']"
+          <li class="p-0"><a class="dropdown-item rounded-2" [routerLink]="['/faq']"
               >FAQs</a></li>
         </ul>
       </mat-menu>
     </ng-container>
   </mat-toolbar>
 
-  <div class="row col-12" *ngIf="!isHomePage() &&  loginService.getRole === 'SUPERADMIN'">
+  <div class="row col-12" *ngIf="!isHomePage() && !isLoginPage() &&  loginService.getRole === 'SUPERADMIN'">
 
 
     <!-- for mobile screen start -->
@@ -394,7 +393,7 @@
 
 
 
-  <div class="row col-12" *ngIf="!isHomePage() && loginService.getRole !== 'SUPERADMIN'">
+  <div class="row col-12" *ngIf="!isHomePage() && !isLoginPage() && loginService.getRole !== 'SUPERADMIN'">
 
     <!-- for mobile screen start -->
     <div class="col-12 d-sm-none">
