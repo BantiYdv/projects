@@ -2,18 +2,21 @@
 
 <!-- <img decoding="async" class="wave" src="https://i.stack.imgur.com/WhXKT.png"> -->
 <div class="container-fluid">
-  <div class="row align-items-center">
-    <div class="col-12 col-md-6">
-      <div class="login-content">
-        <form (ngSubmit)="onSubmit()">
-          <!-- <img decoding="async" src="/assets/image/Login Here!.png"> -->
+  <img src="/assets/image/loginVector1.png" alt="" class="d-none d-lg-block">
+  <div class="row align-items-center" style="position: relative;">
+    <img src="/assets/image/loginVector4.png" class="vector4 d-none d-lg-block" alt="">
+    <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+      <div class="login-content ">
+        <div class="loginHeading">
           <h1 class="display-3 text-center  pt-5 mb-0">
            <span class="text" style="font-weight: 700;">Login Here!</span> <br>
           </h1>
           <p class="lead text-center mb-lg-8 mb-4">
             Let's start, if you are registered.
           </p>
-          <!-- <h3 class="title">Login Here</h3> -->
+        </div>
+        <form (ngSubmit)="onSubmit()">
+          
           <div class="form-outline ">
             <label for="username" class="username">Username:</label>
             <mat-form-field class="full-width" appearance="outline">
@@ -41,28 +44,30 @@
                 </div>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6" style="text-align: right;">
               <a class="forget m-1" (click)="forgetpassword()">Forgot Password?</a>
             </div>
           </div>
+          <img src="/assets/image/loginVector2.png" alt="" class="vector2 d-none d-lg-block">
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" mat-raised-button  class="btn-lg login" >Login</button>
           </div>
         </form>
       </div>
     </div>
-    <div class="col-12 col-md-6" style="height: 550px; overflow: hidden;">
-      <div class="animated-image loginleft2">
+    <div class="col-12 col-md-6 d-none d-none d-md-block" style="height: 550px; overflow: hidden;">
+      <div class="animated-image loginleft2 m-3">
         <img src="/assets/image/loginleft2.png">
       </div>
-      <div class="animated-image loginMiddle2">
+      <div class="animated-image loginMiddle2 m-3">
         <img src="/assets/image/loginMiddle2.png">
       </div>
-      <div class="animated-image loginRight2">
+      <div class="animated-image loginRight2 m-3">
         <img src="/assets/image/loginRight2.png">
       </div>
     </div>
   </div>
+  <img src="/assets/image/loginVector3.png" alt="" class="vector3 d-none d-lg-block">
 </div>
 
 

@@ -5,7 +5,7 @@
 
 <router-outlet></router-outlet> -->
 
-<ng-container *ngIf="isLoginPage()"> <!--navbar don't show in only login page -->
+<ng-container > 
   <mat-toolbar color="primary" class="position">
     <ng-container *ngIf="!loginService.isLoggedIn() ">
       <span class="m-3"><a class="color" mat-icon-button routerLink="/"><img src="/assets/image/logo.png" alt=""><img src="/assets/image/HRMS.png" alt=""></a></span>

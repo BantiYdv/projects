@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  // public apiUrl = 'https://hrms.prilient.com/';
-  public apiUrl = 'http://192.168.1.19:9191/';
+  public apiUrl = 'https://hrms.prilient.com/';
+  // public apiUrl = 'http://192.168.1.19:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
