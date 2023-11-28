@@ -27,28 +27,34 @@
       </button>
       <!-- toggle button for mobile screen end -->
 
-      <span><a class="color" mat-icon-button (click)="redirectTOHome()">HRMS</a></span>
+      <span><a class="color" mat-icon-button (click)="redirectTOHome()"><img src="/assets/image/logo.png" alt=""><img src="/assets/image/HRMS.png" alt=""></a></span>
       <span class="example-spacer"></span>
       <!-- <form role="search" class="d-md-none d-none d-lg-block">
         <input class="form-control" id="border" type="search" placeholder="Search here..." aria-label="Search">
       </form> -->
-      <a class="color" mat-icon-button>
+      <a class="color" mat-icon-button [matMenuTriggerFor]="notification">
         <i class="fa-solid fa-bell"></i>
         <br>
-        <span class="d-md-block d-none d-lg-block">Notification</span> </a>
+        <span class="d-md-block d-none d-lg-block upperNavText">Notifications</span> </a>
+        <mat-menu #notification="matMenu" class="dropdown-menu">
+          <ul class="dropdown-menu position-static d-grid rounded-3 w-auto" data-bs-theme="light" style="text-align: center;height: auto;">
+            <li><a class="dropdown-item rounded-2 " >notification1</a></li>
+            <li><a class="dropdown-item rounded-2" >notification2</a></li>
+                
+          </ul>
+        </mat-menu>
 
       <a *ngIf="!(isProfilePage() || isRegisterationPage())" class="color" mat-icon-button [matMenuTriggerFor]="menu">
         <i class="fa-regular fa-circle-user"></i>
         <!-- <img src="/assets/🦆 icon _profile circle_.png" alt=""> -->
-        <br><span class="d-md-block d-none d-lg-block">My Account</span></a>
+        <br><span class="d-md-block d-none d-lg-block upperNavText">My Account</span></a>
       <mat-menu #menu="matMenu" class="dropdown-menu">
-        <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
+        <ul class="dropdown-menu position-static d-grid rounded-3 w-auto" data-bs-theme="light" style="text-align: center;height: auto;">
           <li><a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']"
               (click)="loginService.showTable('Profile')">View Profile</a></li>
-          <!-- <li><a class="dropdown-item rounded-2 " routerLink="/profile" >View Profile</a></li> -->
-
           <li><a class="dropdown-item rounded-2" [routerLink]="['/changePassword']"
-              (click)="loginService.showTable('changePassword')">Change Password</a></li>
+              (click)="loginService.showTable('changePassword')">Update Password</a></li>
+              <li><a class="dropdown-item rounded-2" (click)="signOut()" >Logout</a></li>
         </ul>
       </mat-menu>
       <!-- <div class="profile-header-img">
@@ -62,8 +68,8 @@
         </a>
       </div> -->
 
-      <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span
-          class="d-md-block d-none d-lg-block">Logout</span></a>
+      <!-- <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span
+          class="d-md-block d-none d-lg-block">Logout</span></a> -->
 
     </ng-container>
 
@@ -104,9 +110,9 @@
             <li class="nav-item text-center">
               <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/Group 5.png" alt="">
-
-                  <span class="image-name">Home</span>
+                  <img class="sidebarPageLogonew" src="/assets/image/icon/Group 27.svg" alt="">
+<!-- 
+                  <span class="image-name">Home</span> -->
                 </div>
               </a>
             </li>
@@ -247,9 +253,9 @@
           <li class="nav-item text-center">
             <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/Group 5.png" alt="">
-                <br>
-                <span class="image-name">Home</span>
+                <img class="sidebarPageLogonew" src="/assets/image/icon/Group 27.svg" alt="">
+                <!-- <br>
+                <span class="image-name">Home</span> -->
               </div>
             </a>
           </li>

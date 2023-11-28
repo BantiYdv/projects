@@ -772,3 +772,54 @@ img {
 
 
 
+.h2{
+    color: #000;
+font-size: 25px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.DashboardCard{
+    display: flex;
+width: 235px;
+height: 95px;
+padding: 10px 20px;
+align-items: center;
+gap: 40px;
+flex-shrink: 0;
+border-radius: 7px;
+border: 1px solid #CDCDCD;
+background: #FFF;
+}
+
+.cardIcon{
+    width: 48px;
+height: 48px;
+flex-shrink: 0;
+}
+
+.cardIconNum{
+    color: #000;
+text-align: right;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-bottom: auto;
+}
+
+.cardIconText{
+    color: #000;
+text-align: right;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.media-body{
+    display: flex;
+flex-direction: column;
+align-items: flex-end;
+}
