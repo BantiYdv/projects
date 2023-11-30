@@ -110,20 +110,20 @@
             <li class="nav-item text-center">
               <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
                 <div class="image-container">
-                  <img class="sidebarPageLogonew" src="/assets/image/icon/Group 27.svg" alt="">
-<!-- 
-                  <span class="image-name">Home</span> -->
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Group 27.svg" alt="" id="hoverImage">
                 </div>
+                <!-- <span class="image-namenew">Home</span> -->
+                
               </a>
             </li>
             <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
                 aria-expanded="false">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/createRole.png" alt="">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/role.png" alt="" id="hoverRole">
 
-                  <span
-                    class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span>
+                  <!-- <span
+                    class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span> -->
                   <div class="collapse" id="dashboard-role">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                       <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
@@ -140,10 +140,10 @@
             <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" routerLink="/registration">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/Group 8.png" alt="">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
 
 
-                  <span class="image-name">Registration</span>
+                  <!-- <span class="image-name">Registration</span> -->
                 </div>
               </a>
             </li>
@@ -151,9 +151,9 @@
               <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
                 (click)="loginService.showTable('employee')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/Group 7.png" alt="">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
 
-                  <span class="image-name">All Employees</span>
+                  <!-- <span class="image-name">All Employees</span> -->
                 </div>
               </a>
             </li>
@@ -161,9 +161,9 @@
               <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
                 (click)="loginService.showTable('teamleave')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/Group 9.png" alt="">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Team leave.png" alt="" id="hoverTeamLeave">
 
-                  <span class="image-name">Team Leave</span>
+                  <!-- <span class="image-name">Team Leave</span> -->
                 </div>
               </a>
             </li>
@@ -171,9 +171,9 @@
               <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
                 (click)="loginService.showTable('teamwfh')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/Mask group.png" alt="">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Team WFH.png" alt="" id="hoverTeamWfh">
 
-                  <span class="image-name">Team WFH</span>
+                  <!-- <span class="image-name">Team WFH</span> -->
                 </div>
               </a>
             </li>
@@ -182,9 +182,9 @@
               <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
                 (click)="loginService.showTable('reports')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/report3.png" alt="">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Reports.png" alt="" id="hoverReport">
 
-                  <span class="image-name">Reports</span>
+                  <!-- <span class="image-name">Reports</span> -->
                 </div>
 
               </a>
@@ -193,9 +193,9 @@
 
             <li class="nav-item text-center">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
                 <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
-                  <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Attendance</span>
+                  <!-- <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Rules</span> -->
                 </label>
                 <div class="collapse" id="dashboard-rule">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -234,9 +234,9 @@
               <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
                 (click)="loginService.showTable('calendar')">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
 
-                  <span class="image-name">View Holiday</span>
+                  <!-- <span class="image-name">View Holiday</span> -->
                 </div>
               </a>
             </li>
@@ -247,26 +247,29 @@
     </div>
     <!-- for mobile screen end -->
 
-    <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar">
-      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+    <!-- <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar"> -->
+      <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block" id="sideBar">
+      <!-- <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"> -->
+      <div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
           <li class="nav-item text-center">
             <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
               <div class="image-container">
-                <img class="sidebarPageLogonew" src="/assets/image/icon/Group 27.svg" alt="">
-                <!-- <br>
-                <span class="image-name">Home</span> -->
+                <img class="sidebarPageLogo" src="/assets/image/icon/Group 27.svg" alt="" id="hoverImage">
+                <!-- <br> -->
               </div>
+              <!-- <span class="image-namenew">Home</span> -->
+              
             </a>
           </li>
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
               aria-expanded="false">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/createRole.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/role.png" alt="" id="hoverRole">
                 <br>
-                <span
-                  class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span>
+                <!-- <span
+                  class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span> -->
                 <div class="collapse" id="dashboard-role">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
@@ -283,10 +286,10 @@
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" routerLink="/registration">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/Group 8.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
 
                 <br>
-                <span class="image-name">Registration</span>
+                <!-- <span class="image-name">Registration</span> -->
               </div>
             </a>
           </li>
@@ -294,9 +297,9 @@
             <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
               (click)="loginService.showTable('employee')">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/Group 7.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
                 <br>
-                <span class="image-name">All Employees</span>
+                <!-- <span class="image-name">All Employees</span> -->
               </div>
             </a>
           </li>
@@ -304,9 +307,9 @@
             <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
               (click)="loginService.showTable('teamleave')">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/Group 9.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Team leave.png" alt="" id="hoverTeamLeave">
                 <br>
-                <span class="image-name">Team Leave</span>
+                <!-- <span class="image-name">Team Leave</span> -->
               </div>
             </a>
           </li>
@@ -314,9 +317,9 @@
             <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
               (click)="loginService.showTable('teamwfh')">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/Mask group.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Team WFH.png" alt="" id="hoverTeamWfh">
                 <br>
-                <span class="image-name">Team WFH</span>
+                <!-- <span class="image-name">Team WFH</span> -->
               </div>
             </a>
           </li>
@@ -325,9 +328,9 @@
             <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
               (click)="loginService.showTable('reports')">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/report3.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Reports.png" alt="" id="hoverReport">
                 <br>
-                <span class="image-name">Reports</span>
+                <!-- <span class="image-name">Reports</span> -->
               </div>
 
             </a>
@@ -336,9 +339,9 @@
 
           <li class="nav-item text-center">
             <div class="image-container">
-              <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+              <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
               <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
-                <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Attendance</span>
+                <!-- <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Rules</span> -->
               </label>
               <div class="collapse" id="dashboard-rule">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -379,9 +382,9 @@
             <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
               (click)="loginService.showTable('calendar')">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/Group 11.png" alt="">
+                <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
                 <br>
-                <span class="image-name">View Holiday</span>
+                <!-- <span class="image-name">View Holiday</span> -->
               </div>
             </a>
           </li>

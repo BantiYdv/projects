@@ -106,10 +106,11 @@ export class DashboardComponent {
  data: any;
 
   ngOnInit(): void {
-    this.createChart(this.data);
+    // this.createChart(this.data);
+    this.createChart();
     this.createLineChart();
     this.viewEmployeeProfile();
-    this.viewAllAttendance();
+    // this.viewAllAttendance();
   }
  
 
@@ -197,188 +198,54 @@ export class DashboardComponent {
 
  
 
-  viewAllAttendance() {
+  // viewAllAttendance() {
    
-      // Call the service method to fetch all attendance data
-      this.testService.getAllAttendance().subscribe(
-        (response: any) => {
-          const responseData: any[] = response as any[]; // Explicitly cast to any[]
-          console.log('Attendance Data:', responseData);
-          // Call the createChart function with the response data
-          this.createChart(responseData);
-          console.log("chart att", response);
-        },
-        error => {
-          // Handle errors here
-          console.error('Error fetching attendance data:', error);
+  //     // Call the service method to fetch all attendance data
+  //     this.testService.getAllAttendance().subscribe(
+  //       (response: any) => {
+  //         const responseData: any[] = response as any[]; // Explicitly cast to any[]
+  //         console.log('Attendance Data:', responseData);
+  //         // Call the createChart function with the response data
+  //         this.createChart(responseData);
+  //         console.log("chart att", response);
+  //       },
+  //       error => {
+  //         // Handle errors here
+  //         console.error('Error fetching attendance data:', error);
       
-        }
-      );
+  //       }
+  //     );
     
-  }
-  
-  
-  
-  
-  // createChart(data: any[]) {
-  //   // Ensure that data is an array before proceeding
-  //   if (!data || !Array.isArray(data)) {
-  //     console.error('Invalid or undefined data for chart.');
-  //     return;
-  //   }
-  
-  //   // Count occurrences of each status
-  //   const statusCounts = data.reduce((acc, item) => {
-  //     acc[item.status] = (acc[item.status] || 0) + 1;
-  //     return acc;
-  //   }, {});
-  
-  //   // Create the chart
-  //   this.chart = new Chart("MyChart", {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['Jan', 'Fab', 'Mar', 'Apr',
-  //          'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-  //       datasets: [
-  //         {
-  //           label: "persent",
-  //           data: Object.values(statusCounts),
-  //           backgroundColor: ['blue']
-  //         },
-  //         {
-  //           label: "absent",
-  //           data: Object.values(statusCounts),
-  //           backgroundColor: ['limegreen']
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5
-  //     }
-  //   });
   // }
   
-  // createChart(data: any[]) {
-  //   // Ensure that data is an array before proceeding
-  //   if (!data || !Array.isArray(data)) {
-  //     console.error('Invalid or undefined data for chart.');
-  //     return;
-  //   }
   
-  //   // Group data by month and count occurrences of each status
-  //   const monthlyStatusCounts: Record<string, { present: number; absent: number }> = {};
-  //   data.forEach(item => {
-  //     const month = new Date(item.checkDate).getMonth();
-  //     console.log("month", month);
-  //     const status = item.status.toUpperCase(); // Convert to uppercase for consistency
-  //     if (!monthlyStatusCounts[month]) {
-  //       monthlyStatusCounts[month] = { present: 15, absent: 0 };
-  //     }
-  //     if (status === 'PRESENT') {
-  //       monthlyStatusCounts[month].present += 1;
-  //     } else if (status === 'ABSENT') {
-  //       monthlyStatusCounts[month].absent += 1;
-  //     }
-  //   });
   
-  //   // Create the chart
-  //   this.chart = new Chart("MyChart", {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  //       datasets: [
-  //         {
-  //           label: "Present",
-  //           data: Object.values(monthlyStatusCounts).map(counts => counts.present || 0),
-  //           backgroundColor: 'blue',
-  //         },
-  //         {
-  //           label: "Absent",
-  //           data: Object.values(monthlyStatusCounts).map(counts => counts.absent || 0),
-  //           backgroundColor: 'limegreen',
-  //         }
-  //       ],
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5,
-  //     },
-  //   });
-  // }
-  createChart(data: any[]) {
-    // Ensure that data is an array before proceeding
-    if (!data || !Array.isArray(data)) {
-      console.error('Invalid or undefined data for chart.');
-      return;
-    }
   
-    // Group data by month and count occurrences of each status
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
-    const monthlyStatusCounts: Record<string, { present: number; absent: number }> = {};
-    data.forEach(item => {
-      const monthIndex = new Date(item.checkDate).getMonth();
-      const monthName = monthNames[monthIndex];
-      const status = item.status.toUpperCase(); // Convert to uppercase for consistency
-  
-      if (!monthlyStatusCounts[monthName]) {
-        monthlyStatusCounts[monthName] = { present: 0, absent: 0 };
-      }
-  
-      if (status === 'PRESENT') {
-        monthlyStatusCounts[monthName].present += 1;
-      } else if (status === 'ABSENT') {
-        monthlyStatusCounts[monthName].absent += 1;
-      }
-    });
-  
-    // Create the chart
+  createChart() {
+
     this.chart = new Chart("MyChart", {
-      type: 'bar',
-      data: {
-        labels: monthNames,
-        datasets: [
-          {
-            label: "Present",
-            data: monthNames.map(month => monthlyStatusCounts[month]?.present || 0),
-            backgroundColor: 'blue',
-          },
-          {
-            label: "Absent",
-            data: monthNames.map(month => monthlyStatusCounts[month]?.absent || 0),
-            backgroundColor: 'limegreen',
-          }
-        ],
-      },
-      options: {
-        aspectRatio: 1.5,
-      },
-    });
-  }
-  
-  
-  // bar chart end
-
-  //line chart start
-  createLineChart() {
-
-    this.chart = new Chart("MyLineChart", {
-      type: 'line', //this denotes the type of chart
-
+      type: 'bar', //this denotes tha type of chart
       data: {// values on X-Axis
-        labels: ['Jan', 'Fab', 'Mar', 'Apr',
-          'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        labels: ['Mon', 'Tue', 'Wed', 'Thu',
+          'Fri', 'Sat', 'Sun'],
         datasets: [
           {
-            label: "Sales",
-            data: ['31', '28', '31', '30', '31',
-              '30', '31', '31', '30', '31', '30', '31'],
-            backgroundColor: 'blue'
+            label: "present",
+            data: ['50', '20', '40', '30', '60',
+              '30', '60', '40', '60', '70', '50', '100'],
+            backgroundColor: '#421CDD'
           },
           {
-            label: "Profit",
-            data: ['25', '22', '31', '29', '25',
-              '30', '28', '25', '29', '22', '26', '27'],
-            backgroundColor: 'limegreen'
+            label: "Late Arrival",
+            data: ['40', '90', '50', '30', '60',
+              '40', '80', '60', '30', '50', '90', '60'],
+            backgroundColor: '#FFCE62'
+          },
+          {
+            label: "Early Departure",
+            data: ['30', '20', '80', '50', '80',
+              '100', '40', '90', '60', '70', '30', '80'],
+            backgroundColor: '#F97165'
           }
         ]
       },
@@ -388,29 +255,126 @@ export class DashboardComponent {
 
     });
   }
-  //line chart end
-
-  // test(){
-  //   const token = localStorage.getItem('jwtToken');
-  //   console.log('Token:', token);
-
-  //   // Create the request headers with the token
-  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  //   const url = 'http://192.168.1.11:9191/gateway/hrms/downloadAllDocuments';
-
-  //   this.http.get(url, {
-  //     headers,
-  //     responseType: 'blob' // Set the response type to blob
-  //   }).subscribe((response: Blob) => {
-  //     // Handle the API response here
-  //     const fileName = ''; // Specify the file name with extension
-  //     saveAs(response, fileName); // Use the 'file-saver' library to save the file
-  //     console.log("download", response);
-  //   }, (error) => {
-  //     // Handle any errors that occurred during the API call
-  //     console.error(error);
+  
+  
+ 
+  // createChart(data: any[]) {
+  //   // Ensure that data is an array before proceeding
+  //   if (!data || !Array.isArray(data)) {
+  //     console.error('Invalid or undefined data for chart.');
+  //     return;
+  //   }
+  
+  //   // Group data by month and count occurrences of each status
+  //   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
+  //   const monthlyStatusCounts: Record<string, { present: number; absent: number }> = {};
+  //   data.forEach(item => {
+  //     const monthIndex = new Date(item.checkDate).getMonth();
+  //     const monthName = monthNames[monthIndex];
+  //     const status = item.status.toUpperCase(); // Convert to uppercase for consistency
+  
+  //     if (!monthlyStatusCounts[monthName]) {
+  //       monthlyStatusCounts[monthName] = { present: 0, absent: 0 };
+  //     }
+  
+  //     if (status === 'PRESENT') {
+  //       monthlyStatusCounts[monthName].present += 1;
+  //     } else if (status === 'ABSENT') {
+  //       monthlyStatusCounts[monthName].absent += 1;
+  //     }
+  //   });
+  
+  //   // Create the chart
+  //   this.chart = new Chart("MyChart", {
+  //     type: 'bar',
+  //     data: {
+  //       labels: monthNames,
+  //       datasets: [
+  //         {
+  //           label: "Present",
+  //           data: monthNames.map(month => monthlyStatusCounts[month]?.present || 0),
+  //           backgroundColor: 'blue',
+  //         },
+  //         {
+  //           label: "Absent",
+  //           data: monthNames.map(month => monthlyStatusCounts[month]?.absent || 0),
+  //           backgroundColor: 'limegreen',
+  //         }
+  //       ],
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5,
+  //     },
   //   });
   // }
+  
+  
+  // bar chart end
+
+  //line chart start
+  // createLineChart() {
+
+  //   this.chart = new Chart("MyLineChart", {
+  //     type: 'line', //this denotes the type of chart
+
+  //     data: {// values on X-Axis
+  //       labels: ['Jan', 'Fab', 'Mar', 'Apr',
+  //         'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+  //       datasets: [
+  //         {
+  //           label: "Sales",
+  //           data: ['31', '28', '31', '30', '31',
+  //             '30', '31', '31', '30', '31', '30', '31'],
+  //           backgroundColor: 'blue'
+  //         },
+  //         {
+  //           label: "Profit",
+  //           data: ['25', '22', '31', '29', '25',
+  //             '30', '28', '25', '29', '22', '26', '27'],
+  //           backgroundColor: 'limegreen'
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5
+  //     }
+
+  //   });
+  // }
+  //line chart end
+
+  createLineChart() {
+
+    this.chart = new Chart("MyPieChart", {
+      type: 'pie', //this denotes the type of chart
+
+      data: {// values on X-Axis
+        labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
+        datasets: [
+          {
+            label: "Full Time",
+            data: ['70'],
+            backgroundColor: '#FD7A8C'
+          },
+          {
+            label: "Part Time",
+            data: ['20'],
+            backgroundColor: '#9747FF'
+          },
+          {
+            label: "Intern/Trainee",
+            data: ['50'],
+            backgroundColor: '#FFCE62'
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 1.5
+      }
+
+    });
+  }
 
 }
 

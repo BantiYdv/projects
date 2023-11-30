@@ -157,13 +157,13 @@ input::placeholder {
   display: flex;
 }
 
-.sidebarPageLogo {
+/* .sidebarPageLogo {
   width: 30px;
   height: 30px;
   flex-shrink: 0;
   margin-left: 0rem;
-  /* background-color: #a7a7a7; */
-}
+ 
+} */
 
 
 
@@ -254,11 +254,10 @@ a {
 }
 
 #sideBar {
-  width: 10%;
-  /* background: #2C2C2C; */
+  width: 7%;
   background: #343A40;
   display: flex;
-padding: 10px;
+/* padding: 10px; */
 flex-direction: column;
 align-items: flex-start;
 gap: 10px;
@@ -289,18 +288,18 @@ gap: 10px;
   display: flex;
 }
 
-.sidebarPageLogo {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  margin-left: 0rem;
-  /* background-color: #a7a7a7; */
-}
+/* .sidebarPageLogo {
+  width: 60px;
+  height: 59px;
+} */
 
 
 .image-container {
   position: relative;
   display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* .image-name {
@@ -440,13 +439,42 @@ letter-spacing: 0.4px;
 }
 
 
-.sidebarPageLogonew{
-  
-width: 60px;
-height: 59px;
+
+
+#hoverImage:hover {
+  content: url('/assets/image/icon/hoverHome.png');
+}
+#hoverRole:hover{
+  content: url('/assets/image/icon/hoverRole.png');
+}
+#hoverreg:hover{
+  content: url('/assets/image/icon/hoverReg.png');
+}
+#hoverEmp:hover{
+  content: url('/assets/image/icon/hoverAllEmp.png');
+}
+#hoverTeamLeave:hover{
+  content: url('/assets/image/icon/hoverTeamLeave.png');
+}
+#hoverTeamWfh:hover{
+  content: url('/assets/image/icon/hoverTeamWfh.png');
+}
+#hoverReport:hover{
+  content: url('/assets/image/icon/hoverReport.png');
+}
+#hoverAssignRule:hover{
+  content: url('/assets/image/icon/hoverAsignRule.png');
+}
+#hoverCal:hover{
+  content: url('/assets/image/icon/hoverCal.png');
 }
 
-.sidebarPageLogonew:hover{
-  background: #D9D9D9;
+.image-namenew{
+  color: #D9D9D9;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+margin-top: 17px;
 }
 

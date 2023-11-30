@@ -93,7 +93,7 @@ export class TestComponent {
   imageUrl: SafeUrl | undefined;
   defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
 
-  
+  shiftform: any;
   // search start
   // editName: boolean = false;
   // editDesignation: boolean = false;
@@ -177,13 +177,13 @@ export class TestComponent {
     });
 
     this.form = this.formBuilder.group({
-      role: '',
-      url: [],
+      role: [''],
+      url: [[]],
 
     });
 
 // shift time start
-    this.form = this.formBuilder.group({
+    this.shiftform = this.formBuilder.group({
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
       workDuration: ['', Validators.required]
@@ -445,13 +445,13 @@ export class TestComponent {
 
   createRole() {
 
-
+    console.log('Form Value Before Create Role:', this.form.value);
     // const permissionNames = this.form.value.permissionNames;
     const name = this.form.value.role;
-
+console.log("role name", name);
     const permissionNames = this.form.value.url; // Updated property name to 'permissionNames'
 
-
+console.log("perission", permissionNames);
     this.testService.createRole(name, permissionNames).subscribe(
       (response) => {
         // Handle the successful response here
@@ -1430,8 +1430,8 @@ console.log("leave apply", response);
   // shift time 
   addMore(): void {
     // Clone the form values and reset them
-    const formValues = { ...this.form.value };
-    this.form.reset();
+    const formValues = { ...this.shiftform.value };
+    this.shiftform.reset();
 
     // Create a new set of form controls with the cloned values
     const newForm = this.formBuilder.group({

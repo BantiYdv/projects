@@ -140,7 +140,7 @@
                     </span>
                   </li>
                   <div *ngIf="showDropdown" class="dropdown-content">
-                    <!-- Render the dropdown content here -->
+                   
                     <ul>
                       <li class="first-permission" *ngFor="let permission of item.permissions.slice(1)">
                         {{ formatOption(permission.permissionName) }}
@@ -154,9 +154,9 @@
               </td>
               <td class="align-middle">
                 <!-- Edit and Delete buttons for permissions -->
-                <button class="btn btn-primary m-1" [routerLink]="['/test', 'addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="btn btn-primary m-1" [routerLink]="['/addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)"><i class="fa-solid fa-pen-to-square"></i></button>
 
-                <button class="btn btn-danger" [routerLink]="['/test', 'removePermission' ]" [queryParams]="{ id: item.id }"  (click)="openDeletePermission(item)"><i class="fas fa-trash"></i></button>
+                <button class="btn btn-danger" [routerLink]="['/removePermission' ]" [queryParams]="{ id: item.id }"  (click)="openDeletePermission(item)"><i class="fas fa-trash"></i></button>
               </td>
                 <td class="align-middle">
 
@@ -1172,7 +1172,7 @@
               <p><img src="/assets/image/shiftTime.svg" alt="Image" class="img-fluid"></p>
             </div>
             <div class="col-md-6 mt-4">
-              <form [formGroup]="form" novalidate>
+              <form [formGroup]="shiftform" novalidate>
                 <div class="mb-3">
                   <label for="startTime" class="col-form-label">Start Time:</label>
                   <input type="time" class="form-control" name="startTime" id="startTime" placeholder="Start time"
