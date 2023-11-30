@@ -1,0 +1,44 @@
+header{
+    background-color: #fff;
+    padding: 0;
+    border-bottom: 1px solid rgb(255, 0, 0);
+}
+.container{
+    margin:0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+a.logo{
+    font-weight: bold;
+    padding: 1em;
+}
+nav ul{
+    list-style-type: none;
+    margin: 0;
+}
+nav ul li a{
+    padding: 1em;
+    display: inline-block;
+}
+.menu-item {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+.menu-item:hover {
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+}
+nav ul li a span{
+    position: absolute;
+    top: 5px;
+    font-size: 7px;
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+    border-radius: 20rem;
+    padding: 0rem .25rem;
+    margin: .6rem;
+}
+ul{
+    display: flex;
+}
+

@@ -1,0 +1,20 @@
+<header>
+    <div class="container">
+        <a routerLink="/" class="logo menu-item">BanFood</a>
+        <nav>
+            <ul>
+                <li>
+                    <a href="" routerLink="/login" class="menu-item">Logout <i class="fa fa-sign-out"></i></a>
+                    <!-- <a href="" routerLink="/login" class="menu-item">Login <i class="fa fa-sign-in"></i></a> -->
+                </li>
+                <li> 
+                    <a routerLink="/cart-page" class="menu-item">Cart <span>{{cart.item.length}}</span><i class="fa fa-shopping-cart"></i></a>
+                </li>
+                <li>
+                    <a href="" routerLink="/profile" class="menu-item">profile <i class="fa fa-user"></i></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</header>

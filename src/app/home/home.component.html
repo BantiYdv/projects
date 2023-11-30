@@ -1,0 +1,51 @@
+<app-search></app-search>
+<app-tags></app-tags>
+<app-not-found [visible]="!foods || foods.length <= 0" resetLinkText="Reset Search"></app-not-found>
+<ul>
+    <li *ngFor="let food of foods">
+        <a routerLink="/food/{{food.id}}">
+            <img src="{{food.imageUrl}}" alt="food images" class="foodImage">
+            <div class="content">
+                <div class="foodName">
+                    {{food.name}}
+                </div>
+
+                <!-- <div class="foodFavorite"> -->
+
+                <span class="favorite">
+                    <i *ngIf="food.favorite" class="fa fa-heart"></i>
+                    <i *ngIf="!food.favorite" class="fa fa-heart-o"></i>
+                </span>
+                <!-- </div> -->
+
+                <div class="foodStar">
+                    <span *ngFor="let star of getStars(food.star)" class="star-rating">
+                        <i class="fa "
+                            [ngClass]="{'fa-star': star === 1, 'fa-star-half-o': star === 0.5, 'fa-star-o': star === 0}"></i>
+
+                    </span>
+                </div>
+                <div class="product-iten-footer">
+                    <div class="foodOrigin">
+                        <span *ngFor="let origins of food.origins" class="star-rating">
+                            {{origins}}
+                        </span>
+                    </div>
+                    <div class="foodCookTime">
+                        <span>
+                            <i class="fa fa-clock-o"></i>
+                            {{food.cookTime}}
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="foodPrice">
+                    <span>
+                        {{food.price|currency}}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
