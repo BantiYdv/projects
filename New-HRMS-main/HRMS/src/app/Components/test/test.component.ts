@@ -1354,8 +1354,16 @@ console.log("leave apply", response);
 
   openAddPermission(item: any) {
     this.selectedRole = item;
-    this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+    // Check if "NO_ACCESS" is in the permissions list
+  const hasNoAccess = item.permissions.some((permission: { permissionName: any; }) => permission.permissionName === 'NO_ACCESS');
 
+  if (hasNoAccess) {
+    // If "NO_ACCESS" is present, remove all other permissions
+    this.selectedPermissions = ['NO_ACCESS'];
+  } else {
+    // If "NO_ACCESS" is not present, keep the existing permissions
+    this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+  }
     // Define an array of available permission options, excluding the selectedPermissions
     const availablePermissionOptions = [
       "NO_ACCESS",
@@ -1380,12 +1388,23 @@ console.log("leave apply", response);
 
   
  
+  // onPermissionSelectionChange() {
+  //   if (this.selectedPermissions.includes("ALL_ACCESS")) {
+  //     // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"
+  //     this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
+  //   }
+  // }
+
   onPermissionSelectionChange() {
-    if (this.selectedPermissions.includes("ALL_ACCESS")) {
+    if (this.selectedPermissions.includes("NO_ACCESS")) {
+      // If "NO_ACCESS" is selected, set selectedPermissions to an array containing only "NO_ACCESS"
+      this.selectedPermissions = ["NO_ACCESS"];
+    } else if (this.selectedPermissions.includes("ALL_ACCESS")) {
       // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"
       this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
     }
   }
+  
 
   isOptionDisabled(option: string): boolean {
 
