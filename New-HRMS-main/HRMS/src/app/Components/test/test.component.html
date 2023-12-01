@@ -126,13 +126,13 @@
               <td class="align-middle">{{ i + 1 }}</td>
               <td class="align-middle">{{ item.name }}</td>
               <td>
-                <!-- <ul>
+                <ul>
                   <li *ngFor="let permission of item.permissions">
                     {{ formatOption(permission.permissionName) }}
                   </li>
-                </ul> -->
+                </ul>
                
-                <ul>
+                <!-- <ul>
                   <li class="first-permission">
                     {{ formatOption(item.permissions[0].permissionName) }}
                     <span *ngIf="item.permissions.length > 1" class="dropdown-icon" (click)="toggleDropdown()">
@@ -147,7 +147,7 @@
                       </li>
                     </ul>
                   </div>
-                </ul>
+                </ul> -->
                 
                 
                 
