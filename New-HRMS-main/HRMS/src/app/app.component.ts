@@ -8,6 +8,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { DashboardService } from './services/dashboard.service';
 import { AdminService } from './services/admin.service';
 import { saveAs } from 'file-saver';
+import { co } from '@fullcalendar/core/internal-common';
 
 
 
@@ -42,6 +43,8 @@ id: any;
     //   }
     // }
       //if user is not login then show only home page or login page end
+
+      
   }
 
 
@@ -110,11 +113,11 @@ id: any;
   // }
 // for show side nav bar according to user login with permission start
 permissionSet = [
-  { name: 'ALL_EMPLOYEES_DATA', router: '/employee', function: "employee",  imgName: "All Employees", src: '/assets/Group 7.png'},
-  { name: 'NEW_REGISTRATION', router: '/registration', function: "registration", imgName: "Registeration", src: '/assets/Group 8.png'},
-  { name: 'ALL_EMPLOYEES_ATTENDANCE', router: '/viewAllAtt', function: "viewAllAtt", imgName: "All Attendance", src: '/assets/allAtt.png'},
-  { name: 'LEAVE_SHOW_TEAMLEAD', router: '/teamleave', function: 'teamleave', imgName: "Team Leaves", src: '/assets/Group 9.png' },
-  { name: 'WFH_SHOW_TEAMLEAD', router: '/teamwfh', function: 'teamwfh', imgName: "Team WFH", src: '/assets/Mask group.png'},
+  { name: 'ALL_EMPLOYEES_DATA', router: '/employee', function: "employee",  imgName: "All Employees", src: '/assets/image/icon/All Employees.png'},
+  { name: 'NEW_REGISTRATION', router: '/registration', function: "registration", imgName: "Registeration", src: '/assets/image/icon/Registration.png'},
+  { name: 'ALL_EMPLOYEES_ATTENDANCE', router: '/viewAllAtt', function: "viewAllAtt", imgName: "All Attendance", src: '/assets/image/icon/Team WFH.png'},
+  { name: 'LEAVE_SHOW_TEAMLEAD', router: '/teamleave', function: 'teamleave', imgName: "Team Leaves", src: '/assets/image/icon/Team leave.png' },
+  { name: 'WFH_SHOW_TEAMLEAD', router: '/teamwfh', function: 'teamwfh', imgName: "Team WFH", src: '/assets/image/icon/Team WFH.png'},
   { name: 'ALL_WFH_EMPLOYEES', router: '/viewAllWfh', function: 'viewAllWfh', imgName: "All WFH", src: '/assets/allWfh.png'},
   { name: 'ADMIN_LEAVES', router: '/test/', function: '', imgName: "Admin Leave", src: 'https://cdn-icons-png.flaticon.com/128/5590/5590545.png'},
   { name: 'ADMIN_WFH', router: '/test/', function: '', imgName: "Admin WFH", src: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRGwlYfdcbTYW72vNkR7gkq8iXUmDEtd0bl_ohNaZZA7RMq92QE'},
@@ -129,8 +132,17 @@ filteredOptions = this.permissionSet.filter(permission =>
   this.userPermissions.includes(permission.name)
 
 );
-// for show side nav bar according to user login with permission end
 
+
+// for show side nav bar according to user login with permission end
+isHovered: boolean = false;
+currentImage: string = '';
+
+// Function to update the image source based on hover state
+updateImage(imageSrc?: string): void {
+  this.isHovered = !this.isHovered;
+  this.currentImage = imageSrc ?? ''; // Use nullish coalescing operator to handle undefined
+}
 
 // click on holiday button to go on holiday calendar div start
 scrollToHoliday() {
@@ -171,6 +183,7 @@ scrollToHoliday() {
   ngOnInit(): void {
     this.getUserPhoto();
     // this.viewProfile();    // for getting user firstname and lastname for default image in navbar
+    console.log("permission", this.userPermissions);
   }
 
   // for changepassword and view profile not show when i am on profile page start
