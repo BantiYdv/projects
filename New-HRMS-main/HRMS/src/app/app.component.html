@@ -108,7 +108,7 @@
           </div>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
             <li class="nav-item text-center">
-              <a class="nav-link align-middle px-0" (click)="redirectTOHome()" title="Home" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Home" data-bs-original-title="Home">
+              <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Group 27.svg" alt="" id="hoverImage">
                 </div>
@@ -118,7 +118,7 @@
             </li>
             <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
-                aria-expanded="false" aria-current="page" title="Create Role" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Create Role" data-bs-original-title="Create Role">
+                aria-expanded="false">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/role.png" alt="" id="hoverRole">
 
@@ -138,7 +138,7 @@
               </a>
             </li>
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" routerLink="/registration" aria-current="page" title="Registration" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Registration" data-bs-original-title="Registration">
+              <a class="nav-link px-0 align-middle" routerLink="/registration">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
 
@@ -149,7 +149,7 @@
             </li>
             <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
-                (click)="loginService.showTable('employee')" aria-current="page" title="All Employee" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="All Employee" data-bs-original-title="All Employee">
+                (click)="loginService.showTable('employee')">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
 
@@ -159,7 +159,7 @@
             </li>
             <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
-                (click)="loginService.showTable('teamleave')" >
+                (click)="loginService.showTable('teamleave')">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Team leave.png" alt="" id="hoverTeamLeave">
 
@@ -253,7 +253,7 @@
       <div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
           <li class="nav-item text-center">
-            <a class="nav-link align-middle px-0" (click)="redirectTOHome()" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Home" data-bs-original-title="Home">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/Group 27.svg" alt="" id="hoverImage">
                 <!-- <br> -->
@@ -264,7 +264,7 @@
           </li>
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
-              aria-expanded="false" aria-current="page" title="Create Role" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Create Role" data-bs-original-title="Create Role">
+              aria-expanded="false">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/role.png" alt="" id="hoverRole">
                 <br>
@@ -284,7 +284,7 @@
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" routerLink="/registration" aria-current="page" title="Registration" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Registration" data-bs-original-title="Registration">
+            <a class="nav-link px-0 align-middle" routerLink="/registration">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
 
@@ -295,7 +295,7 @@
           </li>
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
-              (click)="loginService.showTable('employee')" aria-current="page" title="All Employee" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="All Employee" data-bs-original-title="All Employee">
+              (click)="loginService.showTable('employee')">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
                 <br>
