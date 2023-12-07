@@ -512,10 +512,38 @@ console.log("perission", permissionNames);
 
 
   //  API for add permission start
-  AddPermission(id: number, permissionName: string) {
+  // AddPermission() {
+  //   this.route.queryParams.subscribe(params => {
+  //     const id = params['id'];
+
+  //     if (id) {
+  //       this.testService.AddPermissionName(id, this.selectedPermissions).subscribe(
+  //         (response) => {
+  //           Swal.fire({
+  //             icon: 'success',
+  //             title: 'Added',
+  //             text: 'Permissions added successfully',
+  //           }).then(() => {
+  //             this.loginService.showTable('viewRole');
+  //             this.router.navigate(['/viewRole']);
+  //             this.viewRole();
+
+  //           });
+  //           console.log("permission added", response);
+  //         },
+  //         (error) => {
+  //           console.error('Error fetching role data:', error);
+  //         }
+  //       );
+  //     } else {
+  //       // Handle the case when 'id' is not available
+  //     }
+  //   });
+  // }
+  AddPermission() {
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
-
+  
       if (id) {
         this.testService.AddPermissionName(id, this.selectedPermissions).subscribe(
           (response) => {
@@ -527,6 +555,12 @@ console.log("perission", permissionNames);
               this.loginService.showTable('viewRole');
               this.router.navigate(['/viewRole']);
               this.viewRole();
+              // Clear query parameters after successful update
+              this.router.navigate([], {
+                relativeTo: this.route,
+                queryParams: {},
+                queryParamsHandling: 'merge',
+              });
             });
             console.log("permission added", response);
           },
@@ -536,9 +570,11 @@ console.log("perission", permissionNames);
         );
       } else {
         // Handle the case when 'id' is not available
+        console.log("No 'id' available");
       }
     });
   }
+  
   //  API for add permission end
 
   // API for delete permission start

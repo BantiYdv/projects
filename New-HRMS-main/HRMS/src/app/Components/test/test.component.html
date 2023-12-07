@@ -221,8 +221,9 @@
                       <mat-form-field>
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
-                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="option === 'NO_ACCESS' && selectedPermissions.includes('ALL_ACCESS') || selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS'">
-                            {{ option }}
+                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" >
+                            <!-- {{ option }} -->
+                            {{ formatOption(option) }}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -248,7 +249,7 @@
 
 
                 <div class="mb-3 col-md-12 d-flex justify-content-between">
-                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="AddPermission(id, permissionNames)">Add</button>
+                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="AddPermission()">Add</button>
                   <button type="button" class="btn btn-secondary flex-fill m-1" data-bs-dismiss="modal"
                     (click)="closeForm()">Close</button>
                   
@@ -302,21 +303,21 @@
                         </mat-select>
                       </mat-form-field> -->
 
-                      <mat-form-field>
+                      <!-- <mat-form-field>
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" >
                           <mat-option *ngFor="let permission of selectedPermissions" [value]="permission">{{ permission }}</mat-option>
                         </mat-select>
-                      </mat-form-field>
+                      </mat-form-field> -->
                       
-                      <!-- <mat-form-field>
+                      <mat-form-field>
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
                           <mat-option *ngFor="let permission of availablePermissions" [value]="permission">
                             {{ formatOption(permission) }}
                           </mat-option>
                         </mat-select>
-                      </mat-form-field> -->
+                      </mat-form-field>
                       
                       
                     </div>

@@ -1,6 +1,6 @@
 
 
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
   hide = true;
   login = {
@@ -24,7 +25,7 @@ export class LoginComponent {
     const target = event.target as HTMLInputElement;
     this.showPassword = target.checked;
   }
-  constructor(private loginService: LoginService, private router: Router, private http: HttpClient, private snack: MatSnackBar,private formBuilder: FormBuilder) {
+  constructor(private loginService: LoginService, private router: Router, private http: HttpClient, private snack: MatSnackBar,private formBuilder: FormBuilder, private elementRef: ElementRef) {
      //for change password modal start
      this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -57,7 +58,17 @@ export class LoginComponent {
   }
 
   // for change password modal end
+  ngAfterViewInit() {
+    // Get the animated images
+    const animatedImages = this.elementRef.nativeElement.querySelectorAll('.animated-image');
 
+    // Add a class to pause the animation after it runs once
+    animatedImages.forEach((img: HTMLElement) => {
+      img.addEventListener('animationiteration', () => {
+        img.classList.add('paused-animation');
+      });
+    });
+  }
    //API for change Password start
 
    changePassword() {

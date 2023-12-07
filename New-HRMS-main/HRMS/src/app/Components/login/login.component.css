@@ -313,19 +313,22 @@ input.example-right-align::-webkit-inner-spin-button {
 
   @keyframes flowUpDownLeftRight {
 	0%, 100% {
-	  transform: translateY(-100%);
+	  transform: translateY(-50%);
 	}
 	50% {
 	  transform: translateY(100%);
+	  
 	}
   }
   
   @keyframes flowDownUpMiddle {
 	0%, 100% {
-	  transform: translateY(100%);
+	  transform: translateY(50%);
+	  
 	}
 	50% {
 	  transform: translateY(-100%);
+	  
 	}
   }
   
@@ -341,15 +344,19 @@ input.example-right-align::-webkit-inner-spin-button {
   .loginRight2 {
 	height: 2116px;
 	animation: flowUpDownLeftRight 10s infinite linear;
-	animation-delay: -1s;
+	animation-delay: -5s;
+	animation-play-state: running; /* Initially running */
   }
   
   .loginMiddle2 {
 	height: 2420px;
 	animation: flowDownUpMiddle 10s infinite linear;
 	animation-delay: -1s; /* Negative delay to start immediately when loginleft2 starts */
+	animation-play-state: running; /* Initially running */
   }
-  
+  .paused-animation {
+	animation-play-state: paused;
+  }
   
   
   
@@ -397,6 +404,7 @@ transform: rotate(360deg);
 transform: rotate(360deg);
 flex-shrink: 0;
 margin-left: 14rem;
+margin-top: -18px;
   }
   
   
