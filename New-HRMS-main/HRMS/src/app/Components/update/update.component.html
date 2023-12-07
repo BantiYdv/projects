@@ -362,7 +362,7 @@
           <div class="form-group">
             <label for="role">Role</label>
             <select class="form-control" name="role" id="role" [(ngModel)]="user.role.name"
-              (ngModelChange)="ngOnInit()">
+              (ngModelChange)="Getrole()">
               <option value="">--Select--</option>
               <option *ngFor="let role of role" [value]="role">{{ role }} </option>
             </select>
