@@ -259,7 +259,11 @@ redirectTOHome(){
     }
 }
 // redirect to main home page according to which user login end
+isNameVisible: boolean = true;
 
+toggleNameVisibility() {
+  this.isNameVisible = !this.isNameVisible;
+}
 // API for upload PDF start
 
 

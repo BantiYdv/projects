@@ -410,7 +410,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="role">Role<span style="color: red;">*</span></label>
-            <select class="form-control" name="role" id="role" [(ngModel)]="user.role" (ngModelChange)="ngOnInit()" #roleInput="ngModel" required>
+            <select class="form-control" name="role" id="role" [(ngModel)]="user.role" (ngModelChange)="Getrole()" #roleInput="ngModel" required>
               <option value="" disabled selected>--Select--</option>
               <option *ngFor="let role of role" [value]="role">{{ role }} </option>
             </select>

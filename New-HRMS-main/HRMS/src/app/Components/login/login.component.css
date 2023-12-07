@@ -323,7 +323,7 @@ input.example-right-align::-webkit-inner-spin-button {
   
   @keyframes flowDownUpMiddle {
 	0%, 100% {
-	  transform: translateY(50%);
+	  transform: translateY(-50%);
 	  
 	}
 	50% {
@@ -351,7 +351,7 @@ input.example-right-align::-webkit-inner-spin-button {
   .loginMiddle2 {
 	height: 2420px;
 	animation: flowDownUpMiddle 10s infinite linear;
-	animation-delay: -1s; /* Negative delay to start immediately when loginleft2 starts */
+	animation-delay: -5s; /* Negative delay to start immediately when loginleft2 starts */
 	animation-play-state: running; /* Initially running */
   }
   .paused-animation {
