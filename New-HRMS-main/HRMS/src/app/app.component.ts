@@ -111,6 +111,14 @@ id: any;
   // constructor(public loginService:LoginService, private http: HttpClient, private router: Router, private sanitizer: DomSanitizer){
   //   // this.role = 'EMPLOYEE';
   // }
+
+  // isSidebarExpanded: boolean = false;
+
+  // toggleSidebar() {
+  //   this.isSidebarExpanded = !this.isSidebarExpanded;
+  // }
+
+
 // for show side nav bar according to user login with permission start
 permissionSet = [
   { name: 'ALL_EMPLOYEES_DATA', router: '/employee', function: "employee",  imgName: "All Employees", src: '/assets/image/icon/All Employees.png'},

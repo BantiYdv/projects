@@ -856,3 +856,142 @@ align-items: center;
 border-radius: 5px;
 background: #421CDD;
 }
+
+
+.card-title{
+    text-decoration: none;
+}
+.card-header {
+  
+    border-bottom: none;
+}
+#pieChart{
+    width: 100%;
+height: 181px;
+flex-shrink: 0;
+border-radius: 7px;
+border: 1px solid #CDCDCD;
+
+background: #FFF;
+}
+.pieEmp{
+    width: 200px;
+height: 140px;
+/* transform: rotate(-24.605deg); */
+flex-shrink: 0;
+margin-top: -43px;
+}
+
+/* .legendLabel{
+    color: #000;
+
+text-align: right;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+} */
+#LeaveChart{
+    width: 100%;
+height: 181px;
+flex-shrink: 0;
+border-radius: 7px;
+border: 1px solid #CDCDCD;
+
+background: #FFF;
+}
+.EmpInfoVector{
+    width: 1px;
+height: 91.5px;
+flex-shrink: 0;
+stroke-width: 1px;
+stroke: #000;
+margin-left: 14rem;
+margin-top: -10rem;
+}
+
+
+.leaveVector{
+    width: 1px;
+    height: 104px;
+    flex-shrink: 0;    
+stroke-width: 1px;
+stroke: #000;
+margin-left: auto;
+}
+
+@property --p {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+  
+  .pie {
+    --p: 20;
+    --b: 22px;
+    --c: darkred;
+    --w: 150px;
+  
+    width: var(--w);
+    aspect-ratio: 1;
+    position: relative;
+    display: inline-grid;
+    margin: 5px;
+    place-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+  }
+  .pie:before,
+  .pie:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  .pie:before {
+    inset: 0;
+    background: radial-gradient(farthest-side, var(--c) 98%, #0000) top/var(--b)
+        var(--b) no-repeat,
+      conic-gradient(var(--c) calc(var(--p) * 1%), #0000 0);
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      #0000 calc(99% - var(--b)),
+      #000 calc(100% - var(--b))
+    );
+    mask: radial-gradient(
+      farthest-side,
+      #0000 calc(99% - var(--b)),
+      #000 calc(100% - var(--b))
+    );
+  }
+  .pie:after {
+    inset: calc(50% - var(--b) / 2);
+    background: var(--c);
+    transform: rotate(calc(var(--p) * 3.6deg))
+      translateY(calc(50% - var(--w) / 2));
+  }
+  .animate {
+    animation: p 1s 0.5s both;
+  }
+  .no-round:before {
+    background-size: 0 0, auto;
+  }
+  .no-round:after {
+    content: none;
+  }
+  @keyframes p {
+    from {
+      --p: 0;
+    }
+  }
+  
+ 
+  
+  .leaveChart{
+    width: 72px;
+height: 72px;
+/* transform: rotate(82.735deg); */
+flex-shrink: 0;
+stroke-width: 12px;
+stroke: #E5E5E5;
+  }

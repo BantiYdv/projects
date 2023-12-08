@@ -19,7 +19,7 @@
       
       <div class="row">
         <div class="col-xl-3 col-sm-6 col-12"> 
-          <div class="card">
+          <div class="card m-2">
             <div class="card-content">
               <div class="card-body " style="padding: 6px;">
                 <div class="media d-flex justify-content-between">
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 col-12">
-          <div class="card">
+          <div class="card m-2">
             <div class="card-content">
               <div class="card-body " style="padding: 6px;">
                 <div class="media d-flex justify-content-between">
@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 col-12">
-          <div class="card">
+          <div class="card m-2">
             <div class="card-content">
               <div class="card-body " style="padding: 6px;">
                 <div class="media d-flex justify-content-between">
@@ -70,7 +70,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 col-12">
-          <div class="card">
+          <div class="card m-2">
             <div class="card-content">
               <div class="card-body " style="padding: 6px;">
                 <div class="media d-flex justify-content-between">
@@ -118,17 +118,44 @@
         <div class="col-xl-6 col-lg-12 col-md-12">
           <div class="card" id="pieChart">
             <div class="card-header">
-              <h3 class="card-title">Salary Statistics</h3>
+              <h3 class="card-title">Employee Info :</h3>
             </div>
             <div class="card-body">
-              <div class="chart-container">
+              <div class="chart-container pieEmp">
                 <canvas id="MyPieChart">{{ chart }}</canvas>
               </div>
+              
+              <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector"><table style="position:absolute;top:4rem;right:52px;;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div></div></td><td class="legendLabel">Full Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div></div></td><td class="legendLabel">Part Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div></div></td><td class="legendLabel">Intern/Trainee</td></tr></tbody></table></div>
             </div>
           </div>
+
+
+          <div class="card mt-4" id="LeaveChart">
+            <div class="card-header">
+              <h3 class="card-title">Today’s Leave Info :</h3>
+            </div>
+            <div class="card-body d-flex" style="justify-content: space-evenly;">
+              <div><div class="pie animate no-round leaveChart" style="--p:40;--c:#F97165;--b:10px"> 6</div><br>Absent</div>
+             <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
+             <div> <div class="pie animate no-round leaveChart" style="--p:60;--c:#421CDD;--b:10px"> 8</div><br>Casual Leave</div>
+              <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
+              <div><div class="pie animate no-round leaveChart" style="--p:80;--c:#188EE4;--b:10px"> 10</div><br>Sick Leave</div>
+              <!-- <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector"><table style="position:absolute;top:4rem;right:52px;;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div></div></td><td class="legendLabel">Full Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div></div></td><td class="legendLabel">Part Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div></div></td><td class="legendLabel">Intern/Trainee</td></tr></tbody></table></div> -->
+            </div>
+          </div>
+          <!-- <div class="card" id="LeaveChart">
+            <div class="card-header">
+              <h3 class="card-title">Today’s Leave Info :</h3>
+            </div>
+            <div class="card-body">
+          
+          <div class="pie animate no-round leaveChart" style="--p:60;--c:#F97165;--b:10px"> 6</div>Absent
+          <div class="pie animate no-round leaveChart" style="--p:80;--c:#421CDD;--b:10px"> 10</div>
+          <div class="pie animate leaveChart" style="--p:90;--c:#188EE4;--b:10px"> 8</div>
+        </div>
+        </div> -->
         </div>
 
-        
       </div>
     </div>
     <!-- </main> -->

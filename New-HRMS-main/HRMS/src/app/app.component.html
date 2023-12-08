@@ -249,9 +249,11 @@
     </div>
     <!-- for mobile screen end -->
     
+ <!-- Toggle button for showing/hiding the sidebar -->
+ <!-- <button class="btn " (click)="toggleSidebar()"><i class="fa-solid fa-greater-than"></i></button> -->
 
     <!-- <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar"> -->
-      <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block " id="sideBar">
+      <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block " id="sideBar" >
       <!-- <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"> -->
       <div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
@@ -262,7 +264,7 @@
                 <!-- <br> -->
               </div>
               <!-- <span class="image-namenew">Home</span> -->
-              
+              <!-- <span class="image-name" *ngIf="isSidebarExpanded">Home</span> -->
             </a>
           </li>
           <li class="nav-item text-center">
@@ -291,9 +293,10 @@
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
 
-                <br>
+                <!-- <br> -->
                 <!-- <span class="image-name">Registration</span> -->
               </div>
+              <!-- <span class="image-name" *ngIf="isSidebarExpanded">Registration</span> -->
             </a>
           </li>
           <li class="nav-item text-center">

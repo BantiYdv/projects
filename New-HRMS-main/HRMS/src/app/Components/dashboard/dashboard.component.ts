@@ -350,22 +350,11 @@ export class DashboardComponent {
       type: 'pie', //this denotes the type of chart
 
       data: {// values on X-Axis
-        labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
+        // labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
         datasets: [
           {
-            label: "Full Time",
-            data: ['70'],
-            backgroundColor: '#FD7A8C'
-          },
-          {
-            label: "Part Time",
-            data: ['20'],
-            backgroundColor: '#9747FF'
-          },
-          {
-            label: "Intern/Trainee",
-            data: ['50'],
-            backgroundColor: '#FFCE62'
+            data: [70, 20, 50], // Adjust these values based on your data
+            backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
           }
         ]
       },
@@ -376,5 +365,6 @@ export class DashboardComponent {
     });
   }
 
+  
 }
 
