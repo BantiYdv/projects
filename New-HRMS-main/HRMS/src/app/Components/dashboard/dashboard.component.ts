@@ -14,7 +14,7 @@ import { Chart } from 'chart.js/auto';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { TestService } from 'src/app/services/test.service';
 
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -111,6 +111,8 @@ export class DashboardComponent {
     this.createLineChart();
     this.viewEmployeeProfile();
     // this.viewAllAttendance();
+    this.currentDate = moment();
+    this.generateCalendar();
   }
  
 
@@ -365,6 +367,44 @@ export class DashboardComponent {
     });
   }
 
-  
+  currentDate!: moment.Moment;
+  calendarData: any[][] | undefined;
+  weekNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  generateCalendar() {
+    const startOfMonth = this.currentDate.clone().startOf('month');
+    const endOfMonth = this.currentDate.clone().endOf('month');
+
+    const days = endOfMonth.date();
+    const startOfWeek = startOfMonth.clone().startOf('week');
+    const endOfWeek = endOfMonth.clone().endOf('week');
+
+    let currentDay = startOfWeek.clone();
+    this.calendarData = [];
+
+    while (currentDay.isBefore(endOfWeek)) {
+      const week: any[] = [];
+      for (let i = 0; i < 7; i++) {
+        week.push({
+          date: currentDay.clone(),
+          isCurrentMonth: currentDay.isSameOrAfter(startOfMonth) && currentDay.isSameOrBefore(endOfMonth)
+        });
+        currentDay.add(1, 'day');
+      }
+      this.calendarData.push(week);
+    }
+  }
+
+  goToNextMonth() {
+    this.currentDate.add(1, 'month');
+    this.generateCalendar();
+  }
+
+  goToPrevMonth() {
+    this.currentDate.subtract(1, 'month');
+    this.generateCalendar();
+  }
+  isToday(date: moment.Moment): boolean {
+    return date.isSame(moment(), 'day');
+  }
 }
 

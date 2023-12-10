@@ -995,3 +995,220 @@ flex-shrink: 0;
 stroke-width: 12px;
 stroke: #E5E5E5;
   }
+
+
+
+  /* calendar */
+  .calendar {
+    width: 100%;
+    max-width: 400px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the calendar */
+    overflow: hidden;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+
+  .header button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .week-names {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+
+  .day {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .day.other-month {
+    color: #ccc; /* Style for days from the previous/next month */
+  }
+
+  .week {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  
+
+  .ActivitiesHeader{
+    color: #000;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+  .ActivityVector{
+    width: 25px;
+height: 286px;
+flex-shrink: 0;
+margin-top: 28px;
+  }
+
+  .BirthdayVector{
+    width: 1px;
+height: 46px;
+flex-shrink: 0;
+margin-top: -5rem;
+margin-left: 4rem;
+
+  }
+.birth{
+    margin-top: -4rem;
+    margin-left: 6rem;
+    color: #1F3BF2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.weekName{
+    color: #000;
+text-align: right;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+}
+
+.dateName{
+    color: #2F37A4;
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+
+.yearName{
+    color: #000;
+font-size: 7px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.desc{
+    color: #343A40;
+font-size: 7px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-left: 6rem;
+}
+
+.birthdayIcon{
+    width: 44px;
+height: 44px;
+flex-shrink: 0;
+margin-left: -18px;
+}
+
+
+.birthName{
+    color: #000;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin-top: -42px;
+}
+
+.birthdesc{
+    color: #2F37A4;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.birthdaybottomVector{
+    width: 1px;
+height: 205px;
+transform: rotate(-90deg);
+flex-shrink: 0;
+margin-top: -87px;
+margin-left: 106px;
+}
+
+.footer{
+    color: #2C2C2C;
+text-align: right;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 0.2px;
+}
+
+.footerP{
+    color: #2C2C2C;
+font-family: Poppins;
+font-size: 10px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 0.2px;
+}
+
+.caliconPre{
+    width: 10px;
+height: 10px;
+transform: rotate(0deg);
+flex-shrink: 0;
+fill: #421CDD;
+margin-right: 1rem !important;
+}
+
+.caliconNext{
+    width: 10px;
+height: 10px;
+transform: rotate(0deg);
+flex-shrink: 0;
+margin-right: 1rem !important;
+}
+
+.monthYear{
+    color: #000;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-top: 1rem;
+}
+
+.day{
+    color: #000;
+text-align: center;
+font-size: 10px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+/* width: 35px; */
+height: 32px;
+    margin-left: 7px;
+}
+
+.today {
+    font-size: 16px;
+    border-radius: 50%; 
+    background-color:rgba(66, 28, 221, 0.10); /* Grey background color for today's date */
+    margin: 0;
+  }
