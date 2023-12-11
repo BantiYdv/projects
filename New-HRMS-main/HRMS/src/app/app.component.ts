@@ -119,6 +119,25 @@ id: any;
   // }
 
 
+  // toggle open start
+  isSidebarExpanded: boolean = true;
+  isNameSidebarVisible: boolean = false;
+
+  // toggleSidebar() {
+  //   this.isSidebarExpanded = !this.isSidebarExpanded;
+  //   this.isNameSidebarVisible = !this.isNameSidebarVisible;
+  // }
+  toggleSidebar(isHovered: boolean) {
+    if (isHovered) {
+        this.isSidebarExpanded = true;
+        this.isNameSidebarVisible = true;
+    } else {
+        this.isSidebarExpanded = !this.isSidebarExpanded;
+        this.isNameSidebarVisible = !this.isNameSidebarVisible;
+    }
+}
+ // toggle open end
+  
 // for show side nav bar according to user login with permission start
 permissionSet = [
   { name: 'ALL_EMPLOYEES_DATA', router: '/employee', function: "employee",  imgName: "All Employees", src: '/assets/image/icon/All Employees.png'},

@@ -123,7 +123,7 @@
                 aria-expanded="false">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Role.png" alt="" id="hoverRole">
-
+                  
                   <!-- <span
                     class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span> -->
                   <div class="collapse" id="dashboard-role">
@@ -137,6 +137,7 @@
                     </ul>
                   </div>
                 </div>
+                <span class="image-namenew">Role</span>
               </a>
             </li>
             <li class="nav-item text-center">
@@ -145,8 +146,8 @@
                   <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
 
 
-                  <!-- <span class="image-name">Registration</span> -->
                 </div>
+                <span class="image-namenew">Registration</span>
               </a>
             </li>
             <li class="nav-item text-center">
@@ -155,8 +156,8 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
 
-                  <!-- <span class="image-name">All Employees</span> -->
                 </div>
+                <span class="image-namenew">All Employees</span>
               </a>
             </li>
             <li class="nav-item text-center">
@@ -165,8 +166,8 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Team leave.png" alt="" id="hoverTeamLeave">
 
-                  <!-- <span class="image-name">Team Leave</span> -->
                 </div>
+                <span class="image-namenew">Team Leave</span>
               </a>
             </li>
             <li class="nav-item text-center">
@@ -175,8 +176,8 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Team WFH.png" alt="" id="hoverTeamWfh">
 
-                  <!-- <span class="image-name">Team WFH</span> -->
                 </div>
+                <span class="image-namenew">Team WFH</span>
               </a>
             </li>
 
@@ -186,8 +187,8 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Reports.png" alt="" id="hoverReport">
 
-                  <!-- <span class="image-name">Reports</span> -->
                 </div>
+                <span class="image-namenew">Reports</span>
 
               </a>
             </li>
@@ -198,6 +199,7 @@
                 <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
                 <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
                   <!-- <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Rules</span> -->
+                  
                 </label>
                 <div class="collapse" id="dashboard-rule">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
@@ -217,6 +219,7 @@
                   </ul>
                 </div>
               </div>
+              <span class="image-namenew">Assign Rules</span>
             </li>
             
             
@@ -238,8 +241,8 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
 
-                  <!-- <span class="image-name">View Holiday</span> -->
                 </div>
+                <span class="image-namenew">View Holiday</span>
               </a>
             </li>
 
@@ -253,10 +256,13 @@
  <!-- <button class="btn " (click)="toggleSidebar()"><i class="fa-solid fa-greater-than"></i></button> -->
 
     <!-- <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar"> -->
-      <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block " id="sideBar" >
+      <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block " id="sideBar" [ngClass]="{'expanded': isSidebarExpanded, 'hovered': isNameSidebarVisible}"
+      (mouseenter)="toggleSidebar(true)" >
       <!-- <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"> -->
       <div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
+       
+
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu" [ngClass]="{'collapsed': !isSidebarExpanded}">
           <li class="nav-item text-center">
             <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
               <div class="image-container">
@@ -275,7 +281,7 @@
                 <br>
                 <!-- <span
                   class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span> -->
-                <div class="collapse" id="dashboard-role">
+                <!-- <div class="collapse" id="dashboard-role">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
                         routerLink="/test" [routerLink]="['/createRole']"
@@ -284,7 +290,7 @@
                         routerLink="/test" [routerLink]="['/viewRole']"
                         (click)="loginService.showTable('viewRole')">View Role</a></li>
                   </ul>
-                </div>
+                </div> -->
               </div>
             </a>
           </li>
@@ -397,12 +403,166 @@
 
         </ul>
         <hr>
+       
       </div>
     </div>
 
-    <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
+    <!-- sidebar name show in toggle strat -->
+    <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block bg-dark"  *ngIf="isNameSidebarVisible" (mouseleave)="toggleSidebar(false)">
+      <div class="d-flex flex-column text-white min-vh-100 ">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu" >
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+          
+                <span class="image-namenew">Home</span>
+           
+            </a>
+          </li>
+          <!-- <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+              aria-expanded="false">
+              
+                <span class="image-namenew">Role</span>
+                
+                <div class="collapse" id="dashboard-role">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/createRole']"
+                        (click)="loginService.showTable('createRole')">Create Role</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/viewRole']"
+                        (click)="loginService.showTable('viewRole')">View Role</a></li>
+                  </ul>
+                </div>
+            </a>
+          </li> -->
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+              aria-expanded="false">
+              
+                <span class="image-namenew">Role</span>
+                  <div class="collapse" id="dashboard-role">
+                    <ul class="dropdown-menu rounded-4 border-0 shadow Roledrop" >
+                      <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/createRole']"
+                        (click)="loginService.showTable('createRole')">Create Role</a></li>
+                      <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/viewRole']"
+                        (click)="loginService.showTable('viewRole')">View Role</a></li>
+                    </ul>
+                  </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" routerLink="/registration">
+              <!-- <div class="image-container"> -->
+                <!-- <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg"> -->
+                <span class="image-namenew">Registration</span>
+                <!-- <br> -->
+                <!-- <span class="image-name">Registration</span> -->
+              <!-- </div> -->
+              <!-- <span class="image-name" *ngIf="isSidebarExpanded">Registration</span> -->
+            </a>
+          </li>
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
+              (click)="loginService.showTable('employee')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">All Employees</span>
+              
+              <!-- </div> -->
+            </a>
+          </li>
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
+              (click)="loginService.showTable('teamleave')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">Team Leave</span>
+              <!-- </div> -->
+            </a>
+          </li>
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
+              (click)="loginService.showTable('teamwfh')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">Team WFH</span>
+              <!-- </div> -->
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
+              (click)="loginService.showTable('reports')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">Reports</span>
+              <!-- </div> -->
+
+            </a>
+          </li>
+
+
+          <li class="nav-item text-center sideBarName">
+            <!-- <div class="image-container"> -->
+              <span class="image-namenew">Assign Rule</span>
+              <!-- <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule"> -->
+              <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
+                <!-- <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Rules</span> -->
+              </label>
+              <div class="collapse" id="dashboard-rule">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li >
+                    <!-- Use a label to trigger file input -->
+                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
+                    <label for="pdfFileInput">
+                      <span class="image-name" id="pdfFile">Upload Pdf</span>
+                    </label></a>
+                    <!-- Visually hidden file input -->
+                    <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
+                  </li>
+                  <li>
+                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
+                      [routerLink]="['/shifttime']" (click)="loginService.showTable('shifttime')">Attendance Ruls</a>
+                  </li>
+                </ul>
+              </div>
+            <!-- </div> -->
+          </li>
+          
+          
+
+          <!-- <li class="nav-item text-center">
+            <label class="nav-link px-0 align-middle" for="pdfFileInput">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+                <br>
+                <span class="image-name" id="pdfFile">Upload Pdf</span>
+              </div>
+            </label>
+            <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
+          </li> -->
+
+
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
+              (click)="loginService.showTable('calendar')">
+             <!-- <div class="image-container"> -->
+                <span class="image-namenew">View Holiday</span>
+              <!-- </div> -->
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+<!-- sidebar name show in toggle end -->
+
+    <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-12 col-md-9 col-xl-11'"  id="dashboard">
       <router-outlet></router-outlet>
     </div>
+    <!-- <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
+      <router-outlet></router-outlet>
+    </div> -->
 
   </div>
 
@@ -467,13 +627,14 @@
     </div>
     <!-- for mobile screen end -->
 
-    <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block" id="sideBar">
+    <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block" id="sideBar" [ngClass]="{'expanded': isSidebarExpanded, 'hovered': isNameSidebarVisible}"
+    (mouseenter)="toggleSidebar(true)" >
       <div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu" [ngClass]="{'collapsed': !isSidebarExpanded}">
           <li class="nav-item text-center">
             <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/image/icon/Group 27.svg" alt="" id="hoverImage">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Home.png" alt="" id="hoverImage">
                 <!-- <br>
                 <span class="image-name">Home</span> -->
               </div>
@@ -516,7 +677,53 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
+
+    <!-- sidebar name show in toggle strat -->
+    <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block bg-dark"  *ngIf="isNameSidebarVisible" (mouseleave)="toggleSidebar(false)">
+      <div class="d-flex flex-column text-white min-vh-100 ">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu" >
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+          
+                <span class="image-namenew">Home</span>
+           
+            </a>
+          </li>
+          
+          <li class="nav-item text-center sideBarName" *ngFor="let option of filteredOptions">
+            <a class="nav-link px-0 align-middle" [routerLink]="[option.router]">
+              
+                <span class="image-namenew">{{option.imgName}}</span> 
+             
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" (click)="LeavePolicyPdf()">
+             
+                <span class="image-namenew">Leave Policy</span> 
+              
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
+              (click)="loginService.showTable('calendar')">
+      
+                <span class="image-namenew">View Holiday</span>
+          
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+<!-- sidebar name show in toggle end -->
+
+    <!-- <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
+      <router-outlet></router-outlet>
+    </div> -->
+    <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-9 col-md-9 col-xl-11'"  id="dashboard">
       <router-outlet></router-outlet>
     </div>
   </div>
