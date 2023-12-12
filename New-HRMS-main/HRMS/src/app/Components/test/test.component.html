@@ -4,43 +4,31 @@
 
   <div *ngSwitchCase="'createRole'">
     <div class="content m-1 mt-4">
-      <div class="container applyLeave">
+      <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-10">
-            <h1 class="text-center">Create Role</h1>
+          <div class="col-md-10 border">
+            <h1 class="text-center mt-3 createRole">Create Role</h1>
             <div class="row justify-content-center">
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <p><img src="assets/Organizing projects-rafiki.svg" alt="Image" class="img-fluid"></p>
-              </div>
-              <div class="col-md-6 mt-4">
+              </div> -->
+              <div class="col-md-6 ">
                 <form [formGroup]="form" novalidate>
-                  <div class="mb-3">
-                    <label for="role" class="col-form-label">Create Role:</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Role"
-                      formControlName="role" [matAutocomplete]="auto">
+                  <div class="mb-3 row">
+                    <label for="role" class="col-md-4 col-form-label text-md-end">Create Role:</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control RoleInput" name="name" id="name" placeholder="Select A Role From Given List" formControlName="role" [matAutocomplete]="auto">
+                    </div>
                   </div>
+                  
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
                   </mat-autocomplete>
                  
-                  <div class="mb-3">
+                  <!-- <div class="mb-3">
                     <div class="form-group">
                       <label for="url" class="col-form-label">Permission:</label>
                     
-                      <!-- <mat-form-field>
-                        <mat-label>Permission</mat-label>
-                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url">
-                          <mat-option value="NO_ACCESS">No Access</mat-option>
-                          <mat-option value="ALL_ACCESS">All Access</mat-option>
-                          <mat-option value="ALL_EMPLOYEES_DATA">All Employee Data</mat-option>
-                          <mat-option value="NEW_REGISTRATION">New Registration</mat-option>
-                          <mat-option value="ALL_EMPLOYEES_ATTENDANCE">All Employee Attendance</mat-option>
-                          <mat-option value="LEAVE_SHOW_TEAMLEAD">Leave Teamlead</mat-option>
-                          <mat-option value="WFH_SHOW_TEAMLEAD">WFH Teamlead</mat-option>
-                          <mat-option value="ALL_WFH_EMPLOYEES">All Employee WFH</mat-option>
-                          <mat-option value="VIEW_ALL_LEAVE">All Employee Leave</mat-option>
-                        </mat-select>
-                      </mat-form-field> -->
 
                       <mat-form-field>
                         <mat-label>Permission</mat-label>
@@ -53,14 +41,31 @@
                       
                       
                     </div>
+                  </div> -->
+                  <div class="mb-3 row">
+                    <label for="url" class="col-md-3 col-form-label text-md-end">Permission:</label>
+                    <div class="col-md-9">
+                      <div class="form-group ">
+                        <mat-form-field class="RoleInput">
+                          <mat-label>Select Permissions From Given List
+                          </mat-label>
+                          <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
+                            <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
+                              {{ formatOption(option) }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
                   </div>
+                  
                 </form>
 
 
-                <div class="mb-3 col-md-12 d-flex justify-content-between">
-                  <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="createRole()">Submit</button>
-                  <button type="button" class="btn btn-secondary flex-fill m-1" data-bs-dismiss="modal"
+                <div class="mb-3 col-md-12 d-flex justify-content-end">
+                  <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal"
                     (click)="closeForm()">Close</button>
+                  <button type="submit" class="btn m-1 submitRole" (click)="createRole()">Submit</button>
                   
                 </div>
 

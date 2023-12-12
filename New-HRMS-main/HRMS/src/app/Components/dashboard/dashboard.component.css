@@ -774,10 +774,11 @@ img {
 
 .h2{
     color: #000;
-font-size: 25px;
+font-size: 23px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
+margin-top: -32px;
 }
 
 .DashboardCard{
@@ -855,6 +856,7 @@ display: inline-flex;
 align-items: center;
 border-radius: 5px;
 background: #421CDD;
+margin-right: 11px;
 }
 
 
@@ -870,7 +872,7 @@ background: #421CDD;
 height: 181px;
 flex-shrink: 0;
 border-radius: 7px;
-border: 1px solid #CDCDCD;
+border: 2px solid #CDCDCD;
 
 background: #FFF;
 }
@@ -896,7 +898,7 @@ line-height: normal;
 height: 181px;
 flex-shrink: 0;
 border-radius: 7px;
-border: 1px solid #CDCDCD;
+border: 2px solid #CDCDCD;
 
 background: #FFF;
 }
@@ -906,7 +908,7 @@ height: 91.5px;
 flex-shrink: 0;
 stroke-width: 1px;
 stroke: #000;
-margin-left: 14rem;
+margin-left: 16rem;
 margin-top: -10rem;
 }
 
@@ -1212,3 +1214,13 @@ height: 32px;
     background-color:rgba(66, 28, 221, 0.10); /* Grey background color for today's date */
     margin: 0;
   }
+
+ #MyChart{
+    width: 100% !important;
+    height: 304px !important;
+   
+ } 
+
+
+
+ 

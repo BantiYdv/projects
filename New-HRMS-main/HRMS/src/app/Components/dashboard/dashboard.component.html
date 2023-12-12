@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row flex-nowrap">
 
-   
+
 
     <div class="col py-3">
       <div class="b-example-divider"></div>
@@ -10,312 +10,336 @@
         <h1 class="h2">Welcome,
           <span id="firstname" style="color: blue;">Admin!</span>
         </h1>
-      
+
         <div class="d-flex justify-content-between align-items-center mb-2">
           <h4>Home</h4>
-          <button class="btn RegButtonText" routerLink="/registration"><img src="/assets/image/RegButton.png" alt="" class="RegButton">New Registration</button>
+          <button class="btn RegButtonText" routerLink="/registration"><img src="/assets/image/RegButton.png" alt=""
+              class="RegButton">New Registration</button>
         </div>
-      
-      
-      <div class="row">
-        <div class="col-xl-3 col-sm-6 col-12"> 
-          <div class="card m-2">
-            <div class="card-content">
-              <div class="card-body " style="padding: 6px;">
-                <div class="media d-flex justify-content-between">
-                  <div class="align-self-center ">
-                    <i class="cardIcon float-left"><img src="/assets/image/icon/EmployeeCard.png" alt="" class="cardIcon" style="margin-left: 0px !important;"></i>
+
+
+        <div class="row">
+          <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3'">
+            <div class="card m-2">
+              <div class="card-content">
+                <div class="card-body " style="padding: 6px;border: 2px solid #CDCDCD; border-radius: 7px">
+                  <div class="media d-flex justify-content-between">
+                    <div class="align-self-center">
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/EmployeeCard.png" alt=""
+                          class="cardIcon" style="margin-left: 0px !important;"></i>
+                    </div>
+                    <div class="media-body">
+                      <p class="cardIconNum">156</p>
+                      <span class="cardIconText">Employees</span>
+                    </div>
                   </div>
-                  <div class="media-body">
-                    <p class="cardIconNum">156</p>
-                    <span class="cardIconText">Employees</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3'">
+            <div class="card m-2">
+              <div class="card-content">
+                <div class="card-body " style="padding: 6px;border: 2px solid #CDCDCD; border-radius: 7px">
+                  <div class="media d-flex justify-content-between">
+                    <div class="align-self-center ">
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/workingHour.png" alt=""
+                          class="cardIcon" style="margin-left: 0px !important;"></i>
+                    </div>
+                    <div class="media-body">
+                      <p class="cardIconNum">156</p>
+                      <span class="cardIconText">Working Hours</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3'">
+            <div class="card m-2">
+              <div class="card-content">
+                <div class="card-body " style="padding: 6px;border: 2px solid #CDCDCD; border-radius: 7px">
+                  <div class="media d-flex justify-content-between">
+                    <div class="align-self-center ">
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/present.png" alt="" class="cardIcon"
+                          style="margin-left: 0px !important;"></i>
+                    </div>
+                    <div class="media-body">
+                      <p class="cardIconNum">156</p>
+                      <span class="cardIconText">Present</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3'">
+
+            <div class="card m-2">
+              <div class="card-content">
+                <div class="card-body " style="padding: 6px;border: 2px solid #CDCDCD; border-radius: 7px">
+                  <div class="media d-flex justify-content-between">
+                    <div class="align-self-center ">
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/wfh.png" alt="" class="cardIcon"
+                          style="margin-left: 0px !important;"></i>
+                    </div>
+                    <div class="media-body">
+                      <p class="cardIconNum">{{ wfhCount }}</p>
+                      <span class="cardIconText">WFH</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 col-12">
-          <div class="card m-2">
-            <div class="card-content">
-              <div class="card-body " style="padding: 6px;">
-                <div class="media d-flex justify-content-between">
-                  <div class="align-self-center ">
-                    <i class="cardIcon float-left"><img src="/assets/image/icon/workingHour.png" alt="" class="cardIcon" style="margin-left: 0px !important;"></i>
-                  </div>
-                  <div class="media-body">
-                    <p class="cardIconNum">156</p>
-                    <span class="cardIconText">Working Hours</span>
-                  </div>
+        <!-- bar chart -->
+        <div class="row mt-5">
+          <div class="col-xl-6 col-lg-12 col-md-12 mb-4">
+            <div class="card" id="Barchart">
+              <div class="card-header">
+                <h3 class="card-title">Attendance:</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="MyChart">{{ chart }}</canvas>
                 </div>
               </div>
             </div>
+
           </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 col-12">
-          <div class="card m-2">
-            <div class="card-content">
-              <div class="card-body " style="padding: 6px;">
-                <div class="media d-flex justify-content-between">
-                  <div class="align-self-center ">
-                    <i class="cardIcon float-left"><img src="/assets/image/icon/present.png" alt="" class="cardIcon" style="margin-left: 0px !important;"></i>
-                  </div>
-                  <div class="media-body">
-                    <p class="cardIconNum">156</p>
-                    <span class="cardIconText">Present</span>
-                  </div>
+
+
+
+          <div class="col-xl-6 col-lg-12 col-md-12">
+            <div class="card" id="pieChart">
+              <div class="card-header">
+                <h3 class="card-title">Employee Info :</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-container pieEmp">
+                  <canvas id="MyPieChart">{{ chart }}</canvas>
+                </div>
+
+                <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector d-none d-md-inline">
+                  <table style="position:absolute;top:4rem;right:14px;color:#545454">
+                    <tbody>
+                      <tr>
+                        <td class="legendColorBox">
+                          <div style="border:1px solid transparent;padding:1px">
+                            <div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div>
+                          </div>
+                        </td>
+                        <td class="legendLabel">Full Time</td>
+                      </tr>
+                      <tr>
+                        <td class="legendColorBox">
+                          <div style="border:1px solid transparent;padding:1px">
+                            <div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div>
+                          </div>
+                        </td>
+                        <td class="legendLabel">Part Time</td>
+                      </tr>
+                      <tr>
+                        <td class="legendColorBox">
+                          <div style="border:1px solid transparent;padding:1px">
+                            <div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div>
+                          </div>
+                        </td>
+                        <td class="legendLabel">Intern/Trainee</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+
+
+            <div class="card mt-4" id="LeaveChart">
+              <div class="card-header">
+                <h3 class="card-title">Today’s Leave Info :</h3>
+              </div>
+              <div class="card-body d-flex" style="justify-content: space-evenly;">
+                <div>
+                  <div class="pie animate no-round leaveChart" style="--p:40;--c:#F97165;--b:10px"> 6</div><br>Absent
+                </div>
+                <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
+                <div>
+                  <div class="pie animate no-round leaveChart" style="--p:60;--c:#421CDD;--b:10px"> 8</div><br>Casual
+                  Leave
+                </div>
+                <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
+                <div>
+                  <div class="pie animate no-round leaveChart" style="--p:80;--c:#188EE4;--b:10px"> 10</div><br>Sick
+                  Leave
+                </div>
+                <!-- <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector"><table style="position:absolute;top:4rem;right:52px;;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div></div></td><td class="legendLabel">Full Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div></div></td><td class="legendLabel">Part Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div></div></td><td class="legendLabel">Intern/Trainee</td></tr></tbody></table></div> -->
+              </div>
+            </div>
+
+
           </div>
+
         </div>
-        <div class="col-xl-3 col-sm-6 col-12">
-          <div class="card m-2">
-            <div class="card-content">
-              <div class="card-body " style="padding: 6px;">
-                <div class="media d-flex justify-content-between">
-                  <div class="align-self-center ">
-                    <i class="cardIcon float-left"><img src="/assets/image/icon/wfh.png" alt="" class="cardIcon" style="margin-left: 0px !important;"></i>
+        <div class="container mt-5" style="border-radius: 7px; border: 2px solid #CDCDCD;">
+          <div class="row d-flex flex-wrap">
+            <!-- <div class="col-xl-4 col-lg-12 col-md-12 mt-4"> -->
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4'">
+
+              <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Calendar :</h5>
+              <div class="calendar">
+
+
+                <div class="week-names">
+                  <div *ngFor="let weekName of weekNames" class="day">{{ weekName }}</div>
+                </div>
+
+                <div *ngFor="let week of calendarData" class="week">
+                  <div *ngFor="let day of week" class="day" [class.other-month]="!day.isCurrentMonth"
+                    [class.today]="isToday(day.date)">
+                    {{ day.date.format('D') }}
                   </div>
-                  <div class="media-body">
-                    <p class="cardIconNum">156</p>
-                    <span class="cardIconText">WFH</span>
-                  </div>
+                </div>
+                <div class="header">
+                  <img src="/assets/image/icon/calPre.png" alt="" class="caliconPre" (click)="goToPrevMonth()">
+                  <h2 class="monthYear">{{ currentDate.format('MMMM YYYY') }}</h2>
+                  <img src="/assets/image/icon/calNext.png" alt="" class="caliconNext" (click)="goToNextMonth()">
                 </div>
               </div>
             </div>
+            <img src="/assets/image/icon/ActivityVector.png" alt="" class="ActivityVector d-none d-md-none d-sm-none d-lg-none d-xl-block" style="margin-left: 0px;">
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4'">
+              <div class="container">
+                <!-- <div class="card"> -->
+                <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Activities/Holiday :</h5>
+                <div class="card-body ">
+                  <div class="container">
+                    <span class="weekName">TUE</span><br>
+                    <span class="dateName">06</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="birthday d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth">BOSS KI SHADI</div>
+                  <div class="desc">SABHI KA JANA COMPULSURY HAI</div>
+                </div>
+
+                <div class="card-body mt-4">
+                  <div class="container">
+                    <span class="weekName">WED</span><br>
+                    <span class="dateName">14</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="birthday d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth" style="color: #47C17A;">MAKAR SANKRANTI</div>
+                  <div class="desc">INDIAN FESTIVAL OF KITES</div>
+                </div>
+
+                <div class="card-body mt-4">
+                  <div class="container">
+                    <span class="weekName">SAT</span><br>
+                    <span class="dateName">24</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="birthday d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth" style="color: #F97165;">FREE KI CHUTTI</div>
+                  <div class="desc">SALARY KISI KI NHI KATEGI</div>
+                </div>
+
+                <div class="card-body mt-4">
+                  <div class="container">
+                    <span class="weekName">MON</span><br>
+                    <span class="dateName">26</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="birthday d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth" style="color: #A036CF;">EK OR CHUTTI</div>
+                  <div class="desc">SALARY KISI KI NHI KATEGI</div>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+
+
+            <img src="/assets/image/icon/ActivityVector.png" alt="" class="ActivityVector d-none d-md-none d-sm-none d-lg-none d-xl-block"
+              style="margin-left: -50px;">
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4'">
+              <div class="container">
+                <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Birthdays:</h5>
+                <div class="card-body d-flex flex-column align-items-center">
+                  <div class="container">
+                    <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
+                  </div>
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Anita Kumari</div>
+                      <div class="birthdesc">JANUARY, 18</div>
+                    </div>
+                  </div>
+                </div>
+                <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
+
+                <div class="card-body d-flex flex-column align-items-center" style="margin-top: -6rem;">
+                  <div class="container">
+                    <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
+                  </div>
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Sunita Kumari</div>
+                      <div class="birthdesc">JANUARY, 22</div>
+                    </div>
+                  </div>
+                </div>
+                <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
+
+                <div class="card-body d-flex flex-column align-items-center" style="margin-top: -6rem;">
+                  <div class="container">
+                    <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
+                  </div>
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Kavita Kumari</div>
+                      <div class="birthdesc">JANUARY, 23</div>
+                    </div>
+                  </div>
+                </div>
+                <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
+
+                <div class="card-body d-flex flex-column align-items-center" style="margin-top: -6rem;">
+                  <div class="container">
+                    <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
+                  </div>
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Anju Kumari</div>
+                      <div class="birthdesc">JANUARY, 28</div>
+                    </div>
+                  </div>
+                </div>
+                <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
+              </div>
+
+
+            </div>
+
+
+
           </div>
         </div>
       </div>
-      <!-- bar chart -->
-      <div class="row mt-5">
-        <div class="col-xl-6 col-lg-12 col-md-12 mb-4">
-          <div class="card" id="Barchart">
-            <div class="card-header">
-              <h3 class="card-title">Attendance:</h3>
-            </div>
-            <div class="card-body">
-              <div class="chart-container">
-                <canvas id="MyChart">{{ chart }}</canvas>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-
-        <!-- <div class="col-xl-6 col-lg-12 col-md-12">
-          <div class="card" id="LineChart">
-            <div class="card-header">
-              <h3 class="card-title">Salary Statistics</h3>
-            </div>
-            <div class="card-body">
-              <div class="chart-container">
-                <canvas id="MyLineChart">{{ chart }}</canvas>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="col-xl-6 col-lg-12 col-md-12">
-          <div class="card" id="pieChart">
-            <div class="card-header">
-              <h3 class="card-title">Employee Info :</h3>
-            </div>
-            <div class="card-body">
-              <div class="chart-container pieEmp">
-                <canvas id="MyPieChart">{{ chart }}</canvas>
-              </div>
-              
-              <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector"><table style="position:absolute;top:4rem;right:52px;;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div></div></td><td class="legendLabel">Full Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div></div></td><td class="legendLabel">Part Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div></div></td><td class="legendLabel">Intern/Trainee</td></tr></tbody></table></div>
-            </div>
-          </div>
-
-
-          <div class="card mt-4" id="LeaveChart">
-            <div class="card-header">
-              <h3 class="card-title">Today’s Leave Info :</h3>
-            </div>
-            <div class="card-body d-flex" style="justify-content: space-evenly;">
-              <div><div class="pie animate no-round leaveChart" style="--p:40;--c:#F97165;--b:10px"> 6</div><br>Absent</div>
-             <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
-             <div> <div class="pie animate no-round leaveChart" style="--p:60;--c:#421CDD;--b:10px"> 8</div><br>Casual Leave</div>
-              <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
-              <div><div class="pie animate no-round leaveChart" style="--p:80;--c:#188EE4;--b:10px"> 10</div><br>Sick Leave</div>
-              <!-- <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector"><table style="position:absolute;top:4rem;right:52px;;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div></div></td><td class="legendLabel">Full Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div></div></td><td class="legendLabel">Part Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div></div></td><td class="legendLabel">Intern/Trainee</td></tr></tbody></table></div> -->
-            </div>
-          </div>
-          <!-- <div class="card" id="LeaveChart">
-            <div class="card-header">
-              <h3 class="card-title">Today’s Leave Info :</h3>
-            </div>
-            <div class="card-body">
-          
-          <div class="pie animate no-round leaveChart" style="--p:60;--c:#F97165;--b:10px"> 6</div>Absent
-          <div class="pie animate no-round leaveChart" style="--p:80;--c:#421CDD;--b:10px"> 10</div>
-          <div class="pie animate leaveChart" style="--p:90;--c:#188EE4;--b:10px"> 8</div>
-        </div>
-        </div> -->
-        
-        </div>
-
-      </div>
-      <div class="row mt-5 border" style="border-radius: 5px;">
-        <!-- <div class="card"> -->
-        <div class="col-xl-4 col-lg-12 col-md-12 mt-4">
-          <h5 class="text-center mb-4 ActivitiesHeader">Calendar :</h5>
-          <div class="calendar">
-           
-          
-            <div class="week-names">
-              <div *ngFor="let weekName of weekNames" class="day">{{ weekName }}</div>
-            </div>
-          
-            <div *ngFor="let week of calendarData" class="week">
-              <div *ngFor="let day of week" class="day" [class.other-month]="!day.isCurrentMonth" [class.today]="isToday(day.date)">
-                {{ day.date.format('D') }}
-              </div>
-            </div>
-            <div class="header">
-              <img src="/assets/image/icon/calPre.png" alt="" class="caliconPre" (click)="goToPrevMonth()"> 
-              <h2 class="monthYear">{{ currentDate.format('MMMM YYYY') }}</h2>
-              <img src="/assets/image/icon/calNext.png" alt="" class="caliconNext" (click)="goToNextMonth()">
-            </div>
-          </div>
-        </div>
-        <img src="/assets/image/icon/ActivityVector.png" alt="" class="ActivityVector">
-        <div class="col-xl-4 col-lg-12 col-md-12 mt-4">
-          <div class="container">
-            <!-- <div class="card"> -->
-              <h5 class="text-center mb-4 ActivitiesHeader">Activities/Holiday :</h5>
-              <div class="card-body ">
-                <div class="container">
-                  <span class="weekName">TUE</span><br>
-                  <span class="dateName">06</span><br>
-                  <p class="yearName">JANUARY</p>
-                </div>
-                <div class="birthday d-flex align-items-center">
-                  <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                </div>
-                <div class="birth">BOSS KI SHADI</div> 
-                <div class="desc">SABHI KA JANA COMPULSURY HAI</div>
-              </div>
-
-              <div class="card-body mt-4">
-                <div class="container">
-                  <span class="weekName">WED</span><br>
-                  <span class="dateName">14</span><br>
-                  <p class="yearName">JANUARY</p>
-                </div>
-                <div class="birthday d-flex align-items-center">
-                  <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                </div>
-                <div class="birth" style="color: #47C17A;">MAKAR SANKRANTI</div> 
-                <div class="desc">INDIAN FESTIVAL OF KITES</div>
-              </div>
-
-              <div class="card-body mt-4">
-                <div class="container">
-                  <span class="weekName">SAT</span><br>
-                  <span class="dateName">24</span><br>
-                  <p class="yearName">JANUARY</p>
-                </div>
-                <div class="birthday d-flex align-items-center">
-                  <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                </div>
-                <div class="birth" style="color: #F97165;">FREE KI CHUTTI</div> 
-                <div class="desc">SALARY KISI KI NHI KATEGI</div>
-              </div>
-
-              <div class="card-body mt-4">
-                <div class="container">
-                  <span class="weekName">MON</span><br>
-                  <span class="dateName">26</span><br>
-                  <p class="yearName">JANUARY</p>
-                </div>
-                <div class="birthday d-flex align-items-center">
-                  <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                </div>
-                <div class="birth" style="color: #A036CF;">EK OR CHUTTI</div> 
-                <div class="desc">SALARY KISI KI NHI KATEGI</div>
-              </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        
-        
-        <img src="/assets/image/icon/ActivityVector.png" alt="" class="ActivityVector" style="margin-left: -24px;">
-        <div class="col-xl-3 col-lg-12 col-md-12 mt-4">
-          <div class="container">
-            <h5 class="text-center mb-4 ActivitiesHeader">Birthdays:</h5>
-            <div class="card-body d-flex flex-column align-items-center">
-              <div class="container">
-                <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
-              </div>
-              <div class="d-flex flex-row">
-                <div class="ml-3">
-                  <div class="birthName">Anita Kumari</div>
-                  <div class="birthdesc">JANUARY, 18</div>
-                </div>
-              </div>
-            </div>
-            <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
-
-            <div class="card-body d-flex flex-column align-items-center" style="margin-top: -6rem;">
-              <div class="container">
-                <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
-              </div>
-              <div class="d-flex flex-row">
-                <div class="ml-3">
-                  <div class="birthName">Sunita Kumari</div>
-                  <div class="birthdesc">JANUARY, 22</div>
-                </div>
-              </div>
-            </div>
-            <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
-
-            <div class="card-body d-flex flex-column align-items-center" style="margin-top: -6rem;">
-              <div class="container">
-                <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
-              </div>
-              <div class="d-flex flex-row">
-                <div class="ml-3">
-                  <div class="birthName">Kavita Kumari</div>
-                  <div class="birthdesc">JANUARY, 23</div>
-                </div>
-              </div>
-            </div>
-            <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
-
-            <div class="card-body d-flex flex-column align-items-center" style="margin-top: -6rem;">
-              <div class="container">
-                <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
-              </div>
-              <div class="d-flex flex-row">
-                <div class="ml-3">
-                  <div class="birthName">Anju Kumari</div>
-                  <div class="birthdesc">JANUARY, 28</div>
-                </div>
-              </div>
-            </div>
-            <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector">
-          </div>
-
-          
-        </div>
-        
-        
-      
-<!-- </div> -->
-</div>
-    </div>
-    <!-- </main> -->
+      <!-- </main> -->
     </div>
   </div>
-  <div class="text-center footer">Designed and developed by : <span class="footerP">Prilient Information Technologies</span></div> 
+  <div class="text-center footer">Designed and developed by : <span class="footerP">Prilient Information
+      Technologies</span></div>
 </div>
-      <!-- End bar chart -->
+<!-- End bar chart -->
 
 <!-- <button class="btn-danger" (click)="test()">click</button> -->
-
-
-

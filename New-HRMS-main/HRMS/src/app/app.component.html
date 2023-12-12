@@ -118,15 +118,12 @@
                 
               </a>
             </li>
-            <li class="nav-item text-center">
+            <!-- <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
                 aria-expanded="false">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Role.png" alt="" id="hoverRole">
-                  
-                  <!-- <span
-                    class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span> -->
-                  <div class="collapse" id="dashboard-role">
+                                   <div class="collapse" id="dashboard-role">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                       <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
                           routerLink="/test" [routerLink]="['/createRole']"
@@ -139,7 +136,27 @@
                 </div>
                 <span class="image-namenew">Role</span>
               </a>
+            </li> -->
+
+            <li class="nav-item text-center ">
+              <a class="nav-link px-0 align-middle sideBarName" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+              aria-expanded="false">
+                             <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Role.png" alt="" id="hoverRole">
+                </div>
+                <span class="image-namenew">Role</span>
+                  </a>
+                    <div class="collapse" id="dashboard-role">
+                      <ul class="dropdown-menu rounded-4 border-0 shadow Roledrop" >
+                        <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/createRole']"
+                          (click)="loginService.showTable('createRole')">Create Role</a></li>
+                        <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/viewRole']"
+                          (click)="loginService.showTable('viewRole')">View Role</a></li>
+                      </ul>
+                    </div>
+                
             </li>
+
             <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" routerLink="/registration">
                 <div class="image-container">
@@ -274,11 +291,10 @@
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
-              aria-expanded="false">
+            <a class="nav-link align-middle px-0" >
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/Role.png" alt="" id="hoverRole">
-                <br>
+                <!-- <br> -->
                 <!-- <span
                   class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span> -->
                 <!-- <div class="collapse" id="dashboard-role">
@@ -310,7 +326,7 @@
               (click)="loginService.showTable('employee')">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
-                <br>
+                <!-- <br> -->
                 <!-- <span class="image-name">All Employees</span> -->
               </div>
             </a>
@@ -320,7 +336,7 @@
               (click)="loginService.showTable('teamleave')">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/Team leave.png" alt="" id="hoverTeamLeave">
-                <br>
+                <!-- <br> -->
                 <!-- <span class="image-name">Team Leave</span> -->
               </div>
             </a>
@@ -330,7 +346,7 @@
               (click)="loginService.showTable('teamwfh')">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/Team WFH.png" alt="" id="hoverTeamWfh">
-                <br>
+                <!-- <br> -->
                 <!-- <span class="image-name">Team WFH</span> -->
               </div>
             </a>
@@ -341,7 +357,7 @@
               (click)="loginService.showTable('reports')">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/Reports.png" alt="" id="hoverReport">
-                <br>
+                <!-- <br> -->
                 <!-- <span class="image-name">Reports</span> -->
               </div>
 
@@ -352,26 +368,7 @@
           <li class="nav-item text-center">
             <div class="image-container">
               <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
-              <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
-                <!-- <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Rules</span> -->
-              </label>
-              <div class="collapse" id="dashboard-rule">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li >
-                    <!-- Use a label to trigger file input -->
-                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
-                    <label for="pdfFileInput">
-                      <span class="image-name" id="pdfFile">Upload Pdf</span>
-                    </label></a>
-                    <!-- Visually hidden file input -->
-                    <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
-                  </li>
-                  <li>
-                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
-                      [routerLink]="['/shifttime']" (click)="loginService.showTable('shifttime')">Attendance Ruls</a>
-                  </li>
-                </ul>
-              </div>
+             
             </div>
           </li>
           
@@ -395,7 +392,7 @@
               (click)="loginService.showTable('calendar')">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
-                <br>
+                <!-- <br> -->
                 <!-- <span class="image-name">View Holiday</span> -->
               </div>
             </a>
@@ -442,6 +439,7 @@
               aria-expanded="false">
               
                 <span class="image-namenew">Role</span>
+              </a>
                   <div class="collapse" id="dashboard-role">
                     <ul class="dropdown-menu rounded-4 border-0 shadow Roledrop" >
                       <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/createRole']"
@@ -450,7 +448,6 @@
                         (click)="loginService.showTable('viewRole')">View Role</a></li>
                     </ul>
                   </div>
-            </a>
           </li>
 
           <li class="nav-item text-center sideBarName">
@@ -464,6 +461,7 @@
               <!-- <span class="image-name" *ngIf="isSidebarExpanded">Registration</span> -->
             </a>
           </li>
+          
           <li class="nav-item text-center sideBarName">
             <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
               (click)="loginService.showTable('employee')">
@@ -502,30 +500,24 @@
 
 
           <li class="nav-item text-center sideBarName">
-            <!-- <div class="image-container"> -->
-              <span class="image-namenew">Assign Rule</span>
-              <!-- <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule"> -->
-              <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
-                <!-- <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Rules</span> -->
-              </label>
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
+                <span class="image-namenew">Assign Rule</span>
+              </a>
               <div class="collapse" id="dashboard-rule">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
                   <li >
-                    <!-- Use a label to trigger file input -->
-                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
+                    <a href="#" class="dropdown-item rounded-2 role">
                     <label for="pdfFileInput">
                       <span class="image-name" id="pdfFile">Upload Pdf</span>
                     </label></a>
-                    <!-- Visually hidden file input -->
                     <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
                   </li>
                   <li>
-                    <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
+                    <a href="#" class="dropdown-item rounded-2 role" routerLink="/test"
                       [routerLink]="['/shifttime']" (click)="loginService.showTable('shifttime')">Attendance Ruls</a>
                   </li>
                 </ul>
               </div>
-            <!-- </div> -->
           </li>
           
           

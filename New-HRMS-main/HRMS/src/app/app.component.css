@@ -288,10 +288,10 @@ gap: 10px;
   display: flex;
 }
 
-/* .sidebarPageLogo {
-  width: 60px;
-  height: 59px;
-} */
+.sidebarPageLogo {
+  /* width: 60px; */
+  height: 60px;
+}
 
 
 .image-container {
@@ -472,14 +472,14 @@ letter-spacing: 0.4px;
 
 .image-namenew{
   color: #D9D9D9;
-font-size: 20px;
+font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
 /* margin-top: 17px; */
 display: flex;
 width: 100%;
-height: 74px;
+height: 44px;
 padding: 10px 15px;
 /* align-items: center; */
 gap: 10px;
@@ -502,8 +502,7 @@ flex-direction: column;
 align-items: flex-start;
 border-radius: 10px;
 background: #343A40;
-left: 5rem;
-    top: 14rem;
+left: 5.8rem;
 }
 
 .role:hover{
@@ -523,3 +522,12 @@ color: white;
 /* background: #343A40; */
 }
 
+.Ruledrop{
+  display: inline-flex;
+flex-direction: column;
+align-items: flex-start;
+border-radius: 10px;
+background: #343A40;
+left: 5.8rem;
+
+}

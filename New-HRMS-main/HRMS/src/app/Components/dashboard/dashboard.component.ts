@@ -53,7 +53,7 @@ export class DashboardComponent {
 
   // for create role end
 
-
+wfhCount: number | undefined;
 
   // bar chart  start
   public chart: any;
@@ -113,6 +113,7 @@ export class DashboardComponent {
     // this.viewAllAttendance();
     this.currentDate = moment();
     this.generateCalendar();
+    this.wfhCountShow();
   }
  
 
@@ -367,6 +368,8 @@ export class DashboardComponent {
     });
   }
 
+
+  // show dashboard calendar start
   currentDate!: moment.Moment;
   calendarData: any[][] | undefined;
   weekNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -406,5 +409,20 @@ export class DashboardComponent {
   isToday(date: moment.Moment): boolean {
     return date.isSame(moment(), 'day');
   }
+// show dashboard calendar end
+
+  // wfh count start
+  wfhCountShow(){
+    this.dashboardService.wfhCount().subscribe(
+      (response: any) => {
+        this.wfhCount = response;
+        console.log("wfh count", this.wfhCount)
+      },
+      (error) => {
+        
+      }
+    );
+  }
+  // wfh count end
 }
 

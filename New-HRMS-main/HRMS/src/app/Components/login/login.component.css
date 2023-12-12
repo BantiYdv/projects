@@ -361,7 +361,7 @@ input.example-right-align::-webkit-inner-spin-button {
   
   
   .vector4{
-    width: 111px;
+    width: 140px;
 height: 106px;
 transform: rotate(108.142deg);
 flex-shrink: 0;
@@ -464,7 +464,7 @@ flex-shrink: 0;
   .login{
 	display: flex;
 	width: 100%;
-	padding: 8px 60px;
+	padding: 1px 60px;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
@@ -495,7 +495,7 @@ letter-spacing: 0.72px;
 
 
 .form-check-input:checked {
-    background-color: #f5519e;;
+    background-color: #2F37A4;;
     border-color: #f0f2f5;
 }
 

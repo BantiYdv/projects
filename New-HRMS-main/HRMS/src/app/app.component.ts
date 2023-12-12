@@ -128,6 +128,7 @@ id: any;
   //   this.isNameSidebarVisible = !this.isNameSidebarVisible;
   // }
   toggleSidebar(isHovered: boolean) {
+    this.dashboardService.toggleSidebar(isHovered)
     if (isHovered) {
         this.isSidebarExpanded = true;
         this.isNameSidebarVisible = true;

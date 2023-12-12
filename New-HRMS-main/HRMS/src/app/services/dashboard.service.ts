@@ -59,6 +59,21 @@ private showErrorAlert(message: string): void {
 }
 // upload pdf end
 
+// for dashboard show according to sidebar expand or not strat
+isSidebarExpanded: boolean = true;
+isNameSidebarVisible: boolean = false;
+
+toggleSidebar(isHovered: boolean) {
+  if (isHovered) {
+      this.isSidebarExpanded = true;
+      this.isNameSidebarVisible = true;
+  } else {
+      this.isSidebarExpanded = !this.isSidebarExpanded;
+      this.isNameSidebarVisible = !this.isNameSidebarVisible;
+  }
+}
+// for dashboard show according to sidebar expand or not end
+
 // // download employee list in excel start
 // getEmployeeListExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
 //   return this.http.get(this.api.EmpListExcel, {
@@ -203,4 +218,12 @@ getShowData(): Observable<any> {
   return this.http.get(`${this.api.EmpNameShow}`, { headers });
 }
 // show profile name in top end
+
+// show wfh count start
+wfhCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.wfhCount}`, { headers });
+}
+// show wf count end
 }

@@ -19,6 +19,74 @@ select {
     font-size: 0.75em;
   }
   
+
+.createRole{
+    color: #000;
+font-size: 26px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.text-md-end{
+    color: #000;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.RoleInput{
+    width: 444px;
+height: 58px;
+flex-shrink: 0;
+border-radius: 10px;
+border: 1px solid #808080;
+background: #FFF;
+}
+
+.closeRole{
+    display: flex;
+    width: 150px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 60px;
+    border: 2px solid #D92651;
+
+    color: #D92651;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.closeRole:hover{
+    background: #D92651;
+    color: #FFFFFF;
+}
+
+.submitRole{
+    display: flex;
+width: 150px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 60px;
+border: 2px solid #2F37A4;
+color: #2F37A4;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.submitRole:hover{
+    background: #2F37A4;
+    color: #FFFFFF;
+}
 /* create role */
 
 
