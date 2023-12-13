@@ -54,7 +54,13 @@ export class DashboardComponent {
   // for create role end
 
 wfhCount: number | undefined;
+presentCount: number | undefined;
+absentCount: number | undefined;
+casualCount: number | undefined;
+sickCount: number | undefined;
+totalEmpCount: number | undefined;
 
+fullTimeCount: number | undefined;
   // bar chart  start
   public chart: any;
   //bar chart end
@@ -108,12 +114,18 @@ wfhCount: number | undefined;
   ngOnInit(): void {
     // this.createChart(this.data);
     this.createChart();
-    this.createLineChart();
+    this.createLineChart(this.data);
     this.viewEmployeeProfile();
     // this.viewAllAttendance();
     this.currentDate = moment();
     this.generateCalendar();
+    this.totalEmpCountShow();
     this.wfhCountShow();
+    this.presentCountShow();
+    this.absentShow();
+    this.casualShow();
+    this.sickShow();
+    this.fullTimeShow();
   }
  
 
@@ -347,7 +359,28 @@ wfhCount: number | undefined;
   // }
   //line chart end
 
-  createLineChart() {
+  // createLineChart(data: any[]) {
+
+  //   this.chart = new Chart("MyPieChart", {
+  //     type: 'pie', //this denotes the type of chart
+
+  //     data: {// values on X-Axis
+  //       // labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
+  //       datasets: [
+  //         {
+  //           data: [70, 20, 50], // Adjust these values based on your data
+  //           backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5
+  //     }
+
+  //   });
+  // }
+
+  createLineChart(data: any[]) {
 
     this.chart = new Chart("MyPieChart", {
       type: 'pie', //this denotes the type of chart
@@ -367,6 +400,27 @@ wfhCount: number | undefined;
 
     });
   }
+  // full time employee start
+  fullTimeShow(){
+    this.dashboardService.fulltime().subscribe(
+      (response: any) => {
+        // this.fullTimeCount = response;
+        // console.log("full time count", this.fullTimeCount)
+        const responseData: any[] = response as any[]; // Explicitly cast to any[]
+          console.log('full time Data:', responseData);
+          // Call the createChart function with the response data
+          this.createLineChart(responseData);
+          console.log("chart full time", response);
+      },
+      (error) => {
+        
+      }
+    );
+  }
+
+  // full time employee end
+  
+  
 
 
   // show dashboard calendar start
@@ -411,6 +465,20 @@ wfhCount: number | undefined;
   }
 // show dashboard calendar end
 
+// total employee count start
+totalEmpCountShow(){
+  this.dashboardService.totalEmpCount().subscribe(
+    (response: any) => {
+      this.totalEmpCount = response;
+      console.log("total employee count", this.totalEmpCount)
+    },
+    (error) => {
+      
+    }
+  );
+}
+// total employee count end
+
   // wfh count start
   wfhCountShow(){
     this.dashboardService.wfhCount().subscribe(
@@ -424,5 +492,63 @@ wfhCount: number | undefined;
     );
   }
   // wfh count end
+
+   // present count start
+   presentCountShow(){
+    this.dashboardService.presentCount().subscribe(
+      (response: any) => {
+        this.presentCount = response;
+        console.log("present count", this.presentCount)
+      },
+      (error) => {
+        
+      }
+    );
+  }
+  // present count end
+
+   // absent count start
+   absentShow(){
+    this.dashboardService.absentCount().subscribe(
+      (response: any) => {
+        this.absentCount = response;
+        console.log("absent count", this.absentCount)
+      },
+      (error) => {
+        
+      }
+    );
+  }
+  // absent count end
+
+   // casual leave count start
+   casualShow(){
+    this.dashboardService.casualCount().subscribe(
+      (response: any) => {
+        this.casualCount = response;
+        console.log("casual count", this.casualCount)
+      },
+      (error) => {
+        
+      }
+    );
+  }
+  // casual leave count end
+
+   // sick leave count start
+   sickShow(){
+    this.dashboardService.sickCount().subscribe(
+      (response: any) => {
+        this.sickCount = response;
+        console.log("casual count", this.sickCount)
+      },
+      (error) => {
+        
+      }
+    );
+  }
+  // sick leave count end
+
+
 }
 

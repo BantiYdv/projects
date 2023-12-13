@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.19:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.17:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -64,8 +64,15 @@ export class ApiService {
   public DeletepersonalDetails = `${this.apiUrl}gateway/hrms/deleteMydetail`;
   public uploadPhoto = `${this.apiUrl}gateway/hrms/upload-photo`;
   public shift = `${this.apiUrl}gateway/hrms/addShiftTiming`;
-  public wfhCount = `${this.apiUrl}gateway/hrms/intern-time-count`;
-  
+  public wfhCount = `${this.apiUrl}gateway/hrms/count-workFromHome`;
+  public presentCount = `${this.apiUrl}gateway/hrms/present-employees-count`;
+  public absentCount = `${this.apiUrl}gateway/hrms/total-absent-employees`;
+  public casualCount = `${this.apiUrl}gateway/hrms/casual-leave-count`;
+  public sickCount = `${this.apiUrl}gateway/hrms/sick-leave-count`;
+  public totalEmpCount = `${this.apiUrl}gateway/hrms/total-employees`;
+  public fullTime = `${this.apiUrl}gateway/hrms/full-time-count`;
+  public partTime = `${this.apiUrl}gateway/hrms/part-time-count`;
+  public internTime = `${this.apiUrl}gateway/hrms/intern-time-count`;
 
   
 

@@ -219,11 +219,75 @@ getShowData(): Observable<any> {
 }
 // show profile name in top end
 
+// show total employee count start
+totalEmpCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.totalEmpCount}`, { headers });
+}
+// show total employee count end
+
 // show wfh count start
 wfhCount(){
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   return this.http.get(`${this.api.wfhCount}`, { headers });
 }
-// show wf count end
+// show wfh count end
+
+// show today present employee start
+presentCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.presentCount}`, { headers });
+}
+// show today present employee end
+
+// show today absent employee start
+absentCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.absentCount}`, { headers });
+}
+// show today absent employee end
+
+// show today casual leave employee start
+casualCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.casualCount}`, { headers });
+}
+// show today casual leave employee end
+
+// show today sick leave employee start
+sickCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.sickCount}`, { headers });
+}
+// show today sick leave employee end
+
+// show full time employee start
+fulltime(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.fullTime}`, { headers });
+}
+// show full time employee end
+
+// show part time employee start
+parttime(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.partTime}`, { headers });
+}
+// show part time employee end
+
+// show intern time employee start
+interntime(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.internTime}`, { headers });
+}
+// show intern time employee end
 }

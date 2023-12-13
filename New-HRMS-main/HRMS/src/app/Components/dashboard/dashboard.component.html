@@ -29,7 +29,7 @@
                           class="cardIcon" style="margin-left: 0px !important;"></i>
                     </div>
                     <div class="media-body">
-                      <p class="cardIconNum">156</p>
+                      <p class="cardIconNum">{{totalEmpCount}}</p>
                       <span class="cardIconText">Employees</span>
                     </div>
                   </div>
@@ -65,7 +65,7 @@
                           style="margin-left: 0px !important;"></i>
                     </div>
                     <div class="media-body">
-                      <p class="cardIconNum">156</p>
+                      <p class="cardIconNum">{{presentCount}}</p>
                       <span class="cardIconText">Present</span>
                     </div>
                   </div>
@@ -161,16 +161,16 @@
               </div>
               <div class="card-body d-flex" style="justify-content: space-evenly;">
                 <div>
-                  <div class="pie animate no-round leaveChart" style="--p:40;--c:#F97165;--b:10px"> 6</div><br>Absent
+                  <div class="pie animate no-round leaveChart" [style.--p]="absentCount" [style.--c]="'#F97165'"  [style.--b]="'10px'"> {{absentCount}}</div><br>Absent
                 </div>
                 <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
                 <div>
-                  <div class="pie animate no-round leaveChart" style="--p:60;--c:#421CDD;--b:10px"> 8</div><br>Casual
+                  <div class="pie animate no-round leaveChart" [style.--p]="casualCount" [style.--c]="'#421CDD'" [style.--b]="'10px'"> {{casualCount}}</div><br>Casual
                   Leave
                 </div>
                 <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
                 <div>
-                  <div class="pie animate no-round leaveChart" style="--p:80;--c:#188EE4;--b:10px"> 10</div><br>Sick
+                  <div class="pie animate no-round leaveChart" [style.--p]="sickCount" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{sickCount}}</div><br>Sick
                   Leave
                 </div>
                 <!-- <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector"><table style="position:absolute;top:4rem;right:52px;;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div></div></td><td class="legendLabel">Full Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div></div></td><td class="legendLabel">Part Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div></div></td><td class="legendLabel">Intern/Trainee</td></tr></tbody></table></div> -->
@@ -184,7 +184,7 @@
         <div class="container mt-5" style="border-radius: 7px; border: 2px solid #CDCDCD;">
           <div class="row d-flex flex-wrap">
             <!-- <div class="col-xl-4 col-lg-12 col-md-12 mt-4"> -->
-            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-6 col-lg-12 col-xl-4'">
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4'">
 
               <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Calendar :</h5>
               <div class="calendar">
@@ -208,7 +208,7 @@
               </div>
             </div>
             <img src="/assets/image/icon/ActivityVector.png" alt="" class="ActivityVector d-none d-md-none d-sm-none d-lg-none d-xl-block" style="margin-left: 0px;">
-            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4'">
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
               <div class="container">
                 <!-- <div class="card"> -->
                 <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Activities/Holiday :</h5>
@@ -270,7 +270,7 @@
 
             <img src="/assets/image/icon/ActivityVector.png" alt="" class="ActivityVector d-none d-md-none d-sm-none d-lg-none d-xl-block"
               style="margin-left: -50px;">
-            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4'">
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
               <div class="container">
                 <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Birthdays:</h5>
                 <div class="card-body d-flex flex-column align-items-center">

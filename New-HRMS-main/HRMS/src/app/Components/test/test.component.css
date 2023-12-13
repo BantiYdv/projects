@@ -40,10 +40,32 @@ line-height: normal;
     width: 444px;
 height: 58px;
 flex-shrink: 0;
-border-radius: 10px;
+border-radius: 10px !important;
 border: 1px solid #808080;
 background: #FFF;
+background: url('/assets/image/icon/Polygon\ 3.svg') no-repeat right 10px center;
+cursor: pointer;
+
 }
+
+
+.permission{
+    width: 444px;
+height: 58px;
+flex-shrink: 0;
+border-radius: 10px !important;
+border: 1px solid #808080;
+background: #FFF;
+background: url('/assets/image/icon/Polygon\ 3.svg') no-repeat right 10px center;
+cursor: pointer;
+}
+
+/* .mat-mdc-select-arrow-wrapper { 
+    display: none !important;
+} */
+
+
+
 
 .closeRole{
     display: flex;
@@ -87,6 +109,86 @@ line-height: normal;
     background: #2F37A4;
     color: #FFFFFF;
 }
+
+.Role{
+    width: 705px;
+height: 446px;
+flex-shrink: 0;
+fill: #FFF;
+stroke-width: 1px;
+stroke: #CDCDCD;
+}
+
+/* .drop{
+    width: 32px;
+height: 23px;
+flex-shrink: 0;
+fill: #343A40;
+} */
+.RoleInput::placeholder {
+    color: #343A40;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .permissionPlace{
+    color: #343A40;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+  }
+
+.input-with-icon {
+    position: relative;
+    width: 100%;
+  }
+  
+
+  
+
+  ::ng-deep .mat-select-trigger {
+    border-radius: 5px; 
+    background-image: none !important; 
+  }
+
+  ::ng-deep .RoleInput {
+    border-radius: 8px; 
+  }
+  
+ 
+  ::ng-deep .mat-select-arrow {
+    display: none;
+  }
+  /* .permissionInput {
+    background: url('/assets/image/icon/Polygon\ 3.svg') no-repeat right 10px center;
+    background-size: contain; 
+    width: 20px; 
+    height: 20px; 
+    appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  } */
+  /* .RoleInput {
+    padding-right: 30px; 
+  }
+   */
+  /* .drop {
+    position: absolute;
+    top: 50%;
+    left: 25rem; 
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 32px;
+height: 23px;
+flex-shrink: 0;
+fill: #343A40;
+  } */
+  
+
+  
 /* create role */
 
 

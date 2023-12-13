@@ -943,6 +943,7 @@ margin-left: auto;
     font-size: 25px;
     font-weight: bold;
     font-family: sans-serif;
+    overflow: hidden;
   }
   .pie:before,
   .pie:after {
@@ -952,9 +953,9 @@ margin-left: auto;
   }
   .pie:before {
     inset: 0;
-    background: radial-gradient(farthest-side, var(--c) 98%, #0000) top/var(--b)
+    background: radial-gradient(farthest-side, var(--c) 98%, #ad1c1c00) top/var(--b)
         var(--b) no-repeat,
-      conic-gradient(var(--c) calc(var(--p) * 1%), #0000 0);
+      conic-gradient(var(--c) calc(var(--p) * 1%), #c90f0f00 0);
     -webkit-mask: radial-gradient(
       farthest-side,
       #0000 calc(99% - var(--b)),

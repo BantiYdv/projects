@@ -23,6 +23,9 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent {
+selectOption(_t52: string) {
+throw new Error('Method not implemented.');
+}
   showAdminLeaveTable!: any;
   leaveAdminData!: any;
   showTeamLeaveTable!: any;
@@ -81,6 +84,7 @@ export class TestComponent {
       "ALL_WFH_EMPLOYEES",
       "VIEW_ALL_LEAVE"
   ];
+isDropdownOpen: any;
 
   // remove underscore from permission name start
   formatOption(option: string): string {
