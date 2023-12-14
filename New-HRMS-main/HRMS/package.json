@@ -33,7 +33,6 @@
     "file-saver": "^2.0.5",
     "jquery": "^3.7.0",
     "ng-apexcharts": "^1.7.6",
-    "ng2-charts": "^4.1.1",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.5",

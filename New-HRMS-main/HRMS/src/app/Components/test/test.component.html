@@ -6,27 +6,19 @@
     <div class="content m-1 mt-4">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-10 " style="border: 2px solid #CDCDCD; border-radius: 10px;">
+          <div class="col-10" style="border: 2px solid #CDCDCD; border-radius: 10px;">
             <h1 class="text-center mt-3 mb-4 createRole">Create Role</h1>
             <div class="row justify-content-center">
-              <!-- <div class="col-md-6">
-                <p><img src="assets/Organizing projects-rafiki.svg" alt="Image" class="img-fluid"></p>
-              </div> -->
-              <div class="col-md-8 ">
+             
+              <div class="col-10 ">
                 <form [formGroup]="form" novalidate>
-                  <!-- <div class="mb-5 row">
-                    <label for="role" class="col-md-3 col-form-label text-md-end">Create Role:</label>
-                    <div class="col-md-5">
-                      <input type="text" class="form-control RoleInput" name="name" id="name" placeholder="Select A Role From Given List" formControlName="role" [matAutocomplete]="auto">
-                      <img src="/assets/image/icon/Polygon 3.png" alt="" class="drop">
-                    </div>
-                  </div> -->
-                  <div class="mb-5 row">
-                    <label for="role" class="col-md-3 col-form-label text-md-end">Create Role:</label>
-                    <div class="col-md-5">
+                 
+                  <div class="mb-5 row col-md-12 justify-content-center" >
+                    <label for="role" class="col-form-label CreateRoleText" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 text-xl-end' : 'col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-xl-end'">Create Role:</label>
+                    <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8' : 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8'">
                       <div class="input-with-icon">
-                        <input type="text" class="form-control RoleInput" name="name" id="name" placeholder="Select A Role From Given List" formControlName="role" [matAutocomplete]="auto">
-                        <!-- <img src="/assets/image/icon/Polygon 3.png" alt="" class="drop" > -->
+                        <input type="text" class="form-control RoleInput" name="name" id="name" placeholder="--Select--" formControlName="role" [matAutocomplete]="auto"> 
+                        <i class="fa-solid fa-caret-down"></i>
                       </div>
                     </div>
                   </div>
@@ -52,12 +44,12 @@
                       
                     </div>
                   </div> -->
-                  <div class="mb-5 row">
-                    <label for="url" class="col-md-3 col-form-label text-md-end">Permission:</label>
-                    <div class="col-md-9">
+                  <div class="mb-5 row col-md-12 justify-content-center">
+                    <label for="url" class="col-md-12 col-form-label CreateRoleText" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 text-xl-end' : 'col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-xl-end'">Permission:</label>
+                    <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8' : 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8'">
                       <div class="form-group d-flex justify-content-center align-item-center permission">
                         <mat-form-field style="width: 97%;">
-                          <mat-label class="permissionPlace">Select Permissions From Given List
+                          <mat-label class="permissionPlace">--Select Permissions--
                           </mat-label>
                           <mat-select name="PermissionNames" class="custom-select-class permissionInput" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
                             <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
@@ -72,7 +64,7 @@
                 </form>
 
 
-                <div class="mb-3 col-md-12 d-flex justify-content-end">
+                <div class="mb-3 col-11 d-flex justify-content-end">
                   <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal"
                     (click)="closeForm()">Close</button>
                   <button type="submit" class="btn m-1 submitRole" (click)="createRole()">Submit</button>
@@ -90,39 +82,61 @@
   <!-- create role end -->
 
   <!-- view role start -->
-  <!-- <div *ngSwitchCase="'viewRole'">
-    <div class="container px-4 py-0 text-center" >
-
-    <div class="table-responsive mt-4">
-      <table class="table table-bordered table-sm">
-        <thead class="table-dark">
-          <tr>
-            <th>S.No</th>
-            <th>Role</th>
-            <th>Permissions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of AllRoleData; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ item.name }}</td>
-            <td>
-              <ul>
-                <li *ngFor="let permission of item.permissions">{{ permission.permissionName }}</li>
-              </ul>
-            </td>
-           
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-    </div>
-    </div>
-  </div> -->
-
   <div *ngSwitchCase="'viewRole'">
+    <div class="content m-1 mt-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+    <div class="row" >
+      <div class="recruit_table">
+        <div class="table_head">
+          <div class="table_head_topics" style="width: 10%;border-right: 1px solid #000; height: 100%;">S.No</div>
+          <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
+          <div class="table_head_topics" style="width: 30%;border-right: 1px solid #000; height: 100%;" >
+           
+            &nbsp; Role
+          </div>
+          <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
+          <div class="table_head_topics" style="width: 30%;border-right: 1px solid #000; height: 100%;">
+            
+            &nbsp; Permission
+          </div>
+          <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
+        
+          <div class="table_head_topics" style="width: 30%;">Action</div>
+        </div>
+    
+        <div class="my-1">
+          <div class="table_body"  *ngFor="let item of AllRoleData; let i = index">
+            <div class="table_body_topics" style="width: 10%;border-right: 1px solid #ADADAD;">{{ i + 1 }}</div>
+            <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
+            <div class="table_body_topics" style="width: 30%;border-right: 1px solid #ADADAD; ">{{ item.name }}</div>
+            <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
+            <div class="table_body_topics" style="width: 30%;border-right: 1px solid #ADADAD; height: 100%; justify-content: normal;"><ul class="list-with-images">
+              <li *ngFor="let permission of item.permissions">
+                {{ formatOption(permission.permissionName) }}
+              </li>
+            </ul>
+            </div>
+            <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
+            <div class="table_body_topics " style="width: 30%;">
+              <button type="button" class="btn m-1 " data-bs-dismiss="modal"
+                   >Delete Role</button>
+                  <button type="submit" class="btn m-1 ">Edit Permissions</button>
+            </div>
+           
+    
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- <div *ngSwitchCase="'viewRole'">
     <div class="container px-4 py-0 text-center" style="width: 90%;">
       <div class="table-responsive mt-4">
         <table class="table table-bordered table-sm">
@@ -145,7 +159,7 @@
                   <li *ngFor="let permission of item.permissions">
                     {{ formatOption(permission.permissionName) }}
                   </li>
-                </ul>
+                </ul> -->
                
                 <!-- <ul>
                   <li class="first-permission">
@@ -166,9 +180,8 @@
                 
                 
                 
-              </td>
+              <!-- </td>
               <td class="align-middle">
-                <!-- Edit and Delete buttons for permissions -->
                 <button class="btn btn-primary m-1" [routerLink]="['/addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)"><i class="fa-solid fa-pen-to-square"></i></button>
 
                 <button class="btn btn-danger" [routerLink]="['/removePermission' ]" [queryParams]="{ id: item.id }"  (click)="openDeletePermission(item)"><i class="fas fa-trash"></i></button>
@@ -188,7 +201,7 @@
         <button type="button" class="btn btn-secondary" style="background-color: #3f51b5; color: #fff;" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
-  </div>
+  </div> -->
   
   <!-- view role end  -->
 

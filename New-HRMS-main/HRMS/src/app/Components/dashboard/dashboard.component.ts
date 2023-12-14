@@ -61,6 +61,9 @@ sickCount: number | undefined;
 totalEmpCount: number | undefined;
 
 fullTimeCount: number | undefined;
+fullTime = '';
+partTime = '';
+intern = '';
   // bar chart  start
   public chart: any;
   //bar chart end
@@ -113,8 +116,10 @@ fullTimeCount: number | undefined;
 
   ngOnInit(): void {
     // this.createChart(this.data);
+    this.fullTimeShow()
+    this.partTimeShow();
+    this.internShow();
     this.createChart();
-    this.createLineChart(this.data);
     this.viewEmployeeProfile();
     // this.viewAllAttendance();
     this.currentDate = moment();
@@ -125,7 +130,7 @@ fullTimeCount: number | undefined;
     this.absentShow();
     this.casualShow();
     this.sickShow();
-    this.fullTimeShow();
+    // this.createLineChart();
   }
  
 
@@ -379,48 +384,87 @@ fullTimeCount: number | undefined;
 
   //   });
   // }
+  
 
-  createLineChart(data: any[]) {
-
+  createLineChart() {
+ 
     this.chart = new Chart("MyPieChart", {
       type: 'pie', //this denotes the type of chart
 
       data: {// values on X-Axis
-        // labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
+        labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
         datasets: [
           {
-            data: [70, 20, 50], // Adjust these values based on your data
+            data: [`${this.fullTime}`, `${this.partTime}`, `${this.intern}`], // Adjust these values based on your data
             backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
           }
         ]
+        
       },
       options: {
-        aspectRatio: 1.5
+        aspectRatio: 1.5,
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
       }
+      
 
     });
   }
   // full time employee start
   fullTimeShow(){
+    this.partTimeShow();
+    this.internShow();
     this.dashboardService.fulltime().subscribe(
       (response: any) => {
-        // this.fullTimeCount = response;
-        // console.log("full time count", this.fullTimeCount)
-        const responseData: any[] = response as any[]; // Explicitly cast to any[]
-          console.log('full time Data:', responseData);
-          // Call the createChart function with the response data
-          this.createLineChart(responseData);
-          console.log("chart full time", response);
+        
+          console.log('full time Data:', response);
+          
+       this.fullTime = response;
+       this.createLineChart()
+
       },
       (error) => {
         
       }
     );
   }
-
+  
   // full time employee end
-  
-  
+
+  // part time employee start
+  partTimeShow(){
+    this.dashboardService.parttime().subscribe(
+      (response: any) => {
+       
+          console.log('part time Data:', response);
+          this.partTime = response;
+          
+      },
+      (error) => {
+        
+      }
+    );
+  }
+  // part time employee end
+
+  // intern employee start
+  internShow(){
+    this.dashboardService.interntime().subscribe(
+      (response: any) => {
+       
+          console.log('intern Data:', response);
+          this.intern = response;
+          
+      },
+      (error) => {
+        
+      }
+    );
+  }
+  // intern employee end
 
 
   // show dashboard calendar start
@@ -549,6 +593,6 @@ totalEmpCountShow(){
   }
   // sick leave count end
 
-
+ 
 }
 
