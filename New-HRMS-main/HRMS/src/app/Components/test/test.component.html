@@ -87,42 +87,69 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-6 d-flex justify-content-start">
+                <div class="added_positions_list_right">
+                  <div class="added_positions_under_head">Show</div>
+                  <div>
+                    <select class="added_positions_under_head_select" [(ngModel)]="RoleperPage">
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="25">25</option>
+                    </select>
+                  </div>
+                  <div class="added_positions_under_head">Enteries</div>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex justify-content-end align-items-center">
+                <div class="col-md-6">
+                  <div class="search-container ">
+                    <img src="../../../assets/image/search_icon_recruitment.svg"
+                      class="search_icon_added_position_list" alt="">
+                    <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchRole"
+                      (keyup)="FilterRole()">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button class="button_added_position_list">Search</button>
+                </div>
+              </div>
+            </div>
+
     <div class="row" >
+
+
       <div class="recruit_table">
         <div class="table_head">
-          <div class="table_head_topics" style="width: 10%;border-right: 1px solid #000; height: 100%;">S.No</div>
-          <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
-          <div class="table_head_topics" style="width: 30%;border-right: 1px solid #000; height: 100%;" >
+          <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">S.No</div>
+          <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;" >
            
             &nbsp; Role
           </div>
-          <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
-          <div class="table_head_topics" style="width: 30%;border-right: 1px solid #000; height: 100%;">
+          <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
             
             &nbsp; Permission
           </div>
-          <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
         
           <div class="table_head_topics" style="width: 30%;">Action</div>
         </div>
     
         <div class="my-1">
-          <div class="table_body"  *ngFor="let item of AllRoleData; let i = index">
-            <div class="table_body_topics" style="width: 10%;border-right: 1px solid #ADADAD;">{{ i + 1 }}</div>
-            <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
-            <div class="table_body_topics" style="width: 30%;border-right: 1px solid #ADADAD; ">{{ item.name }}</div>
-            <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
-            <div class="table_body_topics" style="width: 30%;border-right: 1px solid #ADADAD; height: 100%; justify-content: normal;"><ul class="list-with-images">
+          <div class="table_body"  *ngFor="let item of getPaginatedData(); let i = index">
+            <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}</div>
+            <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{ item.name }}</div>
+            <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; justify-content: normal;"><ul class="list-with-images">
               <li *ngFor="let permission of item.permissions">
                 {{ formatOption(permission.permissionName) }}
               </li>
             </ul>
             </div>
-            <!-- <img src="../../../assets/image/broder_right_recruitment.svg" alt=""> -->
-            <div class="table_body_topics " style="width: 30%;">
-              <button type="button" class="btn m-1 " data-bs-dismiss="modal"
-                   >Delete Role</button>
-                  <button type="submit" class="btn m-1 ">Edit Permissions</button>
+            <div class="table_body_topics Rolebutton mt-2" style="width: 30%;">
+              <button type="button" class="btn m-1 deleteRole" (click)="deleteRole(item.id)"><img src="/assets/image/icon/deleteRole.svg" alt="" class="RoleHover">Delete Role</button>
+              <button type="submit" class="btn m-1 editPermission" [routerLink]="['/addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)"><img src="/assets/image/icon/editPermission.svg" alt="" class="PermissionHover">Edit Permissions</button>
             </div>
            
     
@@ -130,9 +157,36 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-12" *ngIf="getTotalPagesRole() > 1">
+      <div class="table_footer mt-2">
+        <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
+          <i class="fa fa-angle-left"></i> Previous
+        </button>
+        <div class="recruitment_list_number">
+          <div *ngFor="let pageNumber of getPageNumbersRole()"
+            [class.active_num]="pageNumber === currentPage" class="recruitment_list_number_value"
+            (click)="changePageRole(pageNumber)">
+            {{ pageNumber }}
+          </div>
+        </div>
+        <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          style="background-color:#421cdd;" (click)="nextPageRole()"
+          [disabled]="currentPage == getTotalPagesRole()">
+          Next <i class="fa fa-angle-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+
     </div>
     </div>
     </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" style="background-color: #3f51b5; color: #fff;" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+    </div> -->
     </div>
   </div>
 
@@ -205,8 +259,11 @@
   
   <!-- view role end  -->
 
+  
+
   <!-- add permission start -->
   <div *ngSwitchCase="'addPermission'">
+   
     <div class="content m-1 mt-4">
       <div class="container applyLeave">
         <div class="row justify-content-center">

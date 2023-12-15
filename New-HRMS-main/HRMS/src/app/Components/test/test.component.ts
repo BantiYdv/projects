@@ -23,6 +23,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent {
+  role: any;
 selectOption(_t52: string) {
 throw new Error('Method not implemented.');
 }
@@ -68,6 +69,7 @@ throw new Error('Method not implemented.');
   AllRoleData: any;
   id: any;
   permissionNames: any;
+
 
   // change password validation start
   showNewPassword: boolean = false;
@@ -139,7 +141,7 @@ isDropdownOpen: any;
   }
   // change password validation end
 
-   // search start
+   // employee list search start
   searchTerm: string = '';
   filteredEmployeeData: any[] = [];
 
@@ -152,7 +154,20 @@ isDropdownOpen: any;
     );
   }
 
-   // search end
+  
+  // employee list search start
+
+  // role and permission  list search start
+  searchRole: string = '';
+  fillterAllRoleData: any[] = [];
+
+  FilterRole() {
+    this.fillterAllRoleData = this.AllRoleData.filter((item: { name: string }) =>
+      item.name.toLowerCase().includes(this.searchRole.toLowerCase()) 
+    );
+  }
+
+   // role and permission list search end
 
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute) {
     //for change password start
@@ -501,9 +516,14 @@ console.log("perission", permissionNames);
   viewRole(): void {
     this.testService.ViewRolewithPermission().subscribe(
       (response: any) => {
-        this.AllRoleData = response; // Assign the fetched role data to AllRoleData
+
+        const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
+        this.AllRoleData = reversedData; // Assign the fetched role data to AllRoleData
         console.log("view role", response);
         console.log("role all", this.AllRoleData);
+        this.fillterAllRoleData = reversedData; 
       },
       (error: any) => {
         console.error('Error fetching role data:', error);
@@ -1509,5 +1529,51 @@ console.log("leave apply", response);
 
   }
 // shift time end
+
+RoleperPage: number = 5;
+currentPage: number = 1;
+
+
+getPaginatedData(): any[] {
+  const startIndex = (this.currentPage - 1) * this.RoleperPage;
+  const endIndex = startIndex + this.RoleperPage;
+  return this.fillterAllRoleData.slice(startIndex, endIndex);
+}
+
+previousPage(): void {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+  }
+}
+
+getPageNumbersRole(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterAllRoleData.length / this.RoleperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageRole(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesRole()) {
+    this.currentPage = pageNumber;
+  }
+}
+
+
+nextPageRole(): void {
+  const totalPages = Math.ceil(
+    this.fillterAllRoleData.length / this.RoleperPage
+  );
+  if (this.currentPage < totalPages) {
+    this.currentPage++;
+  }
+}
+
+
+getTotalPagesRole(): number {
+  return Math.ceil(
+    this.fillterAllRoleData.length / this.RoleperPage
+  );
+}
 
 }

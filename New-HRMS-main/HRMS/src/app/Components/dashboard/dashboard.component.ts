@@ -593,6 +593,33 @@ totalEmpCountShow(){
   }
   // sick leave count end
 
- 
+  availablePermissionOptions: string[] = [
+    "NO_ACCESS",
+      "ALL_ACCESS",
+      "ALL_EMPLOYEES_DATA",
+      "NEW_REGISTRATION",
+      "ALL_EMPLOYEES_ATTENDANCE",
+      "LEAVE_SHOW_TEAMLEAD",
+      "WFH_SHOW_TEAMLEAD",
+      "ALL_WFH_EMPLOYEES",
+      "VIEW_ALL_LEAVE"
+  ];
+  selectedPermissions: string[] = []; // Variable to store the selected permissions
+  onPermissionSelectionChange() {
+    if (this.selectedPermissions.includes("NO_ACCESS")) {
+      // If "NO_ACCESS" is selected, set selectedPermissions to an array containing only "NO_ACCESS"
+      this.selectedPermissions = ["NO_ACCESS"];
+    } else if (this.selectedPermissions.includes("ALL_ACCESS")) {
+      // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"
+      this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
+    }
+  }
+
+  formatOption(option: string): string {
+    return option.replace(/_/g, ' ');
+  }
+  
+
+  
 }
 
