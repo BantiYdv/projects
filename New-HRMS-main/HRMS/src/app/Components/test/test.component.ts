@@ -494,7 +494,7 @@ console.log("perission", permissionNames);
       },
       (error) => {
         // Handle the error of the API request here
-
+        Swal.fire('Error', error.error, 'error');
       }
     );
   }
