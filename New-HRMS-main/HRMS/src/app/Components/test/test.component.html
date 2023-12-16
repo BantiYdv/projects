@@ -149,7 +149,7 @@
             </div>
             <div class="table_body_topics Rolebutton mt-2" style="width: 30%;">
               <button type="button" class="btn m-1 deleteRole" (click)="deleteRole(item.id)"><img src="/assets/image/icon/deleteRole.svg" alt="" class="RoleHover">Delete Role</button>
-              <button type="submit" class="btn m-1 editPermission" [routerLink]="['/addPermission' ]" [queryParams]="{ id: item.id }" (click)="openAddPermission(item)"><img src="/assets/image/icon/editPermission.svg" alt="" class="PermissionHover">Edit Permissions</button>
+              <button type="button" class="btn m-1 editPermission" data-bs-toggle="modal" data-bs-target="#exampleModal"  (click)="openAddPermission(item)"><img src="/assets/image/icon/editPermission.svg" alt="" class="PermissionHover">Edit Permissions</button>
             </div>
            
     
@@ -188,7 +188,84 @@
       <button type="button" class="btn btn-secondary" style="background-color: #3f51b5; color: #fff;" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
     </div> -->
     </div>
+
   </div>
+
+  <!--  view modal for edit permission start -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <div class="content m-1 mt-2">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-10">
+                  <h1 class="text-center head">Edit Permissions</h1>
+                  <div class="row justify-content-center">
+                   
+                    <div class="col-md-12">
+                      <form [formGroup]="form" novalidate>
+                        <label for="role" class="col-form-label selectPermission" >Select multiple options :</label>
+                        <div class="mb-3 row col-md-12 justify-content-center" >
+                          <div class="m-0 col-md-12" >
+                            <div class="form-group d-flex justify-content-center align-item-center permission">
+
+                                <mat-form-field style="width: 97%;">
+                                  <mat-label class="permissionPlace">--Select Permissions--</mat-label>
+                                  <mat-select name="PermissionNames" class="custom-select-class permissionInput" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()" >
+                                    <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
+                                      {{ formatOption(option) }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <div class="form-group">
+                            <label for="url" class="col-form-label selectPermission" >Update Permissions :</label>
+                            <div class="selected-permissions-box">
+                              <div *ngIf="selectedPermissions.length === 0; else permissionsList">
+                                <p class="permissionPlace">--No permissions selected--</p>
+                              </div>
+                              
+                              <ng-template #permissionsList>
+                              <div *ngFor="let permission of selectedPermissions" class="selected-permission">
+                                {{ formatOption(permission) }}
+
+                                <span class="cross-icon" (click)="removePermission(permission)" >
+                                  <img src="/assets/image/icon/permissionRemove.svg" alt="" class="permissionRemove">
+                                </span>
+                              </div>
+                              </ng-template>
+                            </div>
+       
+                          </div>
+                        </div>
+                      </form>
+      
+      
+
+                      <div class="mb-3 col-12 d-flex justify-content-end">
+                        <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn m-1 submitRole" data-bs-dismiss="modal" (click)="AddPermission(permissionId)">Update</button>
+                        
+                      </div>
+      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+   <!--  view modal for edit permission end -->
 
   <!-- <div *ngSwitchCase="'viewRole'">
     <div class="container px-4 py-0 text-center" style="width: 90%;">
@@ -262,7 +339,8 @@
   
 
   <!-- add permission start -->
-  <div *ngSwitchCase="'addPermission'">
+ 
+  <!-- <div *ngSwitchCase="'addPermission'">
    
     <div class="content m-1 mt-4">
       <div class="container applyLeave">
@@ -288,45 +366,16 @@
                       <label for="url" class="col-form-label">Permission:</label>
                     
 
-                      <!-- <mat-form-field>
-                        <mat-label>Permission</mat-label>
-                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
-                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option">{{ option }}</mat-option>
-                        </mat-select>
-                      </mat-form-field> -->
-
-                      <!-- <mat-form-field>
-                        <mat-label>Permission</mat-label>
-                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions">
-                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="selectedPermissions.includes('NO_ACCESS') && option !== 'NO_ACCESS'">{{ option }}</mat-option>
-                        </mat-select>
-                      </mat-form-field> -->
-
 
                       <mat-form-field>
                         <mat-label>Permission</mat-label>
                         <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
                           <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" >
-                            <!-- {{ option }} -->
                             {{ formatOption(option) }}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
-                      
-                      <!-- <mat-form-field>
-                        <mat-label>Permission</mat-label>
-                        <mat-select name="PermissionNames" class="custom-select-class" multiple formControlName="url" [(ngModel)]="selectedPermissions" (selectionChange)="onPermissionSelectionChange()">
-                          <mat-option *ngFor="let option of availablePermissionOptions" [value]="option" [disabled]="isOptionDisabled(option)">
-                            {{ formatOption(option) }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field> -->
-                      
-                      
-                      
-                      
                     
-                      
                       
                     </div>
                   </div>
@@ -346,7 +395,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- add permission end -->
 
   <!-- remove permission start -->

@@ -66,6 +66,7 @@ cursor: pointer;
 .closeRole{
     display: flex;
     width: 150px;
+    height: 44px;
     padding: 10px;
     justify-content: center;
     align-items: center;
@@ -74,7 +75,7 @@ cursor: pointer;
     border: 2px solid #D92651;
 
     color: #D92651;
-font-size: 20px;
+font-size: 17px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -88,6 +89,7 @@ line-height: normal;
 .submitRole{
     display: flex;
 width: 150px;
+height: 44px;
 padding: 10px;
 justify-content: center;
 align-items: center;
@@ -95,7 +97,7 @@ gap: 10px;
 border-radius: 60px;
 border: 2px solid #2F37A4;
 color: #2F37A4;
-font-size: 20px;
+font-size: 17px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -642,7 +644,7 @@ height: 39px;
 }
 
 .added_positions_under_head {
-  font-size: 18px;
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -655,7 +657,7 @@ height: 39px;
 
 .table_footer {
   display: flex;
-  width: 97%;
+  width: 100%;
   justify-content: flex-end;
   align-items: center;
 }
@@ -685,3 +687,91 @@ height: 39px;
   margin: 0px 5px;
 }
 /* for pagenation end */
+
+
+
+.head{
+  color: #000;
+font-size: 22px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.selectPermission{
+  color: #000;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.SlectedAdd{
+  color: #2F37A4;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+width: 177px;
+height: 58px;
+flex-shrink: 0;
+border-radius: 10px;
+border: 1px solid #2F37A4;
+background: #FFF;
+}
+
+.selectedRole{
+  width: 417px;
+height: 58px;
+flex-shrink: 0;
+border-radius: 10px;
+border: 1px solid #808080;
+
+background: #FFF;
+}
+
+.modal {
+  --bs-modal-zindex: 1000 !important;
+  background-color: #78787867;
+  
+}
+
+/* Your component.css file */
+.selected-permissions-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid #808080;
+  padding: 8px;
+  border-radius: 10px;
+  width: 97%;
+}
+
+.selected-permission {
+  background-color: #DFEAFF;
+  padding: 4px 8px;
+  border-radius: 100px;
+  display: inline-flex;
+padding: 7px 15px;
+justify-content: center;
+align-items: center;
+gap: 12px;
+}
+
+
+.permissionRemove{
+  width: 12px;
+height: 12px;
+}
+
+.cross-icon {
+  cursor: pointer;
+  margin-left: 5px; /* Adjust the spacing as needed */
+}
+
+.cross-icon:hover {
+  color: red; /* Change the color on hover as needed */
+}
+
+
+

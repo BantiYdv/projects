@@ -564,9 +564,8 @@ console.log("perission", permissionNames);
   //     }
   //   });
   // }
-  AddPermission() {
-    this.route.queryParams.subscribe(params => {
-      const id = params['id'];
+  AddPermission(id: any) {
+   
   
       if (id) {
         this.testService.AddPermissionName(id, this.selectedPermissions).subscribe(
@@ -596,7 +595,7 @@ console.log("perission", permissionNames);
         // Handle the case when 'id' is not available
         console.log("No 'id' available");
       }
-    });
+  
   }
   
   //  API for add permission end
@@ -1411,8 +1410,42 @@ console.log("leave apply", response);
   
 
 
+permissionId: any;
+
+  // openAddPermission(item: any) {
+  //   this.permissionId = item.id
+  //   this.selectedRole = item;
+  //   // Check if "NO_ACCESS" is in the permissions list
+  // const hasNoAccess = item.permissions.some((permission: { permissionName: any; }) => permission.permissionName === 'NO_ACCESS');
+
+  // if (hasNoAccess) {
+  //   // If "NO_ACCESS" is present, remove all other permissions
+  //   this.selectedPermissions = ['NO_ACCESS'];
+  // } else {
+  //   // If "NO_ACCESS" is not present, keep the existing permissions
+  //   this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+  // }
+  //   // Define an array of available permission options, excluding the selectedPermissions
+  //   const availablePermissionOptions = [
+  //     "NO_ACCESS",
+  //     "ALL_ACCESS",
+  //     "ALL_EMPLOYEES_DATA",
+  //     "NEW_REGISTRATION",
+  //     "ALL_EMPLOYEES_ATTENDANCE",
+  //     "LEAVE_SHOW_TEAMLEAD",
+  //     "WFH_SHOW_TEAMLEAD",
+  //     "ALL_WFH_EMPLOYEES",
+  //     "VIEW_ALL_LEAVE"
+  //   ].filter(option => !this.selectedPermissions.includes(option));
+
+  //   // Assign the available options to a new property (e.g., availablePermissionOptions)
+  //   this.availablePermissionOptions = availablePermissionOptions;
+
+  //   // this.loginService.showTable('addPermission');
+  // }
 
   openAddPermission(item: any) {
+    this.permissionId = item.id
     this.selectedRole = item;
     // Check if "NO_ACCESS" is in the permissions list
   const hasNoAccess = item.permissions.some((permission: { permissionName: any; }) => permission.permissionName === 'NO_ACCESS');
@@ -1435,18 +1468,30 @@ console.log("leave apply", response);
       "WFH_SHOW_TEAMLEAD",
       "ALL_WFH_EMPLOYEES",
       "VIEW_ALL_LEAVE"
-    ].filter(option => !this.selectedPermissions.includes(option));
+    ];
 
     // Assign the available options to a new property (e.g., availablePermissionOptions)
     this.availablePermissionOptions = availablePermissionOptions;
 
-    this.loginService.showTable('addPermission');
   }
 
-  
 
+  // for click on cross to remove permission start
+  removePermission(permission: any) {
+    // Remove from selectedPermissions
+    const index = this.selectedPermissions.indexOf(permission);
+    if (index !== -1) {
+      this.selectedPermissions.splice(index, 1);
+    }
 
+    // Uncheck from availablePermissionOptions
+    const optionIndex = this.availablePermissionOptions.findIndex(opt => opt === permission);
+    if (optionIndex !== -1) {
+      this.form.get('url').patchValue([...this.form.get('url').value.filter((opt: any) => opt !== permission)]);
+    }
+  }
   
+   // for click on cross to remove permission start
  
   // onPermissionSelectionChange() {
   //   if (this.selectedPermissions.includes("ALL_ACCESS")) {
