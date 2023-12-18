@@ -231,6 +231,7 @@ isDropdownOpen: any;
     this.toggleAllWfhTable();
     this.toggleAllLeaveTable();
     this.togglecalendar();
+    this.designations();
   }
 
 
@@ -1575,6 +1576,9 @@ permissionId: any;
   }
 // shift time end
 
+
+
+// pagination for view role start
 RoleperPage: number = 5;
 currentPage: number = 1;
 
@@ -1620,5 +1624,34 @@ getTotalPagesRole(): number {
     this.fillterAllRoleData.length / this.RoleperPage
   );
 }
+// pagination for view role end
+
+
+isGridView = true; // Initial view is grid
+
+listView() {
+    this.isGridView = false;
+  }
+
+  gridView() {
+    this.isGridView = true;
+  }
+
+   //API for getting designation start
+   designation: string[] = [];
+   designations() {
+
+    this.RegisterAndUpdate.getdesignation().subscribe(
+      (response: any) => {
+        this.designation = response; // Assuming the API response is an array of team leads
+console.log("serch designation", this.designation);
+        // this.token = response.token;
+      },
+      (error) => {
+
+      }
+    );
+  }
+  //API for getting designation end
 
 }
