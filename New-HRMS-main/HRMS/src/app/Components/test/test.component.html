@@ -482,89 +482,89 @@
   <!-- view Admin list start -->
   <div *ngSwitchCase="'employee'">
 
-    <!-- my-component.component.html -->
-
-    <!-- test.component.html -->
-
-    <!-- <div class="container text-center">
-  <div class="row col-12" style="width: 100%;">
-    <div class="col-8 d-flex justify-content-start">
-      <h4>All Employee</h4>
-    </div>
-    <div class="col-4">
-      <button (click)="listView()"><i class="fa fa-bars"></i> List</button>
-      <button (click)="gridView()"><i class="fa fa-th-large"></i> Grid</button>
-    </div>
-</div>
-</div> -->
 
 
     <div *ngIf="isGridView; else listViewContent">
+
+
       <div class="container text-center">
-
-
-
-        <div class="row d-flex justify-content-center mt-4" style="width: 100%;">
-          <div class="col-8 d-flex justify-content-start">
+        <div class="row mt-4">
+          <div class="col-md-8 d-flex justify-content-start">
             <span class="allEmp">All Employee</span>
           </div>
-
-          <div class="col-4 d-flex justify-content-end mb-3">
+          <div class="col-md-4 d-flex justify-content-end mb-3">
             <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list"
               (click)="listView()">
             <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list"
               (click)="gridView()">
           </div>
+        </div>
 
-        <!-- </div> -->
-        
-
-
-
-        <!-- <div class="row d-flex justify-content-center" style="width: 100%;"> -->
-
-          <div class="row mt-2" style="display: flex; justify-content: space-around; width: 91%; margin-left: -31px;">
-
-            <div class="col-md-3">
-              <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Employee Name"
-                class="form-control searchEmp">
-
-            </div>
-            <div class="col-md-3">
-              <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Employee ID"
-                class="form-control searchEmp">
-
-            </div>
-            <div class="col-md-3">
-              <select class="form-control searchEmp" name="designation" id="designation"
-                (ngModelChange)="designations()">
-                <option value="" disabled selected>-- Designation --</option>
-                <option *ngFor="let designation of designation" [value]="designation">{{ designation }} </option>
-              </select>
-            </div>
-
-            <div class="col-md-3">
-              <button class="button_added_position_list searchEmpButton">Search</button>
-            </div>
+        <div class="row mt-2">
+          <div class="m-0"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+            <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Employee Name"
+              class="form-control searchEmp">
+          </div>
+          <div class="m-0"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+            <input [(ngModel)]="searchEmail" (input)="applyFilterEmail()" placeholder="Email ID"
+              class="form-control searchEmp">
+          </div>
+          <div class="m-0"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+            <!-- <select class="form-control searchEmp" name="designation" id="designation"  [(ngModel)]="searchdesignation" (input)="applyFilterDesignation()" >
+              <option value="" disabled selected>-- Designation --</option>
+              <option *ngFor="let designation of designation" [value]="designation">{{ designation }}</option>
+            </select> -->
+            <input [(ngModel)]="searchdesignation" (input)="applyFilterDesignation()" placeholder="-- Designation --"
+              class="form-control searchEmp" [matAutocomplete]="auto">
+            <div class="custom-arrow"></div>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let designation of designation" [value]="designation">
+                {{ designation }}
+              </mat-option>
+            </mat-autocomplete>
           </div>
 
 
-          <div class="col-3 my-2 employee mt-3" *ngFor="let item of filteredEmployeeData; let i = index">
-            <div class="icon">
-              <i class="fa-solid fa-ellipsis-vertical"></i>
+
+          <div class="m-0"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+            <button class="button_added_position_list searchEmpButton">Search</button>
+          </div>
+        </div>
+
+        <div class="not_data_img_div" *ngIf="filteredEmployeeData.length == 0">
+          <p>Not Data !!</p>
+        </div>
+
+        <div class="row mt-3">
+          <div class="m-0"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-3' : 'col-12 col-sm-3 col-md-6 col-lg-4 col-xl-3 mb-3'"
+            *ngFor="let item of filteredEmployeeData; let i = index">
+            <div class="employee">
+              <div class="icon">
+                <i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
+                <mat-menu #menu="matMenu" xPosition="before">
+                  <button mat-menu-item [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
+                  [queryParams]="{ id: item.id }">View Profile</button>
+                  <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit Profile</button>
+                  <button mat-menu-item (click)="deleteEmployee(item.id)">Delete Profile</button>
+
+                </mat-menu>
+              </div>
+              <div>
+                <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%;" />
+              </div>
+              <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
+              <p class="titleGrid">{{item.designation }}</p>
             </div>
-            <div>
-              <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%;" />
-              <!-- <img src="/assets/image/emp1.png" alt="" style="border-radius: 50%;"> -->
-            </div>
-            <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
-            <p class="titleGrid">{{item.designation }}</p>
           </div>
 
         </div>
+
       </div>
-
-
     </div>
 
     <ng-template #listViewContent>
@@ -573,65 +573,87 @@
         <ul>
           <div class="container text-center">
 
-            <div class="row d-flex justify-content-center mt-4" style="width: 100%;">
-              <div class="col-8 d-flex justify-content-start">
+
+
+            <div class="row mt-4">
+              <div class="col-md-8 d-flex justify-content-start">
                 <span class="allEmp">All Employee</span>
               </div>
-    
-              <div class="col-4 d-flex justify-content-end">
+              <div class="col-md-4 d-flex justify-content-end mb-3">
                 <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list"
                   (click)="listView()">
                 <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list"
                   (click)="gridView()">
               </div>
-    
             </div>
 
-           
-
-            <div class="row d-flex justify-content-start m-1 mt-3">
-              <div class="col-md-3">
+            <div class="row mt-2">
+              <div class="m-0"
+                [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
                 <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Employee Name"
                   class="form-control searchEmp">
-  
               </div>
-              <div class="col-md-3">
-                <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Employee ID"
+              <div class="m-0"
+                [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+                <input [(ngModel)]="searchEmail" (input)="applyFilterEmail()" placeholder="Email ID"
                   class="form-control searchEmp">
-  
               </div>
-              <div class="col-md-3">
-                <select class="form-control searchEmp" name="designation" id="designation"
-                  (ngModelChange)="designations()">
+              <div class="m-0"
+                [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+                <!-- <select class="form-control searchEmp" name="designation" id="designation" (ngModelChange)="designations()">
                   <option value="" disabled selected>-- Designation --</option>
-                  <option *ngFor="let designation of designation" [value]="designation">{{ designation }} </option>
-                </select>
+                  <option *ngFor="let designation of designation" [value]="designation">{{ designation }}</option>
+                </select> -->
+                <input [(ngModel)]="searchdesignation" (input)="applyFilterDesignation()"
+                  placeholder="-- Designation --" class="form-control searchEmp" [matAutocomplete]="auto">
+                <div class="custom-arrow"></div>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let designation of designation" [value]="designation">
+                    {{ designation }}
+                  </mat-option>
+                </mat-autocomplete>
               </div>
-  
-              <div class="col-md-3">
+              <div class="m-0"
+                [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
                 <button class="button_added_position_list searchEmpButton">Search</button>
               </div>
             </div>
 
 
-            <div class="row mt-3" style="width: 100%;">
-              <div class="col-md-12 my-2 employeeList" *ngFor="let item of filteredEmployeeData; let i = index">
+            <div class="not_data_img_div" *ngIf="filteredEmployeeData.length == 0">
+              <p>Not Data !!</p>
+            </div>
 
-                <div class="col-md-1 my-2">
-                  <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="empList"
-                    style="border-radius: 50%;" />
-                </div>
-                <div class="col-md-8 d-flex justify-content-start align-items-center">
-                  <span class="nameList">{{ item.firstname + ' ' + item.lastname }}</span>
-                  <p class="titleList">{{ item.designation }}</p>
-                </div>
-                
-
-                <div class="col-md-3 iconList">
-                  <i class="fa-solid fa-ellipsis-vertical"></i>
+            <div class="row mt-3">
+              <div class="col-md-12 my-2 " *ngFor="let item of filteredEmployeeData; let i = index">
+                <div class="employeeList">
+                  <div class="col-md-1 m-1">
+                    <img [src]="imageUrl || imageUser(item.firstname , item.lastname)" alt="" class="empList"
+                      style="border-radius: 50%;" />
+                  </div>
+                  <div class="col-md-8 d-flex">
+                    <!-- <div> -->
+                    <span class="nameList">{{ item.firstname + ' ' + item.lastname }}</span>
+                    <p class="titleList">{{ item.designation }}</p>
+                    <!-- </div> -->
+                  </div>
+                  <div class="col-md-3 iconList d-flex align-items-center">
+                    <!-- <i class="fa-solid fa-ellipsis-vertical"></i> -->
+                    <div class="icon">
+                      <i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
+                      <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
+                        [queryParams]="{ id: item.id }">View Profile</button>
+                        <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit Profile</button>
+                        <button mat-menu-item (click)="deleteEmployee(item.id)">Delete Profile</button>
+      
+                      </mat-menu>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
 
 
@@ -639,56 +661,6 @@
       </div>
     </ng-template>
 
-    <!-- <div *ngIf="isHashEqualTo('/test/employee')"> -->
-
-    <div class="d-flex justify-content-end m-1 mt-4">
-      <div class="table-search">
-        <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Search..." class="form-control rounded">
-
-      </div>
-    </div>
-    <div class="table-responsive m-1">
-      <table class="table table-bordered table-sm">
-        <thead class="table-dark">
-          <tr>
-            <th>S.No</th>
-            <th>Name</th>
-            <th>Designation</th>
-            <th>Email Id</th>
-            <th>Update</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of filteredEmployeeData; let i = index">
-            <td class="align-middle">{{ i + 1 }}</td>
-            <td class="pointer d-flex align-items-center" style="cursor: pointer; color: blue;"
-              [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
-              [queryParams]="{ id: item.id }">
-              <a class="dropdown-item rounded-2 d-flex align-items-center m-1">
-                <img class="rounded-circle img-fluid " [src]="imageUrl || generateDefaultImageUser()" alt="" />
-
-              </a><span class="m-1">{{ item.firstname + ' ' + item.lastname }}</span>
-            </td>
-            <td class="align-middle">{{item.designation }}</td>
-            <td class="align-middle">{{ item.emailid }}</td>
-            <td [routerLink]="['/update']" [queryParams]="{ id: item.id }">
-              <button type="button" class="btn btn-link">
-                <i class="fas fa-edit"></i>
-              </button>
-            </td>
-            <td>
-              <button type="button" class="btn btn-link" (click)="deleteEmployee(item.id)">
-                <i class="fas fa-trash"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
-    </div>
   </div>
 
   <!-- view Admin list end -->
@@ -701,6 +673,154 @@
 
 
   <div *ngSwitchCase="'teamleave'">
+
+    <!-- <div class="content m-1 mt-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-6 d-flex justify-content-start">
+                <div class="added_positions_list_right">
+                  <div class="added_positions_under_head">Show</div>
+                  <div>
+                    <select class="added_positions_under_head_select" [(ngModel)]="RoleperPage">
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="25">25</option>
+                    </select>
+                  </div>
+                  <div class="added_positions_under_head">Enteries</div>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex justify-content-end align-items-center">
+                <div class="col-md-6">
+                  <div class="search-container ">
+                    <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                      alt="">
+                    <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchRole"
+                      (keyup)="FilterRole()">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button class="button_added_position_list">Search</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+
+              <div class="recruit_table">
+                <div class="table_head">
+                  <div class="table_head_topics my-2" style="width: 5%;border-right: 2px solid #ADADAD; height: 100%;">
+                    S.No</div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; Name
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; Email Id
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; From Date
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; To Date
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; No Of Days
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; Leave Type
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; Status
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; By Whom
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; Team Lead
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; Approve
+                  </div>
+                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                    &nbsp; Reject
+                  </div>
+
+                </div>
+
+                <div class="my-1">
+                  <div class="table_body" *ngFor="let item of getPaginatedData(); let i = index">
+                    <div class="table_body_topics my-2" style="width: 5%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                    </div>
+                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
+                      item.name }}</div>
+                    <div class="table_body_topics my-2"
+                      style="width: 30%;border-right: 2px solid #ADADAD; justify-content: normal;">
+                      <ul class="list-with-images">
+                        <li *ngFor="let permission of item.permissions">
+                          {{ formatOption(permission.permissionName) }}
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="table_body_topics Rolebutton mt-2" style="width: 30%;">
+                      <button type="button" class="btn m-1 deleteRole" (click)="deleteRole(item.id)"><img
+                          src="/assets/image/icon/deleteRole.svg" alt="" class="RoleHover">Delete Role</button>
+                      <button type="button" class="btn m-1 editPermission" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" (click)="openAddPermission(item)"><img
+                          src="/assets/image/icon/editPermission.svg" alt="" class="PermissionHover">Edit
+                        Permissions</button>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12" *ngIf="getTotalPagesRole() > 1">
+              <div class="table_footer mt-2">
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                  style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
+                  <i class="fa fa-angle-left"></i> Previous
+                </button>
+                <div class="recruitment_list_number">
+                  <div *ngFor="let pageNumber of getPageNumbersRole()" [class.active_num]="pageNumber === currentPage"
+                    class="recruitment_list_number_value" (click)="changePageRole(pageNumber)">
+                    {{ pageNumber }}
+                  </div>
+                </div>
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                  style="background-color:#421cdd;" (click)="nextPageRole()"
+                  [disabled]="currentPage == getTotalPagesRole()">
+                  Next <i class="fa fa-angle-right"></i>
+                </button>
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+     
+    </div> -->
+
     <!-- <div *ngIf="isHashEqualTo('/test/teamleave')"> -->
     <div class="table-responsive mt-4">
       <table class="table table-bordered table-sm">

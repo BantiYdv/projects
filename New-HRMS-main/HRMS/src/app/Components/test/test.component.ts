@@ -143,15 +143,32 @@ isDropdownOpen: any;
 
    // employee list search start
   searchTerm: string = '';
+  searchEmail: string = '';
+  searchdesignation: string = '';
+  
   filteredEmployeeData: any[] = [];
 
   applyFilter() {
-    this.filteredEmployeeData = this.EmployeeData.filter((item: { firstname: string; lastname: string; designation: string; emailid: string; }) =>
+    this.filteredEmployeeData = this.EmployeeData.filter((item: { firstname: string; lastname: string; }) =>
       item.firstname.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.lastname.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.designation.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+      item.lastname.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+      // || item.designation.toLowerCase().includes(this.searchTerm.toLowerCase()) 
       // || item.emailid.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+
+  applyFilterEmail() {
+    this.filteredEmployeeData = this.EmployeeData.filter((item: { emailid: string; }) =>
+     
+      item.emailid.toLowerCase().includes(this.searchEmail.toLowerCase())
+    );
+  }
+
+  applyFilterDesignation() {
+    this.filteredEmployeeData = this.EmployeeData.filter((item: { designation: string; }) =>
+    item.designation.toLowerCase().includes(this.searchdesignation.toLowerCase()) 
+    );
+    console.log("filter designation", this.filteredEmployeeData)
   }
 
   
@@ -239,7 +256,10 @@ isDropdownOpen: any;
   firstname: string = ''; // Replace with user's first name
   lastname: string = ''; // Replace with user's last name
 
+  
   generateDefaultImageUser(): string {
+    // console.log("f name", this.EmployeeData.firstname);
+    // console.log("l name", this.EmployeeData.lastname)
     if (this.EmployeeData.firstname && this.EmployeeData.lastname) {
       const initials = this.EmployeeData.firstname.charAt(0) + this.EmployeeData.lastname.charAt(0);
       return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
@@ -247,7 +267,16 @@ isDropdownOpen: any;
       return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
     }
   }
-  
+  imageUser(firstname: any, lastname: any): string {
+    // console.log("f name", this.EmployeeData.firstname);
+    // console.log("l name", this.EmployeeData.lastname)
+    if (firstname && lastname) {
+      const initials = firstname.charAt(0) + lastname.charAt(0);
+      return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
+    } else {
+      return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
+    }
+  }
     // // after reload to show
     // isHashEqualTo(hash: string): boolean {
     //   return window.location.hash === `#${hash}`;
@@ -1653,5 +1682,8 @@ console.log("serch designation", this.designation);
     );
   }
   //API for getting designation end
+
+
+  
 
 }

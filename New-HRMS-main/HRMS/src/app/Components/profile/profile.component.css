@@ -482,3 +482,74 @@ body .fc-widget-header a {
 
   
 
+/* new desgin */
+.profileIcon{
+    width: 24px;
+    height: 24px;
+}
+
+.profileHead{
+    color: #2C2C2C;
+font-size: 25px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+}
+
+.profileName{
+    color: #2C2C2C;
+font-size: 22px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.profileText{
+    color: #2C2C2C;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.profileInfo1{
+    color: #421CDD;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+
+.profileInfo2{
+    color: #767C82;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-transform: capitalize;
+}
+
+.viewButton{
+    display: flex;
+/* width: 969px; */
+padding: 18px 288px 18px 130px;
+justify-content: center;
+align-items: center;
+/* gap: 45px; */
+border-radius: 10px;
+background: #3331B0;
+
+box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.02);
+
+}
+
+.empDetail{
+    color: #F7F7F7;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+}
