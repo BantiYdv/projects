@@ -5,8 +5,9 @@ html, body {
     
     height: 100%;
     font-family: 'Poppins', sans-serif !important;
+    
 }
-body { margin: 0; font-family: 'Poppins', sans-serif !important; }
+body { margin: 0; font-family: 'Poppins', sans-serif !important; background-color: #F7F7F7 !important; }
 
 .text-center{
     text-align: center;

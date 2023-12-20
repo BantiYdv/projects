@@ -141,7 +141,7 @@ id: any;
   
 // for show side nav bar according to user login with permission start
 permissionSet = [
-  { name: 'ALL_EMPLOYEES_DATA', router: '/employee', function: "employee",  imgName: "All Employees", src: '/assets/image/icon/All Employees.png'},
+  { name: 'ALL_EMPLOYEES_DATA', router:'/employee', function:'employee',  imgName: "All Employees", src: '/assets/image/icon/All Employees.png'},
   { name: 'NEW_REGISTRATION', router: '/registration', function: "registration", imgName: "Registeration", src: '/assets/image/icon/Registration.png'},
   { name: 'ALL_EMPLOYEES_ATTENDANCE', router: '/viewAllAtt', function: "viewAllAtt", imgName: "All Attendance", src: '/assets/image/icon/Team WFH.png'},
   { name: 'LEAVE_SHOW_TEAMLEAD', router: '/teamleave', function: 'teamleave', imgName: "Team Leaves", src: '/assets/image/icon/Team leave.png' },

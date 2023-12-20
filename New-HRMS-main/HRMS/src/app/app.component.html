@@ -549,7 +549,9 @@
     </div>
 <!-- sidebar name show in toggle end -->
 
-    <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-12 col-md-9 col-xl-11'"  id="dashboard">
+    <!-- <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-12 col-md-9 col-xl-11'"  id="dashboard"> -->
+      <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-lg-7 col-xl-9' : 'col-12 col-md-9 col-lg-10 col-xl-11'"  id="dashboard">
+
       <router-outlet></router-outlet>
     </div>
     <!-- <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
@@ -577,19 +579,19 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/Group 27.svg" alt="" id="hoverImage">
 
-                  <!-- <span class="image-name">Home</span> -->
                 </div>
+                  <span class="image-namenew">Home</span>
               </a>
             </li>
 
             <li class="nav-item text-center" *ngFor="let option of filteredOptions">
-              <a class="nav-link align-middle px-0" [routerLink]="[option.router]">
+              <a class="nav-link align-middle px-0" [routerLink]="[option.router]" (click)="loginService.showTable(option.function)">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="{{option.src}}" alt="" 
-                    (click)="loginService.showTable(option.function)" />
+                     />
 
-                  <!-- <span class="image-name">{{option.imgName}}</span> -->
-                </div>
+                  </div>
+                  <span class="image-namenew">{{option.imgName}}</span>
               </a>
             </li>
 
@@ -598,8 +600,8 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
 
-                  <!-- <span class="image-name">Download Leave Policy</span> -->
                 </div>
+                  <span class="image-namenew">Download Leave Policy</span>
               </a>
             </li>
 
@@ -609,8 +611,8 @@
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
 
-                  <!-- <span class="image-name">View Holiday</span> -->
                 </div>
+                  <span class="image-namenew">View Holiday</span>
               </a>
             </li>
           </ul>
@@ -644,6 +646,17 @@
             </a>
           </li>
 
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
+              (click)="loginService.showTable('employee')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">All Employees</span>
+              
+              <!-- </div> -->
+            </a>
+          </li>
+         
+
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" (click)="LeavePolicyPdf()">
               <div class="image-container">
@@ -664,6 +677,8 @@
               </div>
             </a>
           </li>
+
+          
         </ul>
         <hr>
       </div>
@@ -683,7 +698,7 @@
           </li>
           
           <li class="nav-item text-center sideBarName" *ngFor="let option of filteredOptions">
-            <a class="nav-link px-0 align-middle" [routerLink]="[option.router]">
+            <a class="nav-link px-0 align-middle" [routerLink]="[option.router]" (click)="loginService.showTable(option.function)" >
               
                 <span class="image-namenew">{{option.imgName}}</span> 
              
@@ -715,7 +730,9 @@
     <!-- <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
       <router-outlet></router-outlet>
     </div> -->
-    <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-9 col-md-9 col-xl-11'"  id="dashboard">
+    <!-- <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-9 col-md-9 col-xl-11'"  id="dashboard"> -->
+      <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-lg-7 col-xl-9' : 'col-9 col-md-9 col-lg-10 col-xl-11'"  id="dashboard">
+
       <router-outlet></router-outlet>
     </div>
   </div>

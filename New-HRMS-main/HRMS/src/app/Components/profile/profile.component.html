@@ -7,84 +7,294 @@
       <div class="row">
         <div class="col-12 text-center">
           <h2 class="profileHead">Personal Information</h2>
-         
+
         </div>
       </div>
-  
+
       <!-- Profile image and details -->
       <div class="row mt-4">
         <!-- Image column -->
-        
-        <div class="col-md-4 text-center">
-          <img class=" img-fluid" [src]="imageUrl || generateDefaultImage()" alt="" style="width: 160px; height: 196px; border-radius: 10px;"/>
-
-        </div>
+<div class="col-12">
   
-        <!-- Details column -->
-        <div class="col-md-8">
-         
-              <h5 class="profileName mb-0">{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</h5>
-              <p class="profileText">({{ profileDetails?.designation }})</p>
-              <hr>
-              <div class="row">
-                <div class="col">
-                    <p class="profileInfo1"><img src="/assets/image/icon/email.svg" alt="" class="profileIcon"> {{ profileDetails?.emailid }}</p>
-                </div>
-                <div class="col">
-                    <p class="profileInfo1"><img src="/assets/image/icon/contact.svg" alt="" class="profileIcon"> {{ profileDetails?.phonenumber }}</p>
-                </div>
-                <div class="col">
-                    <p class="profileInfo1"><img src="/assets/image/icon/address.svg" alt="" class="profileIcon"> {{ profileDetails?.address }}</p>
-                </div>
+</div>
+        <div class="text-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-2 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-2 mb-2'">
+          <div class="profile-header-img">
+          <img class=" img-fluid" [src]="imageUrl || generateDefaultImage()" alt=""
+            style="width: 200px; height: 190px; border-radius: 10px;" />
+            <div class="upload-overlay">
+              <label class="add-to-cart" for="fileInput">
+                <i class="fas fa-camera"></i> Upload Image
+              </label>
+              <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none"
+                (change)="handleFileInput($event)">
+
             </div>
-            <hr>
-            <div class="row">
-              <div class="col">
-                  <p class="profileInfo2">Emergency Contact: <span class="profileInfo1">{{ profileDetails?.emergencyContact }}</span></p>
-              </div>
-              <div class="col">
-                  <p class="profileInfo2">Date of Birth: <span class="profileInfo1">{{ profileDetails?.dob }}</span></p>
-              </div>
-              <div class="col">
-                  <p class="profileInfo2">Gender: <span class="profileInfo1">{{ profileDetails?.gender }}</span></p>
-              </div>
+            </div>
+        </div>
+
+        <!-- Details column -->
+        <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-10 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-10 mb-2'">
+
+          <h5 class="profileName mb-0">{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</h5>
+          <p class="profileText">({{ profileDetails?.designation }})</p>
+          <hr>
+          <div class="row">
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo1"><img src="/assets/image/icon/email.svg" alt="" class="profileIcon"> {{
+                profileDetails?.emailid }}</p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo1"><img src="/assets/image/icon/contact.svg" alt="" class="profileIcon"> {{
+                profileDetails?.phonenumber }}</p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo1"><img src="/assets/image/icon/address.svg" alt="" class="profileIcon"> {{
+                profileDetails?.address }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo2">Emergency Contact: <span class="profileInfo1">{{ profileDetails?.emergencyContact
+                  }}</span></p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo2">Date of Birth: <span class="profileInfo1">{{ profileDetails?.dob }}</span></p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo2">Gender: <span class="profileInfo1">{{ profileDetails?.gender }}</span></p>
+            </div>
           </div>
         </div>
       </div>
 
 
-    
-   
+
+
       <div class="row mt-4 ">
         <div class="col-md-12 viewButton text-center d-flex justify-content-center">
 
           <div class="col-md-6 empDetail" style="border-right: 2px solid #D3D2D2;">
-              Employee Details
+            Employee Details
           </div>
           <div class="col-md-6 empDetail">
-              Documents
+            Documents
           </div>
         </div>
-    </div>
+      </div>
+
+
+      <div class="row">
+        <!-- Left Column - Joining Details -->
+        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+          <div class="d-flex justify-content-start">
+            <h2>Joining Details</h2>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-center" >
+
+            <ul class="list-group list-group-flush card-body" >
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Joining Date:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetails?.dateofjoining }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Probation Duration:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetails?.totalDaysOfProbation }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Mode of Working:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetails?.modeOfWorking }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Shifting Timing:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetails?.shifttimingstart }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Reporting To:
+                <p class="m-0"><span id="teamlead">{{ profileDetails?.teamlead }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Department:
+                <p class="m-0"><span id="department">{{ profileDetails?.department }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Job Type:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetails?.jobType }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Total Leaves:
+                <p class="m-0"><span id="totalleaves">{{ profileDetails?.totalleaves }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Sick Leave:
+                <p class="m-0"><span id="sickLeavesPerMonth">{{ profileDetails?.sickLeavesPerMonth }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Casual Leave:
+                <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Maternity:
+                <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetails?.maternity }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Parternity:
+                <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetails?.parternity }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Assigning assets:
+                <p class="m-0"><span id="assetName">{{ profileDetails?.assetName }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Role:
+                <p class="m-0"><span id="role">{{ profileDetails?.role.name }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                WFH:
+                <p class="m-0"><span id="totalwfh">{{ profileDetails?.totalwfh }}</span></p>
+              </li>
+            
+            </ul>
+
+          </div>
+        </div>
+
+       
+
+        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+          <div class="d-flex justify-content-between align-items-center">
+  <h2 class="mb-0">Other Details</h2>
+
+  <div>
+    <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="!showEditForm" (click)="showEditForm = true">Edit</button>
+    <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="showEditForm" (click)="showEditForm = false">Close</button>
+    <button type="button" class="btn btn-danger" (click)="deletePersonalData()">Delete</button>
+  </div>
+</div>
+
+          <div class="col-md-12 d-flex justify-content-center">
+
+            <div class="card-body" >
+              <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="mb-0">Marital Status</h4>
+                    </div>
+                    <div class="col-md-9 text-secondary">
+                      <p><span id="maritalStatus">
+                          <select class="form-control" id="maritalStatus" name="maritalStatus"
+                            [(ngModel)]="profileDetails.maritalStatus" #maritalStatus>
+                            <option value="" disabled selected>--Select--</option>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+
+                          </select>
+                        </span></p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="mb-0">Blood Group</h4>
+                    </div>
+                    <div class="col-md-9 text-secondary">
+                      <p><span id="bloodGroup">
+                          <input type="text" class="form-control" id="bloodGroup" name="bloodGroup"
+                            [(ngModel)]="profileDetails.bloodGroup" #bloodGroup></span></p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="mb-0">Skills</h4>
+                    </div>
+                    <div class="col-md-9 text-secondary">
+                      <p><span id="skills">
+                          <input type="text" class="form-control" id="skills" name="skills"
+                            [(ngModel)]="profileDetails.skills" #skills></span></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <button class="btn btn-primary" type="submit" id="submit" name="submit"
+                  (click)="editProfile()">Save</button> -->
+                  <div class="form-group row justify-content-end">
+                    <div class="col-sm-2 text-secondary">
+                      <button class="btn btn-primary" type="submit" id="submit" name="submit" (click)="editProfile()">Save</button>
+                    </div>
+                  </div>
+              </form>
+              <div *ngIf="!showEditForm">
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4 class="mb-0">Marital Status</h4>
+                  </div>
+                  <div class="col-md-9 text-secondary">
+                    <p><span id="maritalStatus"><strong>{{ profileDetails?.maritalStatus }}</strong></span></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4 class="mb-0">Blood Group</h4>
+                  </div>
+                  <div class="col-md-9 text-secondary">
+                    <p><span id="bloodGroup"><strong>{{ profileDetails?.bloodGroup }}</strong></span></p>
+
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4 class="mb-0">Skills</h4>
+                  </div>
+                  <div class="col-md-9 text-secondary">
+                    <p><span id="skills"><strong>{{ profileDetails?.skills }}</strong></span></p>
+
+                  </div>
+                </div>
+                <hr>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row for Joining Details -->
       
-  
+
+
+
+
     </div>
 
 
 
 
-    <div class="container m-1 mt-5">
+    <!-- <div class="container m-1 mt-5">
       <div class="main-body">
 
 
 
         <div class="row gutters-sm ">
           <div class="col-md-4 mb-3 card-with-shadow">
-            <div class="card" >
-              <div class="card-body" >
-                <div class="d-flex flex-column align-items-center text-center" >
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
                   <div class="profile-header-img mb-2">
-                    <img class="rounded-circle img-fluid" [src]="imageUrl || generateDefaultImage()" alt="" style="width: 100px; height: 100px;"/>
+                    <img class="rounded-circle img-fluid" [src]="imageUrl || generateDefaultImage()" alt=""
+                      style="width: 100px; height: 100px;" />
                     <div class="upload-overlay">
                       <label class="add-to-cart" for="fileInput">
                         <i class="fas fa-camera"></i> Upload Image
@@ -108,38 +318,38 @@
                 </div>
               </div>
             </div>
-            <div class="card" >
+            <div class="card">
               <h3 class="text-center" style="font-weight: bold">Joining Detail</h3>
-             
-              <ul class="list-group list-group-flush" >
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Role
+
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Role
                   <p class="m-0"><span id="role">{{ profileDetails?.role.name }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Department
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Department
                   <p class="m-0"><span id="department">{{ profileDetails?.department }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Reporting
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Reporting
                   To
                   <p class="m-0"><span id="teamlead">{{ profileDetails?.teamlead }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Joined On
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Joined On
                   <p class="m-0"><span id="dateofjoining">{{ profileDetails?.dateofjoining }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Total
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Total
                   Leaves
                   <p class="m-0"><span id="totalleaves">{{ profileDetails?.totalleaves }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Sick Leave
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Sick Leave
                   <p class="m-0"><span id="sickLeavesPerMonth">{{ profileDetails?.sickLeavesPerMonth }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Casual
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Casual
                   Leave
                   <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >WFH
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">WFH
                   <p class="m-0"><span id="totalwfh">{{ profileDetails?.totalwfh }}</span></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2" >Assigning
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2">Assigning
                   assets
                   <p class="m-0"><span id="assetName">{{ profileDetails?.assetName }}</span></p>
                 </li>
@@ -152,7 +362,7 @@
               <div class="card-body">
                 <div class="row">
                   <h3 class="text-center" style="font-weight: bold">PERSONAL INFORMATION</h3>
-                 
+
                 </div>
                 <hr>
                 <div class="row">
@@ -175,7 +385,7 @@
                   </div>
                 </div>
                 <hr>
-               
+
                 <div class="row">
                   <div class="col-sm-3">
                     <h4 class="mb-0">Birth Day</h4>
@@ -215,134 +425,138 @@
 
                   </div>
                 </div>
-                
+
               </div>
             </div>
 
-            
 
-            <!-- testing for edit in form start -->
+
             <div class="card mb-3 card-with-shadow">
               <div class="card-body">
-                
+
                 <div class="row">
                   <h3 class="d-flex justify-content-between align-items-center w-100" style="font-weight: bold">
                     BASIC INFORMATION
-                    <button *ngIf="!showEditForm" class="btn btn-primary rounded-pill px-3" (click)="showEditForm = true">
+                    <button *ngIf="!showEditForm" class="btn btn-primary rounded-pill px-3"
+                      (click)="showEditForm = true">
                       <i class="fas fa-edit"></i> Edit
                     </button>
-                    <button *ngIf="showEditForm" class="btn btn-secondary rounded-pill px-3" (click)="showEditForm = false">
+                    <button *ngIf="showEditForm" class="btn btn-secondary rounded-pill px-3"
+                      (click)="showEditForm = false">
                       <i class="fas fa-times"></i> Close
                     </button>
                   </h3>
                 </div>
                 <hr>
-                
+
                 <div class="row">
                   <div class="col-sm-12">
                     <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
                       <div class="form-group">
                         <div class="row">
-                       <div class="col-sm-3">
-                    <h4 class="mb-0">Marital Status</h4>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    <p><span id="maritalStatus">
-                        <select class="form-control" id="maritalStatus" name="maritalStatus"
-                        [(ngModel)]="profileDetails.maritalStatus" #maritalStatus>
-                        <option value="" disabled selected>--Select--</option>
-                        <option value="single">Single</option>
-                        <option value="married">Married</option>
-  
-                      </select>
-                      </span></p>
-                  </div> 
-                </div>                     
-                </div>
-                <hr>
-                      
+                          <div class="col-sm-3">
+                            <h4 class="mb-0">Marital Status</h4>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            <p><span id="maritalStatus">
+                                <select class="form-control" id="maritalStatus" name="maritalStatus"
+                                  [(ngModel)]="profileDetails.maritalStatus" #maritalStatus>
+                                  <option value="" disabled selected>--Select--</option>
+                                  <option value="single">Single</option>
+                                  <option value="married">Married</option>
+
+                                </select>
+                              </span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+
                       <div class="form-group">
                         <div class="row">
-                       <div class="col-sm-3">
-                    <h4 class="mb-0">Blood Group</h4>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    <p><span id="bloodGroup">
-                        <input type="text" class="form-control" id="bloodGroup" name="bloodGroup" [(ngModel)]="profileDetails.bloodGroup" #bloodGroup></span></p>
-                  </div> 
-                </div>                     
-                </div>
-                <hr>
-                      
+                          <div class="col-sm-3">
+                            <h4 class="mb-0">Blood Group</h4>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            <p><span id="bloodGroup">
+                                <input type="text" class="form-control" id="bloodGroup" name="bloodGroup"
+                                  [(ngModel)]="profileDetails.bloodGroup" #bloodGroup></span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+
                       <div class="form-group">
                         <div class="row">
-                       <div class="col-sm-3">
-                    <h4 class="mb-0">Skills</h4>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    <p><span id="skills">
-                        <input type="text" class="form-control" id="skills" name="skills" [(ngModel)]="profileDetails.skills" #skills></span></p>
-                  </div> 
-                </div>                     
-                </div>
-                
-                      <button class="btn btn-primary" type="submit" id="submit" name="submit" (click)="editProfile()">Save</button>
+                          <div class="col-sm-3">
+                            <h4 class="mb-0">Skills</h4>
+                          </div>
+                          <div class="col-sm-9 text-secondary">
+                            <p><span id="skills">
+                                <input type="text" class="form-control" id="skills" name="skills"
+                                  [(ngModel)]="profileDetails.skills" #skills></span></p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <button class="btn btn-primary" type="submit" id="submit" name="submit"
+                        (click)="editProfile()">Save</button>
                     </form>
                     <div *ngIf="!showEditForm">
-                     
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <h4 class="mb-0">Marital Status</h4>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              <p><span id="maritalStatus"><strong>{{ profileDetails?.maritalStatus }}</strong></span></p>
-                            </div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <h4 class="mb-0">Blood Group</h4>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              <p><span id="bloodGroup"><strong>{{ profileDetails?.bloodGroup }}</strong></span></p>
-          
-                            </div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <h4 class="mb-0">Skills</h4>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              <p><span id="skills"><strong>{{ profileDetails?.skills }}</strong></span></p>
-          
-                            </div>
-                          </div>
-                          <hr>
-                         
-                          <div class="row">
-                            <div class="col-sm-12">
-                             
-                              <a> <button class="btn btn-primary rounded-pill px-3" type="button"
-                                  (click)="deletePersonalData()"><i class="fa-solid fa-trash"></i>Delete</button></a>
-                            </div>
-                          </div>
-                        
+
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h4 class="mb-0">Marital Status</h4>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <p><span id="maritalStatus"><strong>{{ profileDetails?.maritalStatus }}</strong></span></p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h4 class="mb-0">Blood Group</h4>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <p><span id="bloodGroup"><strong>{{ profileDetails?.bloodGroup }}</strong></span></p>
+
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h4 class="mb-0">Skills</h4>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <p><span id="skills"><strong>{{ profileDetails?.skills }}</strong></span></p>
+
+                        </div>
+                      </div>
+                      <hr>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+
+                          <a> <button class="btn btn-primary rounded-pill px-3" type="button"
+                              (click)="deletePersonalData()"><i class="fa-solid fa-trash"></i>Delete</button></a>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
-            
+
                 <hr>
-               
+
               </div>
             </div>
 
-           
+
           </div>
         </div>
 
       </div>
-    </div>
+    </div> -->
   </div>
 
 
@@ -654,172 +868,279 @@
 
   <!-- view profile with specific id start -->
   <div *ngSwitchCase="'viewProfile'">
-    <!-- <div class="container" style="margin-top: 2rem;">
-      <div id="content" class="content p-0">
-        <div class="profile-header">
-          <div class="profile-header-cover"></div>
-
-          <div class="profile-header-content">
-            <div class="profile-header-img">
-              <img class="rounded-circle img-fluid" [src]="profileDetailsUser?.profilePhotoUrl || defaultImageURL" alt="" />
-            </div>
-
-            <div class="profile-header-info">
-              <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname }}</span>
-              </p>
-              <p><span id="designation1">{{ profileDetailsUser?.designation }}</span></p>
-
-
-            </div>
-          </div>
-
+    <div class="container mt-5">
+      <!-- Header with personal info -->
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="profileHead">Personal Information</h2>
 
         </div>
+      </div>
 
-        <div class="profile-container">
-          <div class="row row-space-20">
-            <div class="col-md-8">
-              <div class="tab-content p-0">
-                <div class="tab-pane active show" id="profile-about">
+      <!-- Profile image and details -->
+      <div class="row mt-4">
+        <!-- Image column -->
+<div class="col-12">
+  
+</div>
+        <div class="text-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-2 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-2 mb-2'">
+          <div class="profile-header-img">
+          <img class=" img-fluid" [src]="profileDetailsUser?.imageUrl || generateDefaultImageUser()" alt=""
+            style="width: 200px; height: 190px; border-radius: 10px;" />
+            <div class="upload-overlay">
+              <label class="add-to-cart" for="fileInput">
+                <i class="fas fa-camera"></i> Upload Image
+              </label>
+              <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none"
+                (change)="handleFileInput($event)">
 
-                  <table class="table table-profile">
-                    <thead>
-                      <tr>
-                        <th colspan="2">Joining
-                          Detail</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="field">Role :</td>
-                        <td class="value">
-                          <p><span id="role">{{ profileDetailsUser?.role.name }}</span></p>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Department :</td>
-                        <td class="value">
-                          <p><span id="department">{{ profileDetailsUser?.department }}</span></p>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Reporting To :</td>
-                        <td class="value">
-                          <p><span id="teamlead">{{ profileDetailsUser?.teamlead }}</span></p>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Joined On :</td>
-                        <td class="value">
-                          <p><span id="dateofjoining">{{ profileDetailsUser?.dateofjoining }}</span></p>
-
-
-                        </td>
-                      </tr>
-                      <thead>
-                        <tr>
-                          <th colspan="2">BASIC INFORMATION</th>
-
-                        </tr>
-                      </thead>
-
-                      <tr>
-                        <td class="field">Marital Status :</td>
-                        <td class="value">
-                          <p><span id="maritalStatus">{{ profileDetailsUser?.maritalStatus }}</span></p>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Blood Group :</td>
-                        <td class="value">
-                          <p><span id="bloodGroup">{{ profileDetailsUser?.bloodGroup }}</span></p>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Skills :</td>
-                        <td class="value">
-                          <p><span id="skills">{{ profileDetailsUser?.skills }}</span></p>
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="field">Address :</td>
-                        <td class="value">
-                          <p><span id="address">{{ profileDetailsUser?.address }}</span></p>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="field">Emergency Contact :</td>
-                        <td class="value">
-                          <p><span id="emergencyContact">{{ profileDetailsUser?.emergencyContact }}</span>
-                          </p>
-
-                        </td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-
-                </div>
-              </div>
             </div>
+            </div>
+        </div>
 
+        <!-- Details column -->
+        <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-10 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-10 mb-2'">
 
-
-            <div class="col-md-4 hidden-xs hidden-sm">
-              <ul class="profile-info-list">
-                <li class="title">
-                  <h3>PERSONAL INFORMATION</h3>
-                </li>
-                <li>
-                  <div class="field">Full Name:</div>
-                  <div class="value">
-                    <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
-                        }}</span>
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div class="field">Phone No.:</div>
-                  <div class="value">
-                    <p><span id="phonenumber">{{ profileDetailsUser?.phonenumber1 }}</span></p>
-                  </div>
-                </li>
-                <li>
-                  <div class="field">Email:</div>
-                  <div class="value">
-                    <p><span id="emailid">{{ profileDetailsUser?.emailid }}</span></p>
-                  </div>
-                </li>
-                <li>
-                  <div class="field">Designation:</div>
-                  <div class="value">
-                    <p><span id="designation">{{ profileDetailsUser?.designation }}</span></p>
-                  </div>
-                </li>
-                <li>
-                  <div class="field">Birth Day:</div>
-                  <div class="value">
-                    <p><span id="dob">{{ profileDetailsUser?.dob }}</span></p>
-                  </div>
-                </li>
-
-              </ul>
+          <h5 class="profileName mb-0">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname }}</h5>
+          <p class="profileText">({{ profileDetailsUser?.designation }})</p>
+          <hr>
+          <div class="row">
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo1"><img src="/assets/image/icon/email.svg" alt="" class="profileIcon"> {{
+                profileDetailsUser?.emailid }}</p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo1"><img src="/assets/image/icon/contact.svg" alt="" class="profileIcon"> {{
+                profileDetailsUser?.phonenumber }}</p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo1"><img src="/assets/image/icon/address.svg" alt="" class="profileIcon"> {{
+                profileDetailsUser?.address }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo2">Emergency Contact: <span class="profileInfo1">{{ profileDetailsUser?.emergencyContact
+                  }}</span></p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo2">Date of Birth: <span class="profileInfo1">{{ profileDetailsUser?.dob }}</span></p>
+            </div>
+            <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-4 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-4 col-xl-4 mb-2'">
+              <p class="profileInfo2">Gender: <span class="profileInfo1">{{ profileDetailsUser?.gender }}</span></p>
             </div>
           </div>
         </div>
       </div>
-    </div> -->
 
-    <mat-stepper #stepper>
+
+
+
+      <div class="row mt-4 ">
+        <div class="col-md-12 viewButton text-center d-flex justify-content-center">
+
+          <div class="col-md-6 empDetail" style="border-right: 2px solid #D3D2D2;">
+            Employee Details
+          </div>
+          <div class="col-md-6 empDetail">
+            Documents
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <!-- Left Column - Joining Details -->
+        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+          <div class="d-flex justify-content-start">
+            <h2>Joining Details</h2>
+          </div>
+
+          <div class="col-md-12 d-flex justify-content-center" >
+
+            <ul class="list-group list-group-flush card-body" >
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Joining Date:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.dateofjoining }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Probation Duration:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.totalDaysOfProbation }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Mode of Working:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.modeOfWorking }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Shifting Timing:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.shifttimingstart }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Reporting To:
+                <p class="m-0"><span id="teamlead">{{ profileDetailsUser?.teamlead }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Department:
+                <p class="m-0"><span id="department">{{ profileDetailsUser?.department }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Job Type:
+                <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.jobType }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Total Leaves:
+                <p class="m-0"><span id="totalleaves">{{ profileDetailsUser?.totalleaves }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Sick Leave:
+                <p class="m-0"><span id="sickLeavesPerMonth">{{ profileDetailsUser?.sickLeavesPerMonth }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Casual Leave:
+                <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetailsUser?.casualLeavesPerMonth }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Maternity:
+                <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetailsUser?.maternity }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Parternity:
+                <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetailsUser?.parternity }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Assigning assets:
+                <p class="m-0"><span id="assetName">{{ profileDetailsUser?.assetName }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Role:
+                <p class="m-0"><span id="role">{{ profileDetailsUser?.role.name }}</span></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                WFH:
+                <p class="m-0"><span id="totalwfh">{{ profileDetailsUser?.totalwfh }}</span></p>
+              </li>
+            
+            </ul>
+
+          </div>
+        </div>
+
+       
+
+        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+          <div class="d-flex justify-content-between align-items-center">
+  <h2 class="mb-0">Other Details</h2>
+
+  <div>
+    <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="!showEditForm" (click)="showEditForm = true">Edit</button>
+    <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="showEditForm" (click)="showEditForm = false">Close</button>
+    <button type="button" class="btn btn-danger" (click)="deletePersonalData()">Delete</button>
+  </div>
+</div>
+
+          <div class="col-md-12 d-flex justify-content-center">
+
+            <div class="card-body" >
+              <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="mb-0">Marital Status</h4>
+                    </div>
+                    <div class="col-md-9 text-secondary">
+                      <p><span id="maritalStatus">
+                          <select class="form-control" id="maritalStatus" name="maritalStatus"
+                            [(ngModel)]="profileDetails.maritalStatus" #maritalStatus>
+                            <option value="" disabled selected>--Select--</option>
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+
+                          </select>
+                        </span></p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="mb-0">Blood Group</h4>
+                    </div>
+                    <div class="col-md-9 text-secondary">
+                      <p><span id="bloodGroup">
+                          <input type="text" class="form-control" id="bloodGroup" name="bloodGroup"
+                            [(ngModel)]="profileDetails.bloodGroup" #bloodGroup></span></p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="mb-0">Skills</h4>
+                    </div>
+                    <div class="col-md-9 text-secondary">
+                      <p><span id="skills">
+                          <input type="text" class="form-control" id="skills" name="skills"
+                            [(ngModel)]="profileDetails.skills" #skills></span></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <button class="btn btn-primary" type="submit" id="submit" name="submit"
+                  (click)="editProfile()">Save</button> -->
+                  <div class="form-group row justify-content-end">
+                    <div class="col-sm-2 text-secondary">
+                      <button class="btn btn-primary" type="submit" id="submit" name="submit" (click)="editProfile()">Save</button>
+                    </div>
+                  </div>
+              </form>
+              <div *ngIf="!showEditForm">
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4 class="mb-0">Marital Status</h4>
+                  </div>
+                  <div class="col-md-9 text-secondary">
+                    <p><span id="maritalStatus"><strong>{{ profileDetailsUser?.maritalStatus }}</strong></span></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4 class="mb-0">Blood Group</h4>
+                  </div>
+                  <div class="col-md-9 text-secondary">
+                    <p><span id="bloodGroup"><strong>{{ profileDetailsUser?.bloodGroup }}</strong></span></p>
+
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-3">
+                    <h4 class="mb-0">Skills</h4>
+                  </div>
+                  <div class="col-md-9 text-secondary">
+                    <p><span id="skills"><strong>{{ profileDetailsUser?.skills }}</strong></span></p>
+
+                  </div>
+                </div>
+                <hr>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <mat-stepper #stepper>
       <mat-step [stepControl]="firstFormGroup">
-        <!-- <h1 class="text-center">Profile</h1> -->
         <div class="container m-1 mt-5">
           <div class="main-body">
 
@@ -831,13 +1152,14 @@
                   <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                       <div class="profile-header-img mb-2">
-                        <!-- <img class="rounded-circle img-fluid"
-                          [src]="'https://hrms.prilient.com' + profileDetailsUser?.profilePhotoUrl || generateDefaultImageUser()" alt="" /> -->
-                          <img class="rounded-circle img-fluid" [src]="profileDetailsUser?.imageUrl || generateDefaultImageUser()" alt="" style="width: 100px; height: 100px;"/>
+                                                <img class="rounded-circle img-fluid"
+                          [src]="profileDetailsUser?.imageUrl || generateDefaultImageUser()" alt=""
+                          style="width: 100px; height: 100px;" />
                       </div>
                       <div class="mt-3">
-                        <p><span id="firstname"><strong>{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
-                            }}</strong></span>
+                        <p><span id="firstname"><strong>{{ profileDetailsUser?.firstname + " " +
+                              profileDetailsUser?.lastname
+                              }}</strong></span>
                         </p>
                         <p><span id="designation1"><strong>{{ profileDetailsUser?.designation }}</strong></span></p>
 
@@ -847,64 +1169,47 @@
                 </div>
                 <div class="card">
                   <h3 class="text-center" style="font-weight: bold">Joining Detail</h3>
-                  <!-- <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Role
-                      <p><span id="role">{{ profileDetailsUser?.role.name }}</span></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Department
-                      <p><span id="department">{{ profileDetailsUser?.department }}</span></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Reporting To
-                      <p><span id="teamlead">{{ profileDetailsUser?.teamlead }}</span></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Joined On
-                      <p><span id="dateofjoining">{{ profileDetailsUser?.dateofjoining }}</span></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Total Leaves
-                      <p><span id="dateofjoining">{{ profileDetailsUser?.totalleaves }}</span></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Sick Leave
-                      <p><span id="dateofjoining">{{ profileDetailsUser?.sickLeavesPerMonth }}</span></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">Casual Leave
-                      <p><span id="dateofjoining">{{ profileDetailsUser?.casualLeavesPerMonth }}</span></p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">WFH
-                      <p><span id="dateofjoining">{{ profileDetailsUser?.totalwfh }}</span></p>
-                    </li>
-                  </ul> -->
+                  
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Role
-                      <p class="m-0"><span id="role" class="text-secondary"><strong>{{ profileDetailsUser?.role.name }}</strong></span></p>
+                      <p class="m-0"><span id="role" class="text-secondary"><strong>{{ profileDetailsUser?.role.name
+                            }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">
                       Department
-                      <p class="m-0"><span id="department" class="text-secondary"><strong>{{ profileDetailsUser?.department }}</strong></span></p>
+                      <p class="m-0"><span id="department" class="text-secondary"><strong>{{
+                            profileDetailsUser?.department }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">
                       Reporting To
-                      <p class="m-0"><span id="teamlead" class="text-secondary"><strong>{{ profileDetailsUser?.teamlead }}</strong></span></p>
+                      <p class="m-0"><span id="teamlead" class="text-secondary"><strong>{{ profileDetailsUser?.teamlead
+                            }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Joined
                       On
-                      <p class="m-0"><span id="dateofjoining" class="text-secondary"><strong>{{ profileDetailsUser?.dateofjoining }}</strong></span></p>
+                      <p class="m-0"><span id="dateofjoining" class="text-secondary"><strong>{{
+                            profileDetailsUser?.dateofjoining }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Total
                       Leaves
-                      <p class="m-0"><span id="totalleaves" class="text-secondary"><strong>{{ profileDetailsUser?.totalleaves }}</strong></span></p>
+                      <p class="m-0"><span id="totalleaves" class="text-secondary"><strong>{{
+                            profileDetailsUser?.totalleaves }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Sick
                       Leave
-                      <p class="m-0"><span id="sickLeavesPerMonth" class="text-secondary"><strong>{{ profileDetailsUser?.sickLeavesPerMonth }}</strong></span>
+                      <p class="m-0"><span id="sickLeavesPerMonth" class="text-secondary"><strong>{{
+                            profileDetailsUser?.sickLeavesPerMonth }}</strong></span>
                       </p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">Casual
                       Leave
-                      <p class="m-0"><span id="casualLeavesPerMonth" class="text-secondary"><strong>{{ profileDetailsUser?.casualLeavesPerMonth
-                          }}</strong></span></p>
+                      <p class="m-0"><span id="casualLeavesPerMonth" class="text-secondary"><strong>{{
+                            profileDetailsUser?.casualLeavesPerMonth
+                            }}</strong></span></p>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap mb-1">WFH
-                      <p class="m-0"><span id="totalwfh" class="text-secondary"><strong>{{ profileDetailsUser?.totalwfh }}</strong></span></p>
+                      <p class="m-0"><span id="totalwfh" class="text-secondary"><strong>{{ profileDetailsUser?.totalwfh
+                            }}</strong></span></p>
                     </li>
 
                   </ul>
@@ -916,14 +1221,7 @@
                   <div class="card-body">
                     <div class="row">
                       <h3 class="text-center" style="font-weight: bold">PERSONAL INFORMATION</h3>
-                      <!-- <div class="col-sm-3">
-                        <h4 class="mb-0">Full Name</h4>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        <p><span id="firstname">{{ profileDetailsUser?.firstname + " " + profileDetailsUser?.lastname
-                            }}</span>
-                        </p>
-                      </div> -->
+                     
                     </div>
                     <hr>
                     <div class="row">
@@ -946,15 +1244,7 @@
                       </div>
                     </div>
                     <hr>
-                    <!-- <div class="row">
-                      <div class="col-sm-3">
-                        <h4 class="mb-0">Designation</h4>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        <p><span id="designation">{{ profileDetailsUser?.designation }}</span></p>
-
-                      </div>
-                    </div> -->
+                    
                     <div class="row">
                       <div class="col-sm-3">
                         <h4 class="mb-0">Birth Day</h4>
@@ -972,7 +1262,7 @@
                       </div>
                       <div class="col-sm-9 text-secondary">
                         <span id="dob"><strong>{{ profileDetailsUser?.gender }}</strong></span>
-    
+
                       </div>
                     </div>
                     <hr>
@@ -981,7 +1271,8 @@
                         <h4 class="mb-0">Emergency Contact</h4>
                       </div>
                       <div class="col-sm-9 text-secondary">
-                        <p><span id="emergencyContact"><strong>{{ profileDetailsUser?.emergencyContact }}</strong></span>
+                        <p><span id="emergencyContact"><strong>{{ profileDetailsUser?.emergencyContact
+                              }}</strong></span>
                         </p>
                       </div>
                     </div>
@@ -1031,28 +1322,7 @@
 
                       </div>
                     </div>
-                    <!-- <hr>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <h4 class="mb-0">Assigning assets</h4>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        <p><span id="address">{{ profileDetailsUser?.assetName }}</span></p>
-
-                      </div>
-                    </div>
-                    <hr> -->
-                    <!-- <div class="row">
-                      <div class="col-sm-3">
-                        <h4 class="mb-0">Emergency Contact</h4>
-                      </div>
-                      <div class="col-sm-9 text-secondary">
-                        <p><span id="emergencyContact">{{ profileDetailsUser?.emergencyContact }}</span>
-                        </p>
-                      </div>
-                    </div> -->
-                    <!-- <hr> -->
-
+                   
                   </div>
                 </div>
 
@@ -1081,15 +1351,14 @@
           </div>
           <div class="row justify-content-center">
 
-            <!-- <button mat-button matStepperNext>Next</button> -->
             <div class="col-md-9 d-flex justify-content-end">
-              <button class="btn btn-primary m-1" mat-button [routerLink]="['/test', 'employee']" (click)="loginService.showTable('employee')">Back</button>
+              <button class="btn btn-primary m-1" mat-button [routerLink]="['/test', 'employee']"
+                (click)="loginService.showTable('employee')">Back</button>
               <button class="btn btn-primary m-1" mat-button matStepperNext>Next</button>
             </div>
           </div>
 
           <mat-step [stepControl]="secondFormGroup">
-            <!-- <h1 class="text-center">Documents</h1> -->
             <ng-template matStepLabel>Documents</ng-template>
             <div class="container px-4 py-0 text-center">
 
@@ -1104,50 +1373,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- <tr >
-                      <td>{{ 1 }}</td>
-                      <td>{{profileDetailsUser?.academicDocument1 ? 'academicDocument1' : null }} </td>
-                      <td>{{ profileDetailsUser?.academicDocument2 ? 'academicDocument2' : null  }}</td>
-                      <td>{{ profileDetailsUser?.academicDocument3 ? 'academicDocument3' : null  }}</td>
-                      <td>{{ profileDetailsUser?.academicDocument4 ? 'academicDocument4' : null }}</td>
-                      <td>{{ profileDetailsUser?.aadharCard ? 'aadharCard' : null }}</td>
-                      <td>{{ profileDetailsUser?.panCard ? 'panCard' : null }}</td>
-                      <td>{{ profileDetailsUser?.signature ? 'signature' : null }}</td>
-                      <td>{{ profileDetailsUser?.userImage ? 'userImage' : null }}</td>
-                      <td>{{ profileDetailsUser?.offerLetter ? 'offerLetter' : null }}</td>
-                      <td>{{ profileDetailsUser?.resignationLetter ? 'resignationLetter' : null }}</td>
-                      <td>{{ profileDetailsUser?.apprisalLetter ? 'apprisalLetter' : null }}</td>
-                      <td>{{ profileDetailsUser?.salarySlip1 ? 'salarySlip1' : null }}</td>
-                      <td>{{ profileDetailsUser?.salarySlip2 ? 'salarySlip2' : null }}</td>
-                      <td>{{ profileDetailsUser?.salarySlip3 ? 'salarySlip3' : null }}</td>
-
-                      <td>
-                        <button type="button" class="btn btn-link" (click)="DownloadDocs(id)">
-                          <i class="fa-solid fa-download"></i>
-                        </button>
-                      </td>
-
-                    </tr> -->
-
-                    <!-- <tr *ngIf="profileDetailsUser?.academicDocument1">
-                      <td>{{ 1 }}</td>
-                      <td>{{profileDetailsUser?.academicDocument1 ? '10th marksheet' : null }} </td>
-                      <td>
-                        <button type="button" class="btn btn-link"
-                          (click)="DownloadDocs(profileDetailsUser?.id, 'academicDocument1.pdf')">
-                          <i class="fa-solid fa-download"></i>
-                        </button>
-                      </td>
-                    </tr> -->
+                    
 
                     <tr *ngIf="profileDetailsUser?.academicDocument1">
                       <td>{{ 1 }}</td>
                       <td>{{profileDetailsUser?.academicDocument1 ? '10th marksheet' : null }} </td>
                       <td>
-                        <button type="button" class="btn btn-link" (click)="DownloadDocs(profileDetailsUser?.id, '10th_Marksheet_' , 'academicDocument1.pdf')">
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, '10th_Marksheet_' , 'academicDocument1.pdf')">
                           <i class="fa-solid fa-download"></i>
                         </button>
-                        
+
                       </td>
                     </tr>
 
@@ -1252,7 +1488,7 @@
                         </button>
                       </td>
                     </tr>
-                   
+
                     <tr *ngIf="profileDetailsUser?.userImage">
                       <td>{{ 12 }}</td>
                       <td>{{profileDetailsUser?.userImage ? 'User Image' : null }} </td>
@@ -1280,7 +1516,7 @@
           </mat-step>
         </div>
       </mat-step>
-    </mat-stepper>
+    </mat-stepper> -->
 
   </div>
 

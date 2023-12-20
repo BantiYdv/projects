@@ -146,7 +146,7 @@ body .fc-ltr .fc-basic-view .fc-day-top .fc-day-number,
 body .fc-widget-header a {
     color: #000;
 }
-.profile-header-img {
+/* .profile-header-img {
     float: left;
     width: 7.5rem;
     height: 7.8rem;
@@ -157,8 +157,7 @@ body .fc-widget-header a {
     -webkit-border-radius: 0.25rem;
     -moz-border-radius: 0.25rem;
     border-radius: 50%;
-    /* background: #fff; */
-}
+} */
 .profile-header-info h4 {
     font-weight: 500;
     margin-bottom: 0.3125rem;
@@ -374,7 +373,7 @@ body .fc-widget-header a {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     padding-top: 30px;
     color: #000;
   }
@@ -490,9 +489,9 @@ body .fc-widget-header a {
 
 .profileHead{
     color: #2C2C2C;
-font-size: 25px;
+font-size: 22px;
 font-style: normal;
-font-weight: 600;
+font-weight: 500;
 line-height: normal;
 text-transform: capitalize;
 }
@@ -523,10 +522,10 @@ line-height: normal;
 
 
 .profileInfo2{
-    color: #767C82;
+    color: #2C2C2C;
 font-size: 15px;
 font-style: normal;
-font-weight: 500;
+font-weight: 600;
 line-height: normal;
 text-transform: capitalize;
 }
@@ -534,7 +533,7 @@ text-transform: capitalize;
 .viewButton{
     display: flex;
 /* width: 969px; */
-padding: 18px 288px 18px 130px;
+padding: 14px 140px 14px 130px;
 justify-content: center;
 align-items: center;
 /* gap: 45px; */
@@ -552,4 +551,18 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 text-transform: capitalize;
+}
+
+.detailsText{
+    color: #2C2C2C;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.EditButton{
+
+background: #3331B0 !important;
+
 }
