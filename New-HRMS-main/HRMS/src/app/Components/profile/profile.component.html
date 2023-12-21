@@ -74,10 +74,10 @@
       <div class="row mt-4 ">
         <div class="col-md-12 viewButton text-center d-flex justify-content-center">
 
-          <div class="col-md-6 empDetail" style="border-right: 2px solid #D3D2D2;" (click)="showJoiningDetails()">
+          <div class="empDetail" style="border-right: 2px solid #D3D2D2;" (click)="showJoiningDetails()" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 mb-2'">
             Employee Details
           </div>
-          <div class="col-md-6 empDetail" (click)="showDocuments()">
+          <div class="empDetail" (click)="showDocuments()" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 mb-2'">
             Documents
           </div>
         </div>
@@ -279,31 +279,31 @@
 
       <!-- Row for Joining Details -->
       
-      <div class="col-6 text-center mt-3" *ngIf="isDocumentsVisible">
+      <div class="col-12 text-center mt-3" *ngIf="isDocumentsVisible">
         <!-- Documents content -->
         <div class="d-flex justify-content-between align-items-center">
-            <h2 class="mb-0">Documents</h2>
+            
             <div class="container px-4 py-0 text-center">
 
               <div class="table-responsive mt-4">
-                <table class="table table-bordered table-sm">
-                  <thead class="table-dark">
+                <table class="table table-bordered table-sm" style="border: 2px solid #DDDCDC;">
+                  <thead class="">
                     <tr>
-                      <th>S.No</th>
-                      <th>Document Name</th>
-                      <th>Download</th>
+                      <th class="thName">S.No</th>
+                      <th class="thName">Document Name</th>
+                      <th class="thName">Download</th>
 
                     </tr>
                   </thead>
 
                   <tbody class="tbName">
-                    <ng-container *ngFor="let document of getDocumentsArray()">
+                    <ng-container *ngFor="let document of getDocumentsArrayProfile()">
                       <tr>
-                        <td>{{ getDocumentIndex(document) }}</td>
+                        <td>{{ getDocumentIndexProfile(document) }}</td>
                         <td>{{ document.label }}</td>
                         <td>
                           <button type="button" class="btn btn-link"
-                            (click)="DownloadDocs(profileDetailsUser?.id, document.fileNamePrefix, document.fileName)">
+                            (click)="DownloadDocs(profileDetails?.id, document.fileNamePrefix, document.fileName)">
                             <img src="/assets/image/icon/download.svg" alt="" class="download">
                           </button>
                         </td>
@@ -444,11 +444,8 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
-                <button type="button" class="btn btn-primary m-1" data-bs-dismiss="modal" (click)="AllDocsDownload()">
-                  All Download</button>
-                <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal"
-                  (click)="closeForm()">Close</button>
+                <button type="button" class="btn allDownload m-1" data-bs-dismiss="modal" (click)="AllDocsDownload()">
+                  Download all</button>
               </div>
             </div>
         </div>

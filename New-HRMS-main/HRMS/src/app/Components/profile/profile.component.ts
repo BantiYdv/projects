@@ -236,17 +236,17 @@ userProfile(): void {
 // }
 
 
-DownloadDocs(id: number, downloadName: string, filename: string) {
+DownloadDocs(id: number, fileNamePrefix: string, fileName: string) {
   // Fetch the user details to access first and last name
   const firstName = this.profileDetailsUser?.firstname || '';
   const lastName = this.profileDetailsUser?.lastname || '';
 
   // Concatenate the first name, last name, and desired filename extension
-  const concatenatedFilename = downloadName + firstName + lastName + '.' + filename.split('.').pop();
+  const concatenatedFilename = fileNamePrefix + firstName + lastName + '.' + fileName.split('.').pop();
 
   if (id) {
     console.log("id docs", id);
-    this.profileService.DownloadDocs(id, downloadName, filename).subscribe((response: HttpResponse<Blob>) => {
+    this.profileService.DownloadDocs(id, fileNamePrefix, fileName).subscribe((response: HttpResponse<Blob>) => {
       if (response.body) {
         saveAs(response.body, concatenatedFilename);
         console.log("document", response);
@@ -828,8 +828,18 @@ getDocumentsArray(): any[] {
   return this.documentsArray.filter(document => this.profileDetailsUser[document.property]);
 }
 
+
+
 getDocumentIndex(document: any): number {
   const filteredDocuments = this.getDocumentsArray();
+  return filteredDocuments.indexOf(document) + 1;
+}
+
+getDocumentsArrayProfile(): any[] {
+  return this.documentsArray.filter(document => this.profileDetails[document.property]);
+}
+getDocumentIndexProfile(document: any): number {
+  const filteredDocuments = this.getDocumentsArrayProfile();
   return filteredDocuments.indexOf(document) + 1;
 }
 // show documnets of employee to admin end

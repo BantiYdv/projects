@@ -1734,6 +1734,42 @@ console.log("serch designation", this.designation);
   //API for getting designation end
 
 
-  
+  filterPositionsDataCandidate(){
 
+  }
+getPaginatedDataCandidate(){
+
+}
+getTotalPagesCandidate(){
+
+}
+getDownloadResume(){
+
+}
+getSendConfirmationMail(){
+
+}
+putUpdateConfirmationStatus(){
+
+}
+toggleOptions(){
+
+}
+getInterviewByIdRecruitment(){
+
+}
+deleteInterviewByIdRecruitment(){
+
+}
+getPageNumbersCandidate(){
+
+}
+changePageCandidate(){
+
+}
+nextPageCandidate(){
+
+}
+itemsPerPageCandidate: any;
+searchTermCandidate: any;
 }

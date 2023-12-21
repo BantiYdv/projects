@@ -747,175 +747,185 @@
 
   <div *ngSwitchCase="'teamleave'">
 
-    <!-- <div class="content m-1 mt-4">
-      <div class="container">
+   <div class="m-1 mt-4">
+      <div class="">
         <div class="row justify-content-center">
           <div class="col-md-12">
-
             <div class="row">
-              <div class="col-md-6 d-flex justify-content-start">
-                <div class="added_positions_list_right">
-                  <div class="added_positions_under_head">Show</div>
-                  <div>
-                    <select class="added_positions_under_head_select" [(ngModel)]="RoleperPage">
-                      <option value="5">5</option>
-                      <option value="10">10</option>
-                      <option value="15">15</option>
-                      <option value="20">20</option>
-                      <option value="25">25</option>
-                    </select>
-                  </div>
-                  <div class="added_positions_under_head">Enteries</div>
-                </div>
+              <div class="col-md-12 added_positions_list_head">
+                <p>Added Candidate List</p>
               </div>
-              <div class="col-md-6 d-flex justify-content-end align-items-center">
-                <div class="col-md-6">
-                  <div class="search-container ">
-                    <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
-                      alt="">
-                    <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchRole"
-                      (keyup)="FilterRole()">
+              <div class="col-md-12 d-flex flex-wrap justify-content-between">
+                <div class="col-md-6 d-flex justify-content-start">
+                  <div class="added_positions_list_right">
+                    <div class="added_positions_under_head">Show</div>
+                    <div>
+                      <select class="added_positions_under_head_select" >
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                      </select>
+                    </div>
+                    <div class="added_positions_under_head">Enteries</div>
                   </div>
                 </div>
-                <div class="col-md-2">
-                  <button class="button_added_position_list">Search</button>
+              
+
+
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                  <div class="col-md-6 offset-md-4">
+                    <div class="search-container ">
+                      <img src="../../../assets/image/search_icon_recruitment.svg"
+                        class="search_icon_added_position_list" alt="">
+                      <input type="text" name="" id="" class="search_added_position_list"
+                        [(ngModel)]="searchTermCandidate" >
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="button_added_position_list">Search</button>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div class="row">
-
-
+            <div class="not_data_img_div" >
+              <p>Not Data !!</p>
+            </div>
+            <div class="row" >
               <div class="recruit_table">
                 <div class="table_head">
-                  <div class="table_head_topics my-2" style="width: 5%;border-right: 2px solid #ADADAD; height: 100%;">
-                    S.No</div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; Name
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
+                  <div class="table_head_topics" style="width: 5%;">S.No.</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">Name</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">
                     &nbsp; Email Id
                   </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">
                     &nbsp; From Date
                   </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; To Date
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; No Of Days
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; Leave Type
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; Status
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; By Whom
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; Team Lead
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; Approve
-                  </div>
-                  <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
-
-                    &nbsp; Reject
-                  </div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                 
+                  <div class="table_head_topics" style="width: 20%;">To Date</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 10%;">No Of Days</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">Leave Type</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">Status</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">By Whom</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">Team Lead</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">Approve</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">Reject</div>
 
                 </div>
-
                 <div class="my-1">
-                  <div class="table_body" *ngFor="let item of getPaginatedData(); let i = index">
-                    <div class="table_body_topics my-2" style="width: 5%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
-                    </div>
-                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
-                      item.name }}</div>
-                    <div class="table_body_topics my-2"
-                      style="width: 30%;border-right: 2px solid #ADADAD; justify-content: normal;">
-                      <ul class="list-with-images">
-                        <li *ngFor="let permission of item.permissions">
-                          {{ formatOption(permission.permissionName) }}
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="table_body_topics Rolebutton mt-2" style="width: 30%;">
-                      <button type="button" class="btn m-1 deleteRole" (click)="deleteRole(item.id)"><img
-                          src="/assets/image/icon/deleteRole.svg" alt="" class="RoleHover">Delete Role</button>
-                      <button type="button" class="btn m-1 editPermission" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal" (click)="openAddPermission(item)"><img
-                          src="/assets/image/icon/editPermission.svg" alt="" class="PermissionHover">Edit
-                        Permissions</button>
-                    </div>
+                  <div class="table_body" *ngFor="let item of TeamLeaveData; let i = index">
+                    <div class="table_body_topics" style="width: 5%;">{{ i + 1 }}</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics" style="width: 20%;">{{ item.firstname+' '+item.lastname }}</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics" style="width: 20%;">{{ item.emailid }}</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
 
+                    <div class="table_body_topics" style="width: 20%;">
+                      {{ item.fromDate }}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics" style="width: 20%;">
+                      {{ item.toDate }}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics interview_action_data" style="width: 10%; cursor: pointer;">
+                      {{ item.noOfDays }}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                      {{ item.leaveType }}
+                      
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    
+                    <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                      {{ item.approval }}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    
+                    <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                      {{ item.approvedBy }}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    
+                    <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                      {{ item.teamlead }}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    
+                    <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                      {{ item.Approved }}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    
+                    <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;"
+                     >
+                     {{ item.Rejected }}
+                    </div>
 
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="col-md-12" *ngIf="getTotalPagesRole() > 1">
-              <div class="table_footer mt-2">
-                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
-                  style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
-                  <i class="fa fa-angle-left"></i> Previous
-                </button>
-                <div class="recruitment_list_number">
-                  <div *ngFor="let pageNumber of getPageNumbersRole()" [class.active_num]="pageNumber === currentPage"
-                    class="recruitment_list_number_value" (click)="changePageRole(pageNumber)">
-                    {{ pageNumber }}
-                  </div>
+          </div>
+          <div class="col-md-12" >
+            <div class="table_footer mt-2">
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                style="background-color:#421cdd;"  [disabled]="currentPage == 1">
+                <i class="fa fa-angle-left"></i> Previous
+              </button>
+              <div class="recruitment_list_number">
+                <div>
+                  esdsdssd
                 </div>
-                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
-                  style="background-color:#421cdd;" (click)="nextPageRole()"
-                  [disabled]="currentPage == getTotalPagesRole()">
-                  Next <i class="fa fa-angle-right"></i>
-                </button>
-
               </div>
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                style="background-color:#421cdd;" >
+                Next <i class="fa fa-angle-right"></i>
+              </button>
+
             </div>
-
-
           </div>
         </div>
       </div>
-     
-    </div> -->
+    </div>
 
     <!-- <div *ngIf="isHashEqualTo('/test/teamleave')"> -->
     <div class="table-responsive mt-4">
       <table class="table table-bordered table-sm">
 
-        <thead class="table-dark">
+        <thead>
           <tr>
-            <th>S.No</th>
-            <th>Name</th>
-            <th>Email Id</th>
-            <th>From Date</th>
-            <th>To Date</th>
-            <th>No Of Days</th>
-            <th>Leave Type</th>
-            <th>Status</th>
-            <th>By Whom</th>
-            <th>Team Lead</th>
-            <th>Approve</th>
-            <th>Reject</th>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Email Id</th>
+            <th class="thName">From Date</th>
+            <th class="thName">To Date</th>
+            <th class="thName">No Of Days</th>
+            <th class="thName">Leave Type</th>
+            <th class="thName">Status</th>
+            <th class="thName">By Whom</th>
+            <th class="thName">Team Lead</th>
+            <th class="thName">Approve</th>
+            <th class="thName">Reject</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let item of TeamLeaveData; let i = index">
+        <tbody class="tdData">
+          <tr *ngFor="let item of TeamLeaveData; let i = index" >
             <td>{{ i + 1 }}</td>
             <td>{{ item.firstname+' '+item.lastname }}</td>
             <td>{{ item.emailid }}</td>

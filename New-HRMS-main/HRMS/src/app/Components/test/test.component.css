@@ -958,3 +958,146 @@ background: #421CDD;
 }
 
 
+
+
+/* team leave table */
+
+.added_positions_list_head {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.added_positions_list_right {
+  display: flex;
+  align-items: center;
+}
+.added_positions_under_head {
+  font-size: 18px;
+  padding: 10px;
+}
+.added_positions_under_head_select {
+  border: 1px solid #adadad;
+  font-size: 18px;
+  padding: 3px;
+  border-radius: 8px;
+}
+.added_positions_under_head {
+  font-size: 18px;
+  padding: 10px;
+}
+.added_positions_under_head_select {
+  border: 1px solid #adadad;
+  font-size: 18px;
+  padding: 3px;
+  border-radius: 8px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.search_icon_added_position_list {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  left: 35px;
+}
+
+.search_added_position_list {
+  height: 40px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #000;
+  outline: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 15px 45px;
+}
+.button_added_position_list {
+  height: 40px;
+  /* display: flex;
+  flex: 1; */
+  padding: 0px 20px;
+  font-size: 18px;
+  background-color: #421cdd;
+  color: #fff;
+  outline: none;
+  border: 1px solid #421cdd;
+  border-radius: 8px;
+}
+.recruit_table {
+  flex-shrink: 1;
+  overflow-x: auto;
+}
+.table_head {
+  line-height: 50px;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  border: 3px solid #d9d9d9;
+  border-radius: 10px 10px 0 0;
+  min-width: 900px;
+}
+
+.table_body {
+  line-height: 50px;
+  color: #000;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+
+  border: 3px solid #d9d9d9;
+  min-width: 900px;
+}
+.table_body:nth-child(even) {
+  background-color: #ffffff;
+}
+.table_body:nth-child(odd) {
+  background-color: #e5e5e5;
+}
+.table_head_topics {
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.table_body_topics {
+  font-size: 15px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table_body_topics:nth-child(1) {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+
+
+
+/*  */
+
+.thName{
+  color: #000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+background-color: #DFEAFF !important;
+}
+.tdData:nth-child(even) {
+  background-color: #ffffff;
+}
+.tdData:nth-child(odd) {
+  background-color: #e5e5e5;
+}
+
+table{
+  border-radius: 5px !important;
+}
