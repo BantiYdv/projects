@@ -1612,6 +1612,7 @@ RoleperPage: number = 5;
 currentPage: number = 1;
 
 
+
 getPaginatedData(): any[] {
   const startIndex = (this.currentPage - 1) * this.RoleperPage;
   const endIndex = startIndex + this.RoleperPage;
@@ -1654,6 +1655,55 @@ getTotalPagesRole(): number {
   );
 }
 // pagination for view role end
+
+// pagination for view Employee start
+employeeperPage: number = 8;
+currentemployeePage: number = 1;
+
+
+
+getPaginatedEmpData(): any[] {
+  const startIndex = (this.currentemployeePage - 1) * this.employeeperPage;
+  const endIndex = startIndex + this.employeeperPage;
+  return this.filteredEmployeeData.slice(startIndex, endIndex);
+}
+
+previousEmpPage(): void {
+  if (this.currentemployeePage > 1) {
+    this.currentemployeePage--;
+  }
+}
+
+getPageNumbersEmp(): number[] {
+  const totalPages = Math.ceil(
+    this.filteredEmployeeData.length / this.employeeperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageEmp(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesEmp()) {
+    this.currentemployeePage = pageNumber;
+  }
+}
+
+
+nextPageEmp(): void {
+  const totalPages = Math.ceil(
+    this.filteredEmployeeData.length / this.employeeperPage
+  );
+  if (this.currentemployeePage < totalPages) {
+    this.currentemployeePage++;
+  }
+}
+
+
+getTotalPagesEmp(): number {
+  return Math.ceil(
+    this.filteredEmployeeData.length / this.employeeperPage
+  );
+}
+// pagination for view Employee end
 
 
 isGridView = true; // Initial view is grid

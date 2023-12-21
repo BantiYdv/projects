@@ -74,10 +74,10 @@
       <div class="row mt-4 ">
         <div class="col-md-12 viewButton text-center d-flex justify-content-center">
 
-          <div class="col-md-6 empDetail" style="border-right: 2px solid #D3D2D2;">
+          <div class="col-md-6 empDetail" style="border-right: 2px solid #D3D2D2;" (click)="showJoiningDetails()">
             Employee Details
           </div>
-          <div class="col-md-6 empDetail">
+          <div class="col-md-6 empDetail" (click)="showDocuments()">
             Documents
           </div>
         </div>
@@ -86,7 +86,7 @@
 
       <div class="row">
         <!-- Left Column - Joining Details -->
-        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+        <div class="col-6 text-center mt-3" *ngIf="isJoiningDetailsVisible" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
           <div class="d-flex justify-content-start">
             <h2>Joining Details</h2>
           </div>
@@ -162,7 +162,7 @@
 
        
 
-        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+        <div class="col-6 text-center mt-3" *ngIf="isJoiningDetailsVisible" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
           <div class="d-flex justify-content-between align-items-center">
   <h2 class="mb-0">Other Details</h2>
 
@@ -273,14 +273,171 @@
 
       <!-- Row for Joining Details -->
       
+      <div class="col-6 text-center mt-3" *ngIf="isDocumentsVisible">
+        <!-- Documents content -->
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Documents</h2>
+            <div class="container px-4 py-0 text-center">
+
+              <div class="table-responsive mt-4">
+                <table class="table table-bordered table-sm">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>S.No</th>
+                      <th>Document Name</th>
+                      <th>Download</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+
+                    <tr *ngIf="profileDetailsUser?.academicDocument1">
+                      <td>{{ 1 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument1 ? '10th marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, '10th_Marksheet_' , 'academicDocument1.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+
+                      </td>
+                    </tr>
 
 
+                    <tr *ngIf="profileDetailsUser?.academicDocument2">
+                      <td>{{ 2 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument2 ? '12th marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, '12th_Marksheet_', 'academicDocument2.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.academicDocument3">
+                      <td>{{ 3 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument3 ? 'Graduation marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Gradutaion_Marksheet_', 'academicDocument3.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.academicDocument4">
+                      <td>{{ 4 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument4 ? 'Higher education marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Higher_Education_Marksheet_', 'academicDocument4.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.signature">
+                      <td>{{ 5 }}</td>
+                      <td>{{profileDetailsUser?.signature ? 'Signature' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Signature_', 'signature.png')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.aadharCard">
+                      <td>{{ 6 }}</td>
+                      <td>{{profileDetailsUser?.aadharCard ? 'Aadhar Card' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'AadharCard_', 'aadharCard.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.panCard">
+                      <td>{{ 7 }}</td>
+                      <td>{{profileDetailsUser?.panCard ? 'Pan Card' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'PanCard_', 'panCard.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.offerLetter">
+                      <td>{{ 8 }}</td>
+                      <td>{{profileDetailsUser?.offerLetter ? 'Offer Letter' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Offer_Letter_', 'offerLetter.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.RelievingLetter">
+                      <td>{{ 9 }}</td>
+                      <td>{{profileDetailsUser?.RelievingLetter ? 'Relieving Letter' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Relieving_Letter_', 'RelievingLetter.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.ExperienceLetter">
+                      <td>{{ 10 }}</td>
+                      <td>{{profileDetailsUser?.ExperienceLetter ? 'Experience Letter' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Experience_Letter_', 'ExperienceLetter.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.salarySlip1">
+                      <td>{{ 11 }}</td>
+                      <td>{{profileDetailsUser?.salarySlip1 ? 'Salary Slip' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Salary_Slip_', 'salarySlip1.pdf')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr *ngIf="profileDetailsUser?.userImage">
+                      <td>{{ 12 }}</td>
+                      <td>{{profileDetailsUser?.userImage ? 'User Image' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'User_Image_', 'userImage.png')">
+                          <i class="fa-solid fa-download"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary m-1" mat-button matStepperPrevious>Back</button>
+                <button type="button" class="btn btn-primary m-1" data-bs-dismiss="modal" (click)="AllDocsDownload()">
+                  All Download</button>
+                <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal"
+                  (click)="closeForm()">Close</button>
+              </div>
+            </div>
+        </div>
+    </div>
+  
 
 
     </div>
 
-
-
+   
 
     <!-- <div class="container m-1 mt-5">
       <div class="main-body">
@@ -887,14 +1044,14 @@
           <div class="profile-header-img">
           <img class=" img-fluid" [src]="profileDetailsUser?.imageUrl || generateDefaultImageUser()" alt=""
             style="width: 200px; height: 190px; border-radius: 10px;" />
-            <div class="upload-overlay">
+            <!-- <div class="upload-overlay">
               <label class="add-to-cart" for="fileInput">
                 <i class="fas fa-camera"></i> Upload Image
               </label>
               <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none"
                 (change)="handleFileInput($event)">
 
-            </div>
+            </div> -->
             </div>
         </div>
 
@@ -940,10 +1097,10 @@
       <div class="row mt-4 ">
         <div class="col-md-12 viewButton text-center d-flex justify-content-center">
 
-          <div class="col-md-6 empDetail" style="border-right: 2px solid #D3D2D2;">
+          <div class="empDetail" style="border-right: 2px solid #D3D2D2;" (click)="showJoiningDetails()" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 mb-2'">
             Employee Details
           </div>
-          <div class="col-md-6 empDetail">
+          <div class="empDetail" (click)="showDocuments()" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 mb-2'">
             Documents
           </div>
         </div>
@@ -952,7 +1109,7 @@
 
       <div class="row">
         <!-- Left Column - Joining Details -->
-        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+        <div class="col-6 text-center mt-3" *ngIf="isJoiningDetailsVisible" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
           <div class="d-flex justify-content-start">
             <h2>Joining Details</h2>
           </div>
@@ -1028,21 +1185,21 @@
 
        
 
-        <div class="col-6 text-center mt-3" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
+        <div class="col-12 text-center mt-3" *ngIf="isJoiningDetailsVisible" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-12 col-lg-12 col-xl-6 mb-2' : 'col-12 col-sm-3 col-md-12 col-lg-6 col-xl-6 mb-2'">
           <div class="d-flex justify-content-between align-items-center">
   <h2 class="mb-0">Other Details</h2>
 
-  <div>
+  <!-- <div>
     <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="!showEditForm" (click)="showEditForm = true">Edit</button>
     <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="showEditForm" (click)="showEditForm = false">Close</button>
     <button type="button" class="btn btn-danger" (click)="deletePersonalData()">Delete</button>
-  </div>
+  </div> -->
 </div>
 
-          <div class="col-md-12 d-flex justify-content-center">
+          <div class="col-md-12 d-flex justify-content-start">
 
             <div class="card-body" >
-              <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
+              <!-- <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
@@ -1090,15 +1247,14 @@
                   </div>
                 </div>
 
-                <!-- <button class="btn btn-primary" type="submit" id="submit" name="submit"
-                  (click)="editProfile()">Save</button> -->
+              
                   <div class="form-group row justify-content-end">
                     <div class="col-sm-2 text-secondary">
                       <button class="btn btn-primary" type="submit" id="submit" name="submit" (click)="editProfile()">Save</button>
                     </div>
                   </div>
-              </form>
-              <div *ngIf="!showEditForm">
+              </form> -->
+              <!-- <div *ngIf="!showEditForm"> -->
 
                 <div class="row">
                   <div class="col-md-3">
@@ -1131,12 +1287,187 @@
                 <hr>
 
 
-              </div>
+              <!-- </div> -->
             </div>
           </div>
         </div>
       </div>
 
+
+      <div class="col-12 text-center mt-3" *ngIf="isDocumentsVisible">
+        <!-- Documents content -->
+      
+        <div class="d-flex justify-content-between align-items-center">
+          
+            <div class="container px-4 py-0 text-center">
+
+              <div class="table-responsive mt-4">
+                <table class="table table-bordered table-sm" style="border: 2px solid #DDDCDC;">
+                  <thead class="tableHead">
+                    <tr>
+                      <th class="thName">S.No</th>
+                      <th class="thName">Document Name</th>
+                      <th class="thName">Download</th>
+
+                    </tr>
+                  </thead>
+                  <tbody class="tbName">
+                    <ng-container *ngFor="let document of getDocumentsArray()">
+                      <tr>
+                        <td>{{ getDocumentIndex(document) }}</td>
+                        <td>{{ document.label }}</td>
+                        <td>
+                          <button type="button" class="btn btn-link"
+                            (click)="DownloadDocs(profileDetailsUser?.id, document.fileNamePrefix, document.fileName)">
+                            <img src="/assets/image/icon/download.svg" alt="" class="download">
+                          </button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                  
+                  <!-- <tbody class="tbName">
+                    
+
+                    <tr *ngIf="profileDetailsUser?.academicDocument1">
+                      <td>{{ 1 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument1 ? '10th marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, '10th_Marksheet_' , 'academicDocument1.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+
+                      </td>
+                    </tr>
+
+
+                    <tr *ngIf="profileDetailsUser?.academicDocument2">
+                      <td>{{ 2 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument2 ? '12th marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, '12th_Marksheet_', 'academicDocument2.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.academicDocument3">
+                      <td>{{ 3 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument3 ? 'Graduation marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Gradutaion_Marksheet_', 'academicDocument3.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.academicDocument4">
+                      <td>{{ 4 }}</td>
+                      <td>{{profileDetailsUser?.academicDocument4 ? 'Higher education marksheet' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Higher_Education_Marksheet_', 'academicDocument4.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.signature">
+                      <td>{{ 5 }}</td>
+                      <td>{{profileDetailsUser?.signature ? 'Signature' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Signature_', 'signature.png')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.aadharCard">
+                      <td>{{ 6 }}</td>
+                      <td>{{profileDetailsUser?.aadharCard ? 'Aadhar Card' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'AadharCard_', 'aadharCard.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.panCard">
+                      <td>{{ 7 }}</td>
+                      <td>{{profileDetailsUser?.panCard ? 'Pan Card' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'PanCard_', 'panCard.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.offerLetter">
+                      <td>{{ 8 }}</td>
+                      <td>{{profileDetailsUser?.offerLetter ? 'Offer Letter' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Offer_Letter_', 'offerLetter.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.RelievingLetter">
+                      <td>{{ 9 }}</td>
+                      <td>{{profileDetailsUser?.RelievingLetter ? 'Relieving Letter' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Relieving_Letter_', 'RelievingLetter.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.ExperienceLetter">
+                      <td>{{ 10 }}</td>
+                      <td>{{profileDetailsUser?.ExperienceLetter ? 'Experience Letter' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Experience_Letter_', 'ExperienceLetter.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="profileDetailsUser?.salarySlip1">
+                      <td>{{ 11 }}</td>
+                      <td>{{profileDetailsUser?.salarySlip1 ? 'Salary Slip' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'Salary_Slip_', 'salarySlip1.pdf')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr *ngIf="profileDetailsUser?.userImage">
+                      <td>{{ 12 }}</td>
+                      <td>{{profileDetailsUser?.userImage ? 'User Image' : null }} </td>
+                      <td>
+                        <button type="button" class="btn btn-link"
+                          (click)="DownloadDocs(profileDetailsUser?.id, 'User_Image_', 'userImage.png')">
+                          <img src="/assets/image/icon/download.svg" alt="" class="download">
+                        </button>
+                      </td>
+                    </tr>
+
+
+
+                  </tbody> -->
+                </table>
+              </div>
+              <div class="modal-footer">
+                
+                <button type="button" class="btn allDownload m-1" data-bs-dismiss="modal" (click)="AllDocsDownload()">
+                  Download all</button>
+                
+              </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!-- <mat-stepper #stepper>

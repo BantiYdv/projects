@@ -551,6 +551,7 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 text-transform: capitalize;
+cursor: pointer;
 }
 
 .detailsText{
@@ -565,4 +566,49 @@ line-height: normal;
 
 background: #3331B0 !important;
 
+}
+
+.tableHead{
+    background-color: #DFEAFF !important;
+}
+
+.thName{
+    color: #3331B0;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+background-color: #DFEAFF !important;
+}
+
+.tbName{
+    color: #2C2C2C;
+text-align: center;
+font-size: 15px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+}
+
+.download{
+    width: 39px;
+height: 39px;
+flex-shrink: 0;
+}
+
+.allDownload{
+    color: #FFF;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+display: flex;
+/* padding: 8px 30px; */
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 8px;
+background: #129B4B;
 }

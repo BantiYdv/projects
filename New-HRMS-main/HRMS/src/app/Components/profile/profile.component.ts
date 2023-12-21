@@ -785,6 +785,44 @@ openEmployee(): void {
   }
 }
 
+// show documnets of employee to admin start
+isJoiningDetailsVisible: boolean = true;
+isDocumentsVisible: boolean = false;
 
+showJoiningDetails() {
+    this.isJoiningDetailsVisible = true;
+    this.isDocumentsVisible = false;
+}
+
+showDocuments() {
+    this.isJoiningDetailsVisible = false;
+    this.isDocumentsVisible = true;
+}
+
+
+documentsArray = [
+  { property: 'academicDocument1', label: '10th marksheet', fileNamePrefix: '10th_Marksheet_', fileName: 'academicDocument1.pdf' },
+  { property: 'academicDocument2', label: '12th marksheet', fileNamePrefix: '12th_Marksheet_', fileName: 'academicDocument2.pdf' },
+  { property: 'academicDocument3', label: 'Gradutaion Marksheet', fileNamePrefix: 'Gradutaion_Marksheet_', fileName: 'academicDocument3.pdf' },
+  { property: 'academicDocument4', label: 'Higher Education Marksheet', fileNamePrefix: 'Higher_Education_Marksheet_', fileName: 'academicDocument4.pdf' },
+  { property: 'signature', label: 'Signature', fileNamePrefix: 'Signature_', fileName: 'signature.png' },
+  { property: 'aadharCard', label: 'Aadhar Card', fileNamePrefix: 'AadharCard_', fileName: 'aadharCard.pdf' },
+  { property: 'panCard', label: 'Pan Card', fileNamePrefix: 'PanCard_', fileName: 'panCard.pdf' },
+  { property: 'offerLetter', label: 'offer Letter', fileNamePrefix: 'offerLetter_', fileName: 'offerLetter.pdf' },
+  { property: 'relievingLetter', label: 'Relieving Letter', fileNamePrefix: 'Relieving_Letter_', fileName: 'RelievingLetter.pdf' },
+  { property: 'experienceLetter', label: 'Experience Letter', fileNamePrefix: 'Experience_Letter_', fileName: 'ExperienceLetter.pdf' },
+  { property: 'salarySlip1', label: 'Salary Slip', fileNamePrefix: 'Salary_Slip_', fileName: 'salarySlip1.pdf' },
+  { property: 'userImage', label: 'User Image', fileNamePrefix: 'User_Image_', fileName: 'userImage.png' }
+];
+
+getDocumentsArray(): any[] {
+  return this.documentsArray.filter(document => this.profileDetailsUser[document.property]);
+}
+
+getDocumentIndex(document: any): number {
+  const filteredDocuments = this.getDocumentsArray();
+  return filteredDocuments.indexOf(document) + 1;
+}
+// show documnets of employee to admin end
 
 }
