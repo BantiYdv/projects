@@ -96,8 +96,17 @@ this.getUserPhoto();
   }
 
 
-  // API for show profile data start
   showEditForm: boolean = false;
+
+  // when click on edit button then delete button disable start
+
+  toggleEditForm(open: boolean): void {
+    this.showEditForm = open;
+  }
+// when click on edit button then delete button disable end
+
+
+  // API for show profile data start
  
   saveChanges() {
     // Implement saving changes functionality when the "Save" button is clicked
@@ -824,5 +833,7 @@ getDocumentIndex(document: any): number {
   return filteredDocuments.indexOf(document) + 1;
 }
 // show documnets of employee to admin end
+
+
 
 }

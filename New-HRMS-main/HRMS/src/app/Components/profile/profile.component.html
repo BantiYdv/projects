@@ -166,16 +166,22 @@
           <div class="d-flex justify-content-between align-items-center">
   <h2 class="mb-0">Other Details</h2>
 
-  <div>
+  <!-- <div>
     <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="!showEditForm" (click)="showEditForm = true">Edit</button>
     <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="showEditForm" (click)="showEditForm = false">Close</button>
     <button type="button" class="btn btn-danger" (click)="deletePersonalData()">Delete</button>
+  </div> -->
+  <div>
+    <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="!showEditForm" (click)="toggleEditForm(true)">Edit</button>
+    <button type="button" class="btn btn-primary mr-2 m-1 EditButton" *ngIf="showEditForm" (click)="toggleEditForm(false)">Close</button>
+    <button type="button" class="btn btn-danger" (click)="deletePersonalData()" [disabled]="showEditForm">Delete</button>
   </div>
+  
 </div>
 
           <div class="col-md-12 d-flex justify-content-center">
 
-            <div class="card-body" >
+            <div class="card-body mt-2" >
               <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
                 <div class="form-group">
                   <div class="row">
@@ -234,30 +240,30 @@
               </form>
               <div *ngIf="!showEditForm">
 
-                <div class="row">
-                  <div class="col-md-3">
-                    <h4 class="mb-0">Marital Status</h4>
+                <div class="row detailsText">
+                  <div class="col-md-6 d-flex justify-content-start">
+                    <h4 class="mb-0">Marital Status:</h4>
                   </div>
-                  <div class="col-md-9 text-secondary">
+                  <div class="col-md-6 text-secondary d-flex justify-content-end">
                     <p><span id="maritalStatus"><strong>{{ profileDetails?.maritalStatus }}</strong></span></p>
                   </div>
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col-md-3">
-                    <h4 class="mb-0">Blood Group</h4>
+                  <div class="col-md-6 d-flex justify-content-start">
+                    <h4 class="mb-0">Blood Group:</h4>
                   </div>
-                  <div class="col-md-9 text-secondary">
+                  <div class="col-md-6 text-secondary d-flex justify-content-end">
                     <p><span id="bloodGroup"><strong>{{ profileDetails?.bloodGroup }}</strong></span></p>
 
                   </div>
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col-md-3">
-                    <h4 class="mb-0">Skills</h4>
+                  <div class="col-md-6 d-flex justify-content-start">
+                    <h4 class="mb-0">Skills:</h4>
                   </div>
-                  <div class="col-md-9 text-secondary">
+                  <div class="col-md-6 text-secondary d-flex justify-content-end">
                     <p><span id="skills"><strong>{{ profileDetails?.skills }}</strong></span></p>
 
                   </div>
@@ -289,7 +295,22 @@
 
                     </tr>
                   </thead>
-                  <tbody>
+
+                  <tbody class="tbName">
+                    <ng-container *ngFor="let document of getDocumentsArray()">
+                      <tr>
+                        <td>{{ getDocumentIndex(document) }}</td>
+                        <td>{{ document.label }}</td>
+                        <td>
+                          <button type="button" class="btn btn-link"
+                            (click)="DownloadDocs(profileDetailsUser?.id, document.fileNamePrefix, document.fileName)">
+                            <img src="/assets/image/icon/download.svg" alt="" class="download">
+                          </button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                  <!-- <tbody>
                     
 
                     <tr *ngIf="profileDetailsUser?.academicDocument1">
@@ -419,7 +440,7 @@
 
 
 
-                  </tbody>
+                  </tbody> -->
                 </table>
               </div>
               <div class="modal-footer">
@@ -1198,7 +1219,7 @@
 
           <div class="col-md-12 d-flex justify-content-start">
 
-            <div class="card-body" >
+            <div class="card-body mt-4" >
               <!-- <form *ngIf="showEditForm" (ngSubmit)="saveChanges()">
                 <div class="form-group">
                   <div class="row">
@@ -1257,29 +1278,29 @@
               <!-- <div *ngIf="!showEditForm"> -->
 
                 <div class="row">
-                  <div class="col-md-3">
-                    <h4 class="mb-0">Marital Status</h4>
+                  <div class="col-md-6 d-flex justify-content-start">
+                    <h4 class="mb-0">Marital Status:</h4>
                   </div>
-                  <div class="col-md-9 text-secondary">
+                  <div class="col-md-6 text-secondary d-flex justify-content-end">
                     <p><span id="maritalStatus"><strong>{{ profileDetailsUser?.maritalStatus }}</strong></span></p>
                   </div>
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col-md-3">
-                    <h4 class="mb-0">Blood Group</h4>
+                  <div class="col-md-6 d-flex justify-content-start">
+                    <h4 class="mb-0">Blood Group:</h4>
                   </div>
-                  <div class="col-md-9 text-secondary">
+                  <div class="col-md-6 text-secondary d-flex justify-content-end">
                     <p><span id="bloodGroup"><strong>{{ profileDetailsUser?.bloodGroup }}</strong></span></p>
 
                   </div>
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col-md-3">
-                    <h4 class="mb-0">Skills</h4>
+                  <div class="col-md-6 d-flex justify-content-start">
+                    <h4 class="mb-0">Skills:</h4>
                   </div>
-                  <div class="col-md-9 text-secondary">
+                  <div class="col-md-6 text-secondary d-flex justify-content-end">
                     <p><span id="skills"><strong>{{ profileDetailsUser?.skills }}</strong></span></p>
 
                   </div>
