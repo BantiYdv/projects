@@ -24,14 +24,18 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TestComponent {
   role: any;
+sortOrderSalary: any;
 selectOption(_t52: string) {
 throw new Error('Method not implemented.');
 }
   showAdminLeaveTable!: any;
   leaveAdminData!: any;
+  fillterLeaveData: any;
   showTeamLeaveTable!: any;
   TeamLeaveData: any;
+  fillterTeamLeaveData: any;
   showTeamWfhTable: any;
+  fillterTeamWfhData: any;
   TeamWfhData: any;
   EmployeeData: any;
   showAllAdminTable: any;
@@ -42,6 +46,7 @@ throw new Error('Method not implemented.');
   wfhForm!: any;
   showWfhTable: any;
   wfhData!: any;
+  fillterWfhData: any;
   showAllAttTable: any;
   AllAttData: any;
   showAllWfhTable: any;           // for show all wfh
@@ -338,9 +343,13 @@ isDropdownOpen: any;
 
     if (this.showTeamLeaveTable && '#/teamleave' === window.location.hash) {
       this.testService.getTeamLeaveData().subscribe(
-        (response) => {
+        (response: any) => {
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
           // Assign the received data to the TeamLeaveData property
-          this.TeamLeaveData = response;
+          this.TeamLeaveData = reversedData
+          this.fillterTeamLeaveData = reversedData;
           console.log("leave", response);
         },
         (error) => {
@@ -415,9 +424,13 @@ isDropdownOpen: any;
 
     if (this.showTeamWfhTable && '#/teamwfh' === window.location.hash) {
       this.testService.getTeamWfhData().subscribe(
-        (response) => {
+        (response: any) => {
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
           // Assign the received data to the TeamLeaveData property
-          this.TeamWfhData = response;
+          this.TeamWfhData = reversedData;
+          this.fillterTeamWfhData = reversedData;
           console.log("wfh", response);
         },
         (error) => {
@@ -1071,6 +1084,7 @@ console.log("leave apply", response);
 
           // Set the reversed array as the data source
           this.leaveAdminData = reversedData;
+          this.fillterLeaveData = reversedData;
         },
         error => {
           // Swal.fire('Error', error.error, 'error');  
@@ -1154,6 +1168,7 @@ console.log("leave apply", response);
 
           // Set the reversed array as the data source
           this.wfhData = reversedData;
+          this.fillterWfhData = reversedData;
         },
         error => {
           Swal.fire('Error', error.error, 'error');
@@ -1705,6 +1720,104 @@ getTotalPagesEmp(): number {
 }
 // pagination for view Employee end
 
+// pagination for view team leave start
+TeamLeavePageperPage: number = 10;
+currentTeamLeavePage: number = 1;
+
+
+
+getPaginatedTeamLeaveData(): any[] {
+  const startIndex = (this.currentTeamLeavePage - 1) * this.TeamLeavePageperPage;
+  const endIndex = startIndex + this.TeamLeavePageperPage;
+  return this.fillterTeamLeaveData.slice(startIndex, endIndex);
+}
+
+previousTeamLeavePage(): void {
+  if (this.currentTeamLeavePage > 1) {
+    this.currentTeamLeavePage--;
+  }
+}
+
+getPageNumbersTeamLeave(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageTeamLeave(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTeamLeave()) {
+    this.currentTeamLeavePage = pageNumber;
+  }
+}
+
+
+nextPageTeamLeave(): void {
+  const totalPages = Math.ceil(
+    this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
+  );
+  if (this.currentTeamLeavePage < totalPages) {
+    this.currentTeamLeavePage++;
+  }
+}
+
+
+getTotalPagesTeamLeave(): number {
+  return Math.ceil(
+    this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
+  );
+}
+// pagination for view team leave end
+
+// pagination for view team wfh start
+TeamWfhPageperPage: number = 10;
+currentTeamWfhPage: number = 1;
+
+
+
+getPaginatedTeamWfhData(): any[] {
+  const startIndex = (this.currentTeamWfhPage - 1) * this.TeamWfhPageperPage;
+  const endIndex = startIndex + this.TeamWfhPageperPage;
+  return this.fillterTeamWfhData.slice(startIndex, endIndex);
+}
+
+previousTeamWfhPage(): void {
+  if (this.currentTeamWfhPage > 1) {
+    this.currentTeamWfhPage--;
+  }
+}
+
+getPageNumbersTeamWfh(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterTeamWfhData.length / this.TeamWfhPageperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageTeamWfh(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTeamWfh()) {
+    this.currentTeamWfhPage = pageNumber;
+  }
+}
+
+
+nextPageTeamWfh(): void {
+  const totalPages = Math.ceil(
+    this.fillterTeamWfhData.length / this.TeamWfhPageperPage
+  );
+  if (this.currentTeamWfhPage < totalPages) {
+    this.currentTeamWfhPage++;
+  }
+}
+
+
+getTotalPagesTeamWfh(): number {
+  return Math.ceil(
+    this.fillterTeamWfhData.length / this.TeamWfhPageperPage
+  );
+}
+// pagination for view team wfh end
+
 
 isGridView = true; // Initial view is grid
 
@@ -1734,42 +1847,359 @@ console.log("serch designation", this.designation);
   //API for getting designation end
 
 
-  filterPositionsDataCandidate(){
+  // sort data in team leave table start
+  sortTDate: 'asc' | 'desc' = 'asc';
+  sortByToDate(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
 
+    this.fillterTeamLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDate).getTime() - new Date(b.toDate).getTime())
+      );
+    });
   }
-getPaginatedDataCandidate(){
 
-}
-getTotalPagesCandidate(){
 
-}
-getDownloadResume(){
 
-}
-getSendConfirmationMail(){
+  sortFDate: 'asc' | 'desc' = 'asc';
+  sortByFromDate(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-}
-putUpdateConfirmationStatus(){
+    this.fillterTeamLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime())
+      );
+    });
+  }
 
-}
-toggleOptions(){
+  sortBy: 'asc' | 'desc' = 'asc';
 
-}
-getInterviewByIdRecruitment(){
+  sortByWhome(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+  
+    // Sort the positions array based on the approvedBy property
+    this.fillterTeamLeaveData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+  
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+  
+   // sort data in team leave table end
 
-}
-deleteInterviewByIdRecruitment(){
+  //  search for team leave table start
+   searchTeamLeave: string = '';
 
-}
-getPageNumbersCandidate(){
+ 
+   FilterTeamLeave() {
+    this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { firstname: string; lastname: string; }) =>
+    item.firstname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) ||
+    item.lastname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) 
+     );
+   }
 
-}
-changePageCandidate(){
+   //  search for team leave table end
 
-}
-nextPageCandidate(){
+    // sort data in team wfh table start
+  // sortTDate: 'asc' | 'desc' = 'asc';
+  sortByTeamToDateWFH(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
 
+    this.fillterTeamWfhData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+      );
+    });
+  }
+
+
+
+  // sortFDate: 'asc' | 'desc' = 'asc';
+  sortByTeamFromDateWFH(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterTeamWfhData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.fromdateWfh).getTime() - new Date(b.fromdateWfh).getTime())
+      );
+    });
+  }
+
+  // sortBy: 'asc' | 'desc' = 'asc';
+
+  sortTeamByWhomeWFH(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+  
+    // Sort the positions array based on the approvedBy property
+    this.fillterTeamWfhData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+  
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+  
+   // sort data in team wfh table end
+
+    // search for team wfh table start
+    searchTeamWfh: string = '';
+    
+  FilterTeamWfh() {
+    this.fillterTeamWfhData = this.TeamWfhData.filter((item: { firstname: string; lastname: string; }) =>
+    item.firstname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) ||
+    item.lastname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) 
+     );
+  }
+
+   // search for team wfh table end
+
+
+  //  view leave table function start
+
+ // search for  leave table start
+ searchLeave: string = '';
+    
+ FilterLeave() {
+   this.fillterLeaveData = this.leaveAdminData.filter((item: { firstname: string; lastname: string; }) =>
+   item.firstname.toLowerCase().includes(this.searchLeave.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchLeave.toLowerCase()) 
+    );
+ }
+
+  // search for leave table end
+
+   // pagination for view  leave start
+LeavePageperPage: number = 10;
+currentLeavePage: number = 1;
+
+
+
+getPaginatedLeaveData(): any[] {
+  const startIndex = (this.currentLeavePage - 1) * this.LeavePageperPage;
+  const endIndex = startIndex + this.LeavePageperPage;
+  return this.fillterLeaveData.slice(startIndex, endIndex);
 }
-itemsPerPageCandidate: any;
-searchTermCandidate: any;
+
+previousLeavePage(): void {
+  if (this.currentLeavePage > 1) {
+    this.currentLeavePage--;
+  }
+}
+
+getPageNumbersLeave(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterLeaveData.length / this.LeavePageperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageLeave(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLeave()) {
+    this.currentLeavePage = pageNumber;
+  }
+}
+
+
+nextPageLeave(): void {
+  const totalPages = Math.ceil(
+    this.fillterLeaveData.length / this.LeavePageperPage
+  );
+  if (this.currentLeavePage < totalPages) {
+    this.currentLeavePage++;
+  }
+}
+
+
+getTotalPagesLeave(): number {
+  return Math.ceil(
+    this.fillterLeaveData.length / this.LeavePageperPage
+  );
+}
+// pagination for view  leave end
+
+// sort data in leave table start
+// sortTDate: 'asc' | 'desc' = 'asc';
+sortByToDateLeave(): void {
+  this.sortTDate =
+    this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterLeaveData.sort((a: any, b: any) => {
+    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.toDate).getTime() - new Date(b.toDate).getTime())
+    );
+  });
+}
+
+
+
+// sortFDate: 'asc' | 'desc' = 'asc';
+sortByFromDateLeave(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterLeaveData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime())
+    );
+  });
+}
+
+// sortBy: 'asc' | 'desc' = 'asc';
+
+sortByWhomeLeave(): void {
+  // Toggle the sort order
+  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the approvedBy property
+  this.fillterLeaveData.sort((a: any, b: any) => {
+    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+    return orderFactor * approvedByA.localeCompare(approvedByB);
+  });
+}
+
+ // sort data in leave table end
+
+
+  //  view leave table function end
+
+
+
+    //  view wfh table function start
+
+    // search for  wfh table start
+ searchWfh: string = '';
+    
+ FilterWfh() {
+   this.fillterWfhData = this.wfhData.filter((item: { firstname: string; lastname: string; }) =>
+   item.firstname.toLowerCase().includes(this.searchWfh.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchWfh.toLowerCase()) 
+    );
+ }
+
+  // search for wfh table end
+
+   // pagination for view  wfh start
+WfhPageperPage: number = 10;
+currentWfhPage: number = 1;
+
+
+
+getPaginatedWfhData(): any[] {
+  const startIndex = (this.currentWfhPage - 1) * this.WfhPageperPage;
+  const endIndex = startIndex + this.WfhPageperPage;
+  return this.fillterWfhData.slice(startIndex, endIndex);
+}
+
+previousWfhPage(): void {
+  if (this.currentWfhPage > 1) {
+    this.currentWfhPage--;
+  }
+}
+
+getPageNumbersWfh(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterWfhData.length / this.WfhPageperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageWfh(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesWfh()) {
+    this.currentWfhPage = pageNumber;
+  }
+}
+
+
+nextPageWfh(): void {
+  const totalPages = Math.ceil(
+    this.fillterWfhData.length / this.WfhPageperPage
+  );
+  if (this.currentWfhPage < totalPages) {
+    this.currentWfhPage++;
+  }
+}
+
+
+getTotalPagesWfh(): number {
+  return Math.ceil(
+    this.fillterWfhData.length / this.WfhPageperPage
+  );
+}
+// pagination for view  wfh end
+
+// sort data in wfh table start
+// sortTDate: 'asc' | 'desc' = 'asc';
+sortByToDateWfh(): void {
+  this.sortTDate =
+    this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterWfhData.sort((a: any, b: any) => {
+    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+    );
+  });
+}
+
+
+
+// sortFDate: 'asc' | 'desc' = 'asc';
+sortByFromDateWfh(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterWfhData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.fromdateWfh).getTime() - new Date(b.fromdateWfh).getTime())
+    );
+  });
+}
+
+// sortBy: 'asc' | 'desc' = 'asc';
+
+sortByWhomeWfh(): void {
+  // Toggle the sort order
+  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the approvedBy property
+  this.fillterWfhData.sort((a: any, b: any) => {
+    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+    return orderFactor * approvedByA.localeCompare(approvedByB);
+  });
+}
+
+ // sort data in wfh table end
+
+      //  view wfh table function end
+
 }

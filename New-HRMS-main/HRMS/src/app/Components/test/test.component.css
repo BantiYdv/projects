@@ -1057,6 +1057,7 @@ background: #421CDD;
 .table_body:nth-child(odd) {
   background-color: #e5e5e5;
 }
+
 .table_head_topics {
   font-size: 15px;
   font-weight: bold;
@@ -1089,10 +1090,15 @@ background: #421CDD;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-background-color: #DFEAFF !important;
+/* background-color: #DFEAFF !important; */
+border-right: 2px solid #D9D9D9;
+
+    height: 100%;
 }
+
 .tdData:nth-child(even) {
   background-color: #ffffff;
+  
 }
 .tdData:nth-child(odd) {
   background-color: #e5e5e5;
@@ -1101,3 +1107,86 @@ background-color: #DFEAFF !important;
 table{
   border-radius: 5px !important;
 }
+
+.Approve{
+  display: flex;
+  /* padding: 5px 20px; */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+  background: #129B4B;
+  color: #FFF;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.Reject{
+  display: flex;
+padding: 5px 20px;
+justify-content: center;
+align-items: center;
+gap: 20px;
+border-radius: 10px;
+background: #D92651;
+color: #FFF;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.emailId{
+  color: #421CDD;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+border-right: 2px solid #D9D9D9;
+height: 100%;
+}
+
+.textBold{
+  color: #000;
+font-size: 15px;
+font-style: normal;
+font-weight: 500 !important;
+line-height: normal;
+border-right: 2px solid #D9D9D9;
+height: 100%;
+
+}
+
+.textNormal{
+  color: #000;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+border-right: 2px solid #D9D9D9;
+height: 100%;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #ffffff !important;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #e5e5e5 !important;
+}
+
+.table {
+  --bs-table-bg: none !important;
+  border: 3px solid #d9d9d9;
+  width: max-content !important;
+  text-align: center;
+}
+
+.table>thead {
+  vertical-align: center;
+  border: 3px solid #d9d9d9;
+}
+
+
