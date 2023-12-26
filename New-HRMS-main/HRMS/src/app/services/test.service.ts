@@ -321,5 +321,90 @@ AddShift(){
 }
 // add shift time end
 
+//Update Employee Attendance start
+updateAtt(id: number, status: string): Observable<any> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ const data = {
+status : status
+ }
+  const url = `${this.api.updateEmpAtt}/${id}`;
+  return this.http.put(url, data, { headers });
+}
+//Update Employee Attendance end
+
+// add position start
+addPosition(position: any){
+
+  const url = `${this.api.addPosition}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    type: position.positionName,
+    numberOfPositions: position.numberOfPositions,
+    candidateType: position.candidate_Type,
+    budgetMin: position.annualPacAgeMin,
+    budgetMax: position.annualPacAgeMax,
+    currency: position.currency,
+    modeOfWorking: position.modeOfWork,
+    openingDate: position.dateOfOpening,
+    experienceMin: position.experienceMin,
+    experienceMax: position.experienceMax,
+    experienceUnit: position.experienceUnit,
+    jobLocation: position.jobLocation,
+    jobDescription: position.jobDescription,
+  };
+  return this.http.post(url, data, { headers });
+}
+// add position end
+
+
+// view position start
+viewPosition(){
+
+  const url = `${this.api.viewPosition}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+  return this.http.get(url,  { headers });
+}
+// view position end
+
+// view position by id start
+viewPositionById(id: any){
+
+  const url = `${this.api.viewPositionById}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+  return this.http.get(url,  { headers });
+}
+// view position by id end
+
+// update position start
+updatePosition(position: any){
+
+  const url = `${this.api.updatePositionById}/${position.id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    type: position.positionName,
+    numberOfPositions: position.numberOfPositions,
+    candidateType: position.candidate_Type,
+    budgetMin: position.annualPacAgeMin,
+    budgetMax: position.annualPacAgeMax,
+    currency: position.currency,
+    modeOfWorking: position.modeOfWork,
+    openingDate: position.dateOfOpening,
+    experienceMin: position.experienceMin,
+    experienceMax: position.experienceMax,
+    experienceUnit: position.experienceUnit,
+    jobLocation: position.jobLocation,
+    jobDescription: position.jobDescription,
+  };
+  return this.http.post(url, data, { headers });
+}
+// update position end
+
 
 }

@@ -73,6 +73,11 @@ export class ApiService {
   public fullTime = `${this.apiUrl}gateway/hrms/full-time-count`;
   public partTime = `${this.apiUrl}gateway/hrms/part-time-count`;
   public internTime = `${this.apiUrl}gateway/hrms/intern-time-count`;
+  public updateEmpAtt = `${this.apiUrl}gateway/hrms/update-employee-attendance`;
+  public addPosition = `${this.apiUrl}gateway/onboard/addPosition`;
+  public viewPosition = `${this.apiUrl}gateway/onboard/getAllPositions`;
+  public viewPositionById = `${this.apiUrl}gateway/onboard/getPositionById`;
+  public updatePositionById = `${this.apiUrl}gateway/onboard/updatePositionById`;
 
   
 

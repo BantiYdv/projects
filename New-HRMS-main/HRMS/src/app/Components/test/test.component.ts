@@ -49,6 +49,7 @@ throw new Error('Method not implemented.');
   fillterWfhData: any;
   showAllAttTable: any;
   AllAttData: any;
+  fillterAllattData: any;
   showAllWfhTable: any;           // for show all wfh
   AllwfhData: any;                //for show all wfh
   showAllLeaveTable: any;         //for show all leave
@@ -1198,10 +1199,11 @@ console.log("leave apply", response);
 
           // Set the reversed array as the data source
           this.AllAttData = reversedData;
+          this.fillterAllattData = reversedData;
           console.log("atttttttt",response);
         },
         error => {
-          // Swal.fire('Error', error.error, 'error');  
+          Swal.fire('Error', error.error, 'error');  
           // Hide the table if an error occurs
           this.showAllAttTable = false;
         }
@@ -1210,6 +1212,35 @@ console.log("leave apply", response);
   }
   
   // API for view All Attendance end
+
+  // API for update employee attendance start
+  updateAtt(id: number, status: string){
+    this.testService.updateAtt(id, status).subscribe(
+      (response: any) => {
+        
+        console.log("updated att",response);
+        Swal.fire({
+          title: 'Updated!',
+          text: 'Employee Attendance has been updated.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // location.reload();
+            this.showAllAttTable = false;
+            this.viewAllattendance();
+
+          }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        
+      }
+    );
+  }
+
+  
+  // API for update employee attendance end
 
   // API for view All WFH start
 
@@ -2201,5 +2232,431 @@ sortByWhomeWfh(): void {
  // sort data in wfh table end
 
       //  view wfh table function end
+
+
+      //  view All Att table function start
+
+    // search for  view All att table start
+ searchAllatt: string = '';
+    
+ FilterAllatt() {
+   this.fillterAllattData = this.AllAttData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchAllatt.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchAllatt.toLowerCase()) 
+   );
+ }
+
+  // search for all att table end
+
+   // pagination for view  all att start
+   AllattperPage: number = 15;
+currentAllattPage: number = 1;
+
+
+
+getPaginatedAllattData(): any[] {
+  const startIndex = (this.currentAllattPage - 1) * this.AllattperPage;
+  const endIndex = startIndex + this.AllattperPage;
+  return this.fillterAllattData.slice(startIndex, endIndex);
+}
+
+previousAllattPage(): void {
+  if (this.currentAllattPage > 1) {
+    this.currentAllattPage--;
+  }
+}
+
+// getPageNumbersAllatt(): number[] {
+//   const totalPages = Math.ceil(
+//     this.fillterAllattData.length / this.AllattperPage
+//   );
+//   return Array.from({ length: totalPages }, (_, index) => index + 1);
+// }
+
+getPageNumbersAllatt(): number[] {
+  const totalPages = this.getTotalPagesAllatt();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentAllattPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentAllattPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentAllattPage - halfMaxPagesToShow;
+      endPage = this.currentAllattPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageAllatt(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllatt()) {
+    this.currentAllattPage = pageNumber;
+  }
+}
+
+
+nextPageAllatt(): void {
+  const totalPages = Math.ceil(
+    this.fillterAllattData.length / this.AllattperPage
+  );
+  if (this.currentAllattPage < totalPages) {
+    this.currentAllattPage++;
+  }
+}
+
+
+getTotalPagesAllatt(): number {
+  return Math.ceil(
+    this.fillterAllattData.length / this.AllattperPage
+  );
+}
+// pagination for view  all att end
+
+// sort data in all att table start
+// sortTDate: 'asc' | 'desc' = 'asc';
+sortByToDateAllatt(): void {
+  this.sortTDate =
+    this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterAllattData.sort((a: any, b: any) => {
+    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+    );
+  });
+}
+
+
+
+// sortFDate: 'asc' | 'desc' = 'asc';
+sortByFromDateAllatt(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterAllattData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+// sortBy: 'asc' | 'desc' = 'asc';
+
+sortByWhomeAllatt(): void {
+  // Toggle the sort order
+  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the approvedBy property
+  this.fillterAllattData.sort((a: any, b: any) => {
+    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+    return orderFactor * approvedByA.localeCompare(approvedByB);
+  });
+}
+
+ // sort data in all att table end
+
+      //  view All att table function end
+
+
+
+      // leave policy upload start
+      selectedFileName: any;
+      isPDFFile(file: File): boolean {
+        // Check if the file has a PDF MIME type
+        return file.type === 'application/pdf';
+      }
+
+      onFileSelected(event: any): void {
+        const fileInput = event.target;
+        if (fileInput.files.length > 0) {
+          const selectedFile = fileInput.files[0];
+          if (this.isPDFFile(selectedFile)) {
+            this.selectedFileName = selectedFile.name;
+          } else {
+            this.selectedFileName = 'Invalid file type. Please select a PDF file.';
+            // Optionally, you can reset the file input value to clear the selection
+            fileInput.value = '';
+          }
+        } else {
+          this.selectedFileName = 'No file selected';
+        }
+      }
+       // leave policy upload end
+      
+
+       // add poition start
+       position: {
+        id?: any;
+        positionName: string;
+        numberOfPositions: number;
+        dateOfOpening: Date;
+        candidate_Type: string;
+        experienceMin: string;
+        experienceMax: string;
+        experienceUnit: string;
+        annualPacAgeMin: string;
+        annualPacAgeMax: string;
+        currency: string;
+        modeOfWork: string;
+        jobLocation: string;
+        jobDescription: string;
+      } = {
+        positionName: '',
+        numberOfPositions: 1,
+        dateOfOpening: new Date(),
+        candidate_Type: '',
+        experienceMin: '',
+        experienceMax: '',
+        experienceUnit: '',
+        annualPacAgeMin: '',
+        annualPacAgeMax: '',
+        currency: '',
+        modeOfWork: '',
+        jobLocation: '',
+        jobDescription: '',
+      };
+     
+
+      onRecruitmentAddPosition(): void {
+        if (
+          this.position.experienceMax > this.position.experienceMin &&
+          this.position.annualPacAgeMax > this.position.annualPacAgeMin
+        ) {
+          this.addPositionRecruitment();
+        } else {
+          Swal.fire(
+            'Error',
+            'Form is not valid. Please fill in all required fields.',
+            'error'
+          );
+        }
+      }
+
+      addPositionRecruitment(){
+        this.testService.addPosition(this.position).subscribe(
+          (response) => {
+            console.log('addPositionRecruitment success', response);
+            Swal.fire({
+              title: 'Success!',
+              text: 'Position Added Successfully.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+            }).then(() => {
+              this.loginService.showTable('getAllPosition');
+              // this.clearFormPosition();
+            });
+            this.getPositionRecruitment();
+            // this.getInterviewPositionName();
+          },
+          (error) => {
+            console.error('addPositionRecruitment error', error);
+            if (error.status == 400) {
+              Swal.fire({
+                title: 'Error!',
+                text: 'Position Already Added!.',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 3000,
+              });
+            }
+          }
+        );
+      }
+
+
+       positionsDataById: any;
+
+       incrementPositions(): void {
+        console.log(
+          'this.position.numberOfPositions',
+          this.position.numberOfPositions
+        );
+        this.position.numberOfPositions++;
+        this.positionsDataById.numberOfPositions++;
+        // this.positionsDataById.numberOfPositions++;
+      }
+
+      decrementPositions(): void {
+        console.log(
+          'this.position.numberOfPositions',
+          this.position.numberOfPositions
+        );
+    
+        if (
+          this.position.numberOfPositions > 1 ||
+          this.positionsDataById.numberOfPositions > 1
+        ) {
+          // this.positionsDataById.numberOfPositions--;
+          this.position.numberOfPositions--;
+          this.positionsDataById.numberOfPositions--;
+        }
+      }
+
+      // add poition end
+
+      // view position start
+      itemsPerPage: number = 10;
+      sortOrder: 'asc' | 'desc' = 'asc';
+      sortOrderOpeningDate: 'asc' | 'desc' = 'asc';
+      sortOrderPositionSalary: 'asc' | 'desc' = 'asc';
+      positionsData: any;
+      filteredPositionsData: any[] | any;
+
+
+      filterPositionsData(): void {
+        const searchTermLowerCase = this.searchTerm.trim().toLowerCase();
+    
+        if (!searchTermLowerCase) {
+          this.filteredPositionsData = this.positionsData;
+        } else {
+          this.filteredPositionsData = this.positionsData.filter(
+            (position: any) => {
+              return (
+                position.type.toLowerCase().includes(searchTermLowerCase) ||
+                position.numberOfPositions
+                  .toString()
+                  .includes(searchTermLowerCase) ||
+                position.openingDate.includes(searchTermLowerCase) ||
+                (position.budgetMin + '-' + position.budgetMax).includes(
+                  searchTermLowerCase
+                )
+              );
+            }
+          );
+        }
+      }
+
+      sortPositionsByNumberOfPosts(): void {
+        // Toggle the sort order
+        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    
+        // Sort the positions array based on the number of posts
+        this.positionsData.sort((a: any, b: any) => {
+          const orderFactor = this.sortOrder === 'asc' ? 1 : -1;
+          return orderFactor * (a.numberOfPositions - b.numberOfPositions);
+        });
+      }
+
+      
+
+      sortPositionsByOpeningDate(): void {
+        this.sortOrderOpeningDate =
+          this.sortOrderOpeningDate === 'asc' ? 'desc' : 'asc';
+    
+        this.positionsData.sort((a: any, b: any) => {
+          const orderFactor = this.sortOrderOpeningDate === 'asc' ? 1 : -1;
+          return (
+            orderFactor *
+            (new Date(a.openingDate).getTime() - new Date(b.openingDate).getTime())
+          );
+        });
+      }
+    
+      sortPositionsBySalary(): void {
+        this.sortOrderPositionSalary = this.sortOrderPositionSalary === 'asc' ? 'desc' : 'asc';
+    
+        this.positionsData.sort((a: any, b: any) => {
+          const orderFactor = this.sortOrderPositionSalary === 'asc' ? 1 : -1;
+          return orderFactor * (a.budgetMin - b.budgetMin);
+        });
+      }
+    
+
+
+
+      getTotalPages(): number {
+        return Math.ceil(this.filteredPositionsData.length / this.itemsPerPage);
+      }
+changePage(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPages()) {
+      this.currentPage = pageNumber;
+    }
+  }
+
+  getPageNumbers(): number[] {
+    const totalPages = Math.ceil(
+      this.filteredPositionsData.length / this.itemsPerPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  nextPage(): void {
+    const totalPages = Math.ceil(
+      this.filteredPositionsData.length / this.itemsPerPage
+    );
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  getPaginatedPositionData(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.filteredPositionsData.slice(startIndex, endIndex);
+  }
+
+
+     
+      getPositionRecruitment(){
+        this.testService.viewPosition().subscribe(
+          (response: any) => {
+            // this.positionsData = response;
+            this.positionsData = response;
+            console.log('===>', response.openingDate);
+    
+            this.filteredPositionsData = this.positionsData;
+            console.log('getPositionRecruitment success = = >', response);
+          },
+          (error) => {
+            console.error('getPositionRecruitment error', error);
+          }
+        );
+      }
+
+      getPositionById(id: any){
+        this.testService.viewPositionById(id).subscribe(
+          (response) => {
+            this.positionsDataById = response;
+            console.log(this.positionsDataById);
+            this.loginService.showTable('positionDetails');
+            console.log('getPositionByIdRecruitment success', response);
+          },
+          (error) => {
+            console.error('getPositionByIdRecruitment error', error);
+          }
+        );
+      }
+
+      updatePositionRecruitment(){
+        
+      }
+      
+      // view position end
+
+
+
 
 }

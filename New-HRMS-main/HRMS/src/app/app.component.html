@@ -364,6 +364,12 @@
             </a>
           </li>
 
+          <li class="nav-item text-center">
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
+             
+            </div>
+          </li>
 
           <li class="nav-item text-center">
             <div class="image-container">
@@ -498,6 +504,25 @@
             </a>
           </li>
 
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#position" aria-expanded="false">
+                <span class="image-namenew">Position</span>
+              </a>
+              <div class="collapse" id="position">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/addPosition']" (click)="loginService.showTable('addPosition')">Add Position</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/viewPosition']" (click)="loginService.showTable('viewPosition')">View Position</a>
+                  </li>
+                 
+                </ul>
+              </div>
+          </li>
+
 
           <li class="nav-item text-center sideBarName">
             <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
@@ -505,16 +530,29 @@
               </a>
               <div class="collapse" id="dashboard-rule">
                 <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
-                  <li >
+                  <!-- <li >
                     <a href="#" class="dropdown-item rounded-2 role">
                     <label for="pdfFileInput">
-                      <span class="image-name" id="pdfFile">Upload Pdf</span>
-                    </label></a>
+                      <span class="image-name" id="pdfFile">Leave policy</span>
+                    </label>
+                  </a>
                     <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
+                  </li> -->
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/leavePolicy']" (click)="loginService.showTable('leavePolicy')">Leave policy</a>
                   </li>
                   <li>
-                    <a href="#" class="dropdown-item rounded-2 role" routerLink="/test"
-                      [routerLink]="['/shifttime']" (click)="loginService.showTable('shifttime')">Attendance Ruls</a>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/noticePeriod']" (click)="loginService.showTable('noticePeriod')">Notice Period</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/leaveRules']" (click)="loginService.showTable('leaveRules')">Leave Rules</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/attendanceRule']" (click)="loginService.showTable('attendanceRule')">Attendance</a>
                   </li>
                 </ul>
               </div>
