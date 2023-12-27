@@ -5,7 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver'
 import Swal from 'sweetalert2';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { TestService } from 'src/app/services/test.service';
@@ -16,6 +16,7 @@ import timeGridWeek from '@fullcalendar/timegrid';
 import timeGridDay from '@fullcalendar/timegrid';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { CountryCodeService } from 'src/app/services/country-code.service';
 
 @Component({
   selector: 'app-test',
@@ -192,7 +193,7 @@ isDropdownOpen: any;
 
    // role and permission list search end
 
-  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute, private countryCode: CountryCodeService) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -255,6 +256,11 @@ isDropdownOpen: any;
     this.toggleAllLeaveTable();
     this.togglecalendar();
     this.designations();
+
+    this.getPositionRecruitment();
+    this.numberCode();
+    this.viewPositionName();
+    this.getAllInterview();
   }
 
 
@@ -2465,11 +2471,11 @@ sortByWhomeAllatt(): void {
               showConfirmButton: false,
               timer: 3000,
             }).then(() => {
-              this.loginService.showTable('getAllPosition');
+              this.loginService.showTable('viewPosition');
               // this.clearFormPosition();
             });
             this.getPositionRecruitment();
-            // this.getInterviewPositionName();
+            this.viewPositionName();
           },
           (error) => {
             console.error('addPositionRecruitment error', error);
@@ -2650,13 +2656,680 @@ changePage(pageNumber: number): void {
         );
       }
 
-      updatePositionRecruitment(){
-        
+      updatePositionRecruitment(positionByData: any){
+        this.testService.updatePosition(positionByData).subscribe(
+          (response) => {
+            // this.positionsDataById = response;
+            Swal.fire({
+              title: 'Success!',
+              text: 'Position Updated Successfully.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+            }).then(() => {
+              this.loginService.showTable('viewPosition');
+              // this.clearFormPosition();
+              this.viewPositionName();
+            });
+            this.getPositionRecruitment();
+            console.log(this.positionsDataById);
+            console.log('putPositionByIdRecruitment success', response);
+          },
+          (error) => {
+            console.error('putPositionByIdRecruitment error', error);
+            Swal.fire({
+              title: 'Error!',
+              text: error.error,
+              icon: 'error',
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }
+        );
       }
       
+
+      deletePositionByIdRecruitment(id: any){
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'Are you sure you want to delete this position!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true,
+        }).then((result) =>{
+          if (result.isConfirmed){
+            this.testService.deletePositionById(id).subscribe(
+              (response) => {
+                console.log('deletePositionByIdRecruitment success', response);
+                this.getPositionRecruitment();
+                // this.loginService.showTable('getAllPosition');
+                // Swal.fire('Deleted!', 'Position has been deleted.', 'success');
+                Swal.fire({
+                  title: 'Deleted!',
+                  text: 'Position has been deleted.',
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 3000,
+                }).then(() => {
+                  this.loginService.showTable('viewPosition');
+                  this.viewPositionName();
+                });
+              },
+              (error) => {
+                console.error('deletePositionByIdRecruitment error', error);
+                Swal.fire('Error', error.error, 'error');
+              }
+            )
+          }
+          else if (result.dismiss === Swal.DismissReason.cancel) {
+            console.log('Deletion canceled');
+          }
+        })
+      }
       // view position end
 
 
 
+// leave rules start
+leaveRules = [
+  { label: 'Sick Leave Carryforward', name: 'sickLeaveCarryforward' },
+  { label: 'Sick Leave Encashment', name: 'sickLeaveEncashment' },
+  { label: 'Sick Leave Expire', name: 'sickLeaveExpire' },
+  { label: 'Casual Leave Carryforward', name: 'casualLeaveCarryforward' },
+  { label: 'Casual Leave Encashment', name: 'casualLeaveEncashment' },
+  { label: 'Casual Leave Expire', name: 'casualLeaveExpire' },
+  { label: 'All Expired', name: 'allExpired' },
+  // Add other leave rules as needed
+];
+// leave rules end
+
+// attendance rule start
+shiftTimes = [{ startTime: '', endTime: '' }];
+
+addRow() {
+  this.shiftTimes.push({ startTime: '', endTime: '' });
+}
+
+removeRow(index: number) {
+  this.shiftTimes.splice(index, 1);
+}
+// attendance rule end
+
+// add interview start
+interview: {
+  id: any;
+  // isOptionsVisible: any;
+  nameOfInterviewee: string;
+  emailOfInterviewee: string;
+  resumeOfInterviewee: string;
+  phoneNumberOfInterviewee: string;
+  countryCodeOfInterviewee: string;
+  interviewer: string;
+  interviewerEmailId: string;
+  positionName: string;
+  dateOfInterview: string;
+  timeOfInterview: string;
+  status: string;
+  offerLetterStatus: string;
+  referral: string;
+  subject: string;
+  modeOfInterview: string;
+  addressOrLink: string;
+  
+} = {
+  id: '',
+  nameOfInterviewee: '',
+  emailOfInterviewee: '',
+  resumeOfInterviewee: '',
+  phoneNumberOfInterviewee: '',
+  countryCodeOfInterviewee: '',
+  interviewer: '',
+  interviewerEmailId: '',
+  positionName: '',
+  dateOfInterview: '',
+  timeOfInterview: '',
+  status: '',
+  offerLetterStatus: '',
+  referral: '',
+  subject: '',
+  modeOfInterview: 'online',
+  addressOrLink: '',
+};
+countries: any[] = [];
+ selectedCountry: string = 'IN';
+ positionNameInterview: any;
+
+ numberCode(): void {
+  this.countries = this.countryCode.countryCode();
+}
+
+viewPositionName(){
+  this.testService.viewPositionName().subscribe(
+    (response) => {
+      console.log('Position Name =>', response);
+      this.positionNameInterview = response;
+    }
+  );
+}
+
+addInterviewRecruitment(){
+  this.testService.addInterview(this.interview, this.selectedFileName).subscribe(
+    (response: any) => {
+      console.log('addPositionRecruitment success', response);
+      Swal.fire({
+        title: 'Success!',
+        text: 'Interview Added Successfully.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+      }).then(() => {
+        this.loginService.showTable('viewInterview');
+        // this.clearFormInterview();
+        // this.addResumeInterview(response.id);
+      });
+      // this.getAllInterview();
+    },
+    (error) => {
+      console.error('addPositionRecruitment error', error);
+    }
+  );
+}
+// add interview end
+
+// view interview start
+itemsPerPageInterview: number = 10;
+searchTermInterview: string = '';
+interviewData: any = {};
+filteredPositionsDataInterview: any[] | any;
+
+sortInterviewByOpenDate: 'asc' | 'desc' = 'asc';
+sortOrderInterviewStatus: 'asc' | 'desc' = 'asc';
+sortOrderInterviewApplicants: 'asc' | 'desc' = 'asc';
+
+candidateData: any = {};
+filteredPositionsDataCandidate: any[] | any;
+searchTermCandidate: string = '';
+
+filterPositionsDataInterview(): void {
+  const searchTermLowerCase = this.searchTermInterview.trim().toLowerCase();
+
+  if (!searchTermLowerCase) {
+    this.filteredPositionsDataInterview = this.interviewData;
+  } else {
+    this.filteredPositionsDataInterview = this.interviewData.filter(
+      (position: any) => {
+        return (
+          position.type.toLowerCase().includes(searchTermLowerCase) ||
+          position.openingDate.toString().includes(searchTermLowerCase) ||
+          position.applicantsNumber.toString().includes(searchTermLowerCase)
+        );
+      }
+    );
+  }
+}
+
+getPaginatedDataInterview(): any[] {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPageInterview;
+  const endIndex = startIndex + this.itemsPerPageInterview;
+  return this.filteredPositionsDataInterview.slice(startIndex, endIndex);
+}
+
+nextPageInterview(): void {
+  const totalPages = Math.ceil(
+    this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
+  );
+  if (this.currentPage < totalPages) {
+    this.currentPage++;
+  }
+}
+getPageNumbersInterview(): number[] {
+  const totalPages = Math.ceil(
+    this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+getTotalPagesInterview(): number {
+  return Math.ceil(
+    this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
+  );
+}
+
+sortInterviewByOpeningDate(): void {
+  // Toggle the sort order
+  this.sortInterviewByOpenDate =
+    this.sortInterviewByOpenDate === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the opening date
+  this.interviewData.sort((a: any, b: any) => {
+    const orderFactor = this.sortInterviewByOpenDate === 'asc' ? 1 : -1;
+
+    // Convert openingDate to Date objects for proper comparison
+    const dateA = new Date(a.openingDate).getTime();
+    const dateB = new Date(b.openingDate).getTime();
+
+    // Compare dates in ascending or descending order
+    return orderFactor * (dateA - dateB);
+  });
+}
+
+
+sortInterviewStatus(): void {
+  // Toggle the sort order
+  this.sortOrderInterviewStatus =
+  this.sortOrderInterviewStatus === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the number of posts
+  this.interviewData.sort((a: any, b: any) => {
+    const orderFactor = this.sortOrderInterviewStatus === 'asc' ? 1 : -1;
+    return orderFactor * (a.status - b.status);
+  });
+}
+sortInterviewApplicants(): void {
+  // Toggle the sort order
+  this.sortOrderInterviewApplicants =
+    this.sortOrderInterviewApplicants === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the number of posts
+  this.interviewData.sort((a: any, b: any) => {
+    const orderFactor = this.sortOrderInterviewApplicants === 'asc' ? 1 : -1;
+    return orderFactor * (a.applicantsNumber - b.applicantsNumber);
+  });
+}
+
+changePageInterview(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesInterview()) {
+    this.currentPage = pageNumber;
+  }
+}
+
+
+// get all interview start
+getAllInterview(){
+  this.testService.viewPosition().subscribe(
+    (response: any) => {
+      console.log('Interview Data =>', response);
+      this.interviewData = response.filter(
+        (res: any) => res.applicantsNumber > 0
+      );
+      this.filteredPositionsDataInterview = this.interviewData;
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
+// get all interview end
+
+// update postion status start
+putStatusPosition(positionId: any, positionStatus: any){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Do you want to update the position status?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, update it!',
+  }).then((result) =>{
+    if (result.isConfirmed){
+console.log("??????", result.isConfirmed)
+      this.testService.updatePositionstatus(positionId, positionStatus).subscribe(
+        (response) => {
+          console.log('Status updated successfully:', response);
+          Swal.fire({
+            title: 'Success!',
+            text: 'Status updated successfully!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+          }).then(() => {
+            this.loginService.showTable('viewInterview');
+          });
+          this.getAllInterview();
+        },
+        (error) => {
+          console.log('Error updating status:', error);
+          // Swal.fire('Error!', error.error, 'error');
+          Swal.fire({
+            title: 'Error!',
+            text: error.error,
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+        );
+    }
+    this.getAllInterview();
+  })
+
+}
+// update postion status end
+
+// get candidate position start
+filterPositionsDataCandidate(): void {
+  const searchTermLowerCase = this.searchTermCandidate.trim().toLowerCase();
+
+  if (!searchTermLowerCase) {
+    this.filteredPositionsDataCandidate = this.candidateData;
+  } else {
+    this.filteredPositionsDataCandidate = this.candidateData.filter(
+      (candidate: any) => {
+        return (
+          candidate.nameOfInterviewee
+            .toLowerCase()
+            .includes(searchTermLowerCase) ||
+          candidate.phoneNumberOfInterviewee
+            .toString()
+            .includes(searchTermLowerCase) ||
+          candidate.emailOfInterviewee
+            .toString()
+            .includes(searchTermLowerCase) ||
+          candidate.dateOfInterview.toString().includes(searchTermLowerCase)
+        );
+      }
+    );
+  }
+}
+
+
+
+getCandidateRecruitment(positionName: any){
+  console.log("position name", positionName)
+  this.testService.getCandidatePosition(positionName).subscribe(
+    (response) => {
+      console.log('Candidate Data =>', response);
+      this.candidateData = response;
+      this.filteredPositionsDataCandidate = this.candidateData;
+      this.loginService.showTable('candidateList');
+    },
+    (error) => {
+      console.error('Error fetching position recruitment data:', error);
+    }
+  );
+}
+
+// get candidate position end
+
+
+
+// view interview end
+
+// view candidate interview start
+itemsPerPageCandidate: number = 10;
+
+getPaginatedDataCandidate(): any[] {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPageCandidate;
+  const endIndex = startIndex + this.itemsPerPageCandidate;
+  return this.filteredPositionsDataCandidate.slice(startIndex, endIndex);
+}
+nextPageCandidate(): void {
+  const totalPages = Math.ceil(
+    this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
+  );
+  if (this.currentPage < totalPages) {
+    this.currentPage++;
+  }
+}
+getPageNumbersCandidate(): number[] {
+  const totalPages = Math.ceil(
+    this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageCandidate(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesCandidate()) {
+    this.currentPage = pageNumber;
+  }
+}
+getTotalPagesCandidate(): number {
+  return Math.ceil(
+    this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
+  );
+}
+
+// download candidate CV start
+getDownloadResume(id: any){
+  this.testService.downloadCandidateCV(id).subscribe(
+    (response: HttpResponse<Blob>) => {
+      if (response.body) {
+        const contentDisposition = response.headers.get(
+          'content-disposition'
+        );
+        const fileName = contentDisposition
+          ? contentDisposition.split('filename=')[1]
+          : 'Resume.pdf';
+
+        saveAs(response.body, fileName);
+      } else {
+        console.error('Response body is null.');
+      }
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+
+}
+// download candidate CV end
+
+// send mail start
+updateInterviewStatus(id: any, data: any){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Do you want to update the Interview status?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, update it!',
+  }).then((result) =>{
+    if (result.isConfirmed) {
+
+      this.testService.sendMail(id, data).subscribe(
+        (response) => {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Status updated successfully!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+          }).then(() => {
+            this.loginService.showTable('viewInterview');
+          });
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  })
+}
+// send mail end
+
+
+// update confermation status start
+updateConfirmationStatus(confirmationId: any, confirmationStatus: any){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Do you want to update the Interview status?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, update it!',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // If the user clicks 'Yes', perform the update
+      this.testService.updateConfirmationStatus(confirmationId, confirmationStatus).subscribe(
+        (response) => {
+          console.log('Status updated successfully:', response);
+          Swal.fire('Success!', 'Status updated successfully!', 'success');
+          Swal.fire({
+            title: 'Success!',
+            text: 'Status updated successfully!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+          }).then(() => {
+            this.loginService.showTable('viewInterview');
+          });
+          this.getAllInterview();
+        },
+        (error) => {
+          console.log('Error updating status:', error);
+          // Swal.fire('Error!', error.error, 'error');
+          Swal.fire({
+            title: 'Error!',
+            text: error.error,
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      );
+    }
+    this.getAllInterview();
+  });
+}
+// update confermation status end
+
+toggleOptions(candidate: any): void {
+  candidate.isOptionsVisible = !candidate.isOptionsVisible;
+}
+
+// find candidate by id start
+getInterviewByIdRecruitment(id: any){
+  this.testService.findCandidateById(id).subscribe(
+    (response: any) => {
+      this.interview = response;
+      console.log(this.interview);
+      this.loginService.showTable('interviewScheduleUpdate');
+      console.log('getInterviewByIdRecruitment success', response);
+    },
+    (error) => {
+      console.error('getInterviewByIdRecruitment error', error);
+    }
+  );
+}
+// find candidate by id end
+
+// delete candidate interview by id start
+deleteInterviewByIdRecruitment(id: any){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Are you sure you want to delete this interview!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+     
+
+      this.testService.deleteCandidateInterviewById(id).subscribe(
+        (response) => {
+          console.log('deleteInterviewByIdRecruitment success', response);
+          this.getAllInterview();
+
+          // this.loginService.showTable('getAllPosition');
+          // Swal.fire('Deleted!', 'Position has been deleted.', 'success');
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Interview has been deleted.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+          }).then(() => {
+            this.loginService.showTable('viewInterview');
+            this.viewPositionName();
+          });
+        },
+        (error) => {
+          console.error('deleteInterivewByIdRecruitment error', error);
+          Swal.fire('Error', 'Unable to delete interview.', 'error');
+        }
+      );
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      console.log('Deletion canceled');
+    }
+  });
+}
+// delete candidate interview by id end
+
+// update interview start
+addInterviewUpdateRecruitment(id: any, interview: any, selectedFileName: any){
+  this.testService.updateInterviewById(id,interview,selectedFileName).subscribe(
+    (response) => {
+      // this.positionsDataById = response;
+      Swal.fire({
+        title: 'Success!',
+        text: 'Interview Updated Successfully.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+      }).then(() => {
+        this.loginService.showTable('allInterview');
+        // this.clearFormPosition();
+      });
+      // this.getPositionRecruitment();
+      // this.getInterviewRecruitment();
+      console.log(this.positionsDataById);
+      console.log('addInterviewUpdateRecruitment success', response);
+      // this.clearFormInterview();
+    },
+    (error) => {
+      console.error('addInterviewUpdateRecruitment error', error);
+      Swal.fire({
+        title: 'Error!',
+        text: error.error,
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  );
+}
+// update interview end
+
+// view candidate interview end
+
+  recruitmentForm!: NgForm;
+  recruitmentInterviewForm!: NgForm;
+  recruitmentInterviewUpdateForm!: NgForm;
+  recruitmentGenerateOfferLetterForm!: NgForm;
+  // shiftForm!: NgForm;
+
+// add shift time start
+
+shiftTime: any = {};
+addShiftTime() {
+  console.log('shift form', this.shiftTime);
+  this.testService.addShift(this.shiftTime).subscribe(
+    (response) => {
+      Swal.fire({
+        title: 'Success!',
+        text: 'Shift Time added Successfully.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+      }).then(() => {
+        // Any additional actions after success
+      });
+
+      console.log('add shift time', response);
+    },
+    (error) => {
+      Swal.fire('Error', error.error, 'error');
+    }
+  );
+}
+// add shift time end
 
 }

@@ -311,15 +311,15 @@ deleteEmployee(id: number): Observable<any> {
 //Delete Employee end
 
 
-// add shift time start
-AddShift(){
-  const url = `${this.api.shift}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+// // add shift time start
+// AddShift(){
+//   const url = `${this.api.shift}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-  return this.http.get(url, { headers });
-}
-// add shift time end
+//   return this.http.get(url, { headers });
+// }
+// // add shift time end
 
 //Update Employee Attendance start
 updateAtt(id: number, status: string): Observable<any> {
@@ -402,9 +402,186 @@ updatePosition(position: any){
     jobLocation: position.jobLocation,
     jobDescription: position.jobDescription,
   };
-  return this.http.post(url, data, { headers });
+  return this.http.put(url, data, { headers });
 }
 // update position end
 
+// delete position by id start
+deletePositionById(id: any){
+
+  const url = `${this.api.deletePositionById}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+  return this.http.delete(url,  { headers });
+}
+// deletw position by id end
+
+// add interview start
+addInterview(interview: any, selectedFileName: any){
+
+  const url = `${this.api.addInterview}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    nameOfInterviewee: interview.nameOfInterviewee,
+    emailOfInterviewee: interview.emailOfInterviewee,
+    resumeOfInterviewee: selectedFileName,
+    countryCodeOfInterviewee: interview.countryCodeOfInterviewee,
+    phoneNumberOfInterviewee: interview.phoneNumberOfInterviewee,
+    interviewer: interview.interviewer,
+    interviewerEmailId: interview.interviewerEmailId,
+    positionName: interview.positionName,
+    dateOfInterview: interview.dateOfInterview,
+    timeOfInterview: interview.timeOfInterview,
+    status: interview.status,
+    referral: interview.referral,
+    offerLetterStatus: interview.offerLetterStatus,
+    subject: interview.subject,
+    modeOfInterview: interview.modeOfInterview,
+      addressOrLink: interview.addressOrLink
+  };
+  return this.http.post(url, data, { headers });
+}
+// add interview end
+
+// view position name start
+viewPositionName(){
+
+  const url = `${this.api.PositionName}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+  return this.http.get(url,  { headers });
+}
+// view position name end
+
+// update position status start
+updatePositionstatus(positionId: any, positionStatus: any){
+
+  const url = `${this.api.updatePositionStatus}/${positionId}/close`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    closed: positionStatus,
+  };
+  return this.http.put(url,data,  { headers });
+}
+// update position status end
+
+// get candidate interview position start
+getCandidatePosition(positionName: any){
+
+  const url = `${this.api.getCandidateInterview}${positionName}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+  return this.http.get(url,  { headers });
+}
+// get candidate interview position end
+
+// download candidate CV  start
+downloadCandidateCV(id: any){
+
+  const url = `${this.api.downloadCandidateCV}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+  return this.http.get(url,  { headers, observe: 'response', responseType: 'blob'  });
+}
+// download candidate CV  end
+
+// send mail start
+sendMail(id: any, data: any){
+
+  const url = `${this.api.sendMail}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const dataStatus = {
+    interviewStatus: data,
+  };
+  return this.http.post(url, dataStatus, { headers });
+}
+// send mail end
+
+// confirmation Status start
+updateConfirmationStatus(confirmationId: any, confirmationStatus: any){
+  const url = `${this.api.updateConfirmationStatus}/${confirmationId}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const dataStatus = {
+    confirmation: confirmationStatus,
+  };
+  return this.http.put(url, dataStatus, { headers });
+}
+// confirmation Status end
+
+
+// find candidate start
+findCandidateById(id: any){
+  const url = `${this.api.findCandidate}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url,  { headers });
+}
+// find candidate end
+
+// delete candidate interview start
+deleteCandidateInterviewById(id: any){
+  const url = `${this.api.deleteCandidateInterview}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.delete(url,  { headers });
+}
+// delete candidate interview end
+
+// update interview start
+updateInterviewById(id: any, interview: any, selectedFileName: any){
+  const url = `${this.api.updateInterview}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    nameOfInterviewee: interview.nameOfInterviewee,
+    emailOfInterviewee: interview.emailOfInterviewee,
+    resumeOfInterviewee: selectedFileName,
+    phoneNumberOfInterviewee: interview.phoneNumberOfInterviewee,
+    interviewer: interview.interviewer,
+    interviewerEmailId: interview.interviewerEmailId,
+    positionName: interview.positionName,
+    dateOfInterview: interview.dateOfInterview,
+    timeOfInterview: interview.timeOfInterview,
+    status: interview.status,
+    offerLetterStatus: interview.offerLetterStatus,
+    subject: interview.subject,
+    modeOfInterview: interview.modeOfInterview,
+      addressOrLink: interview.addressOrLink
+  };
+  return this.http.put(url,data,  { headers });
+}
+// update interview end
+
+
+// add shift time start
+addShift(shiftTiming: any){
+  const url = `${this.api.addShiftTime}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    shiftName: "Day Shift",
+  shiftTime: "15:30-15:40",
+  shiftDetails: {
+    checkInGraceTime: "15:32",
+    checkOutGraceTime: "15:38",
+    halfDay: "15:35",
+    absentCount: "15:33",
+    present: "15:30",
+    overtime: "15:31"
+  }
+}
+  return this.http.post(url, data, { headers });
+}
+// add shift time end
 
 }

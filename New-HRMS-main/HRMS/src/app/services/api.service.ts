@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.17:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.15:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -63,7 +63,7 @@ export class ApiService {
   public USerBasicInfo = `${this.apiUrl}gateway/hrms/findUSerAdditionalInfo`;
   public DeletepersonalDetails = `${this.apiUrl}gateway/hrms/deleteMydetail`;
   public uploadPhoto = `${this.apiUrl}gateway/hrms/upload-photo`;
-  public shift = `${this.apiUrl}gateway/hrms/addShiftTiming`;
+  // public shift = `${this.apiUrl}gateway/hrms/addShiftTiming`;
   public wfhCount = `${this.apiUrl}gateway/hrms/count-workFromHome`;
   public presentCount = `${this.apiUrl}gateway/hrms/present-employees-count`;
   public absentCount = `${this.apiUrl}gateway/hrms/total-absent-employees`;
@@ -78,6 +78,19 @@ export class ApiService {
   public viewPosition = `${this.apiUrl}gateway/onboard/getAllPositions`;
   public viewPositionById = `${this.apiUrl}gateway/onboard/getPositionById`;
   public updatePositionById = `${this.apiUrl}gateway/onboard/updatePositionById`;
+  public deletePositionById = `${this.apiUrl}gateway/onboard/deletePositionById`;
+  public addInterview = `${this.apiUrl}gateway/onboard/addInterview`;
+  public PositionName = `${this.apiUrl}gateway/onboard/PositionName`;
+  public updatePositionStatus = `${this.apiUrl}gateway/onboard/update`;
+  public getCandidateInterview = `${this.apiUrl}gateway/onboard/getCandidate?positionName=`;
+  public downloadCandidateCV = `${this.apiUrl}gateway/onboard/downloadResume`;
+  public sendMail = `${this.apiUrl}gateway/onboard/send-confirmation-mail`;
+  public updateConfirmationStatus = `${this.apiUrl}gateway/onboard/updateConfirmationStatus`;
+  public findCandidate = `${this.apiUrl}gateway/onboard/findCandidateBy`;
+  public deleteCandidateInterview = `${this.apiUrl}gateway/onboard/deleteInterview`;
+  public updateInterview = `${this.apiUrl}gateway/onboard/updateInterview`;
+  public addShiftTime = `${this.apiUrl}gateway/onboard/saveShiftTime`;
+
 
   
 

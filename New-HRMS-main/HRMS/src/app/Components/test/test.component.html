@@ -2064,6 +2064,202 @@
 
 <!-- leave policy upload end -->
 
+<!-- notice period start -->
+<div *ngSwitchCase="'noticePeriod'">
+<div class="content m-1 mt-4">
+  <div class="recruit_form_other_rule mb-5 ">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+        <!-- banti -->
+        <form (ngSubmit)="onRecruitmentAddPosition()" #recruitmentForm="ngForm">
+          <h1 class="text-center add_position" style="font-weight: bold;">Notice Period</h1>
+
+          <div class="col-lg-12 col-12 d-flex flex-wrap">
+            <div class="col-lg-6 col-12 d-flex align-items-center justify-content-center">
+              <label class="recruit_label" style="font-size: 1.5rem;">Total No. of Days :</label>
+            </div>
+            <div class="col-lg-6 col-12 d-flex gap-4">
+              <div class="col-lg-10 ">
+                <input type="number" class="recruit_input" placeholder="Numbers" min="1" onmousewheel="return false"
+                  onwheel="return false" [(ngModel)]="position.numberOfPositions" name="numberOfPositions" required>
+              </div>
+              <div class="col-lg-2 position_no_icon">
+                <button class="icon_position" type="button" (click)="incrementPositions()">
+                  <i class="fa fa-plus"></i>
+                </button>
+                <button class="icon_position" type="button" (click)="decrementPositions()">
+                  <i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center gap-4">
+            <button class="recruitment_button_cancel" type="button">Cancel</button>
+            <button class="recruitment_button" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- notice period end -->
+
+<!-- leave rules start -->
+<div *ngSwitchCase="'leaveRules'">
+  <div class="content m-1 mt-4">
+    <div class="recruit_form_other_rule mb-5 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+          <!-- banti -->
+          <form (ngSubmit)="onRecruitmentAddPosition()" #recruitmentForm="ngForm">
+            <h1 class="text-center add_position" style="font-weight: bold;">Leave Rule</h1>
+
+            <!-- leave-rules.component.html -->
+            <div *ngFor="let rule of leaveRules" class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-7 col-12 d-flex align-items-center justify-content-start">
+                <label class="recruit_label" style="font-size: 1.1rem;">{{ rule.label }}:</label>
+              </div>
+              <div class="col-lg-5 col-12 d-flex justify-content-around align-items-center">
+                <div class="leave_rule">
+                  <input class="leave_rule_input" type="radio" [name]="rule.name" id="{{ rule.name }}Option1"
+                    value="option1">
+                  <label class="leave_rule_label" [for]="rule.name + 'Option1'">
+                   &nbsp; Yes
+                  </label>
+                </div>
+                <div class="leave_rule">
+                  <input class="leave_rule_input" type="radio" [name]="rule.name" id="{{ rule.name }}Option2"
+                    value="option2">
+                  <label class="leave_rule_label" [for]="rule.name + 'Option2'">
+                    &nbsp; No
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center gap-2">
+              <button class="recruitment_button_cancel" type="submit">Close</button>
+              <!-- <button class="recruitment_button_edit" type="submit">Edit</button> -->
+              <button class="recruitment_button" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- leave rules end -->
+
+<!-- attendance Rule start -->
+<div *ngSwitchCase="'attendanceRule'">
+  <div class="content m-1 mt-4">
+    <div class="recruit_form_other_rule_attendance mb-5 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+        
+          <form>
+            <h1 class="text-center add_position" style="font-weight: bold;">Attendance</h1>
+
+            <label class="recruit_label" style="font-weight: bold;">Add Shift</label>
+            
+            <div class="d-flex col-lg-12 flex-wrap justify-content-between align-items-center" *ngFor="let shiftTime of shiftTimes; let i = index">
+              <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-12 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">Start Time :</label>
+                </div>
+                <div class="col-lg-12 col-12">
+                  <input type="time" class="recruit_input" [(ngModel)]="shiftTime.startTime">
+                </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-12 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">End Time :</label>
+                </div>
+                <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
+                  <input type="time" class="recruit_input" [(ngModel)]="shiftTime.endTime">
+                  <i class="fa fa-close" (click)="removeRow(i)"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center mt-2">
+              <button class="btn btn-success" type="button" (click)="addRow()">+ Add more</button>
+            </div>
+
+            <label class="recruit_label" style="font-weight: bold;">Grace Time</label>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="d-flex col-lg-12 col-md-12 flex-wrap justify-content-between align-items-center">
+              <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">Check In :</label>
+                </div>
+                <div class="col-lg-7 col-12">
+                  <input type="time" class="recruit_input">
+                </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">Check Out :</label>
+                </div>
+                <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
+                  <input type="time" class="recruit_input">
+                  
+                </div>
+              </div>
+            </div>
+            <div class="d-flex col-lg-12 col-md-12 flex-wrap justify-content-between align-items-center">
+              <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">Half Day :</label>
+                </div>
+                <div class="col-lg-7 col-12">
+                  <input type="time" class="recruit_input">
+                </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">Absent Count :</label>
+                </div>
+                <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
+                  <input type="time" class="recruit_input">
+                  
+                </div>
+              </div>
+            </div>
+            <div class="d-flex col-lg-12 col-12 flex-wrap justify-content-between align-items-center">
+              <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">Present :</label>
+                </div>
+                <div class="col-lg-7 col-12">
+                  <input type="time" class="recruit_input">
+                </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
+                <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
+                  <label class="recruit_label">Over Time :</label>
+                </div>
+                <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
+                  <input type="time" class="recruit_input">
+                  
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
+              <button class="recruitment_button" type="submit" (click)="addShiftTime()">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- attendance Rule end -->
+
 
 <!-- add position start -->
 
@@ -2391,7 +2587,7 @@
                 <p>Job Detail</p>
               </div>
               <div class="px-1 ms-3"><i class="fa fa-angle-left" style="cursor: pointer;"
-                  (click)="loginService.showTable('getAllPosition');"></i>&nbsp; Back</div>
+                  (click)="loginService.showTable('viewPosition');"></i>&nbsp; Back</div>
             </div>
             <div class="row">
               <div class="col-md-8">
@@ -2472,14 +2668,14 @@
                         class="d-flex justify-content-center align-items-center">&nbsp;
                         {{positionsDataById.modeOfWorking}}</strong></div>
                   </div>
-                  <!-- <div class="d-flex w-100 justify-content-center align-items-center flex-wrap">
-                    <button class="recruit_form_button_edit_delete" (click)="openUpdatePage(positionsDataById.id)"><i
-                        class="fa fa-edit"></i> Edit Details</button>
+                  <div class="d-flex w-100 justify-content-center align-items-center flex-wrap">
+                    <button class="recruit_form_button_edit_delete" (click)="loginService.showTable('addPositionUpdate')"
+                        > Edit Details</button>
                     <button class="recruit_form_button_edit_delete"
                       (click)="deletePositionByIdRecruitment(positionsDataById.id)"><i class="fa fa-trash"></i>
                       Delete</button>
 
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -2671,7 +2867,7 @@
             <div class="row mb-2">
               <div class="col-md-3 d-flex justify-content-center offset-sm-2 offset-md-9">
                 <button class="recruitment_button" type="submit"
-                  (click)="updatePositionRecruitment()">Update</button>
+                  (click)="updatePositionRecruitment(positionsDataById)">Update</button>
               </div>
             </div>
 
@@ -2685,6 +2881,636 @@
 <!-- Recruitment Add Positions update Pages end -->
 
 
+ <!-- Interview Schedule Page Start  -->
+ <div *ngSwitchCase="'addInterview'">
+  <div class="content m-1 mt-4">
+    <div class="recruit_form mb-5 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+          <form (ngSubmit)="addInterviewRecruitment()" #recruitmentInterviewForm="ngForm">
+            <h1 class="text-center add_position">Interview Schedule</h1>
 
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Name of Candidate :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" [(ngModel)]="interview.nameOfInterviewee"
+                  name="nameOfInterviewee" placeholder="Candidate Name " required>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Add Resume/CV :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <div class="recruit_input d-flex">
+
+                  <div id="file-name">{{ selectedFileName || "No file selected" }}</div>
+                  <button id="select-file-btn" type="button" (click)="fileInput.click()">Select File</button>
+                  <input #fileInput type="file" id="file-input" (change)="onFileSelected($event)"
+                    style="display: none;" />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Candidate Email ID :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Email ID "
+                  [(ngModel)]="interview.emailOfInterviewee" name="emailOfInterviewee" required>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Phone Number :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap">
+                <div class="col-md-3 col-3 me-2 select-wrapper">
+                  <div *ngIf="countries" class="country-selector">
+                    <select class="recruit_input_select_countryCode text-center" [(ngModel)]="selectedCountry"
+                      name="countryCode" required>
+                      <option value="">-- Select --</option>
+                      <option *ngFor="let country of countries" [value]="country.code"
+                        [selected]="country.dial_code === selectedCountry">{{ country.dial_code }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-8 col-8"><input type="text" class="recruit_input w-100 mx-0"
+                    [(ngModel)]="interview.phoneNumberOfInterviewee" name="phoneNumberOfInterviewee"
+                    placeholder="Mobile No."> </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Name of Interviewer :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Interviewer Name "
+                  [(ngModel)]="interview.interviewer" name="interviewer">
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Interviewer Email ID :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Interviewer Email ID"
+                  [(ngModel)]="interview.interviewerEmailId" name="interviewerEmailId">
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Position Name :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <select class="recruit_input" [(ngModel)]="interview.positionName" name="positionName">
+                  <option value="">-- Select Position Name --</option>
+                  <option *ngFor="let name of positionNameInterview" [value]="name">{{name}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Interview Date & Time :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap">
+                <div class="col-lg-7 col-12 me-1">
+                  <input type="date" class="recruit_input" [(ngModel)]="interview.dateOfInterview"
+                    name="dateOfInterview">
+                </div>
+                <div class="col-lg-4 col-12">
+                  <input type="time" class="recruit_input" [(ngModel)]="interview.timeOfInterview"
+                    name="timeOfInterview">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Referral Details :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Referral Name " [(ngModel)]="interview.referral"
+                  name="referral">
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Mode of Interview :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap">
+                <div class="col-lg-3 col-12 me-1">
+                  <select class="recruit_input_select" [(ngModel)]="interview.modeOfInterview" name="modeOfInterview">
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                  </select>
+                </div>
+                <div class="col-lg-8 col-12">
+                  <input type="text" class="recruit_input" placeholder="Address/Link"
+                    [(ngModel)]="interview.addressOrLink" name="addressOrLink">
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-4 d-flex justify-content-center offset-sm-2 offset-md-8">
+                <button class="recruitment_button" type="submit">Schedule</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Interview Schedule Page End  -->
+
+  <!-- Recruitment Added Interview List Pages start -->
+  <div *ngSwitchCase="'viewInterview'">
+    <div class="content m-1 mt-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12 added_positions_list_head">
+                <p>Added Interview</p>
+              </div>
+              <div class="col-md-12 d-flex flex-wrap justify-content-between">
+                <div class="col-md-6 d-flex justify-content-start">
+                  <div class="added_positions_list_right">
+                    <div class="added_positions_under_head">Show</div>
+                    <div>
+                      <select class="added_positions_under_head_select" [(ngModel)]="itemsPerPageInterview">
+                        <!-- <option value="">0</option> -->
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                      </select>
+                    </div>
+                    <div class="added_positions_under_head">Enteries</div>
+                  </div>
+                </div>
+               
+
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                  <div class="col-md-6 offset-md-4">
+                    <div class="search-container ">
+                      <img src="../../../assets/image/search_icon_recruitment.svg"
+                        class="search_icon_added_position_list" alt="">
+                      <input type="text" name="" id="" class="search_added_position_list"
+                        [(ngModel)]="searchTermInterview" (keyup)="filterPositionsDataInterview()">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="button_added_position_list">Search</button>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="not_data_img_div" *ngIf="getPaginatedDataInterview().length == 0">
+              <!-- <img src="../../../assets/image/not_data.svg" alt=""> -->
+              <p>Not Data !!</p>
+            </div>
+            <div class="row" *ngIf="getPaginatedDataInterview().length != 0">
+              <div class="recruit_table">
+                <div class="table_head">
+                  <div class="table_head_topics" style="width: 10%;">S.No.</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;">Position Name</div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;" (click)="sortInterviewByOpeningDate()">
+                    <i class="fa fa-arrow-up"
+                      [ngStyle]="{'color': sortInterviewByOpenDate === 'asc' ? '#000' : '#ccc'}"></i>
+                    <i class="fa fa-arrow-down"
+                      [ngStyle]="{'color': sortInterviewByOpenDate === 'desc' ? '#000' : '#ccc'}"></i>
+                    &nbsp; Opening Date
+                  </div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                  <div class="table_head_topics" style="width: 20%;" (click)="sortInterviewStatus()">
+                    <i class="fa fa-arrow-up"
+                      [ngStyle]="{'color': sortOrderInterviewStatus === 'asc' ? '#000' : '#ccc'}"></i>
+                    <i class="fa fa-arrow-down"
+                      [ngStyle]="{'color': sortOrderInterviewStatus === 'desc' ? '#000' : '#ccc'}"></i>
+                    &nbsp; Status
+                  </div>
+                  <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                 
+                  <div class="table_head_topics" style="width: 20%;" (click)="sortInterviewApplicants()">
+                    <i class="fa fa-arrow-up"
+                      [ngStyle]="{'color': sortOrderInterviewApplicants === 'asc' ? '#000' : '#ccc'}"></i>
+                    <i class="fa fa-arrow-down"
+                      [ngStyle]="{'color': sortOrderInterviewApplicants === 'desc' ? '#000' : '#ccc'}"></i>
+                    &nbsp; Applicants
+                  </div>
+                 
+                </div>
+                <!-- </div> -->
+                <div class="my-1">
+                  <div class="table_body" *ngFor="let interview of getPaginatedDataInterview(),let i = index">
+                    <div class="table_body_topics" style="width: 10%;">{{i + 1}}</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics" style="width: 20%;">{{ interview.type.length > 14 ?
+                      (interview.type |
+                      slice:0:14) + '...' : interview.type }}</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics" style="width: 20%;">{{interview.openingDate | date:'dd MMM yyyy'}}
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+
+                    <div class="table_body_topics" style="width: 20%;">
+                      <select class="interview_status" [(ngModel)]="interview.closed"
+                        (change)="putStatusPosition(interview.id,interview.closed)"
+                        [ngClass]="{open: interview.closed == 'open' , closed: interview.closed == 'closed' , onHold: interview.closed == 'onHold'}">
+                        <option value="open" [style.color]="'#421CDD'">⦿ Open</option>
+                        <option value="closed" [style.color]="'#DD1717'">⦿ Closed</option>
+                        <option value="onHold" [style.color]="'#129B4B'">⦿ On Hold</option>
+                      </select>
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_body_topics" style="width: 20%;"><button class="btn btn-success"
+                        (click)="getCandidateRecruitment(interview.type)">{{interview.applicantsNumber
+                        }} Candidate</button> </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12" *ngIf="getTotalPagesInterview() > 1">
+            <div class="table_footer mt-2">
+              <!-- Update Previous button -->
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
+                <i class="fa fa-angle-left"></i> Previous
+              </button>
+              <!-- Add buttons to show total pages and allow clicking on each page -->
+              <div class="recruitment_list_number">
+                <div *ngFor="let pageNumber of getPageNumbersInterview()"
+                  [class.active_num]="pageNumber === currentPage" class="recruitment_list_number_value"
+                  (click)="changePageInterview(pageNumber)">
+                  {{ pageNumber }}
+                </div>
+              </div>
+
+
+              <!-- Update Next button -->
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                style="background-color:#421cdd;" (click)="nextPageInterview()"
+                [disabled]="currentPage == getTotalPagesInterview()">
+                Next <i class="fa fa-angle-right"></i>
+              </button>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Recruitment Added Interview List Pages end -->
+
+    <!-- Recruitment Added Candidate List Pages start -->
+    <div *ngSwitchCase="'candidateList'">
+      <div class="content m-1 mt-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12 added_positions_list_head">
+                  <p>Added Candidate List</p>
+                </div>
+                <div class="col-md-12 d-flex flex-wrap justify-content-between">
+                  <div class="col-md-6 d-flex justify-content-start">
+                    <div class="added_positions_list_right">
+                      <div class="added_positions_under_head">Show</div>
+                      <div>
+                        <select class="added_positions_under_head_select" [(ngModel)]="itemsPerPageCandidate">
+                          <!-- <option value="">0</option> -->
+                          <option value="10">10</option>
+                          <option value="20">20</option>
+                          <option value="30">30</option>
+                          <option value="40">40</option>
+                          <option value="50">50</option>
+                        </select>
+                      </div>
+                      <div class="added_positions_under_head">Enteries</div>
+                    </div>
+                  </div>
+                 
+  
+  
+                  <div class="col-md-6 d-flex justify-content-end align-items-center">
+                    <div class="col-md-6 offset-md-4">
+                      <div class="search-container ">
+                        <img src="../../../assets/image/search_icon_recruitment.svg"
+                          class="search_icon_added_position_list" alt="">
+                        <input type="text" name="" id="" class="search_added_position_list"
+                          [(ngModel)]="searchTermCandidate" (keyup)="filterPositionsDataCandidate()">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <button class="button_added_position_list">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="not_data_img_div" *ngIf="getPaginatedDataCandidate().length == 0">
+                <!-- <img src="../../../assets/image/not_data.svg" alt=""> -->
+                <p>Not Data !!</p>
+              </div>
+              <div class="row" *ngIf="getPaginatedDataCandidate().length != 0">
+                <div class="recruit_table">
+                  <div class="table_head">
+                    <div class="table_head_topics" style="width: 10%;">S.No.</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_head_topics" style="width: 20%;">Candidate Name</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_head_topics" style="width: 20%;">
+                      &nbsp; Phone No.
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_head_topics" style="width: 20%;">
+                      &nbsp; Email ID
+                    </div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                   
+                    <div class="table_head_topics" style="width: 20%;">Interview Date</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_head_topics" style="width: 20%;">Resume/CV</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_head_topics" style="width: 20%;">Interview Status</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_head_topics" style="width: 20%;">Confirmation</div>
+                    <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                    <div class="table_head_topics" style="width: 10%;">Action</div>
+  
+                  </div>
+                  <!-- </div> -->
+                  <div class="my-1">
+                    <div class="table_body" *ngFor="let candidate of getPaginatedDataCandidate(),let i = index">
+                      <div class="table_body_topics" style="width: 10%;">{{i + 1}}</div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                      <div class="table_body_topics" style="width: 20%;">{{ candidate.nameOfInterviewee.length > 10 ?
+                        (candidate.nameOfInterviewee |
+                        slice:0:10) + '...' : candidate.nameOfInterviewee }}</div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                      <div class="table_body_topics" style="width: 20%;">{{candidate.phoneNumberOfInterviewee}}</div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+  
+                      <div class="table_body_topics" style="width: 20%;">
+                        {{ candidate.emailOfInterviewee.length > 10 ?
+                        (candidate.emailOfInterviewee |
+                        slice:0:10) + '...' : candidate.emailOfInterviewee }}
+                        
+                      </div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                      <div class="table_body_topics" style="width: 20%;">
+                       
+                        {{candidate.dateOfInterview | date:'dd MMM yyyy'}}
+                      </div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                      <!-- your-component.component.html -->
+                      <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                        <button class="btn btn-success btn-sm" (click)="getDownloadResume(candidate.id)">Download</button>
+                      </div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                      <!-- your-component.component.html -->
+                      <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                        <select class="interview_status candidate_data text-center"
+                          [(ngModel)]="candidate.interviewStatus"
+                          (change)="updateInterviewStatus(candidate.id,candidate.interviewStatus)"
+                          [ngClass]="{selected: candidate.interviewStatus == 'selected' , rejected: candidate.interviewStatus == 'rejected' , notProcessed: candidate.interviewStatus == 'notProcessed' , onHold1: candidate.interviewStatus == 'onHold' , Scheduled: candidate.interviewStatus == 'Scheduled'}">
+                          <option value="selected" [style.color]="'#129B4B'">Selected</option>
+                          <option value="rejected" [style.color]="'#DD1717'">Rejected</option>
+                          <option value="notProcessed" [style.color]="'#421CDD'">Not Processed</option>
+                          <option value="onHold" [style.color]="'#FFBD2A'">On Hold</option>
+                          <option value="Scheduled" [style.color]="'#129B4B'"> Schedule</option>
+                        </select>
+                        <!-- ⦿ -->
+                      </div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                      <!-- your-component.component.html -->
+                      <div class="table_body_topics interview_action_data" style="width: 20%; cursor: pointer;">
+                        <select class="interview_status candidate_data text-center" [(ngModel)]="candidate.confirmation"
+                          (change)="updateConfirmationStatus(candidate.id, candidate.confirmation)"
+                          [ngClass]="{confirmed: candidate.confirmation == 'confirmed' , notConfirmed: candidate.confirmation == 'notConfirmed'}">
+                          <option value="confirmed" [style.color]="'#129B4B'">Confirmed</option>
+                          <option value="notConfirmed" [style.color]="'#DD1717'">Not Confirmed</option>
+                          <option value="Pending" [style.color]="'#421CDD'">Pending</option>
+                        </select>
+                      </div>
+                      <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
+                      <!-- your-component.component.html -->
+                      <div class="table_body_topics interview_action_data" style="width: 10%; cursor: pointer;"
+                        (click)="toggleOptions(candidate)">
+                        <i class="fa fa-ellipsis-v" *ngIf="!candidate.isOptionsVisible"></i>
+  
+                        <i class="fa fa-edit" style="color: #129B4B;" (click)="getInterviewByIdRecruitment(candidate.id)"
+                          *ngIf="candidate.isOptionsVisible"></i>
+                        <i class="fa fa-trash" style="color: #DD1717;"
+                          (click)="deleteInterviewByIdRecruitment(candidate.id)" *ngIf="candidate.isOptionsVisible"></i>
+                        <!-- <i class="fa fa-close" *ngIf="candidate.isOptionsVisible" (click)="toggleOptions(candidate)"></i> -->
+                      </div>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" *ngIf="getTotalPagesCandidate() > 1">
+              <div class="table_footer mt-2">
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                  style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
+                  <i class="fa fa-angle-left"></i> Previous
+                </button>
+                <div class="recruitment_list_number">
+                  <div *ngFor="let pageNumber of getPageNumbersCandidate()"
+                    [class.active_num]="pageNumber === currentPage" class="recruitment_list_number_value"
+                    (click)="changePageCandidate(pageNumber)">
+                    {{ pageNumber }}
+                  </div>
+                </div>
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                  style="background-color:#421cdd;" (click)="nextPageCandidate()"
+                  [disabled]="currentPage == getTotalPagesCandidate()">
+                  Next <i class="fa fa-angle-right"></i>
+                </button>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Recruitment Added Candidate List Pages end -->
+
+ <!-- Interview Schedule Update Page Start  -->
+ <div *ngSwitchCase="'interviewScheduleUpdate'">
+  <div class="content m-1 mt-4">
+    <div class="recruit_form mb-5 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+          <form (ngSubmit)="addInterviewUpdateRecruitment(interview.id, interview, selectedFileName)" #recruitmentInterviewUpdateForm="ngForm">
+            <h1 class="text-center add_position">Update Interview Schedule</h1>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Name of Candidate :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" [(ngModel)]="interview.nameOfInterviewee"
+                  name="nameOfInterviewee" placeholder="Candidate Name " required>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Add Resume/CV :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <div class="recruit_input d-flex">
+
+                  <div id="file-name">{{ selectedFileName || interview.resumeOfInterviewee || "No file selected" }}
+                  </div>
+                  <!-- <button id="select-file-btn" type="button" (click)="fileInput.click()">Select File</button>
+                  <input #fileInput type="file" id="file-input" (change)="onFileSelected($event)"
+                    style="display: none;" /> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Candidate Email ID :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Email ID "
+                  [(ngModel)]="interview.emailOfInterviewee" name="emailOfInterviewee" required>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Phone Number :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap">
+                <div class="col-md-3 col-3 me-2 select-wrapper">
+                  <div *ngIf="countries" class="country-selector">
+                    <select class="recruit_input_select_countryCode text-center" [(ngModel)]="selectedCountry"
+                      name="countryCode"  required>
+                      <option value="">-- Select --</option>
+                      <option *ngFor="let country of countries" [value]="country.code"
+                        [selected]="country.dial_code === selectedCountry">{{ country.dial_code }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-8 col-8"><input type="text" class="recruit_input w-100 mx-0"
+                    [(ngModel)]="interview.phoneNumberOfInterviewee" name="phoneNumberOfInterviewee"
+                    placeholder="Mobile No."> </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Name of Interviewer :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Interviewer Name "
+                  [(ngModel)]="interview.interviewer" name="interviewer">
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Interviewer Email ID :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Interviewer Email ID"
+                  [(ngModel)]="interview.interviewerEmailId" name="interviewerEmailId">
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Position Name :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <select class="recruit_input" [(ngModel)]="interview.positionName" name="positionName">
+                  <option value="">-- Select Position Name --</option>
+                  <option *ngFor="let name of positionNameInterview" [value]="name">{{name}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Interview Date & Time :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap">
+                <div class="col-lg-7 col-12 me-1">
+                  <input type="date" class="recruit_input" [(ngModel)]="interview.dateOfInterview"
+                    name="dateOfInterview">
+                </div>
+                <div class="col-lg-4 col-12">
+                  <input type="time" class="recruit_input" [(ngModel)]="interview.timeOfInterview"
+                    name="timeOfInterview">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Referral Details :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input" placeholder="Referral Name " [(ngModel)]="interview.referral"
+                  name="referral">
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Mode of Interview :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap">
+                <div class="col-lg-3 col-12 me-1">
+                  <select class="recruit_input_select" [(ngModel)]="interview.modeOfInterview" name="modeOfInterview">
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                  </select>
+                </div>
+                <div class="col-lg-8 col-12">
+                  <input type="text" class="recruit_input" placeholder="Address/Link"
+                    [(ngModel)]="interview.addressOrLink" name="addressOrLink">
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-4 d-flex justify-content-center offset-sm-2 offset-md-8">
+                <button class="recruitment_button" type="submit">Schedule</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Interview Schedule Update Page End  -->
 
 </div>

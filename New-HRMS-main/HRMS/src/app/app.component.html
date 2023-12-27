@@ -558,6 +558,25 @@
               </div>
           </li>
           
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#interview" aria-expanded="false">
+                <span class="image-namenew">Interview</span>
+              </a>
+              <div class="collapse" id="interview">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/addInterview']" (click)="loginService.showTable('addInterview')">Add Interview</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/viewInterview']" (click)="loginService.showTable('viewInterview')">View Interview</a>
+                  </li>
+                 
+                </ul>
+              </div>
+          </li>
           
 
           <!-- <li class="nav-item text-center">
