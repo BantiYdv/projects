@@ -74,6 +74,7 @@ throw new Error('Method not implemented.');
   roles: string[] = ['ADMIN', 'EMPLOYEE', 'MANAGER', 'TEAM LEAD'];
   roleControl = new FormControl();
   AllRoleData: any;
+  allShiftData: any;
   id: any;
   permissionNames: any;
 
@@ -261,6 +262,7 @@ isDropdownOpen: any;
     this.numberCode();
     this.viewPositionName();
     this.getAllInterview();
+    this.viewShiftTimeDetails();
   }
 
 
@@ -2385,10 +2387,31 @@ sortByWhomeAllatt(): void {
 
       //  view All att table function end
 
+// upload leave policy satrt
+selectedFileLeavePolicy: any;
+onFileSelectedLeavePolicy(event: any): void {
+  const fileInput = event.target;
+  if (fileInput.files.length > 0) {
+    const selectedFile = fileInput.files[0];
+    this.dashboardService.uploadPdf(selectedFile)
+    if (this.isPDFFile(selectedFile)) {
+      this.selectedFileLeavePolicy = selectedFile.name;
+    } else {
+      this.selectedFileLeavePolicy = 'Invalid file type. Please select a PDF file.';
+      // Optionally, you can reset the file input value to clear the selection
+      fileInput.value = '';
+    }
+  } else {
+    this.selectedFileLeavePolicy = 'No file selected';
+  }
+}
 
 
-      // leave policy upload start
+// upload leave policy end
+
+      // add resume start
       selectedFileName: any;
+   
       isPDFFile(file: File): boolean {
         // Check if the file has a PDF MIME type
         return file.type === 'application/pdf';
@@ -2409,7 +2432,7 @@ sortByWhomeAllatt(): void {
           this.selectedFileName = 'No file selected';
         }
       }
-       // leave policy upload end
+       // add resume end
       
 
        // add poition start
@@ -2734,27 +2757,27 @@ changePage(pageNumber: number): void {
 
 // leave rules start
 leaveRules = [
-  { label: 'Sick Leave Carryforward', name: 'sickLeaveCarryforward' },
-  { label: 'Sick Leave Encashment', name: 'sickLeaveEncashment' },
-  { label: 'Sick Leave Expire', name: 'sickLeaveExpire' },
-  { label: 'Casual Leave Carryforward', name: 'casualLeaveCarryforward' },
-  { label: 'Casual Leave Encashment', name: 'casualLeaveEncashment' },
-  { label: 'Casual Leave Expire', name: 'casualLeaveExpire' },
-  { label: 'All Expired', name: 'allExpired' },
+  { label: 'Sick Leave Carryforward', name: 'sickLeaveCarryforward', value_y: 'yes', value_n: 'no' },
+  { label: 'Sick Leave Encashment', name: 'sickLeaveEncashment', value_y: 'yes', value_n: 'no' },
+  { label: 'Sick Leave Expire', name: 'sickLeaveExpire', value_y: 'yes', value_n: 'no' },
+  { label: 'Casual Leave Carryforward', name: 'casualLeaveCarryforward', value_y: 'yes', value_n: 'no' },
+  { label: 'Casual Leave Encashment', name: 'casualLeaveEncashment', value_y: 'yes', value_n: 'no' },
+  { label: 'Casual Leave Expire', name: 'casualLeaveExpire', value_y: 'yes', value_n: 'no' },
+  { label: 'All Expired', name: 'allExpired', value_y: 'yes', value_n: 'no' },
   // Add other leave rules as needed
 ];
 // leave rules end
 
 // attendance rule start
-shiftTimes = [{ startTime: '', endTime: '' }];
+// shiftTimes = [{ checkInTime: '', checkOutTime: '', checkInGraceTime: '', checkOutGraceTime: '', halfDay: '', absentCount:'', present: '', overtime:'' }];
 
-addRow() {
-  this.shiftTimes.push({ startTime: '', endTime: '' });
-}
+// addRow() {
+//   this.shiftTimes.push({ checkInTime: '', checkOutTime: '', checkInGraceTime: '', checkOutGraceTime: '', halfDay: '', absentCount:'', present: '', overtime:''  });
+// }
 
-removeRow(index: number) {
-  this.shiftTimes.splice(index, 1);
-}
+// removeRow(index: number) {
+//   this.shiftTimes.splice(index, 1);
+// }
 // attendance rule end
 
 // add interview start
@@ -3320,6 +3343,8 @@ addShiftTime() {
         showConfirmButton: false,
         timer: 3000,
       }).then(() => {
+        this.loginService.showTable('viewShiftTime');
+          this.viewShiftTimeDetails();
         // Any additional actions after success
       });
 
@@ -3331,5 +3356,160 @@ addShiftTime() {
   );
 }
 // add shift time end
+
+// search for  leave table start
+searchShift: string = '';
+fillterShiftData: any;
+    
+FilterShift() {
+  this.fillterShiftData = this.allShiftData.filter((item: { checkInTime: string; checkOutTime: string; }) =>
+  item.checkInTime.toLowerCase().includes(this.searchShift.toLowerCase()) ||
+  item.checkOutTime.toLowerCase().includes(this.searchShift.toLowerCase()) 
+   );
+}
+
+ // search for leave table end
+
+// API for view shift time details start
+viewShiftTimeDetails(): void {
+  this.testService.viewShiftDetails().subscribe(
+    (response: any) => {
+
+      const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+      this.allShiftData = reversedData; // Assign the fetched role data to AllRoleData
+      this.fillterShiftData = reversedData;
+      console.log("view all shift", response);
+      console.log("view all shift", this.allShiftData);
+      
+      // this.fillterAllRoleData = reversedData; 
+    },
+    (error: any) => {
+      console.error('Error fetching role data:', error);
+    }
+  );
+}
+
+// API for view shift time details end
+
+
+// API for update shift time start
+UpdateShiftTime(selectedItemData: any){
+  this.testService.updateShiftTime(selectedItemData).subscribe(
+    (response: any) => {
+      
+      console.log("updated shift time",response);
+      Swal.fire({
+        title: 'Updated!',
+        text: 'Shift Time has been updated.',
+        icon: 'success'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // location.reload();
+          this.loginService.showTable('viewShiftTime');
+          this.viewShiftTimeDetails();
+
+        }
+      });
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');  
+      
+    }
+  );
+}
+// API for update shift time end
+
+// for view update shift time start
+selectedItem: any;
+editShift(itemId: number) {
+  // Find the selected item by its id
+  this.selectedItem = this.fillterShiftData.find((item: { id: number; }) => item.id === itemId);
+console.log("shift id", itemId);
+console.log("shift select", this.selectedItem);
+  // Show the 'editShiftTime' content
+  this.loginService.showTable('editShiftTime');
+}
+// for view update shift time end
+
+// notice period start
+noticePeriod: number = 1;
+
+incrementNoticePeriod(): void {
+  console.log(
+    'this.noticePeriod',
+    this.noticePeriod
+  );
+  this.noticePeriod++;
+  
+  
+}
+
+decrementNoticePeriod(): void {
+  console.log(
+    'this.noticePeriod',
+    this.noticePeriod
+  );
+
+  if (
+    this.noticePeriod > 1 
+  ) {
+    
+    this.noticePeriod--;
+    
+  }
+}
+noticePeriodDays(noticePeriod: any){
+  console.log("notice period", noticePeriod);
+  this.testService.noticePeriod(noticePeriod).subscribe(
+    (response: any) => {
+      
+      console.log("notice period",response);
+      Swal.fire({
+        title: 'success!',
+        text: 'Notice Period added successfully.',
+        icon: 'success'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // location.reload();
+          // this.loginService.showTable('viewShiftTime');
+          // this.viewShiftTimeDetails();
+
+        }
+      });
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');  
+      
+    }
+  );
+}
+// notice period end
+
+// leave rule start
+leaveRule: any = {}; 
+addleaveRule() {
+  console.log("leave rule", this.leaveRule);
+  
+  this.testService.addLeaveRule(this.leaveRule).subscribe(
+    (response: any) => {
+      console.log("leave Rule", response);
+      Swal.fire({
+        title: 'Success!',
+        text: 'Leave Rule added successfully.',
+        icon: 'success'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Add any additional logic you want to perform after success
+        }
+      });
+    },
+    (error: any) => {
+      Swal.fire('Error', error.error, 'error');
+    }
+  );
+}
+// leave rule end
 
 }

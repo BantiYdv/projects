@@ -564,24 +564,100 @@ updateInterviewById(id: any, interview: any, selectedFileName: any){
 
 
 // add shift time start
-addShift(shiftTiming: any){
+addShift(shiftTime: any){
   const url = `${this.api.addShiftTime}`;
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   const data = {
-    shiftName: "Day Shift",
-  shiftTime: "15:30-15:40",
+  //   shiftName: "Day Shift",
+  // shiftTime: "15:30-15:40",
+  // shiftDetails: {
+  //   checkInGraceTime: "15:32",
+  //   checkOutGraceTime: "15:38",
+  //   halfDay: "15:35",
+  //   absentCount: "15:33",
+  //   present: "15:30",
+  //   overtime: "15:31"
+    
+  checkInTime: shiftTime.checkInTime,
+  checkOutTime: shiftTime.checkOutTime,
   shiftDetails: {
-    checkInGraceTime: "15:32",
-    checkOutGraceTime: "15:38",
-    halfDay: "15:35",
-    absentCount: "15:33",
-    present: "15:30",
-    overtime: "15:31"
+    checkInGraceTime: shiftTime.checkInGraceTime,
+    checkOutGraceTime: shiftTime.checkOutGraceTime,
+    halfDay: shiftTime.halfDay,
+    absentCount: shiftTime.absentCount,
+    present: shiftTime.present,
+    overtime: shiftTime.overtime
   }
 }
   return this.http.post(url, data, { headers });
 }
 // add shift time end
+
+// view all shift time start
+viewShiftDetails(){
+  const url = `${this.api.viewAllShiftTimeDetails}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+}
+// view all shift time end
+
+// update shift time start
+updateShiftTime(shiftTime: any){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ const data = {
+  checkInTime: shiftTime.checkInTime,
+  checkOutTime: shiftTime.checkOutTime,
+  shiftDetails: {
+    checkInGraceTime: shiftTime.shiftDetails.checkInGraceTime,
+    checkOutGraceTime: shiftTime.shiftDetails.checkOutGraceTime,
+    halfDay: shiftTime.shiftDetails.halfDay,
+    absentCount: shiftTime.shiftDetails.absentCount,
+    present: shiftTime.shiftDetails.present,
+    overtime: shiftTime.shiftDetails.overtime
+  }
+ }
+  const url = `${this.api.updateShiftTime}/${shiftTime.id}`;
+  return this.http.put(url, data, { headers });
+}
+// update shift time end
+
+// notice period start
+noticePeriod(notice: number){
+  const url = `${this.api.noticePeriod}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    noOfDays: notice,
+  };
+  return this.http.post(url, data, { headers });
+}
+// notice period end
+
+
+// leave rule start
+addLeaveRule(leaveRule: any){
+  const url = `${this.api.addLeaveRule}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    sickLeaveCarryForward: leaveRule.sickLeaveCarryForward,
+    sickLeaveEncashment: leaveRule.sickLeaveEncashment,
+    sickLeaveExpire: leaveRule.sickLeaveExpire,
+    casualLeaveCarryForward: leaveRule.casualLeaveCarryForward,
+    casualLeaveEncashment: leaveRule.casualLeaveEncashment,
+    casualLeaveExpire: leaveRule.casualLeaveExpire,
+    allExpired: leaveRule.allExpired,
+    addOther: leaveRule.addOther,
+    monthOfUpdate: leaveRule.monthOfUpdate,
+  };
+  return this.http.post(url, data, { headers });
+}
+// leave rule end
+
+
 
 }

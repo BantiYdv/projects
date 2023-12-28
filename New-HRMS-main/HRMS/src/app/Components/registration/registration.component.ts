@@ -224,6 +224,7 @@ export class RegistrationComponent {
     startDateOfProbation: new Date().toISOString().split('T')[0],
     endDateOfProbation: '',
     modeOfWorking: '',
+    shiftTime: '',
     shifttimingstart: '',
     shifttimingend: '',
     accountNumber: '',
@@ -289,6 +290,7 @@ export class RegistrationComponent {
   token: string = ''; 
   teamlead: string[] = [];
   role: string[] = [];
+  shiftTime: string[] = [];
   designation: string[] = [];
   designationControl = new FormControl();
   userForm: FormGroup;
@@ -342,6 +344,7 @@ export class RegistrationComponent {
     this.teamLead();
     this.designations();
     this.department();
+    this. getShiftTime();
   }
 
   validateEmail() {
@@ -420,11 +423,27 @@ export class RegistrationComponent {
         this.role = response; 
 
         this.token = response.token;
+
       },
       (error) => {}
     );
   }
   //API for getting role end
+
+    //API for getting shift time start
+
+    getShiftTime() {
+      this.RegisterAndUpdate.viewShift().subscribe(
+        (response: any) => {
+          this.shiftTime = response; 
+  
+          this.token = response.token;
+          console.log("get shift", response)
+        },
+        (error) => {}
+      );
+    }
+    //API for getting shift time end
 
   onSubmit() {
     this.isLoading = true;

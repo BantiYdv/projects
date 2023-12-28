@@ -101,6 +101,14 @@ uploadDocs(formData: any, id: number) {
 // upload pdf end 
 
 
-
+// view shift time start
+viewShift(){
+  const url = `${this.api.viewShiftTime}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+}
+// view shift time end
 
 }

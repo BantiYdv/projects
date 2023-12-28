@@ -90,6 +90,11 @@ export class ApiService {
   public deleteCandidateInterview = `${this.apiUrl}gateway/onboard/deleteInterview`;
   public updateInterview = `${this.apiUrl}gateway/onboard/updateInterview`;
   public addShiftTime = `${this.apiUrl}gateway/onboard/saveShiftTime`;
+  public viewShiftTime = `${this.apiUrl}gateway/onboard/findAllShifts`;
+  public viewAllShiftTimeDetails = `${this.apiUrl}gateway/onboard/findAllShiftDetails`;
+  public updateShiftTime = `${this.apiUrl}gateway/onboard/updateShiftTime`;
+  public noticePeriod = `${this.apiUrl}gateway/onboard/addNoOfDays`;
+  public addLeaveRule = `${this.apiUrl}gateway/onboard/addLeaveRule`;
 
 
   
