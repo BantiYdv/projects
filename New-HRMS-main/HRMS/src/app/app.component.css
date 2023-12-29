@@ -466,6 +466,9 @@ letter-spacing: 0.4px;
 #hoverAssignRule:hover{
   content: url('/assets/image/icon/hoverAsignRule.png');
 }
+#hoverAttendance:hover{
+  content: url('/assets/image/icon/hoverAttendance.png');
+}
 #hoverCal:hover{
   content: url('/assets/image/icon/hoverCal.png');
 }

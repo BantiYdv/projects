@@ -365,33 +365,33 @@
           </li>
 
           <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" >
             <div class="image-container">
               <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
              
             </div>
+            </a>
           </li>
 
           <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" >
             <div class="image-container">
               <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
              
             </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" >
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
+             
+            </div>
+            </a>
           </li>
           
           
-
-          <!-- <li class="nav-item text-center">
-            <label class="nav-link px-0 align-middle" for="pdfFileInput">
-              <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
-                <br>
-                <span class="image-name" id="pdfFile">Upload Pdf</span>
-              </div>
-            </label>
-            <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
-          </li> -->
-
-
 
           <li class="nav-item text-center">
             <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
@@ -530,14 +530,7 @@
               </a>
               <div class="collapse" id="dashboard-rule">
                 <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
-                  <!-- <li >
-                    <a href="#" class="dropdown-item rounded-2 role">
-                    <label for="pdfFileInput">
-                      <span class="image-name" id="pdfFile">Leave policy</span>
-                    </label>
-                  </a>
-                    <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
-                  </li> -->
+                  
                   <li>
                     <a href="#" class="dropdown-item rounded-2 role"
                       [routerLink]="['/leavePolicy']" (click)="loginService.showTable('leavePolicy')">Leave policy</a>
@@ -579,16 +572,6 @@
           </li>
           
 
-          <!-- <li class="nav-item text-center">
-            <label class="nav-link px-0 align-middle" for="pdfFileInput">
-              <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
-                <br>
-                <span class="image-name" id="pdfFile">Upload Pdf</span>
-              </div>
-            </label>
-            <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
-          </li> -->
 
 
 
@@ -696,7 +679,7 @@
             <a class="nav-link px-0 align-middle" [routerLink]="[option.router]">
               <div class="image-container">
                 <img class="sidebarPageLogo" src="{{option.src}}" alt="" 
-                  (click)="loginService.showTable(option.function)" />
+                  (click)="loginService.showTable(option.function)" id="{{option.hover}}"/>
                 <!-- <br>
                 <span class="image-name">{{option.imgName}}</span> -->
               </div>

@@ -98,7 +98,7 @@
           <div class="col-md-12">
 
             <div class="row">
-              <div class="col-md-6 d-flex justify-content-start">
+              <div class="col-md-6 d-flex justify-content-start" >
                 <div class="added_positions_list_right">
                   <div class="added_positions_under_head">Show</div>
                   <div>
@@ -113,8 +113,8 @@
                   <div class="added_positions_under_head">Enteries</div>
                 </div>
               </div>
-              <div class="col-md-6 d-flex justify-content-end align-items-center">
-                <div class="col-md-6">
+              <div class="col-md-6 d-flex justify-content-end align-items-center" >
+                <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3' : 'col-12 col-sm-3 col-md-3 col-lg-4 col-xl-4'">
                   <div class="search-container ">
                     <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
                       alt="">
@@ -122,7 +122,7 @@
                       (keyup)="FilterRole()">
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="m-0" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3' : 'col-12 col-sm-3 col-md-3 col-lg-2 col-xl-2'">
                   <button class="button_added_position_list">Search</button>
                 </div>
               </div>
@@ -535,7 +535,7 @@
             </select> -->
             <input [(ngModel)]="searchdesignation" (input)="applyFilterDesignation()" placeholder="-- Designation --"
               class="form-control searchEmp" [matAutocomplete]="auto">
-            <div class="custom-arrow"></div>
+            <!-- <div class="custom-arrow"></div> -->
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let designation of designation" [value]="designation">
                 {{ designation }}
@@ -657,7 +657,7 @@
                 </select> -->
                 <input [(ngModel)]="searchdesignation" (input)="applyFilterDesignation()"
                   placeholder="-- Designation --" class="form-control searchEmp" [matAutocomplete]="auto">
-                <div class="custom-arrow"></div>
+                <!-- <div class="custom-arrow"></div> -->
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option *ngFor="let designation of designation" [value]="designation">
                     {{ designation }}
@@ -2825,10 +2825,10 @@
         <div class="row justify-content-center">
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-12 added_positions_list_head">
+              <div class="col-md-12  added_positions_list_head">
                 <p>Added Positions</p>
               </div>
-              <div class="col-md-12 d-flex">
+              <div class="col-12 row">
                 <div class="col-md-6 d-flex justify-content-start">
                   <div class="added_positions_list_right">
                     <div class="added_positions_under_head">Show</div>
@@ -2846,7 +2846,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                  <div class="col-md-6 offset-md-4">
+                  <div class="col-md-6">
                     <div class="search-container ">
                       <img src="../../../assets/image/search_icon_recruitment.svg"
                         class="search_icon_added_position_list" alt="">
