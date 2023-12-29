@@ -554,7 +554,7 @@ calculateTotalLeaves() {
   submitForm() {
     // Create a FormData object to send files to the server
     const formData = new FormData();
-
+console.log("docs id>>>>>", this.registerId);
     // Append the selected files to the FormData object
     formData.append('username', this.username);
     formData.append('academicDocument1', this.user.academicDocument1);

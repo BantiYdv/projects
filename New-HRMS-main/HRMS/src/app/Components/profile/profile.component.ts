@@ -236,17 +236,17 @@ userProfile(): void {
 // }
 
 
-DownloadDocs(id: number, fileNamePrefix: string, fileName: string) {
+DownloadDocs(id: number, filename: string) {
   // Fetch the user details to access first and last name
   const firstName = this.profileDetailsUser?.firstname || '';
   const lastName = this.profileDetailsUser?.lastname || '';
 
   // Concatenate the first name, last name, and desired filename extension
-  const concatenatedFilename = fileNamePrefix + firstName + lastName + '.' + fileName.split('.').pop();
+  const concatenatedFilename = filename + firstName + lastName + '.' + filename.split('.').pop();
 
   if (id) {
     console.log("id docs", id);
-    this.profileService.DownloadDocs(id, fileNamePrefix, fileName).subscribe((response: HttpResponse<Blob>) => {
+    this.profileService.DownloadDocs(id, filename).subscribe((response: HttpResponse<Blob>) => {
       if (response.body) {
         saveAs(response.body, concatenatedFilename);
         console.log("document", response);

@@ -29,8 +29,11 @@
                           class="cardIcon" style="margin-left: 0px !important;"></i>
                     </div>
                     <div class="media-body">
-                      <p class="cardIconNum">{{totalEmpCount}}</p>
+                      <a [routerLink]="['/employee']"
+              (click)="loginService.showTable('employee')" style="text-decoration: none;">
+                      <p class="cardIconNum">{{totalEmpCount || 0}}</p>
                       <span class="cardIconText">Employees</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -47,8 +50,11 @@
                           class="cardIcon" style="margin-left: 0px !important;"></i>
                     </div>
                     <div class="media-body">
+                      <a [routerLink]="['/viewAllAtt']"
+                (click)="loginService.showTable('viewAllAtt')" style="text-decoration: none;">
                       <p class="cardIconNum">0</p>
                       <span class="cardIconText">Working Hours</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -65,8 +71,11 @@
                           style="margin-left: 0px !important;"></i>
                     </div>
                     <div class="media-body">
-                      <p class="cardIconNum">{{presentCount}}</p>
+                      <a [routerLink]="['/viewTodayPresent']"
+                (click)="loginService.showTable('viewTodayPresent')" style="text-decoration: none;">
+                      <p class="cardIconNum">{{presentCount || 0}}</p>
                       <span class="cardIconText">Present</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -84,8 +93,11 @@
                           style="margin-left: 0px !important;"></i>
                     </div>
                     <div class="media-body">
-                      <p class="cardIconNum">{{ wfhCount }}</p>
+                      <a [routerLink]="['/viewTodayWfh']"
+                      (click)="loginService.showTable('viewTodayWfh')" style="text-decoration: none;">
+                      <p class="cardIconNum">{{ wfhCount || 0 }}</p>
                       <span class="cardIconText">WFH</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -169,7 +181,8 @@
                   Leave
                 </div>
                 <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
-                <div>
+                <div [routerLink]="['/todaySickLeave']"
+                (click)="loginService.showTable('todaySickLeave')">
                   <div class="pie animate no-round leaveChart" [style.--p]="sickCount" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{sickCount}}</div><br>Sick
                   Leave
                 </div>

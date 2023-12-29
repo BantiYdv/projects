@@ -51,11 +51,16 @@ throw new Error('Method not implemented.');
   showAllAttTable: any;
   AllAttData: any;
   fillterAllattData: any;
+  TodayAttData: any;
+  fillterTodayattData: any;
+  TodayWfhData: any;
+  fillterTodayWfhData: any;
   showAllWfhTable: any;           // for show all wfh
   AllwfhData: any;                //for show all wfh
   showAllLeaveTable: any;         //for show all leave
   leaveAllData: any;              //for show all leave
-  // route: any;
+  TodaySickLeaveData: any;
+  fillterTodaySickLeaveData: any;
   url: any;
   profileDetails: any;
   //for create role start
@@ -263,6 +268,9 @@ isDropdownOpen: any;
     this.viewPositionName();
     this.getAllInterview();
     this.viewShiftTimeDetails();
+    this.viewTodayPresent();
+    this.viewTodayWfh();
+    this.viewTodaySickLeave();
   }
 
 
@@ -1208,7 +1216,7 @@ console.log("leave apply", response);
           // Set the reversed array as the data source
           this.AllAttData = reversedData;
           this.fillterAllattData = reversedData;
-          console.log("atttttttt",response);
+          console.log("atttttt",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -2274,12 +2282,6 @@ previousAllattPage(): void {
   }
 }
 
-// getPageNumbersAllatt(): number[] {
-//   const totalPages = Math.ceil(
-//     this.fillterAllattData.length / this.AllattperPage
-//   );
-//   return Array.from({ length: totalPages }, (_, index) => index + 1);
-// }
 
 getPageNumbersAllatt(): number[] {
   const totalPages = this.getTotalPagesAllatt();
@@ -3512,4 +3514,373 @@ addleaveRule() {
 }
 // leave rule end
 
+// view today present start
+todayAttPerPage: number = 10;
+currentTodayAttPage: number = 1;
+
+searchTodayAtt: string = '';
+    
+ FilterTodayAtt() {
+   this.fillterTodayattData = this.TodayAttData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchTodayAtt.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchTodayAtt.toLowerCase()) 
+   );
+ }
+
+ sortByFromDateTodayAtt(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterTodayattData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedTodayattData(): any[] {
+  const startIndex = (this.currentTodayAttPage - 1) * this.todayAttPerPage;
+  const endIndex = startIndex + this.todayAttPerPage;
+  return this.fillterTodayattData.slice(startIndex, endIndex);
+}
+
+previousTodayattPage(): void {
+  if (this.currentTodayAttPage > 1) {
+    this.currentTodayAttPage--;
+  }
+}
+
+
+getPageNumbersTodayatt(): number[] {
+  const totalPages = this.getTotalPagesTodayatt();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentTodayAttPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentTodayAttPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentTodayAttPage - halfMaxPagesToShow;
+      endPage = this.currentTodayAttPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageTodayatt(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayatt()) {
+    this.currentTodayAttPage = pageNumber;
+  }
+}
+
+
+nextPageTodayatt(): void {
+  const totalPages = Math.ceil(
+    this.fillterTodayattData.length / this.todayAttPerPage
+  );
+  if (this.currentTodayAttPage < totalPages) {
+    this.currentTodayAttPage++;
+  }
+}
+
+
+getTotalPagesTodayatt(): number {
+  return Math.ceil(
+    this.fillterTodayattData.length / this.todayAttPerPage
+  );
+}
+
+
+viewTodayPresent() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  if (this.showAllAttTable && '#/viewTodayPresent' === window.location.hash) {
+
+
+    // Call the service method to fetch all attendance data
+    this.testService.getTodayPresent().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.TodayAttData = reversedData;
+        this.fillterTodayattData = reversedData;
+        console.log("today present",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+
+// view today present end
+
+// view today wfh start
+todayWfhPerPage: number = 10;
+currentTodayWfhPage: number = 1;
+
+searchTodayWfh: string = '';
+    
+ FilterTodayWfh() {
+   this.fillterTodayWfhData = this.TodayWfhData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchTodayWfh.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchTodayWfh.toLowerCase()) 
+   );
+ }
+
+ sortByFromDateTodayWfh(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterTodayWfhData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedTodayWfhData(): any[] {
+  const startIndex = (this.currentTodayWfhPage - 1) * this.todayWfhPerPage;
+  const endIndex = startIndex + this.todayWfhPerPage;
+  return this.fillterTodayWfhData.slice(startIndex, endIndex);
+}
+
+previousTodayWfhPage(): void {
+  if (this.currentTodayWfhPage > 1) {
+    this.currentTodayWfhPage--;
+  }
+}
+
+
+getPageNumbersTodayWfh(): number[] {
+  const totalPages = this.getTotalPagesTodayWfh();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentTodayWfhPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentTodayWfhPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentTodayWfhPage - halfMaxPagesToShow;
+      endPage = this.currentTodayWfhPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageTodayWfh(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayWfh()) {
+    this.currentTodayWfhPage = pageNumber;
+  }
+}
+
+
+nextPageTodayWfh(): void {
+  const totalPages = Math.ceil(
+    this.fillterTodayWfhData.length / this.todayWfhPerPage
+  );
+  if (this.currentTodayWfhPage < totalPages) {
+    this.currentTodayWfhPage++;
+  }
+}
+
+
+getTotalPagesTodayWfh(): number {
+  return Math.ceil(
+    this.fillterTodayWfhData.length / this.todayWfhPerPage
+  );
+}
+
+
+
+viewTodayWfh() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  if (this.showAllAttTable && '#/viewTodayWfh' === window.location.hash) {
+
+
+    // Call the service method to fetch all attendance data
+    this.testService.getTodayWfh().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.TodayWfhData = reversedData;
+        this.fillterTodayWfhData = reversedData;
+        console.log("today wfh",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+// view today wfh end
+
+// view today sick leave start
+todaySickPerPage: number = 10;
+currentTodaySickPage: number = 1;
+
+searchTodaySick: string = '';
+    
+ FilterTodaySick() {
+   this.fillterTodaySickLeaveData = this.TodaySickLeaveData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchTodaySick.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchTodaySick.toLowerCase()) 
+   );
+ }
+
+ sortByFromDateTodaySick(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterTodaySickLeaveData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedTodaySickData(): any[] {
+  const startIndex = (this.currentTodaySickPage - 1) * this.todaySickPerPage;
+  const endIndex = startIndex + this.todaySickPerPage;
+  return this.fillterTodaySickLeaveData.slice(startIndex, endIndex);
+}
+
+previousTodaySickPage(): void {
+  if (this.currentTodaySickPage > 1) {
+    this.currentTodaySickPage--;
+  }
+}
+
+
+getPageNumbersTodaySick(): number[] {
+  const totalPages = this.getTotalPagesTodaySick();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentTodaySickPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentTodaySickPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentTodaySickPage - halfMaxPagesToShow;
+      endPage = this.currentTodaySickPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageTodaySick(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodaySick()) {
+    this.currentTodaySickPage = pageNumber;
+  }
+}
+
+
+nextPageTodaySick(): void {
+  const totalPages = Math.ceil(
+    this.fillterTodaySickLeaveData.length / this.todaySickPerPage
+  );
+  if (this.currentTodaySickPage < totalPages) {
+    this.currentTodaySickPage++;
+  }
+}
+
+
+getTotalPagesTodaySick(): number {
+  return Math.ceil(
+    this.fillterTodaySickLeaveData.length / this.todaySickPerPage
+  );
+}
+
+viewTodaySickLeave() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  if (this.showAllAttTable && '#/todaySickLeave' === window.location.hash) {
+
+
+    // Call the service method to fetch all attendance data
+    this.testService.getTodaySick().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.TodaySickLeaveData = reversedData;
+        this.fillterTodaySickLeaveData = reversedData;
+        console.log("today sick leave",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+// view today sick leave end
 }

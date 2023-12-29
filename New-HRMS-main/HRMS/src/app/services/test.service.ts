@@ -658,6 +658,40 @@ addLeaveRule(leaveRule: any){
 }
 // leave rule end
 
+// today present data start
+getTodayPresent(){
+  
+    const url = `${this.api.viewTodayPresent}`;
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.get(url, { headers });
+  
+}
+// today present data end
 
+// today wfh data start
+getTodayWfh(){
+  
+  const url = `${this.api.viewTodayWfh}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// today wfh data end
+
+// today sick leave data start
+getTodaySick(){
+  
+  const url = `${this.api.viewTodaySickLeave}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// today sick leave data end
 
 }

@@ -78,13 +78,13 @@ userBasicInfo(id: number): Observable<any>{
 //     responseType: 'blob', // This tells Angular to expect a binary response
 //   });
 // }
-DownloadDocs(id: number,fileNamePrefix:string, fileName: string): Observable<HttpResponse<Blob>> {
+DownloadDocs(id: number, filename: string): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   const url = `${this.api.Docs}`;
   return this.http.get(url, {
     headers,
-    params: {id,fileNamePrefix, fileName },
+    params: {id, filename },
     observe: 'response', // This ensures you get the full HTTP response
     responseType: 'blob', // This tells Angular to expect a binary response
   });

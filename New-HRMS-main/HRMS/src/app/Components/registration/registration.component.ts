@@ -208,15 +208,14 @@ export class RegistrationComponent {
     username: '',
     password: '',
     totalleaves: '',
-    totalwfh: '',
+    totalwfh: '' || 0,
     sickLeavesPerMonth: '',
     casualLeavesPerMonth: '',
     role: '',
-    address:
-      this.address.addressLine1 +
-      this.address.addressLine2 +
-      this.address.state_country +
-      this.address.postalCode,
+    addressLine1:  this.address.addressLine1,
+    addressLine2: this.address.addressLine2, 
+    state_country:  this.address.state_country, 
+    postalCode: this.address.postalCode,
     emergencyContact: '',
     emergencyNumberCountryCode: this.selectedCountryEmergencyNo,
     jobType: '',
@@ -245,8 +244,7 @@ export class RegistrationComponent {
     RelievingLetter: '',
     ExperienceLetter: '',
     salarySlip1: '',
-    assetDetailsMap: this.assetDataList,
-   
+    assetDetailsMap: this.assetDataList,   
   };
 
   imageUrl: SafeUrl | undefined;

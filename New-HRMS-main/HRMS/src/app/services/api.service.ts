@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.15:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.15:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -89,12 +89,15 @@ export class ApiService {
   public findCandidate = `${this.apiUrl}gateway/onboard/findCandidateBy`;
   public deleteCandidateInterview = `${this.apiUrl}gateway/onboard/deleteInterview`;
   public updateInterview = `${this.apiUrl}gateway/onboard/updateInterview`;
-  public addShiftTime = `${this.apiUrl}gateway/onboard/saveShiftTime`;
-  public viewShiftTime = `${this.apiUrl}gateway/onboard/findAllShifts`;
-  public viewAllShiftTimeDetails = `${this.apiUrl}gateway/onboard/findAllShiftDetails`;
-  public updateShiftTime = `${this.apiUrl}gateway/onboard/updateShiftTime`;
+  public addShiftTime = `${this.apiUrl}gateway/hrms/saveShiftTime`;
+  public viewShiftTime = `${this.apiUrl}gateway/hrms/findAllShifts`;
+  public viewAllShiftTimeDetails = `${this.apiUrl}gateway/hrms/findAllShiftDetails`;
+  public updateShiftTime = `${this.apiUrl}gateway/hrms/updateShiftTime`;
   public noticePeriod = `${this.apiUrl}gateway/onboard/addNoOfDays`;
   public addLeaveRule = `${this.apiUrl}gateway/onboard/addLeaveRule`;
+  public viewTodayPresent = `${this.apiUrl}gateway/hrms/checkedInToday`;
+  public viewTodayWfh = `${this.apiUrl}gateway/hrms/WorkFromHomeUserToday`;
+  public viewTodaySickLeave = `${this.apiUrl}gateway/hrms/userOnSickLeaveToday`;
 
 
   
