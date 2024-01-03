@@ -6,11 +6,18 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from 'src/app/services/test.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, NgModel } from '@angular/forms';
 import { SafeUrl } from '@angular/platform-browser';
 import { MatStepper } from '@angular/material/stepper';
+import { CountryCodeService } from 'src/app/services/country-code.service';
 
-
+export interface AssetData {
+  laptopModelInfo: string;
+  identification: string;
+  configuration: string;
+  useHistory: string;
+  description: string;
+}
 
 
 @Component({
@@ -38,48 +45,141 @@ export class UpdateComponent {
    // mandatory fields start
    showErrorAlert: boolean = false; // Flag to control error alert
 
-   validateFields() {
-     const mandatoryFields = ['firstname', 'lastname', 'gender', 'emailid', 'phonenumber', 'address', 'emergencyContact', 'dob', 'dateofjoining', 'role'];
+  //  validateFields() {
+  //    const mandatoryFields = ['firstname', 'lastname', 'gender', 'emailid', 'phonenumber', 'address', 'emergencyContact', 'dob', 'dateofjoining', 'role'];
  
-     // Check if any mandatory field is empty
-     const emptyFields = mandatoryFields.filter(field => !this.user[field]);
+  //    // Check if any mandatory field is empty
+  //    const emptyFields = mandatoryFields.filter(field => !this.user[field]);
  
-     if (emptyFields.length > 0) {
-       alert('Mandatory fields are required. Please fill in all mandatory fields.');
-     } else {
-       this.stepper.next(); // Move to the next step if all mandatory fields are filled
-       this.firstFormGroup;
-     }
-   }
-   // mandatory fields end
+  //    if (emptyFields.length > 0) {
+  //      alert('Mandatory fields are required. Please fill in all mandatory fields.');
+  //    } else {
+  //      this.stepper.next(); // Move to the next step if all mandatory fields are filled
+  //      this.firstFormGroup;
+  //    }
+  //  }
 
+  @ViewChild('firstnameInput') firstnameInput: NgModel | any;
+  @ViewChild('lastnameInput') lastnameInput: NgModel | any;
+  @ViewChild('emailidInput') emailidInput: NgModel | any;
+  @ViewChild('genderInput') genderInput: NgModel | any;
+  @ViewChild('dobInput') dobInput: NgModel | any;
+  @ViewChild('roleInput') roleInput: NgModel | any;
+  @ViewChild('phonenumberInput') phonenumberInput: NgModel | any;
+  @ViewChild('dateofjoiningInput') dateofjoiningInput: NgModel | any;
+  @ViewChild('totalDaysOfProbationInput') totalDaysOfProbationInput:
+    | NgModel
+    | any;
+   validateFields() {
+    const mandatoryFields = [
+      'firstname',
+      'lastname',
+      'gender',
+      'emailid',
+      'phonenumber',
+      'dob',
+      'dateofjoining',
+      'totalDaysOfProbation',
+      'role',
+    ];
+    console.log('users => ', this.user);
+    const emptyFields = mandatoryFields.filter((field) => !this.user[field]);
+    console.log('emptyFields', emptyFields);
+
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please fill in all details(*).',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      if (!this.user.firstname) {
+        this.firstnameInput.control.markAsTouched();
+      }
+      if (!this.user.lastname) {
+        this.lastnameInput.control.markAsTouched();
+      }
+      if (!this.user.emailid) {
+        this.emailidInput.control.markAsTouched();
+      }
+      if (!this.user.gender) {
+        this.genderInput.control.markAsTouched();
+      }
+      if (!this.user.dob) {
+        this.dobInput.control.markAsTouched();
+      }
+      if (!this.user.role) {
+        this.roleInput.control.markAsTouched();
+      }
+      if (!this.user.phonenumber) {
+        this.phonenumberInput.control.markAsTouched();
+      }
+      if (!this.user.dateofjoining) {
+        this.dateofjoiningInput.control.markAsTouched();
+      }
+      if (!this.user.totalleaves) {
+        this.totalDaysOfProbationInput.control.markAsTouched();
+      }
+    } else {
+      this.nextStep(); 
+      this.firstFormGroup;
+    }
+  }
+   // mandatory fields end
+   currentStep: number = 1;
+   countries: any[] = [];
+   selectedCountryPhoneNo: string = 'IN';
+   selectedCountryEmergencyNo: string = 'IN';
+   shiftTime: string[] = [];
+   selectedAssets: string[] = [];
+   assetDataList: { [key: string]: AssetData } = {};
+ 
+   address: {
+     addressLine1: string;
+     addressLine2: string;
+     state_country: string;
+     postalCode: string;
+   } = {
+     addressLine1: '',
+     addressLine2: '',
+     state_country: '',
+     postalCode: '',
+   };
 
   user: any = {                                              // Object to store the user registration data
-    dateofjoining: new Date().toISOString().split('T')[0],   //bydefault show current date in date of joining
+    dateofjoining: new Date().toISOString().split('T')[0], 
     firstname: '',
     lastname: '',
-    gender:'',
+    gender: '',
     emailid: '',
     phonenumber: '',
+    countryCode: this.selectedCountryPhoneNo,
     teamlead: '',
-
+    paternity: '',
+    maternity: '',
     designation: '',
     dob: '',
     department: '',
     username: '',
     password: '',
     totalleaves: '',
-    totalwfh: '',
+    totalwfh: '' || 0,
     sickLeavesPerMonth: '',
     casualLeavesPerMonth: '',
     role: '',
-    address: '',
+    addressLine1:  this.address.addressLine1,
+    addressLine2: this.address.addressLine2, 
+    state_country:  this.address.state_country, 
+    postalCode: this.address.postalCode,
     emergencyContact: '',
+    emergencyNumberCountryCode: this.selectedCountryEmergencyNo,
     jobType: '',
     totalDaysOfProbation: '',
-    startDateOfProbation: '',
+    startDateOfProbation: new Date().toISOString().split('T')[0],
     endDateOfProbation: '',
     modeOfWorking: '',
+    shiftTime: '',
     shifttimingstart: '',
     shifttimingend: '',
     accountNumber: '',
@@ -100,7 +200,7 @@ export class UpdateComponent {
     RelievingLetter: '',
     ExperienceLetter: '',
     salarySlip1: '',
-    assetName: []
+    assetDetailsMap: this.assetDataList, 
 
   };
 
@@ -293,7 +393,7 @@ calculateTotalLeaves() {
 
   currentDate: string;    // set probation start date
 
-  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder) {
+  constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder, private countryCode: CountryCodeService) {
     this.currentDate = new Date().toISOString().split('T')[0]; // set probation start date
   }
 
@@ -307,6 +407,8 @@ calculateTotalLeaves() {
     this.updatedData();
     // this.calculateTotalDays();
     // this.populateSelectedAssets();
+    // this.designations();
+    this.numberCode();
 
   }
 
@@ -380,6 +482,8 @@ calculateTotalLeaves() {
       }
     );
   }
+
+ 
   //API for getting designation end
 
   //API for getting role start
@@ -589,6 +693,81 @@ console.log("docs id>>>>>", this.registerId);
         console.error('Error uploading files:', error);
       }
     );
+  }
+
+  
+
+
+
+
+
+
+  onDateInput(event: any): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length > 10) {
+      input.value = input.value.slice(0, 10); 
+    }
+  }
+
+  syncProbationStartDate() {
+    this.user.startDateOfProbation = this.user.dateofjoining;
+  }
+
+  //   add more assets start
+  isEditMode = false;
+  editedValue: any; // Modify the type accordingly
+  enterEditMode() {
+    this.isEditMode = true;
+    this.editedValue = this.selectedAssets.join(', '); // You can modify this based on your requirements
+  }
+
+  saveDetails() {
+    if (this.isEditMode) {
+      // Save the edited value to assetOptions
+      this.assetOptions.push(this.editedValue);
+
+      // Reset the input field and exit edit mode
+      this.selectedAssets = this.editedValue.split(', ').map((option: string) => option.trim());
+      this.isEditMode = false;
+    }
+  }
+  //   add more assets end
+  assetOptions = ['Laptop', 'Desktop', 'Monitor'];
+  saveAssetData(assetType: string, assetData: AssetData) {
+    this.assetDataList[assetType] = assetData;
+    console.log('Saved data for', this.assetDataList);
+  }
+
+  assetDataListqw() {
+    console.log('assetDataList', this.assetDataList);
+  }
+
+  getAssetData(assetType: string): AssetData {
+    if (!this.assetDataList[assetType]) {
+      this.assetDataList[assetType] = {
+        laptopModelInfo: '',
+        identification: '',
+        configuration: '',
+        useHistory: '',
+        description: '',
+      };
+    }
+
+    return this.assetDataList[assetType];
+  }
+  numberCode(): void {
+    this.countries = this.countryCode.countryCode();
+  }
+
+  nextStep() {
+    if (this.currentStep < 5) {
+      this.currentStep++;
+    }
+  }
+  prevStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
   }
 
 }

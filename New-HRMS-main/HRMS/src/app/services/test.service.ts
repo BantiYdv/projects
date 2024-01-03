@@ -694,4 +694,66 @@ getTodaySick(){
 }
 // today sick leave data end
 
+// today casual leave data start
+getTodayCasual(){
+  
+  const url = `${this.api.viewTodayCasualLeave}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// today casual leave data end
+
+// today Absent leave data start
+getTodayAbsent(){
+  
+  const url = `${this.api.viewTodayAbsentLeave}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// today Absent leave data end
+
+
+
+// today Full time employee data start
+getFullTimeEmp(){
+  
+  const url = `${this.api.viewFullTimeEmp}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// today Full time employee data end
+
+// part time employee data start
+getPartTimeEmp(){
+  
+  const url = `${this.api.viewPartTimeEmp}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// part time employee data end
+
+// intern employee data start
+getinternEmp(){
+  
+  const url = `${this.api.viewInternEmp}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// intern employee data end
+
 }

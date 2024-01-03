@@ -17,6 +17,7 @@ import timeGridDay from '@fullcalendar/timegrid';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { CountryCodeService } from 'src/app/services/country-code.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-test',
@@ -61,6 +62,16 @@ throw new Error('Method not implemented.');
   leaveAllData: any;              //for show all leave
   TodaySickLeaveData: any;
   fillterTodaySickLeaveData: any;
+  TodayCasualLeaveData: any;
+  fillterTodayCasualLeaveData: any;
+  TodayAbsentLeaveData: any;
+  fillterTodayAbsentLeaveData: any;
+  FullTimeEmpData: any;
+  fillterFullTimeEmpData: any;
+  PartTimeEmpData: any;
+  fillterPartTimeEmpData: any;
+  internEmpData: any;
+  fillterinternEmpData: any;
   url: any;
   profileDetails: any;
   //for create role start
@@ -83,6 +94,8 @@ throw new Error('Method not implemented.');
   id: any;
   permissionNames: any;
 
+
+  
 
   // change password validation start
   showNewPassword: boolean = false;
@@ -199,7 +212,7 @@ isDropdownOpen: any;
 
    // role and permission list search end
 
-  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute, private countryCode: CountryCodeService) {
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute, private countryCode: CountryCodeService, public adminService: AdminService) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -239,6 +252,7 @@ isDropdownOpen: any;
     });
     this.formArray = this.formBuilder.array([]);
     // shift time end
+    
   }
  
   selectedPermission: any; 
@@ -271,6 +285,24 @@ isDropdownOpen: any;
     this.viewTodayPresent();
     this.viewTodayWfh();
     this.viewTodaySickLeave();
+    this.viewTodayCasualLeave();
+    this.viewTodayAbsentLeave();
+    this.viewFullTimeEmp();
+    this.viewPartTimeEmp();
+    this.viewinternEmp();
+
+    
+    // data show change routing without reload start
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      // Call the method to load data on route change
+      this.loadData();
+    });
+    // data show change routing without reload end
+
+
+this.checkRouteAndLoadData();
   }
 
 
@@ -308,10 +340,11 @@ isDropdownOpen: any;
   // API for view employee list start
 
   openEmployee(): void {
-    this.showAllAdminTable = !this.showAllAdminTable;
-    this.isModalOpen = true;
+    // this.showAllAdminTable = !this.showAllAdminTable;
+    // this.isModalOpen = true;
 
-    if (this.showAllAdminTable && '#/employee' === window.location.hash) {
+    // if (this.showAllAdminTable && '#/employee' === window.location.hash) {
+      if ('/employee' === this.router.url) {
 
    
       // Call the service method to fetch the list of employees
@@ -353,12 +386,68 @@ isDropdownOpen: any;
   }
   // close team wfh list end
 
+  // check routing for reload page start
+  checkRouteAndLoadData(): void { 
+    const currentRoute = this.router.url;
+    if (currentRoute.includes(currentRoute.substring(1))) {   
+      this.loginService.showTable(currentRoute.substring(1));
+    }
+  }
+  // check routing for reload page end
+
+  // data show change routing without reload start
+  loadData(): void {
+    // Get the current route
+    const currentRoute = this.route.snapshot.url[0].path;
+
+    // Your logic to load data based on the route
+    switch (currentRoute) {
+      case 'viewRole':
+        this.viewRole();
+        break;
+      case 'employee':
+        this.openEmployee();
+        break;
+      case 'teamleave':
+        this.teamleave();
+        break;
+      case 'teamwfh':
+        this.teamwfh();
+        break;
+      case 'viewRole':
+        this.viewRole();
+        break;
+      case 'viewLeave':
+        this.toggleAdminLeaveTable();
+        break;
+      case 'viewAtt':
+        this.viewattendance();
+        break;
+      case 'viewWfh':
+        this.toggleWfhTable();
+        break;
+      case 'viewAllAtt':
+        this.viewAllattendance();
+        break;
+      case 'viewAllWfh':
+        this.toggleAllWfhTable();
+        break;
+      case 'viewAllLeave':
+        this.toggleAllLeaveTable();
+        break;
+      default:
+        // Handle any other routes or add additional logic as needed
+        break;
+    }
+  }
+  // data show change routing without reload end
+
   //API for team Leave start
 
   teamleave(): void {
-    this.showTeamLeaveTable = !this.showTeamLeaveTable;
+    // this.showTeamLeaveTable = !this.showTeamLeaveTable;
 
-    if (this.showTeamLeaveTable && '#/teamleave' === window.location.hash) {
+    if ('/teamleave' === this.router.url) {
       this.testService.getTeamLeaveData().subscribe(
         (response: any) => {
           const dataArray = Object.values(response);
@@ -368,10 +457,11 @@ isDropdownOpen: any;
           this.TeamLeaveData = reversedData
           this.fillterTeamLeaveData = reversedData;
           console.log("leave", response);
+        
         },
         (error) => {
           Swal.fire('Error', error.error, 'error');
-          this.showTeamLeaveTable = false; // Hide the table if an error occurs
+          // this.showTeamLeaveTable = false; // Hide the table if an error occurs
         }
       );
     }
@@ -437,9 +527,10 @@ isDropdownOpen: any;
   //API for team WFH start
 
   teamwfh(): void {
-    this.showTeamWfhTable = !this.showTeamWfhTable;
+    // this.showTeamWfhTable = !this.showTeamWfhTable;
 
-    if (this.showTeamWfhTable && '#/teamwfh' === window.location.hash) {
+    // if (this.showTeamWfhTable && '#/teamwfh' === window.location.hash) {
+      if ('/teamwfh' === this.router.url) {
       this.testService.getTeamWfhData().subscribe(
         (response: any) => {
           const dataArray = Object.values(response);
@@ -1104,7 +1195,7 @@ console.log("leave apply", response);
           this.fillterLeaveData = reversedData;
         },
         error => {
-          // Swal.fire('Error', error.error, 'error');  
+          Swal.fire('Error', error.error, 'error');  
           // Hide the table if an error occurs
           this.showAdminLeaveTable = false;
         }
@@ -1171,7 +1262,7 @@ console.log("leave apply", response);
   // API for view WFH start
 
   toggleWfhTable(): void {
-    this.showWfhTable = !this.showWfhTable;
+    // this.showWfhTable = !this.showWfhTable;
 
     if (this.showWfhTable) {
 
@@ -1200,10 +1291,10 @@ console.log("leave apply", response);
 
 // API for view All Attendance start
   viewAllattendance() {
-    this.showAllAttTable = !this.showAllAttTable;
+    // this.showAllAttTable = !this.showAllAttTable;
 
-    if (this.showAllAttTable && '#/viewAllAtt' === window.location.hash) {
-
+    // if (this.showAllAttTable && '#/viewAllAtt' === window.location.hash) {
+      if ('/viewAllAtt' === this.router.url) {
 
       // Call the service method to fetch all attendance data
       this.testService.getAllAttendance().subscribe(
@@ -1261,10 +1352,10 @@ console.log("leave apply", response);
   // API for view All WFH start
 
   toggleAllWfhTable(): void {
-    this.showAllWfhTable = !this.showAllWfhTable;
+    // this.showAllWfhTable = !this.showAllWfhTable;
 
-    if (this.showAllWfhTable && '#/viewAllWfh' === window.location.hash) {
-
+    // if (this.showAllWfhTable && '#/viewAllWfh' === window.location.hash) {
+      if ('/viewAllWfh' === this.router.url) {
       // Call the service method to fetch all WFH data for administrators
       this.testService.getAllWfhData().subscribe(
         (response: any) => {
@@ -1290,11 +1381,11 @@ console.log("leave apply", response);
   // API for view All leave start
 
   toggleAllLeaveTable(): void {
-    this.showAllLeaveTable = !this.showAllLeaveTable;
+    // this.showAllLeaveTable = !this.showAllLeaveTable;
 
-    if (this.showAllLeaveTable && '#/viewAllLeave' === window.location.hash) {
+    // if (this.showAllLeaveTable && '#/viewAllLeave' === window.location.hash) {
 
-
+      if ('/viewAllLeave' === this.router.url) {
       // Call the service method to fetch all leave data
       this.testService.getAllLeave().subscribe(
         (response: any) => {
@@ -3611,8 +3702,8 @@ getTotalPagesTodayatt(): number {
 viewTodayPresent() {
   // this.showAllAttTable = !this.showAllAttTable;
 
-  if (this.showAllAttTable && '#/viewTodayPresent' === window.location.hash) {
-
+  // if (this.showAllAttTable && '#/viewTodayPresent' === window.location.hash) {
+    if ('/viewTodayPresent' === this.router.url) {
 
     // Call the service method to fetch all attendance data
     this.testService.getTodayPresent().subscribe(
@@ -3736,9 +3827,9 @@ getTotalPagesTodayWfh(): number {
 viewTodayWfh() {
   // this.showAllAttTable = !this.showAllAttTable;
 
-  if (this.showAllAttTable && '#/viewTodayWfh' === window.location.hash) {
+  // if (this.showAllAttTable && '#/viewTodayWfh' === window.location.hash) {
 
-
+    if ('/viewTodayWfh' === this.router.url) {
     // Call the service method to fetch all attendance data
     this.testService.getTodayWfh().subscribe(
       (response: any) => {
@@ -3858,8 +3949,8 @@ getTotalPagesTodaySick(): number {
 viewTodaySickLeave() {
   // this.showAllAttTable = !this.showAllAttTable;
 
-  if (this.showAllAttTable && '#/todaySickLeave' === window.location.hash) {
-
+  // if (this.showAllAttTable && '#/todaySickLeave' === window.location.hash) {
+    if ('/todaySickLeave' === this.router.url) {
 
     // Call the service method to fetch all attendance data
     this.testService.getTodaySick().subscribe(
@@ -3883,4 +3974,639 @@ viewTodaySickLeave() {
   }
 }
 // view today sick leave end
+
+// view today casual leave start
+todayCasualPerPage: number = 10;
+currentTodayCasualPage: number = 1;
+
+searchTodayCasual: string = '';
+    
+ FilterTodayCasual() {
+   this.fillterTodayCasualLeaveData = this.TodayCasualLeaveData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchTodayCasual.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchTodayCasual.toLowerCase()) 
+   );
+ }
+
+ sortByFromDateTodayCasual(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterTodayCasualLeaveData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedTodayCasualData(): any[] {
+  const startIndex = (this.currentTodayCasualPage - 1) * this.todayCasualPerPage;
+  const endIndex = startIndex + this.todayCasualPerPage;
+  return this.fillterTodayCasualLeaveData.slice(startIndex, endIndex);
+}
+
+previousTodayCasualPage(): void {
+  if (this.currentTodayCasualPage > 1) {
+    this.currentTodayCasualPage--;
+  }
+}
+
+
+getPageNumbersTodayCasual(): number[] {
+  const totalPages = this.getTotalPagesTodayCasual();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentTodayCasualPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentTodayCasualPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentTodayCasualPage - halfMaxPagesToShow;
+      endPage = this.currentTodayCasualPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageTodayCasual(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayCasual()) {
+    this.currentTodayCasualPage = pageNumber;
+  }
+}
+
+
+nextPageTodayCasual(): void {
+  const totalPages = Math.ceil(
+    this.fillterTodayCasualLeaveData.length / this.todayCasualPerPage
+  );
+  if (this.currentTodayCasualPage < totalPages) {
+    this.currentTodayCasualPage++;
+  }
+}
+
+
+getTotalPagesTodayCasual(): number {
+  return Math.ceil(
+    this.fillterTodayCasualLeaveData.length / this.todayCasualPerPage
+  );
+}
+
+viewTodayCasualLeave() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  // if (this.showAllAttTable && '#/todayCasualLeave' === window.location.hash) {
+    if ('/todayCasualLeave' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.getTodayCasual().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.TodayCasualLeaveData = reversedData;
+        this.fillterTodayCasualLeaveData = reversedData;
+        console.log("today Casual leave",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+// view today casual leave end
+
+// view today Absent leave start
+todayAbsentPerPage: number = 10;
+currentTodayAbsentPage: number = 1;
+
+searchTodayAbsent: string = '';
+    
+ FilterTodayAbsent() {
+   this.fillterTodayAbsentLeaveData = this.TodayAbsentLeaveData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchTodayAbsent.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchTodayAbsent.toLowerCase()) 
+   );
+ }
+
+ sortByFromDateTodayAbsent(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterTodayAbsentLeaveData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedTodayAbsentData(): any[] {
+  const startIndex = (this.currentTodayAbsentPage - 1) * this.todayAbsentPerPage;
+  const endIndex = startIndex + this.todayAbsentPerPage;
+  return this.fillterTodayAbsentLeaveData.slice(startIndex, endIndex);
+}
+
+previousTodayAbsentPage(): void {
+  if (this.currentTodayAbsentPage > 1) {
+    this.currentTodayAbsentPage--;
+  }
+}
+
+
+getPageNumbersTodayAbsent(): number[] {
+  const totalPages = this.getTotalPagesTodayAbsent();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentTodayAbsentPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentTodayAbsentPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentTodayAbsentPage - halfMaxPagesToShow;
+      endPage = this.currentTodayAbsentPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageTodayAbsent(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayAbsent()) {
+    this.currentTodayAbsentPage = pageNumber;
+  }
+}
+
+
+nextPageTodayAbsent(): void {
+  const totalPages = Math.ceil(
+    this.fillterTodayAbsentLeaveData.length / this.todayAbsentPerPage
+  );
+  if (this.currentTodayAbsentPage < totalPages) {
+    this.currentTodayAbsentPage++;
+  }
+}
+
+
+getTotalPagesTodayAbsent(): number {
+  return Math.ceil(
+    this.fillterTodayAbsentLeaveData.length / this.todayAbsentPerPage
+  );
+}
+
+viewTodayAbsentLeave() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  // if (this.showAllAttTable && '#/todayAbsentLeave' === window.location.hash) {
+    if ('/todayAbsentLeave' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.getTodayAbsent().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.TodayAbsentLeaveData = reversedData;
+        this.fillterTodayAbsentLeaveData = reversedData;
+        console.log("today Absent leave",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+// view today casual leave end
+
+// view Full Time employee start
+FullTimeEmpPerPage: number = 10;
+currentFullTimeEmpPage: number = 1;
+
+searchFullTimeEmp: string = '';
+    
+ FilterFullTimeEmp() {
+   this.fillterFullTimeEmpData = this.FullTimeEmpData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) 
+   );
+ }
+
+ sortByFromDateFullTimeEmp(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterFullTimeEmpData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedFullTimeEmpData(): any[] {
+  const startIndex = (this.currentFullTimeEmpPage - 1) * this.FullTimeEmpPerPage;
+  const endIndex = startIndex + this.FullTimeEmpPerPage;
+  return this.fillterFullTimeEmpData.slice(startIndex, endIndex);
+}
+
+previousFullTimeEmpPage(): void {
+  if (this.currentFullTimeEmpPage > 1) {
+    this.currentFullTimeEmpPage--;
+  }
+}
+
+
+getPageNumbersFullTimeEmp(): number[] {
+  const totalPages = this.getTotalPagesFullTimeEmp();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentFullTimeEmpPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentFullTimeEmpPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentFullTimeEmpPage - halfMaxPagesToShow;
+      endPage = this.currentFullTimeEmpPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageFullTimeEmp(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesFullTimeEmp()) {
+    this.currentFullTimeEmpPage = pageNumber;
+  }
+}
+
+
+nextPageFullTimeEmp(): void {
+  const totalPages = Math.ceil(
+    this.fillterFullTimeEmpData.length / this.FullTimeEmpPerPage
+  );
+  if (this.currentFullTimeEmpPage < totalPages) {
+    this.currentFullTimeEmpPage++;
+  }
+}
+
+
+getTotalPagesFullTimeEmp(): number {
+  return Math.ceil(
+    this.fillterFullTimeEmpData.length / this.FullTimeEmpPerPage
+  );
+}
+
+viewFullTimeEmp() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  // if (this.showAllAttTable && '#/FullTimeEmpLeave' === window.location.hash) {
+    if ('/FullTimeEmp' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.getFullTimeEmp().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.FullTimeEmpData = reversedData;
+        this.fillterFullTimeEmpData = reversedData;
+        console.log("full time emp",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+// view Full Time employee end
+
+// view part Time employee start
+PartTimeEmpPerPage: number = 10;
+currentPartTimeEmpPage: number = 1;
+
+searchPartTimeEmp: string = '';
+    
+ FilterPartTimeEmp() {
+   this.fillterPartTimeEmpData = this.PartTimeEmpData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchPartTimeEmp.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchPartTimeEmp.toLowerCase()) 
+   );
+ }
+
+ sortByFromDatePartTimeEmp(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterPartTimeEmpData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedPartTimeEmpData(): any[] {
+  const startIndex = (this.currentPartTimeEmpPage - 1) * this.PartTimeEmpPerPage;
+  const endIndex = startIndex + this.PartTimeEmpPerPage;
+  return this.fillterPartTimeEmpData.slice(startIndex, endIndex);
+}
+
+previousPartTimeEmpPage(): void {
+  if (this.currentPartTimeEmpPage > 1) {
+    this.currentPartTimeEmpPage--;
+  }
+}
+
+
+getPageNumbersPartTimeEmp(): number[] {
+  const totalPages = this.getTotalPagesPartTimeEmp();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentPartTimeEmpPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentPartTimeEmpPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentPartTimeEmpPage - halfMaxPagesToShow;
+      endPage = this.currentPartTimeEmpPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePagePartTimeEmp(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPartTimeEmp()) {
+    this.currentPartTimeEmpPage = pageNumber;
+  }
+}
+
+
+nextPagePartTimeEmp(): void {
+  const totalPages = Math.ceil(
+    this.fillterPartTimeEmpData.length / this.PartTimeEmpPerPage
+  );
+  if (this.currentPartTimeEmpPage < totalPages) {
+    this.currentPartTimeEmpPage++;
+  }
+}
+
+
+getTotalPagesPartTimeEmp(): number {
+  return Math.ceil(
+    this.fillterPartTimeEmpData.length / this.PartTimeEmpPerPage
+  );
+}
+
+viewPartTimeEmp() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  // if (this.showAllAttTable && '#/PartTimeEmpLeave' === window.location.hash) {
+    if ('/PartTimeEmp' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.getPartTimeEmp().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.PartTimeEmpData = reversedData;
+        this.fillterPartTimeEmpData = reversedData;
+        console.log("part time emp",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+// view part Time employee end
+
+// view intern employee start
+internEmpPerPage: number = 10;
+currentinternEmpPage: number = 1;
+
+searchinternEmp: string = '';
+    
+ FilterinternEmp() {
+   this.fillterinternEmpData = this.internEmpData.filter((item: { firstname: string; lastname: string;}) =>
+   item.firstname.toLowerCase().includes(this.searchinternEmp.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchinternEmp.toLowerCase()) 
+   );
+ }
+
+ sortByFromDateinternEmp(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterinternEmpData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+    );
+  });
+}
+
+getPaginatedinternEmpData(): any[] {
+  const startIndex = (this.currentinternEmpPage - 1) * this.internEmpPerPage;
+  const endIndex = startIndex + this.internEmpPerPage;
+  return this.fillterinternEmpData.slice(startIndex, endIndex);
+}
+
+previousinternEmpPage(): void {
+  if (this.currentinternEmpPage > 1) {
+    this.currentinternEmpPage--;
+  }
+}
+
+
+getPageNumbersinternEmp(): number[] {
+  const totalPages = this.getTotalPagesinternEmp();
+  const maxPagesToShow = 3; // Adjust as needed
+
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= maxPagesToShow) {
+    // Show all pages if total pages are less than or equal to maxPagesToShow
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+    if (this.currentinternEmpPage <= halfMaxPagesToShow + 1) {
+      startPage = 1;
+      endPage = maxPagesToShow;
+    } else if (this.currentinternEmpPage + halfMaxPagesToShow >= totalPages) {
+      startPage = totalPages - maxPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = this.currentinternEmpPage - halfMaxPagesToShow;
+      endPage = this.currentinternEmpPage + halfMaxPagesToShow;
+    }
+  }
+
+  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+}
+
+
+changePageinternEmp(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesinternEmp()) {
+    this.currentinternEmpPage = pageNumber;
+  }
+}
+
+
+nextPageinternEmp(): void {
+  const totalPages = Math.ceil(
+    this.fillterinternEmpData.length / this.internEmpPerPage
+  );
+  if (this.currentinternEmpPage < totalPages) {
+    this.currentinternEmpPage++;
+  }
+}
+
+
+getTotalPagesinternEmp(): number {
+  return Math.ceil(
+    this.fillterinternEmpData.length / this.internEmpPerPage
+  );
+}
+
+viewinternEmp() {
+  // this.showAllAttTable = !this.showAllAttTable;
+
+  // if (this.showAllAttTable && '#/internEmpLeave' === window.location.hash) {
+    if ('/internEmp' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.getinternEmp().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.internEmpData = reversedData;
+        this.fillterinternEmpData = reversedData;
+        console.log("intern emp",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+  }
+}
+// view intern employee end
+
+// API for download leave policy start
+
+LeavePolicyPdf() {
+
+  this.adminService.DownloadLeavePolicy().subscribe((response: HttpResponse<Blob>) => {
+    if (response.body) {
+      const contentDisposition = response.headers.get('content-disposition');
+      const fileName = contentDisposition
+        ? contentDisposition.split('filename=')[1]
+        : 'LeavePolicy.pdf'; 
+
+      saveAs(response.body, fileName); 
+    } else {
+      console.error('Response body is null.');
+    }
+  }, (error) => {
+    Swal.fire('Error', error.error, 'error');  
+    console.error(error);
+  });
+ 
+}
+
+// API for download leave policy end
+
 }

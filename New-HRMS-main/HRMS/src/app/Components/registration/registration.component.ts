@@ -69,6 +69,27 @@ export class RegistrationComponent {
     console.log('Saved data for', this.assetDataList);
   }
 
+//   add more assets start
+  isEditMode = false;
+  editedValue: any; // Modify the type accordingly
+  enterEditMode() {
+    this.isEditMode = true;
+    this.editedValue = this.selectedAssets.join(', '); // You can modify this based on your requirements
+  }
+
+  saveDetails() {
+    if (this.isEditMode) {
+      // Save the edited value to assetOptions
+      this.assetOptions.push(this.editedValue);
+
+      // Reset the input field and exit edit mode
+      this.selectedAssets = this.editedValue.split(', ').map((option: string) => option.trim());
+      this.isEditMode = false;
+    }
+  }
+  //   add more assets end
+
+
   onSelectedAssetsChange() {
     this.activeSlideIndex = 0;
   }

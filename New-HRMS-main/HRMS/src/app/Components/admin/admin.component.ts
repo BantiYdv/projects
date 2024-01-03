@@ -377,12 +377,12 @@ export class AdminComponent {
         
       },
       (error: any) => {
-        if (error.status === 400) {
-          Swal.fire('Error', 'Trying to Check-In again before Check-Out.', 'error');
-        } else {
-          Swal.fire('Error', 'An unknown error occurred.', 'error');
-        }
-       
+        // if (error.status === 400) {
+        //   Swal.fire('Error', 'Trying to Check-In again before Check-Out.', 'error');
+        // } else {
+        //   Swal.fire('Error', 'An unknown error occurred.', 'error');
+        // }
+        Swal.fire('Error', error.error, 'error');
       }
     );
   }

@@ -172,11 +172,13 @@
                 <h3 class="card-title">Today’s Leave Info </h3>
               </div>
               <div class="card-body d-flex" style="justify-content: space-evenly;">
-                <div>
+                <div [routerLink]="['/todayAbsentLeave']"
+                (click)="loginService.showTable('todayAbsentLeave')">
                   <div class="pie animate no-round leaveChart" [style.--p]="absentCount" [style.--c]="'#F97165'"  [style.--b]="'10px'"> {{absentCount}}</div><br>Absent
                 </div>
                 <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
-                <div>
+                <div [routerLink]="['/todayCasualLeave']"
+                (click)="loginService.showTable('todayCasualLeave')">
                   <div class="pie animate no-round leaveChart" [style.--p]="casualCount" [style.--c]="'#421CDD'" [style.--b]="'10px'"> {{casualCount}}</div><br>Casual
                   Leave
                 </div>

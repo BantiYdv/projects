@@ -407,12 +407,43 @@ intern = '';
           legend: {
             display: false
           }
+        },
+        // for click on full time part time and intern employee start
+        onClick: (event, elements) => {
+          if (elements.length > 0) {
+            const clickedSegment = elements[0].index;
+  
+            switch (clickedSegment) {
+              case 0: 
+                this.navigateToEmployee('FullTimeEmp');
+                break;
+              case 1: 
+                this.navigateToEmployee('PartTimeEmp');
+                break;
+              case 2: 
+                this.navigateToEmployee('internEmp');
+                break;
+             
+            }
+          }
         }
+        // for click on full time part time and intern employee end
       }
       
 
     });
   }
+
+  // navigate full time part toime and intern table start
+  navigateToEmployee(route: string) {
+    // Use Angular Router to navigate to the specified route
+    this.router.navigate([`/${route}`]);
+  
+    // Optionally, you can also call your loginService function
+    this.loginService.showTable(route);
+  }
+  // navigate full time part toime and intern table end
+  
   // full time employee start
   fullTimeShow(){
     this.partTimeShow();

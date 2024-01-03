@@ -573,7 +573,8 @@
 
                 </mat-menu>
               </div>
-              <div>
+              <div [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
+              [queryParams]="{ id: item.id }">
                 <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%;" />
               </div>
               <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
@@ -681,7 +682,8 @@
             <div class="row mt-3">
               <div class="col-md-12 my-2 " *ngFor="let item of getPaginatedEmpData(); let i = index">
                 <div class="employeeList">
-                  <div class="col-md-1 m-1">
+                  <div class="col-md-1 m-1" [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
+                  [queryParams]="{ id: item.id }">
                     <img [src]="imageUrl || imageUser(item.firstname , item.lastname)" alt="" class="empList"
                       style="border-radius: 50%;" />
                   </div>
@@ -1603,7 +1605,7 @@
   <!-- view WFH start -->
   <div *ngSwitchCase="'viewWfh'">
     <!-- <div *ngIf="isHashEqualTo('/test/viewWfh')"> -->
-    <div class="container px-4 py-0 text-center" *ngIf="showWfhTable" id="viewWfh">
+    <div class="container px-4 py-0 text-center">
 
 
       <div class="table-responsive mt-2">
@@ -1714,7 +1716,7 @@
   <!-- view All attendance start -->
   <div *ngSwitchCase="'viewAllAtt'">
     <!-- <div *ngIf="isHashEqualTo('/test/viewAllAtt')"> -->
-    <div class="container px-4 py-0 text-center" *ngIf="showAllAttTable" id="viewAllAtt">
+    <div class="container px-4 py-0 text-center">
 
       <div class="table-responsive mt-2">
         <div class="col-md-12 d-flex justify-content-start">
@@ -1834,7 +1836,7 @@
   <!-- view All WFH start -->
   <div *ngSwitchCase="'viewAllWfh'">
     <!-- <div *ngIf="isHashEqualTo('/test/viewAllWfh')"> -->
-    <div class="container px-4 py-0 text-center" *ngIf="showAllWfhTable" id="viewAllWfh">
+    <div class="container px-4 py-0 text-center" >
 
 
       <div class="table-responsive mt-4">
@@ -1883,7 +1885,7 @@
   <!-- view All leave start -->
   <div *ngSwitchCase="'viewAllLeave'">
     <!-- <div *ngIf="isHashEqualTo('/test/viewAllLeave')"> -->
-    <div class="container px-4 py-0 text-center" *ngIf="showAllLeaveTable" id="AllviewLeave">
+    <div class="container px-4 py-0 text-center" >
       <div class="table-responsive mt-4">
         <table class="table table-bordered table-sm">
           <thead class="table-dark">
@@ -2057,7 +2059,7 @@
 
             <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
               <!-- <button class="recruitment_button" type="submit" (click)="uploadLeavePolicy()">Upload</button> -->
-              <button class="recruitment_button" type="submit">View File</button>
+              <button class="recruitment_button" type="submit" (click)="LeavePolicyPdf()">View File</button>
             </div>
           </form>
         </div>
@@ -2352,7 +2354,7 @@
             <div class="d-flex col-lg-12 flex-wrap justify-content-between align-items-center" >
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-12 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Start Time :</label>
+                  <label class="recruit_label">Start Time </label>
                 </div>
                 <div class="col-lg-12 col-12">
                   <input type="time" class="recruit_input" name="checkInTime" id="checkInTime" [(ngModel)]="shiftTime.checkInTime">
@@ -2360,7 +2362,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-12 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">End Time :</label>
+                  <label class="recruit_label">End Time </label>
                 </div>
                 <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="checkOutTime" id="checkOutTime" [(ngModel)]="shiftTime.checkOutTime">
@@ -2377,7 +2379,7 @@
             <div class="d-flex col-lg-12 col-md-12 flex-wrap justify-content-between align-items-center">
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Check In :</label>
+                  <label class="recruit_label">Check In </label>
                 </div>
                 <div class="col-lg-7 col-12">
                   <input type="time" class="recruit_input" name="checkInGraceTime" id="checkInGraceTime" [(ngModel)]="shiftTime.checkInGraceTime">
@@ -2385,7 +2387,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Check Out :</label>
+                  <label class="recruit_label">Check Out </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="checkOutGraceTime" id="checkOutGraceTime" [(ngModel)]="shiftTime.checkOutGraceTime">
@@ -2396,7 +2398,7 @@
             <div class="d-flex col-lg-12 col-md-12 flex-wrap justify-content-between align-items-center">
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Half Day :</label>
+                  <label class="recruit_label">Half Day </label>
                 </div>
                 <div class="col-lg-7 col-12">
                   <input type="time" class="recruit_input" name="halfDay" id="halfDay" [(ngModel)]="shiftTime.halfDay">
@@ -2404,7 +2406,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Absent Count :</label>
+                  <label class="recruit_label">Absent Count </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="absentCount" id="absentCount" [(ngModel)]="shiftTime.absentCount">
@@ -2415,7 +2417,7 @@
             <div class="d-flex col-lg-12 col-12 flex-wrap justify-content-between align-items-center">
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Present :</label>
+                  <label class="recruit_label">Present </label>
                 </div>
                 <div class="col-lg-7 col-12">
                   <input type="time" class="recruit_input" name="present" id="present" [(ngModel)]="shiftTime.present">
@@ -2423,7 +2425,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Over Time :</label>
+                  <label class="recruit_label">Over Time </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="overtime" id="overtime" [(ngModel)]="shiftTime.overtime">
@@ -2539,7 +2541,7 @@
             <div class="d-flex col-lg-12 flex-wrap justify-content-between align-items-center" >
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-12 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Start Time :</label>
+                  <label class="recruit_label">Start Time </label>
                 </div>
                 <div class="col-lg-12 col-12">
                   <input type="time" class="recruit_input" name="checkInTime" id="checkInTime" [(ngModel)]="selectedItem.checkInTime" >
@@ -2547,7 +2549,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-12 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">End Time :</label>
+                  <label class="recruit_label">End Time </label>
                 </div>
                 <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="checkOutTime" id="checkOutTime" [(ngModel)]="selectedItem.checkOutTime">
@@ -2564,7 +2566,7 @@
             <div class="d-flex col-lg-12 col-md-12 flex-wrap justify-content-between align-items-center">
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Check In :</label>
+                  <label class="recruit_label">Check In </label>
                 </div>
                 <div class="col-lg-7 col-12">
                   <input type="time" class="recruit_input" name="checkInGraceTime" id="checkInGraceTime" [(ngModel)]="selectedItem.shiftDetails.checkInGraceTime">
@@ -2572,7 +2574,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Check Out :</label>
+                  <label class="recruit_label">Check Out </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="checkOutGraceTime" id="checkOutGraceTime" [(ngModel)]="selectedItem.shiftDetails.checkOutGraceTime">
@@ -2583,7 +2585,7 @@
             <div class="d-flex col-lg-12 col-md-12 flex-wrap justify-content-between align-items-center">
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Half Day :</label>
+                  <label class="recruit_label">Half Day </label>
                 </div>
                 <div class="col-lg-7 col-12">
                   <input type="time" class="recruit_input" name="halfDay" id="halfDay" [(ngModel)]="selectedItem.shiftDetails.halfDay">
@@ -2591,7 +2593,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Absent Count :</label>
+                  <label class="recruit_label">Absent Count </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="absentCount" id="absentCount" [(ngModel)]="selectedItem.shiftDetails.absentCount">
@@ -2602,7 +2604,7 @@
             <div class="d-flex col-lg-12 col-12 flex-wrap justify-content-between align-items-center">
               <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Present :</label>
+                  <label class="recruit_label">Present </label>
                 </div>
                 <div class="col-lg-7 col-12">
                   <input type="time" class="recruit_input" name="present" id="present" [(ngModel)]="selectedItem.shiftDetails.present">
@@ -2610,7 +2612,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
                 <div class="col-lg-5 col-12 d-flex align-items-center justify-content-start">
-                  <label class="recruit_label">Over Time :</label>
+                  <label class="recruit_label">Over Time </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                   <input type="time" class="recruit_input" name="overtime" id="overtime" [(ngModel)]="selectedItem.shiftDetails.overtime">
@@ -4082,7 +4084,6 @@
 <!-- show today sick leave start -->
 <div *ngSwitchCase="'todaySickLeave'">
 
-  <!-- <div *ngIf="isHashEqualTo('/test/teamleave')"> -->
   <div class="table-responsive mt-2">
     <div class="col-md-12 d-flex justify-content-start">
       <span class="allEmp">Sick Leave</span>
@@ -4137,15 +4138,7 @@
             To Date</th>
           <th class="thName">No Of Days</th>
           <th class="thName">Leave Type</th>
-          <!-- <th class="thName">Status</th>
-          <th class="thName" (click)="sortByWhome()">
-            <i class="fa fa-arrow-up" [ngStyle]="{'color': sortBy === 'asc' ? '#000' : '#ccc'}"></i>
-                  <i class="fa fa-arrow-down" [ngStyle]="{'color': sortBy === 'desc' ? '#000' : '#ccc'}"></i>
-                  &nbsp; 
-            By Whom</th>
-          <th class="thName">Team Lead</th>
-          <th class="thName">Approve</th>
-          <th class="thName">Reject</th> -->
+         
         </tr>
       </thead>
       <tbody class="tdData">
@@ -4157,13 +4150,7 @@
           <td class="textNormal">{{ item.toDate }}</td>
           <td class="textBold">{{ item.noOfDays }}</td>
           <td class="textNormal">{{ item.leaveType }}</td>
-          <!-- <td class="textNormal" [ngStyle]="{'color': item.approval === 'Approved' ? '#129B4B' : (item.approval === 'Rejected' ? '#DD1717' : 'rgb(255 154 0)')}">{{ item.approval }}</td>
-          <td class="textNormal">{{ item.approvedBy }}</td>
-          <td class="textBold">{{ item.teamlead }}</td>
-          <td class="textBold">{{ item.Approved }}<button class="btn Approve" (click)="approveLeave(item.id)">Approve</button>
-          </td>
-          <td class="textBold">{{ item.Rejected }}<button class="btn Reject" (click)="rejectLeave(item.id)">Reject</button>
-          </td> -->
+         
         </tr>
       </tbody>
     </table>
@@ -4194,10 +4181,494 @@
 
       </div>
     </div>
-    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button> -->
   </div>
 </div>
 <!-- show today sick leave end -->
+
+<!-- show today casual leave start -->
+<div *ngSwitchCase="'todayCasualLeave'">
+
+  <div class="table-responsive mt-2">
+    <div class="col-md-12 d-flex justify-content-start">
+      <span class="allEmp">Casual Leave</span>
+    </div>
+    <div class="col-12 row">
+      <div class="col-md-6 d-flex justify-content-start">
+        <div class="added_positions_list_right">
+          <div class="added_positions_under_head">Show</div>
+          <div>
+            <select class="added_positions_under_head_select" [(ngModel)]="todayCasualPerPage">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+          <div class="added_positions_under_head">Enteries</div>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="">
+          <div class="search-container ">
+            <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+              alt="">
+            <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchTodayCasual"
+              (keyup)="FilterTodayCasual()">
+          </div>
+        </div>
+        <div class="">
+          <button class="button_added_position_list">Search</button>
+        </div>
+      </div>
+    </div>
+  
+    <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+
+      <thead>
+        <tr>
+          <th class="thName">S.No</th>
+          <th class="thName">Name</th>
+          <th class="thName">Email Id</th>
+          <th class="thName" (click)="sortByFromDate()">
+            <i class="fa fa-arrow-up" [ngStyle]="{'color': sortFDate === 'asc' ? '#000' : '#ccc'}"></i>
+            <i class="fa fa-arrow-down" [ngStyle]="{'color': sortFDate === 'desc' ? '#000' : '#ccc'}"></i>
+            &nbsp;  
+            From Date</th>
+          <th class="thName" (click)="sortByToDate()">
+            <i class="fa fa-arrow-up" [ngStyle]="{'color': sortTDate === 'asc' ? '#000' : '#ccc'}"></i>
+            <i class="fa fa-arrow-down" [ngStyle]="{'color': sortTDate === 'desc' ? '#000' : '#ccc'}"></i>
+            &nbsp; 
+            To Date</th>
+          <th class="thName">No Of Days</th>
+          <th class="thName">Leave Type</th>
+         
+        </tr>
+      </thead>
+      <tbody class="tdData">
+        <tr *ngFor="let item of getPaginatedTodayCasualData(); let i = index" >
+          <td class="textNormal">{{ i + 1 }}</td>
+          <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+          <td class="emailId">{{ item.emailid }}</td>
+          <td class="textNormal">{{ item.fromDate }}</td>
+          <td class="textNormal">{{ item.toDate }}</td>
+          <td class="textBold">{{ item.noOfDays }}</td>
+          <td class="textNormal">{{ item.leaveType }}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="not_data_img_div" *ngIf="getPaginatedTodayCasualData().length == 0">
+      <p>Not Data !!</p>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <div class="col-md-12" *ngIf="getTotalPagesTodayCasual() > 1">
+      <div class="table_footer mt-2">
+        <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          style="background-color:#421cdd;" (click)="previousTodayCasualPage()" [disabled]="currentTodayCasualPage == 1">
+          <i class="fa fa-angle-left"></i> Previous
+        </button>
+        <div class="recruitment_list_number">
+          <div *ngFor="let pageNumber of getPageNumbersTodayCasual()" [class.active_num]="pageNumber === currentTodayCasualPage"
+            class="recruitment_list_number_value" (click)="changePageTodayCasual(pageNumber)">
+            {{ pageNumber }}
+          </div>
+        </div>
+        <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          style="background-color:#421cdd;" (click)="nextPageTodayCasual()"
+          [disabled]="currentTodayCasualPage == getTotalPagesTodayCasual()">
+          Next <i class="fa fa-angle-right"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- show today casual leave end -->
+
+<!-- show today Absent leave start -->
+<div *ngSwitchCase="'todayAbsentLeave'">
+
+  <div class="table-responsive mt-2">
+    <div class="col-md-12 d-flex justify-content-start">
+      <span class="allEmp">Absent Leave</span>
+    </div>
+    <div class="col-12 row">
+      <div class="col-md-6 d-flex justify-content-start">
+        <div class="added_positions_list_right">
+          <div class="added_positions_under_head">Show</div>
+          <div>
+            <select class="added_positions_under_head_select" [(ngModel)]="todayAbsentPerPage">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+          <div class="added_positions_under_head">Enteries</div>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="">
+          <div class="search-container ">
+            <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+              alt="">
+            <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchTodayAbsent"
+              (keyup)="FilterTodayAbsent()">
+          </div>
+        </div>
+        <div class="">
+          <button class="button_added_position_list">Search</button>
+        </div>
+      </div>
+    </div>
+  
+    <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+
+      <thead>
+        <tr>
+          <th class="thName">S.No</th>
+          <th class="thName">Name</th>
+          <th class="thName">Email Id</th>
+          <th class="thName" (click)="sortByFromDate()">
+            <i class="fa fa-arrow-up" [ngStyle]="{'color': sortFDate === 'asc' ? '#000' : '#ccc'}"></i>
+            <i class="fa fa-arrow-down" [ngStyle]="{'color': sortFDate === 'desc' ? '#000' : '#ccc'}"></i>
+            &nbsp;  
+            From Date</th>
+          <th class="thName" (click)="sortByToDate()">
+            <i class="fa fa-arrow-up" [ngStyle]="{'color': sortTDate === 'asc' ? '#000' : '#ccc'}"></i>
+            <i class="fa fa-arrow-down" [ngStyle]="{'color': sortTDate === 'desc' ? '#000' : '#ccc'}"></i>
+            &nbsp; 
+            To Date</th>
+          <th class="thName">No Of Days</th>
+          <th class="thName">Leave Type</th>
+         
+        </tr>
+      </thead>
+      <tbody class="tdData">
+        <tr *ngFor="let item of getPaginatedTodayAbsentData(); let i = index" >
+          <td class="textNormal">{{ i + 1 }}</td>
+          <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+          <td class="emailId">{{ item.emailid }}</td>
+          <td class="textNormal">{{ item.fromDate }}</td>
+          <td class="textNormal">{{ item.toDate }}</td>
+          <td class="textBold">{{ item.noOfDays }}</td>
+          <td class="textNormal">{{ item.leaveType }}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="not_data_img_div" *ngIf="getPaginatedTodayAbsentData().length == 0">
+      <p>Not Data !!</p>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <div class="col-md-12" *ngIf="getTotalPagesTodayAbsent() > 1">
+      <div class="table_footer mt-2">
+        <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          style="background-color:#421cdd;" (click)="previousTodayAbsentPage()" [disabled]="currentTodayAbsentPage == 1">
+          <i class="fa fa-angle-left"></i> Previous
+        </button>
+        <div class="recruitment_list_number">
+          <div *ngFor="let pageNumber of getPageNumbersTodayAbsent()" [class.active_num]="pageNumber === currentTodayAbsentPage"
+            class="recruitment_list_number_value" (click)="changePageTodayAbsent(pageNumber)">
+            {{ pageNumber }}
+          </div>
+        </div>
+        <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          style="background-color:#421cdd;" (click)="nextPageTodayAbsent()"
+          [disabled]="currentTodayAbsentPage == getTotalPagesTodayAbsent()">
+          Next <i class="fa fa-angle-right"></i>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- show today Absent leave end -->
+
+<!-- view full time employee start -->
+
+  <div *ngSwitchCase="'fullTimeEmployee'">
+
+    <div class="table-responsive mt-2">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Full Time Employee's</span>
+      </div>
+      <div class="col-12 row">
+        <div class="col-md-6 d-flex justify-content-start">
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="FullTimeEmpPerPage">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="">
+            <div class="search-container ">
+              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                alt="">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchFullTimeEmp"
+                (keyup)="FilterFullTimeEmp()">
+            </div>
+          </div>
+          <div class="">
+            <button class="button_added_position_list">Search</button>
+          </div>
+        </div>
+      </div>
+    
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+  
+        <thead>
+          <tr>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Email Id</th>
+            <th class="thName">Designation</th>
+           
+          </tr>
+        </thead>
+        <tbody class="tdData">
+          <tr *ngFor="let item of getPaginatedFullTimeEmpData(); let i = index" >
+            <td class="textNormal">{{ i + 1 }}</td>
+            <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+            <td class="emailId">{{ item.emailid }}</td>
+            <td class="textNormal">{{ item.designation }}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="not_data_img_div" *ngIf="getPaginatedFullTimeEmpData().length == 0">
+        <p>Not Data !!</p>
+      </div>
+  
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesFullTimeEmp() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="previousFullTimeEmpPage()" [disabled]="currentFullTimeEmpPage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersFullTimeEmp()" [class.active_num]="pageNumber === currentFullTimeEmpPage"
+              class="recruitment_list_number_value" (click)="changePageFullTimeEmp(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="nextPageFullTimeEmp()"
+            [disabled]="currentFullTimeEmpPage == getTotalPagesFullTimeEmp()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- view full time employee end -->
+
+  <!-- view part time employee start -->
+
+  <div *ngSwitchCase="'PartTimeEmp'">
+
+    <div class="table-responsive mt-2">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Part Time Employee's</span>
+      </div>
+      <div class="col-12 row">
+        <div class="col-md-6 d-flex justify-content-start">
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="PartTimeEmpPerPage">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="">
+            <div class="search-container ">
+              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                alt="">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchPartTimeEmp"
+                (keyup)="FilterPartTimeEmp()">
+            </div>
+          </div>
+          <div class="">
+            <button class="button_added_position_list">Search</button>
+          </div>
+        </div>
+      </div>
+    
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+  
+        <thead>
+          <tr>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Email Id</th>
+            <th class="thName">Designation</th>
+           
+          </tr>
+        </thead>
+        <tbody class="tdData">
+          <tr *ngFor="let item of getPaginatedPartTimeEmpData(); let i = index" >
+            <td class="textNormal">{{ i + 1 }}</td>
+            <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+            <td class="emailId">{{ item.emailid }}</td>
+            <td class="textNormal">{{ item.designation }}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="not_data_img_div" *ngIf="getPaginatedPartTimeEmpData().length == 0">
+        <p>Not Data !!</p>
+      </div>
+  
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesPartTimeEmp() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="previousPartTimeEmpPage()" [disabled]="currentPartTimeEmpPage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersPartTimeEmp()" [class.active_num]="pageNumber === currentPartTimeEmpPage"
+              class="recruitment_list_number_value" (click)="changePagePartTimeEmp(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="nextPagePartTimeEmp()"
+            [disabled]="currentPartTimeEmpPage == getTotalPagesPartTimeEmp()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- view part time employee end -->
+
+  <!-- view intern time employee start -->
+
+  <div *ngSwitchCase="'internEmp'">
+
+    <div class="table-responsive mt-2">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Intern Employee's</span>
+      </div>
+      <div class="col-12 row">
+        <div class="col-md-6 d-flex justify-content-start">
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="internEmpPerPage">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="">
+            <div class="search-container ">
+              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                alt="">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchinternEmp"
+                (keyup)="FilterinternEmp()">
+            </div>
+          </div>
+          <div class="">
+            <button class="button_added_position_list">Search</button>
+          </div>
+        </div>
+      </div>
+    
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+  
+        <thead>
+          <tr>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Email Id</th>
+            <th class="thName">Designation</th>
+           
+          </tr>
+        </thead>
+        <tbody class="tdData">
+          <tr *ngFor="let item of getPaginatedinternEmpData(); let i = index" >
+            <td class="textNormal">{{ i + 1 }}</td>
+            <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+            <td class="emailId">{{ item.emailid }}</td>
+            <td class="textNormal">{{ item.designation }}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="not_data_img_div" *ngIf="getPaginatedinternEmpData().length == 0">
+        <p>Not Data !!</p>
+      </div>
+  
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesinternEmp() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="previousinternEmpPage()" [disabled]="currentinternEmpPage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersinternEmp()" [class.active_num]="pageNumber === currentinternEmpPage"
+              class="recruitment_list_number_value" (click)="changePageinternEmp(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="nextPageinternEmp()"
+            [disabled]="currentinternEmpPage == getTotalPagesinternEmp()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- view intern time employee end -->
+
 
 
 </div>
