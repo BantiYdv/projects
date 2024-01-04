@@ -1155,7 +1155,7 @@
               </div>
               
               <div class="col-lg-3 col-12 justify-content-center d-flex mt-3 mt-sm-2">
-                <button *ngIf="!isEditMode" class="button_added_position_list" (click)="enterEditMode()">Add Details</button>
+                <button *ngIf="!isEditMode" class="button_added_position_list" (click)="enterEditMode()">Add More</button>
                 <button *ngIf="isEditMode" class="button_added_position_list" (click)="saveDetails()">Save</button>
               </div>
               
@@ -1653,7 +1653,7 @@
 
           <div class="row col-lg-12 d-flex justify-content-center">
             <button class="recruitment_button mx-3" type="button" (click)="prevStep()">Previous</button>
-            <button class="recruitment_button mx-3" type="button" (click)="loginService.showTable('employee')">View Employee</button>
+            <button class="recruitment_button mx-3" type="button" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">View Employee</button>
           </div>
         </div>
       </div>

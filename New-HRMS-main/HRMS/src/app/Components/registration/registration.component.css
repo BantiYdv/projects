@@ -686,4 +686,9 @@
   background-color: #45a049;
 }
 
-
+/* assets check  box background color start */
+::ng-deep .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full, 
+::ng-deep .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-full {
+    background: #2F37A4; 
+}
+/* assets check  box background color end */

@@ -1682,7 +1682,9 @@
             </tr>
           </tbody>
         </table>
-
+        <div class="not_data_img_div" *ngIf="wfhData.length == 0">
+          <p>Not Data !!</p>
+        </div>
         
       </div>
       <div class="modal-footer">
@@ -3456,7 +3458,6 @@
               </div>
             </div>
             <div class="not_data_img_div" *ngIf="getPaginatedDataInterview().length == 0">
-              <!-- <img src="../../../assets/image/not_data.svg" alt=""> -->
               <p>Not Data !!</p>
             </div>
             <div class="row" *ngIf="getPaginatedDataInterview().length != 0">

@@ -592,6 +592,14 @@ line-height: normal;
 text-transform: capitalize;
 }
 
+.table tbody tr:nth-child(even) {
+    background-color: #ffffff !important;
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #e5e5e5 !important;
+  }
+
 .download{
     width: 39px;
 height: 39px;

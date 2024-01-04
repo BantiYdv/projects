@@ -937,7 +937,7 @@
           </div>
 
           <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
-            <!-- <div class="col-lg-6">
+            <div class="col-lg-6">
               <div class="col-lg-12 d-flex ">
                 <label class="recruit_label">Designation </label>
               </div>
@@ -946,13 +946,13 @@
                   placeholder="Designation" [matAutocomplete]="auto" [(ngModel)]="user.designation">
                 <div class="custom-arrow" style="height: 12px; width: 12px;"></div>
                 <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let designation of designation" [value]="designation">
+                  <mat-option *ngFor="let designation of designations" [value]="designation">
                     {{ designation }}
                   </mat-option>
                 </mat-autocomplete>
 
               </div>
-            </div> -->
+            </div>
 
             <div class="col-lg-6">
               <div class="col-lg-12 d-flex ">
@@ -1148,7 +1148,7 @@
               </div>
               
               <div class="col-lg-3 col-12 justify-content-center d-flex mt-3 mt-sm-2">
-                <button *ngIf="!isEditMode" class="button_added_position_list" (click)="enterEditMode()">Add Details</button>
+                <button *ngIf="!isEditMode" class="button_added_position_list" (click)="enterEditMode()">Add More</button>
                 <button *ngIf="isEditMode" class="button_added_position_list" (click)="saveDetails()">Save</button>
               </div>
               
@@ -1354,8 +1354,7 @@
               <div class="col-lg-12">
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['userImage'],'text-danger': errorMessages['userImage']}">
-                  <div id="file-name">
-                    {{ user.userImage?.name || "No file selected" }}
+                  <div id="file-name">{{ user.userImage.name  || extractFileName(user.userImage) || "No file selected" }}
                   </div>
                   <button id="select-file-btn" type="button" (click)="userImage.click()">Select File</button>
                   <input #userImage type="file" id="userImage" name="userImage" accept=".png"
@@ -1377,7 +1376,7 @@
               <div class="col-lg-12">
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['academicDocument1'],'text-danger': errorMessages['academicDocument1']}">
-                  <div id="file-name">{{ user.academicDocument1?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.academicDocument1.name || extractFileName(user.academicDocument1) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="academicDocument1.click()">Select File</button>
                   <input #academicDocument1 type="file" id="academicDocument1" name="academicDocument1"
                     accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument1')"
@@ -1402,7 +1401,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['academicDocument2'],'text-danger': errorMessages['academicDocument2']}">
 
-                  <div id="file-name">{{ user.academicDocument2?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.academicDocument2.name || extractFileName(user.academicDocument2) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="academicDocument2.click()">Select File</button>
                   <input #academicDocument2 type="file" id="academicDocument2" name="academicDocument2"
                     accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument2')"
@@ -1424,7 +1423,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['academicDocument3'],'text-danger': errorMessages['academicDocument3']}">
 
-                  <div id="file-name">{{ user.academicDocument3?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.academicDocument3.name || extractFileName(user.academicDocument3) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="academicDocument3.click()">Select File</button>
                   <input #academicDocument3 type="file" id="academicDocument3" name="academicDocument3"
                     accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument3')"
@@ -1449,7 +1448,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['academicDocument4'],'text-danger': errorMessages['academicDocument4']}">
 
-                  <div id="file-name">{{ user.academicDocument4?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.academicDocument4.name || extractFileName(user.academicDocument4) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="academicDocument4.click()">Select File</button>
                   <input #academicDocument4 type="file" id="academicDocument4" name="academicDocument4"
                     accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'academicDocument4')"
@@ -1470,7 +1469,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['signature'],'text-danger': errorMessages['signature']}">
 
-                  <div id="file-name">{{ user.signature?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.signature.name || extractFileName(user.signature) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="signature.click()">Select File</button>
                   <input #signature type="file" id="signature" name="signature" accept=".png"
                     (change)="DocumentUpload($event, 'signature')" placeholder="Your Placeholder Text"
@@ -1495,7 +1494,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['aadharCard'],'text-danger': errorMessages['aadharCard']}">
 
-                  <div id="file-name">{{ user.aadharCard?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.aadharCard.name || extractFileName(user.aadharCard) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="aadharCard.click()">Select File</button>
                   <input #aadharCard type="file" id="aadharCard" name="aadharCard" accept=".pdf, .doc, .docx"
                     (change)="DocumentUpload($event, 'aadharCard')" placeholder="Your Placeholder Text"
@@ -1516,7 +1515,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['panCard'],'text-danger': errorMessages['panCard']}">
 
-                  <div id="file-name">{{ user.panCard?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.panCard.name || extractFileName(user.panCard) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="panCard.click()">Select File</button>
                   <input #panCard type="file" id="panCard" name="panCard" accept=".pdf, .doc, .docx"
                     (change)="DocumentUpload($event, 'panCard')" placeholder="Your Placeholder Text"
@@ -1548,7 +1547,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['offerLetter'],'text-danger': errorMessages['offerLetter']}">
 
-                  <div id="file-name">{{ user.offerLetter?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.offerLetter.name || extractFileName(user.offerLetter) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="offerLetter.click()">Select File</button>
                   <input #offerLetter type="file" id="offerLetter" name="offerLetter" accept=".pdf, .doc, .docx"
                     (change)="DocumentUpload($event, 'offerLetter')" placeholder="Your Placeholder Text"
@@ -1569,7 +1568,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['RelievingLetter'],'text-danger': errorMessages['RelievingLetter']}">
 
-                  <div id="file-name">{{ user.RelievingLetter?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.relievingLetter.name || extractFileName(user.relievingLetter) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="RelievingLetter.click()">Select File</button>
                   <input #RelievingLetter type="file" id="RelievingLetter" name="RelievingLetter"
                     accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'RelievingLetter')"
@@ -1594,7 +1593,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['ExperienceLetter'],'text-danger': errorMessages['ExperienceLetter']}">
 
-                  <div id="file-name">{{ user.ExperienceLetter?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.experienceLetter.name || extractFileName(user.experienceLetter) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="ExperienceLetter.click()">Select File</button>
                   <input #ExperienceLetter type="file" id="ExperienceLetter" name="ExperienceLetter"
                     accept=".pdf, .doc, .docx" (change)="DocumentUpload($event, 'ExperienceLetter')"
@@ -1615,7 +1614,7 @@
                 <div class="recruit_input m-0 d-flex"
                   [ngClass]="{'border_bg_danger': errorMessages['salarySlip1'],'text-danger': errorMessages['salarySlip1']}">
 
-                  <div id="file-name">{{ user.salarySlip1?.name || "No file selected" }}</div>
+                  <div id="file-name">{{ user.salarySlip1.name || extractFileName(user.salarySlip1) || "No file selected" }}</div>
                   <button id="select-file-btn" type="button" (click)="salarySlip1.click()">Select File</button>
                   <input #salarySlip1 type="file" id="salarySlip1" name="salarySlip1" accept=".pdf, .doc, .docx"
                     (change)="DocumentUpload($event, 'salarySlip1')" placeholder="Your Placeholder Text"
@@ -1639,14 +1638,13 @@
                 <img src="../../../assets/image/congratulations.svg" style="width: 60%;" alt="">
               </div>
               <p class="congratulations_text">Congratulations !</p>
-              <p class="congratulations_subtext">You have successfully completed the registration
-                Process.</p>
+              <p class="congratulations_subtext">You have successfully updated the user.</p>
             </div>
           </div>
 
           <div class="row col-lg-12 d-flex justify-content-center">
             <button class="recruitment_button mx-3" type="button" (click)="prevStep()">Previous</button>
-            <button class="recruitment_button mx-3" type="button" (click)="loginService.showTable('employee')">View Employee</button>
+            <button class="recruitment_button mx-3" type="button" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">View Employee</button>
           </div>
         </div>
       </div>

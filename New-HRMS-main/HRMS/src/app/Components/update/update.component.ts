@@ -629,15 +629,15 @@ calculateTotalLeaves() {
         this.RegisterAndUpdate.updateEmployee(employeeId, this.user).subscribe(
           (response) => {
             Swal.fire('Update!', 'User Update successfully!', 'success')
-              .then(() => {
+              .then(() => this.nextStep());
                 // Refresh page 
                 // location.reload();
                 // this.router.navigate(['/test', 'employee']);
                 // this.testService.getEmployeeList();
                 // Move to the next step
                 this.stepper.next(); // Move to the next step
-              });
-            console.log("updated", response);
+              
+            console.log("updated>>>>", response);
           },
           error => {
             // Handle the error if the API request fails
@@ -682,10 +682,10 @@ console.log("docs id>>>>>", this.registerId);
           icon: 'success',
           title: 'File Upload',
           text: 'File Upload Successfully',
-        })
+        }).then(() => this.nextStep());
         // Move to the next step
-        this.router.navigate(['/employee']);
-        this.testService.getEmployeeList();
+        // this.router.navigate(['/employee']);
+        // this.testService.getEmployeeList();
         console.log('Files uploaded successfully:', response);
       },
       (error) => {
@@ -695,7 +695,15 @@ console.log("docs id>>>>>", this.registerId);
     );
   }
 
-  
+  extractFileName(filePath: string): string {
+    if (filePath) {
+      // Use the last part of the path as the file name
+      const pathParts = filePath.split('/');
+      return pathParts[pathParts.length - 1];
+    } else {
+      return "";
+    }
+  }
 
 
 

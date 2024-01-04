@@ -6,10 +6,11 @@ import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { TestService } from 'src/app/services/test.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { FormBuilder } from '@angular/forms';
 import * as saveAs from 'file-saver';
+import { filter } from 'rxjs';
 
 // interface BasicInfo{
 //   phonenumber:any;
@@ -129,9 +130,59 @@ this.getUserPhoto();
     this.BasicInfo();
     this.openEmployee();
 
-    // Get the token from localStorage
+     // data show change routing without reload start
+     this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      // Call the method to load data on route change
+      this.loadData();
+    });
+    // data show change routing without reload end
+
+
+this.checkRouteAndLoadData();
   }
 
+  // check routing for reload page start
+  checkRouteAndLoadData(): void { 
+    const currentRoute = this.router.url;
+    const cleanedRoute = this.removeProfileAndQueryParams(currentRoute); // Remove "profile/" and query parameters
+    console.log("check data url", cleanedRoute);
+  
+    if (currentRoute.includes(cleanedRoute)) {   
+      this.loginService.showTable(cleanedRoute);
+    }
+  }
+  
+  removeProfileAndQueryParams(route: string): string {
+    const parts = route.split('?'); // Split the route into path and query parameters
+    const pathWithoutProfile = parts[0].replace('/profile/', ''); // Remove "profile/" from the path
+    return pathWithoutProfile;
+  }
+  
+  
+  // check routing for reload page end
+
+  // data show change routing without reload start
+  loadData(): void {
+    // Get the current route
+    const currentRoute = this.router.url;
+console.log("load data url",currentRoute)
+    // Your logic to load data based on the route
+    switch (currentRoute) {
+      case '/profile/Profile':
+        this.viewProfile();
+        break;
+      case '/profile/viewProfile':
+        this.userProfile();
+        break;
+      
+      default:
+        // Handle any other routes or add additional logic as needed
+        break;
+    }
+  }
+  // data show change routing without reload end
 
   // viewProfile(){
 
@@ -157,6 +208,7 @@ this.getUserPhoto();
      
   viewProfile() {
     // Call the getShowData function from the service to fetch data
+    // if ('/profile/Profile' === this.router.url) {
     this.profileService.getShowData().subscribe(
       (response: any) => {
         this.profileDetails = response;
@@ -167,6 +219,7 @@ this.getUserPhoto();
         console.error('Failed to fetch data:', error);
       }
     );
+    // }
   }
 
  
