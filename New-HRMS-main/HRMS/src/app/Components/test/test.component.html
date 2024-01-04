@@ -62,7 +62,8 @@
                             (selectionChange)="onPermissionSelectionChange()">
                             <mat-option *ngFor="let option of availablePermissionOptions" [value]="option"
                               [disabled]="isOptionDisabled(option)">
-                              {{ formatOption(option) }}
+                              <!-- {{ formatOption(option) }} -->
+                              {{ transformPermission(option) }}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>
@@ -160,7 +161,8 @@
                       style="width: 30%;border-right: 2px solid #ADADAD; justify-content: normal;">
                       <ul class="list-with-images">
                         <li *ngFor="let permission of item.permissions">
-                          {{ formatOption(permission.permissionName) }}
+                          <!-- {{ formatOption(permission.permissionName) }} -->
+                          {{ transformPermission(permission.permissionName) }}
                         </li>
                       </ul>
                     </div>
@@ -239,7 +241,8 @@
                                   (selectionChange)="onPermissionSelectionChange()">
                                   <mat-option *ngFor="let option of availablePermissionOptions" [value]="option"
                                     [disabled]="isOptionDisabled(option)">
-                                    {{ formatOption(option) }}
+                                    <!-- {{ formatOption(option) }} -->
+                                    {{ transformPermission(option) }}
                                   </mat-option>
                                 </mat-select>
                               </mat-form-field>
@@ -1094,10 +1097,21 @@
   <div *ngSwitchCase="'reports'">
     <!-- <div *ngIf="isHashEqualTo('/test/reports')"> -->
     <div class="container px-4 py-5" id="hanging-icons">
-      <div class="col-md-12 mb-2 d-flex justify-content-start">
+      <div class="row">
+      <div class="col-md-6 mb-2 d-flex justify-content-start">
         <span class="allEmp">Reports</span>
       </div>
-
+      <div class="col-md-6 mb-2 d-flex justify-content-end"
+      [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+      <input [(ngModel)]="searchEmployee" (input)="applyFilterEmployee()"
+        placeholder="-- Employee --" class="form-control searchEmp" [matAutocomplete]="autoEmployee">
+      <mat-autocomplete #autoEmployee="matAutocomplete">
+        <mat-option *ngFor="let item of EmployeeData" [value]="item.username">
+          {{ item.username }}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+</div>
       <div class="row">
         
           <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
@@ -1792,10 +1806,10 @@
               <td class="textNormal">{{ item.totalHours }}</td>
               <td class="thAction">
                 <select [(ngModel)]="item.status" (ngModelChange)="updateAtt(item.id, item.status)" class="Attaction" [ngStyle]="{'color': item.status === 'PRESENT' ? '#47C17A' : (item.status === 'ABSENT' ? '#D92651' : 'rgb(255 154 0)')}">
-                  <option value="PRESENT">Present</option>
-                  <option value="ABSENT">Absent</option>
-                  <option value="HALF_DAY">Half Day</option>
-                  <option value="OVERTIME">Over Time</option>
+                  <option value="PRESENT" style="color:#129B4B">Present</option>
+                  <option value="ABSENT" style="color:red">Absent</option>
+                  <option value="HALF_DAY" style="color:yellow">Half Day</option>
+                  <option value="OVERTIME" style="color:blue">Over Time</option>
                 </select>
               </td>          
             </tr>

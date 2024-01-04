@@ -95,7 +95,6 @@ throw new Error('Method not implemented.');
   permissionNames: any;
 
 
-  
 
   // change password validation start
   showNewPassword: boolean = false;
@@ -114,11 +113,28 @@ throw new Error('Method not implemented.');
   ];
 isDropdownOpen: any;
 
-  // remove underscore from permission name start
+  // remove underscore and change name from permission name start
   formatOption(option: string): string {
     return option.replace(/_/g, ' ');
   }
-// remove underscore from permission name end
+
+  permissionMapping: { [key: string]: string } = {
+    "NO_ACCESS":"No Access",
+    "ALL_ACCESS":"All Access",
+    "ALL_EMPLOYEES_DATA":"All Employees Data",
+    "NEW_REGISTRATION":"New Registration",
+    "ALL_EMPLOYEES_ATTENDANCE":"All Employees Attendance",
+    "LEAVE_SHOW_TEAMLEAD":"Team Leave",
+    "WFH_SHOW_TEAMLEAD":"Team WFH",
+    "ALL_WFH_EMPLOYEES":"All Employees WFH",
+    "VIEW_ALL_LEAVE":"All Employees Leave"
+  };
+  transformPermission(permission: string): string {
+    return this.permissionMapping[permission] || permission;
+  }
+// remove underscore and change name from permission name end
+
+
   
   showAllDocsTable: any;
   
@@ -172,6 +188,7 @@ isDropdownOpen: any;
   searchEmail: string = '';
   searchdesignation: string = '';
   
+  
   filteredEmployeeData: any[] = [];
 
   applyFilter() {
@@ -199,6 +216,7 @@ isDropdownOpen: any;
 
   
   // employee list search start
+ 
 
   // role and permission  list search start
   searchRole: string = '';
@@ -344,7 +362,7 @@ this.checkRouteAndLoadData();
     // this.isModalOpen = true;
 
     // if (this.showAllAdminTable && '#/employee' === window.location.hash) {
-      if ('/employee' === this.router.url) {
+      if ('/employee' === this.router.url || '/reports' === this.router.url) {
 
    
       // Call the service method to fetch the list of employees
@@ -434,6 +452,9 @@ this.checkRouteAndLoadData();
         break;
       case 'viewAllLeave':
         this.toggleAllLeaveTable();
+        break;
+      case 'reports':
+        this.openEmployee();
         break;
       default:
         // Handle any other routes or add additional logic as needed
@@ -899,8 +920,13 @@ console.log("perission", permissionNames);
     );
   }
   //API for change Password end
-
-
+  searchEmployee: string = '';
+  applyFilterEmployee() {
+    this.filteredEmployeeData = this.EmployeeData.filter((item: { username: string; }) =>
+    item.username.toLowerCase().includes(this.searchEmployee.toLowerCase()) 
+    );
+    console.log("filter Employee name", this.filteredEmployeeData)
+  }
   // API for download employee list in excel start
 
 
@@ -935,19 +961,12 @@ console.log("perission", permissionNames);
 
 
   getAllEmployeesLeave() {
-    const token = localStorage.getItem('jwtToken');
+    
 
-    // Create the request headers with the token
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.testService.getEmployeeLeaveExcel(headers).subscribe((response: HttpResponse<Blob>) => {
-      // Check if the response body is not null
+    this.testService.getEmployeeLeaveExcel(this.searchEmployee).subscribe((response: HttpResponse<Blob>) => {
+     
       if (response.body) {
         const contentDisposition = response.headers.get('content-disposition');
-
-        // const fileName = contentDisposition
-        //   ? contentDisposition.split('filename=')[1]
-        //   : 'employeesLeave.xlsx'; // Use the filename from content-disposition header or a default name
 
         let fileName = 'employeesLeave.xlsx';
 
@@ -959,12 +978,12 @@ console.log("perission", permissionNames);
         }
 
 
-        saveAs(response.body, fileName); // Use the 'file-saver' library to save the file
+        saveAs(response.body, fileName); 
       } else {
 
       }
     }, (error) => {
-      // Handle any errors that occurred during the API call
+      
 
     });
 
@@ -2493,6 +2512,8 @@ onFileSelectedLeavePolicy(event: any): void {
       this.selectedFileLeavePolicy = 'Invalid file type. Please select a PDF file.';
       // Optionally, you can reset the file input value to clear the selection
       fileInput.value = '';
+      console.log("upload file input", this.selectedFileLeavePolicy);
+      console.log("upload file input")
     }
   } else {
     this.selectedFileLeavePolicy = 'No file selected';

@@ -189,12 +189,26 @@ getEmployeeListExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
 // download employee list in excel end
 
 // download employee leave in excel start
-getEmployeeLeaveExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
-  return this.http.get(this.api.EmpLeaveExcel, {
-    headers,
-    responseType: 'blob',
-    observe: 'response' // To access the full response with headers
-  });
+getEmployeeLeaveExcel(employeeName: any): Observable<HttpResponse<Blob>> {
+  const token = localStorage.getItem('jwtToken');
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  if(employeeName){
+    console.log("excel employee name", `${this.api.EmpLeaveExcel}?username=${employeeName}`)
+    return this.http.get(`${this.api.EmpLeaveExcel}?username=${employeeName}`, {
+      headers,
+      responseType: 'blob',
+      observe: 'response' // To access the full response with headers
+    });
+  }else{
+    console.log("excel employee name error", employeeName)
+    return this.http.get(this.api.EmpLeaveExcel, {
+      headers,
+      responseType: 'blob',
+      observe: 'response' // To access the full response with headers
+    });
+  }
+ 
 }
 // download employee leave in excel end
 
