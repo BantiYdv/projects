@@ -213,22 +213,46 @@ getEmployeeLeaveExcel(employeeName: any): Observable<HttpResponse<Blob>> {
 // download employee leave in excel end
 
 // download employee Att in excel start
-getEmployeeAttExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
+getEmployeeAttExcel(employeeName: any): Observable<HttpResponse<Blob>> {
+  const token = localStorage.getItem('jwtToken');
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  if(employeeName){
+    console.log("excel employee name", `${this.api.EmpAttExcel}?username=${employeeName}`)
+    return this.http.get(`${this.api.EmpAttExcel}?username=${employeeName}`, {
+      headers,
+      responseType: 'blob',
+      observe: 'response' // To access the full response with headers
+    });
+  }else{
   return this.http.get(this.api.EmpAttExcel, {
     headers,
     responseType: 'blob',
     observe: 'response' // To access the full response with headers
   });
 }
+}
 // download employee Att in excel end
 
 // download employee WFH in excel start
-getEmployeeWfhExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
+getEmployeeWfhExcel(employeeName: any): Observable<HttpResponse<Blob>> {
+  const token = localStorage.getItem('jwtToken');
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  if(employeeName){
+    console.log("excel employee name", `${this.api.EmpWfhExcel}?username=${employeeName}`)
+    return this.http.get(`${this.api.EmpWfhExcel}?username=${employeeName}`, {
+      headers,
+      responseType: 'blob',
+      observe: 'response' // To access the full response with headers
+    });
+  }else{
   return this.http.get(this.api.EmpWfhExcel, {
     headers,
     responseType: 'blob',
     observe: 'response' // To access the full response with headers
   });
+}
 }
 // download employee WFH in excel end
 

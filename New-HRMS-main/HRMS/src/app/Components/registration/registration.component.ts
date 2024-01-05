@@ -307,7 +307,7 @@ export class RegistrationComponent {
 
   isLoading = false; 
   token: string = ''; 
-  teamlead: string[] = [];
+  teamlead: any[]= [];
   role: string[] = [];
   shiftTime: string[] = [];
   designation: string[] = [];
@@ -400,6 +400,7 @@ export class RegistrationComponent {
         this.teamlead = response;
 
         this.token = response.token;
+        console.log("team lead", response);
       },
       (error) => {}
     );

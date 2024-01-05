@@ -1129,7 +1129,14 @@ background: #FFF;
 text-align: center;
 }
 
-
+.searchExcel{
+  width: 50%;
+/* height: 58px; */
+flex-shrink: 0;
+border-radius: 10px;
+border: 1px solid #808080;
+background: #FFF;
+}
 
 
 /* / recruitment css start / */

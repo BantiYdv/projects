@@ -1096,22 +1096,24 @@
 
   <div *ngSwitchCase="'reports'">
     <!-- <div *ngIf="isHashEqualTo('/test/reports')"> -->
-    <div class="container px-4 py-5" id="hanging-icons">
+    <div class="px-5 py-5" id="hanging-icons">
       <div class="row">
-      <div class="col-md-6 mb-2 d-flex justify-content-start">
-        <span class="allEmp">Reports</span>
+        <div class="d-flex justify-content-start"
+          [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5 mb-2' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2'">
+          <span class="allEmp">Reports</span>
+        </div>
+        <div class="d-flex justify-content-end"
+          [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5 mb-2' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2'">
+          <input [(ngModel)]="searchEmployee" (input)="applyFilterEmployee()"
+            placeholder="-- Employee --" class="form-control searchExcel" [matAutocomplete]="autoEmployee">
+          <mat-autocomplete #autoEmployee="matAutocomplete">
+            <mat-option *ngFor="let item of EmployeeData" [value]="item.username">
+              {{ item.username }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
       </div>
-      <div class="col-md-6 mb-2 d-flex justify-content-end"
-      [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
-      <input [(ngModel)]="searchEmployee" (input)="applyFilterEmployee()"
-        placeholder="-- Employee --" class="form-control searchEmp" [matAutocomplete]="autoEmployee">
-      <mat-autocomplete #autoEmployee="matAutocomplete">
-        <mat-option *ngFor="let item of EmployeeData" [value]="item.username">
-          {{ item.username }}
-        </mat-option>
-      </mat-autocomplete>
-    </div>
-</div>
+      
       <div class="row">
         
           <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
@@ -1228,88 +1230,6 @@
             </div>
           </div>
 
-        
-
-
-      <!--   <div class="col d-flex align-items-start mt-2">
-
-          <div class="cardAdmin">
-
-            <img class="CardImg"
-              src="data:image/webp;base64,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"
-              alt="">
-
-            <h3 class="fs-2 text-body-emphasis">Employee Leaves</h3>
-            <a class="icon-link mb-2" (click)="getAllEmployeesLeave()">
-              <div class="button">
-                Download it!
-                <span>
-                  <span></span>
-                </span>
-              </div>
-
-            </a>
-          </div>
-        </div>
-        <div class="col d-flex align-items-start mt-2">
-          <div class="cardAdmin">
-
-            <img class="CardImg"
-              src="data:image/webp;base64,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"
-              alt="">
-
-          
-
-            <h3 class="fs-2 text-body-emphasis">Employee Att</h3>
-            <a class="icon-link mb-2" (click)="getAllEmployeesAtt()">
-              <div class="button">
-                Download it!
-                <span>
-                  <span></span>
-                </span>
-              </div>
-
-            </a>
-          </div>
-        </div>
-        <div class="col d-flex align-items-start mt-2">
-          <div class="cardAdmin">
-
-            <img class="CardImg"
-              src="data:image/webp;base64,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"
-              alt="">
-
-          
-            <h3 class="fs-2 text-body-emphasis">Employee WFH</h3>
-            <a class="icon-link mb-2" (click)="getAllEmployeesWfh()">
-              <div class="button">
-                Download it!
-                <span>
-                  <span></span>
-                </span>
-              </div>
-
-            </a>
-          </div>
-        </div>
-        <div class="col d-flex align-items-start mt-2">
-          <div class="cardAdmin">
-            <img class="CardImg"
-              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTwn_YIDFV9YQBK7jIXvGzCcUpQW6R8VA6V0fPCX4i9IoOQwJlI"
-              alt="">
-       
-            <h3 class="fs-2 text-body-emphasis">Employee List</h3>
-            <a class="icon-link mb-2" (click)="getAllEmployees()">
-              <div class="button">
-                Download it!
-                <span>
-                  <span></span>
-                </span>
-              </div>
-
-            </a>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -1739,7 +1659,7 @@
           <span class="allEmp">Attendance</span>
         </div>
         <div class="row">
-          <div class="col-md-6 d-flex justify-content-start">
+          <div class="col-md-4 d-flex justify-content-start">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -1754,25 +1674,23 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-6 d-flex justify-content-end align-items-center">
-            <!-- <div class="">
-              <div class="search-container">
-                <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list" alt="">
-                <input type="date" name="" id="" class="search_added_position_list" [(ngModel)]="searchAllatt" (keyup)="FilterAllatt()">
-              </div>
-            </div> -->
+          <div class="col-md-4 d-flex justify-content-end align-items-center">
+           
             
             <div class="">
               <div class="search-container">
                 <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
                   alt="">
                 <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchAllatt"
-                  (keyup)="FilterAllatt()">
+                  (keyup)="onSearchAtt()">
               </div>
             </div>
             <div class="">
               <button class="button_added_position_list">Search</button>
             </div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-end align-items-center">
+            <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonth" (change)="onSearchMonth()">
           </div>
         </div>
         <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">

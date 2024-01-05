@@ -27,6 +27,7 @@ import { AdminService } from 'src/app/services/admin.service';
 export class TestComponent {
   role: any;
 sortOrderSalary: any;
+  
 selectOption(_t52: string) {
 throw new Error('Method not implemented.');
 }
@@ -308,7 +309,8 @@ isDropdownOpen: any;
     this.viewFullTimeEmp();
     this.viewPartTimeEmp();
     this.viewinternEmp();
-
+    // this.viewAllAttendance();
+    // this.onSearchMonth();
     
     // data show change routing without reload start
     this.router.events.pipe(
@@ -996,12 +998,9 @@ console.log("perission", permissionNames);
 
 
   getAllEmployeesAtt() {
-    const token = localStorage.getItem('jwtToken');
+   
 
-    // Create the request headers with the token
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.testService.getEmployeeAttExcel(headers).subscribe((response: HttpResponse<Blob>) => {
+    this.testService.getEmployeeAttExcel(this.searchEmployee).subscribe((response: HttpResponse<Blob>) => {
       // Check if the response body is not null
       if (response.body) {
         const contentDisposition = response.headers.get('content-disposition');
@@ -1026,13 +1025,9 @@ console.log("perission", permissionNames);
 
 
   getAllEmployeesWfh() {
-    const token = localStorage.getItem('jwtToken');
+    
 
-
-    // Create the request headers with the token
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.testService.getEmployeeWfhExcel(headers).subscribe((response: HttpResponse<Blob>) => {
+    this.testService.getEmployeeWfhExcel(this.searchEmployee).subscribe((response: HttpResponse<Blob>) => {
       // Check if the response body is not null
       if (response.body) {
         const contentDisposition = response.headers.get('content-disposition');
@@ -1315,22 +1310,29 @@ console.log("leave apply", response);
     // if (this.showAllAttTable && '#/viewAllAtt' === window.location.hash) {
       if ('/viewAllAtt' === this.router.url) {
 
-      // Call the service method to fetch all attendance data
       this.testService.getAllAttendance().subscribe(
         (response: any) => {
-          // Convert the response object to an array
+        
           const dataArray = Object.values(response);
-          // Reverse the received array
+        
           const reversedData = dataArray.reverse();
+if(this.searchAllatt !='' || this.selectedMonth !=''){
 
-          // Set the reversed array as the data source
-          this.AllAttData = reversedData;
-          this.fillterAllattData = reversedData;
+  this.AllAttData = reversedData;
+  this.fillterAllattData = reversedData;
+  this.FilterAllatt();
+}else{
+  this.fillterAllattData = response.filter((item: { checkDate: string; }) =>
+  item.checkDate.includes(this.viewAllTodayAttendance()))
+  this.AllAttData = response.filter((item: { checkDate: string; }) =>
+  item.checkDate.includes(this.viewAllTodayAttendance()))
+  
+}
           console.log("atttttt",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
-          // Hide the table if an error occurs
+          
           this.showAllAttTable = false;
         }
       );
@@ -1338,6 +1340,7 @@ console.log("leave apply", response);
   }
   
   // API for view All Attendance end
+
 
   // API for update employee attendance start
   updateAtt(id: number, status: string){
@@ -1351,7 +1354,6 @@ console.log("leave apply", response);
           icon: 'success'
         }).then((result) => {
           if (result.isConfirmed) {
-            // location.reload();
             this.showAllAttTable = false;
             this.viewAllattendance();
 
@@ -2364,14 +2366,62 @@ sortByWhomeWfh(): void {
 
     // search for  view All att table start
  searchAllatt: string = '';
-    
+ selectedMonth: string = '';
+ 
+ 
+
  FilterAllatt() {
+   if(this.searchAllatt){
    this.fillterAllattData = this.AllAttData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchAllatt.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchAllatt.toLowerCase()) 
-   );
+
+     item.firstname.toLowerCase().includes(this.searchAllatt.toLowerCase()) ||
+     item.lastname.toLowerCase().includes(this.searchAllatt.toLowerCase()) 
+   )}else if(this.selectedMonth){
+    this.fillterAllattData = this.AllAttData.filter((item: { checkDate: string;}) =>
+   item.checkDate.toLowerCase().includes(this.selectedMonth.toLowerCase()) 
+   )};
+
  }
 
+ onSearchAtt() {
+  // Clear the date input field when searching in the name input field
+  if (this.searchAllatt.trim() !== '') {
+    this.selectedMonth = '';
+  }
+  this.viewAllattendance();
+
+  this.FilterAllatt();
+}
+
+ onSearchMonth() {
+   // Clear the date input field when searching in the name input field
+   if (this.selectedMonth !== '') {
+     this.searchAllatt = '';
+    }
+    this.viewAllattendance();
+ 
+console.log("selected month ", this.selectedMonth)
+  this.FilterAllatt();
+}
+
+viewAllTodayAttendance(){
+  const todayDate = new Date();
+  const year = todayDate.getFullYear();
+    const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = todayDate.getDate().toString().padStart(2, '0');
+  this.selectedMonth = `${year}-${month}-${day}`;
+  console.log("today all att", this.selectedMonth)
+ return this.selectedMonth;
+}
+
+ 
+  // filterAllattData() {
+  //   this.fillterAllattData = this.AllAttData.filter((item: { checkDate: string | number | Date; }) => {
+  //     const itemMonth = new Date(item.checkDate).toLocaleString('default', { month: 'long' });
+  //     console.log("month", this.selectedMonth);
+  //     return this.selectedMonth ? itemMonth === this.selectedMonth : true;
+  //   });
+  // }
   // search for all att table end
 
    // pagination for view  all att start

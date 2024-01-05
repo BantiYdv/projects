@@ -966,10 +966,9 @@
                 <label class="recruit_label">Team Lead </label>
               </div>
               <div class="col-lg-12 col-12 select-wrapper">
-                <select class="recruit_input_select m-0" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead"
-                  (ngModelChange)="teamLead()">
+                <select class="recruit_input_select m-0" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead">
                   <option>-- Select --</option>
-                  <option *ngFor="let teamlead of teamlead" [value]="teamlead">{{ teamlead }} </option>
+                  <option *ngFor="let teamlead of teamlead" [value]="teamlead.emailId">{{ teamlead.fullName }}  ({{teamlead.emailId}})  </option>
                 </select>
                 <div class="custom-arrow" style="height: 12px; width: 12px;"></div>
 
@@ -1003,7 +1002,7 @@
               </div>
               <div class="col-lg-12 col-12 select-wrapper">
                 <select class="recruit_input_select m-0" name="role" id="role" [(ngModel)]="user.role"
-                  (ngModelChange)="ngOnInit()"
+                 
                   [ngClass]="{'border_bg_danger': roleInput.invalid && (roleInput.dirty || roleInput.touched),'text-danger': roleInput.invalid && (roleInput.dirty || roleInput.touched)}"
                   #roleInput="ngModel" required>
                   <option *ngFor="let role of role" [value]="role">{{ role }} </option>
