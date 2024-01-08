@@ -367,9 +367,14 @@ export class AdminComponent {
 
  
   // API for alert box check-in-out start
- 
+  startTime: string = '00:00:00';
+  timerInterval: any;
+
   checkin() {
-   
+    this.startTime = '00:00:00';
+    this.timerInterval = setInterval(() => {
+      this.updateTimer();
+    }, 1000);
     this.adminService.performCheckin().subscribe(
       () => {
    
@@ -377,15 +382,29 @@ export class AdminComponent {
         
       },
       (error: any) => {
-        // if (error.status === 400) {
-        //   Swal.fire('Error', 'Trying to Check-In again before Check-Out.', 'error');
-        // } else {
-        //   Swal.fire('Error', 'An unknown error occurred.', 'error');
-        // }
+       
         Swal.fire('Error', error.error, 'error');
       }
     );
   }
+
+  updateTimer() {
+    // Update the startTime to the next second
+    const timeArray = this.startTime.split(':').map(Number);
+    const totalSeconds = timeArray[0] * 3600 + timeArray[1] * 60 + timeArray[2] + 1;
+
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    this.startTime = `${this.padNumber(hours)}:${this.padNumber(minutes)}:${this.padNumber(seconds)}`;
+  }
+
+  padNumber(num: number): string {
+    return num < 10 ? `0${num}` : `${num}`;
+  }
+  
+  
 
 
 
