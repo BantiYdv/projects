@@ -6,94 +6,247 @@
         <div class="row">
           <div class="col-md-6 d-flex justify-content-start">
             <h2 class="hello">Hello<br>
-              <span id="firstname" class="empName">{{ profileDetails?.firstname + " " + profileDetails?.lastname }}</span>
+              <span id="firstname" class="empName">{{ profileDetails?.firstname + " " + profileDetails?.lastname
+                }}</span>
             </h2>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
             <div>
+              <!-- <button type="submit" class="btn checkIn" (click)="checkin()">Check-In</button> -->
+              <!-- In your component template file (e.g., app.component.html) -->
+<button *ngIf="!isCheckedOut" type="submit" class="btn checkIn" (click)="checkin()">Check-In</button>
+<button *ngIf="isCheckedOut" type="submit" class="btn checkOut" (click)="checkout()">Check-Out</button>
 
-              <button type="submit" class="btn checkIn" (click)="checkin()">Check-In</button>
               <br>
-              <span class="mt-2 timer"><img src="/assets/image/icon/checkInClock.svg" alt=""
-                  class="checkInClock">{{startTime}}</span>
+              <!-- <span class="mt-2 timer"><img src="/assets/image/icon/checkInClock.svg" alt=""
+                  class="checkInClock">{{startTime}}</span> -->
             </div>
           </div>
         </div>
 
         <div class="row">
-<div class="col-md-12 d-flex flex-wrap">
-          <div class="col-md-6 mt-4" id="LeaveChart">
-            <div class="LeaveChart">
-            <div class="d-flex justify-content-start bottomLine">
-              <h3 class="leaveTitle">Leave</h3>
-            </div>
-            <div class="d-flex" style="justify-content: space-evenly; ">
-              <div>
-                <div class="pie animate no-round leaveChart" [style.--c]="'#F97165'" [style.--b]="'10px'"> 20</div>
-                <br><span class="leaveName">Total Leaves</span>
-              </div>
-              <div>
+          <div class="col-md-12 d-flex flex-wrap">
+            <div class="col-md-6 mt-4" id="LeaveChart">
+              <div class="LeaveChart">
+                <div class="d-flex justify-content-start bottomLine">
+                  <h3 class="leaveTitle">Leave</h3>
+                </div>
+                <div class="d-flex" style="justify-content: space-evenly; ">
+                  <div>
+                    <div class="pie animate no-round leaveChart" [style.--c]="'#F97165'" [style.--b]="'10px'"> {{
+                      profileDetails?.totalleaves }}</div>
+                    <br><span class="leaveName">Total Leaves</span>
+                  </div>
+                  <div>
 
-                <div class="pie animate no-round leaveChart" [style.--c]="'#421CDD'" [style.--b]="'10px'"> 10</div>
-                <br><span class="leaveName">Leave Taken</span>
-              </div>
-              <div>
+                    <div class="pie animate no-round leaveChart" [style.--c]="'#421CDD'" [style.--b]="'10px'"> {{
+                      profileDetails?.sickLeavesPerMonth }}</div>
+                    <br><span class="leaveName">Leave Taken</span>
+                  </div>
+                  <div>
 
-                <div class="pie animate no-round leaveChart" [style.--c]="'#188EE4'" [style.--b]="'10px'">10</div>
-                <br><span class="leaveName">Remaining Leave</span>
+                    <div class="pie animate no-round leaveChart" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{
+                      profileDetails?.casualLeavesPerMonth }}</div>
+                    <br><span class="leaveName">Remaining Leave</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center align-item-center mt-3">
+                  <button class="btn leaveApply m-2" [routerLink]="['/applyLeave']" (click)="loginService.showTable('applyLeave')">Apply Leave</button>
+                  <button class="btn leaveView m-2" [routerLink]="['/viewLeave']" (click)="loginService.showTable('viewLeave')">View Leave</button>
+                </div>
               </div>
             </div>
-            <div class="d-flex justify-content-center align-item-center mt-3">
-              <button class="btn leaveApply m-2">Apply Leave</button>
-              <button class="btn leaveView m-2">View Leave</button>
-            </div>
+
+            <div class="col-md-6 mt-4" id="LeaveChart">
+              <div class="LeaveChart">
+                <div class="d-flex justify-content-start bottomLine">
+                  <h3 class="leaveTitle">WFH</h3>
+                </div>
+
+
+
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -24px; position: relative;">
+                  <span class="wfhName">Total WFH</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="20"
+                    aria-valuemin="0" aria-valuemax="100" style="position: relative;">
+                    <div class="progress-bar" style="width: 20%;"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
+                </div>
+
+
+
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
+                  <span class="wfhName">WFH Taken</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <div class="progress-bar wfhTaken" style="width: 30%"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
+                </div>
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
+                  <span class="wfhName">Remaining WFH</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <div class="progress-bar remainingWfh" style="width: 40%"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
+                </div>
+
+
+
+
+                <div class="d-flex justify-content-center align-item-center">
+                  <button class="btn leaveApply m-2" [routerLink]="['/applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
+                  <button class="btn leaveView m-2" [routerLink]="['/viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="col-md-6 mt-4" id="LeaveChart">
-            <div class="LeaveChart">
-            <div class="d-flex justify-content-start bottomLine">
-              <h3 class="leaveTitle">WFH</h3>
-            </div>
-            
-            
-
-            <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -24px; position: relative;">
-              <span class="wfhName">Total WFH</span>
-              <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="position: relative;">
-                <div class="progress-bar" style="width: 20%;"></div>
-              </div>
-              <span class="progress-label" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
-            </div>
-            
-            
-           
-            <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
-              <span class="wfhName">WFH Taken</span>
-              <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar wfhTaken" style="width: 30%"></div>
-              </div>
-              <span class="progress-label" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
-            </div>
-            <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
-              <span class="wfhName">Remaining WFH</span>
-              <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar remainingWfh" style="width: 40%"></div>
-              </div>
-              <span class="progress-label" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
-            </div>
-            
-            
-      
-           
-            <div class="d-flex justify-content-center align-item-center">
-              <button class="btn leaveApply m-2">Apply WFH</button>
-              <button class="btn leaveView m-2">View WFH</button>
-            </div>
-            </div>
-          </div>
-</div>
         </div>
+
+        <div class="row">
+          <div class="col-md-12 d-flex flex-wrap">
+            <div class="col-md-12 mt-4" id="LeaveChart">
+              <div class="performance">
+                <div class="d-flex justify-content-start">
+                  <h3 class="leaveTitle">Performance</h3>
+                </div>
+                <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-probation-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-probation" type="button" role="tab" aria-controls="pills-probation"
+                      aria-selected="true">Probation</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review"
+                      type="button" role="tab" aria-controls="pills-review" aria-selected="false">Review</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-appraisal-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-appraisal" type="button" role="tab" aria-controls="pills-appraisal"
+                      aria-selected="false">Appraisal</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-promotion-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-promotion" type="button" role="tab" aria-controls="pills-promotion"
+                      aria-selected="false">Promotion</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-demotion-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-demotion" type="button" role="tab" aria-controls="pills-demotion"
+                      aria-selected="false">Demotion</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-pip-tab" data-bs-toggle="pill" data-bs-target="#pills-pip"
+                      type="button" role="tab" aria-controls="pills-pip" aria-selected="false">PIP</button>
+                  </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-pane fade show active" id="pills-probation" role="tabpanel"
+                    aria-labelledby="pills-probation-tab">
+                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                      <span class="status">Status</span>
+                      
+                      <span class="probationStatus 
+                      {{profileDetails.probationStatus === 'Completed' ? 'completed-status' : 
+                      profileDetails.probationStatus === 'Not Completed' ? 'not-completed-status' : 
+                      profileDetails.probationStatus === 'On Going' ? 'ongoing-status' : ''}}">
+
+                      {{profileDetails.probationStatus}}
+
+                      <img src="{{profileDetails.probationStatus === 'Completed' ? '/assets/image/icon/Completed.svg' : 
+                      profileDetails.probationStatus === 'Not Completed' ? '/assets/image/icon/NotCompleted.svg' : 
+                      profileDetails.probationStatus === 'On Going' ? '/assets/image/icon/Ongoing.svg' : ''}}" alt="Status Icon">
+                    </span>
+
+                    </div>
+                    <p class="statusP mt-4"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit aspernatur tempore nihil qui enim adipisci error?</p>
+                  </div>
+
+                  <!-- <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                     
+                      </div>
+                  </div> -->
+                  <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                    
+                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                      <h4>Review details go here.</h4>
+                    </div>
+                  
+                    
+                    <!-- <div class="d-flex flex-wrap justify-content-around mt-3">
+                      <div class="text-left mb-4 discipline">
+                        <p>Discipline</p>
+                      </div>
+                      <div class="text-right mb-4 disciplineRating">
+                       
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                    
+                      <div class="text-left mb-4">
+                        <p>Timing</p>
+                      </div>
+                      <div class="text-right mb-4">
+                        
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                    </div>
+                    
+                  
+                    <div class="d-flex flex-wrap justify-content-around mt-3">
+                      <div class="text-center mb-4">
+                        <p>Task</p>
+                   
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                      <div class="text-center mb-4">
+                        <p>Overall</p>
+                     
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                    </div> -->
+                  </div> 
+                
+
+                  
+                  <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
+                    <!-- Content for Appraisal tab -->
+                    Appraisal details go here.
+                  </div>
+                  <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
+                    <!-- Content for Promotion tab -->
+                    Promotion details go here.
+                  </div>
+                  <div class="tab-pane fade" id="pills-demotion" role="tabpanel" aria-labelledby="pills-demotion-tab">
+                    <!-- Content for Demotion tab -->
+                    Demotion details go here.
+                  </div>
+                  <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
+                    <!-- Content for PIP tab -->
+                    PIP details go here.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div>
+          <i *ngFor="let star of stars; let i = index" 
+             class="fa star" 
+             [ngClass]="{'fa-star': i < selectedRating, 'fa-star-o': i >= selectedRating}" 
+             (click)="rateStar(i)" 
+             style="--i: 0;">
+          </i>
+        </div> -->
+        
+        
+        
 
 
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">

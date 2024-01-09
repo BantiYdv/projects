@@ -415,7 +415,7 @@ intern = '';
   
             switch (clickedSegment) {
               case 0: 
-                this.navigateToEmployee('FullTimeEmp');
+                this.navigateToEmployee('fullTimeEmployee');
                 break;
               case 1: 
                 this.navigateToEmployee('PartTimeEmp');

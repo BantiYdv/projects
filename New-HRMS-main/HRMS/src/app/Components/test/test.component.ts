@@ -4387,7 +4387,7 @@ viewFullTimeEmp() {
   // this.showAllAttTable = !this.showAllAttTable;
 
   // if (this.showAllAttTable && '#/FullTimeEmpLeave' === window.location.hash) {
-    if ('/FullTimeEmp' === this.router.url) {
+    if ('/fullTimeEmployee' === this.router.url) {
 
     // Call the service method to fetch all attendance data
     this.testService.getFullTimeEmp().subscribe(

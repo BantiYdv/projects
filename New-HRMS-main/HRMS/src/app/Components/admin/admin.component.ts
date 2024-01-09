@@ -9,6 +9,7 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { TestService } from 'src/app/services/test.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 
 
@@ -75,6 +76,13 @@ export class AdminComponent {
   permissions: any;
 
 
+  // selectedRating: number = 4;
+  // stars: number[] = [0, 1, 2, 3, 4];
+
+  // rateStar(index: number) {
+  //   this.selectedRating = index + 1;
+  // }
+
   validateDateOfBirth() {
     const currentDate = new Date();
     const selectedDate = new Date(this.user.dob);
@@ -135,7 +143,7 @@ export class AdminComponent {
   
 // change password validation end
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, public loginService: LoginService, private sanitizer: DomSanitizer, public dashboardService: DashboardService, public adminService: AdminService, public RegisterAndUpdate: RegisterAndUpdateService, public testService: TestService) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, public loginService: LoginService, private sanitizer: DomSanitizer, public dashboardService: DashboardService, public adminService: AdminService, public RegisterAndUpdate: RegisterAndUpdateService, public testService: TestService, public profileService: ProfileService) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -180,7 +188,7 @@ export class AdminComponent {
 // check in and check out start
 
     // check in and check out end
-    
+    this.viewattendance();
 
   }
 
@@ -365,21 +373,42 @@ export class AdminComponent {
 
   //API for show leave remaining end
 
- 
+// for getting isCheckedOut variable start 
+viewattendance() {
+
+    this.testService.getAttendance().subscribe(
+      (response: any) => {
+       const checkIn = response
+       
+        this.isCheckedOut = checkIn[checkIn.length-1].userChecked;
+        console.log("checkin-out", this.isCheckedOut);
+        console.log("checkin att", response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+        // Hide the table if an error occurs
+        // this.showAttTable = false;
+      }
+    );
+  
+}
+  // for getting isCheckedOut variable end 
+  isCheckedOut: any;
+
   // API for alert box check-in-out start
-  startTime: string = '00:00:00';
-  timerInterval: any;
+  // startTime: string = '00:00:00';
+  // timerInterval: any;
 
   checkin() {
-    this.startTime = '00:00:00';
-    this.timerInterval = setInterval(() => {
-      this.updateTimer();
-    }, 1000);
+    // this.startTime = '00:00:00';
+    // this.timerInterval = setInterval(() => {
+    //   this.updateTimer();
+    // }, 1000);
     this.adminService.performCheckin().subscribe(
       () => {
-   
-        Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
         
+        Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
+        this.viewattendance();
       },
       (error: any) => {
        
@@ -388,21 +417,21 @@ export class AdminComponent {
     );
   }
 
-  updateTimer() {
-    // Update the startTime to the next second
-    const timeArray = this.startTime.split(':').map(Number);
-    const totalSeconds = timeArray[0] * 3600 + timeArray[1] * 60 + timeArray[2] + 1;
+  // updateTimer() {
+  //   // Update the startTime to the next second
+  //   const timeArray = this.startTime.split(':').map(Number);
+  //   const totalSeconds = timeArray[0] * 3600 + timeArray[1] * 60 + timeArray[2] + 1;
 
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
+  //   const hours = Math.floor(totalSeconds / 3600);
+  //   const minutes = Math.floor((totalSeconds % 3600) / 60);
+  //   const seconds = totalSeconds % 60;
 
-    this.startTime = `${this.padNumber(hours)}:${this.padNumber(minutes)}:${this.padNumber(seconds)}`;
-  }
+  //   this.startTime = `${this.padNumber(hours)}:${this.padNumber(minutes)}:${this.padNumber(seconds)}`;
+  // }
 
-  padNumber(num: number): string {
-    return num < 10 ? `0${num}` : `${num}`;
-  }
+  // padNumber(num: number): string {
+  //   return num < 10 ? `0${num}` : `${num}`;
+  // }
   
   
 
@@ -414,12 +443,9 @@ export class AdminComponent {
     // Call the service method to perform check-out
     this.adminService.performCheckout().subscribe(
       () => {
-        // this.checkedOut = true;
-        // this.checkedIn = false;
-        // localStorage.setItem('checkedOut', JSON.stringify(true));
-        // localStorage.setItem('checkedIn', JSON.stringify(false));
-        Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
         
+        Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
+        this.viewattendance();
       },
       (error: any) => {
         if (error.status === 400) {

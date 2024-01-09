@@ -386,7 +386,7 @@ calculateTotalLeaves() {
   // Function to submit the form with file uploads
 
   token: string = ''; // Variable to store the token
-  teamlead: string[] = [];
+  teamlead: any[]= [];
 
   departments: string[] = [];
   designations: string[] = [];
@@ -551,7 +551,7 @@ calculateTotalLeaves() {
             console.log("id for update", this.registerId);
             console.log("username for update", this.username);
             console.log("updated user", this.user);
-
+console.log("updated show", response)
           },
           (error) => {
 
