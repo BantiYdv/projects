@@ -14,8 +14,8 @@
             <div>
               <!-- <button type="submit" class="btn checkIn" (click)="checkin()">Check-In</button> -->
               <!-- In your component template file (e.g., app.component.html) -->
-<button *ngIf="!isCheckedOut" type="submit" class="btn checkIn" (click)="checkin()">Check-In</button>
-<button *ngIf="isCheckedOut" type="submit" class="btn checkOut" (click)="checkout()">Check-Out</button>
+              <button *ngIf="!isCheckedOut " type="submit" class="btn checkIn" (click)="checkin()">Check-In</button>
+              <button *ngIf="isCheckedOut" type="submit" class="btn checkOut" (click)="checkout()">Check-Out</button>
 
               <br>
               <!-- <span class="mt-2 timer"><img src="/assets/image/icon/checkInClock.svg" alt=""
@@ -51,8 +51,10 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-center align-item-center mt-3">
-                  <button class="btn leaveApply m-2" [routerLink]="['/applyLeave']" (click)="loginService.showTable('applyLeave')">Apply Leave</button>
-                  <button class="btn leaveView m-2" [routerLink]="['/viewLeave']" (click)="loginService.showTable('viewLeave')">View Leave</button>
+                  <button class="btn leaveApply m-2" [routerLink]="['/applyLeave']"
+                    (click)="loginService.showTable('applyLeave')">Apply Leave</button>
+                  <button class="btn leaveView m-2" [routerLink]="['/viewLeave']"
+                    (click)="loginService.showTable('viewLeave')">View Leave</button>
                 </div>
               </div>
             </div>
@@ -100,8 +102,10 @@
 
 
                 <div class="d-flex justify-content-center align-item-center">
-                  <button class="btn leaveApply m-2" [routerLink]="['/applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
-                  <button class="btn leaveView m-2" [routerLink]="['/viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
+                  <button class="btn leaveApply m-2" [routerLink]="['/applyWfh']"
+                    (click)="loginService.showTable('applyWfh')">Apply WFH</button>
+                  <button class="btn leaveView m-2" [routerLink]="['/viewWfh']"
+                    (click)="loginService.showTable('viewWfh')">View WFH</button>
                 </div>
               </div>
             </div>
@@ -150,21 +154,25 @@
                     aria-labelledby="pills-probation-tab">
                     <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
                       <span class="status">Status</span>
-                      
+
                       <span class="probationStatus 
                       {{profileDetails.probationStatus === 'Completed' ? 'completed-status' : 
                       profileDetails.probationStatus === 'Not Completed' ? 'not-completed-status' : 
                       profileDetails.probationStatus === 'On Going' ? 'ongoing-status' : ''}}">
 
-                      {{profileDetails.probationStatus}}
+                        {{profileDetails.probationStatus}}
 
-                      <img src="{{profileDetails.probationStatus === 'Completed' ? '/assets/image/icon/Completed.svg' : 
+                        <img src="{{profileDetails.probationStatus === 'Completed' ? '/assets/image/icon/Completed.svg' : 
                       profileDetails.probationStatus === 'Not Completed' ? '/assets/image/icon/NotCompleted.svg' : 
-                      profileDetails.probationStatus === 'On Going' ? '/assets/image/icon/Ongoing.svg' : ''}}" alt="Status Icon">
-                    </span>
+                      profileDetails.probationStatus === 'On Going' ? '/assets/image/icon/Ongoing.svg' : ''}}"
+                          alt="Status Icon">
+                      </span>
 
                     </div>
-                    <p class="statusP mt-4"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit aspernatur tempore nihil qui enim adipisci error?</p>
+                    <p class="statusP mt-4"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet
+                      consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+                      quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+                      aspernatur tempore nihil qui enim adipisci error?</p>
                   </div>
 
                   <!-- <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
@@ -173,12 +181,12 @@
                       </div>
                   </div> -->
                   <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-                    
+
                     <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
                       <h4>Review details go here.</h4>
                     </div>
-                  
-                    
+
+
                     <!-- <div class="d-flex flex-wrap justify-content-around mt-3">
                       <div class="text-left mb-4 discipline">
                         <p>Discipline</p>
@@ -210,10 +218,10 @@
                         <span class="star-rating" data-rating="num"></span>
                       </div>
                     </div> -->
-                  </div> 
-                
+                  </div>
 
-                  
+
+
                   <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
                     <!-- Content for Appraisal tab -->
                     Appraisal details go here.
@@ -244,10 +252,207 @@
              style="--i: 0;">
           </i>
         </div> -->
-        
-        
-        
+        <div class="container mt-5">
+          <div class="row d-flex flex-wrap">
+<div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4'">
 
+  <div class="calendar">
+              <h5 class="mb-4 mt-2 ActivitiesHeader">Calendar </h5>
+
+
+                <div class="week-names">
+                  <div *ngFor="let weekName of weekNames" class="day">{{ weekName }}</div>
+                </div>
+
+                <div *ngFor="let week of calendarData" class="week">
+                  <div *ngFor="let day of week" class="day" [class.other-month]="!day.isCurrentMonth"
+                    [class.today]="isToday(day.date)">
+                    {{ day.date.format('D') }}
+                  </div>
+                </div>
+                <div class="header">
+                  <div class="left-section">
+                      <img src="/assets/image/calendarVector3.png" alt="" class="calendarVector3">
+                      <img src="/assets/image/calendarVector4.png" alt="" class="calendarVector4">
+                  </div>
+                  <div class="right-section">
+                      <img src="/assets/image/calendarPre.png" alt="" class="caliconPre" (click)="goToPrevMonth()">
+                      <h2 class="monthYear">{{ currentDate.format('MMMM YYYY') }}</h2>
+                      <img src="/assets/image/calendarNext.png" alt="" class="caliconNext" (click)="goToNextMonth()">
+                  </div>
+              </div>
+              
+              </div>
+            </div>
+
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+              <div class="container">
+                <!-- <div class="card"> -->
+                  <div class="Holiday">
+                <h5 class="text-center mb-4 mt-2 holidayHeader">Holidays </h5>
+                <div class="card-body holidayBody">
+                  <div class="container">
+                    <span class="weekName">TUE</span><br>
+                    <span class="dateName">06</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth">BOSS KI SHADI</div>
+                  <div class="desc">SABHI KA JANA COMPULSURY HAI</div>
+                </div>
+
+                <div class="card-body holidayBody mt-4">
+                  <div class="container">
+                    <span class="weekName">WED</span><br>
+                    <span class="dateName">14</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth" style="color: #47C17A;">MAKAR SANKRANTI</div>
+                  <div class="desc">INDIAN FESTIVAL OF KITES</div>
+                </div>
+
+                <div class="card-body holidayBody mt-4">
+                  <div class="container">
+                    <span class="weekName">SAT</span><br>
+                    <span class="dateName">24</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth" style="color: #F97165;">FREE KI CHUTTI</div>
+                  <div class="desc">SALARY KISI KI NHI KATEGI</div>
+                </div>
+
+                <div class="card-body holidayBody mt-4">
+                  <div class="container">
+                    <span class="weekName">MON</span><br>
+                    <span class="dateName">26</span><br>
+                    <p class="yearName">JANUARY</p>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                  </div>
+                  <div class="birth" style="color: #A036CF;">EK OR CHUTTI</div>
+                  <div class="desc">SALARY KISI KI NHI KATEGI</div>
+                </div>
+
+                <div class="header">
+                  <div class="left-section">
+                      <img src="/assets/image/holidayVector3.png" alt="" class="holidayVector3">
+                      <img src="/assets/image/holidayVector4.png" alt="" class="holidayVector4">
+                  </div>
+                  <div class="right-section">
+                      <button class="btn ViewMore">View More &nbsp; <img src="/assets/image/holidayViewMore.png" alt="" class="holidayViewMore"></button>
+                  </div>
+              </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+              <div class="container">
+                <div class="birthday">
+                <h5 class="text-center mb-4 mt-2 birthdayHeader">Birthdays</h5>
+                <div class="card-body birthdayBody d-flex flex-column align-items-center">
+                  <!-- <div class="container"> -->
+                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
+                  <!-- </div> -->
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Anita Kumari</div>
+                      <div class="birthdesc">JANUARY, 18</div>
+                    </div>
+                  </div>
+                </div>
+                
+
+                <div class="card-body birthdayBody d-flex flex-column align-items-center" >
+                  <!-- <div class="container"> -->
+                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
+                  <!-- </div> -->
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Sunita Kumari</div>
+                      <div class="birthdesc">JANUARY, 22</div>
+                    </div>
+                  </div>
+                </div>
+                
+
+                <div class="card-body birthdayBody d-flex flex-column align-items-center" >
+                  <!-- <div class="container"> -->
+                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
+                  <!-- </div> -->
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Kavita Kumari</div>
+                      <div class="birthdesc">JANUARY, 23</div>
+                    </div>
+                  </div>
+                </div>
+               
+
+                <div class="card-body birthdayBody d-flex flex-column align-items-center" >
+                  <!-- <div class="container"> -->
+                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
+                  <!-- </div> -->
+                  <div class="d-flex flex-row">
+                    <div class="ml-3">
+                      <div class="birthName">Anju Kumari</div>
+                      <div class="birthdesc">JANUARY, 28</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="headerb">
+                  <div class="left-section">
+                      <img src="/assets/image/birthdayVector3.png" alt="" class="birthdayVector3">
+                      <img src="/assets/image/birthdayVector4.png" alt="" class="birthdayVector4">
+                  </div>
+                  </div>
+               </div>
+              </div>
+
+
+            </div>
+
+
+</div>
+</div>
+
+<div class="container mt-5">
+  <div class="row d-flex flex-wrap" style="border-radius: 7px; border: 1px solid #CDCDCD;">
+    <div class="announcement">
+    <div class="d-flex justify-content-start">
+      <img src="/assets/image/annoucementVector1.png" alt="" class="annoucementVector1">
+      <h3 class="announcHeading">Announcement</h3>
+    </div>
+    <img src="/assets/image/annoucementVector2.png" alt="" class="annoucementVector2">
+
+    <div class="announcementSection mb-4">
+      <div class="left-announcementSection">
+        <img src="/assets/image/annoucementImg.png" alt="" class="annoucementImg">
+      </div>
+      <div class="right-announcementSection">
+          <h3 class="announcementName">Satyam Kakra</h3> 
+          <span class="announcementDesignation">(Frontend Developer)</span>
+      </div>
+  </div>
+  <img src="/assets/image/annoucementVector3.png" alt="" class="annoucementVector3">
+  </div>
+  <p class="statusP mt-4"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet
+    consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+    quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+    aspernatur tempore nihil qui enim adipisci error?</p>
+    </div>
+    </div>
 
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
           <div class="col d-flex align-items-start mt-3">

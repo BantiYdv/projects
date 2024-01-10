@@ -1041,13 +1041,13 @@ height: 48px;  */
     display: flex;
     justify-content: center;
     color: #808547;
-text-align: center;
-font-family: Poppins;
-font-size: 18px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-text-transform: capitalize;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
 }
 
 
@@ -1076,128 +1076,747 @@ text-transform: capitalize;
     
 } */
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
     color: #FFF !important;
     background-color: #421CDD !important;
     border-radius: 0px;
 }
 
-.status{
+.status {
     display: flex;
-height: 58px;
-padding: 10px 98.5px;
-justify-content: center;
-align-items: center;
-gap: 40px;
-border-radius: 20px 20px 0px 0px;
-background: #401DDE;
-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.02);
-color: #FFF;
-margin-right: 10px;
-text-align: center;
-font-family: Poppins;
-font-size: 20px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-text-transform: capitalize;
+    height: 58px;
+    padding: 10px 98.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    border-radius: 20px 20px 0px 0px;
+    background: #401DDE;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.02);
+    color: #FFF;
+    margin-right: 10px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
 }
-.probationStatus{
-    display: flex;
-width: 262px;
-padding: 14px 36px;
-align-items: center;
-gap: 11px;
-border-radius: 20px 20px 0px 0px;
-background: #D4F3E1;
 
-color: #1C8649;
-text-align: center;
-font-family: Poppins;
-font-size: 20px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-text-transform: capitalize;
+.probationStatus {
+    display: flex;
+    width: 262px;
+    padding: 14px 36px;
+    align-items: center;
+    gap: 11px;
+    border-radius: 20px 20px 0px 0px;
+    background: #D4F3E1;
+
+    color: #1C8649;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
 }
 
 
 .completed-status {
     background: #D4F3E1;
     color: #1C8649;
-  }
-  
-  .not-completed-status {
+}
+
+.not-completed-status {
     background: #FFD5D1;
     color: #A94037;
-  }
-  
-  .ongoing-status {
+}
+
+.ongoing-status {
     background: #FFE5A2;
     color: #767219;
-  }
-  
-  .statusPara{
+}
+
+.statusPara {
     color: #DD1717;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.statusP {
+    color: #343A40;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    text-align: justify;
+}
+
+
+.star-rating::before {
+    content: "\2605";
+    /* Unicode character for a solid star */
+    color: gold;
+}
+
+/* Add the appropriate styles for half stars or empty stars if needed */
+.star-rating[data-rating*=".5"]::before {
+    content: "\2605\00BD";
+    /* Unicode characters for a solid star and half star */
+}
+
+.star-rating[data-rating="0"]::before {
+    content: "\2606";
+    /* Unicode character for an empty star */
+    color: #ccc;
+}
+
+
+.discipline {
+    display: flex;
+    width: 179.479px;
+    padding: 11.633px 10.802px;
+    align-items: center;
+    gap: 9.14px;
+    flex-shrink: 0;
+    border: 1px solid #8C6A13;
+    background: #FFE5A2;
+    color: #8C6A13;
+
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.disciplineRating {
+    display: flex;
+    height: 48.465px;
+    align-items: flex-start;
+    border-radius: 6.207px;
+    border: 1.862px solid #E47D43;
+}
+
+
+
+
+/* calendar for dashboard start */
+.calendar {
+    /* width: 100%;
+    max-width: 400px; */
+
+    margin: 0 auto;
+    /* overflow: hidden; */
+
+    /* display: flex; */
+/* width: 370px; */
+height: 460px;
+/* padding: 15px 50px 72px 50px; */
+/* flex-direction: column;
+align-items: center; */
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+
+/* effect */
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+}
+
+
+
+.week-names {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f9fa;
+    padding: 10px 55px 10px 46px;
+}
+.week-names .day{
+    color: #A94037;
+}
+
+
+
+.day.other-month {
+    color: #ccc;
+    
+}
+
+.week {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 55px 10px 46px;
+}
+
+
+
+
+.ActivitiesHeader {
+    position: relative;
+    background: #A94037;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px;
+}
+
+.ActivitiesHeader::before,
+.ActivitiesHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px; /* Adjust the width of the image */
+    height: 50px; /* Adjust the height of the image */
+    background-size: cover;
+}
+
+.ActivitiesHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+/* top: -27px; */
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/calendarVector1.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
+}
+
+.ActivitiesHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/calendarVector2.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
+}
+
+
+
+
+
+.dateName {
+    color: #2F37A4;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.yearName {
+    color: #000;
+    font-size: 7px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.caliconPre,
+.caliconNext {
+    width: 9px;
+    height: 15px;
+    transform: rotate(0deg);
+    flex-shrink: 0;
+    fill: #421CDD;
+}
+
+.monthYear {
+    margin: 0 10px;
+    color: #000;
 font-family: Poppins;
-font-size: 15px;
+font-size: 12px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
 text-transform: capitalize;
-  }
-  .statusP{
-    color: #343A40;
+}
+
+
+.day {
+    
+height: 32px;
+margin-left: 7px;
+color: #000;
+text-align: center;
 font-family: Poppins;
-font-size: 15px;
+font-size: 10px;
 font-style: normal;
-font-weight: 400;
+font-weight: 700;
 line-height: normal;
-text-transform: capitalize;
-text-align: justify;
-  }
+text-transform: uppercase;
+}
 
-
-  .star-rating::before {
-    content: "\2605"; /* Unicode character for a solid star */
-    color: gold;
-  }
-  
-  /* Add the appropriate styles for half stars or empty stars if needed */
-  .star-rating[data-rating*=".5"]::before {
-    content: "\2605\00BD"; /* Unicode characters for a solid star and half star */
-  }
-  
-  .star-rating[data-rating="0"]::before {
-    content: "\2606"; /* Unicode character for an empty star */
-    color: #ccc;
-  }
-
-  
-  .discipline{
-    display: flex;
-width: 179.479px;
-padding: 11.633px 10.802px;
-align-items: center;
-gap: 9.14px;
-flex-shrink: 0;
-border: 1px solid #8C6A13;
-background: #FFE5A2;
-color: #8C6A13;
+.today {
+   
+    color: #9C3229;
 
 text-align: center;
 font-family: Poppins;
-font-size: 18px;
+font-size: 22.118px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+}
+
+.calendarVector3{
+    width: 48.273px;
+    height: 88.273px;
+    position: absolute;
+    left: 0.682px;
+    bottom: 6.727px;
+    stroke-width: 2.386px;
+    stroke: #A94037;
+    z-index: 1;
+}
+.calendarVector4{
+    width: 50.955px;
+    height: 128.955px;
+    position: absolute;
+    left: 0px;
+    bottom: -66px;
+    stroke-width: 30.227px;
+    stroke: #EAA29B;
+}
+
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.calendarVector3,
+.calendarVector4 {
+    width: 50px; /* Set your desired width */
+    height: auto;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Adjust margin as needed */
+    position: absolute;
+    margin-top: 43px;
+}
+/* calendar for dashboard end */
+
+
+/* Holiday for dashboard start */
+
+
+.Holiday{
+    margin: 0 auto;
+/* width: 370px; */
+height: 460px;
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+}
+
+.holidayHeader {
+    position: relative;
+    background: #1D874A;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px;
+}
+
+.holidayHeader::before,
+.holidayHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px; /* Adjust the width of the image */
+    height: 50px; /* Adjust the height of the image */
+    background-size: cover;
+}
+
+.holidayHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+/* top: -27px; */
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/holidayVector1.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
+}
+
+.holidayHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/holidayVector2.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
+}
+
+.weekName{
+    color: #000;
+text-align: right;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+}
+
+.dateName{
+    color: #2F37A4;
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
+}
+
+.yearName{
+    color: #000;
+font-size: 7px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.BirthdayVector{
+    width: 1px;
+height: 46px;
+flex-shrink: 0;
+margin-top: -5rem;
+margin-left: 4rem;
+
+  }
+
+  .birth{
+    margin-top: -4rem;
+    margin-left: 6rem;
+    color: #1F3BF2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.desc{
+    color: #343A40;
+font-size: 7px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-left: 6rem;
+}
+
+.holidayBody{
+    padding: 2px 23px 7px 46px;
+}
+
+.holidayVector3{
+    z-index: 1;
+    width: 35px;
+height: 116px;
+position: absolute;
+left: 0px;
+bottom: -14px;
+stroke-width: 3px;
+stroke: #1D874A;
+}
+.holidayVector4{
+    width: 31px;
+    height: 150px;
+    position: absolute;
+    left: -1px;
+    bottom: -72px;
+    stroke-width: 38px;
+    stroke: #92EEB9;
+}
+
+.ViewMore{
+    display: flex;
+/* width: 227.651px; */
+/* padding: 14px 30px; */
+justify-content: center;
+align-items: center;
+border-radius: 8px;
+border: 1px solid #421CDD;
+color: #421CDD;
+text-align: center;
+font-family: Poppins;
+font-size: 15px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
 text-transform: capitalize;
-  }
+margin-top: 64px;
+}
+.holidayViewMore{
+    width: 20px;
+height: 20px;
+flex-shrink: 0;
+}
+/* Holiday for dashboard end */
 
-  .disciplineRating{
+/* birthday for dashboard start */
+.birthday{
+    margin: 0 auto;
+/* width: 370px; */
+height: 460px;
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+}
+
+.birthdayHeader{
+    position: relative;
+    background: #D418AB;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px; 
+}
+
+.birthdayHeader::before,
+.birthdayHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px; /* Adjust the width of the image */
+    height: 50px; /* Adjust the height of the image */
+    background-size: cover;
+}
+
+.birthdayHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+/* top: -27px; */
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/birthdayVector1.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
+}
+
+.birthdayHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/birthdayVector2.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
+}
+
+.birthdayIcon{
+    width: 44px;
+height: 44px;
+flex-shrink: 0;
+margin-left: -18px;
+}
+
+
+.birthName{
+    color: #000;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin-top: -52px;
+}
+
+.birthdesc{
+    color: #2F37A4;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.birthdayCake{
     display: flex;
-height: 48.465px;
+width: 251px;
+height: 60px;
+align-items: center;
+gap: 15px;
+}
+
+.birthdayBody{
+    padding: 2px 0px 7px 64px;
+}
+.headerb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.birthdayVector3{
+    z-index: 1;
+    width: 39px;
+    height: 116px;
+    position: absolute;
+    right: 0px;
+    bottom: -63px;
+    stroke-width: 3px;
+    stroke: #D418AB;
+}
+.birthdayVector4{
+    width: 60px;
+height: 116px;
+position: absolute;
+right: 0px;
+bottom: -105px;
+stroke-width: 38px;
+stroke: #FF99E9;
+}
+/* birthday for dashboard end */
+
+
+/* announcement for dashboard start */
+
+.announcement{
+    display: flex;
+/* width: 1240px;
+height: 471px; */
+padding: 38px 0px 0px 45px;
+flex-direction: column;
 align-items: flex-start;
-border-radius: 6.207px;
-border: 1.862px solid #E47D43;
-  }
+gap: 51px;
+flex-shrink: 0;
+background: #421CDD;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+position: relative;
+}
+.announcHeading{
+    color: #FFF;
+text-align: center;
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration: none;
+margin-bottom: -30px;
+}
+
+.annoucementVector2{
+    width: 600x;
+height: 4px;
+flex-shrink: 0;
+border-radius: 5px;
+background: #F3F3F3;
+}
+
+.annoucementImg{
+    width: 120px;
+height: 100.541px;
+border-radius: 8.108px;
+/* background: url(/assets/image/annoucementImg.png), lightgray 50% / cover no-repeat; */
+}
+
+.announcementSection {
+    display: flex;
+    align-items: center;
+}
+
+.left-announcementSection {
+    flex-shrink: 0; /* Ensure the left section does not shrink */
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+.annoucementImg {
+    width: 100px; /* Set your desired width */
+    height: auto;
+}
+
+.right-announcementSection {
+    text-align: left;
+}
+
+.right-announcementSection .announcementName {
+    margin: 0;
+    font-size: 18px; /* Set your desired font size */
+}
+
+.right-announcementSection .announcementDesignation {
+    font-size: 14px; /* Set your desired font size */
+}
+
+
+.announcementName{
+    color: #F1FF9D;
+font-family: Poppins;
+font-size: 25px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+text-decoration: none;
+}
+
+.announcementDesignation{
+    color: #FFF;
+font-family: Poppins;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.annoucementVector1{
+    width: 70px;
+height: 45.2px;
+position: absolute;
+left: 1px;
+top: 1px;
+}
+
+.annoucementVector3{
+    width: 159.233px;
+    height: 209.998px;
+    display: flex;
+    /* padding: 61.176px 38.235px 45.882px 30.588px; */
+    align-items: center;
+    position: absolute;
+    right: 0.577px;
+    top: 61px;
+}
+/* announcement for dashboard end */

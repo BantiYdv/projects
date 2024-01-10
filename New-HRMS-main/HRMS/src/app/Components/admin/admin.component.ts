@@ -10,6 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { RegisterAndUpdateService } from 'src/app/services/register-and-update.service';
 import { TestService } from 'src/app/services/test.service';
 import { ProfileService } from 'src/app/services/profile.service';
+import * as moment from 'moment';
 
 
 
@@ -189,7 +190,8 @@ export class AdminComponent {
 
     // check in and check out end
     this.viewattendance();
-
+    this.currentDate = moment();
+    this.generateCalendar();
   }
 
 
@@ -374,48 +376,61 @@ export class AdminComponent {
   //API for show leave remaining end
 
 // for getting isCheckedOut variable start 
-viewattendance() {
+// viewattendance() {
 
-    this.testService.getAttendance().subscribe(
-      (response: any) => {
-       const checkIn = response
+//     this.testService.getAttendance().subscribe(
+//       (response: any) => {
+//        const checkIn = response
        
-        this.isCheckedOut = checkIn[checkIn.length-1].userChecked;
-        console.log("checkin-out", this.isCheckedOut);
-        console.log("checkin att", response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');
-        // Hide the table if an error occurs
-        // this.showAttTable = false;
-      }
-    );
+//         this.isCheckedOut = checkIn[checkIn.length-1].userChecked;
+//         this.isCheckDate = this.todayDate();
+//         this.todayDate();
+//         console.log("checkin-out", this.isCheckedOut);
+//         console.log("checkin att", response);
+//       },
+//       error => {
+//         Swal.fire('Error', error.error, 'error');
+       
+//       }
+//     );
   
-}
+// }
   // for getting isCheckedOut variable end 
-  isCheckedOut: any;
-
+  // isCheckedOut: any;
+  isCheckDate: any
+// todayDate(){
+//   const date = new Date();
+//   this.testService.getAttendance().subscribe(
+//     (response: any) => {
+//      const lastDate = response
+     
+//       this.isCheckedOut = lastDate[lastDate.length-1].checkDate;
+//       console.log("last date", lastDate);
+//     });
+//     const checkValidate = date == this.isCheckedOut;
+//     return checkValidate;
+// }
   // API for alert box check-in-out start
   // startTime: string = '00:00:00';
   // timerInterval: any;
 
-  checkin() {
-    // this.startTime = '00:00:00';
-    // this.timerInterval = setInterval(() => {
-    //   this.updateTimer();
-    // }, 1000);
-    this.adminService.performCheckin().subscribe(
-      () => {
+  // checkin() {
+  //   // this.startTime = '00:00:00';
+  //   // this.timerInterval = setInterval(() => {
+  //   //   this.updateTimer();
+  //   // }, 1000);
+  //   this.adminService.performCheckin().subscribe(
+  //     () => {
         
-        Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
-        this.viewattendance();
-      },
-      (error: any) => {
+  //       Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
+  //       this.viewattendance();
+  //     },
+  //     (error: any) => {
        
-        Swal.fire('Error', error.error, 'error');
-      }
-    );
-  }
+  //       Swal.fire('Error', error.error, 'error');
+  //     }
+  //   );
+  // }
 
   // updateTimer() {
   //   // Update the startTime to the next second
@@ -438,28 +453,64 @@ viewattendance() {
 
 
 
-    checkout() {
+  //   checkout() {
     
-    // Call the service method to perform check-out
-    this.adminService.performCheckout().subscribe(
-      () => {
+  //   // Call the service method to perform check-out
+  //   this.adminService.performCheckout().subscribe(
+  //     () => {
         
-        Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
-        this.viewattendance();
-      },
-      (error: any) => {
-        if (error.status === 400) {
-          Swal.fire('Error', 'Trying to Check-Out before checking in or after already checking out.', 'error');
-        } else {
-          Swal.fire('Error', 'An unknown error occurred.', 'error');
-        }
+  //       Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
+  //       this.viewattendance();
+  //     },
+  //     (error: any) => {
+  //      Swal.fire('Error', error.error, 'error');
        
+  //     }
+  //   );
+  // }
+
+  // API for alert box check-in-out end
+  isCheckedOut: boolean = false;
+
+  viewattendance() {
+    this.testService.getAttendance().subscribe(
+      (response: any) => {
+        const checkIn = response;
+        this.isCheckedOut = checkIn[checkIn.length - 1].userChecked;
+        // this.isCheckDate = this.todayDate();
+        console.log("checkin-out", this.isCheckedOut);
+        console.log("checkin att", response);
+      },
+      (error) => {
+        Swal.fire('Error', error.error, 'error');
       }
     );
   }
-
-  // API for alert box check-in-out end
-
+  
+  checkin() {
+    this.adminService.performCheckin().subscribe(
+      () => {
+        Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
+        this.isCheckedOut = true;
+      },
+      (error: any) => {
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+  
+  checkout() {
+    this.adminService.performCheckout().subscribe(
+      () => {
+        Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
+        this.isCheckedOut = false;
+      },
+      (error: any) => {
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+  
 
   
   // close team leave list start
@@ -506,6 +557,51 @@ viewattendance() {
     );
   }
   // API for current image end
+
+
+// show dashboard calendar start
+currentDate!: moment.Moment;
+calendarData: any[][] | undefined;
+weekNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+generateCalendar() {
+  const startOfMonth = this.currentDate.clone().startOf('month');
+  const endOfMonth = this.currentDate.clone().endOf('month');
+
+  const days = endOfMonth.date();
+  const startOfWeek = startOfMonth.clone().startOf('week');
+  const endOfWeek = endOfMonth.clone().endOf('week');
+
+  let currentDay = startOfWeek.clone();
+  this.calendarData = [];
+
+  while (currentDay.isBefore(endOfWeek)) {
+    const week: any[] = [];
+    for (let i = 0; i < 7; i++) {
+      week.push({
+        date: currentDay.clone(),
+        isCurrentMonth: currentDay.isSameOrAfter(startOfMonth) && currentDay.isSameOrBefore(endOfMonth)
+      });
+      currentDay.add(1, 'day');
+    }
+    this.calendarData.push(week);
+  }
+}
+
+goToNextMonth() {
+  this.currentDate.add(1, 'month');
+  this.generateCalendar();
+}
+
+goToPrevMonth() {
+  this.currentDate.subtract(1, 'month');
+  this.generateCalendar();
+}
+isToday(date: moment.Moment): boolean {
+  return date.isSame(moment(), 'day');
+}
+// show dashboard calendar end
+
+
 
 }
 function updateEmployee(employeeId: any, number: any) {
