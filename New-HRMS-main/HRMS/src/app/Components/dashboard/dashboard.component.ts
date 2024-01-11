@@ -15,6 +15,7 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { TestService } from 'src/app/services/test.service';
 
 import * as moment from 'moment';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -93,7 +94,7 @@ intern = '';
 
 
 
-  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public dashboardService: DashboardService, public loginService: LoginService, public testService: TestService) {
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public dashboardService: DashboardService, public loginService: LoginService, public testService: TestService, public adminService: AdminService) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -130,6 +131,7 @@ intern = '';
     this.absentShow();
     this.casualShow();
     this.sickShow();
+    this.birthdayUser();
     // this.createLineChart();
   }
  
@@ -651,6 +653,22 @@ totalEmpCountShow(){
   }
   
 
-  
+  // API for show birthday start
+  birthday: any;
+  birthdayUser() {
+   
+      this.adminService.birthday().subscribe(
+        (response: any) => {
+         this.birthday = response
+          console.log("birthday",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for show birthday end
 }
 

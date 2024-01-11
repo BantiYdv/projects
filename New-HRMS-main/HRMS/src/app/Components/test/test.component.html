@@ -1446,38 +1446,102 @@
   <!-- view attendance start -->
   <div *ngSwitchCase="'viewAtt'">
     <!-- <div *ngIf="isHashEqualTo('/test/viewAtt')"> -->
-    <div class="container px-2 py-0 text-center" *ngIf="showAttTable" id="viewAtt">
+    <div class="container px-2 py-0 text-center">
 
       <div class="table-responsive mt-4">
-        <table class="table table-bordered table-sm">
-          <thead class="table-dark">
+        <div class="col-md-12 d-flex justify-content-start">
+          <span class="allEmp">Attendance</span>
+        </div>
+        <div class="row">
+          <div class="col-md-4 d-flex justify-content-start">
+            <div class="added_positions_list_right">
+              <div class="added_positions_under_head">Show</div>
+              <div>
+                <select class="added_positions_under_head_select" [(ngModel)]="attperPage">
+                  <option value="15">15</option>
+                  <option value="30">30</option>
+                  <option value="45">45</option>
+                  <option value="60">60</option>
+                  <option value="75">75</option>
+                </select>
+              </div>
+              <div class="added_positions_under_head">Enteries</div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-end align-items-center">
+           
+            
+            <div class="">
+              <div class="search-container">
+                <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                  alt="">
+                <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchatt"
+                  (keyup)="onSearchAttUser()">
+              </div>
+            </div>
+            <div class="">
+              <button class="button_added_position_list">Search</button>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-end align-items-center">
+            <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAtt" (change)="onSearchMonthUser()">
+          </div>
+        </div>
+        <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+          <thead >
             <tr>
-              <th>S.No</th>
-              <th>Name</th>
-              <th>Email Id</th>
-              <th>Date</th>
-              <th>Check-In</th>
-              <th>Check-Out</th>
-              <th>Status</th>
-              <th>Total Hours</th>
+              <th class="thName">S.No</th>
+              <th class="thName">Name</th>
+              <th class="thName">Email Id</th>
+              <th class="thName"(click)="sortByFromDateatt()">
+                <i class="fa fa-arrow-up" [ngStyle]="{'color': sortFDate === 'asc' ? '#000' : '#ccc'}"></i>
+                <i class="fa fa-arrow-down" [ngStyle]="{'color': sortFDate === 'desc' ? '#000' : '#ccc'}"></i>
+                &nbsp;
+                Date</th>
+              <th class="thName">Check-In</th>
+              <th class="thName">Check-Out</th>
+              <th class="thName">Status</th>
+              <th class="thName">Total Hours</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let item of AttData; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.firstname+' '+item.lastname }}</td>
-              <td>{{ item.emailid }}</td>
-              <td>{{ item.checkDate }}</td>
-              <td>{{ item.checkin }}</td>
-              <td>{{ item.checkout }}</td>
-              <td>{{ item.status }}</td>
-              <td>{{ item.totalHours }}</td>
+          <tbody class="tdData">
+            <tr *ngFor="let item of getPaginatedattData(); let i = index">
+              <td class="textNormal">{{ i + 1 }}</td>
+              <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+              <td class="emailId">{{ item.emailid }}</td>
+              <td class="textNormal">{{ item.checkDate }}</td>
+              <td class="textNormal">{{ item.checkin }}</td>
+              <td class="textNormal">{{ item.checkout }}</td>
+              <td class="textNormal">{{ item.status }}</td>
+              <td class="textNormal">{{ item.totalHours }}</td>
             </tr>
           </tbody>
         </table>
+        <div class="not_data_img_div" *ngIf="getPaginatedattData().length == 0">
+          <p>Not Data !!</p>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+        <div class="col-md-12" *ngIf="getTotalPagesatt() > 1">
+          <div class="table_footer mt-2">
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:#421cdd;" (click)="previousattPage()" [disabled]="currentattPage == 1">
+              <i class="fa fa-angle-left"></i> Previous
+            </button>
+            <div class="recruitment_list_number">
+              <div *ngFor="let pageNumber of getPageNumbersatt()" [class.active_num]="pageNumber === currentattPage"
+                class="recruitment_list_number_value" (click)="changePageatt(pageNumber)">
+                {{ pageNumber }}
+              </div>
+            </div>
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:#421cdd;" (click)="nextPageatt()"
+              [disabled]="currentattPage == getTotalPagesatt()">
+              Next <i class="fa fa-angle-right"></i>
+            </button>
+    
+          </div>
+        </div>
       </div>
     </div>
   </div>

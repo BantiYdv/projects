@@ -788,7 +788,7 @@ updateNumberOfDays() {
   }
   // API for remaining wfh of user end
 
-  // API for remaining wfh of user start
+  // API for show birthday start
   birthday: any;
   birthdayUser() {
    
@@ -804,7 +804,7 @@ updateNumberOfDays() {
       );
    
   }
-  // API for remaining wfh of user end
+  // API for show birthday end
   
   
 }

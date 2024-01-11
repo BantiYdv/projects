@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  // public apiUrl = 'https://hrms.prilient.com/';
-  public apiUrl = 'http://192.168.1.30:9191/';
+  public apiUrl = 'https://hrms.prilient.com/';
+  // public apiUrl = 'http://192.168.1.30:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -96,10 +96,14 @@ export class ApiService {
   public noticePeriod = `${this.apiUrl}gateway/onboard/addNoOfDays`;
   public addLeaveRule = `${this.apiUrl}gateway/onboard/addLeaveRule`;
   public viewTodayPresent = `${this.apiUrl}gateway/hrms/checkedInToday`;
-  public viewTodayWfh = `${this.apiUrl}gateway/hrms/WorkFromHomeUserToday`;
-  public viewTodaySickLeave = `${this.apiUrl}gateway/hrms/userOnSickLeaveToday`;
-  public viewTodayCasualLeave = `${this.apiUrl}gateway/hrms/userOnCasualLeaveToday`;
-  public viewTodayAbsentLeave = `${this.apiUrl}gateway/hrms/total-absent`;
+  // public viewTodayWfh = `${this.apiUrl}gateway/hrms/WorkFromHomeUserToday`;
+  public viewTodayWfh = `${this.apiUrl}gateway/hrms/UserOnWorkFromHomeToday`;
+  // public viewTodaySickLeave = `${this.apiUrl}gateway/hrms/userOnSickLeaveToday`;
+  public viewTodaySickLeave = `${this.apiUrl}gateway/hrms/EmployeesOnSickLeaveToday`;
+  // public viewTodayCasualLeave = `${this.apiUrl}gateway/hrms/userOnCasualLeaveToday`;
+  public viewTodayCasualLeave = `${this.apiUrl}gateway/hrms/EmployeesOnCasualLeaveToday`;
+  // public viewTodayAbsentLeave = `${this.apiUrl}gateway/hrms/total-absent`;
+  public viewTodayAbsentLeave = `${this.apiUrl}gateway/hrms/total-absent-employees-on-leave`;
   public viewFullTimeEmp = `${this.apiUrl}gateway/hrms/full-time-employees`;
   public viewPartTimeEmp = `${this.apiUrl}gateway/hrms/part-time-Employee`;
   public viewInternEmp = `${this.apiUrl}gateway/hrms/intern-time-Employee`;

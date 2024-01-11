@@ -624,7 +624,7 @@ data-bs-backdrop="false">
 
 
 
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <!-- <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
           <div class="col d-flex align-items-start mt-3">
             <div class="cardAdmin">
               <img class="CardImg img-fluid" src="/assets/Group 12.svg" alt="">
@@ -633,12 +633,11 @@ data-bs-backdrop="false">
               <p class="Para">Sick Leave = <span id="sickLeavesPerMonth">{{ profileDetails?.sickLeavesPerMonth }}</span>
                 <br> Casual Leave = <span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span>
               </p>
-              <!-- <p class="Para">Casual Leave = <span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span></p> -->
-              <!-- <div class="mb-3  d-flex justify-content-between"> -->
+            
               <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12"
                 [routerLink]="['/applyLeave']" (click)="loginService.showTable('applyLeave')">Apply
                 Leave</button>
-              <!-- </div> -->
+           
               <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12" data-bs-toggle="modal"
                 [routerLink]="['/viewLeave']" (click)="loginService.showTable('viewLeave')">View Leave</button>
             </div>
@@ -650,12 +649,7 @@ data-bs-backdrop="false">
               <p class="Para mb-4">Easily record and manage attendance data in real-time.</p>
               <button type="submit" class="btn btn-primary view-leave-btn Apply m-1 col-12 mt-4"
                 [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">View Attendance</button>
-              <!-- <div class="d-flex justify-content-between m-2">
-                <button type="submit" class="btn btn-primary "
-                  (click)="checkin()">Check-In</button>
-                <button type="submit" class="btn btn-primary "
-                  (click)="checkout()">Check-Out</button>
-              </div> -->
+             
 
               <div class="d-flex justify-content-between m-2">
                 <button type="submit" class="btn btn-success " (click)="checkin()">Check-In</button>
@@ -663,18 +657,6 @@ data-bs-backdrop="false">
               </div>
 
 
-              <!-- <div class="d-flex justify-content-between m-2">
-                <button type="submit" class="btn" [ngClass]="{
-                    'btn-danger': checkedIn,
-                    'btn-success': checkedOut,
-                    'btn-primary': !checkedIn && !checkedOut
-                  }" (click)="checkin()" [disabled]="checkedIn">Check-In</button>
-                <button type="submit" class="btn" [ngClass]="{
-                    'btn-danger': checkedIn,
-                    'btn-success': checkedOut,
-                    'btn-primary': !checkedIn && !checkedOut
-                  }" (click)="checkout()" [disabled]="checkedOut">Check-Out</button>
-              </div> -->
 
             </div>
           </div>
@@ -683,18 +665,18 @@ data-bs-backdrop="false">
               <img class="CardImg img-fluid" src="/assets/Group 14 (1).svg" alt="">
               <h3 class="fs-2 text-body-emphasis">WFH</h3>
               <p class="Para">Total WFH = <span id="totalwfh">{{ profileDetails?.totalwfh }}</span></p>
-              <!-- <p class="Para mb-4">Remaining WFH = <span id="remainingwfh">{{ profileDetails?.remainingwfh }}</span></p> -->
+              
               <div class="mt-5">
                 <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12 mt-3"
                   [routerLink]="['/applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
-                <!--  -->
+               
                 <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12"
                   [routerLink]="['/viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
 
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

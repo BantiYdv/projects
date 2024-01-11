@@ -46,6 +46,7 @@ throw new Error('Method not implemented.');
   isModalOpen: boolean | undefined;
   showAttTable: any;
   AttData: any;
+  fillterattData: any;
   wfhForm!: any;
   showWfhTable: any;
   wfhData!: any;
@@ -1221,9 +1222,9 @@ console.log("leave apply", response);
   // API for view Attendance start
 
   viewattendance() {
-    this.showAttTable = !this.showAttTable;
+    // this.showAttTable = !this.showAttTable;
 
-    if (this.showAttTable){
+    if ('/viewAtt' === this.router.url){
 
       // Call the service method to fetch attendance data
       this.testService.getAttendance().subscribe(
@@ -1232,10 +1233,20 @@ console.log("leave apply", response);
           const dataArray = Object.values(response);
           // Reverse the received array
           const reversedData = dataArray.reverse();
+          if(this.searchatt !='' || this.selectedMonthAtt !=''){
 
-          // Set the reversed array as the data source
-          this.AttData = reversedData;
-          console.log("attendance", response);
+            this.AttData = reversedData;
+            this.fillterattData = reversedData;
+            this.Filteratt();
+          }else{
+            this.fillterattData = response.filter((item: { checkDate: string; }) =>
+            item.checkDate.includes(this.viewTodayAttendance()))
+            this.AttData = response.filter((item: { checkDate: string; }) =>
+            item.checkDate.includes(this.viewTodayAttendance()))
+            
+          }
+          // this.AttData = reversedData;
+          console.log("User attendance", response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');
@@ -4657,6 +4668,185 @@ viewinternEmp() {
   }
 }
 // view intern employee end
+
+
+      //  view  Att table function start
+
+    // search for  view  att table start
+    searchatt: string = '';
+    selectedMonthAtt: string = '';
+    
+    
+   
+    Filteratt() {
+      if(this.searchatt){
+      this.fillterattData = this.AttData.filter((item: { firstname: string; lastname: string;}) =>
+   
+        item.firstname.toLowerCase().includes(this.searchatt.toLowerCase()) ||
+        item.lastname.toLowerCase().includes(this.searchatt.toLowerCase()) 
+      )}else if(this.selectedMonthAtt){
+       this.fillterattData = this.AttData.filter((item: { checkDate: string;}) =>
+      item.checkDate.toLowerCase().includes(this.selectedMonthAtt.toLowerCase()) 
+      )};
+   
+    }
+   
+    onSearchAttUser() {
+     // Clear the date input field when searching in the name input field
+     if (this.searchatt.trim() !== '') {
+       this.selectedMonthAtt = '';
+     }
+     this.viewattendance();
+   
+     this.Filteratt();
+   }
+   
+    onSearchMonthUser() {
+      // Clear the date input field when searching in the name input field
+      if (this.selectedMonthAtt !== '') {
+        this.searchatt = '';
+       }
+       this.viewattendance();
+    
+   console.log("selected month ", this.selectedMonthAtt)
+     this.Filteratt();
+   }
+
+   viewTodayAttendance(){
+    const todayDate = new Date();
+    const year = todayDate.getFullYear();
+      const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+      const day = todayDate.getDate().toString().padStart(2, '0');
+    this.selectedMonthAtt = `${year}-${month}-${day}`;
+    console.log("today all att", this.selectedMonthAtt)
+   return this.selectedMonthAtt;
+  }
+
+ // pagination for view   att start
+ attperPage: number = 15;
+ currentattPage: number = 1;
+ 
+ 
+ 
+ getPaginatedattData(): any[] {
+   const startIndex = (this.currentattPage - 1) * this.attperPage;
+   const endIndex = startIndex + this.attperPage;
+   return this.fillterattData.slice(startIndex, endIndex);
+ }
+ 
+ previousattPage(): void {
+   if (this.currentattPage > 1) {
+     this.currentattPage--;
+   }
+ }
+ 
+ 
+ getPageNumbersatt(): number[] {
+   const totalPages = this.getTotalPagesatt();
+   const maxPagesToShow = 3; // Adjust as needed
+ 
+   let startPage: number;
+   let endPage: number;
+ 
+   if (totalPages <= maxPagesToShow) {
+     // Show all pages if total pages are less than or equal to maxPagesToShow
+     startPage = 1;
+     endPage = totalPages;
+   } else {
+     // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+     const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+ 
+     if (this.currentattPage <= halfMaxPagesToShow + 1) {
+       startPage = 1;
+       endPage = maxPagesToShow;
+     } else if (this.currentattPage + halfMaxPagesToShow >= totalPages) {
+       startPage = totalPages - maxPagesToShow + 1;
+       endPage = totalPages;
+     } else {
+       startPage = this.currentattPage - halfMaxPagesToShow;
+       endPage = this.currentattPage + halfMaxPagesToShow;
+     }
+   }
+ 
+   return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+ }
+ 
+ 
+ changePageatt(pageNumber: number): void {
+   if (pageNumber >= 1 && pageNumber <= this.getTotalPagesatt()) {
+     this.currentattPage = pageNumber;
+   }
+ }
+ 
+ 
+ nextPageatt(): void {
+   const totalPages = Math.ceil(
+     this.fillterattData.length / this.attperPage
+   );
+   if (this.currentattPage < totalPages) {
+     this.currentattPage++;
+   }
+ }
+ 
+ 
+ getTotalPagesatt(): number {
+   return Math.ceil(
+     this.fillterattData.length / this.attperPage
+   );
+ }
+ // pagination for view   att end
+ 
+ // sort data in  att table start
+ // sortTDate: 'asc' | 'desc' = 'asc';
+ sortByToDateatt(): void {
+   this.sortTDate =
+     this.sortTDate === 'asc' ? 'desc' : 'asc';
+ 
+   this.fillterattData.sort((a: any, b: any) => {
+     const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+     return (
+       orderFactor *
+       (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+     );
+   });
+ }
+ 
+ 
+ 
+ // sortFDate: 'asc' | 'desc' = 'asc';
+ sortByFromDateatt(): void {
+   this.sortFDate =
+     this.sortFDate === 'asc' ? 'desc' : 'asc';
+ 
+   this.fillterattData.sort((a: any, b: any) => {
+     const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+     return (
+       orderFactor *
+       (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+     );
+   });
+ }
+ 
+ // sortBy: 'asc' | 'desc' = 'asc';
+ 
+ sortByWhomeatt(): void {
+   // Toggle the sort order
+   this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+ 
+   // Sort the positions array based on the approvedBy property
+   this.fillterattData.sort((a: any, b: any) => {
+     const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+     const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+ 
+     const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+     return orderFactor * approvedByA.localeCompare(approvedByB);
+   });
+ }
+ 
+  // sort data in  att table end
+ 
+       //  view  att table function end
+ 
 
 // API for download leave policy start
 
