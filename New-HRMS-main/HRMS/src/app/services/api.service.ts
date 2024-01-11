@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.30:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.30:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -99,13 +99,17 @@ export class ApiService {
   public viewTodayWfh = `${this.apiUrl}gateway/hrms/WorkFromHomeUserToday`;
   public viewTodaySickLeave = `${this.apiUrl}gateway/hrms/userOnSickLeaveToday`;
   public viewTodayCasualLeave = `${this.apiUrl}gateway/hrms/userOnCasualLeaveToday`;
-  public viewTodayAbsentLeave = `${this.apiUrl}gateway/hrms/userOnLeaveToday`;
+  public viewTodayAbsentLeave = `${this.apiUrl}gateway/hrms/total-absent`;
   public viewFullTimeEmp = `${this.apiUrl}gateway/hrms/full-time-employees`;
   public viewPartTimeEmp = `${this.apiUrl}gateway/hrms/part-time-Employee`;
   public viewInternEmp = `${this.apiUrl}gateway/hrms/intern-time-Employee`;
-
-
-  
+  public totalLeaveUser = `${this.apiUrl}gateway/hrms/totalLeaveOfUser`;
+  public LeaveTakenByUser = `${this.apiUrl}gateway/hrms/totalLeaveTakenByUser`;
+  public remainingLeaveUser = `${this.apiUrl}gateway/hrms/totalRemainingLeave`;
+  public totalWfhUser = `${this.apiUrl}gateway/hrms/totalWorkFromHomeOfUser`;
+  public WfhTakenByUser = `${this.apiUrl}gateway/hrms/workFromHomeTakenByUser`;
+  public remainingWfhUser = `${this.apiUrl}gateway/hrms/remainingWorkFromHome`;
+  public birthdays = `${this.apiUrl}gateway/hrms/birthdayTodayAndUpcomingBirthdays`;
 
   constructor(private http: HttpClient) { }
 

@@ -365,4 +365,89 @@ DownloadLeavePolicy(): Observable<HttpResponse<Blob>> {
 // }
 // // download leave policy pdf end
 
+// total leave of user start
+totalLeaveUser(){
+  
+  const url = `${this.api.totalLeaveUser}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// total leave of user end
+
+// total leave taken by user start
+leaveTakenUser(){
+  
+  const url = `${this.api.LeaveTakenByUser}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// total leave taken by user end
+
+// remaining leave of user start
+remainingLeaveUser(){
+  
+  const url = `${this.api.remainingLeaveUser}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// remaining leave of user end
+
+
+// total wfh of user start
+totalWfhUser(){
+  
+  const url = `${this.api.totalWfhUser}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// total wfh of user end
+
+// total wfh taken by user start
+wfhTakenUser(){
+  
+  const url = `${this.api.WfhTakenByUser}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// total wfh taken by user end
+
+// remaining wfh of user start
+remainingWfhUser(){
+  
+  const url = `${this.api.remainingWfhUser}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// remaining wfh of user end
+
+// birthday start
+birthday(){
+  
+  const url = `${this.api.birthdays}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// birthday end
+
 }

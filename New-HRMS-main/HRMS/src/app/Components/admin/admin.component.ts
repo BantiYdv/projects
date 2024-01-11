@@ -30,6 +30,7 @@ export class AdminComponent {
   wfhForm!: any;
   showWfhTable: any;
   wfhData!: any;
+  fillterWfhData: any;
   showAttTable: any;
   showAllAttTable: any;
   AttData: any;
@@ -75,6 +76,8 @@ export class AdminComponent {
   sickLeavesPerMonth: any;
   casualLeavesPerMonth: any;
   permissions: any;
+
+  
 
 
   // selectedRating: number = 4;
@@ -189,9 +192,17 @@ export class AdminComponent {
 // check in and check out start
 
     // check in and check out end
-    this.viewattendance();
+    // this.viewattendance();
     this.currentDate = moment();
     this.generateCalendar();
+    // this.toggleWfhTable();
+    this.totalLeaveUser();
+    this.remainingLeaveUser();
+  this.takenLeaveUser();
+    this.totalWfhUser();
+    this.remainingWfhUser();
+  this.takenWfhUser();
+  this.birthdayUser();
   }
 
 
@@ -397,7 +408,7 @@ export class AdminComponent {
 // }
   // for getting isCheckedOut variable end 
   // isCheckedOut: any;
-  isCheckDate: any
+  // isCheckDate: any
 // todayDate(){
 //   const date = new Date();
 //   this.testService.getAttendance().subscribe(
@@ -411,105 +422,105 @@ export class AdminComponent {
 //     return checkValidate;
 // }
   // API for alert box check-in-out start
-  // startTime: string = '00:00:00';
-  // timerInterval: any;
+  startTime: string = '00:00:00';
+  timerInterval: any;
 
-  // checkin() {
-  //   // this.startTime = '00:00:00';
-  //   // this.timerInterval = setInterval(() => {
-  //   //   this.updateTimer();
-  //   // }, 1000);
-  //   this.adminService.performCheckin().subscribe(
-  //     () => {
+  checkin() {
+    this.startTime = '00:00:00';
+    this.timerInterval = setInterval(() => {
+      this.updateTimer();
+    }, 1000);
+    this.adminService.performCheckin().subscribe(
+      () => {
         
-  //       Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
-  //       this.viewattendance();
-  //     },
-  //     (error: any) => {
+        Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
+        // this.viewattendance();
+      },
+      (error: any) => {
        
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+
+  updateTimer() {
+    // Update the startTime to the next second
+    const timeArray = this.startTime.split(':').map(Number);
+    const totalSeconds = timeArray[0] * 3600 + timeArray[1] * 60 + timeArray[2] + 1;
+
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    this.startTime = `${this.padNumber(hours)}:${this.padNumber(minutes)}:${this.padNumber(seconds)}`;
+  }
+
+  padNumber(num: number): string {
+    return num < 10 ? `0${num}` : `${num}`;
+  }
+  
+  
+
+
+
+
+    checkout() {
+    
+    // Call the service method to perform check-out
+    this.adminService.performCheckout().subscribe(
+      () => {
+        
+        Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
+        // this.viewattendance();
+      },
+      (error: any) => {
+       Swal.fire('Error', error.error, 'error');
+       
+      }
+    );
+  }
+
+  // API for alert box check-in-out end
+  // isCheckedOut: boolean = false;
+
+  // viewattendance() {
+  //   this.testService.getAttendance().subscribe(
+  //     (response: any) => {
+  //       const checkIn = response;
+  //       this.isCheckedOut = checkIn[checkIn.length - 1].userChecked;
+  //       // this.isCheckDate = this.todayDate();
+  //       console.log("checkin-out", this.isCheckedOut);
+  //       console.log("checkin att", response);
+  //     },
+  //     (error) => {
   //       Swal.fire('Error', error.error, 'error');
   //     }
   //   );
   // }
-
-  // updateTimer() {
-  //   // Update the startTime to the next second
-  //   const timeArray = this.startTime.split(':').map(Number);
-  //   const totalSeconds = timeArray[0] * 3600 + timeArray[1] * 60 + timeArray[2] + 1;
-
-  //   const hours = Math.floor(totalSeconds / 3600);
-  //   const minutes = Math.floor((totalSeconds % 3600) / 60);
-  //   const seconds = totalSeconds % 60;
-
-  //   this.startTime = `${this.padNumber(hours)}:${this.padNumber(minutes)}:${this.padNumber(seconds)}`;
-  // }
-
-  // padNumber(num: number): string {
-  //   return num < 10 ? `0${num}` : `${num}`;
-  // }
   
-  
-
-
-
-
-  //   checkout() {
-    
-  //   // Call the service method to perform check-out
-  //   this.adminService.performCheckout().subscribe(
+  // checkin() {
+  //   this.adminService.performCheckin().subscribe(
   //     () => {
-        
-  //       Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
-  //       this.viewattendance();
+  //       Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
+  //       this.isCheckedOut = true;
   //     },
   //     (error: any) => {
-  //      Swal.fire('Error', error.error, 'error');
-       
+  //       Swal.fire('Error', error.error, 'error');
   //     }
   //   );
   // }
-
-  // API for alert box check-in-out end
-  isCheckedOut: boolean = false;
-
-  viewattendance() {
-    this.testService.getAttendance().subscribe(
-      (response: any) => {
-        const checkIn = response;
-        this.isCheckedOut = checkIn[checkIn.length - 1].userChecked;
-        // this.isCheckDate = this.todayDate();
-        console.log("checkin-out", this.isCheckedOut);
-        console.log("checkin att", response);
-      },
-      (error) => {
-        Swal.fire('Error', error.error, 'error');
-      }
-    );
-  }
   
-  checkin() {
-    this.adminService.performCheckin().subscribe(
-      () => {
-        Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
-        this.isCheckedOut = true;
-      },
-      (error: any) => {
-        Swal.fire('Error', error.error, 'error');
-      }
-    );
-  }
-  
-  checkout() {
-    this.adminService.performCheckout().subscribe(
-      () => {
-        Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
-        this.isCheckedOut = false;
-      },
-      (error: any) => {
-        Swal.fire('Error', error.error, 'error');
-      }
-    );
-  }
+  // checkout() {
+  //   this.adminService.performCheckout().subscribe(
+  //     () => {
+  //       Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
+  //       this.isCheckedOut = false;
+  //     },
+  //     (error: any) => {
+  //       Swal.fire('Error', error.error, 'error');
+  //     }
+  //   );
+  // }
   
 
   
@@ -601,8 +612,201 @@ isToday(date: moment.Moment): boolean {
 }
 // show dashboard calendar end
 
+// when select halday then number of days show 0.5 start
+selectedLeaveType: string = '';
+updateNumberOfDays() {
+  if (this.selectedLeaveType === 'HALFDAY') {
+    this.leaveForm.controls.noOfDays.setValue(0.5);
+  } else {
+    // You can set the default value for other leave types here if needed
+    this.leaveForm.controls.noOfDays.setValue(null); // Set to null for other types
+  }
+}
+// when select halday then number of days show 0.5 end
+ // API for Apply Leave start
+
+ onSubmit() {
+  console.log("leave form", this.leaveForm);
+      // Call the service method to apply leave with form data and token
+      this.testService.applyLeave(this.leaveForm.value).subscribe(
+        (response) => {
+          // Handle the API response here
+          Swal.fire('Applied!', 'Leave Applied successfully!', 'success');
+          // Reset the form
+          // this.leaveForm.reset();
+          this.router.navigate(['/viewLeave']);
+          this.showAdminLeaveTable = false;
+          // this.toggleAdminLeaveTable();
+          this.loginService.showTable('viewLeave')
+  console.log("leave apply", response);
+  
+  
+        },
+        (error: any) => {
+          Swal.fire('Error', error.error, 'error');
+  
+        }
+      );
+    }
+    // API for Apply Leave end
+
+    // API for apply WFH start
+
+  onWFHSubmit() {
 
 
+    // Call the service method to apply for WFH
+    this.testService.applyWfh(this.wfhForm.value).subscribe(
+      () => {
+        // handle the API response here
+        Swal.fire('Success!', 'Work From Home Applied successfully, Waiting for response!', 'success');
+        this.wfhForm.reset()
+        this.router.navigate(['/viewWfh']);
+        this.showWfhTable = false;
+        // this.toggleWfhTable();
+        this.loginService.showTable('viewWfh')
+      },
+      (error: any) => {
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+
+
+  // API for apply WFH end
+
+  // API for total leave of user start
+  totalLeave: any;
+  totalLeaveUser() {
+   
+      this.adminService.totalLeaveUser().subscribe(
+        (response: any) => {
+         this.totalLeave = response
+          console.log("total leave",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for total leave of user end
+
+
+  // API for taken leave of user start
+  
+  takenLeave: any;
+  takenLeaveUser() {
+   
+      this.adminService.leaveTakenUser().subscribe(
+        (response: any) => {
+         this.takenLeave = response
+          console.log("taken leave",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for taken leave of user end
+
+  // API for remaining leave of user start
+  remainingLeave: any;
+  remainingLeaveUser() {
+   
+      this.adminService.remainingLeaveUser().subscribe(
+        (response: any) => {
+         this.remainingLeave = response
+          console.log("remaining leave",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for remaining leave of user end
+  
+  
+  // API for total wfh of user start
+  totalWfh: any;
+  totalWfhUser() {
+   
+      this.adminService.totalWfhUser().subscribe(
+        (response: any) => {
+         this.totalWfh = response
+          console.log("total Wfh",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for total wfh of user end
+
+
+  // API for taken wfh of user start
+  
+  takenWfh: any;
+  takenWfhUser() {
+   
+      this.adminService.wfhTakenUser().subscribe(
+        (response: any) => {
+         this.takenWfh = response
+          console.log("taken wfh",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for taken wfh of user end
+
+  // API for remaining wfh of user start
+  remainingWfh: any;
+  remainingWfhUser() {
+   
+      this.adminService.remainingWfhUser().subscribe(
+        (response: any) => {
+         this.remainingWfh = response
+          console.log("remaining Wfh",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for remaining wfh of user end
+
+  // API for remaining wfh of user start
+  birthday: any;
+  birthdayUser() {
+   
+      this.adminService.birthday().subscribe(
+        (response: any) => {
+         this.birthday = response
+          console.log("birthday",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+   
+  }
+  // API for remaining wfh of user end
+  
+  
 }
 function updateEmployee(employeeId: any, number: any) {
   throw new Error('Function not implemented.');

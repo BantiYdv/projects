@@ -14,9 +14,10 @@
             <div>
               <!-- <button type="submit" class="btn checkIn" (click)="checkin()">Check-In</button> -->
               <!-- In your component template file (e.g., app.component.html) -->
-              <button *ngIf="!isCheckedOut " type="submit" class="btn checkIn" (click)="checkin()">Check-In</button>
-              <button *ngIf="isCheckedOut" type="submit" class="btn checkOut" (click)="checkout()">Check-Out</button>
-
+              <!-- <button *ngIf="!isCheckedOut " type="submit" class="btn checkIn" (click)="checkin()">Check-In</button>
+              <button *ngIf="isCheckedOut" type="submit" class="btn checkOut" (click)="checkout()">Check-Out</button> -->
+              <button type="submit" class="btn btn-success m-1" (click)="checkin()">Check-In</button>
+              <button type="submit" class="btn btn-danger m-1" (click)="checkout()">Check-Out</button>
               <br>
               <!-- <span class="mt-2 timer"><img src="/assets/image/icon/checkInClock.svg" alt=""
                   class="checkInClock">{{startTime}}</span> -->
@@ -26,43 +27,47 @@
 
         <div class="row">
           <div class="col-md-12 d-flex flex-wrap">
-            <div class="col-md-6 mt-4" id="LeaveChart">
+            <div class="mt-4" id="LeaveChart" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-6' : 'col-12  col-md-12 col-lg-6 col-xl-6'">
               <div class="LeaveChart">
                 <div class="d-flex justify-content-start bottomLine">
                   <h3 class="leaveTitle">Leave</h3>
+                  <img src="/assets/image/leaveVector1.png" alt="" class="leaveVector1">
                 </div>
                 <div class="d-flex" style="justify-content: space-evenly; ">
                   <div>
-                    <div class="pie animate no-round leaveChart" [style.--c]="'#F97165'" [style.--b]="'10px'"> {{
-                      profileDetails?.totalleaves }}</div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="totalLeave" [style.--c]="'#F97165'" [style.--b]="'10px'"> {{
+                      totalLeave }}</div>
                     <br><span class="leaveName">Total Leaves</span>
                   </div>
+
                   <div>
 
-                    <div class="pie animate no-round leaveChart" [style.--c]="'#421CDD'" [style.--b]="'10px'"> {{
-                      profileDetails?.sickLeavesPerMonth }}</div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="takenLeave" [style.--c]="'#421CDD'" [style.--b]="'10px'"> {{
+                      takenLeave }}</div>
                     <br><span class="leaveName">Leave Taken</span>
                   </div>
+
                   <div>
 
-                    <div class="pie animate no-round leaveChart" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{
-                      profileDetails?.casualLeavesPerMonth }}</div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="remainingLeave" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{
+                      remainingLeave }}</div>
                     <br><span class="leaveName">Remaining Leave</span>
                   </div>
                 </div>
                 <div class="d-flex justify-content-center align-item-center mt-3">
-                  <button class="btn leaveApply m-2" [routerLink]="['/applyLeave']"
-                    (click)="loginService.showTable('applyLeave')">Apply Leave</button>
+                  <button class="btn leaveApply m-2" data-bs-toggle="modal"
+                  data-bs-target="#applyLeaveModal">Apply Leave</button>
                   <button class="btn leaveView m-2" [routerLink]="['/viewLeave']"
                     (click)="loginService.showTable('viewLeave')">View Leave</button>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-6 mt-4" id="LeaveChart">
+            <div class="mt-4" id="LeaveChart" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-6' : 'col-12  col-md-12 col-lg-6 col-xl-6'">
               <div class="LeaveChart">
                 <div class="d-flex justify-content-start bottomLine">
                   <h3 class="leaveTitle">WFH</h3>
+                  <img src="/assets/image/leaveVector1.png" alt="" class="leaveVector1">
                 </div>
 
 
@@ -71,10 +76,10 @@
                   <span class="wfhName">Total WFH</span>
                   <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="20"
                     aria-valuemin="0" aria-valuemax="100" style="position: relative;">
-                    <div class="progress-bar" style="width: 20%;"></div>
+                    <div class="progress-bar" style="width: {{totalWfh}}%;"></div>
                   </div>
                   <span class="progress-label"
-                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{totalWfh}}</span>
                 </div>
 
 
@@ -83,27 +88,27 @@
                   <span class="wfhName">WFH Taken</span>
                   <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0"
                     aria-valuemax="100">
-                    <div class="progress-bar wfhTaken" style="width: 30%"></div>
+                    <div class="progress-bar wfhTaken" style="width: {{takenWfh}}%"></div>
                   </div>
                   <span class="progress-label"
-                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{takenWfh}}</span>
                 </div>
                 <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
                   <span class="wfhName">Remaining WFH</span>
                   <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0"
                     aria-valuemax="100">
-                    <div class="progress-bar remainingWfh" style="width: 40%"></div>
+                    <div class="progress-bar remainingWfh" style="width: {{remainingWfh}}%"></div>
                   </div>
                   <span class="progress-label"
-                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">5/5</span>
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{remainingWfh}}</span>
                 </div>
 
 
 
 
                 <div class="d-flex justify-content-center align-item-center">
-                  <button class="btn leaveApply m-2" [routerLink]="['/applyWfh']"
-                    (click)="loginService.showTable('applyWfh')">Apply WFH</button>
+                  <button class="btn leaveApply m-2" data-bs-toggle="modal"
+                  data-bs-target="#applyWfhModal">Apply WFH</button>
                   <button class="btn leaveView m-2" [routerLink]="['/viewWfh']"
                     (click)="loginService.showTable('viewWfh')">View WFH</button>
                 </div>
@@ -114,7 +119,7 @@
 
         <div class="row">
           <div class="col-md-12 d-flex flex-wrap">
-            <div class="col-md-12 mt-4" id="LeaveChart">
+            <div class="mt-4" id="LeaveChart" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-12' : 'col-12  col-md-12 col-lg-12 col-xl-12'">
               <div class="performance">
                 <div class="d-flex justify-content-start">
                   <h3 class="leaveTitle">Performance</h3>
@@ -361,23 +366,23 @@
               <div class="container">
                 <div class="birthday">
                 <h5 class="text-center mb-4 mt-2 birthdayHeader">Birthdays</h5>
-                <div class="card-body birthdayBody d-flex flex-column align-items-center">
+                <div class="card-body birthdayBody d-flex flex-column align-items-center" *ngFor="let dob of birthday, let i = index">
                   <!-- <div class="container"> -->
                     <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
                   <!-- </div> -->
                   <div class="d-flex flex-row">
                     <div class="ml-3">
-                      <div class="birthName">Anita Kumari</div>
-                      <div class="birthdesc">JANUARY, 18</div>
+                      <div class="birthName">{{birthday[i].firstname + " " +birthday[i].lastname}}</div>
+                      <div class="birthdesc">{{birthday[i].dob}}</div>
                     </div>
                   </div>
                 </div>
                 
 
-                <div class="card-body birthdayBody d-flex flex-column align-items-center" >
-                  <!-- <div class="container"> -->
+                <!-- <div class="card-body birthdayBody d-flex flex-column align-items-center" >
+                  
                     <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
-                  <!-- </div> -->
+                  
                   <div class="d-flex flex-row">
                     <div class="ml-3">
                       <div class="birthName">Sunita Kumari</div>
@@ -388,9 +393,9 @@
                 
 
                 <div class="card-body birthdayBody d-flex flex-column align-items-center" >
-                  <!-- <div class="container"> -->
+                 
                     <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
-                  <!-- </div> -->
+                  
                   <div class="d-flex flex-row">
                     <div class="ml-3">
                       <div class="birthName">Kavita Kumari</div>
@@ -401,16 +406,16 @@
                
 
                 <div class="card-body birthdayBody d-flex flex-column align-items-center" >
-                  <!-- <div class="container"> -->
+                 
                     <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
-                  <!-- </div> -->
+                  
                   <div class="d-flex flex-row">
                     <div class="ml-3">
                       <div class="birthName">Anju Kumari</div>
                       <div class="birthdesc">JANUARY, 28</div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="headerb">
                   <div class="left-section">
                       <img src="/assets/image/birthdayVector3.png" alt="" class="birthdayVector3">
@@ -453,6 +458,171 @@
     aspernatur tempore nihil qui enim adipisci error?</p>
     </div>
     </div>
+
+
+
+<!-- apply leave start -->
+
+<div class="modal fade" id="applyLeaveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-bs-backdrop="false">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <div class="content m-2">
+        <div class="container applyLeave">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <h1 class="text-center leaveHeader">Apply Leave</h1>
+              <div class="row justify-content-center">
+                <!-- <div class="col-md-6">
+                  <p><img src="assets/Quitting a job-bro.svg" alt="Image" class="img-fluid"></p>
+                </div> -->
+                <!-- <div class="col-md-6"> -->
+  
+                  <form [formGroup]="leaveForm" *ngIf="leaveForm">
+                    <div class="mb-3">
+                      <label for="leaveType" class="col-form-label leaveType">Leave Type:</label>
+                      <div class="ol-lg-12 col-12 select-wrapper">
+                      <select class="form-control leaveInput" name="leaveType" id="leaveType" [(ngModel)]="selectedLeaveType"
+                        (change)="updateNumberOfDays()" formControlName="leaveType">
+                        <option value="" selected disabled>--select--</option>
+                        <option value="SICK">Sick Leave</option>
+                        <option value="CASUAL">Casual Leave</option>
+                        <option value="HALFDAY">Half Day</option>
+                        <option value="OTHERS">Others</option>
+                      </select>
+                      <!-- <img src="/assets/image/applyLeave.png" alt=""> -->
+                      <div class="custom-arrow" style="right: 5px;"></div>
+                      </div>
+                    </div>
+  
+  
+                    <div class="mb-3">
+                      <label for="numberOfDays" class="col-form-label leaveType">Number of Days:</label>
+                      <input type="number" class="form-control leaveInput" name="noOfDays" id="noOfDays"
+                        [readonly]="selectedLeaveType === 'HALFDAY'" formControlName="noOfDays" min="1"
+                        (change)="updateEndDate()">
+  
+                      <div
+                        *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched && leaveForm.get('leaveType').value !== 'HALFDAY'"
+                        class="text-danger">
+                        Number of days must be a positive number.
+                      </div>
+                    </div>
+  
+                    <div class="mb-3">
+                      <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                      <input type="date" class="form-control leaveInput" name="fromDate" id="fromDate" formControlName="fromDate"
+                        [min]="getCurrentDate()" (change)="updateEndDate()">
+                    </div>
+  
+                    <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                      <div class="mb-3">
+                        <label for="endDate" class="col-form-label leaveType">End Date:</label>
+                        <input type="date" class="form-control leaveInput" name="toDate" id="toDate" formControlName="toDate"
+                          [value]="calculateEndDate()" [readonly]="true">
+                      </div>
+                    </ng-container>
+  
+                    <ng-container *ngIf="leaveForm.get('leaveType').value == 'HALFDAY'">
+                      <div class="mb-3">
+                        <label for="reason" class="col-form-label leaveType">Reason:</label>
+                        <select class="form-control leaveInput" name="reason" id="reason" formControlName="reason">
+                          <option value="" selected disabled>--select--</option>
+                          <option value="SICK">Sick Leave</option>
+                          <option value="CASUAL">Casual Leave</option>
+                        </select>
+                      </div>
+                      <div *ngIf="leaveForm.controls.reason.errors && leaveForm.controls.reason.errors.required"
+                        class="text-danger">
+                        Reason is required.</div>
+                    </ng-container>
+  
+                    <div class="modal-footer">
+                      <div class="mb-3 col-md-12 d-flex justify-content-between">
+                        <button type="submit" class="btn m-1 submitLeave"
+                          [disabled]="leaveForm.get('leaveType').value === 'HALFDAY' ? false : !leaveForm.invalid"
+                          (click)="onSubmit()" data-bs-dismiss="modal" aria-label="Close">Submit</button>
+                        <button type="button" class="btn m-1 cancelLeave" data-bs-dismiss="modal">Close</button>
+  
+                      </div>
+                    </div>
+                  </form>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+<!-- apply leave end -->
+
+<!-- apply wfh start -->
+
+<div class="modal fade" id="applyWfhModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-bs-backdrop="false">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <div class="content m-2">
+        <div class="container applyLeave">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <h1 class="text-center leaveHeader">Apply WFH</h1>
+              <div class="row justify-content-center">
+                <!-- <div class="col-md-6">
+                  <p><img src="/assets/Task-bro.svg" alt="Image" class="img-fluid"></p>
+                </div> -->
+                <!-- <div class="col-md-6"> -->
+                  <form [formGroup]="wfhForm" *ngIf="wfhForm">
+                    <div class="mb-3">
+                      <label for="noofday" class="col-form-label leaveType">No Of Days:</label>
+                      <input type="number" class="form-control leaveInput" name="noofday" id="noofday" formControlName="noofday"
+                        min="1" (change)="updateWFHEndDate()">
+  
+                      <div *ngIf="wfhForm.controls.noofday.errors && wfhForm.controls.noofday.errors.min"
+                        class="text-danger">
+                        Number of days cannot be negative.</div>
+  
+                    </div>
+                    <div class="mb-3">
+                      <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                      <input type="date" class="form-control leaveInput" name="fromdateWfh" id="fromdateWfh"
+                        formControlName="fromdateWfh" [min]="getCurrentDate()" (change)="updateWFHEndDate()">
+                    </div>
+  
+                    <div class="mb-3">
+                      <label for="endDate" class="col-form-label leaveType">End Date:</label>
+                      <input type="date" class="form-control leaveInput" name="toDateWfh" id="toDateWfh" formControlName="toDateWfh"
+                        [value]="calculateWFHEndDate()" [readonly]="true">
+                    </div>
+  
+                    <div class="modal-footer">
+                    <div class="mb-3 col-md-12 d-flex justify-content-between">
+                      <button type="submit" class="btn submitLeave m-1" [disabled]="wfhForm.invalid"
+                        (click)="onWFHSubmit()">Submit</button>
+                      <button type="button" class="btn cancelLeave m-1" data-bs-dismiss="modal">Close</button>
+    
+                    </div>
+                  </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+<!-- apply wfh end -->
+
+
 
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
           <div class="col d-flex align-items-start mt-3">

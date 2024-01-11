@@ -263,15 +263,14 @@
             </li> -->
 
 
-
+ 
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
-                (click)="loginService.showTable('calendar')">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
 
                 </div>
-                <span class="image-namenew">View Holiday</span>
+                <span class="image-namenew">Add Holiday</span>
               </a>
             </li>
 
@@ -608,13 +607,12 @@
           
 
 
-
+        
 
           <li class="nav-item text-center sideBarName">
-            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
-              (click)="loginService.showTable('calendar')">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
              <!-- <div class="image-container"> -->
-                <span class="image-namenew">View Holiday</span>
+                <span class="image-namenew">Add Holiday</span>
               <!-- </div> -->
             </a>
           </li>
@@ -671,6 +669,16 @@
             </li>
 
             <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/attendance.png" alt="" id="hoverAttendance">
+
+                </div>
+                  <span class="image-namenew">View Attendance</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
               <a class="nav-link align-middle px-0" (click)="LeavePolicyPdf()">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
@@ -680,14 +688,15 @@
               </a>
             </li>
 
+           
+ 
             <li class="nav-item text-center">
-              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
-                (click)="loginService.showTable('calendar')">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/calender.png" alt="" id="hoverCal">
 
                 </div>
-                  <span class="image-namenew">View Holiday</span>
+                  <span class="image-namenew">Add Holiday</span>
               </a>
             </li>
           </ul>
@@ -721,7 +730,15 @@
             </a>
           </li>
 
-        
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/attendance.png" alt="" id="hoverAttendance">
+
+              </div>
+                <!-- <span class="image-namenew">View Attendance</span> -->
+            </a>
+          </li>
          
 
           <li class="nav-item text-center">
@@ -773,6 +790,14 @@
           </li>
 
           <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">
+      
+                <span class="image-namenew">View Attendance</span>
+          
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
             <a class="nav-link px-0 align-middle" (click)="LeavePolicyPdf()">
              
                 <span class="image-namenew">Leave Policy</span> 
@@ -781,10 +806,9 @@
           </li>
 
           <li class="nav-item text-center sideBarName">
-            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
-              (click)="loginService.showTable('calendar')">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
       
-                <span class="image-namenew">View Holiday</span>
+                <span class="image-namenew">Add Holiday</span>
           
             </a>
           </li>

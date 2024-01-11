@@ -1276,7 +1276,7 @@ console.log("leave apply", response);
   // API for view WFH start
 
   toggleWfhTable(): void {
-    // this.showWfhTable = !this.showWfhTable;
+    this.showWfhTable = !this.showWfhTable;
 
     if (this.showWfhTable) {
 
@@ -4279,6 +4279,8 @@ viewTodayAbsentLeave() {
         this.TodayAbsentLeaveData = reversedData;
         this.fillterTodayAbsentLeaveData = reversedData;
         console.log("today Absent leave",response);
+        console.log("today Absent leave>>>>>",this.TodayAbsentLeaveData);
+        console.log("today Absent leave?????",this.fillterTodayAbsentLeaveData);
       },
       error => {
         Swal.fire('Error', error.error, 'error');  
@@ -4288,7 +4290,7 @@ viewTodayAbsentLeave() {
     );
   }
 }
-// view today casual leave end
+// view today absent leave end
 
 // view Full Time employee start
 FullTimeEmpPerPage: number = 10;
@@ -4678,6 +4680,31 @@ LeavePolicyPdf() {
  
 }
 
+
 // API for download leave policy end
+
+// upload leave policy satrt
+selectedFileHoliday: any;
+onFileSelectedHoliday(event: any): void {
+  const fileInput = event.target;
+  if (fileInput.files.length > 0) {
+    const selectedFile = fileInput.files[0];
+    this.dashboardService.uploadPdf(selectedFile)
+    if (this.isPDFFile(selectedFile)) {
+      this.selectedFileLeavePolicy = selectedFile.name;
+    } else {
+      this.selectedFileLeavePolicy = 'Invalid file type. Please select a PDF file.';
+      // Optionally, you can reset the file input value to clear the selection
+      fileInput.value = '';
+      console.log("upload file input", this.selectedFileLeavePolicy);
+      console.log("upload file input")
+    }
+  } else {
+    this.selectedFileLeavePolicy = 'No file selected';
+  }
+}
+
+
+// upload leave policy end
 
 }
