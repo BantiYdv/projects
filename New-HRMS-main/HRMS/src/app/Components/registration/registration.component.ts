@@ -288,6 +288,14 @@ export class RegistrationComponent {
     this.dobError = selectedDate > eighteenYearsAgo;
   }
 
+  formatDOB(): string {
+    const date = new Date(this.user.dob);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if needed
+    const day = date.getDate().toString().padStart(2, '0'); // Add leading zero if needed
+    const year = date.getFullYear();
+    return `${month}-${day}-${year}`;
+  }
+
   onDateInput(event: any): void {
     const input = event.target as HTMLInputElement;
     if (input.value.length > 10) {
@@ -473,7 +481,7 @@ export class RegistrationComponent {
     if (Array.isArray(this.user.assetName)) {
       this.user.assetName = this.user.assetName.join(', ');
     }
-
+this.user.dob = this.formatDOB();
     this.RegisterAndUpdate.registerUser(this.user).subscribe(
       (response: any) => {
         Swal.fire({

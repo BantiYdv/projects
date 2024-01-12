@@ -911,7 +911,7 @@
               <div class="col-lg-12 col-12 select-wrapper">
                 <select class="recruit_input_select m-0" id="modeOfWorking" name="modeOfWorking"
                   [(ngModel)]="user.modeOfWorking">
-                  <option selected>-- Select --</option>
+                  <option value="" disabled>-- Select --</option>
                   <option value="office">Office</option>
                   <!-- <option value="remote">Remote</option> -->
                   <option value="wfh">WFH</option>
@@ -925,10 +925,9 @@
                 <label class="recruit_label">Shift Timing </label>
               </div>
               <div class="col-lg-12 col-12 select-wrapper">
-                <select class="recruit_input_select m-0" name="shiftTime" id="shiftTime" [(ngModel)]="user.shiftTime"
-                (ngModelChange)="ngOnInit()">
+                <select class="recruit_input_select m-0" name="shiftTime" id="shiftTime" [(ngModel)]="user.shiftTime">
                   <option value="" disabled>-- Select --</option>
-                  <option *ngFor="let shiftTime of shiftTime" [value]="shiftTime">{{shiftTime}}</option>
+                  <option *ngFor="let shiftTime of shiftTime" [value]="shiftTime">{{shiftTime.shiftTime}}</option>
                 </select>
                 <div class="custom-arrow" style="height: 12px; width: 12px;"></div>
 
@@ -960,7 +959,7 @@
               </div>
               <div class="col-lg-12 col-12 select-wrapper">
                 <select class="recruit_input_select m-0" name="teamlead" id="teamlead" [(ngModel)]="user.teamlead">
-                  <option>-- Select --</option>
+                  <option value="" disabled>-- Select --</option>
                   <option *ngFor="let teamlead of teamlead" [value]="teamlead.emailId">{{ teamlead.fullName }}  ({{teamlead.emailId}})  </option>
                 </select>
                 <div class="custom-arrow" style="height: 12px; width: 12px;"></div>

@@ -202,7 +202,7 @@ export class AdminComponent {
     this.totalWfhUser();
     this.remainingWfhUser();
   this.takenWfhUser();
-  this.birthdayUser();
+  // this.birthdayUser();
   }
 
 
@@ -790,20 +790,20 @@ updateNumberOfDays() {
 
   // API for show birthday start
   birthday: any;
-  birthdayUser() {
+  // birthdayUser() {
    
-      this.adminService.birthday().subscribe(
-        (response: any) => {
-         this.birthday = response
-          console.log("birthday",response);
-        },
-        error => {
-          Swal.fire('Error', error.error, 'error');  
+  //     this.adminService.birthday().subscribe(
+  //       (response: any) => {
+  //        this.birthday = response
+  //         console.log("birthday",response);
+  //       },
+  //       error => {
+  //         Swal.fire('Error', error.error, 'error');  
         
-        }
-      );
+  //       }
+  //     );
    
-  }
+  // }
   // API for show birthday end
   
   

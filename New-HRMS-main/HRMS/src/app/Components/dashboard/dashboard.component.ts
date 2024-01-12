@@ -131,7 +131,7 @@ intern = '';
     this.absentShow();
     this.casualShow();
     this.sickShow();
-    this.birthdayUser();
+    // this.birthdayUser();
     // this.createLineChart();
   }
  
@@ -655,20 +655,20 @@ totalEmpCountShow(){
 
   // API for show birthday start
   birthday: any;
-  birthdayUser() {
+  // birthdayUser() {
    
-      this.adminService.birthday().subscribe(
-        (response: any) => {
-         this.birthday = response
-          console.log("birthday",response);
-        },
-        error => {
-          Swal.fire('Error', error.error, 'error');  
+  //     this.adminService.birthday().subscribe(
+  //       (response: any) => {
+  //        this.birthday = response
+  //         console.log("birthday",response);
+  //       },
+  //       error => {
+  //         Swal.fire('Error', error.error, 'error');  
         
-        }
-      );
+  //       }
+  //     );
    
-  }
+  // }
   // API for show birthday end
 }
 

@@ -470,7 +470,10 @@ letter-spacing: 0.4px;
   content: url('/assets/image/icon/hoverAttendance.png');
 }
 #hoverCal:hover{
-  content: url('/assets/image/icon/hoverCal.png');
+  content: url('/assets/image/icon/hoverAddholiday.png');
+}
+#hoverLeavePolicy:hover{
+  content: url('/assets/image/icon/hoverleave.png');
 }
 
 .image-namenew{
@@ -533,4 +536,12 @@ border-radius: 10px;
 background: #343A40;
 left: 5.8rem;
 
+}
+
+
+.mat-mdc-menu-content {
+  
+}
+.dropdown-menu{
+padding: 0 !important;
 }

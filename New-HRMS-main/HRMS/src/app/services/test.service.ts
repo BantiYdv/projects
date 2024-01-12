@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -793,5 +794,43 @@ getinternEmp(){
 
 }
 // intern employee data end
+
+// upload pdf start
+uploadHolidayPdf(file: File): void {
+  const formData = new FormData();
+  formData.append('HolidayFile', file, file.name);
+
+  const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  this.http.post(this.api.uploadHolidayPdfUrl, formData, { headers }).subscribe(
+    () => {
+      // File uploaded successfully
+      this.showSuccessAlert('File uploaded successfully!');
+    },
+    (error) => {
+      // Error uploading the file
+      this.showErrorAlert('Error uploading the file');
+      console.error('Error uploading the file:', error);
+    }
+  );
+}
+
+private showSuccessAlert(message: string): void {
+  Swal.fire({
+    icon: 'success',
+    title: 'Success',
+    text: message,
+  });
+}
+
+private showErrorAlert(message: string): void {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: message,
+  });
+}
+// upload pdf end
 
 }

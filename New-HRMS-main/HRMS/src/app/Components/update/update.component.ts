@@ -131,7 +131,7 @@ export class UpdateComponent {
    countries: any[] = [];
    selectedCountryPhoneNo: string = 'IN';
    selectedCountryEmergencyNo: string = 'IN';
-   shiftTime: string[] = [];
+   shiftTime: any;
    selectedAssets: string[] = [];
    assetDataList: { [key: string]: AssetData } = {};
  
@@ -409,6 +409,7 @@ calculateTotalLeaves() {
     // this.populateSelectedAssets();
     // this.designations();
     this.numberCode();
+    this.getShiftTime();
 
   }
 
@@ -504,6 +505,25 @@ calculateTotalLeaves() {
   }
   //API for getting role end
 
+   //API for getting shift time start
+
+   getShiftTime() {
+
+    this.testService.viewShiftDetails().subscribe(
+      (response: any) => {
+        this.shiftTime = response; // Assuming the API response is an array of team leads
+console.log("shift time", this.shiftTime);
+console.log("shift time response", response);
+        this.token = response.token;
+      },
+      (error) => {
+
+      }
+    );
+
+  }
+  //API for getting shift time end
+
 
   // disable date from date of joining start
   getMinDate(): string {
@@ -536,6 +556,7 @@ calculateTotalLeaves() {
         this.RegisterAndUpdate.fetchData(+id).subscribe(
           (response) => {
 
+            console.log("updated show", response);
             // Handle the response and update the input fields accordingly
             this.user = response;
             this.username = response.username
@@ -551,7 +572,6 @@ calculateTotalLeaves() {
             console.log("id for update", this.registerId);
             console.log("username for update", this.username);
             console.log("updated user", this.user);
-console.log("updated show", response)
           },
           (error) => {
 

@@ -4873,28 +4873,28 @@ LeavePolicyPdf() {
 
 // API for download leave policy end
 
-// upload leave policy satrt
+// upload holiday satrt
 selectedFileHoliday: any;
 onFileSelectedHoliday(event: any): void {
   const fileInput = event.target;
   if (fileInput.files.length > 0) {
     const selectedFile = fileInput.files[0];
-    this.dashboardService.uploadPdf(selectedFile)
+    this.testService.uploadHolidayPdf(selectedFile)
     if (this.isPDFFile(selectedFile)) {
-      this.selectedFileLeavePolicy = selectedFile.name;
+      this.selectedFileHoliday = selectedFile.name;
     } else {
-      this.selectedFileLeavePolicy = 'Invalid file type. Please select a PDF file.';
+      this.selectedFileHoliday = 'Invalid file type. Please select a PDF file.';
       // Optionally, you can reset the file input value to clear the selection
       fileInput.value = '';
-      console.log("upload file input", this.selectedFileLeavePolicy);
-      console.log("upload file input")
+      console.log("holiday upload file input", this.selectedFileHoliday);
+      console.log("holiday upload file input")
     }
   } else {
-    this.selectedFileLeavePolicy = 'No file selected';
+    this.selectedFileHoliday = 'No file selected';
   }
 }
 
 
-// upload leave policy end
+// upload holiday end
 
 }

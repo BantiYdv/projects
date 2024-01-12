@@ -108,7 +108,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Shift Time:
-                <p class="m-0"><span id="dateofjoining">{{ profileDetails?.shifttimingstart }}</span></p>
+                <p class="m-0"><span id="dateofjoining">{{ profileDetails?.shiftTime }}</span></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Reporting To:
@@ -1149,7 +1149,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Shift Time:
-                <p class="m-0"><span id="dateofjoining">{{ profileDetailsUser?.shifttimingstart }}</span></p>
+                <p class="m-0"><span id="shiftTime">{{ profileDetailsUser?.shiftTime }}</span></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Reporting To:
@@ -1185,7 +1185,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Assigning assets:
-                <p class="m-0"><span id="assetName">{{ profileDetailsUser?.assetDetailsMap.Laptop.assetName }}</span></p>
+                <p class="m-0"><span id="assetName">{{ profileDetailsUser?.assetDetailsList.assetName }}</span></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Role:
@@ -1193,7 +1193,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 WFH:
-                <p class="m-0"><span id="totalwfh">{{ profileDetailsUser.totalwfh }}</span></p>
+                <p class="m-0"><span id="totalwfh">{{ profileDetailsUser?.totalwfh }}</span></p>
               </li>
             
             </ul>

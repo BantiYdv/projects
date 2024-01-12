@@ -888,7 +888,7 @@
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
-              <select class="added_positions_under_head_select" [(ngModel)]="TeamLeavePageperPage">
+              <select class="added_positions_under_head_select" [(ngModel)]="TeamWfhPageperPage">
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="30">30</option>
@@ -1122,7 +1122,7 @@
                 <div class="card-body">
                   <div class="media d-flex justify-content-between align-item-center">
                     <div class="align-self-center">
-                      <i class="cardIcon float-left"><img src="/assets/image/icon/reportEmp.svg" alt=""
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/leaveReport.png" alt=""
                           class="cardIconReport" ></i>
                     </div>
                     <div class="media-body align-self-center">
@@ -1141,7 +1141,7 @@
                 <div class="card-body">
                   <div class="media d-flex justify-content-between align-item-center">
                     <div class="align-self-center">
-                      <i class="cardIcon float-left"><img src="/assets/image/icon/reportEmp.svg" alt=""
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/wfhReport.png" alt=""
                           class="cardIconReport" ></i>
                     </div>
                     <div class="media-body align-self-center">
@@ -1181,7 +1181,7 @@
                 <div class="card-body">
                   <div class="media d-flex justify-content-between align-item-center">
                     <div class="align-self-center">
-                      <i class="cardIcon float-left"><img src="/assets/image/icon/reportEmp.svg" alt=""
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/attReport.png" alt=""
                           class="cardIconReport" ></i>
                     </div>
                     <div class="media-body align-self-center">
@@ -1199,7 +1199,7 @@
                 <div class="card-body">
                   <div class="media d-flex justify-content-between align-item-center">
                     <div class="align-self-center">
-                      <i class="cardIcon float-left"><img src="/assets/image/icon/reportEmp.svg" alt=""
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/salaryReport.png" alt=""
                           class="cardIconReport" ></i>
                     </div>
                     <div class="media-body align-self-center">
@@ -1217,7 +1217,7 @@
                 <div class="card-body">
                   <div class="media d-flex justify-content-between align-item-center">
                     <div class="align-self-center">
-                      <i class="cardIcon float-left"><img src="/assets/image/icon/reportEmp.svg" alt=""
+                      <i class="cardIcon float-left"><img src="/assets/image/icon/recReport.png" alt=""
                           class="cardIconReport" ></i>
                     </div>
                     <div class="media-body align-self-center">
@@ -1487,7 +1487,7 @@
             <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAtt" (change)="onSearchMonthUser()">
           </div>
         </div>
-        <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+        <!-- <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
           <thead >
             <tr>
               <th class="thName">S.No</th>
@@ -1516,7 +1516,65 @@
               <td class="textNormal">{{ item.totalHours }}</td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
+        <div class="row">
+
+
+          <div class="recruit_table">
+            <div class="table_head">
+              <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+                S.No</div>
+              <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                &nbsp; Date
+              </div>
+              <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                &nbsp; Check-In
+              </div>
+              <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                &nbsp; Check-Out
+              </div>
+              <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; height: 100%;">
+
+                &nbsp; Status
+              </div>
+
+              <div class="table_head_topics" style="width: 10%;">Total Hours</div>
+            </div>
+
+            <div class="my-1">
+              <div class="table_body" *ngFor="let item of getPaginatedattData(); let i = index">
+                <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                </div>
+                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.checkDate }}</div>
+                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.checkin }}</div>
+                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.checkout }}</div>
+                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.status }}</div>
+                <div class="table_body_topics my-2" style="width: 10%; ">{{ item.totalHours }}</div>
+                <!-- <div class="table_body_topics my-2"
+                  style="width: 30%;border-right: 2px solid #ADADAD; justify-content: normal;">
+                  <ul class="list-with-images">
+                    <li *ngFor="let permission of item.permissions">
+                      {{ transformPermission(permission.permissionName) }}
+                    </li>
+                  </ul>
+                </div> -->
+                <!-- <div class="table_body_topics Rolebutton mt-2" style="width: 30%;">
+                  <button type="button" class="btn m-1 deleteRole" (click)="deleteRole(item.id)"><img
+                      src="/assets/image/icon/deleteRole.svg" alt="" class="RoleHover">Delete Role</button>
+                  <button type="button" class="btn m-1 editPermission" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" (click)="openAddPermission(item)"><img
+                      src="/assets/image/icon/editPermission.svg" alt="" class="PermissionHover">Edit
+                    Permissions</button>
+                </div> -->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="not_data_img_div" *ngIf="getPaginatedattData().length == 0">
           <p>Not Data !!</p>
         </div>

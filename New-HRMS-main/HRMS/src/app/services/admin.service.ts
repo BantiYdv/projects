@@ -439,15 +439,15 @@ remainingWfhUser(){
 // remaining wfh of user end
 
 // birthday start
-birthday(){
+// birthday(){
   
-  const url = `${this.api.birthdays}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const url = `${this.api.birthdays}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-  return this.http.get(url, { headers });
+//   return this.http.get(url, { headers });
 
-}
+// }
 // birthday end
 
 }
