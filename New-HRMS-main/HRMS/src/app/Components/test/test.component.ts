@@ -60,8 +60,10 @@ throw new Error('Method not implemented.');
   fillterTodayWfhData: any;
   showAllWfhTable: any;           // for show all wfh
   AllwfhData: any;                //for show all wfh
+  fillterAllWfhData: any;
   showAllLeaveTable: any;         //for show all leave
   leaveAllData: any;              //for show all leave
+  fillterAllLeaveData: any;
   TodaySickLeaveData: any;
   fillterTodaySickLeaveData: any;
   TodayCasualLeaveData: any;
@@ -1398,6 +1400,7 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
 
           // Set the reversed array as the data source
           this.AllwfhData = reversedData;
+          this.fillterAllWfhData = reversedData;
           console.log("wwewewe", response);
         },
         error => {
@@ -1429,9 +1432,10 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
 
           // Set the reversed array as the data source
           this.leaveAllData = reversedData;
+          this.fillterAllLeaveData = reversedData;
         },
         error => {
-          // Swal.fire('Error', error.error, 'error');  
+          Swal.fire('Error', error.error, 'error');  
           // Hide the table if an error occurs
           this.showAllLeaveTable = false;
         }
@@ -4846,6 +4850,237 @@ viewinternEmp() {
   // sort data in  att table end
  
        //  view  att table function end
+
+
+         //  view all wfh table function start
+
+    // search for all  wfh table start
+    searchAllWfh: string = '';
+    
+ FilterAllWfh() {
+   this.fillterAllWfhData = this.AllwfhData.filter((item: { firstname: string; lastname: string; }) =>
+   item.firstname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) 
+    );
+ }
+
+  // search for all wfh table end
+
+   // pagination for view all  wfh start
+   AllWfhPageperPage: number = 10;
+currentAllWfhPage: number = 1;
+
+
+
+getPaginatedAllWfhData(): any[] {
+  const startIndex = (this.currentAllWfhPage - 1) * this.AllWfhPageperPage;
+  const endIndex = startIndex + this.AllWfhPageperPage;
+  return this.fillterAllWfhData.slice(startIndex, endIndex);
+}
+
+previousAllWfhPage(): void {
+  if (this.currentAllWfhPage > 1) {
+    this.currentAllWfhPage--;
+  }
+}
+
+getPageNumbersAllWfh(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterAllWfhData.length / this.AllWfhPageperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageAllWfh(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllWfh()) {
+    this.currentAllWfhPage = pageNumber;
+  }
+}
+
+
+nextPageAllWfh(): void {
+  const totalPages = Math.ceil(
+    this.fillterAllWfhData.length / this.AllWfhPageperPage
+  );
+  if (this.currentAllWfhPage < totalPages) {
+    this.currentAllWfhPage++;
+  }
+}
+
+
+getTotalPagesAllWfh(): number {
+  return Math.ceil(
+    this.fillterAllWfhData.length / this.AllWfhPageperPage
+  );
+}
+// pagination for view all  wfh end
+
+// sort data in all wfh table start
+// sortTDate: 'asc' | 'desc' = 'asc';
+sortByToDateAllWfh(): void {
+  this.sortTDate =
+    this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterAllWfhData.sort((a: any, b: any) => {
+    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+    );
+  });
+}
+
+
+
+// sortFDate: 'asc' | 'desc' = 'asc';
+sortByFromDateAllWfh(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterAllWfhData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.fromdateWfh).getTime() - new Date(b.fromdateWfh).getTime())
+    );
+  });
+}
+
+// sortBy: 'asc' | 'desc' = 'asc';
+
+sortByWhomeAllWfh(): void {
+  // Toggle the sort order
+  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the approvedBy property
+  this.fillterAllWfhData.sort((a: any, b: any) => {
+    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+    return orderFactor * approvedByA.localeCompare(approvedByB);
+  });
+}
+
+ // sort data in all wfh table end
+
+      //  view all wfh table function end
+
+
+       //  view all leave table function start
+
+ // search for all leave table start
+ searchAllLeave: string = '';
+    
+ FilterAllLeave() {
+   this.fillterAllLeaveData = this.leaveAllData.filter((item: { firstname: string; lastname: string; }) =>
+   item.firstname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) ||
+   item.lastname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) 
+    );
+ }
+
+  // search for all leave table end
+
+   // pagination for view all  leave start
+AllLeavePageperPage: number = 10;
+currentAllLeavePage: number = 1;
+
+
+
+getPaginatedAllLeaveData(): any[] {
+  const startIndex = (this.currentAllLeavePage - 1) * this.AllLeavePageperPage;
+  const endIndex = startIndex + this.AllLeavePageperPage;
+  return this.fillterAllLeaveData.slice(startIndex, endIndex);
+}
+
+previousAllLeavePage(): void {
+  if (this.currentAllLeavePage > 1) {
+    this.currentAllLeavePage--;
+  }
+}
+
+getPageNumbersAllLeave(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterAllLeaveData.length / this.AllLeavePageperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageAllLeave(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllLeave()) {
+    this.currentAllLeavePage = pageNumber;
+  }
+}
+
+
+nextPageAllLeave(): void {
+  const totalPages = Math.ceil(
+    this.fillterAllLeaveData.length / this.AllLeavePageperPage
+  );
+  if (this.currentAllLeavePage < totalPages) {
+    this.currentAllLeavePage++;
+  }
+}
+
+
+getTotalPagesAllLeave(): number {
+  return Math.ceil(
+    this.fillterAllLeaveData.length / this.AllLeavePageperPage
+  );
+}
+// pagination for view all  leave end
+
+// sort data in all leave table start
+// sortTDate: 'asc' | 'desc' = 'asc';
+sortByToDateAllLeave(): void {
+  this.sortTDate =
+    this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterAllLeaveData.sort((a: any, b: any) => {
+    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.toDate).getTime() - new Date(b.toDate).getTime())
+    );
+  });
+}
+
+
+
+// sortFDate: 'asc' | 'desc' = 'asc';
+sortByFromDateAllLeave(): void {
+  this.sortFDate =
+    this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+  this.fillterAllLeaveData.sort((a: any, b: any) => {
+    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+    return (
+      orderFactor *
+      (new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime())
+    );
+  });
+}
+
+// sortBy: 'asc' | 'desc' = 'asc';
+
+sortByWhomeAllLeave(): void {
+  // Toggle the sort order
+  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+  // Sort the positions array based on the approvedBy property
+  this.fillterAllLeaveData.sort((a: any, b: any) => {
+    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+    return orderFactor * approvedByA.localeCompare(approvedByB);
+  });
+}
+
+ // sort data in all leave table end
+
+
+  //  view all leave table function end
  
 
 // API for download leave policy start

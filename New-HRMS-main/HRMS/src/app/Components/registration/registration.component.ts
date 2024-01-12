@@ -45,11 +45,11 @@ export class RegistrationComponent {
   flagSvgUrlEmergencyNo: any;
   selectedFileName: any;
   selectedAssets: string[] = [];
-  assetDataList: { [key: string]: AssetData } = {};
+  assetDetailsList: { [key: string]: AssetData } = {};
   activeSlideIndex = 0;
 
   assetDataListqw() {
-    console.log('assetDataList', this.assetDataList);
+    console.log('assetDetailsList', this.assetDetailsList);
   }
   address: {
     addressLine1: string;
@@ -65,8 +65,8 @@ export class RegistrationComponent {
 
   assetOptions = ['Laptop', 'Desktop', 'Monitor'];
   saveAssetData(assetType: string, assetData: AssetData) {
-    this.assetDataList[assetType] = assetData;
-    console.log('Saved data for', this.assetDataList);
+    this.assetDetailsList[assetType] = assetData;
+    console.log('Saved data for', this.assetDetailsList);
   }
 
 //   add more assets start
@@ -95,8 +95,8 @@ export class RegistrationComponent {
   }
 
   getAssetData(assetType: string): AssetData {
-    if (!this.assetDataList[assetType]) {
-      this.assetDataList[assetType] = {
+    if (!this.assetDetailsList[assetType]) {
+      this.assetDetailsList[assetType] = {
         laptopModelInfo: '',
         identification: '',
         configuration: '',
@@ -105,7 +105,7 @@ export class RegistrationComponent {
       };
     }
 
-    return this.assetDataList[assetType];
+    return this.assetDetailsList[assetType];
   }
 
   numberCode(): void {
@@ -265,7 +265,7 @@ export class RegistrationComponent {
     RelievingLetter: '',
     ExperienceLetter: '',
     salarySlip1: '',
-    assetDetailsMap: this.assetDataList,   
+    assetDetailsMap: this.assetDetailsList,   
   };
 
   imageUrl: SafeUrl | undefined;

@@ -1551,7 +1551,11 @@
                 <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.checkDate }}</div>
                 <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.checkin }}</div>
                 <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.checkout }}</div>
-                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{ item.status }}</div>
+                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; " [ngStyle]="{'color': item.status === 'PRESENT' ? '#47C17A' : (item.status === 'ABSENT' ? '#D92651' : 'rgb(255 154 0)')}">{{ item.status }}</div>
+                <!-- <div class="table_body_topics my-2" [ngStyle]="{'background': item.status === 'PRESENT' ? '#47C17A' : (item.status === 'ABSENT' ? '#D92651' : '#FF9A00'), 'color': '#FFF', 'border': item.status !== 'ABSENT' ? '2px solid #ADADAD' : 'none'}">
+                  {{ item.status }}
+                </div> -->
+                
                 <div class="table_body_topics my-2" style="width: 10%; ">{{ item.totalHours }}</div>
                 <!-- <div class="table_body_topics my-2"
                   style="width: 30%;border-right: 2px solid #ADADAD; justify-content: normal;">
@@ -1899,42 +1903,109 @@
 
 
       <div class="table-responsive mt-4">
-        <table class="table table-bordered table-sm">
-          <thead class="table-dark">
+        <div class="col-md-12 d-flex justify-content-start">
+          <span class="allEmp">WFH</span>
+        </div>
+        <div class="col-12 row">
+          <div class="col-md-6 d-flex justify-content-start">
+            <div class="added_positions_list_right">
+              <div class="added_positions_under_head">Show</div>
+              <div>
+                <select class="added_positions_under_head_select" [(ngModel)]="AllWfhPageperPage">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+              <div class="added_positions_under_head">Enteries</div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end align-items-center">
+            <div class="">
+              <div class="search-container ">
+                <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                  alt="">
+                <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchAllWfh"
+                  (keyup)="FilterAllWfh()">
+              </div>
+            </div>
+            <div class="">
+              <button class="button_added_position_list">Search</button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-sm" style="width: 100% !important;">
+          <thead>
             <tr>
-              <th>S.No</th>
-              <th>Name</th>
-              <th>Email Id</th>
-              <th>From Date</th>
-              <th>To Date</th>
-              <th>No Of Days</th>
-              <th>Status</th>
-              <th>By Whom</th>
-              <th>Team Lead</th>
-              <th>Approve</th>
-              <th>Reject</th>
+              <th class="thName">S.No</th>
+              <th class="thName">Name</th>
+              <th class="thName">Email Id</th>
+              <th class="thName" (click)="sortByFromDateWfh()">
+                <i class="fa fa-arrow-up" [ngStyle]="{'color': sortFDate === 'asc' ? '#000' : '#ccc'}"></i>
+                <i class="fa fa-arrow-down" [ngStyle]="{'color': sortFDate === 'desc' ? '#000' : '#ccc'}"></i>
+                &nbsp;  
+                From Date</th>
+              <th class="thName" (click)="sortByToDateWfh()">
+                <i class="fa fa-arrow-up" [ngStyle]="{'color': sortTDate === 'asc' ? '#000' : '#ccc'}"></i>
+                <i class="fa fa-arrow-down" [ngStyle]="{'color': sortTDate === 'desc' ? '#000' : '#ccc'}"></i>
+                &nbsp;
+                To Date</th>
+              <th class="thName">No Of Days</th>
+              <th class="thName">Status</th>
+              <th class="thName" (click)="sortByWhomeWfh()">
+                <i class="fa fa-arrow-up" [ngStyle]="{'color': sortBy === 'asc' ? '#000' : '#ccc'}"></i>
+                      <i class="fa fa-arrow-down" [ngStyle]="{'color': sortBy === 'desc' ? '#000' : '#ccc'}"></i>
+                      &nbsp;
+                By Whom</th>
+              <th class="thName">Team Lead</th>
+              <th class="thName">Approve</th>
+              <th class="thName">Reject</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let item of AllwfhData; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.firstname+' '+item.lastname }}</td>
-              <td>{{ item.emailid }}</td>
-              <td>{{ item.fromdateWfh }}</td>
-              <td>{{ item.toDateWfh }}</td>
-              <td>{{ item.noofday }}</td>
-              <td>{{ item.approval }}</td>
-              <td>{{ item.approvedBy }}</td>
-              <td>{{ item.teamlead }}</td>
-              <td>{{ item.Approved }}<button class="btn btn-success" (click)="ApproveWfh(item.id)">Approve</button>
+          <tbody class="tdData">
+            <tr *ngFor="let item of getPaginatedAllWfhData(); let i = index">
+              <td class="textNormal">{{ i + 1 }}</td>
+              <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+              <td class="emailId">{{ item.emailid }}</td>
+              <td class="textNormal">{{ item.fromdateWfh }}</td>
+              <td class="textNormal">{{ item.toDateWfh }}</td>
+              <td class="textNormal">{{ item.noofday }}</td>
+              <td class="textNormal">{{ item.approval }}</td>
+              <td class="textNormal">{{ item.approvedBy }}</td>
+              <td class="textNormal">{{ item.teamlead }}</td>
+              <td class="textNormal">{{ item.Approved }}<button class="btn btn-success" (click)="ApproveWfh(item.id)">Approve</button>
               </td>
-              <td>{{ item.Rejected }}<button class="btn btn-danger" (click)="RejectWfh(item.id)">Reject</button></td>
+              <td class="textNormal">{{ item.Rejected }}<button class="btn btn-danger" (click)="RejectWfh(item.id)">Reject</button></td>
             </tr>
           </tbody>
         </table>
+        <div class="not_data_img_div" *ngIf="getPaginatedAllWfhData().length == 0">
+          <p>Not Data !!</p>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+        <div class="col-md-12" *ngIf="getTotalPagesAllWfh() > 1">
+          <div class="table_footer mt-2">
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:#421cdd;" (click)="previousAllWfhPage()" [disabled]="currentAllWfhPage == 1">
+              <i class="fa fa-angle-left"></i> Previous
+            </button>
+            <div class="recruitment_list_number">
+              <div *ngFor="let pageNumber of getPageNumbersAllWfh()" [class.active_num]="pageNumber === currentAllWfhPage"
+                class="recruitment_list_number_value" (click)="changePageAllWfh(pageNumber)">
+                {{ pageNumber }}
+              </div>
+            </div>
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:#421cdd;" (click)="nextPageAllWfh()"
+              [disabled]="currentAllWfhPage == getTotalPagesAllWfh()">
+              Next <i class="fa fa-angle-right"></i>
+            </button>
+    
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1946,45 +2017,112 @@
     <!-- <div *ngIf="isHashEqualTo('/test/viewAllLeave')"> -->
     <div class="container px-4 py-0 text-center" >
       <div class="table-responsive mt-4">
-        <table class="table table-bordered table-sm">
-          <thead class="table-dark">
+        <div class="col-md-12 d-flex justify-content-start">
+          <span class="allEmp">Leave</span>
+        </div>
+        <div class="col-12 row">
+          <div class="col-md-6 d-flex justify-content-start">
+            <div class="added_positions_list_right">
+              <div class="added_positions_under_head">Show</div>
+              <div>
+                <select class="added_positions_under_head_select" [(ngModel)]="AllLeavePageperPage">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+              <div class="added_positions_under_head">Enteries</div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end align-items-center">
+            <div class="">
+              <div class="search-container ">
+                <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                  alt="">
+                <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchAllLeave"
+                  (keyup)="FilterAllLeave()">
+              </div>
+            </div>
+            <div class="">
+              <button class="button_added_position_list">Search</button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-sm" style="width: 100% !important;">
+          <thead>
             <tr>
-              <th>S.No</th>
-              <th>Name</th>
-              <th>Email Id</th>
-              <th>From Date</th>
-              <th>To Date</th>
-              <th>No Of Days</th>
-              <th>Leave Type</th>
-              <th>Status</th>
-              <th>By Whom</th>
-              <th>Team Lead</th>
-              <th>Approve</th>
-              <th>Reject</th>
+              <th class="thName">S.No</th>
+              <th class="thName">Name</th>
+              <th class="thName">Email Id</th>
+              <th class="thName" (click)="sortByFromDate()">
+                <i class="fa fa-arrow-up" [ngStyle]="{'color': sortFDate === 'asc' ? '#000' : '#ccc'}"></i>
+                <i class="fa fa-arrow-down" [ngStyle]="{'color': sortFDate === 'desc' ? '#000' : '#ccc'}"></i>
+                &nbsp;  
+                From Date</th>
+              <th class="thName" (click)="sortByToDate()">
+                <i class="fa fa-arrow-up" [ngStyle]="{'color': sortTDate === 'asc' ? '#000' : '#ccc'}"></i>
+                <i class="fa fa-arrow-down" [ngStyle]="{'color': sortTDate === 'desc' ? '#000' : '#ccc'}"></i>
+                &nbsp; 
+                To Date</th>
+              <th class="thName">No Of Days</th>
+              <th class="thName">Leave Type</th>
+              <th class="thName">Status</th>
+              <th class="thName" (click)="sortByWhome()">
+                <i class="fa fa-arrow-up" [ngStyle]="{'color': sortBy === 'asc' ? '#000' : '#ccc'}"></i>
+                      <i class="fa fa-arrow-down" [ngStyle]="{'color': sortBy === 'desc' ? '#000' : '#ccc'}"></i>
+                      &nbsp; 
+                By Whom</th>
+              <th class="thName">Team Lead</th>
+              <th class="thName">Approve</th>
+              <th class="thName">Reject</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let item of leaveAllData; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.firstname+' '+item.lastname }}</td>
-              <td>{{ item.emailid }}</td>
-              <td>{{ item.fromDate }}</td>
-              <td>{{ item.toDate }}</td>
-              <td>{{ item.noOfDays }}</td>
-              <td>{{ item.leaveType }}</td>
-              <td>{{ item.approval }}</td>
-              <td>{{ item.approvedBy }}</td>
-              <td>{{ item.teamlead }}</td>
-              <td>{{ item.Approved }}<button class="btn btn-success" (click)="approveLeave(item.id)">Approve</button>
+          <tbody class="tdData">
+            <tr *ngFor="let item of getPaginatedAllLeaveData(); let i = index">
+              <td class="textNormal">{{ i + 1 }}</td>
+              <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+              <td class="emailId">{{ item.emailid }}</td>
+              <td class="textNormal">{{ item.fromDate }}</td>
+              <td class="textNormal">{{ item.toDate }}</td>
+              <td class="textNormal">{{ item.noOfDays }}</td>
+              <td class="textNormal">{{ item.leaveType }}</td>
+              <td class="textNormal" [ngStyle]="{'color': item.approval === 'Approved' ? '#129B4B' : (item.approval === 'Rejected' ? '#DD1717' : 'rgb(255 154 0)')}">{{ item.approval }}</td>
+              <td class="textNormal">{{ item.approvedBy }}</td>
+              <td class="textNormal">{{ item.teamlead }}</td>
+              <td class="textNormal">{{ item.Approved }}<button class="btn btn-success" (click)="approveLeave(item.id)">Approve</button>
               </td>
-              <td>{{ item.Rejected }}<button class="btn btn-danger" (click)="rejectLeave(item.id)">Reject</button>
+              <td class="textNormal">{{ item.Rejected }}<button class="btn btn-danger" (click)="rejectLeave(item.id)">Reject</button>
               </td>
             </tr>
           </tbody>
         </table>
+        <div class="not_data_img_div" *ngIf="getPaginatedAllLeaveData().length == 0">
+          <p>Not Data !!</p>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+        <div class="col-md-12" *ngIf="getTotalPagesAllLeave() > 1">
+          <div class="table_footer mt-2">
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:#421cdd;" (click)="previousAllLeavePage()" [disabled]="currentAllLeavePage == 1">
+              <i class="fa fa-angle-left"></i> Previous
+            </button>
+            <div class="recruitment_list_number">
+              <div *ngFor="let pageNumber of getPageNumbersAllLeave()" [class.active_num]="pageNumber === currentAllLeavePage"
+                class="recruitment_list_number_value" (click)="changePageAllLeave(pageNumber)">
+                {{ pageNumber }}
+              </div>
+            </div>
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:#421cdd;" (click)="nextPageAllLeave()"
+              [disabled]="currentAllLeavePage == getTotalPagesAllLeave()">
+              Next <i class="fa fa-angle-right"></i>
+            </button>
+    
+          </div>
+        </div>
       </div>
     </div>
   </div>
