@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
+            <div class="col-12 col-md-12 ">
+                <div class="header_css_added_project">
+                    View Task
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 mt-3 overflow-auto">
+            <table class="table tAble_css">
+                <thead class="table-dark tHead_css">
+                    <tr>
+                        <th scope="col">Task No.</th>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Download</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">View</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="tBody_css">
+                    <tr *ngFor="let project of tasks; let i = index">
+                        <td scope="row">{{ i+1 }}</td>
+                        <td scope="row">{{ project.taskName }}</td>
+                        <td><img src="../../../assets/images/download_css_ing.svg" class="w-25" alt=""></td>
+                        <td>{{ project.description.length > 10 ? (project.description | slice:0:10) + '...' : project.description }}
+                        </td>
+                        <td>
+                            <img src="../../../assets/images/eye_icon_project.svg" class="w-25" alt="" data-bs-toggle="modal" data-bs-target="#viewDescription">
+                        </td>
+                        <td>
+                            <select class="select_css_code" [(ngModel)]="project.status" name="status" (change)="onChangeStatus(project.status)">
+                                <option value="ongoing">Ongoing</option>
+                                <option value="pending">Pending</option>
+                                <option value="finish">Finish</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="viewDescription" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

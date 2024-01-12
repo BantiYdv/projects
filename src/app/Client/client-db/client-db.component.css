@@ -1,0 +1,203 @@
+.navbar_css{
+    box-shadow: 1px 0px 10px #000;
+    height: 100px;
+}
+.header_menu img{
+    height: 95px;
+    padding: 10px;
+}
+.profile_img_on_header img{
+    height: 50px;
+    width: 50px;
+}
+.menu_options{
+    margin-top: 50px;
+    background-color: #353B4C;
+}
+.menu_options ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.menu_options ul li:hover{
+    background-color: #3B3A70;
+}
+.menu_options ul li div{
+    height: 80px;
+}
+.menu_img_css_1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text_menu_css{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 20px;
+}
+.log_out_css{
+    height: 50px;
+    font-size: 20px;
+    gap:10px;
+    cursor: pointer;
+}
+.log_out_css:active{
+transform: scale(.95);
+}
+.header_css_added_project{
+    font-size: 30px;
+    font-weight: bold;
+}
+.header_css_button_project{
+    display: flex;
+    justify-content: end;
+}
+.header_css_button_project button{
+    font-size: 19px;
+    background-color: yellow;
+    outline: none;
+    padding: 10px;
+    border: 1px solid yellow;
+    border-radius: 10px;
+}
+.header_css_button_project button:active{
+    transform: scale(.9);
+}
+.tAble_css{
+    border: 1px solid #E6E5FD;
+}
+.tHead_css{
+    height: 60px;
+}
+.tHead_css tr th{
+    text-align: center;
+    vertical-align: middle;
+}
+.tBody_css tr{
+    height: 60px;
+    border-bottom: 4px solid #E6E5FD;
+}
+.tBody_css tr td{
+    text-align: center;
+    vertical-align: middle;
+}
+.select_css_code{
+    width: 100%;
+    background-color: #3B3A70;
+    color: #fff;
+    border-radius: 5px;
+    height: 30px;
+    outline: none;
+}
+.icon_t_e_e i{
+    padding: 0px 5px;
+    cursor: pointer;
+}
+.icon_t_e_e i:nth-child(1){
+    color: red;
+}
+.icon_t_e_e i:nth-child(2){
+    color: green;
+}
+.icon_t_e_e i:nth-child(3){
+    color: black;
+}
+.text_add_p_css{
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.add_css_pro_code{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.add_css_pro_code label{
+    font-size: 17px;
+    font-weight: bold;
+}
+.add_css_pro_code input , .add_css_pro_code select{
+    font-size: 15px;
+    border: 2.5px solid #555353;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 5px;
+    width: 80%;
+    /* font-weight: bold; */
+}
+.save_css_button_code{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.save_css_button_code button{
+    background-color: yellow;
+    color: #000;
+    outline: none;
+    border: 1px solid yellow;
+    border-radius: 5px;
+    padding: 10px 40px;
+}
+.save_css_button_code button:active{
+    transform: scale(.9);
+}
+.work_card{
+background-color: #30353C;
+border-radius: 5px;
+padding: 15px;
+cursor: pointer;
+}
+.work_card:active{
+    transform: scale(.95);
+}
+.work_text_css{
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+}
+.work_text_pink{
+    color: #FF91BB;
+    font-size: 20px;
+    margin-top: 10px;
+    /* font-weight: bold; */
+    /* letter-spacing: 2.5px; */
+}
+.work_text_2_code{
+    color: #fff;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.work_text_3_code{
+    /* color: #fff; */
+    /* background-color: #FFB6C7; */
+    font-size: 20px;
+    margin-top: 30px;
+    padding: 10px 0px;
+    border-radius: 5px;
+}
+/* In your component's CSS or SCSS file */
+.work_card.odd {
+    background-color: #FCFFC4; /* Set your background color for even elements */
+    /* Add other styles for even elements */
+}
+
+.work_card.even {
+    background-color: #30353C; /* Set your background color for odd elements */
+    /* Add other styles for odd elements */
+}
+.work_text_css.odd , .work_text_pink.odd , .work_text_2_code.odd{
+    color: #000;
+}
+.work_text_css.even , .work_text_pink.even , .work_text_2_code.even{
+    color: #ffffff;
+}
+
+.work_text_3_code.odd{
+    background-color: #F44F44;
+}
+.work_text_3_code.even{
+    background-color: #FFB6C7;
+}

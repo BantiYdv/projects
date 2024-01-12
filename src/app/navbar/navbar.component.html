@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light navbar_main_component_css" [ngClass]="{navbar_main_css_code: !isHomeRoute}">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/home">
+            <img src="../../assets/images/AVX_Media.svg" class="avx_media_logo" alt="Logo" *ngIf="isHomeRoute">
+         
+            <img src="../../assets/images/logo-ddd.png" class="avx_media_logo" alt="Logo" *ngIf="!isHomeRoute">
+        </a>
+        <button class="navbar-toggler navbar_button_bars" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation" (click)="toggleNavbar()">
+            <i class="fa fa-bars" *ngIf="!isNavbarOpen"></i>
+            <i class="fa fa-close" *ngIf="isNavbarOpen"></i>
+        </button>
+
+        <div class="collapse navbar-collapse navbar_menu_options_names" id="navbarSupportedContent" [ngClass]="{'home-route': isHomeRoute}">
+            <ul class="navbar-nav mb-2 mb-lg-0 navbar_ul_css">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/how-it-works">How This Works</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/home">Challenger’s Day Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/why-us">why us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/log-in">Log in</a>
+                </li>
+                <li class="nav-item" style="background-color: yellow; border-radius: 50px;">
+                    <a class="nav-link" aria-current="page" routerLink="/how-it-works" style="color: #000;">Collaborate now</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- <router-outlet></router-outlet> -->

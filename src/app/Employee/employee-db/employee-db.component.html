@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap navbar_css">
+            <div class="col-9 col-md-9 col-xxl-9 offset-1">
+                <div class="header_menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                    aria-controls="offcanvasExample">
+                    <img src="../../../assets/images/AVX_Media.svg" alt="">
+                </div>
+            </div>
+            <div class="col-2 col-md-2 col-xxl-2 d-flex justify-content-center align-items-center">
+                <div class="dropdown">
+                    <a href="#"
+                        class="profile_img_on_header d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
+                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <!-- <strong>mdo</strong> -->
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" tabindex="-1" id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header d-flex flex-column px-0">
+        <div class="col-12 col-md-12 d-flex flex-wrap">
+            <div class="col-11 col-md-11">
+                <div class="header_menu d-flex justify-content-center align-items-center">
+                    <img src="../../../assets/images/AVX_Media.svg" alt="">
+                </div>
+            </div>
+            <div class="col-1 col-md-1">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="col-12 col-md-12 col-xxl-12 menu_options">
+            <ul>
+                <li routerLink="/employee-project">
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/project_icon_img.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">Project</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/employee-assign-task">
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/task_icon_img.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">Assign Task</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 d-flex justify-content-center align-items-center log_out_css" (click)="apiService.logOut()"> <i class="fa fa-sign-out"></i> log out</div>
+</div>

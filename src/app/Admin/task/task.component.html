@@ -1,0 +1,270 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
+            <div class="col-12 col-md-6 ">
+                <div class="header_css_added_project">
+                    Added Task
+                </div>
+            </div>
+            <div class="col-12 col-md-6 ">
+                <div class="header_css_button_project">
+                    <button data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa fa-plus"></i> Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 mt-3 overflow-auto">
+            <table class="table tAble_css">
+                <thead class="table-dark tHead_css">
+                    <tr>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Task No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Assign To</th>
+                        <th scope="col">Download</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Edit</th>
+                      </tr>
+                </thead>
+                <tbody class="tBody_css">
+                    <tr *ngFor="let task of tasks;">
+                        <td scope="row">{{ task.projectName }}</td>
+                        <td>{{ task.task_no }}</td>
+                        <td>{{ task.task_name }}</td>
+                        <td>{{ task.assign_to }}</td>
+                        <!-- <td>{{ task.handledBy }}</td> -->
+                        <td><img src="../../../assets/images/download_css_ing.svg" class="w-25" alt=""></td>
+                        <td>
+                          <select class="select_css_code" [(ngModel)]="task.status">
+                            <option value="created">Created</option>
+                                <option value="start">start</option>
+                                <option value="ongoing">Ongoing</option>
+                                <option value="finish">Finish</option>
+                          </select>
+                        </td>
+                        <td>
+                          <div class="icon_t_e_e">
+                            <i class="fa fa-trash" (click)="deleteTaskById(task._id)"></i>
+                            <i class="fa fa-edit" (click)="getTaskById(task._id)" data-bs-toggle="modal" data-bs-target="#updateNewTask"></i>
+                            <i class="fa fa-eye" (click)="getTaskById(task._id)" data-bs-toggle="modal" data-bs-target="#viewNewTask"></i>
+                          </div>
+                        </td>
+                      </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+  
+  <!-- Modal addNewTask -->
+  <div class="modal fade" id="addNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="col-12 col-md-12 d-flex flex-nowrap">
+                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Add Task</div></div>
+                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            </div>
+        </div>
+        <div class="modal-body m-4">
+            <form #saveTaskForm="ngForm" (ngSubmit)="saveTask(task)">
+          <div class="col-12 col-md-12 d-flex flex-wrap">
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Project Name</label>
+                    <input type="text" placeholder="Project Name" [(ngModel)]="task.name" name="name" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Task Number</label>
+                    <input type="tel" placeholder="Task No." [(ngModel)]="task.number" name="number" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Task Name</label>
+                    <input type="text" placeholder="Task Name" [(ngModel)]="task.task_name" name="task_name" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Assign To Team Member</label>
+                    <select  [(ngModel)]="task.assignToTM" name="assignToTM" required>
+                        <option>ragini agarwal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Upload Doc.</label>
+                    <input type="file" [(ngModel)]="task.desc" name="desc">
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Description</label>
+                    <input type="text" placeholder="Description" [(ngModel)]="task.description" name="description" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="add_css_pro_code">
+                    <label>Other Information</label>
+                    <input type="text" placeholder="other information"  [(ngModel)]="task.otherInfo" name="otherInfo">
+                </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12">
+            <div class="save_css_button_code">
+                <button  [disabled]="saveTaskForm.invalid">Save</button>
+            </div>
+          </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+   <!-- Modal updateNewTask -->
+   <div class="modal fade" id="updateNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="col-12 col-md-12 d-flex flex-nowrap">
+                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Update Task</div></div>
+                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            </div>
+        </div>
+        <div class="modal-body m-4">
+            <form #updateTaskForm="ngForm" (ngSubmit)="saveTask(task)">
+          <div class="col-12 col-md-12 d-flex flex-wrap">
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Project Name</label>
+                    <input type="text" placeholder="Project Name" [(ngModel)]="task.name" name="name" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Task Number</label>
+                    <input type="tel" placeholder="Task No." [(ngModel)]="task.number" name="number" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Task Name</label>
+                    <input type="text" placeholder="Task Name" [(ngModel)]="task.task_name" name="task_name" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Assign To Team Member</label>
+                    <select  [(ngModel)]="task.assignToTM" name="assignToTM" required>
+                        <option>ragini agarwal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Upload Doc.</label>
+                    <input type="file" [(ngModel)]="task.desc" name="desc">
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Description</label>
+                    <input type="text" placeholder="Description" [(ngModel)]="task.description" name="description" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="add_css_pro_code">
+                    <label>Other Information</label>
+                    <input type="text" placeholder="other information"  [(ngModel)]="task.otherInfo" name="otherInfo">
+                </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12">
+            <div class="save_css_button_code">
+                <button [disabled]="updateTaskForm.invalid">Update</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+   <!-- Modal ViewNewProject -->
+   <div class="modal fade" id="viewNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="col-12 col-md-12 d-flex flex-nowrap">
+                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Task Details</div></div>
+                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            </div>
+        </div>
+        <div class="modal-body m-4">
+          <div class="col-12 col-md-12 d-flex flex-wrap">
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Project Name</label>
+                    <span>ABC</span>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Task No.</label>
+                    <span>1</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Task Name</label>
+                    <span>ragini agarwal</span>
+                    <!-- <input type="text" placeholder="ashish roy"> -->
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Assign To Team Member</label>
+                    <span>ragini agarwal</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Upload Doc.</label>
+                    <span>raginiagarwal.pdf</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Description</label>
+                    <span>raginiagarwal.pdf</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="add_css_pro_code">
+                    <label>Other Information</label>
+                    <span>ragini agarwal</span>
+                </div>
+            </div>
+          </div>
+          <!-- <div class="col-12 col-md-12">
+            <div class="save_css_button_code">
+                <button>Save</button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>

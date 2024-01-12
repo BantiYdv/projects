@@ -1,0 +1,19 @@
+<div *ngIf="!apiService.isLoggedIn()">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</div>
+<div *ngIf="apiService.isLoggedIn() && apiService.getRole === 'team member'">    
+        <app-employee-db></app-employee-db>
+        <router-outlet></router-outlet>
+</div>
+<div *ngIf="apiService.isLoggedIn() && apiService.getRole === 'admin'">    
+        <app-admin-db></app-admin-db>
+        <router-outlet></router-outlet>
+</div>
+<div *ngIf="apiService.isLoggedIn() && apiService.getRole === 'user'">    
+        <app-client-db></app-client-db>
+</div>
+
+
+

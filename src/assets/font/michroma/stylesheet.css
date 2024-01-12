@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Michroma';
+    src: url('Michroma.eot');
+    src: local('Michroma'),
+        url('Michroma.eot?#iefix') format('embedded-opentype'),
+        url('Michroma.woff2') format('woff2'),
+        url('Michroma.woff') format('woff'),
+        url('Michroma.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

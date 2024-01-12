@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Airbolt";
+  src: url("./assets/font/airbolt/AirboltRegular.woff2") format("woff2"),
+    url("./assets/font/airbolt/AirboltRegular.woff") format("woff");
+}
+@font-face {
+  font-family: "Helvetica";
+  src: url("./assets/font/helvetica/Helvetica.woff2") format("woff2"),
+    url("./assets/font/helvetica/Helvetica.woff") format("woff");
+}
+@font-face {
+  font-family: "Michroma";
+  src: url("./assets/font/michroma/Michroma.woff2") format("woff2"),
+    url("./assets/font/michroma/Michroma.woff") format("woff");
+}
+/* @import '~swiper/swiper-bundle.min.css'; */
+body {
+    overflow-x: hidden;
+  }
+  
+  
+  /* Add this if you also want to hide the horizontal scrollbar */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::selection{
+    background-color: yellow;
+    color: black;
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: "Helvetica", sans-serif; }

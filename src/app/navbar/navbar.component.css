@@ -1,0 +1,73 @@
+.navbar_main_component_css{
+    padding: 10px 0px 10px 70px;
+    background-color: #00000000 !important;
+    z-index: 1090;
+    transition: all 1s ease;
+}
+.navbar_main_component_css:hover{
+    background-color: #00000069 !important;
+}
+.navbar_main_css_code{
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.445);
+}
+.avx_media_logo{
+    width: 55%;
+}
+.navbar_menu_options_names ul li a{
+    /* color: #000000; */
+    font-size: 18px;
+    padding: 10px 24px;
+}
+.home-route.navbar_menu_options_names ul li a {
+    color: #fff; /* Change the color for the home route */
+}
+.navbar_ul_css{
+    margin-inline-start: -60px;
+    /* gap: 10px; */
+}
+.navbar_ul_css li:hover a{
+    background-image: url('../../assets/images/underline_navbar_menu.svg');
+    background-repeat: no-repeat;
+    /* font-weight: bold; */
+    transform: scale(1.1);
+    /* background-position: center; */
+    background-position-y: 30px;
+    background-position-x: center; 
+}
+.navbar_button_bars{
+    color: #000000;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+@media screen and (max-width: 1200px) {
+    .navbar_ul_css{
+        margin-inline-start: -80px;
+    }
+    .navbar_menu_options_names ul li a{
+        color: #000000;
+        font-size: 15px;
+        padding: 10px 10px;
+    }
+}
+@media screen and (max-width: 991px) {
+    .navbar_main_component_css{
+        padding: 0px;
+        background-color: #ffffff !important;
+    }
+    .navbar_ul_css{
+        margin-inline-start: 0px;
+    }
+    .navbar_menu_options_names ul li a{
+        color: #000000 !important;
+        font-size: 18px;
+        padding: 10px 10px;
+    }
+    .navbar_ul_css li:hover a{
+        background-image: url('../../assets/images/underline_navbar_menu.svg');
+        background-repeat: no-repeat;
+        /* background-position: center; */
+        background-position-y: 30px;
+        background-position-x: 0px; 
+    }
+}

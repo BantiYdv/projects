@@ -1,0 +1,188 @@
+.signIn_css{
+    margin-top: 30px;
+    border-radius: 25px;
+    border: 3px solid #D6D6D6;
+    background-color: #f6f6f6;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.wel_text_css{
+    font-size: 25px;
+    line-height: 26px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 30px;
+}
+.wel_under_text_css{
+    font-size: 13px;
+    line-height: 14px;
+    /* font-weight: bold; */
+    color: #000;
+    margin-top: 0px; 
+}
+
+.email_id_css , .password_css{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start !important;
+}
+.email_id_css img{
+    position: absolute;
+    top: 55px;
+    left: -40px;
+}
+.password_css img{
+    position: absolute;
+    top: 55px;
+    left: 65px;
+}
+.email_id_css label, .password_css label{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 20px 10px 50px;
+}
+
+.email_id_css input , .password_css input{
+   /* position: absolute; */
+   font-size: 20px;
+   outline: none;
+   width: 100%;
+   padding: 15px 10px 15px 60px;
+   border-radius: 50px;
+    border: 2px solid #D6D6D6;
+    background-color: #ffffff;
+   margin-left: -50px;
+   box-shadow: 1px 3px 5px #D6D6D6;
+}
+.password_css input{
+    margin-left: 50px !important;
+}
+.forgot_password_css{
+    cursor: pointer;
+    text-align: right;
+    width: 100%;
+    padding: 10px 25px 10px 10px;
+}
+.forgot_password_css p, .not_reg_css span, .terms_conditions, .privacy_policies{
+    color: #4971B8;
+}
+.signIn_button_css button{
+    font-size: 20px;
+   outline: none;
+   width: 100%;
+   padding: 10px 20px 10px 20px;
+   border-radius: 50px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    box-shadow: 1px 2px 5px #000000;
+    transition: all .5s ease;
+}
+.signIn_button_css button:active{
+    transform: scale(.9);
+}
+.signIn_button_css_Brief button{
+  font-size: 20px;
+  outline: none;
+  width: 100%;
+  padding: 10px 20px 10px 20px;
+  border-radius: 50px;
+   border: 2px solid #000000;
+   background-color: #000000;
+   color: yellow;
+   box-shadow: 1px 2px 5px #000000;
+   transition: all .5s ease;
+}
+.signIn_button_css_Brief button:active{
+  transform: scale(0.9);
+}
+.signIn_button_css_text_css{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.signIn_button_css_text_css button{
+    font-size: 20px;
+   outline: none;
+   width: 100%;
+   padding: 10px 20px 10px 20px;
+   border-radius: 50px;
+    border: 2px solid yellow;
+    background-color: yellow;
+    box-shadow: 1px 2px 5px #000000;
+}
+.not_reg_css{
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+}
+.sign_in_get_css{
+    width: 70%;
+    margin-top: 20px;
+    font-size: 45px;
+    line-height: 60px;
+}
+.free_css{
+    background-image: url('../../assets/images/free_img.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-weight: bold;
+    font-size: 40px;
+    padding: 15px 25px 15px 25px;
+}
+.sign_in_get_under_text_css{
+    font-size: 20px;
+    line-height: 30px;
+    width: 90%;
+}
+.sign_in_get_button_css{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sign_in_get_button_css button{
+    background-color: yellow;
+    color: #000;
+    border-radius: 50px;
+    border: none;
+    font-size: 23px;
+    padding:15px 11px 15px 11px;
+    transition: all .5s ease;
+}
+.sign_in_get_button_css button:active{
+    transform: scale(0.9);
+}
+
+
+
+
+@media screen and (max-width: 500px) {
+    .signIn_css{
+       
+        width: 90%;
+       }
+       .email_id_css input , .password_css input{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        width: 90%;
+       }
+       .email_id_css , .password_css{
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
+       }
+       .email_id_css img , .password_css img{
+        position: absolute;
+        top: 59px;
+        left: 25px;
+    }
+    .sign_in_get_css{
+        width: 100%;
+    }
+    .sign_in_get_under_text_css{
+        width: 100%;
+    }
+}

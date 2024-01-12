@@ -1,0 +1,51 @@
+<form #loginForm="ngForm" (ngSubmit)="signIn(login)">
+<div
+class=" col-12 col-md-12 col-xxl-12 d-flex flex-wrap justify-content-center align-items-center">
+<div
+class="col-12 col-md-12 col-xxl-6 d-flex flex-column justify-content-center align-items-center">
+<div class="signIn_css">
+    <p class="wel_text_css">Welcome Back!</p>
+    <p class="wel_under_text_css">Login here if you already registered with us.
+    </p>
+        <div class="email_id_css w-100">
+            <label>Email ID :</label>
+            <img src="../../assets/images/user_sign_in.svg" alt="">
+            <input type="text" placeholder="Enter registered email Id here" [(ngModel)]="login.email" name="email" required>
+        </div>
+        <div class="password_css w-100">
+            <label>Password :</label>
+            <img src="../../assets/images/password_sign_in.svg" alt=""
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Look at Password">
+            <input type="password" placeholder="Enter registered email Id here" [(ngModel)]="login.password" name="password" required>
+        </div>
+        <div class="forgot_password_css">
+            <p>Forgot Password?</p>
+        </div>
+        <div class="signIn_button_css">
+            <button  [disabled]="loginForm.invalid">SIGN IN</button>
+        </div>
+        <div class="not_reg_css">
+            <p>Not Registered? <span data-bs-target="#carouselExample"
+                    data-bs-slide="prev">Create Account</span></p>
+        </div>
+    </div>
+</div>
+<div class="col-12 col-md-12 col-xxl-6 p-3">
+    <div class="sign_in_get_css">
+        <p>Sign In to Get <b>AV Script</b> Writing service <span
+            class="free_css">Free</span> for <b>1 Year</b></p>
+        </div>
+        <div class="sign_in_get_under_text_css">
+            <p>We understand the pulse of your events, the almost impossible timelines,
+                those last-minutechanges. Our secret sauce? A fusion of dynamic
+                storytelling, cinematic finesse, ingeniouscreativity, widely adaptive
+                technology and a hassle-free production process that feels likemagic !
+            </p>
+        </div>
+        <div class="sign_in_get_button_css">
+            <button id="freeScript">Yes! I want the FREE Script Service</button>
+        </div>
+    </div>
+</div>
+</form>

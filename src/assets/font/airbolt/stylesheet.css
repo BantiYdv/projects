@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Airbolt';
+    src: url('AirboltRegular.eot');
+    src: local('Airbolt'), local('AirboltRegular'),
+        url('AirboltRegular.eot?#iefix') format('embedded-opentype'),
+        url('AirboltRegular.woff2') format('woff2'),
+        url('AirboltRegular.woff') format('woff'),
+        url('AirboltRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

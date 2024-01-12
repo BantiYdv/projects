@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
+            <div class="col-12 col-md-12 ">
+                <div class="header_css_added_project">
+                    Projects
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 mt-3 overflow-auto">
+            <table class="table tAble_css">
+                <thead class="table-dark tHead_css">
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Starting Date</th>
+                        <th scope="col">Deadline Date</th>
+                        <th scope="col">Download</th>
+                        <th scope="col">View</th>
+                    </tr>
+                </thead>
+                <tbody class="tBody_css">
+                    <tr *ngFor="let project of projects; let i = index">
+                        <td scope="row">{{ i+1 }}</td>
+                        <td scope="row">{{ project.projectName }}</td>
+                        <td>{{ project.startDate }}</td>
+                        <td>{{ project.deadlineDate }}</td>
+                        <td><img src="../../../assets/images/download_css_ing.svg" class="w-25" alt=""></td>
+                        <td>
+                            <img src="../../../assets/images/eye_icon_project.svg" class="w-25" routerLink="/view-task" alt="">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
