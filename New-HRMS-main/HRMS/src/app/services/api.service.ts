@@ -111,7 +111,7 @@ export class ApiService {
   public LeaveTakenByUser = `${this.apiUrl}gateway/hrms/totalLeaveTakenByUser`;
   public remainingLeaveUser = `${this.apiUrl}gateway/hrms/totalRemainingLeave`;
   public totalWfhUser = `${this.apiUrl}gateway/hrms/totalWorkFromHomeOfUser`;
-  public WfhTakenByUser = `${this.apiUrl}gateway/hrms/workFromHomeTakenByUser`;
+  // public WfhTakenByUser = `${this.apiUrl}gateway/hrms/workFromHomeTakenByUser`;
   public remainingWfhUser = `${this.apiUrl}gateway/hrms/remainingWorkFromHome`;
   // public birthdays = `${this.apiUrl}gateway/hrms/birthdayTodayAndUpcomingBirthdays`;
   public uploadHolidayPdfUrl = `${this.apiUrl}gateway/hrms/uploadHolidayPdf`;

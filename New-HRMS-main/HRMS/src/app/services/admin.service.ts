@@ -415,15 +415,15 @@ totalWfhUser(){
 // total wfh of user end
 
 // total wfh taken by user start
-wfhTakenUser(){
+// wfhTakenUser(){
   
-  const url = `${this.api.WfhTakenByUser}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const url = `${this.api.WfhTakenByUser}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-  return this.http.get(url, { headers });
+//   return this.http.get(url, { headers });
 
-}
+// }
 // total wfh taken by user end
 
 // remaining wfh of user start
