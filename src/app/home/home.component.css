@@ -275,7 +275,7 @@
   justify-content: center;
   align-items: center;
   overflow: scroll;
-  margin-top: 90px;
+  margin-top: 80px;
   /* width: 200%;
   animation: marqueeSlide 20s linear infinite; */
   /* gap: 50px; */
@@ -724,7 +724,7 @@ section .card-content-card .card-content .card-img-text-content .image img {
 
 @media screen and (max-width: 1199px) {
   .logos_img_css_bg_slider {
-    margin-top: 18px;
+    margin-top: 14px;
   }
 
   .logos_img_css_bg_slider .logos_img_css_1 {
@@ -764,7 +764,7 @@ section .card-content-card .card-content .card-img-text-content .image img {
 }
 @media screen and (max-width: 1024px) {
   .logos_img_css_bg_slider {
-    margin-top: 18px;
+    margin-top: 15px;
   }
 
   .logos_img_css_bg_slider .logos_img_css_1 {
@@ -837,7 +837,7 @@ section .card-content-card .card-content .card-img-text-content .image img {
   }
 
   .logos_img_css_bg_slider {
-    margin-top: 18px;
+    margin-top: 15px;
   }
 
   .logos_img_css_bg_slider .logos_img_css_1 {
@@ -875,7 +875,7 @@ section .card-content-card .card-content .card-img-text-content .image img {
     margin-top: 0px;
   }
   .logos_img_css_bg_slider {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
   .logos_img_css_bg_slider .logos_img_css_1 {
