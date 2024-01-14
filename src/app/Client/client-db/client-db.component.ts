@@ -16,9 +16,16 @@ export class ClientDBComponent {
   items = new Array(30);
   workStatus: any = {};
   
+  profileData: any = {};
+  profileAvatarImg:any={};user_id : any;
+  
   constructor(public apiService:ApiServiceService,private router: Router,) {}
  
 
+  ngOnInit(): void {
+    this.user_id = localStorage.getItem('userId');
+    this.getUserDetails(this.user_id);
+  }
 
   saveWorkStatus(workStatus:any){
     console.log('signUp Api =>', workStatus);
@@ -102,5 +109,60 @@ export class ClientDBComponent {
         console.log(e.data.message);
       }
     )
+  }
+
+
+ 
+
+  handleImgFile(event: any) {
+    this.profileAvatarImg.avatar = event.target.files[0];
+    this.profileAvatarImg.user_id = localStorage.getItem('userId')
+    console.log('3 ==>',this.profileAvatarImg)
+    if(this.profileAvatarImg.avatarImg != ''){
+      this.saveAvatar();
+      console.log('1',this.profileAvatarImg)
+    }
+  }
+
+  saveAvatar(): void {
+    const formData = new FormData();
+  formData.append('user_id', this.profileAvatarImg.user_id);
+  formData.append('avatar', this.profileAvatarImg.avatar);
+
+   
+    this.apiService.saveAvatar(formData).subscribe(
+      (response) => {
+        console.log('response =>',response)
+        // On success
+        Swal.fire({
+          title: 'Avatar Saved!',
+          text: 'Your avatar has been successfully saved.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+        this.getUserDetails(this.user_id);
+      },
+      (error) => {
+        console.error('error =>',error)
+        // On error
+        Swal.fire({
+          title: 'Error',
+          text: 'An error occurred while saving the avatar. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      }
+    );
+  }
+  getUserDetails(id: any) {
+    this.apiService.getUserDetails(id).subscribe(
+      (r: any) => {
+        this.profileData = r.data
+        console.log('Profile Data ==>', r);
+      },
+      (e) => {
+        console.error(e);
+      }
+    );
   }
 }

@@ -45,6 +45,64 @@
 .log_out_css:active{
 transform: scale(.95);
 }
+
+.add_css_pro_code{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.add_css_pro_code label{
+    font-size: 17px;
+    font-weight: bold;
+}
+.add_css_pro_code input , .add_css_pro_code select{
+    font-size: 15px;
+    border: 2.5px solid #555353;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 5px;
+    width: 80%;
+    /* font-weight: bold; */
+}
+
+.text_add_p_css{
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.profile_icon_img{
+    padding: 10px;
+}
+.profile_icon_img i{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    color: #fff;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+.profile_icon_img i:active{
+    transform: scale(.9);
+}
+.profile_icon_img i:nth-child(1){
+    /* padding: 10px; */
+    background-color: green;
+}
+.profile_icon_img i:nth-child(2){
+    /* padding: 10px; */
+    background-color: red;
+}
+.profile_data_img_div{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+}
+.profile_data_img_div img{
+    width: 200px;
+   height: 200px;
+   border-radius: 50%;
+}
 /* .header_css_added_project{
     font-size: 30px;
     font-weight: bold;

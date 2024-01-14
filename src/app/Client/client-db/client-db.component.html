@@ -12,17 +12,18 @@
                     <a href="#"
                         class="profile_img_on_header d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://github.com/mdo.png'" alt="" width="32" height="32" class="rounded-circle me-2">
                         <!-- <strong>mdo</strong> -->
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li> -->
+                        <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#profileData">Profile</a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="" (click)="apiService.logOut()">Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -122,32 +123,34 @@
             <div class="col-12 col-sm-12 col-md-3 m-4" *ngFor="let item of items; let odd = odd; let even = even">
                 <div class="work_card" [ngClass]="{ 'even': even, 'odd': odd }">
                     <div class="col-12 col-sm-12 col-md-12 d-flex flex-nowrap">
-                        <div class="col-3 col-md-3 d-flex justify-content-center align-items-center " >
-                            <div class="p-1">
-                                <img src="../../../assets/images/app_icon.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-9 col-md-9">
+                        
+                        <div class="col-12 col-md-12">
                             <div class="work_text_css" [ngClass]="{ 'even': even, 'odd': odd }">awx media workz</div>
-                            <div class="work_text_pink" [ngClass]="{ 'even': even, 'odd': odd }">1090</div>
+                            <!-- <div class="work_text_pink" [ngClass]="{ 'even': even, 'odd': odd }">1090</div> -->
                         </div>
                     </div>
-                    <div class="col-12 col-md-12 d-flex justify-content-start ps-3 align-items-center">
+                    <!-- <div class="col-12 col-md-12 d-flex justify-content-start ps-3 align-items-center">
                         <div class="work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">logo,ui,banners</div>
+                    </div> -->
+                    <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center">
+                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code fs-6" [ngClass]="{ 'even': even, 'odd': odd }">Start Date</div>
+                        <!-- <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div> -->
+                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_2_code fs-6" [ngClass]="{ 'even': even, 'odd': odd }">Deadline Date</div>
                     </div>
                     <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center">
                         <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">22/4/24</div>
                         <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div>
                         <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">22/4/24</div>
                     </div>
-                    <div class="col-12 col-md-12 d-flex justify-content-center align-items-center work_text_2_code ps-3" [ngClass]="{ 'even': even, 'odd': odd }">
+                    <!-- <div class="col-12 col-md-12 d-flex justify-content-center align-items-center work_text_2_code ps-3" [ngClass]="{ 'even': even, 'odd': odd }">
                         <div>Task detailsxsahxgauxxajsxas</div>
-                    </div>
+                    </div> -->
                     <div class="col-12 col-md-12">
-                        <div class="px-2 mt-4">
-                            <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                        <div class="px-2 mt-4 bg-danger text-white d-flex justify-content-center align-items-center">
+Started
+                            <!-- <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar bg-danger" style="width: 100%">Progress 100%</div>
-                              </div>
+                              </div> -->
                         </div>
                     </div>
 
@@ -231,3 +234,68 @@
       </div>
     </div>
   </div>
+
+
+
+  
+
+<div class="modal fade" id="profileData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Profile Details</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <div class="col-12 col-md-12 d-flex justify-content-center align-items-center">
+                    <div class="add_css_pro_code">
+                        <div class="profile_data_img_div">
+                            <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://github.com/mdo.png'" alt="">
+                        </div>
+                        
+                        <div class="profile_icon_img">
+                            <i class="fa fa-upload" (click)="uploadFileInput.click()"> Upload</i>
+                            <!-- <i class="fa fa-remove" > Remove</i> -->
+                            <input type="file" #uploadFileInput style="display: none" (change)="handleImgFile($event)">
+                            <!-- <input type="file" #removeFileInput style="display: none" (change)="handleVideoFile($event)"> -->
+                        </div>
+                        <!-- <label>Name</label>
+                        <span>{{profileData.name || 'Not found'}}</span> -->
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 d-flex flex-wrap mt-3">
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Name</label>
+                            <span>{{profileData.name || 'Not found'}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex flex-wrap">
+                            <div class="add_css_pro_code">
+                                <label>Email Id</label>
+                                <span>{{profileData.email || 'Not found'}}</span>
+                            </div>
+                        
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Mobile no.</label>
+                            <span>{{profileData.country_code}}{{profileData.mobile_number || 'Not found'}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>City</label>
+                            <span>{{profileData.city || 'Not found'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

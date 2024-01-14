@@ -201,3 +201,36 @@ cursor: pointer;
 .work_text_3_code.even{
     background-color: #FFB6C7;
 }
+.profile_icon_img{
+    padding: 10px;
+}
+.profile_icon_img i{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    color: #fff;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+.profile_icon_img i:active{
+    transform: scale(.9);
+}
+.profile_icon_img i:nth-child(1){
+    /* padding: 10px; */
+    background-color: green;
+}
+.profile_icon_img i:nth-child(2){
+    /* padding: 10px; */
+    background-color: red;
+}
+.profile_data_img_div{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+}
+.profile_data_img_div img{
+    width: 200px;
+   height: 200px;
+   border-radius: 50%;
+}

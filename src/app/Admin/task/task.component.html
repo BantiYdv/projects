@@ -46,9 +46,9 @@
                         </td>
                         <td>
                           <div class="icon_t_e_e">
-                            <i class="fa fa-trash" (click)="deleteTaskById(task._id)"></i>
-                            <i class="fa fa-edit" (click)="getTaskById(task._id)" data-bs-toggle="modal" data-bs-target="#updateNewTask"></i>
-                            <i class="fa fa-eye" (click)="getTaskById(task._id)" data-bs-toggle="modal" data-bs-target="#viewNewTask"></i>
+                            <!-- <i class="fa fa-trash" (click)="deleteTaskById(taskSave._id)"></i>
+                            <i class="fa fa-edit" (click)="getTaskById(taskSave._id)" data-bs-toggle="modal" data-bs-target="#updateNewTask"></i>
+                            <i class="fa fa-eye" (click)="getTaskById(taskSave._id)" data-bs-toggle="modal" data-bs-target="#viewNewTask"></i> -->
                           </div>
                         </td>
                       </tr>
@@ -71,50 +71,52 @@
             </div>
         </div>
         <div class="modal-body m-4">
-            <form #saveTaskForm="ngForm" (ngSubmit)="saveTask(task)">
+            <form #saveTaskForm="ngForm" (ngSubmit)="saveTask(taskSave)">
           <div class="col-12 col-md-12 d-flex flex-wrap">
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
-                    <label>Project Name</label>
-                    <input type="text" placeholder="Project Name" [(ngModel)]="task.name" name="name" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Task Number</label>
-                    <input type="tel" placeholder="Task No." [(ngModel)]="task.number" name="number" required>
+                    <label>Select Project</label>
+                    <select [(ngModel)]="taskSave.project_id" name="project_id">
+                        <option *ngFor="let project of projectList" [value]="project._id">{{project.name}}</option>
+                    </select>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Task Name</label>
-                    <input type="text" placeholder="Task Name" [(ngModel)]="task.task_name" name="task_name" required>
+                    <input type="text" placeholder="Task Name" [(ngModel)]="taskSave.name" name="name" required>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Assign To Team Member</label>
-                    <select  [(ngModel)]="task.assignToTM" name="assignToTM" required>
-                        <option>ragini agarwal</option>
+                    <select [(ngModel)]="taskSave.assgined_to" name="assgined_to" required>
+                        <option *ngFor="let handel of handel_By" [value]="handel._id">{{handel.name}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Upload Doc.</label>
-                    <input type="file" [(ngModel)]="task.desc" name="desc">
+                    <input type="file" [(ngModel)]="taskSave.task_attachement" name="task_attachement">
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
-                    <label>Description</label>
-                    <input type="text" placeholder="Description" [(ngModel)]="task.description" name="description" required>
+                    <label>Start Date</label>
+                    <input type="date" [(ngModel)]="taskSave.start_date" name="start_date" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="add_css_pro_code">
+                    <label>Deadline Date</label>
+                    <input type="date" [(ngModel)]="taskSave.deadline" name="deadline" required>
                 </div>
             </div>
             <div class="col-12 col-md-12">
                 <div class="add_css_pro_code">
                     <label>Other Information</label>
-                    <input type="text" placeholder="other information"  [(ngModel)]="task.otherInfo" name="otherInfo">
+                    <input type="text" placeholder="other information"  [(ngModel)]="taskSave.desc" name="desc">
                 </div>
             </div>
           </div>
@@ -132,7 +134,7 @@
 
 
    <!-- Modal updateNewTask -->
-   <div class="modal fade" id="updateNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <!-- <div class="modal fade" id="updateNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #3B3A70;">
@@ -198,12 +200,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
   
    <!-- Modal ViewNewProject -->
-   <div class="modal fade" id="viewNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <!-- <div class="modal fade" id="viewNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #3B3A70;">
@@ -231,7 +233,6 @@
                 <div class="add_css_pro_code">
                     <label>Task Name</label>
                     <span>ragini agarwal</span>
-                    <!-- <input type="text" placeholder="ashish roy"> -->
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -259,12 +260,65 @@
                 </div>
             </div>
           </div>
-          <!-- <div class="col-12 col-md-12">
-            <div class="save_css_button_code">
-                <button>Save</button>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

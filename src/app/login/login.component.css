@@ -33,12 +33,12 @@
 .email_id_css img{
     position: absolute;
     top: 55px;
-    left: -40px;
+    left: 30px;
 }
 .password_css img{
     position: absolute;
     top: 55px;
-    left: 65px;
+    left: 30px;
 }
 .email_id_css label, .password_css label{
     font-size: 18px;
@@ -50,17 +50,15 @@
    /* position: absolute; */
    font-size: 20px;
    outline: none;
-   width: 100%;
+   width: 90%;
    padding: 15px 10px 15px 60px;
    border-radius: 50px;
     border: 2px solid #D6D6D6;
     background-color: #ffffff;
-   margin-left: -50px;
+   margin-left: 20px;
    box-shadow: 1px 3px 5px #D6D6D6;
 }
-.password_css input{
-    margin-left: 50px !important;
-}
+
 .forgot_password_css{
     cursor: pointer;
     text-align: right;

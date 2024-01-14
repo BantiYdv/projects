@@ -103,3 +103,14 @@
 .save_css_button_code button:active{
     transform: scale(.9);
 }
+.bg-secondary{
+    background-color: #c2c2c2 !important;
+}
+.teamMemberAdd{
+    font-size: 15px;
+    border: 2.5px solid #555353;
+    border-radius: 5px;
+    padding: 1px;
+    height: 60px;
+    /* width: 80%; */
+}

@@ -10,26 +10,32 @@ export class KeysServiceService {
 
   public mainUrl = "http://101.53.145.234:4005";
 
-  public signIn = `${this.mainUrl}/user/login`;
-  public signUp = `${this.mainUrl}/user/registration`;
+  public signIn = `${this.mainUrl}/user/login`;//done
+  public signUp = `${this.mainUrl}/user/registration`;//done
   public sendOTPForForgetPassword = `${this.mainUrl}/user/sendOTPForForgetPassword`;
-  public verifyOtp = `${this.mainUrl}/user/verifiyOtp`;//user/verifiyOtp?email=shreeprana.prajapat@prilient.com&otp=5895
+  public verifyOtp = `${this.mainUrl}/user/verifiyOtp`;
+  
+  public saveAvatar = `${this.mainUrl}/user/saveAvatar`;//done
+  public getUserDetails = `${this.mainUrl}/user/getUserDetails`;//done
 
-  public saveProject = `${this.mainUrl}/project/saveProject`;
-  public getProject = `${this.mainUrl}/project/getProject`;
-  public getProjectById = `${this.mainUrl}/getProjectById`;
-  public updateProjectById = `${this.mainUrl}/updateProjectById`;
-  public deleteProjectById = `${this.mainUrl}/deleteProjectById`;
-  public get_client_id = `${this.mainUrl}/user/getUserList`
-  public get_handel_by = `${this.mainUrl}/teamMembers/getTeamMemberList`
-  public updatedProjectStatus = `${this.mainUrl}/`
 
-  public saveTask = `${this.mainUrl}/saveTask`;
-  public getTask = `${this.mainUrl}/getTask`;
+  public saveProject = `${this.mainUrl}/project/saveProject`;//done
+  public getProject = `${this.mainUrl}/project/getProject`;//done
+  public getProjectById = `${this.mainUrl}/project/getProjectDetailsById`;//done
+  public updateProjectById = `${this.mainUrl}/project/updateProject`;//done
+  public deleteProjectById = `${this.mainUrl}/project/deleteProject`;//done
+  public get_client_id = `${this.mainUrl}/user/getUserList`//done
+  public get_handel_by = `${this.mainUrl}/teamMembers/getTeamMemberList`//done
+  public updatedProjectStatus = `${this.mainUrl}/project/updateStatusOfProject`//done
+  public addParticipant = `${this.mainUrl}/project/addParticipant `//done
+
+  public saveTask = `${this.mainUrl}/task/createTask`;
+  public getTask = `${this.mainUrl}/task/getTaskList`;
   public getTaskById = `${this.mainUrl}/getTaskById`;
   public updateTaskById = `${this.mainUrl}/updateTaskById`;
-  public deleteTaskById = `${this.mainUrl}/deleteTaskById`;
+  public deleteTaskById = `${this.mainUrl}/task/deleteTask`;
 
+  public getTeamMemberListToAddParticipant = `${this.mainUrl}/teamMembers/getTeamMemberListToAddParticipant`;//done
   public saveTeamMember = `${this.mainUrl}/saveTeamMember`;
   public getTeamMember = `${this.mainUrl}/getTeamMember`;
   public getTeamMemberById = `${this.mainUrl}/getTeamMemberById`;

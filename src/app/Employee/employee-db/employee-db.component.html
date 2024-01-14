@@ -12,17 +12,18 @@
                     <a href="#"
                         class="profile_img_on_header d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://github.com/mdo.png'" alt="" width="32" height="32" class="rounded-circle me-2">
                         <!-- <strong>mdo</strong> -->
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li> -->
+                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileData">Profile</a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="" (click)="apiService.logOut()">Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,4 +74,71 @@
         </div>
     </div>
     <div class="col-12 col-md-12 d-flex justify-content-center align-items-center log_out_css" (click)="apiService.logOut()"> <i class="fa fa-sign-out"></i> log out</div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="profileData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Profile Details</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <div class="col-12 col-md-12 d-flex justify-content-center align-items-center">
+                    <div class="add_css_pro_code">
+                        <div class="profile_data_img_div">
+                            <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://github.com/mdo.png'" alt="">
+                        </div>
+                        
+                        <div class="profile_icon_img">
+                            <i class="fa fa-upload" (click)="uploadFileInput.click()"> Upload</i>
+                            <!-- <i class="fa fa-remove" > Remove</i> -->
+                            <input type="file" #uploadFileInput style="display: none" (change)="handleImgFile($event)">
+                            <!-- <input type="file" #removeFileInput style="display: none" (change)="handleVideoFile($event)"> -->
+                        </div>
+                        <!-- <label>Name</label>
+                        <span>{{profileData.name || 'Not found'}}</span> -->
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 d-flex flex-wrap mt-3">
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Name</label>
+                            <span>{{profileData.name || 'Not found'}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex flex-wrap">
+                            <div class="add_css_pro_code">
+                                <label>Email Id</label>
+                                <span>{{profileData.email || 'Not found'}}</span>
+                            </div>
+                        
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Mobile no.</label>
+                            <span>{{profileData.country_code}}{{profileData.mobile_number || 'Not found'}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>City</label>
+                            <span>{{profileData.city || 'Not found'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

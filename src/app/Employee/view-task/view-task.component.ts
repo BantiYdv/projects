@@ -25,37 +25,37 @@ export class ViewTaskComponent {
   constructor(private apiService:ApiServiceService,private router: Router,) {}
   
   onChangeStatus(status:any){
-    console.log(status)
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be change the status!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.apiService.updatedProjectStatus(status).subscribe(
-          (r) => {
-            this.project = r;
-            Swal.fire(
-              'Updated!',
-              // r.data.message,
-              'success'
-            );
-            // this.getProject();
-          },
-          (e) => {
-            console.log(e.error.message);
-            Swal.fire(
-              'Error!',
-              e.error.message,
-              'error'
-            );
-          }
-        );
-      }
-    });
+  //   console.log(status)
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     text: 'You won\'t be change the status!',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Yes, delete it!'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.apiService.updatedProjectStatus(status).subscribe(
+  //         (r) => {
+  //           this.project = r;
+  //           Swal.fire(
+  //             'Updated!',
+  //             // r.data.message,
+  //             'success'
+  //           );
+  //           // this.getProject();
+  //         },
+  //         (e) => {
+  //           console.log(e.error.message);
+  //           Swal.fire(
+  //             'Error!',
+  //             e.error.message,
+  //             'error'
+  //           );
+  //         }
+  //       );
+  //     }
+  //   });
   }
 }

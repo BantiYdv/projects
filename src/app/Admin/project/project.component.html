@@ -1,3 +1,5 @@
+
+
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
@@ -30,38 +32,40 @@
                     </tr>
                 </thead>
                 <tbody class="tBody_css">
-                    <tr *ngFor="let project of projects;">
-                        <td scope="row">{{ project?.name }}</td>
-                        <td>{{ project.client_id?.name }}</td>
-                        <td>{{ project?.start_date  | date: 'dd/MM/yyyy'  }}</td>
-                        <td>{{ project?.deadline | date: 'dd/MM/yyyy' }}</td>
-                        <td>{{ project.handel_by?.name }}</td>
-                        <td><a href="http://101.53.145.234:4005/" download>
+                    <tr *ngFor="let projectData of projects;">
+                        <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.start_date  | date: 'dd/MM/yyyy'  }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.deadline | date: 'dd/MM/yyyy' }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                            <div  data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
+                            data-bs-target="#downloadProject">
                             <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                        </a>
+                        </div>
                     </td>
-                        <td>
-                            <select class="select_css_code" [(ngModel)]="project.current_status" name="current_status" (change)="onChangeStatus(project.current_status)">
-                                <option value="created">Created</option>
-                                <option value="start">start</option>
-                                <option value="ongoing">Ongoing</option>
-                                <option value="finish">Finish</option>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                            <select class="select_css_code" [(ngModel)]="projectData.current_status" name="current_status" (change)="onChangeStatus(projectData._id,projectData.current_status)">
+                                <option value="Created">Created</option>
+                                <option value="Start">Start</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Finish">Finish</option>
                             </select>
                         </td>
-                        <td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                             <div class="icon_t_e_e">
-                                <i class="fa fa-trash" (click)="deleteProjectById(project._id)"></i>
-                                <i class="fa fa-edit" (click)="getProjectById(project._id)" data-bs-toggle="modal"
+                                <i class="fa fa-trash" (click)="deleteProjectById(projectData._id,projectData.is_enabled)" *ngIf="projectData.is_enabled"></i>
+                                <i class="fa fa-download" (click)="deleteProjectById(projectData._id,projectData.is_enabled)" *ngIf="!projectData.is_enabled"></i>
+                                <i class="fa fa-edit" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#updateNewProject"></i>
-                                <i class="fa fa-eye" (click)="getProjectById(project._id)" data-bs-toggle="modal"
+                                <i class="fa fa-eye" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#viewNewProject"></i>
+                                <i class="fa fa-users" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                    data-bs-target="#viewProjectOpp"></i>
                             </div>
                         </td>
                     </tr>
                 </tbody>
-                <!-- <tfoot>
-                  ...
-                </tfoot> -->
             </table>
         </div>
     </div>
@@ -70,7 +74,7 @@
 
 
 <!-- Modal addNewProject -->
-<div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #3B3A70;">
@@ -83,12 +87,12 @@
                 </div>
             </div>
             <div class="modal-body m-4">
-                <form #saveProjectForm="ngForm" (ngSubmit)="saveProject(project)">
+                <form #saveProjectForm="ngForm" (ngSubmit)="saveProject(projectSave)">
                     <div class="col-12 col-md-12 d-flex flex-wrap">
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Project Name</label>
-                                <input type="text" placeholder="Project Name"  [(ngModel)]="project.name" name="name"
+                                <input type="text" placeholder="Project Name"  [(ngModel)]="projectSave.name" name="name"
                                     required>
                             </div>
                         </div>
@@ -96,27 +100,27 @@
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Starting Date</label>
-                                    <input type="date" [(ngModel)]="project.start_date" name="start_date" required>
+                                    <input type="date" [(ngModel)]="projectSave.start_date" name="start_date" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Deadline Date</label>
-                                    <input type="date" [(ngModel)]="project.deadline" name="deadline" required>
+                                    <input type="date" [(ngModel)]="projectSave.deadline" name="deadline" required>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Short Name</label>
-                                <input type="text" placeholder="Short Name" [(ngModel)]="project.short_name"
+                                <input type="text" placeholder="Short Name" [(ngModel)]="projectSave.short_name"
                                     name="short_name" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Client Name</label>
-                                <select [(ngModel)]="project.client_id" name="client_id" required>
+                                <select [(ngModel)]="projectSave.client_id" name="client_id" required>
                                     <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
                                 </select>
                             </div>
@@ -124,13 +128,13 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Upload Doc.</label>
-                                <input type="file" [(ngModel)]="project.project_resourses" name="project_resourses">
+                                <input type="file" [(ngModel)]="projectSave.project_resourses" name="project_resourses">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Handled By</label>
-                                <select [(ngModel)]="project.handel_by" name="handel_by" required>
+                                <select [(ngModel)]="projectSave.handel_by" name="handel_by" required>
                                     <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">{{handel_by.name}}
                                     </option>
                                 </select>
@@ -139,7 +143,7 @@
                         <div class="col-12 col-md-12">
                             <div class="add_css_pro_code">
                                 <label>Other Information</label>
-                                <input type="text" placeholder="other information" [(ngModel)]="project.desc"
+                                <input type="text" placeholder="other information" [(ngModel)]="projectSave.desc"
                                     name="desc">
                             </div>
                         </div>
@@ -157,7 +161,7 @@
 </div>
 
 
-<!-- Modal UpdateNewProject -->
+
 <div class="modal fade" id="updateNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -171,72 +175,76 @@
                 </div>
             </div>
             <div class="modal-body m-4">
-                <form #updateProjectForm="ngForm" (ngSubmit)="saveProject(project)">
+                <form #updateProjectForm="ngForm" (ngSubmit)="updateProjectById(projectUpdate)">
                     <div class="col-12 col-md-12 d-flex flex-wrap">
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Project Name</label>
-                                <input type="text" placeholder="Project Name" [(ngModel)]="project.name" name="name"
+                                <input type="text" placeholder="Project Name"  [(ngModel)]="projectUpdate.name" name="name"
                                     required>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 d-flex flex-wrap">
+                       <div class="col-12 col-md-6 d-flex flex-wrap">
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Starting Date</label>
-                                    <input type="date" [(ngModel)]="project.start_date" name="start_date" required>
+                                    <input type="date" [(ngModel)]="projectUpdate.start_date" name="start_date" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Deadline Date</label>
-                                    <input type="date" [(ngModel)]="project.deadline" name="deadline" required>
+                                    <input type="date" [(ngModel)]="projectUpdate.deadline" name="deadline" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Short Name</label>
-                                <input type="text" placeholder="Short Name" [(ngModel)]="project.short_name"
+                                <input type="text" placeholder="Short Name" [(ngModel)]="projectUpdate.short_name"
                                     name="short_name" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Client Name</label>
-                                <select [(ngModel)]="project.client_id" name="client_id" required>
-                                    <option *ngFor="let client of clients" [value]="client">{{client}}</option>
+                                <!-- {{projectUpdate.client_id._id}} -->
+                                <select  [(ngModel)]="projectUpdate.client_id._id" name="client_id" required>
+                                    <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Upload Doc.</label>
-                                <input type="file" [(ngModel)]="project.project_resourses" name="project_resourses">
+                                <input  type="file" [(ngModel)]="projectUpdate.project_resourses" name="project_resourses">
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                      <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Handled By</label>
-                                <select [(ngModel)]="project.handel_by" name="handel_by" required>
-                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by">{{handel_by}}
+                                <!-- {{projectUpdate.handel_by._id}} -->
+                                <select [(ngModel)]="projectUpdate.handel_by._id" name="handel_by" required>
+                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">{{handel_by.name}}
                                     </option>
                                 </select>
+                                <!-- {{projectUpdate.handel_by._id}} -->
                             </div>
                         </div>
                         <div class="col-12 col-md-12">
                             <div class="add_css_pro_code">
                                 <label>Other Information</label>
-                                <input type="text" placeholder="other information" [(ngModel)]="project.desc"
+                                <input type="text" placeholder="other information" [(ngModel)]="projectUpdate.desc"
                                     name="desc">
                             </div>
                         </div>
                     </div>
+                   
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
                             <button [disabled]="updateProjectForm.invalid">Update</button>
                         </div>
-                    </div>
+                    </div> 
                 </form>
             </div>
         </div>
@@ -244,8 +252,6 @@
 </div>
 
 
-
-<!-- Modal ViewNewProject -->
 <div class="modal fade" id="viewNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -258,61 +264,135 @@
                             data-bs-dismiss="modal" aria-label="Close"></button></div>
                 </div>
             </div>
-            <div class="modal-body m-4">
-                <div class="col-12 col-md-12 d-flex flex-wrap">
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Project Name</label>
-                            <span>{{project.name}}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 d-flex flex-wrap">
+                <div class="modal-body m-4">
+                    <div class="col-12 col-md-12 d-flex flex-wrap">
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
-                                <label>Starting Date</label>
-                                <span>{{project.starting_date}}</span>
+                                <label>Project Name</label>
+                                <span>{{projectUpdate.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex flex-wrap">
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Starting Date</label>
+                                    <span>{{projectUpdate.start_date | date:'dd/MM/yyyy'}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Deadline Date</label>
+                                    <span>{{projectUpdate.deadline | date:'dd/MM/yyyy'}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
-                                <label>Deadline Date</label>
-                                <span>{{project.deadline_date}}</span>
+                                <label>Handled By</label>
+                                <span>{{projectUpdate.handel_by.name}}</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Handled By</label>
-                            <span>{{project.handel_by}}</span>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Client Name</label>
+                                <span>{{projectUpdate.client_id.name}}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Client Name</label>
-                            <span>{{project.client_name}}</span>
-                            <!-- <input type="text" placeholder="ashish roy"> -->
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Upload Doc.</label>
+                                <span *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index">
+                                    Document {{i+1}}</span>
+                                    <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex">
+                                        No Document
+                                    </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Upload Doc.</label>
-                            <span>{{project.desc}}</span>
-                            <!-- <input type="file"> -->
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Assign To</label>
-                            <span>{{project.assign}}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-12">
-                        <div class="add_css_pro_code">
-                            <label>Other Information</label>
-                            <span>{{project.otherInfo}}</span>
+                        <div class="col-12 col-md-12">
+                            <div class="add_css_pro_code">
+                                <label>Other Information</label>
+                                <span>{{projectUpdate.desc}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="downloadProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.name}} Details</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <div class="col-12 col-md-12">
+                    <div  *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index" class="d-flex justify-content-between align-items-center" >
+                        <h2>Document {{i+1}}</h2>
+                        <a href="'http://101.53.145.234:4005/' + project.project_resourses.url" download>
+                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                        </a>
+                    </div>
+                    <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex justify-content-center align-items-center">
+                        No Document
+                    </div>
+                    <div *ngIf="!projectUpdate.project_resourses" class="d-flex justify-content-center align-items-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" style=" --bs-modal-zindex: 1000 !important;background-color: #58585867 !important;" id="viewProjectOpp"tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-bs-backdrop="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <form #saveTeamMemberForm="ngForm" (ngSubmit)="addParticipant(addParticipantData)">
+                  <div class="col-12 col-md-12 d-flex justify-content-center align-items-center">
+                  
+<div class="teamMemberAdd">
+    <mat-form-field>
+        <mat-label>Team Member</mat-label>
+        <mat-select  multiple aria-required="true" [(value)]="addParticipantData"> 
+            <mat-option *ngFor="let getTeamMember of getTeamMemberList" [value]="getTeamMember._id">{{getTeamMember.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- {{addParticipantData}} -->
+</div>
+
+                  </div>
+                    <div class="col-12 col-md-12">
+                        <div class="save_css_button_code">
+                            <button [disabled]="saveTeamMemberForm.invalid">Save</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

@@ -1,64 +1,82 @@
+
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
+interface ProjectResource {
+  url: string;
+  type: string;
+  _id: string;
+}
 
 interface Project {
   _id: any;
   name: string;
-  client_id: {name:string};
+  is_enabled: boolean;
+  client_id: string;
   start_date: Date;
-  deadline:Date;
-  handel_by:{name:string};
-  current_status :string;
-  // other properties
+  deadline: Date;
+  handel_by: { name: string };
+  current_status: string;
+  project_resourses: ProjectResource[];
 }
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule,FormsModule,RouterLink],
+  imports: [CommonModule,FormsModule,RouterLink,MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule],
   providers:[DatePipe],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css',
 })
 export class ProjectComponent implements OnInit {
-  project: any = {};
+  projectSave: any = {};
+  project_id: any;
+  addParticipantData : any;
+  getTeamMemberList: any;
+  projectUpdate: any = {
+    client_id: {
+      _id: "",
+      name: "",
+    },
+    handel_by: {
+      _id: "",
+      name: "",
+    },
+  };
   clients : any[] | any;
   handel_By : any[] | any;
-  projects: Project[] = [];
-
-  
-  // projects = [
-  //   { _id:'1', projectName: 'awx media', clientName: 'rajendra gehlot', startDate: '16 feb 2024', deadlineDate: '21 mar 2024', handledBy: 'apurva agarwal', status: 'ongoing' },
-  //   {  _id:'2',projectName: 'awx media', clientName: 'rajendra gehlot', startDate: '16 feb 2024', deadlineDate: '21 mar 2024', handledBy: 'apurva agarwal', status: 'ongoing' },
-  //   {  _id:'3',projectName: 'awx media', clientName: 'rajendra gehlot', startDate: '16 feb 2024', deadlineDate: '21 mar 2024', handledBy: 'apurva agarwal', status: 'pending' },
-  //   {  _id:'4',projectName: 'awx media', clientName: 'rajendra gehlot', startDate: '16 feb 2024', deadlineDate: '21 mar 2024', handledBy: 'apurva agarwal', status: 'finish' },
-  // ];
+  projects: Project[] | any;
 
   constructor(private apiService:ApiServiceService,private router: Router, public route: ActivatedRoute) {}
-
 
   ngOnInit(): void {
     const userId = localStorage.getItem('userId')
     this.getProject();
     this.get_client_id(userId);
     this.get_handel_by(userId);
+    // this.getProjectById(userId);
+
   }
 
+  toppings = new FormControl('');
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+
   saveProject(project:any){
-    this.project.user_id = localStorage.getItem('userId')
+    this.projectSave.user_id = localStorage.getItem('userId')
     const formData = new FormData();
 
     const appendFormData = (property: string, value: any) => {
       formData.append(property, value);
     };
-  
-    // List of properties to append
+
     const projectProperties = [
       'name',
       'user_id',
@@ -72,14 +90,13 @@ export class ProjectComponent implements OnInit {
   
     // Append each property to the formData
     projectProperties.forEach((property) => {
-      if (property === 'project_resourses' && Array.isArray(this.project[property])) {
-        // If property is 'project_resourses' and it's an array, append each element
-        this.project[property].forEach((resource: any, index: any) => {
+      if (property === 'project_resourses' && Array.isArray(this.projectSave[property])) {
+        this.projectSave[property].forEach((resource: any, index: any) => {
           appendFormData(`${property}[${index}]`, resource);
         });
       } else {
         // Otherwise, append the property normally
-        appendFormData(property, this.project[property]);
+        appendFormData(property, this.projectSave[property]);
       }
     });
   
@@ -97,29 +114,26 @@ export class ProjectComponent implements OnInit {
           timer: 3000,
         }).then((result) => {
           if (result) {
-            this.router.navigate(['/project']);
-            this.router.navigate([], {
-              relativeTo: this.route,
-              queryParams: {},
-              queryParamsHandling: 'merge',
-            });
+            
+           
+            this.getProject();
+            this.projectSave = {};
           }
         });
-        this.getProject();
-        this.project = {};
       },
       (e: any) => {
         console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
-        // this.project = {};
       }
     );
   }
 
   getProject(){
+    this.projects = {};
     this.apiService.getProject().subscribe(
       (r:any) => {
         this.projects = r.data;
+        console.log('==> ==>',r.data)
         console.log('projects',this.projects)
       },
       (e) => {
@@ -151,20 +165,64 @@ export class ProjectComponent implements OnInit {
   }
 
   getProjectById(id:any){
+    this.getTeamMemberListToAddParticipant(id);
+    this.projectUpdate={};
+
     this.apiService.getProjectById(id).subscribe(
-      (r) => {
-        this.project = r;
+      (r:any) => {
+        this.projectUpdate = r.data;
+        this.project_id = r.data._id
+        console.log('data.project_id',r.data._id)
       },
       (e) => {
-        console.log(e.data.message);
+        console.error('error -->',e);
+
       }
     )
   }
 
   updateProjectById(project:any){
-    this.apiService.updateProjectById(project).subscribe(
+    console.log('project id ==>',project._id)
+    this.projectUpdate.user_id = localStorage.getItem('userId')
+    this.projectUpdate.project_id = project._id;
+    this.projectUpdate.client_id = this.projectUpdate.client_id._id;
+    this.projectUpdate.handel_by = this.projectUpdate.handel_by._id;
+    const formData = new FormData();
+
+    const appendFormData = (property: string, value: any) => {
+      formData.append(property, value);
+    };
+    
+    const projectProperties = [
+      'project_id',
+      'name',
+      'user_id',
+      'start_date',
+      'deadline',
+      'client_id',
+      'handel_by',
+      'desc'
+    ];
+  
+    // Append each property to the formData
+    projectProperties.forEach((property) => {
+      if (property === 'project_resourses' && Array.isArray(this.projectUpdate[property])) {
+        this.projectUpdate[property].forEach((resource: any, index: any) => {
+          appendFormData(`${property}[${index}]`, resource);
+        });
+      } else {
+        // Otherwise, append the property normally
+        appendFormData(property, this.projectUpdate[property]);
+      }
+    });
+  
+    console.log('formData =>', formData);
+  
+    console.log('signUp Api =>', project);
+    this.apiService.updateProjectById(formData).subscribe(
       (r: any) => {
         console.log(r);
+        this.getProjectById(project._id)
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -173,22 +231,19 @@ export class ProjectComponent implements OnInit {
           timer: 3000,
         }).then((result) => {
           if (result) {
-            this.router.navigate(['/']);
+            this.getProject();
           }
         });
-        this.getProject();
-        this.project = {};
       },
       (e: any) => {
         console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
-        // this.project = {};
       }
     );
   }
 
-  deleteProjectById(id: any) {
-    // Show confirmation dialog
+  deleteProjectById(id: any,is_enabled:any) {
+    
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be able to revert this!',
@@ -199,13 +254,13 @@ export class ProjectComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        // If confirmed, proceed with the deletion
-        this.apiService.deleteProjectById(id).subscribe(
-          (r) => {
-            this.project = r;
+        this.apiService.deleteProjectById(id,is_enabled).subscribe(
+          (r:any) => {
+            this.projectSave = r;
+            console.log('====>',r.message)
             Swal.fire(
               'Deleted!',
-              // r.data.message,
+              r.message,
               'success'
             );
             this.getProject();
@@ -224,8 +279,9 @@ export class ProjectComponent implements OnInit {
   }
 
 
-  onChangeStatus(status:any){
-    console.log(status)
+  onChangeStatus(id:any,status:any){
+    console.log('status ==> ',status)
+    console.log('id = = >',id)
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be change the status!',
@@ -236,18 +292,18 @@ export class ProjectComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.apiService.updatedProjectStatus(status).subscribe(
-          (r) => {
-            this.project = r;
+        this.apiService.updatedProjectStatus(id,status).subscribe(
+          (r:any) => {
+            this.projectSave = r;
             Swal.fire(
               'Updated!',
-              // r.data.message,
+              r.data.message,
               'success'
             );
             this.getProject();
           },
           (e) => {
-            console.log(e.error.message);
+            console.error(e);
             Swal.fire(
               'Error!',
               e.error.message,
@@ -257,6 +313,46 @@ export class ProjectComponent implements OnInit {
         );
       }
     });
+  }
+
+
+  addParticipant(addParticipant:any){
+
+    this.apiService.addParticipant(this.project_id,addParticipant).subscribe(
+      (r:any) => {
+        console.log('addParticipant',r);
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: r.data.message,
+          showConfirmButton: false,
+          timer: 3000,
+        })
+      },
+      (e:any) => {
+        console.error('addParticipant',e);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: e.message,
+          showConfirmButton: false,
+          timer: 3000,
+        })
+      }
+    )
+
+  }
+
+  getTeamMemberListToAddParticipant(project_id:any){
+    this.apiService.getTeamMemberListToAddParticipant(project_id).subscribe(
+      (r:any) => {
+        console.log('getTeamMemberListToAddParticipant',r);
+        this.getTeamMemberList = r.data;
+      },
+      (e:any) => {
+        console.error('getTeamMemberListToAddParticipant',e);
+      }
+    )
   }
   
 }
