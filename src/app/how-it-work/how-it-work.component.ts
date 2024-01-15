@@ -238,73 +238,46 @@ export class HowItWorkComponent implements OnInit {
     );
   }
   //registration code end here
-
-  handleAudioFile(event: any) {
-    this.userData.audio = event.target.files[0];
-
-    console.log('Selected Audio File:', this.userData.audio);
-  }
-  handleVideoFile(event: any) {
-    this.userData.video = event.target.files[0];
-    // Handle the selected audio file, for example, you can log it or perform further actions.
-    console.log('Selected Audio File:', this.userData.video);
-  }
-
   openWhatsApp(phoneNumber: string, message: string) {
     window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   }
 
+  handleAudioFile(event: any) {
+    this.userData.audio = event.target.files[0];
+    console.log('Selected Audio File:', this.userData.audio);
+  }
+  handleVideoFile(event: any) {
+    this.userData.video = event.target.files[0];
+    console.log('Selected Audio File:', this.userData.video);
+  }
 
+  handleCAFile(event: any) {
+    this.userData.creative_attach = event.target.files[0];
+    console.log(this.userData.creative_attach);
+  }
+  handleMAFile(event: any) {
+    this.userData.more_attach = event.target.files[0];
+    console.log(this.userData.more_attach);
+  }
   saveCientRequirement(userData:any){
     // Create a JSON object excluding "creative_attach"
-    const jsonData = {
-      av_type: this.userData.av_type,
-      city: this.userData.city,
-      email: this.userData.email,
-      mobile_number: this.userData.mobile_number,
-      deadline: this.userData.deadline,
-      event_date: this.userData.event_date,
-      desc: this.userData.desc,
-      budget: this.userData.budget,
-      budget_in_mind: this.userData.budget_in_mind,
-      // more_attach: this.userData.more_attach,
-    };
-
-    // Create a FormData object
     const formData = new FormData();
 
-    // Function to append property to FormData
-    const appendFormData = (property: string, value: any) => {
-      formData.append(property, value);
-    };
+    formData.append('av_type', this.userData.av_type);
+    formData.append('city', this.userData.city);
+    formData.append('email', this.userData.email);
+    formData.append('mobile_number', this.userData.mobile_number);
+    formData.append('event_date', this.userData.event_date);
+    formData.append('deadline', this.userData.deadline);
+    formData.append('desc', this.userData.desc);
+    formData.append('budget', this.userData.budget);
+    formData.append('budget_in_mind', this.userData.budget_in_mind);
 
-    // List of form fields excluding "creative_attach"
-    const formFields = [
-      'av_type',
-      'city',
-      'email',
-      'mobile_number',
-      'deadline',
-      'event_date',
-      'desc',
-      'budget',
-      'budget_in_mind'
-    ];
-
-    // Append each form field to the formData
-    formFields.forEach((field) => {
-      appendFormData(field, this.userData[field]);
-    });
-
-    // Append "creative_attach" as a file to the formData
     formData.append('creative_attach', this.userData.creative_attach);
     formData.append('more_attach', this.userData.more_attach);
     formData.append('audio', this.userData.audio);
     formData.append('video', this.userData.video);
-
-
-    // Send JSON data to the API
-    this.apiService.saveCientRequirement(jsonData).subscribe(
+    this.apiService.saveCientRequirement(formData).subscribe(
       (r: any) => {
         console.log(r);
         localStorage.setItem('client_id',r.data._id)

@@ -70,16 +70,16 @@
 <div class="container-fluid p-0">
     <div class="col-12 col-md-12 col-xxl-12 d-flex flex-nowrap justify-content-center align-items-center">
         <div class="menu_options_css">
-            <div [class.active]="activeMenuItem === 'Brief Us'" class="option_css_meni">Brief Us</div>
-            <div [class.active]="activeMenuItem === 'Schedule Meeting'" class="option_css_meni">Schedule Meeting</div>
-            <div [class.active]="activeMenuItem === 'Create Account'" class="option_css_meni">Create Account</div>
+            <div [class.active]="currentStep === 1" class="option_css_meni">Brief Us</div>
+            <div [class.active]="currentStep === 2" class="option_css_meni">Schedule Meeting</div>
+            <div [class.active]="currentStep === 3" class="option_css_meni">Create Account</div>
         </div>
 
     </div>
     <div *ngIf="currentStep === 1" class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center mt-4">
         <div class="signUp_css">
             <p class="create_account_css">Brief Us</p>
-            <p class="create_account_under_text_css">SFill the details below to understand us better about
+            <p class="create_account_under_text_css">Fill the details below to understand us better about
                 your project</p>
             <form #saveCientRequirementForm="ngForm" (ngSubmit)="saveCientRequirement(userData)">
                 <div
@@ -163,7 +163,7 @@
                         <div class="reg_data_css">
                             <label>Attach Creative Brief :</label>
                             <input type="file" [(ngModel)]="userData.creative_attach"
-                                name="creative_attach">
+                                name="creative_attach" (change)="handleCAFile($event)">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
@@ -223,7 +223,7 @@
                             <div class="col-12 col-md-12 d-flex flex-wrap">
                                 <div class="col-12 col-md-5">
                                     <input type="file" [(ngModel)]="userData.more_attach"
-                                        name="more_attach">
+                                        name="more_attach" (change)="handleMAFile($event)">
                                 </div>
                                 <div
                                     class="col-12 col-md-2 d-flex justify-content-center align-items-center">

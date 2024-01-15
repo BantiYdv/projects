@@ -38,6 +38,11 @@ export class ApiServiceService {
     return this.http.post(this.keys.signIn, userData, { headers });
   }
 
+  countryDialCode(){
+    const headers = this.headersWithOutAuth;
+    return this.http.get(this.keys.countryDialCode, { headers });
+  }
+
   saveAvatar(saveAvatar: any): Observable<any> {
     const headers = this.headerWithAuth;
     return this.http.post(this.keys.saveAvatar, saveAvatar, { headers });
@@ -48,6 +53,21 @@ export class ApiServiceService {
       `${this.keys.getUserDetails}?user_id=${getUserDetails}`,
       { headers }
     );
+  }
+
+  updateProfile(userData:any){
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.updateProfile, userData, { headers });
+  }
+  deleteUser(id:any,is_deleted:boolean){
+    console.log(id);
+    const data = {
+      admin_id: localStorage.getItem('userId'),
+      is_deleted:is_deleted,
+      user_id: id,
+    };
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.deleteUser, data, { headers });
   }
   //project code start
   saveProject(project: any) {

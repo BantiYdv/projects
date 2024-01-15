@@ -26,8 +26,7 @@ class="col-12 col-md-6 col-xxl-6 d-flex flex-column justify-content-center align
             <button  [disabled]="loginForm.invalid">SIGN IN</button>
         </div>
         <div class="not_reg_css">
-            <p>Not Registered? <span data-bs-target="#carouselExample"
-                    data-bs-slide="prev">Create Account</span></p>
+            <p>Not Registered? <span routerLink="/how-it-works">Create Account</span></p>
         </div>
     </div>
 </div>
@@ -44,7 +43,7 @@ class="col-12 col-md-6 col-xxl-6 d-flex flex-column justify-content-center align
             </p>
         </div>
         <div class="sign_in_get_button_css">
-            <button id="freeScript">Yes! I want the FREE Script Service</button>
+            <button type="button" routerLink="/how-it-works" id="freeScript">Yes! I want the FREE Script Service</button>
         </div>
     </div>
 </div>

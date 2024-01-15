@@ -14,9 +14,12 @@ export class KeysServiceService {
   public signUp = `${this.mainUrl}/user/registration`;//done
   public sendOTPForForgetPassword = `${this.mainUrl}/user/sendOTPForForgetPassword`;
   public verifyOtp = `${this.mainUrl}/user/verifiyOtp`;
+  public countryDialCode = `${this.mainUrl}/countryDialCode`;
   
   public saveAvatar = `${this.mainUrl}/user/saveAvatar`;//done
   public getUserDetails = `${this.mainUrl}/user/getUserDetails`;//done
+  public updateProfile = `${this.mainUrl}/user/updateProfile`;//done
+  public deleteUser = `${this.mainUrl}/user/deleteUser`;//done
 
 
   public saveProject = `${this.mainUrl}/project/saveProject`;//done
@@ -29,15 +32,15 @@ export class KeysServiceService {
   public updatedProjectStatus = `${this.mainUrl}/project/updateStatusOfProject`//done
   public addParticipant = `${this.mainUrl}/project/addParticipant `//done
 
-  public saveTask = `${this.mainUrl}/task/createTask`;
+  public saveTask = `${this.mainUrl}/task/createTask`;//done
   public getTask = `${this.mainUrl}/task/getTaskList`;
-  public getTaskById = `${this.mainUrl}/getTaskById`;
+  public getTaskById = `${this.mainUrl}/task/getTaskDetailsById`;
   public updateTaskById = `${this.mainUrl}/updateTaskById`;
   public deleteTaskById = `${this.mainUrl}/task/deleteTask`;
 
   public getTeamMemberListToAddParticipant = `${this.mainUrl}/teamMembers/getTeamMemberListToAddParticipant`;//done
-  public saveTeamMember = `${this.mainUrl}/saveTeamMember`;
-  public getTeamMember = `${this.mainUrl}/getTeamMember`;
+  public saveTeamMember = `${this.mainUrl}/teamMembers/teamMemberRegistration`;//done
+  public getTeamMember = `${this.mainUrl}/teamMembers/getTeamMemberList`;//done
   public getTeamMemberById = `${this.mainUrl}/getTeamMemberById`;
   public updateTeamMemberById = `${this.mainUrl}/updateTeamMemberById`;
   public deleteTeamMemberById = `${this.mainUrl}/deleteTeamMemberById`;

@@ -8,27 +8,48 @@ import { ApiServiceService } from '../../service/api-service.service';
 @Component({
   selector: 'app-team-member',
   standalone: true,
-  imports: [CommonModule,FormsModule,RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './team-member.component.html',
-  styleUrl: './team-member.component.css'
+  styleUrl: './team-member.component.css',
 })
 export class TeamMemberComponent {
-  teamMember: any = {};
-  teamMembers = [
-    { _id:'1', teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
-    {  _id:'2',teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
-    {  _id:'3',teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
-    {  _id:'4',teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
-    // Add more projects as needed
-  ];
+  teamMemberSave: any = {
+    country_code: '+91',
+  };
+  teamMemberUpdate: any = {
+    country_code: '+91',
+  };
+  teamMembers: any[] = [];
+  country_code: any = {};
+  // teamMembers = [
+  //   { _id:'1', teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
+  //   {  _id:'2',teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
+  //   {  _id:'3',teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
+  //   {  _id:'4',teamMemberName: 'awx media',phone_no: '34576578971', designation: 'rajendra gehlot', emailId: 'Admin@12'},
+  //   // Add more projects as needed
+  // ];
 
-  constructor(private apiService:ApiServiceService,private router: Router,) {}
+  constructor(private apiService: ApiServiceService, private router: Router) {}
 
   ngOnInit(): void {
     this.getTeamMember();
+    this.countryDialCode();
   }
 
-  saveTeamMember(teamMember:any){
+  getUserDetails(id: any) {
+    this.apiService.getUserDetails(id).subscribe(
+      (r: any) => {
+        this.teamMemberUpdate = r.data;
+        console.log('teamMemberUpdate ==>', r);
+      },
+      (e) => {
+        console.error(e);
+      }
+    );
+  }
+
+  saveTeamMember(teamMember: any) {
+    this.teamMemberSave.country_code = '+91';
     console.log('signUp Api =>', teamMember);
     this.apiService.saveTeamMember(teamMember).subscribe(
       (r: any) => {
@@ -41,84 +62,55 @@ export class TeamMemberComponent {
           timer: 3000,
         }).then((result) => {
           if (result) {
-            this.router.navigate(['/log-in']);
           }
         });
         this.getTeamMember();
-        this.teamMember = {};
+        this.teamMemberSave = {};
       },
       (e: any) => {
-        console.log("Error => ",e)
+        console.error('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
-        this.teamMember = {};
       }
     );
   }
 
-  getTeamMember(){
+  getTeamMember() {
     this.apiService.getTeamMember().subscribe(
-      (r) => {
-        this.teamMember = r;
-      },
-      (e) => {
-        console.log(e.data.message);
-      }
-    )
-  }
-
-  getTeamMemberById(id:any){
-    this.apiService.getTeamMemberById(id).subscribe(
-      (r) => {
-        this.teamMember = r;
-      },
-      (e) => {
-        console.log(e.data.message);
-      }
-    )
-  }
-
-  updateTeamMemberById(teamMember:any){
-    this.apiService.updateTeamMemberById(teamMember).subscribe(
       (r: any) => {
-        console.log(r);
-        Swal.fire({
-          icon: 'success',
-          title: 'Successful',
-          text: r.data.message,
-          showConfirmButton: false,
-          timer: 3000,
-        }).then((result) => {
-          if (result) {
-            this.router.navigate(['/']);
-          }
-        });
-        this.getTeamMember();
-        this.teamMember = {};
+        this.teamMembers = r.data;
+        console.log('getTeamMember ==> ==>', r);
       },
-      (e: any) => {
-        console.log("Error => ",e)
-        Swal.fire('Error', e.error.message, 'error');
-        this.teamMember = {};
+      (e) => {
+        console.error(e);
       }
     );
   }
-
-  deleteTeamMemberById(id: any) {
-    // Show confirmation dialog
+  countryDialCode() {
+    this.apiService.countryDialCode().subscribe(
+      (r: any) => {
+        this.country_code = r.data;
+        console.log('country_code ==>', r.data);
+      },
+      (e) => {
+        console.error(e);
+      }
+    );
+  }
+  deleteUser(id: any,is_deleted:boolean) {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
+      text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
         // If confirmed, proceed with the deletion
-        this.apiService.deleteTeamMemberById(id).subscribe(
+        this.apiService.deleteUser(id,is_deleted).subscribe(
           (r) => {
-            this.teamMember = r;
+            console.log(r)
             Swal.fire(
               'Deleted!',
               'Your teamMember has been deleted.',
@@ -127,16 +119,43 @@ export class TeamMemberComponent {
             this.getTeamMember();
           },
           (e) => {
-            console.log(e.data.message);
-            Swal.fire(
-              'Error!',
-              e.error.message,
-              'error'
-            );
+            console.error(e)
+            Swal.fire('Error!', e.error.message, 'error');
           }
         );
       }
     });
   }
-  
+
+  updateTeamMemberById(teamMember: any) {
+    this.teamMemberUpdate.user_id = localStorage.getItem('userId');
+    const data = {
+      user_id: this.teamMemberUpdate.user_id,
+      name: this.teamMemberUpdate.name,
+      email: this.teamMemberUpdate.email,
+      mobile_number: this.teamMemberUpdate.mobile_number,
+      country_code: this.teamMemberUpdate.country_code,
+      designation: this.teamMemberUpdate.designation,
+    };
+    this.apiService.updateProfile(data).subscribe(
+      (r: any) => {
+        console.log(r);
+        Swal.fire({
+          icon: 'success',
+          title: 'Successful',
+          text: r.data.message,
+          showConfirmButton: false,
+          timer: 3000,
+        })
+        this.getTeamMember();
+        this.teamMemberUpdate = {};
+      },
+      (e: any) => {
+        console.log('Error => ', e);
+        Swal.fire('Error', e.error.message, 'error');
+        // this.teamMemberUpdate= {};
+      }
+    );
+  }
+
 }

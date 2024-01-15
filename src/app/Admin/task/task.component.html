@@ -30,25 +30,30 @@
                 </thead>
                 <tbody class="tBody_css">
                     <tr *ngFor="let task of tasks;">
-                        <td scope="row">{{ task.projectName }}</td>
-                        <td>{{ task.task_no }}</td>
-                        <td>{{ task.task_name }}</td>
-                        <td>{{ task.assign_to }}</td>
+                        <td scope="row">{{ task.task_info.name }}</td>
+                        <td>{{ task.task_info.task_number }}</td>
+                        <td>{{ task.task_info.name }}</td>
+                        <td>{{ task.task_info.assgined_to }}</td>
                         <!-- <td>{{ task.handledBy }}</td> -->
-                        <td><img src="../../../assets/images/download_css_ing.svg" class="w-25" alt=""></td>
                         <td>
-                          <select class="select_css_code" [(ngModel)]="task.status">
-                            <option value="created">Created</option>
-                                <option value="start">start</option>
-                                <option value="ongoing">Ongoing</option>
-                                <option value="finish">Finish</option>
+                            <div  data-bs-toggle="modal"
+                            data-bs-target="#downloadTask">
+                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                        </div>
+                    </td>
+                        <td>
+                          <select class="select_css_code" [(ngModel)]="task.task_info.current_status">
+                            <option value="Created">Created</option>
+                                <option value="Start">Start</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Finished">Finished</option>
                           </select>
                         </td>
                         <td>
                           <div class="icon_t_e_e">
-                            <!-- <i class="fa fa-trash" (click)="deleteTaskById(taskSave._id)"></i>
-                            <i class="fa fa-edit" (click)="getTaskById(taskSave._id)" data-bs-toggle="modal" data-bs-target="#updateNewTask"></i>
-                            <i class="fa fa-eye" (click)="getTaskById(taskSave._id)" data-bs-toggle="modal" data-bs-target="#viewNewTask"></i> -->
+                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-edit"  data-bs-toggle="modal" data-bs-target="#updateNewTask"></i>
+                            <i class="fa fa-eye"  data-bs-toggle="modal" data-bs-target="#viewNewTask"></i>
                           </div>
                         </td>
                       </tr>
@@ -77,6 +82,7 @@
                 <div class="add_css_pro_code">
                     <label>Select Project</label>
                     <select [(ngModel)]="taskSave.project_id" name="project_id">
+                        <option disabled value="select">-- Select --</option>
                         <option *ngFor="let project of projectList" [value]="project._id">{{project.name}}</option>
                     </select>
                 </div>
@@ -91,6 +97,7 @@
                 <div class="add_css_pro_code">
                     <label>Assign To Team Member</label>
                     <select [(ngModel)]="taskSave.assgined_to" name="assgined_to" required>
+                        <option disabled value="select">-- Select --</option>
                         <option *ngFor="let handel of handel_By" [value]="handel._id">{{handel.name}}</option>
                     </select>
                 </div>
@@ -98,7 +105,7 @@
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Upload Doc.</label>
-                    <input type="file" [(ngModel)]="taskSave.task_attachement" name="task_attachement">
+                    <input type="file" (change)="onChangeProjectSave($event)" [(ngModel)]="taskSave.task_attachement" name="task_attachement">
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -134,7 +141,7 @@
 
 
    <!-- Modal updateNewTask -->
-   <!-- <div class="modal fade" id="updateNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade" id="updateNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #3B3A70;">
@@ -144,30 +151,30 @@
             </div>
         </div>
         <div class="modal-body m-4">
-            <form #updateTaskForm="ngForm" (ngSubmit)="saveTask(task)">
+            <form #updateTaskForm="ngForm" (ngSubmit)="updateTask(taskUpdate)">
           <div class="col-12 col-md-12 d-flex flex-wrap">
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Project Name</label>
-                    <input type="text" placeholder="Project Name" [(ngModel)]="task.name" name="name" required>
+                    <input type="text" placeholder="Project Name" [(ngModel)]="taskUpdate.name" name="name" required>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Task Number</label>
-                    <input type="tel" placeholder="Task No." [(ngModel)]="task.number" name="number" required>
+                    <input type="tel" placeholder="Task No." [(ngModel)]="taskUpdate.number" name="number" required>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Task Name</label>
-                    <input type="text" placeholder="Task Name" [(ngModel)]="task.task_name" name="task_name" required>
+                    <input type="text" placeholder="Task Name" [(ngModel)]="taskUpdate.task_name" name="task_name" required>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Assign To Team Member</label>
-                    <select  [(ngModel)]="task.assignToTM" name="assignToTM" required>
+                    <select  [(ngModel)]="taskUpdate.assignToTM" name="assignToTM" required>
                         <option>ragini agarwal</option>
                     </select>
                 </div>
@@ -175,19 +182,19 @@
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Upload Doc.</label>
-                    <input type="file" [(ngModel)]="task.desc" name="desc">
+                    <input type="file" (change)="onChangeProjectUpdate($event)" [(ngModel)]="taskUpdate.desc" name="desc">
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Description</label>
-                    <input type="text" placeholder="Description" [(ngModel)]="task.description" name="description" required>
+                    <input type="text" placeholder="Description" [(ngModel)]="taskUpdate.description" name="description" required>
                 </div>
             </div>
             <div class="col-12 col-md-12">
                 <div class="add_css_pro_code">
                     <label>Other Information</label>
-                    <input type="text" placeholder="other information"  [(ngModel)]="task.otherInfo" name="otherInfo">
+                    <input type="text" placeholder="other information"  [(ngModel)]="taskUpdate.otherInfo" name="otherInfo">
                 </div>
             </div>
           </div>
@@ -200,12 +207,12 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
 
   
    <!-- Modal ViewNewProject -->
-   <!-- <div class="modal fade" id="viewNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade" id="viewNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #3B3A70;">
@@ -263,43 +270,44 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
 
 
+  <div class="modal fade" id="downloadTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Details</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <div class="col-12 col-md-12">
+                    <!-- <div  *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index" class="d-flex justify-content-between align-items-center" >
+                        <h2>{{'Document'}}</h2>
+                        <a href="'http://101.53.145.234:4005/' + project.project_resourses.url" download>
+                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                        </a>
+                    </div> -->
+                    <!-- <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex justify-content-center align-items-center">
+                        No Document
+                    </div> -->
+                    <!-- <div *ngIf="!projectUpdate.project_resourses" class="d-flex justify-content-center align-items-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                    </div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

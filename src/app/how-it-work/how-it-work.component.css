@@ -53,9 +53,7 @@
     /* font-weight: bolder; */
 }
 
-button:disabled{
-  opacity: .5;
-}
+
 .signIn_css{
     border-radius: 25px;
     border: 3px solid #D6D6D6;

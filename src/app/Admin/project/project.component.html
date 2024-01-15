@@ -49,18 +49,18 @@
                                 <option value="Created">Created</option>
                                 <option value="Start">Start</option>
                                 <option value="Ongoing">Ongoing</option>
-                                <option value="Finish">Finish</option>
+                                <option value="Finished">Finished</option>
                             </select>
                         </td>
                         <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                             <div class="icon_t_e_e">
                                 <i class="fa fa-trash" (click)="deleteProjectById(projectData._id,projectData.is_enabled)" *ngIf="projectData.is_enabled"></i>
-                                <i class="fa fa-download" (click)="deleteProjectById(projectData._id,projectData.is_enabled)" *ngIf="!projectData.is_enabled"></i>
-                                <i class="fa fa-edit" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                <i class="fas fa-trash-restore-alt" (click)="deleteProjectById(projectData._id,projectData.is_enabled)" *ngIf="!projectData.is_enabled"></i>
+                                <i *ngIf="projectData.is_enabled" class="fa fa-edit" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#updateNewProject"></i>
                                 <i class="fa fa-eye" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#viewNewProject"></i>
-                                <i class="fa fa-users" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                <i *ngIf="projectData.is_enabled" class="fa fa-users" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#viewProjectOpp"></i>
                             </div>
                         </td>
@@ -74,7 +74,7 @@
 
 
 <!-- Modal addNewProject -->
- <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="addNewProject" #addNewProjectModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #3B3A70;">
@@ -83,7 +83,9 @@
                         <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <i class="fa fa-remove" (click)="closeModal()"></i>
+                        </div>
                 </div>
             </div>
             <div class="modal-body m-4">
@@ -128,7 +130,7 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Upload Doc.</label>
-                                <input type="file" [(ngModel)]="projectSave.project_resourses" name="project_resourses">
+                                <input type="file" (change)="onChangeProjectSave($event)" [(ngModel)]="projectSave.project_resourses" name="project_resourses">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -201,7 +203,7 @@
                          <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Short Name</label>
-                                <input type="text" placeholder="Short Name" [(ngModel)]="projectUpdate.short_name"
+                                <input readonly type="text" placeholder="Short Name" [(ngModel)]="projectUpdate.short_name"
                                     name="short_name" required>
                             </div>
                         </div>
@@ -217,7 +219,7 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Upload Doc.</label>
-                                <input  type="file" [(ngModel)]="projectUpdate.project_resourses" name="project_resourses">
+                                <input  type="file" (change)="onChangeProjectUpdate($event)" [(ngModel)]="projectUpdate.project_resourses" name="project_resourses">
                             </div>
                         </div>
                       <div class="col-12 col-md-6">
@@ -302,7 +304,7 @@
                             <div class="add_css_pro_code">
                                 <label>Upload Doc.</label>
                                 <span *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index">
-                                    Document {{i+1}}</span>
+                                    {{project_resourses.name|| 'Document'}}</span>
                                     <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex">
                                         No Document
                                     </div>
@@ -336,7 +338,7 @@
             <div class="modal-body m-4">
                 <div class="col-12 col-md-12">
                     <div  *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index" class="d-flex justify-content-between align-items-center" >
-                        <h2>Document {{i+1}}</h2>
+                        <h2>{{project_resourses.name || 'Document'}}</h2>
                         <a href="'http://101.53.145.234:4005/' + project.project_resourses.url" download>
                             <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
                         </a>
@@ -364,7 +366,7 @@ data-bs-backdrop="false">
             <div class="modal-header" style="background-color: #3B3A70;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">Add Participant</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button></div>

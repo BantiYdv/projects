@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
@@ -9,7 +8,8 @@
             </div>
             <div class="col-12 col-md-6 ">
                 <div class="header_css_button_project">
-                    <button data-bs-toggle="modal" data-bs-target="#addNewTeamMember"><i class="fa fa-plus"></i> Add New</button>
+                    <button data-bs-toggle="modal" data-bs-target="#addNewTeamMember"><i class="fa fa-plus"></i> Add
+                        New</button>
                 </div>
             </div>
         </div>
@@ -25,132 +25,157 @@
                         <th scope="col">Phone No.</th>
                         <th scope="col">Email-Id</th>
                         <th scope="col">Action</th>
-                      </tr>
+                    </tr>
                 </thead>
                 <tbody class="tBody_css">
                     <tr *ngFor="let teamMember of teamMembers; let i = index;">
-                        <td scope="row">{{ i+1 }}</td>
-                        <td>{{teamMember.teamMemberName}}</td>
-                        <td>{{ teamMember.designation }}</td>
-                        <td>{{ teamMember.phone_no }}</td>
-                        <td>{{ teamMember.emailId }}</td>
-                        <td>
-                          <div class="icon_t_e_e">
-                            <i class="fa fa-trash" (click)="deleteTeamMemberById(teamMember._id)"></i>
-                            <i class="fa fa-edit" (click)="getTeamMemberById(teamMember._id)" data-bs-toggle="modal" data-bs-target="#updateNewTeamMember"></i>
-                            <!-- <i class="fa fa-eye" (click)="getTeamMemberById(teamMembers._id)" data-bs-toggle="modal" data-bs-target="#viewNewTeamMember"></i> -->
-                          </div>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }" scope="row">{{ i+1 }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{teamMember.name}}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{ teamMember.designation }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{teamMember.country_code}}{{ teamMember.mobile_number }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{ teamMember.email }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">
+                            <div class="icon_t_e_e">
+                                <i class="fa fa-trash" (click)="deleteUser(teamMember._id,teamMember.is_enable)" *ngIf="teamMember.is_enable"></i>
+                                <i class="fas fa-trash-restore-alt" (click)="deleteUser(teamMember._id,teamMember.is_enable)" *ngIf="!teamMember.is_enable"></i>
+                                <i class="fa fa-edit" (click)="getUserDetails(teamMember._id)" data-bs-toggle="modal"
+                                    data-bs-target="#updateNewTeamMember" *ngIf="teamMember.is_enable"></i>
+                                <!-- <i class="fa fa-eye" (click)="getTeamMemberById(teamMembers._id)" data-bs-toggle="modal" data-bs-target="#viewNewTeamMember"></i> -->
+                            </div>
                         </td>
-                      </tr>
-                     
+                    </tr>
+
                 </tbody>
                 <!-- <tfoot>
                   ...
                 </tfoot> -->
-              </table>
+            </table>
         </div>
     </div>
 </div>
 
 
-  
-  <!-- Modal addNewTeamMember -->
-  <div class="modal fade" id="addNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Modal addNewTeamMember -->
+<div class="modal fade" id="addNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: #3B3A70;">
-            <div class="col-12 col-md-12 d-flex flex-nowrap">
-                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Add Team Member</div></div>
-                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-            </div>
-        </div>
-        <div class="modal-body m-4">
-            <form #saveTeamMemberForm="ngForm" (ngSubmit)="saveTeamMember(teamMember)">
-          <div class="col-12 col-md-12 d-flex flex-wrap">
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Name</label>
-                    <input type="text" placeholder="Team Member Name" [(ngModel)]="teamMember.name" name="name" required>
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Add Team Member</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Email-ID</label>
-                    <input type="email" placeholder="Team Member Email-Id" [(ngModel)]="teamMember.email" name="email" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Number</label>
-                    <input type="tel" placeholder="Number" [(ngModel)]="teamMember.number" name="number" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Designation</label>
-                    <input type="text" placeholder="Designation" [(ngModel)]="teamMember.designation" name="designation" required>
-                </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12">
-            <div class="save_css_button_code">
-                <button  [disabled]="saveTeamMemberForm.invalid">Save</button>
-            </div>
-          </div>
-          </form>
+            <div class="modal-body m-4">
+                <form #saveTeamMemberForm="ngForm" (ngSubmit)="saveTeamMember(teamMemberSave)">
+                    <div class="col-12 col-md-12 d-flex flex-wrap">
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Name</label>
+                                <input type="text" placeholder="Team Member Name" [(ngModel)]="teamMemberSave.name"
+                                    name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Email-ID</label>
+                                <input type="email" placeholder="Team Member Email-Id"
+                                    [(ngModel)]="teamMemberSave.email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Phone No.</label>
+                                <div class="col-12 col-md-12 d-flex w-100">
+                                        <select class="w-25 px-1" [(ngModel)]="teamMemberSave.country_code" name="country_code">
+                                            <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                                        </select>
+                                        <input type="tel" placeholder="Number" class="w-50"
+                                            [(ngModel)]="teamMemberSave.mobile_number" name="mobile_number" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Designation</label>
+                                <input type="text" placeholder="Designation" [(ngModel)]="teamMemberSave.designation"
+                                    name="designation" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="save_css_button_code">
+                            <button [disabled]="saveTeamMemberForm.invalid">Save</button>
+                        </div>
+                    </div>
+                </form>
 
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
-   <!-- Modal updateNewTeamMember -->
-   <div class="modal fade" id="updateNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal updateNewTeamMember -->
+<div class="modal fade" id="updateNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: #3B3A70;">
-            <div class="col-12 col-md-12 d-flex flex-nowrap">
-                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Update Team Member</div></div>
-                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Update Team Member</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <form #updateTeamMemberForm="ngForm" (ngSubmit)="updateTeamMemberById(teamMemberUpdate)">
+                    <div class="col-12 col-md-12 d-flex flex-wrap">
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Name</label>
+                                <input type="text" placeholder="Team Member Name" [(ngModel)]="teamMemberUpdate.name"
+                                    name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Email-ID</label>
+                                <input type="email" placeholder="Team Member Email-Id"
+                                    [(ngModel)]="teamMemberUpdate.email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Phone no.</label>
+                                <div class="col-12 col-md-12 d-flex w-100">
+                                    <select class="w-25 px-1" [(ngModel)]="teamMemberUpdate.country_code" name="country_code">
+                                        <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                                    </select>
+                                    <input type="tel" placeholder="Number" class="w-50"
+                                        [(ngModel)]="teamMemberUpdate.mobile_number" name="mobile_number" required>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Designation</label>
+                                <input type="text" placeholder="Designation" [(ngModel)]="teamMemberUpdate.designation"
+                                    name="designation" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="save_css_button_code">
+                            <button [disabled]="updateTeamMemberForm.invalid">Update</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="modal-body m-4">
-            <form #updateTeamMemberForm="ngForm" (ngSubmit)="saveTeamMember(teamMember)">
-          <div class="col-12 col-md-12 d-flex flex-wrap">
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Name</label>
-                    <input type="text" placeholder="Team Member Name" [(ngModel)]="teamMember.name" name="name" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Email-ID</label>
-                    <input type="email" placeholder="Team Member Email-Id" [(ngModel)]="teamMember.email" name="email" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Number</label>
-                    <input type="tel" placeholder="Number" [(ngModel)]="teamMember.number" name="number" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Designation</label>
-                    <input type="text" placeholder="Designation" [(ngModel)]="teamMember.designation" name="designation" required>
-                </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12">
-            <div class="save_css_button_code">
-                <button [disabled]="updateTeamMemberForm.invalid">Update</button>
-            </div>
-          </div>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
-
+</div>
