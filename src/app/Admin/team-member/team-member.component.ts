@@ -128,9 +128,9 @@ export class TeamMemberComponent {
   }
 
   updateTeamMemberById(teamMember: any) {
-    this.teamMemberUpdate.user_id = localStorage.getItem('userId');
+    // this.teamMemberUpdate.user_id = localStorage.getItem('userId');
     const data = {
-      user_id: this.teamMemberUpdate.user_id,
+      user_id: this.teamMemberUpdate._id,
       name: this.teamMemberUpdate.name,
       email: this.teamMemberUpdate.email,
       mobile_number: this.teamMemberUpdate.mobile_number,

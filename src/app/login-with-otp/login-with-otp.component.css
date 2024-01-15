@@ -1,0 +1,64 @@
+.login_css{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+   
+}
+.AVX_login_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.AVX_login_input{
+    border: 1px solid #302E2E;
+    width: 30%;
+    margin-top: 70px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+
+}
+.AVX_login_otp_input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 30px;   */
+}
+.AVX_login_logo img{
+ width: 20%;
+}
+.AVX_login_input input{
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 20px;
+    /* border-radius: 10px; */
+}
+.AVX_login_input i{
+    border: none;
+    outline: none;
+    padding: 10px 10px 10px 30px;
+    font-size: 20px;
+}
+.AVX_login_otp_input input{
+    width: 7%;
+    margin: 5px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    border-radius: 10px;
+
+}
+
+.AVX_login_text{
+    text-align: left;
+    width: 30%;
+    margin-top: 20px;
+    font-size: 19px;
+    font-weight: bold;
+}

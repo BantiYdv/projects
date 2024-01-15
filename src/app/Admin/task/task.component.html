@@ -30,13 +30,13 @@
                 </thead>
                 <tbody class="tBody_css">
                     <tr *ngFor="let task of tasks;">
-                        <td scope="row">{{ task.task_info.name }}</td>
+                        <td scope="row">{{ task.task_info.project_name }}</td>
                         <td>{{ task.task_info.task_number }}</td>
                         <td>{{ task.task_info.name }}</td>
-                        <td>{{ task.task_info.assgined_to }}</td>
+                        <td>{{ task.task_info.assgined_team_member }}</td>
                         <!-- <td>{{ task.handledBy }}</td> -->
                         <td>
-                            <div  data-bs-toggle="modal"
+                            <div  data-bs-toggle="modal" (click)="getTaskById(task.task_info._id)"
                             data-bs-target="#downloadTask">
                             <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
                         </div>

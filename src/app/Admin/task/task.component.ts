@@ -165,10 +165,11 @@ export class TaskComponent {
   getTaskById(id:any){
     this.apiService.getTaskById(id).subscribe(
       (r) => {
+        console.log(r)
         this.taskUpdate = r;
       },
       (e) => {
-        console.log(e.data.message);
+        console.error(e);
       }
     )
   }

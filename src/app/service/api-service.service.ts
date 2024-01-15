@@ -147,7 +147,7 @@ export class ApiServiceService {
 
   getTaskById(task: any) {
     const headers = this.headerWithAuth;
-    return this.http.get(this.keys.getTaskById, { headers });
+    return this.http.get(`${this.keys.getTaskById}?task_id=${task}`, { headers });
   }
 
   updateTaskById(task: any) {
