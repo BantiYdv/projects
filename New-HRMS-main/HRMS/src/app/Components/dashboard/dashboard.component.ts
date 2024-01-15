@@ -388,52 +388,102 @@ intern = '';
   // }
   
 
-  createLineChart() {
+  // createLineChart() {
  
-    this.chart = new Chart("MyPieChart", {
-      type: 'pie', //this denotes the type of chart
+  //   this.chart = new Chart("MyPieChart", {
+  //     type: 'pie', //this denotes the type of chart
 
-      data: {// values on X-Axis
-        labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
-        datasets: [
-          {
-            data: [`${this.fullTime}`, `${this.partTime}`, `${this.intern}`], // Adjust these values based on your data
-            backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
-          }
-        ]
+  //     data: {// values on X-Axis
+  //       labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
+  //       datasets: [
+  //         {
+  //           data: [`${this.fullTime}`, `${this.partTime}`, `${this.intern}`], // Adjust these values based on your data
+  //           backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
+  //         }
+  //       ]
         
-      },
-      options: {
-        aspectRatio: 1.5,
-        plugins: {
-          legend: {
-            display: false
-          }
-        },
-        // for click on full time part time and intern employee start
-        onClick: (event, elements) => {
-          if (elements.length > 0) {
-            const clickedSegment = elements[0].index;
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5,
+  //       plugins: {
+  //         legend: {
+  //           display: false
+  //         }
+  //       },
+  //       // for click on full time part time and intern employee start
+  //       onClick: (event, elements) => {
+  //         if (elements.length > 0) {
+  //           const clickedSegment = elements[0].index;
   
-            switch (clickedSegment) {
-              case 0: 
-                this.navigateToEmployee('fullTimeEmployee');
-                break;
-              case 1: 
-                this.navigateToEmployee('PartTimeEmp');
-                break;
-              case 2: 
-                this.navigateToEmployee('internEmp');
-                break;
+  //           switch (clickedSegment) {
+  //             case 0: 
+  //               this.navigateToEmployee('fullTimeEmployee');
+  //               break;
+  //             case 1: 
+  //               this.navigateToEmployee('PartTimeEmp');
+  //               break;
+  //             case 2: 
+  //               this.navigateToEmployee('internEmp');
+  //               break;
              
+  //           }
+  //         }
+  //       }
+  //       // for click on full time part time and intern employee end
+  //     }
+      
+
+  //   });
+  // }
+  // loadData() {
+  //     // Assuming getData() is a function that fetches your data asynchronously
+  //     getData().then(data => {
+  //       this.fullTime = data.fullTime;
+  //       this.partTime = data.partTime;
+  //       this.intern = data.intern;
+  //       this.createLineChart();
+  //     });
+  //   }
+  createLineChart() {
+    // Check if data is available before creating the chart
+    if (this.fullTime !== undefined && this.partTime !== undefined && this.intern !== undefined) {
+      this.chart = new Chart("MyPieChart", {
+        type: 'pie',
+        data: {
+          labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
+          datasets: [
+            {
+              data: [`${this.fullTime}`, `${this.partTime}`, `${this.intern}`],
+              backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
+            }
+          ]
+        },
+        options: {
+          aspectRatio: 1.5,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          onClick: (event, elements) => {
+            if (elements.length > 0) {
+              const clickedSegment = elements[0].index;
+              switch (clickedSegment) {
+                case 0: 
+                  this.navigateToEmployee('fullTimeEmployee');
+                  break;
+                case 1: 
+                  this.navigateToEmployee('PartTimeEmp');
+                  break;
+                case 2: 
+                  this.navigateToEmployee('internEmp');
+                  break;
+              }
             }
           }
         }
-        // for click on full time part time and intern employee end
-      }
-      
-
-    });
+      });
+    }
   }
 
   // navigate full time part toime and intern table start

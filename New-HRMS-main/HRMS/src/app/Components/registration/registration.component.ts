@@ -24,6 +24,7 @@ export interface AssetData {
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent {
+[x: string]: any;
   @ViewChild('firstnameInput') firstnameInput: NgModel | any;
   @ViewChild('lastnameInput') lastnameInput: NgModel | any;
   @ViewChild('emailidInput') emailidInput: NgModel | any;
@@ -45,7 +46,8 @@ export class RegistrationComponent {
   flagSvgUrlEmergencyNo: any;
   selectedFileName: any;
   selectedAssets: string[] = [];
-  assetDetailsList: { [key: string]: AssetData } = {};
+  // assetDetailsList: { [key: string]: AssetData } = {};
+  assetDetailsList: AssetData[] = [];
   activeSlideIndex = 0;
 
   assetDataListqw() {
@@ -64,8 +66,12 @@ export class RegistrationComponent {
   };
 
   assetOptions = ['Laptop', 'Desktop', 'Monitor'];
-  saveAssetData(assetType: string, assetData: AssetData) {
-    this.assetDetailsList[assetType] = assetData;
+  // saveAssetData(assetType: any, assetData: AssetData) {
+  //   this.assetDetailsList[assetType] = assetData;
+  //   console.log('Saved data for', this.assetDetailsList);
+  // }
+  saveAssetData( AssetData: any) {
+    this.assetDetailsList.push(AssetData);
     console.log('Saved data for', this.assetDetailsList);
   }
 
@@ -89,14 +95,14 @@ export class RegistrationComponent {
   }
   //   add more assets end
 
-
+ 
   onSelectedAssetsChange() {
     this.activeSlideIndex = 0;
   }
 
-  getAssetData(assetType: string): AssetData {
-    if (!this.assetDetailsList[assetType]) {
-      this.assetDetailsList[assetType] = {
+  getAssetData(AssetData: any): AssetData {
+    if (!this.assetDetailsList[AssetData]) {
+      this.assetDetailsList[AssetData] = {
         laptopModelInfo: '',
         identification: '',
         configuration: '',
@@ -104,8 +110,9 @@ export class RegistrationComponent {
         description: '',
       };
     }
-
-    return this.assetDetailsList[assetType];
+// console.log("asset data", this.assetDetailsList[assetType]);
+    return this.assetDetailsList[AssetData];
+    
   }
 
   numberCode(): void {
@@ -265,7 +272,8 @@ export class RegistrationComponent {
     RelievingLetter: '',
     ExperienceLetter: '',
     salarySlip1: '',
-    assetDetailsMap: this.assetDetailsList,   
+    // assetDetailsMap: this.assetDetailsList,   
+    assetDetailsList: this.assetDetailsList,   
   };
 
   imageUrl: SafeUrl | undefined;

@@ -569,7 +569,7 @@ export class AdminComponent {
   }
   // API for current image end
 
-
+  
 // show dashboard calendar start
 currentDate!: moment.Moment;
 calendarData: any[][] | undefined;
@@ -806,6 +806,19 @@ updateNumberOfDays() {
   // }
   // API for show birthday end
   
+
+  // view holiday start
+  public currentYear: number = new Date().getFullYear();
+
+  holidayPre() {
+    this.currentYear--;
+  }
+
+  holidayNext() {
+    this.currentYear++;
+  }
+  // view holiday end
+
   
 }
 function updateEmployee(employeeId: any, number: any) {

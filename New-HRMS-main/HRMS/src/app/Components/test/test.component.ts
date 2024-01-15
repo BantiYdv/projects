@@ -1396,12 +1396,19 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
           // Convert the response object to an array
           const dataArray = Object.values(response);
           // Reverse the received array
-          const reversedData = dataArray.reverse();
+          // const reversedData = dataArray.reverse();
+          // this.AllwfhData = reversedData;
+          // this.fillterAllWfhData = reversedData;
+          // console.log("wwewewe", response);
 
-          // Set the reversed array as the data source
-          this.AllwfhData = reversedData;
-          this.fillterAllWfhData = reversedData;
-          console.log("wwewewe", response);
+          const sortedData = dataArray.sort((a: any, b: any) => {
+            const dateA = new Date(a.fromdateWfh).getTime();
+            const dateB = new Date(b.toDateWfh).getTime();
+            return dateB - dateA;
+        });
+        this.AllwfhData = sortedData;
+        this.fillterAllWfhData = sortedData;
+        console.log("all wfh ", this.fillterAllWfhData);
         },
         error => {
           Swal.fire('Error', error.error, 'error');
@@ -1427,12 +1434,19 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
 
           // Convert the response object to an array
           const dataArray = Object.values(response);
-          // Reverse the received array
-          const reversedData = dataArray.reverse();
+          // const reversedData = dataArray.reverse();
+          // this.leaveAllData = reversedData;
+          // this.fillterAllLeaveData = reversedData;
 
-          // Set the reversed array as the data source
-          this.leaveAllData = reversedData;
-          this.fillterAllLeaveData = reversedData;
+
+          const sortedData = dataArray.sort((a: any, b: any) => {
+            const dateA = new Date(a.fromDate).getTime();
+            const dateB = new Date(b.toDate).getTime();
+            return dateB - dateA;
+        });
+        this.leaveAllData = sortedData;
+        this.fillterAllLeaveData = sortedData;
+        
         },
         error => {
           Swal.fire('Error', error.error, 'error');  

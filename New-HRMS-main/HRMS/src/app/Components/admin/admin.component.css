@@ -844,7 +844,7 @@ h3,
 .LeaveChart {
 
     display: flex;
-    width: 95%;
+    /* width: 95%; */
     padding: 38px 19px 30px 19px;
     flex-direction: column;
     /* justify-content: center; */
@@ -853,6 +853,7 @@ h3,
     border-radius: 10px;
     background: #FFF;
     box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+    margin: 10px;
 }
 
 .leaveName {
@@ -1096,7 +1097,7 @@ text-transform: capitalize;
 
 .status {
     display: flex;
-    height: 58px;
+    /* height: 58px; */
     padding: 10px 98.5px;
     justify-content: center;
     align-items: center;
@@ -1966,4 +1967,135 @@ text-transform: capitalize;
   /* apply leave end */
   
 
+  /* view more holiday start */
+  .headHoliday{
+    color: #3430B3;
+
+font-family: Poppins;
+font-size: 40px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+  .monthDateHoliday{
+    display: flex;
+    padding: 6px 22px;
+    /* align-items: center; */
+    /* gap: 25px; */
+    flex-direction: column;
+}
+  .monthHoliday{
+color: #FFF;
+
+text-align: center;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+
+/* display: flex; */
+padding: 6px 22px;
+justify-content: center;
+align-items: center;
+gap: 25px;
+border-radius: 5px 5px 0px 0px;
+background: #9747FF;
+  }
+  .dateHoliday{
+    /* width: 43px; */
+/* height: 39px; */
+color: #343A40;
+
+text-align: center;
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-transform: capitalize;
+
+/* display: flex; */
+padding: 0px 21px;
+justify-content: center;
+align-items: center;
+gap: 25px;
+border-radius: 0px 0px 5px 5px;
+border: 1px solid #9747FF;
+  }
+
+  .descHoliday{
+    color: #401DDE;
+
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+  }
+  .dayHoliday{
+    /* width: 60px;
+height: 14px; */
+flex-shrink: 0;
+color: #343A40;
+
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+text-transform: capitalize;
+  }
   
+  .closeRole{
+    display: flex;
+    width: 150px;
+    height: 44px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 60px;
+    border: 2px solid #D92651;
+
+    color: #D92651;
+font-size: 17px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.HolidayPre{
+    width: 21px;
+height: 21px;
+/* position: absolute; */
+left: 0px;
+top: 1px;
+stroke-width: 3px;
+stroke: #DADADA;
+}
+.HolidayNext{
+    width: 21px;
+height: 21px;
+/* transform: rotate(-93.342deg);
+position: absolute; */
+right: -1.149px;
+top: 0px;
+stroke-width: 3px;
+stroke: #DADADA;
+
+}
+
+.yearHoliday{
+    color: #3430B3;
+
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+  /* view more holiday end */

@@ -2,7 +2,7 @@
   <div class="row flex-nowrap">
     <div class="col py-3">
       <div class="b-example-divider"></div>
-      <div class="container px-4 py-5" id="hanging-icons">
+      <div class="container px-2 py-5" id="hanging-icons">
         <div class="row">
           <div class="col-md-6 d-flex justify-content-start">
             <h2 class="hello">Hello<br>
@@ -213,7 +213,7 @@
                 <div class="tab-content" id="pills-tabContent">
                   <div class="tab-pane fade show active" id="pills-probation" role="tabpanel"
                     aria-labelledby="pills-probation-tab">
-                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                    <div class="d-flex justify-content-center flex-wrap" style="border-bottom: 1px solid #A9A8AD;" >
                       <span class="status">Status</span>
 
                       <span class="probationStatus 
@@ -419,7 +419,8 @@
                       <img src="/assets/image/holidayVector4.png" alt="" class="holidayVector4">
                     </div>
                     <div class="right-sectionHoliday">
-                      <button class="btn ViewMore">View More &nbsp; <img src="/assets/image/holidayViewMore.png" alt=""
+                      <button class="btn ViewMore" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">View More &nbsp; <img src="/assets/image/holidayViewMore.png" alt=""
                           class="holidayViewMore"></button>
                     </div>
                   </div>
@@ -528,7 +529,213 @@
           </div>
         </div> -->
 
+<!-- view holidays start -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-bs-backdrop="false">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content">
 
+    <div class="modal-body">
+      <div class="content m-1 mt-2">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="d-flex">
+            <h1 class="headHoliday m-2">Holidays</h1>  
+            <div class="mt-4">
+              <img src="/assets/image/HolidayPre.png" alt="" class="HolidayPre" (click)="holidayPre()"> 
+             <span class="yearHoliday">{{currentYear}}</span> 
+              <img src="/assets/image/HolidayNext.png" alt="" class="HolidayNext" (click)="holidayNext()">
+            </div>
+            </div>
+          </div>
+          
+              <div class="row justify-content-center mt-3">
+
+                <div class="col-md-6">
+                  <div class="d-flex justify-content-start">
+                    <div class="monthDateHoliday">
+                      <span class="monthHoliday">Jan</span>
+                      <span class="dateHoliday">15</span>
+                    </div>
+                    <div class="m-0"> 
+                      <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                      <span class="dayHoliday">Monday</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="d-flex justify-content-start">
+                    <div class="monthDateHoliday">
+                      <span class="monthHoliday" style="background: #D2A32D !important;">Jan</span>
+                      <span class="dateHoliday" style="border: 1px solid #D2A32D !important;">26</span>
+                    </div>
+                    <div class="m-0"> 
+                      <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                      <span class="dayHoliday">Monday</span>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row justify-content-center mt-3">
+
+                  <div class="col-md-6">
+                    <div class="d-flex justify-content-start">
+                      <div class="monthDateHoliday">
+                        <span class="monthHoliday">Jan</span>
+                        <span class="dateHoliday">15</span>
+                      </div>
+                      <div class="m-0"> 
+                        <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                        <span class="dayHoliday">Monday</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <div class="d-flex justify-content-start">
+                      <div class="monthDateHoliday">
+                        <span class="monthHoliday">Jan</span>
+                        <span class="dateHoliday">26</span>
+                      </div>
+                      <div class="m-0"> 
+                        <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                        <span class="dayHoliday">Monday</span>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row justify-content-center mt-3">
+
+                    <div class="col-md-6">
+                      <div class="d-flex justify-content-start">
+                        <div class="monthDateHoliday">
+                          <span class="monthHoliday">Jan</span>
+                          <span class="dateHoliday">15</span>
+                        </div>
+                        <div class="m-0"> 
+                          <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                          <span class="dayHoliday">Monday</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="d-flex justify-content-start">
+                        <div class="monthDateHoliday">
+                          <span class="monthHoliday">Jan</span>
+                          <span class="dateHoliday">26</span>
+                        </div>
+                        <div class="m-0"> 
+                          <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                          <span class="dayHoliday">Monday</span>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-3">
+
+                      <div class="col-md-6">
+                        <div class="d-flex justify-content-start">
+                          <div class="monthDateHoliday">
+                            <span class="monthHoliday">Jan</span>
+                            <span class="dateHoliday">15</span>
+                          </div>
+                          <div class="m-0"> 
+                            <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                            <span class="dayHoliday">Monday</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="d-flex justify-content-start">
+                          <div class="monthDateHoliday">
+                            <span class="monthHoliday">Jan</span>
+                            <span class="dateHoliday">26</span>
+                          </div>
+                          <div class="m-0"> 
+                            <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                            <span class="dayHoliday">Monday</span>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+
+                      <div class="row justify-content-center mt-3">
+
+                        <div class="col-md-6">
+                          <div class="d-flex justify-content-start">
+                            <div class="monthDateHoliday">
+                              <span class="monthHoliday">Jan</span>
+                              <span class="dateHoliday">15</span>
+                            </div>
+                            <div class="m-0"> 
+                              <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                              <span class="dayHoliday">Monday</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                          <div class="d-flex justify-content-start">
+                            <div class="monthDateHoliday">
+                              <span class="monthHoliday">Jan</span>
+                              <span class="dateHoliday">26</span>
+                            </div>
+                            <div class="m-0"> 
+                              <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                              <span class="dayHoliday">Monday</span>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+
+                        <div class="row justify-content-center mt-3">
+
+                          <div class="col-md-6">
+                            <div class="d-flex justify-content-start">
+                              <div class="monthDateHoliday">
+                                <span class="monthHoliday">Jan</span>
+                                <span class="dateHoliday">15</span>
+                              </div>
+                              <div class="m-0"> 
+                                <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                                <span class="dayHoliday">Monday</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-6">
+                            <div class="d-flex justify-content-start">
+                              <div class="monthDateHoliday">
+                                <span class="monthHoliday">Jan</span>
+                                <span class="dateHoliday">26</span>
+                              </div>
+                              <div class="m-0"> 
+                                <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                                <span class="dayHoliday">Monday</span>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+      
+      <div class="mb-3 col-12 d-flex justify-content-center mt-3">
+        <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal">Close</button>
+        
+
+      </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- view holidays end -->
 
         <!-- apply leave start -->
 
