@@ -20,7 +20,7 @@ class="col-12 col-md-6 col-xxl-6 d-flex flex-column justify-content-center align
             <input type="password" placeholder="Enter registered email Id here" [(ngModel)]="login.password" name="password" required>
         </div>
         <div class="forgot_password_css">
-            <p>Forgot Password?</p>
+            <p routerLink="/forgot-password">Forgot Password?</p>
         </div>
         <div class="signIn_button_css">
             <button  [disabled]="loginForm.invalid">SIGN IN</button>

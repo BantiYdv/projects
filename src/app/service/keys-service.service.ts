@@ -13,8 +13,9 @@ export class KeysServiceService {
   public signIn = `${this.mainUrl}/user/login`;//done
   public signUp = `${this.mainUrl}/user/registration`;//done
   public sendOTPForForgetPassword = `${this.mainUrl}/user/sendOTPForForgetPassword`;
-  public verifyOtp = `${this.mainUrl}/user/verifiyOtp`;
-  public countryDialCode = `${this.mainUrl}/countryDialCode`;
+  public verifyOtp = `${this.mainUrl}/user/verifiyOtp`;//done
+  public savePassword = `${this.mainUrl}/user/savePassword`;//done
+  public countryDialCode = `${this.mainUrl}/countryDialCode`;//done
   
   public saveAvatar = `${this.mainUrl}/user/saveAvatar`;//done
   public getUserDetails = `${this.mainUrl}/user/getUserDetails`;//done

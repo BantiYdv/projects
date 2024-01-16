@@ -38,6 +38,29 @@ export class ApiServiceService {
     return this.http.post(this.keys.signIn, userData, { headers });
   }
 
+  verifyOtp(verifyOtp:any){
+    const headers = this.headersWithOutAuth;
+    return this.http.get(`${this.keys.verifyOtp}?email=${verifyOtp.email}&otp=${verifyOtp.otp}&is_team_member=true`, { headers });
+  }
+  verifyOtpUsers(verifyOtp:any){
+    const headers = this.headersWithOutAuth;
+    return this.http.get(`${this.keys.verifyOtp}?email=${verifyOtp.email}&otp=${verifyOtp.otp}`, { headers });
+  }
+  sendOTPForForgetPassword(fpData:any){
+    const headers = this.headersWithOutAuth;
+    return this.http.post(this.keys.sendOTPForForgetPassword,fpData, { headers })
+  }
+
+  savePassword(password:any){
+    const data = {
+      user_id : localStorage.getItem('savePasswordId'),
+      password : password,
+      is_change_password_request:false
+    }
+    const headers = this.headersWithOutAuth;
+    return this.http.post(this.keys.savePassword,data,{headers});
+  }
+
   countryDialCode(){
     const headers = this.headersWithOutAuth;
     return this.http.get(this.keys.countryDialCode, { headers });

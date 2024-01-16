@@ -16,6 +16,7 @@ import { AssignTaskComponent } from './Employee/assign-task/assign-task.componen
 import { ViewTaskComponent } from './Employee/view-task/view-task.component';
 import { ClientDBComponent } from './Client/client-db/client-db.component';
 import { LoginWithOTPComponent } from './login-with-otp/login-with-otp.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export const routes: Routes = [
     // {'path': '', component:AppComponent },
@@ -25,7 +26,8 @@ export const routes: Routes = [
     {'path': 'why-us', component:HomeComponent },
     {'path': 'how-it-works', component:HowItWorkComponent},
     {'path': 'log-in', component:LoginComponent},
-    {'path': 'log-with-otp', component:LoginWithOTPComponent},
+    {'path': 'login-with-otp', component:LoginWithOTPComponent},
+    {'path': 'forgot-password', component:ForgotPasswordComponent},
 
     {'path': 'project', component:ProjectComponent,canActivate: [authGuard]},
     {'path': 'teamMember', component:TeamMemberComponent,canActivate: [authGuard]},

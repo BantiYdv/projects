@@ -65,6 +65,9 @@
     width: 100%;
     padding: 10px 25px 10px 10px;
 }
+.forgot_password_css:active{
+    transform: scale(.95);
+}
 .forgot_password_css p, .not_reg_css span, .terms_conditions, .privacy_policies{
     color: #4971B8;
 }

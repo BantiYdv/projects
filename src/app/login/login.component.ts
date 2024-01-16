@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
   login: any = {};
+  reSendData : any = {
+    email: this.login.email,
+  }
   constructor(private apiService: ApiServiceService, private router: Router) {}
 
   //login code start here
@@ -68,4 +71,27 @@ export class LoginComponent {
     }
   }
   //login code end here
+
+  sendOTPForForgetPassword() {
+    this.apiService.sendOTPForForgetPassword(this.reSendData).subscribe(
+      (r) => {
+        console.log(r);
+        Swal.fire({
+          icon: 'success',
+          title: 'OTP Resent',
+          text: 'We have resent the OTP to your email.',
+          confirmButtonText: 'OK',
+        });
+      },
+      (e) => {
+        console.error(e);
+        Swal.fire({
+          icon: 'error',
+          title: 'Resend OTP Failed',
+          text: 'There was an error resending the OTP. Please make sure you have filled in a valid email address.',
+          confirmButtonText: 'OK',
+        });
+      }
+    );
+  }
 }

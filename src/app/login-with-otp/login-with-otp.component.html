@@ -1,20 +1,66 @@
+<div class="container-fluid p-0">
+<div class="row bg-black m-0" style="height: 70px; width: 100%;"></div>
+</div>
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="currentStep === 1">
+        <form #verificationOTPForm="ngForm" (ngSubmit)="verificationOTP()">
+            <div class="login_css">
+                <div class="col-12 col-md-12 AVX_login_logo">
+                    <img src="../../assets/images/AVX_login_logo.svg" alt="">
+                </div>
+                <div class="col-12 col-md-12 AVX_login_input">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" placeholder="Enter email-id" [(ngModel)]="verifyOTP.email" name="email"  required>
+                </div>
+                <div class="col-12 col-md-12 AVX_login_text">OTP</div>
+                <div class="col-12 col-md-12 AVX_login_otp_input">
+                    <input type="text" [(ngModel)]="otpValue1" name="otpValue1" #otp1 maxlength="1" (keyup)="move($event, '', otp1 ,otp2)" required>
+                    <input type="text" [(ngModel)]="otpValue2" name="otpValue2" #otp2 maxlength="1" (keyup)="move($event, otp1 ,otp2 ,otp3)" required>
+                    <input type="text" [(ngModel)]="otpValue3" name="otpValue3" #otp3 maxlength="1" (keyup)="move($event, otp2 ,otp3 ,otp4)" required>
+                    <input type="text" [(ngModel)]="otpValue4" name="otpValue4" #otp4 maxlength="1" (keyup)="move($event, otp3 ,otp4 , '')" required>
+                </div>
+                <!-- <p>OTP Value: {{ verifyOTP.otp }}</p> -->
+                <div class="col-12 col-md-12 AVX_time_out">
+                    <div class="time_icon">
+                        <i class="fa fa-clock"></i>
+                        <span>{{getFormattedTime()}}</span>
+                    </div>
+                    <div class="resend_css" (click)="startTimer()" [class.disabled]="timerRunning">Resend it!</div>
+    
+                </div>
+                <div class="col-12 col-md-12 AVX_button_css">
+                    <button type="submit" [disabled]="verificationOTPForm.invalid">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" *ngIf="currentStep === 2">
+        <form #passwordSaveForm="ngForm" (ngSubmit)="savePassword()">
         <div class="login_css">
             <div class="col-12 col-md-12 AVX_login_logo">
                 <img src="../../assets/images/AVX_login_logo.svg" alt="">
             </div>
             <div class="col-12 col-md-12 AVX_login_input">
-                <i class="fa fa-envelope"></i>
-                <input type="text" placeholder="Enter email-id">
+                <i class="fa fa-lock"></i>
+                <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" placeholder="Enter password" required>
             </div>
-            <div class="col-12 col-md-12 AVX_login_text">OTP</div>
-            <div class="col-12 col-md-12 AVX_login_otp_input">
-                <input type="tel"  maxlength="1" minlength="1">
-                <input type="tel" maxlength="1" minlength="1">
-                <input type="tel" maxlength="1" minlength="1">
-                <input type="tel" maxlength="1" minlength="1">
+            <div class="col-12 col-md-12 AVX_login_input">
+                <i class="fa fa-lock"></i>
+                <input [type]="showPassword ? 'text' : 'password'" placeholder="Enter confirm password"  [(ngModel)]="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="error_message" *ngIf="passwordSaveForm.controls['password'].touched && passwordSaveForm.controls['confirmPassword'].touched && password !== confirmPassword">
+                <span>Please, do same password</span>
+            </div>
+            <div class="show_password">
+                <input type="checkbox" id="showPasswordCheckbox" [(ngModel)]="showPassword" (click)="togglePasswordVisibility()">
+                <label for="showPasswordCheckbox">Show Password</label>
+            </div>
+           
+           
+            <div class="col-12 col-md-12 AVX_button_css">
+                <button type="submit" [disabled]="passwordSaveForm.invalid || password !== confirmPassword">Save</button>
             </div>
         </div>
+        </form>
     </div>
 </div>

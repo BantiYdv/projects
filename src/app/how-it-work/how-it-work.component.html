@@ -76,14 +76,14 @@
         </div>
 
     </div>
-    <div *ngIf="currentStep === 1" class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center mt-4">
+    <div *ngIf="currentStep === 1"
+        class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center mt-4">
         <div class="signUp_css">
             <p class="create_account_css">Brief Us</p>
             <p class="create_account_under_text_css">Fill the details below to understand us better about
                 your project</p>
             <form #saveCientRequirementForm="ngForm" (ngSubmit)="saveCientRequirement(userData)">
-                <div
-                    class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
+                <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
 
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
@@ -95,15 +95,15 @@
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>City / Place :</label>
-                            <input type="text" placeholder="Enter City Name / Place"
-                                [(ngModel)]="userData.city" name="city">
+                            <input type="text" placeholder="Enter City Name / Place" [(ngModel)]="userData.city"
+                                name="city">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Email Id :</label>
-                            <input type="email" placeholder="email id" [(ngModel)]="userData.email"
-                                name="email" required>
+                            <input type="email" placeholder="email id" [(ngModel)]="userData.email" name="email"
+                                required>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
@@ -130,21 +130,19 @@
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Give Us More Details :</label>
-                            <input type="text" placeholder="Required Details, Launch, etc."
-                                [(ngModel)]="userData.desc" name="desc">
+                            <input type="text" placeholder="Required Details, Launch, etc." [(ngModel)]="userData.desc"
+                                name="desc">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Speak to Our Expert :</label>
-                            <div
-                                class="col-12 col-md-12 d-flex flex-wrap justify-content-start align-items-center m-2">
+                            <div class="col-12 col-md-12 d-flex flex-wrap justify-content-start align-items-center m-2">
                                 <div class="col-12 col-md-6 d-flex gap-2">
                                     <a href="tel:9024588535">
                                         <div class="call_in_brief_css"><button type="button">
 
-                                                <img src="../../assets/images/icon_for_b_c.svg" class="p-1"
-                                                    alt="">
+                                                <img src="../../assets/images/icon_for_b_c.svg" class="p-1" alt="">
 
                                                 Call
 
@@ -162,20 +160,19 @@
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Attach Creative Brief :</label>
-                            <input type="file" [(ngModel)]="userData.creative_attach"
-                                name="creative_attach" (change)="handleCAFile($event)">
+                            <input type="file" [(ngModel)]="userData.creative_attach" name="creative_attach"
+                                (change)="handleCAFile($event)">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Record Your Brief : </label>
-                            <div
-                                class="col-12 col-md-12 d-flex flex-wrap justify-content-start align-items-center m-2">
+                            <div class="col-12 col-md-12 d-flex flex-wrap justify-content-start align-items-center m-2">
                                 <div class="col-12 col-md-6 d-flex  gap-2">
                                     <div class="audio_brief_in_brief_css">
                                         <button type="button" (click)="audioFileInput.click()">
-                                            <img src="../../assets/images/Audio_Brief.svg" class="p-1"
-                                                alt=""> Audio Brief
+                                            <img src="../../assets/images/Audio_Brief.svg" class="p-1" alt=""> Audio
+                                            Brief
                                         </button>
                                         <input type="file" #audioFileInput style="display: none"
                                             (change)="handleAudioFile($event)">
@@ -188,14 +185,14 @@
                                                 alt="">Video Brief</button></div> -->
 
 
-                                                <div class="video_brief_in_brief_css">
-                                                    <button type="button" (click)="videoFileInput.click()">
-                                                        <img src="../../assets/images/Video_Brief.svg" class="p-1"
-                                                            alt=""> Video Brief
-                                                    </button>
-                                                    <input type="file" #videoFileInput style="display: none"
-                                                        (change)="handleVideoFile($event)">
-                                                </div>
+                                    <div class="video_brief_in_brief_css">
+                                        <button type="button" (click)="videoFileInput.click()">
+                                            <img src="../../assets/images/Video_Brief.svg" class="p-1" alt=""> Video
+                                            Brief
+                                        </button>
+                                        <input type="file" #videoFileInput style="display: none"
+                                            (change)="handleVideoFile($event)">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -204,29 +201,27 @@
                         <div class="reg_data_css">
                             <label>Select Budget Range :</label>
                             <div class="d-flex justify-content-center align-items-center">
-                                <input class="Select_Budget_Range" type="range"
-                                    [(ngModel)]="userData.budget" name="budget" min="0" max="10000000">
-                                    {{userData.budget}}
+                                <input class="Select_Budget_Range" type="range" [(ngModel)]="userData.budget"
+                                    name="budget" min="0" max="10000000">
+                                {{userData.budget}}
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6 d-flex justify-content-start align-items-center">
                         <div class="regis_data_css w-100">
-                            <input type="checkbox" [(ngModel)]="userData.budget_in_mind"
-                                name="budget_in_mind">
+                            <input type="checkbox" [(ngModel)]="userData.budget_in_mind" name="budget_in_mind">
                             <p>I don’t have any budget in my mind yet.</p>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-xxl-12">
+                    <div class="col-12 col-md-12 col-xxl-12">
                         <div class="reg_data_css">
                             <label>Any Reference You Would Like to Attach : </label>
                             <div class="col-12 col-md-12 d-flex flex-wrap">
                                 <div class="col-12 col-md-5">
-                                    <input type="file" [(ngModel)]="userData.more_attach"
-                                        name="more_attach" (change)="handleMAFile($event)">
+                                    <input type="file" [(ngModel)]="userData.more_attach" name="more_attach"
+                                        (change)="handleMAFile($event)">
                                 </div>
-                                <div
-                                    class="col-12 col-md-2 d-flex justify-content-center align-items-center">
+                                <div class="col-12 col-md-2 d-flex justify-content-center align-items-center">
                                     OR
                                 </div>
                                 <div class="col-12 col-md-5">
@@ -245,14 +240,14 @@
             </form>
         </div>
     </div>
-    <div  *ngIf="currentStep === 2" class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center  mt-4">
+    <div *ngIf="currentStep === 2"
+        class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center  mt-4">
         <div class="signUp_css">
             <p class="create_account_css">Schedule meeting</p>
             <p class="create_account_under_text_css">Book meeting & allow us to call you ( what time would
                 suit you? )</p>
             <form #bookTimeForMeetingForm="ngForm" (ngSubmit)="bookTimeForMeeting(bookMeeting)">
-                <div
-                    class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
+                <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
 
                     <div class="col-12 col-md-12 col-xxl-12">
                         <div class="schedule_div_css">
@@ -295,8 +290,7 @@
                                 <div class="col-12 col-md-12">
                                     <div
                                         class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
-                                        <div
-                                            class="mt-3 d-flex flex-nowrap justify-content-center align-items-center">
+                                        <div class="mt-3 d-flex flex-nowrap justify-content-center align-items-center">
                                             <i class="fas fa-caret-left fs-3" (click)="decreaseYear()"></i>
                                             <input type="text" [(ngModel)]="currentYear" name="currentYear"
                                                 class="currentYear_css" inputmode="numeric">
@@ -310,54 +304,54 @@
                             <!-- <div class="col-11 col-md-11"
                                 style="height: 3.5px; background-color: #ccc; margin-top: 20px; margin-bottom: 20px;">
                             </div> -->
-                           
-                        </div>
-                        <div
-                            class="col-12 col-md-12 col-xxl-6 d-flex flex-wrap">
-                          
-                          
-                            <div
-                            class="col-4 col-md-4 col-xxl-4 d-flex flex-wrap justify-content-center align-items-center">
-                            <div class="d-flex flex-wrap justify-content-center align-items-center">
-                                <img src="../../assets/images/Time_img.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-8 col-md-8 col-xxl-8">
-                            <div
-                                class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
-                                <div class="input_css_hour_minutes">
-                                    <input type="tel" placeholder="HH" [(ngModel)]="bookMeetings.hour" name="hour">
 
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center fs-5">
-                                    <b>:</b>
-                                </div>
-                                <div class="input_css_hour_minutes">
-                                    <input type="tel" placeholder="MM" [(ngModel)]="bookMeetings.minute" name="minute">
+                        </div>
+                        <div class="col-12 col-md-12 col-xxl-6 d-flex flex-wrap">
 
+
+                            <div
+                                class="col-4 col-md-4 col-xxl-4 d-flex flex-wrap justify-content-center align-items-center">
+                                <div class="d-flex flex-wrap justify-content-center align-items-center">
+                                    <img src="../../assets/images/Time_img.svg" alt="">
                                 </div>
                             </div>
-                            <div
-                                class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
-                                <!-- app.component.html -->
-                                <div class="class_bg_csss">
-                                    <div class="bg_css_1" [class.bg_css_bg]="selectedTime === 'AM'"
-                                        (click)="selectTime('AM')">
-                                        <label for="AM">AM</label>
-                                        <input class="d-none" type="radio" name="time" id="AM"
-                                            value="AM" [(ngModel)]="selectedTime">
+                            <div class="col-8 col-md-8 col-xxl-8">
+                                <div
+                                    class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+                                    <div class="input_css_hour_minutes">
+                                        <input type="tel" placeholder="HH" [(ngModel)]="bookMeetings.hour" name="hour">
+
                                     </div>
-                                    <div class="bg_css_1" [class.bg_css_bg]="selectedTime === 'PM'"
-                                        (click)="selectTime('PM')">
-                                        <label for="PM">PM</label>
-                                        <input class="d-none" type="radio" name="time" id="PM"
-                                            value="PM" [(ngModel)]="selectedTime">
+                                    <div class="d-flex justify-content-center align-items-center fs-5">
+                                        <b>:</b>
+                                    </div>
+                                    <div class="input_css_hour_minutes">
+                                        <input type="tel" placeholder="MM" [(ngModel)]="bookMeetings.minute"
+                                            name="minute">
+
                                     </div>
                                 </div>
+                                <div
+                                    class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+                                    <!-- app.component.html -->
+                                    <div class="class_bg_csss">
+                                        <div class="bg_css_1" [class.bg_css_bg]="selectedTime === 'AM'"
+                                            (click)="selectTime('AM')">
+                                            <label for="AM">AM</label>
+                                            <input class="d-none" type="radio" name="time" id="AM" value="AM"
+                                                [(ngModel)]="selectedTime">
+                                        </div>
+                                        <div class="bg_css_1" [class.bg_css_bg]="selectedTime === 'PM'"
+                                            (click)="selectTime('PM')">
+                                            <label for="PM">PM</label>
+                                            <input class="d-none" type="radio" name="time" id="PM" value="PM"
+                                                [(ngModel)]="selectedTime">
+                                        </div>
+                                    </div>
 
-                            </div>
+                                </div>
 
-                        </div>  <!-- <div
+                            </div> <!-- <div
                                 class="col-12 col-md-11 col-xxl-11 offset-md-1 offset-xxl-1 d-flex flex-wrap gap-2">
                                 <div class="text_css_day_css">Today</div>
                                 <div class="text_css_day_css">Tomorrow</div>
@@ -387,27 +381,27 @@
             </form>
         </div>
     </div>
-    <div  *ngIf="currentStep === 3" class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center mt-4">
+    <div *ngIf="currentStep === 3"
+        class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center mt-4">
         <div class="signUp_css">
             <p class="create_account_css">Create Account</p>
             <p class="create_account_under_text_css">Sign Up here if you are not already
                 registered.</p>
             <form #registerForm="ngForm" (ngSubmit)="signUp(register)">
-                <div
-                    class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
+                <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
 
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Your Name :</label>
-                            <input type="text" placeholder="Enter username here" [(ngModel)]="register.name"
-                                name="name" required>
+                            <input type="text" placeholder="Enter username here" [(ngModel)]="register.name" name="name"
+                                required>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>City / Place :</label>
-                            <input type="text" placeholder="Enter City Name / Place"
-                                [(ngModel)]="register.city" name="city">
+                            <input type="text" placeholder="Enter City Name / Place" [(ngModel)]="register.city"
+                                name="city">
                         </div>
                     </div>
 
@@ -416,9 +410,8 @@
                             <label>Work Email ID: <span *ngIf="emailMismatch" class="text-danger"
                                     title="Please enter a valid email address.">*</span></label>
                             <input type="email" [ngClass]="{'border-danger': emailMismatch}"
-                                placeholder="Enter work email id" [(ngModel)]="register.email" name="email"
-                                required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                (keyup)="onEmailChange()">
+                                placeholder="Enter work email id" [(ngModel)]="register.email" name="email" required
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" (keyup)="onEmailChange()">
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
@@ -432,8 +425,8 @@
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Mobile No. :</label>
-                            <input type="text" placeholder="Enter Mobile No."
-                                [(ngModel)]="register.mobile_number" name="mobile_number" required>
+                            <input type="text" placeholder="Enter Mobile No." [(ngModel)]="register.mobile_number"
+                                name="mobile_number" required>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
@@ -448,12 +441,11 @@
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
                             <label>Country Code:</label>
-                            <input type="text" placeholder="Enter Country"
-                                [(ngModel)]="register.country_code" name="country_code">
+                            <input type="text" placeholder="Enter Country" [(ngModel)]="register.country_code"
+                                name="country_code">
                         </div>
                     </div>
-                    <div
-                        class="col-12 col-md-6 col-xxl-6 d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-6 col-xxl-6 d-flex justify-content-center align-items-center">
                         <div class="regis_data_css">
                             <input type="checkbox" name="agreeTerms" required>
                             <p>By clicking here you are agreed to the <span class="terms_conditions">Terms
@@ -464,8 +456,7 @@
                     <div
                         class="col-12 col-md-12 col-xxl-6 d-flex flex-column justify-content-center align-items-center mt-3">
                         <div class="signIn_button_css">
-                            <button
-                                [disabled]="registerForm.invalid || passwordMismatch  || emailMismatch">SIGN
+                            <button [disabled]="registerForm.invalid || passwordMismatch  || emailMismatch">SIGN
                                 UP</button>
                         </div>
                         <div class="not_reg_css">
@@ -476,7 +467,7 @@
             </form>
         </div>
     </div>
-    
+
 </div>
 
 

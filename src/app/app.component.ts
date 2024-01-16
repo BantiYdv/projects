@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 // import { CategoriesComponent } from './categories/categories.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -22,12 +22,15 @@ import { EmployeeDBComponent } from './Employee/employee-db/employee-db.componen
 import { EmployeeProjectComponent } from './Employee/employee-project/employee-project.component';
 import { AssignTaskComponent } from './Employee/assign-task/assign-task.component';
 import { ClientDBComponent } from './Client/client-db/client-db.component';
+import { LoginWithOTPComponent } from './login-with-otp/login-with-otp.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     FooterComponent,
+    LoginWithOTPComponent,
     CommonModule,
     MatIconModule,
     MatButtonModule,
@@ -50,24 +53,27 @@ import { ClientDBComponent } from './Client/client-db/client-db.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title:any;
+  // loginWithOTP : boolean |any;
 
-  constructor(public apiService :ApiServiceService) {}
-  // isLoggedIN : boolean | any;
+  constructor(public apiService :ApiServiceService,  private router: Router,) {}
+ ngOnInit(): void {
+  // this.loginWithOTP();
 
-  // ngOnInit(): void {
-  //   const token = localStorage.getItem('token')
-  //   if(token){
-  //     this.isLoggedIN = true;
-  //     console.log(token)
-  //   }
-  //   else{
-  //     this.isLoggedIN = false;
-  //     console.log('not token')
-  //   }
-  // }
-  
+      console.log('===> <====',this.router.url)
+ }
+ loginWithOTP(): boolean {
+  return this.router.url.startsWith('/login-with-otp');
+}
+forgotPassword(): boolean {
+  return this.router.url.startsWith('/forgot-password');
+}
+
+
+scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
   
 }
