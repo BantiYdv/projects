@@ -55,7 +55,36 @@ export class HowItWorkComponent implements OnInit {
   years: number[] = Array.from({ length: 1001 }, (_, i) => i + 2000); // Represents years from 2000 to 3000
   selectedTime: string = '';
   currentYear: number | any;
-  userData: any = {};
+  userData: {
+    av_type: string,
+    city: string,
+    email: string,
+    mobile_number: string,
+    event_date: string,
+    deadline: string,
+    desc: string,
+    budget: number,
+    budget_in_mind: boolean,
+    creative_attach: File | null,
+    more_attach: File | null,
+    audio: File | null,
+    video: File | null,
+  } = {
+    av_type: '',
+    city: '',
+    email: '',
+    mobile_number: '',
+    event_date: '',
+    deadline: '',
+    desc: '',
+    budget: 0,
+    budget_in_mind: false,
+    creative_attach: null,
+    more_attach: null,
+    audio: null,
+    video: null,
+  };
+  
   bookMeeting: any = {};
   bookMeetings: any = {};
 
@@ -260,7 +289,6 @@ export class HowItWorkComponent implements OnInit {
     console.log(this.userData.more_attach);
   }
   saveCientRequirement(userData:any){
-    // Create a JSON object excluding "creative_attach"
     const formData = new FormData();
 
     formData.append('av_type', this.userData.av_type);
@@ -270,13 +298,14 @@ export class HowItWorkComponent implements OnInit {
     formData.append('event_date', this.userData.event_date);
     formData.append('deadline', this.userData.deadline);
     formData.append('desc', this.userData.desc);
-    formData.append('budget', this.userData.budget);
-    formData.append('budget_in_mind', this.userData.budget_in_mind);
+    formData.append('budget', this.userData.budget.toString());
+    formData.append('budget_in_mind', this.userData.budget_in_mind.toString());
 
-    formData.append('creative_attach', this.userData.creative_attach);
-    formData.append('more_attach', this.userData.more_attach);
-    formData.append('audio', this.userData.audio);
-    formData.append('video', this.userData.video);
+    formData.append('creative_attach', this.userData.creative_attach !== null ? this.userData.creative_attach : '');
+    formData.append('more_attach', this.userData.more_attach !== null ? this.userData.more_attach : '');
+    formData.append('audio', this.userData.audio !== null ? this.userData.audio : '');
+    formData.append('video', this.userData.video !== null ? this.userData.video : '');
+    
     this.apiService.saveCientRequirement(formData).subscribe(
       (r: any) => {
         console.log(r);

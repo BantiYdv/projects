@@ -36,12 +36,6 @@ interface Project {
   styleUrl: './project.component.css',
 })
 export class ProjectComponent implements OnInit {
-
-  @ViewChild('addNewProjectModal') addNewProjectModal!: ElementRef;
-
-  closeModal() {
-    this.addNewProjectModal.nativeElement.click();
-  }
   projectSave: any = {
     name: '',
     start_date: '',
@@ -86,6 +80,9 @@ onChangeProjectSave(event:any){
 onChangeProjectUpdate(event:any){
   this.projectUpdate.project_resourses = event.target.files[0];
   console.log(this.projectUpdate.project_resourses)
+}
+getFormattedValue(value: any): any {
+  return value !== null && value !== '' ? value : "-";
 }
   saveProject(project:any){
     this.projectSave.user_id = localStorage.getItem('userId')

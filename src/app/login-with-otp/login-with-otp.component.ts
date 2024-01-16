@@ -13,13 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './login-with-otp.component.css',
 })
 export class LoginWithOTPComponent implements OnInit {
-  constructor(private apiService: ApiServiceService, private router: Router, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.verifyOTP.email = params['email'] || '';
-    });
-  }
   otpValue1: any;
   otpValue2: any;
   otpValue3: any;
@@ -30,12 +23,29 @@ export class LoginWithOTPComponent implements OnInit {
     email: '',
     otp: '',
   };
-  reSendData : any = {
+  reSendData: any = {
     email: this.verifyOTP.email,
-    is_team_member:true
-  }
+    is_team_member: true,
+  };
   currentStep = 1;
   showPassword: boolean = false;
+  timer: any;
+  defaultCountdown: number = 300; // 24 hours in seconds
+  countdown: number = this.defaultCountdown;
+  timerRunning: boolean = false;
+
+  constructor(
+    private apiService: ApiServiceService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.verifyOTP.email = params['email'] || '';
+    });
+  }
+
   move(e: any, p: any, c: any, n: any) {
     c.value = c.value.replace(/[^0-9]/g, '');
     // console.log(e)
@@ -59,46 +69,29 @@ export class LoginWithOTPComponent implements OnInit {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-  timer: any;
-  defaultCountdown: number = 300; // 24 hours in seconds
-  countdown: number = this.defaultCountdown;
-  timerRunning: boolean = false;
 
   startTimer(): void {
-    if(this.verifyOTP.email != ''){
-      Swal.fire({
-        icon: 'success',
-        title: 'OTP Resent',
-        text: 'We have resent the OTP to your email.',
-        confirmButtonText: 'OK',
-      });
-      this.sendOTPForForgetPassword();
+    this.reSendData.email = this.verifyOTP.email;
+    console.log('AVX', this.reSendData.email);
+    if (this.verifyOTP.email != '') {
+      // this.sendOTPForForgetPassword();
 
-      
-       this.clearTimer();
-   
-       // Reset countdown to default value
-       this.countdown = this.defaultCountdown;
-   
-       this.timerRunning = true;
-       this.timer = setInterval(() => {
-         this.countdown--;
-   
-         if (this.countdown <= 0) {
-           this.clearTimer();
-           this.timerRunning = false;
-   
-           // Handle the logic after the timer reaches zero (e.g., enable "Resend" button)
-         }
-       }, 1000);
-    }
-    else{
-      Swal.fire({
-        icon: 'error',
-        title: 'Resend OTP Failed',
-        text: 'There was an error resending the OTP. Please make sure you have filled in a valid email address.',
-        confirmButtonText: 'OK',
-      });
+      this.clearTimer();
+
+      // Reset countdown to default value
+      this.countdown = this.defaultCountdown;
+
+      this.timerRunning = true;
+      this.timer = setInterval(() => {
+        this.countdown--;
+
+        if (this.countdown <= 0) {
+          this.clearTimer();
+          this.timerRunning = false;
+
+          // Handle the logic after the timer reaches zero (e.g., enable "Resend" button)
+        }
+      }, 1000);
     }
   }
 
@@ -112,9 +105,7 @@ export class LoginWithOTPComponent implements OnInit {
     const minutes = Math.floor((this.countdown % 3600) / 60);
     const seconds = this.countdown % 60;
 
-    return `${this.formatDigit(
-      minutes
-    )}:${this.formatDigit(seconds)}`;
+    return `${this.formatDigit(minutes)}:${this.formatDigit(seconds)}`;
   }
 
   private formatDigit(value: number): string {
@@ -142,7 +133,7 @@ export class LoginWithOTPComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'OTP Verification Failed',
-          text: 'There was an error verifying your OTP. Please try again.',
+          text: e.error.message,
           confirmButtonText: 'OK',
         });
       }
@@ -176,12 +167,27 @@ export class LoginWithOTPComponent implements OnInit {
     );
   }
   sendOTPForForgetPassword() {
+    console.log('data => ', this.reSendData)
     this.apiService.sendOTPForForgetPassword(this.reSendData).subscribe(
       (r) => {
         console.log(r);
+        Swal.fire({
+          icon: 'success',
+          title: 'OTP Resent',
+          text: 'We have resent the OTP to your email.',
+          confirmButtonText: 'OK',
+        });
+        this.startTimer();
       },
       (e) => {
         console.error(e);
+        Swal.fire({
+          icon: 'error',
+          title: 'Resend OTP Failed',
+          // text: 'There was an error resending the OTP. Please make sure you have filled in a valid email address.',
+          text: e.error.message,
+          confirmButtonText: 'OK',
+        });
       }
     );
   }

@@ -12,11 +12,9 @@ export class ApiServiceService {
   userId: any = localStorage.getItem('userId');
   // token: any = "Abc";
   headersWithOutAuth = new HttpHeaders({
-    'Content-Type': 'application/json',
     project_secret_key: this.keys.project_secret_key,
   });
   headerWithAuth = new HttpHeaders({
-    // 'Content-Type': 'application/json',
     project_secret_key: this.keys.project_secret_key,
     request_by: this.userId,
     Authorization: `Bearer ${this.token}`,
@@ -173,14 +171,29 @@ export class ApiServiceService {
     return this.http.get(`${this.keys.getTaskById}?task_id=${task}`, { headers });
   }
 
-  updateTaskById(task: any) {
+  updateTaskStatus(id:any,status:any){
+    const data = {
+      task_id: id,
+      status: status,
+      user_id: localStorage.getItem('userId'),
+    };
     const headers = this.headerWithAuth;
-    return this.http.put(this.keys.updateTaskById, task, { headers });
+    return this.http.post(this.keys.updateTaskStatus,data,{headers});
   }
 
-  deleteTaskById(task: any) {
+  updateTaskById(task: any) {
     const headers = this.headerWithAuth;
-    return this.http.delete(this.keys.deleteTaskById, { headers });
+    return this.http.post(this.keys.updateTaskById, task, { headers });
+  }
+
+  deleteTaskById(id: any,is_enabled:any) {
+    const data = {
+      project_id: id,
+      is_deleted: is_enabled,
+      user_id: localStorage.getItem('userId'),
+    };
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.deleteTaskById,data, { headers });
   }
   //task code end
 
@@ -199,7 +212,7 @@ export class ApiServiceService {
 
   getTeamMember() {
     const headers = this.headerWithAuth;
-    return this.http.get(this.keys.getTeamMember, { headers });
+    return this.http.get(`${this.keys.getTeamMember}?is_also_view_inactive_members=false`, { headers });
   }
 
   getTeamMemberById(teamMember: any) {

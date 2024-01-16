@@ -33,11 +33,11 @@
                 </thead>
                 <tbody class="tBody_css">
                     <tr *ngFor="let projectData of projects;">
-                        <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.start_date  | date: 'dd/MM/yyyy'  }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.deadline | date: 'dd/MM/yyyy' }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name }}</td>
+                        <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name  || "-"}}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name   || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.start_date  | date: 'dd/MM/yyyy'   || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.deadline | date: 'dd/MM/yyyy'  || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name  || "-" }}</td>
                         <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                             <div  data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
                             data-bs-target="#downloadProject">
@@ -74,7 +74,7 @@
 
 
 <!-- Modal addNewProject -->
- <div class="modal fade" id="addNewProject" #addNewProjectModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #3B3A70;">
@@ -82,9 +82,10 @@
                     <div class="col-11 col-md-11 text_add_p_css">
                         <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
                     </div>
-                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                    <div class="col-1 col-md-1 text-end text-white">
+                        <button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button>
-                        <i class="fa fa-remove" (click)="closeModal()"></i>
+                        <!-- <i class="fa fa-remove" (click)="closeModal()"></i> -->
                         </div>
                 </div>
             </div>

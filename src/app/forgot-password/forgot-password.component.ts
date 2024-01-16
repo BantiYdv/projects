@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { ApiServiceService } from '../service/api-service.service';
+import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -20,9 +20,9 @@ export class ForgotPasswordComponent {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.verifyOTP.email = params['email'] || '';
-    });
+    // this.route.queryParams.subscribe((params) => {
+    //   this.verifyOTP.email = params['email'] || '';
+    // });
   }
   sendData: any = {
     email: '',
@@ -31,6 +31,7 @@ export class ForgotPasswordComponent {
     email: this.sendData.email,
     otp: '',
   };
+  
   otpValue1: any;
   otpValue2: any;
   otpValue3: any;
@@ -38,7 +39,7 @@ export class ForgotPasswordComponent {
   password: any;
   confirmPassword: any;
 
-  currentStep = 2;
+  currentStep = 1;
   showPassword: boolean = false;
 
   move(e: any, p: any, c: any, n: any) {
@@ -125,7 +126,9 @@ export class ForgotPasswordComponent {
   }
 
   sendOTP() {
+    this.verifyOTP.email = this.sendData.email;
     console.log('verifyOtp 1',this.verifyOTP)
+    console.log('sendData 1',this.sendData)
     this.apiService.sendOTPForForgetPassword(this.sendData).subscribe(
       (r) => {
         Swal.fire({
@@ -136,6 +139,7 @@ export class ForgotPasswordComponent {
         });
         this.currentStep = 2;
         console.log(r);
+       
       },
       (e) => {
         Swal.fire({

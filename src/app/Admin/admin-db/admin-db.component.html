@@ -13,7 +13,8 @@
                         class="profile_img_on_header d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <!-- <strong>mdo</strong> -->
+                        <strong>Welcome {{ (profileData.name || 'Not found').split(' ')[0] || 'Not found' }}
+                        </strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                         <!-- <li><a class="dropdown-item" href="#">New project...</a></li>

@@ -42,6 +42,7 @@ export class LoginComponent {
         });
       },
       (e: any) => {
+        console.error(e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );

@@ -34,9 +34,10 @@ export class KeysServiceService {
   public addParticipant = `${this.mainUrl}/project/addParticipant `//done
 
   public saveTask = `${this.mainUrl}/task/createTask`;//done
-  public getTask = `${this.mainUrl}/task/getTaskList`;
+  public getTask = `${this.mainUrl}/task/getTaskList`;//done
   public getTaskById = `${this.mainUrl}/task/getTaskDetailsById`;
-  public updateTaskById = `${this.mainUrl}/updateTaskById`;
+  public updateTaskStatus = `${this.mainUrl}/task/updateTaskStatus`;//done
+  public updateTaskById = `${this.mainUrl}/task/updateTask`;
   public deleteTaskById = `${this.mainUrl}/task/deleteTask`;
 
   public getTeamMemberListToAddParticipant = `${this.mainUrl}/teamMembers/getTeamMemberListToAddParticipant`;//done

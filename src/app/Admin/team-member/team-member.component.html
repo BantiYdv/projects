@@ -30,10 +30,10 @@
                 <tbody class="tBody_css">
                     <tr *ngFor="let teamMember of teamMembers; let i = index;">
                         <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }" scope="row">{{ i+1 }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{teamMember.name}}</td>
-                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{ teamMember.designation }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{teamMember.country_code}}{{ teamMember.mobile_number }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{ teamMember.email }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{teamMember.name  || "-"}}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{ teamMember.designation  || "-"}}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{teamMember.country_code   || "-"}}{{ teamMember.mobile_number  || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">{{ teamMember.email  || "-" }}</td>
                         <td [ngClass]="{ 'bg-secondary': !teamMember.is_enable }">
                             <div class="icon_t_e_e">
                                 <i class="fa fa-trash" (click)="deleteUser(teamMember._id,teamMember.is_enable)" *ngIf="teamMember.is_enable"></i>
