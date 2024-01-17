@@ -109,11 +109,11 @@ export class TeamMemberComponent {
       if (result.isConfirmed) {
         // If confirmed, proceed with the deletion
         this.apiService.deleteUser(id,is_deleted).subscribe(
-          (r) => {
+          (r:any) => {
             console.log(r)
             Swal.fire(
               'Deleted!',
-              'Your teamMember has been deleted.',
+              r.message,
               'success'
             );
             this.getTeamMember();

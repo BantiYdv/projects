@@ -97,3 +97,6 @@
 .save_css_button_code button:active{
     transform: scale(.9);
 }
+.bg-secondary{
+    background-color: #c2c2c2 !important;
+}

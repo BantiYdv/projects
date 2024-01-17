@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -58,11 +58,21 @@ export class AppComponent implements OnInit {
   // loginWithOTP : boolean |any;
 
   constructor(public apiService :ApiServiceService,  private router: Router,) {}
+  showScrollButton = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    // Check the scroll position and update showScrollButton accordingly
+    this.showScrollButton = window.scrollY > 0;
+  }
  ngOnInit(): void {
   // this.loginWithOTP();
 
       console.log('===> <====',this.router.url)
  }
+ scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
  loginWithOTP(): boolean {
   return this.router.url.startsWith('/login-with-otp');
 }
@@ -71,9 +81,7 @@ forgotPassword(): boolean {
 }
 
 
-scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+
 
   
 }

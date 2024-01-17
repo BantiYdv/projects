@@ -1,5 +1,3 @@
-
-
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
@@ -33,19 +31,26 @@
                 </thead>
                 <tbody class="tBody_css">
                     <tr *ngFor="let projectData of projects;">
-                        <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name  || "-"}}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name   || "-" }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.start_date  | date: 'dd/MM/yyyy'   || "-" }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.deadline | date: 'dd/MM/yyyy'  || "-" }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name  || "-" }}</td>
+                        <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name ||
+                            "-"}}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
+                            }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.start_date | date:
+                            'dd/MM/yyyy' || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.deadline | date:
+                            'dd/MM/yyyy' || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name || "-"
+                            }}</td>
                         <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
-                            <div  data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
-                            data-bs-target="#downloadProject">
-                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                        </div>
-                    </td>
+                            <div data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
+                                data-bs-target="#downloadProject">
+                                <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                            </div>
+                        </td>
                         <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
-                            <select class="select_css_code" [(ngModel)]="projectData.current_status" name="current_status" (change)="onChangeStatus(projectData._id,projectData.current_status)">
+                            <select class="select_css_code" [(ngModel)]="projectData.current_status"
+                                name="current_status"
+                                (change)="onChangeStatus(projectData._id,projectData.current_status)">
                                 <option value="Created">Created</option>
                                 <option value="Start">Start</option>
                                 <option value="Ongoing">Ongoing</option>
@@ -54,13 +59,19 @@
                         </td>
                         <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                             <div class="icon_t_e_e">
-                                <i class="fa fa-trash" (click)="deleteProjectById(projectData._id,projectData.is_enabled)" *ngIf="projectData.is_enabled"></i>
-                                <i class="fas fa-trash-restore-alt" (click)="deleteProjectById(projectData._id,projectData.is_enabled)" *ngIf="!projectData.is_enabled"></i>
-                                <i *ngIf="projectData.is_enabled" class="fa fa-edit" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                <i class="fa fa-trash"
+                                    (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
+                                    *ngIf="projectData.is_enabled"></i>
+                                <i class="fas fa-trash-restore-alt"
+                                    (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
+                                    *ngIf="!projectData.is_enabled"></i>
+                                <i *ngIf="projectData.is_enabled" class="fa fa-edit"
+                                    (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#updateNewProject"></i>
                                 <i class="fa fa-eye" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#viewNewProject"></i>
-                                <i *ngIf="projectData.is_enabled" class="fa fa-users" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                <i *ngIf="projectData.is_enabled" class="fa fa-users"
+                                    (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
                                     data-bs-target="#viewProjectOpp"></i>
                             </div>
                         </td>
@@ -74,7 +85,7 @@
 
 
 <!-- Modal addNewProject -->
- <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #3B3A70;">
@@ -83,10 +94,9 @@
                         <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white">
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         <!-- <i class="fa fa-remove" (click)="closeModal()"></i> -->
-                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-body m-4">
@@ -95,7 +105,7 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Project Name</label>
-                                <input type="text" placeholder="Project Name"  [(ngModel)]="projectSave.name" name="name"
+                                <input type="text" placeholder="Project Name" [(ngModel)]="projectSave.name" name="name"
                                     required>
                             </div>
                         </div>
@@ -103,13 +113,15 @@
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Starting Date</label>
-                                    <input type="date" [(ngModel)]="projectSave.start_date" name="start_date" required>
+                                    <input type="date" [(ngModel)]="projectSave.start_date" [min]="currentDate"
+                                        name="start_date" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Deadline Date</label>
-                                    <input type="date" [(ngModel)]="projectSave.deadline" name="deadline" required>
+                                    <input type="date" [(ngModel)]="projectSave.deadline" [min]="projectSave.start_date"
+                                        name="deadline" required>
                                 </div>
                             </div>
                         </div>
@@ -124,6 +136,7 @@
                             <div class="add_css_pro_code">
                                 <label>Client Name</label>
                                 <select [(ngModel)]="projectSave.client_id" name="client_id" required>
+                                    <option value="" disabled selected>Select Client</option>
                                     <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
                                 </select>
                             </div>
@@ -131,14 +144,17 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Upload Doc.</label>
-                                <input type="file" (change)="onChangeProjectSave($event)" [(ngModel)]="projectSave.project_resourses" name="project_resourses">
+                                <input type="file" (change)="onChangeProjectSave($event)"
+                                    [(ngModel)]="projectSave.project_resourses" name="project_resourses">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Handled By</label>
                                 <select [(ngModel)]="projectSave.handel_by" name="handel_by" required>
-                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">{{handel_by.name}}
+                                    <option value="" disabled selected>Select Handled By</option>
+                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
+                                        {{handel_by.name}}
                                     </option>
                                 </select>
                             </div>
@@ -146,7 +162,7 @@
                         <div class="col-12 col-md-12">
                             <div class="add_css_pro_code">
                                 <label>Other Information</label>
-                                <input type="text" placeholder="other information" [(ngModel)]="projectSave.desc"
+                                <input type="text" placeholder="Other Information" [(ngModel)]="projectSave.desc"
                                     name="desc">
                             </div>
                         </div>
@@ -171,7 +187,8 @@
             <div class="modal-header" style="background-color: #3B3A70;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Update Project</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">Update {{projectUpdate.short_name}} Project
+                        </div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -183,36 +200,39 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Project Name</label>
-                                <input type="text" placeholder="Project Name"  [(ngModel)]="projectUpdate.name" name="name"
-                                    required>
+                                <input type="text" placeholder="Project Name" [(ngModel)]="projectUpdate.name"
+                                    name="name" required>
                             </div>
                         </div>
-                       <div class="col-12 col-md-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-6 d-flex flex-wrap">
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Starting Date</label>
-                                    <input type="date" [(ngModel)]="projectUpdate.start_date" name="start_date" required>
+                                    <input type="date" [(ngModel)]="projectUpdate.start_date" [min]="currentDate"
+                                        name="start_date" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Deadline Date</label>
-                                    <input type="date" [(ngModel)]="projectUpdate.deadline" name="deadline" required>
+                                    <input type="date" [(ngModel)]="projectUpdate.deadline"
+                                        [min]="projectUpdate.start_date  || currentDate" name="deadline" required>
                                 </div>
                             </div>
                         </div>
-                         <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Short Name</label>
-                                <input readonly type="text" placeholder="Short Name" [(ngModel)]="projectUpdate.short_name"
-                                    name="short_name" required>
+                                <input readonly type="text" placeholder="Short Name"
+                                    [(ngModel)]="projectUpdate.short_name" name="short_name" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Client Name</label>
                                 <!-- {{projectUpdate.client_id._id}} -->
-                                <select  [(ngModel)]="projectUpdate.client_id._id" name="client_id" required>
+                                <select [(ngModel)]="projectUpdate.client_id._id" name="client_id" required>
+                                    <option value="" disabled selected>Select Client</option>
                                     <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
                                 </select>
                             </div>
@@ -220,15 +240,18 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Upload Doc.</label>
-                                <input  type="file" (change)="onChangeProjectUpdate($event)" [(ngModel)]="projectUpdate.project_resourses" name="project_resourses">
+                                <input type="file" (change)="onChangeProjectUpdate($event)"
+                                    [(ngModel)]="projectUpdate.project_resourses" name="project_resourses">
                             </div>
                         </div>
-                      <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Handled By</label>
                                 <!-- {{projectUpdate.handel_by._id}} -->
                                 <select [(ngModel)]="projectUpdate.handel_by._id" name="handel_by" required>
-                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">{{handel_by.name}}
+                                    <option value="" disabled selected>Select Handled By</option>
+                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
+                                        {{handel_by.name}}
                                     </option>
                                 </select>
                                 <!-- {{projectUpdate.handel_by._id}} -->
@@ -242,12 +265,12 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
                             <button [disabled]="updateProjectForm.invalid">Update</button>
                         </div>
-                    </div> 
+                    </div>
                 </form>
             </div>
         </div>
@@ -261,64 +284,70 @@
             <div class="modal-header" style="background-color: #3B3A70;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Project Details</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.short_name}} Details</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button></div>
                 </div>
             </div>
-                <div class="modal-body m-4">
-                    <div class="col-12 col-md-12 d-flex flex-wrap">
+            <div class="modal-body m-4">
+                <div class="col-12 col-md-12 d-flex flex-wrap">
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Project Name</label>
+                            <span>{{projectUpdate.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex flex-wrap">
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
-                                <label>Project Name</label>
-                                <span>{{projectUpdate.name}}</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 d-flex flex-wrap">
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Starting Date</label>
-                                    <span>{{projectUpdate.start_date | date:'dd/MM/yyyy'}}</span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Deadline Date</label>
-                                    <span>{{projectUpdate.deadline | date:'dd/MM/yyyy'}}</span>
-                                </div>
+                                <label>Starting Date</label>
+                                <span>{{projectUpdate.start_date | date:'dd/MM/yyyy'}}</span>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
-                                <label>Handled By</label>
-                                <span>{{projectUpdate.handel_by.name}}</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Client Name</label>
-                                <span>{{projectUpdate.client_id.name}}</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Upload Doc.</label>
-                                <span *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index">
-                                    {{project_resourses.name|| 'Document'}}</span>
-                                    <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex">
-                                        No Document
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12">
-                            <div class="add_css_pro_code">
-                                <label>Other Information</label>
-                                <span>{{projectUpdate.desc}}</span>
+                                <label>Deadline Date</label>
+                                <span>{{projectUpdate.deadline | date:'dd/MM/yyyy'}}</span>
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Handled By</label>
+                            <span>{{projectUpdate.handel_by.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Client Name</label>
+                            <span>{{projectUpdate.client_id.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Upload Doc.</label>
+                            <span *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index">
+                                {{project_resourses.name|| 'Document'}}</span>
+                            <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex">
+                                No Document
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                            <label>Short Name</label>
+                            <span>{{projectUpdate.short_name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="add_css_pro_code">
+                            <label>Other Information</label>
+                            <span>{{projectUpdate.desc}}</span>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
@@ -330,7 +359,7 @@
             <div class="modal-header" style="background-color: #3B3A70;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.name}} Details</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.short_name}} Details</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -338,19 +367,22 @@
             </div>
             <div class="modal-body m-4">
                 <div class="col-12 col-md-12">
-                    <div  *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index" class="d-flex justify-content-between align-items-center" >
+                    <div *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index"
+                        class="d-flex justify-content-between align-items-center">
                         <h2>{{project_resourses.name || 'Document'}}</h2>
-                        <a href="'http://101.53.145.234:4005/' + project.project_resourses.url" download>
+                        <a [href]="'http://101.53.145.234:4005/' + projectUpdate.project_resourses.url" download>
                             <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
                         </a>
                     </div>
-                    <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex justify-content-center align-items-center">
+                    <div *ngIf="projectUpdate.project_resourses == 0"
+                        class="d-flex justify-content-center align-items-center">
                         No Document
                     </div>
-                    <div *ngIf="!projectUpdate.project_resourses" class="d-flex justify-content-center align-items-center">
+                    <div *ngIf="!projectUpdate.project_resourses"
+                        class="d-flex justify-content-center align-items-center">
                         <div class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Loading...</span>
-                          </div>
+                        </div>
                     </div>
 
                 </div>
@@ -360,14 +392,15 @@
 </div>
 
 
-<div class="modal fade" style=" --bs-modal-zindex: 1000 !important;background-color: #58585867 !important;" id="viewProjectOpp"tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-data-bs-backdrop="false">
+<div class="modal fade" style=" --bs-modal-zindex: 1000 !important;background-color: #58585867 !important;"
+    id="viewProjectOpp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #3B3A70;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Add Participant</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">Add {{projectUpdate.short_name}}
+                            Participant</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -375,20 +408,21 @@ data-bs-backdrop="false">
             </div>
             <div class="modal-body m-4">
                 <form #saveTeamMemberForm="ngForm" (ngSubmit)="addParticipant(addParticipantData)">
-                  <div class="col-12 col-md-12 d-flex justify-content-center align-items-center">
-                  
-<div class="teamMemberAdd">
-    <mat-form-field>
-        <mat-label>Team Member</mat-label>
-        <mat-select  multiple aria-required="true" [(value)]="addParticipantData"> 
-            <mat-option *ngFor="let getTeamMember of getTeamMemberList" [value]="getTeamMember._id">{{getTeamMember.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+                    <div class="col-12 col-md-12 d-flex justify-content-center align-items-center">
 
-      <!-- {{addParticipantData}} -->
-</div>
+                        <div class="teamMemberAdd">
+                            <mat-form-field>
+                                <mat-label>Team Member</mat-label>
+                                <mat-select multiple aria-required="true" [(value)]="addParticipantData">
+                                    <mat-option *ngFor="let getTeamMember of getTeamMemberList"
+                                        [value]="getTeamMember._id">{{getTeamMember.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
 
-                  </div>
+                            <!-- {{addParticipantData}} -->
+                        </div>
+
+                    </div>
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
                             <button [disabled]="saveTeamMemberForm.invalid">Save</button>

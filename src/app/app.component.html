@@ -14,7 +14,7 @@
 <div *ngIf="apiService.isLoggedIn() && apiService.getRole === 'user'">    
         <app-client-db></app-client-db>
 </div>
-<button class="topUP" (click)="scrollToTop()" style="position: fixed; bottom: 50px; right: 50px;"><i class="fa fa-angle-double-up"></i></button>
+<button class="topUP show" [ngClass]="{'show': showScrollButton}" (click)="scrollToTop()" style="position: fixed; bottom: 50px; right: 50px;"><i class="fa fa-angle-double-up"></i></button>
 
 
 

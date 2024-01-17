@@ -38,12 +38,12 @@ export class EmployeeDBComponent {
 
    
     this.apiService.saveAvatar(formData).subscribe(
-      (response) => {
+      (response:any) => {
         console.log('response =>',response)
         // On success
         Swal.fire({
           title: 'Avatar Saved!',
-          text: 'Your avatar has been successfully saved.',
+          text: response.message,
           icon: 'success',
           confirmButtonText: 'OK'
         });
@@ -54,7 +54,7 @@ export class EmployeeDBComponent {
         // On error
         Swal.fire({
           title: 'Error',
-          text: 'An error occurred while saving the avatar. Please try again.',
+          text: error.error.message,
           icon: 'error',
           confirmButtonText: 'OK'
         });

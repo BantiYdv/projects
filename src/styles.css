@@ -35,3 +35,7 @@ body { margin: 0; font-family: "Helvetica", sans-serif; }
 button:disabled{
   opacity: .5;
 }
+
+.container-fluid{
+  width: 100% !important;
+}

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
+import { error } from 'console';
 
 @Component({
   selector: 'app-client-db',
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2';
 export class ClientDBComponent {
   items = new Array(30);
   workStatus: any = {};
+  workStatusData: any[] = [];
   
   profileData: any = {};
   profileAvatarImg:any={};user_id : any;
@@ -25,6 +27,7 @@ export class ClientDBComponent {
   ngOnInit(): void {
     this.user_id = localStorage.getItem('userId');
     this.getUserDetails(this.user_id);
+    this.getClientProjectList();
   }
 
   saveWorkStatus(workStatus:any){
@@ -34,7 +37,7 @@ export class ClientDBComponent {
         console.log(r);
         Swal.fire({
           icon: 'success',
-          title: 'Registration Successful',
+          title: 'Successful',
           text: r.data.message,
           showConfirmButton: false,
           timer: 3000,
@@ -53,13 +56,15 @@ export class ClientDBComponent {
     );
   }
 
-  getWorkStatus(){
-    this.apiService.getWorkStatus().subscribe(
-      (r) => {
-        this.workStatus = r;
+  getClientProjectList(){
+    const client_id = localStorage.getItem('userId')
+    this.apiService.getClientProjectList(client_id).subscribe(
+      (r: any) => {
+        this.workStatusData = r.data;
+        console.log('Get Client Project List', this.workStatusData);
       },
       (e) => {
-        console.log(e.data.message);
+        console.error(e);
       }
     )
   }
@@ -131,12 +136,12 @@ export class ClientDBComponent {
 
    
     this.apiService.saveAvatar(formData).subscribe(
-      (response) => {
+      (response:any) => {
         console.log('response =>',response)
         // On success
         Swal.fire({
           title: 'Avatar Saved!',
-          text: 'Your avatar has been successfully saved.',
+          text: response.message,
           icon: 'success',
           confirmButtonText: 'OK'
         });
@@ -147,7 +152,7 @@ export class ClientDBComponent {
         // On error
         Swal.fire({
           title: 'Error',
-          text: 'An error occurred while saving the avatar. Please try again.',
+          text: error.error.message,
           icon: 'error',
           confirmButtonText: 'OK'
         });

@@ -130,22 +130,23 @@ export class ForgotPasswordComponent {
     console.log('verifyOtp 1',this.verifyOTP)
     console.log('sendData 1',this.sendData)
     this.apiService.sendOTPForForgetPassword(this.sendData).subscribe(
-      (r) => {
+      (r:any) => {
         Swal.fire({
           icon: 'success',
           title: 'OTP Sent',
-          text: 'We have sent the OTP to your email.',
+          text: r.message,
           confirmButtonText: 'OK',
         });
         this.currentStep = 2;
         console.log(r);
+        this.startTimer();
        
       },
       (e) => {
         Swal.fire({
           icon: 'error',
           title: 'Send OTP Failed',
-          text: 'There was an error sending the OTP. Please make sure you have filled in a valid email address.',
+          text: e.error.message,
           confirmButtonText: 'OK',
         });
         console.error(e);
@@ -164,7 +165,7 @@ export class ForgotPasswordComponent {
         Swal.fire({
           icon: 'success',
           title: 'OTP Verified',
-          text: 'Your OTP has been verified successfully!',
+          text: r.message,
           confirmButtonText: 'OK',
         }).then(() => {
           this.currentStep = 3;
@@ -176,7 +177,7 @@ export class ForgotPasswordComponent {
         Swal.fire({
           icon: 'error',
           title: 'OTP Verification Failed',
-          text: 'There was an error verifying your OTP. Please try again.',
+          text: e.error.message,
           confirmButtonText: 'OK',
         });
       }

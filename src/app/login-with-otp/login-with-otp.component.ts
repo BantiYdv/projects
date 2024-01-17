@@ -121,7 +121,7 @@ export class LoginWithOTPComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'OTP Verified',
-          text: 'Your OTP has been verified successfully!',
+          text: r.message,
           confirmButtonText: 'OK',
         }).then(() => {
           this.currentStep = 2;
@@ -169,12 +169,12 @@ export class LoginWithOTPComponent implements OnInit {
   sendOTPForForgetPassword() {
     console.log('data => ', this.reSendData)
     this.apiService.sendOTPForForgetPassword(this.reSendData).subscribe(
-      (r) => {
+      (r:any) => {
         console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'OTP Resent',
-          text: 'We have resent the OTP to your email.',
+          text: r.message,
           confirmButtonText: 'OK',
         });
         this.startTimer();

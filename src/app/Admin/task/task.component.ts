@@ -25,11 +25,15 @@ interface Task {
   styleUrl: './task.component.css',
 })
 export class TaskComponent {
+  currentDate: string = new Date().toISOString().split('T')[0]; 
   taskSave: any = {
-    project_id: 'select',
-    assgined_to: 'select',
+    project_id: '',
+    assgined_to: '',
+    start_date: this.currentDate,
   };
-  taskUpdate: any = {};
+  taskUpdate: any = {
+    start_date: this.currentDate,
+  };
   userData: any = {};
   projectList: any = {};
   handel_By: any = {};
@@ -130,7 +134,7 @@ export class TaskComponent {
         console.log(r);
         Swal.fire({
           icon: 'success',
-          title: 'Registration Successful',
+          title: 'Successful',
           text: r.data.message,
           showConfirmButton: false,
           timer: 3000,
@@ -164,7 +168,7 @@ export class TaskComponent {
   getTaskById(id: any) {
     this.apiService.getTaskById(id).subscribe(
       (r: any) => {
-        console.log(r);
+        console.log(r.data);
         this.taskUpdate = r.data;
       },
       (e) => {
@@ -174,13 +178,14 @@ export class TaskComponent {
   }
 
   updateTask(task: any) {
-    this.taskUpdate = {};
+    // this.taskUpdate = {};
+    console.log('task', this.taskUpdate)
     this.taskUpdate.user_id = localStorage.getItem('userId');
     const formData = new FormData();
 
+    formData.append('task_id', this.taskUpdate._id);
     formData.append('name', this.taskUpdate.name);
     formData.append('user_id', this.taskUpdate.user_id);
-    formData.append('project_id', this.taskUpdate.project_id);
     formData.append('assgined_to', this.taskUpdate.assgined_to);
     formData.append('start_date', this.taskUpdate.start_date);
     formData.append('deadline', this.taskUpdate.deadline);
@@ -198,7 +203,6 @@ export class TaskComponent {
           timer: 3000,
         }).then((result) => {
           if (result) {
-            this.router.navigate(['/']);
           }
         });
         this.getTask();
@@ -214,6 +218,7 @@ export class TaskComponent {
 
   deleteTask(id: any,is_enabled:any) {
     // Show confirmation dialog
+    console.log('==> data',id ,is_enabled)
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -236,7 +241,7 @@ export class TaskComponent {
             this.getTask();
           },
           (e) => {
-            console.log(e.data.message);
+            console.log(e.error.message);
             Swal.fire('Error!', e.error.message, 'error');
           }
         );
@@ -254,7 +259,7 @@ export class TaskComponent {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, update it!',
+      confirmButtonText: 'Yes, change it!',
     }).then((result) => {
       if (result.isConfirmed) {
         this.apiService.updateTaskStatus(id, status).subscribe(

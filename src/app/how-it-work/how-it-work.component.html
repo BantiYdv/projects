@@ -110,20 +110,20 @@
                         <div class="reg_data_css">
                             <label>Phone No. :</label>
                             <input type="tel" placeholder="phone no." [(ngModel)]="userData.mobile_number"
-                                name="mobile_number">
+                                name="mobile_number" required>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
-                            <label>Script Deadline :</label>
-                            <input type="date" [(ngModel)]="userData.deadline" name="deadline">
+                            <label>Event Date :</label>
+                            <input type="date" [(ngModel)]="userData.event_date" [min]="currentDate" name="event_date" required>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
                         <div class="reg_data_css">
-                            <label>Event Date :</label>
-                            <input type="date" [(ngModel)]="userData.event_date" name="event_date">
+                            <label>Script Deadline :</label>
+                            <input type="date" [(ngModel)]="userData.deadline" [min]="userData.event_date" name="deadline" required>
                         </div>
                     </div>
 
@@ -131,7 +131,7 @@
                         <div class="reg_data_css">
                             <label>Give Us More Details :</label>
                             <input type="text" placeholder="Required Details, Launch, etc." [(ngModel)]="userData.desc"
-                                name="desc">
+                                name="desc" required>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xxl-6">
@@ -251,7 +251,7 @@
 
                     <div class="col-12 col-md-12 col-xxl-12">
                         <div class="schedule_div_css">
-                            <input type="checkbox" [(ngModel)]="bookMeeting.call_allow" name="call_allow">
+                            <input type="checkbox" [(ngModel)]="bookMeeting.call_allow" name="call_allow" required>
                             <label>Allow Us to call You.</label>
                         </div>
                         <div class="schedule_div_css_under_text">

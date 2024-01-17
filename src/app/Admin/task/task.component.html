@@ -30,18 +30,18 @@
                 </thead>
                 <tbody class="tBody_css">
                     <tr *ngFor="let task of tasks;">
-                        <td scope="row">{{ task.task_info.project_name  || "-" }}</td>
-                        <td>{{ task.task_info.task_number  || "-" }}</td>
-                        <td>{{ task.task_info.name  || "-" }}</td>
-                        <td>{{ task.task_info.assgined_team_member  || "-" }}</td>
+                        <td scope="row" [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">{{ task.task_info.project_name  || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">{{ task.task_info.task_number  || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">{{ task.task_info.name  || "-" }}</td>
+                        <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">{{ task.task_info.assgined_team_member  || "-" }}</td>
                         <!-- <td>{{ task.handledBy }}</td> -->
-                        <td>
+                        <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">
                             <div  data-bs-toggle="modal" (click)="getTaskById(task.task_info._id)"
                             data-bs-target="#downloadTask">
                             <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                        </div>`
+                        </div>
                     </td>
-                        <td>
+                        <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">
                           <select class="select_css_code" [(ngModel)]="task.task_info.current_status" name="current_status" (change)="onChangeStatus(task.task_info._id,task.task_info.current_status)">
                             <option value="Created">Created</option>
                                 <option value="Start">Start</option>
@@ -49,10 +49,11 @@
                                 <option value="Finished">Finished</option>
                           </select>
                         </td>
-                        <td>
+                        <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">
                           <div class="icon_t_e_e">
-                            <i class="fa fa-trash" (click)="deleteTask(task.task_info._id,task.task_info.is_enabled)"></i>
-                            <i class="fa fa-edit" (click)="getTaskById(task.task_info._id)"  data-bs-toggle="modal" data-bs-target="#updateNewTask"></i>
+                            <i class="fas fa-trash-restore-alt" *ngIf="!task.task_info.is_enabled" (click)="deleteTask(task.task_info._id,task.task_info.is_enabled)"></i>
+                            <i class="fa fa-trash" *ngIf="task.task_info.is_enabled" (click)="deleteTask(task.task_info._id,task.task_info.is_enabled)"></i>
+                            <i class="fa fa-edit" *ngIf="task.task_info.is_enabled" (click)="getTaskById(task.task_info._id)"  data-bs-toggle="modal" data-bs-target="#updateNewTask"></i>
                             <i class="fa fa-eye"  (click)="getTaskById(task.task_info._id)" data-bs-toggle="modal" data-bs-target="#viewNewTask"></i>
                           </div>
                         </td>
@@ -82,7 +83,7 @@
                 <div class="add_css_pro_code">
                     <label>Select Project</label>
                     <select [(ngModel)]="taskSave.project_id" name="project_id">
-                        <option disabled value="select">-- Select --</option>
+                        <option disabled value="">Select Project</option>
                         <option *ngFor="let project of projectList" [value]="project._id">{{project.name}}</option>
                     </select>
                 </div>
@@ -97,7 +98,7 @@
                 <div class="add_css_pro_code">
                     <label>Assign To Team Member</label>
                     <select [(ngModel)]="taskSave.assgined_to" name="assgined_to" required>
-                        <option disabled value="select">-- Select --</option>
+                        <option disabled value="">Select Member</option>
                         <option *ngFor="let handel of handel_By" [value]="handel._id">{{handel.name}}</option>
                     </select>
                 </div>
@@ -111,13 +112,13 @@
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Start Date</label>
-                    <input type="date" [(ngModel)]="taskSave.start_date" name="start_date" required>
+                    <input type="date" [(ngModel)]="taskSave.start_date" [min]="currentDate" name="start_date" required>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Deadline Date</label>
-                    <input type="date" [(ngModel)]="taskSave.deadline" name="deadline" required>
+                    <input type="date" [(ngModel)]="taskSave.deadline" [min]="taskSave.start_date || currentDate " name="deadline" required>
                 </div>
             </div>
             <div class="col-12 col-md-12">
@@ -146,7 +147,7 @@
       <div class="modal-content">
         <div class="modal-header" style="background-color: #3B3A70;">
             <div class="col-12 col-md-12 d-flex flex-nowrap">
-                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Update Task</div></div>
+                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Update {{taskUpdate.name}} Task</div></div>
                 <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
             </div>
         </div>
@@ -157,7 +158,7 @@
                         <div class="add_css_pro_code">
                             <label>Select Project</label>
                             <select [(ngModel)]="taskUpdate.project_id" name="project_id">
-                                <option disabled value="select">-- Select --</option>
+                                <option disabled value="">Select Project</option>
                                 <option *ngFor="let project of projectList" [value]="project._id">{{project.name}}</option>
                             </select>
                         </div>
@@ -172,7 +173,7 @@
                         <div class="add_css_pro_code">
                             <label>Assign To Team Member</label>
                             <select [(ngModel)]="taskUpdate.assgined_to" name="assgined_to" required>
-                                <option disabled value="select">-- Select --</option>
+                                <option disabled value="">Select Member</option>
                                 <option *ngFor="let handel of handel_By" [value]="handel._id">{{handel.name}}</option>
                             </select>
                         </div>
@@ -186,13 +187,13 @@
                     <div class="col-12 col-md-6">
                         <div class="add_css_pro_code">
                             <label>Start Date</label>
-                            <input type="date" [(ngModel)]="taskUpdate.start_date" name="start_date" required>
+                            <input type="date" [(ngModel)]="taskUpdate.start_date" [min]="currentDate" name="start_date" required>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="add_css_pro_code">
                             <label>Deadline Date</label>
-                            <input type="date" [(ngModel)]="taskUpdate.deadline" name="deadline" required>
+                            <input type="date" [(ngModel)]="taskUpdate.deadline" [min]="taskUpdate.start_date  || currentDate" name="deadline" required>
                         </div>
                     </div>
                     <div class="col-12 col-md-12">
@@ -221,7 +222,7 @@
       <div class="modal-content">
         <div class="modal-header" style="background-color: #3B3A70;">
             <div class="col-12 col-md-12 d-flex flex-nowrap">
-                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Task Details</div></div>
+                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">{{taskUpdate.name || 'Task'}} Details</div></div>
                 <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
             </div>
         </div>
@@ -230,7 +231,7 @@
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Project Name</label>
-                    <span>{{taskUpdate.name}}</span>
+                    <span>{{taskUpdate.project_name}}</span>
                 </div>
             </div>
             
@@ -255,9 +256,9 @@
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Upload Doc.</label>
-                    <span *ngFor="let task_attachement of taskUpdate.task_attachement , let i = index">
-                        {{task_attachement.name|| 'Document'}}</span>
-                        <div *ngIf="taskUpdate.task_attachement == 0" class="d-flex">
+                    <span *ngFor="let attachment of taskUpdate.attachment , let i = index">
+                        {{attachment.name || 'Document'}}</span>
+                        <div *ngIf="taskUpdate.attachment == 0" class="d-flex">
                             No Document
                         </div>
                 </div>
@@ -282,7 +283,7 @@
             <div class="modal-header" style="background-color: #3B3A70;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">{{taskUpdate.name}} Details</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">{{taskUpdate.name || 'Task'}} Details</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button></div>

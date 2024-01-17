@@ -36,13 +36,15 @@ interface Project {
   styleUrl: './project.component.css',
 })
 export class ProjectComponent implements OnInit {
+  currentDate: string = new Date().toISOString().split('T')[0]; 
   projectSave: any = {
+    start_date: this.currentDate,
     name: '',
-    start_date: '',
     deadline:'',
     short_name: '',
     project_resourses: File,
     handel_by:'',
+    client_id:'',
     desc:''
   };
   project_id: any;
@@ -53,6 +55,7 @@ export class ProjectComponent implements OnInit {
       _id: "",
       name: "",
     },
+    start_date: this.currentDate,
     handel_by: {
       _id: "",
       name: "",
@@ -102,7 +105,7 @@ getFormattedValue(value: any): any {
         console.log(r);
         Swal.fire({
           icon: 'success',
-          title: 'Registration Successful',
+          title: 'Successful',
           text: r.data.message,
           showConfirmButton: false,
           timer: 3000,
@@ -293,7 +296,7 @@ getFormattedValue(value: any): any {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, update it!'
+      confirmButtonText: 'Yes, change it!'
     }).then((result) => {
       if (result.isConfirmed) {
         this.apiService.updatedProjectStatus(id,status).subscribe(

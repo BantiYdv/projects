@@ -25,6 +25,7 @@ export class HowItWorkComponent implements OnInit {
   passwordMismatch: boolean = false;
   emailMismatch: boolean = false;
   //registration var code
+  currentDate: string = new Date().toISOString().split('T')[0]; 
 
   currentStep = 1;
   activeMenuItem: string = 'Brief Us';
@@ -251,7 +252,7 @@ export class HowItWorkComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Registration Successful',
-          text: 'User registered successfully.',
+          text: r.message,
           showConfirmButton: false,
           timer: 3000,
         }).then((result) => {
@@ -312,8 +313,8 @@ export class HowItWorkComponent implements OnInit {
         localStorage.setItem('client_id',r.data._id)
         Swal.fire({
           icon: 'success',
-          title: 'Registration Successful',
-          text: 'User registered successfully.',
+          title: 'Successful',
+          text: r.message,
           showConfirmButton: false,
           timer: 3000,
         }).then((result) => {
@@ -340,8 +341,8 @@ export class HowItWorkComponent implements OnInit {
         console.log(r);
         Swal.fire({
           icon: 'success',
-          title: 'Registration Successful',
-          text: 'User registered successfully.',
+          title: 'Successful',
+          text: r.message,
           showConfirmButton: false,
           timer: 3000,
         }).then((result) => {

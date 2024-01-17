@@ -37,18 +37,20 @@ export class KeysServiceService {
   public getTask = `${this.mainUrl}/task/getTaskList`;//done
   public getTaskById = `${this.mainUrl}/task/getTaskDetailsById`;
   public updateTaskStatus = `${this.mainUrl}/task/updateTaskStatus`;//done
-  public updateTaskById = `${this.mainUrl}/task/updateTask`;
+  public updateTaskById = `${this.mainUrl}/task/updateTask`;//done
+  public AssignTask = `${this.mainUrl}/teamMembers/getTeamMemberListToAssignTask`;//done
   public deleteTaskById = `${this.mainUrl}/task/deleteTask`;
 
   public getTeamMemberListToAddParticipant = `${this.mainUrl}/teamMembers/getTeamMemberListToAddParticipant`;//done
   public saveTeamMember = `${this.mainUrl}/teamMembers/teamMemberRegistration`;//done
   public getTeamMember = `${this.mainUrl}/teamMembers/getTeamMemberList`;//done
   public getTeamMemberById = `${this.mainUrl}/getTeamMemberById`;
+  public getTeamMemberProjects = `${this.mainUrl}/teamMember/getTeamMemberProjects`;
   public updateTeamMemberById = `${this.mainUrl}/updateTeamMemberById`;
   public deleteTeamMemberById = `${this.mainUrl}/deleteTeamMemberById`;
 
   public saveWorkStatus = `${this.mainUrl}/saveWorkStatus`;
-  public getWorkStatus = `${this.mainUrl}/getWorkStatus`;
+  public getClientProjectList = `${this.mainUrl}/user/getClientProjectList`;
   public getWorkStatusById = `${this.mainUrl}/getWorkStatusById`;
   public updateWorkStatusById = `${this.mainUrl}/updateWorkStatusById`;
   public deleteWorkStatusById = `${this.mainUrl}/deleteWorkStatusById`;

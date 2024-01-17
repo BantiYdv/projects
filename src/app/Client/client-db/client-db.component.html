@@ -14,7 +14,8 @@
                         id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="" width="32" height="32" class="rounded-circle me-2">
                         <!-- <strong>mdo</strong> -->
-                        <strong>Welcome {{ (profileData.name || 'Not found').split(' ')[0] || 'Not found' }}</strong>
+                        <strong>Welcome {{ (profileData.name || 'Not found').split(' ')[0] || 'Not found' }}
+                        </strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                         <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -32,7 +33,7 @@
     </div>
 </div>
 
-<div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" tabindex="-1" id="offcanvasExample"
+<div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" style="width: 350px !important;" tabindex="-1" id="offcanvasExample"
     aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header d-flex flex-column px-0">
         <div class="col-12 col-md-12 d-flex flex-wrap">
@@ -111,50 +112,98 @@
                     Work Status
                 </div>
             </div>
-            <!-- <div class="col-12 col-md-6 ">
-                <div class="header_css_button_project">
-                    <button data-bs-toggle="modal" data-bs-target="#addNewWorkStatus"><i class="fa fa-plus"></i> Add
-                        Project</button>
-                </div>
-            </div> -->
         </div>
     </div>
+    </div>
+<div class="container-fluid">
+    <!-- <div class="row">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
+            <div class="col-12 col-md-12 ">
+                <div class="header_css_added_project">
+                    Work Status
+                </div>
+            </div>
+        </div>
+    </div> -->
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 d-flex flex-wrap mt-4 justify-content-center align-items-center">
-            <div class="col-12 col-sm-12 col-md-3 m-4" *ngFor="let item of items; let odd = odd; let even = even">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-3 m-4" *ngFor="let workStatus of workStatusData; let odd = odd; let even = even">
                 <div class="work_card" [ngClass]="{ 'even': even, 'odd': odd }">
                     <div class="col-12 col-sm-12 col-md-12 d-flex flex-nowrap">
                         
                         <div class="col-12 col-md-12">
-                            <div class="work_text_css" [ngClass]="{ 'even': even, 'odd': odd }">awx media workz</div>
+                            <div class="work_text_css" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.name}}</div>
                             <!-- <div class="work_text_pink" [ngClass]="{ 'even': even, 'odd': odd }">1090</div> -->
                         </div>
                     </div>
                     <!-- <div class="col-12 col-md-12 d-flex justify-content-start ps-3 align-items-center">
                         <div class="work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">logo,ui,banners</div>
                     </div> -->
-                    <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center">
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code fs-6" [ngClass]="{ 'even': even, 'odd': odd }">Start Date</div>
+                    <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center mt-3">
+                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">Start Date</div>
                         <!-- <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div> -->
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_2_code fs-6" [ngClass]="{ 'even': even, 'odd': odd }">Deadline Date</div>
+                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">Deadline Date</div>
                     </div>
-                    <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center">
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">22/4/24</div>
+                    <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center mt-3">
+                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.start_date}} &nbsp;
+                            <ng-container *ngIf="even">
+                                <img src="/assets/images/calenderIcon.png" alt="" class="calenderIcon">
+                              </ng-container>
+                              <ng-container *ngIf="odd">
+                                <img src="/assets/images/calenderIcon2.svg" alt="" class="calenderIcon">
+                              </ng-container>
+                        </div>
                         <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div>
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">22/4/24</div>
+                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center deadline" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.deadline}}</div>
                     </div>
                     <!-- <div class="col-12 col-md-12 d-flex justify-content-center align-items-center work_text_2_code ps-3" [ngClass]="{ 'even': even, 'odd': odd }">
                         <div>Task detailsxsahxgauxxajsxas</div>
                     </div> -->
-                    <div class="col-12 col-md-12">
+                    <!-- <div class="col-12 col-md-12">
                         <div class="px-2 mt-4 bg-danger text-white d-flex justify-content-center align-items-center">
-Started
-                            <!-- <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-danger" style="width: 100%">Progress 100%</div>
-                              </div> -->
+                            {{workStatus.current_status}}
+                          
                         </div>
                     </div>
 
+                    <div class="status-line">
+                        <div class="status-dot create"></div>
+                        <div class="status-create"></div>
+                        <div class="status-dot start"></div>
+                        <div class="status-create"></div>
+                        <div class="status-dot ongoing"></div>
+                        <div class="status-create"></div>
+                        <div class="status-dot finished"></div>
+                      </div> -->
+                      
+                      <!-- <div class="col-12 col-md-12">
+                        <div class="px-2 mt-4 bg-danger text-white d-flex justify-content-center align-items-center">
+                            {{ workStatus.current_status }}
+                        </div>
+                    </div> -->
+                    
+                    <div class="status-line mt-5">
+                        <div [ngClass]="{'status-dot': true, 'Created': workStatus.current_status === 'Created', 'blue-dot': workStatus.current_status === 'Created' || workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Created'}">
+                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Created</span></div>
+                        <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished'}"></div>
+                        <div [ngClass]="{'status-dot': true, 'Start': workStatus.current_status === 'Start', 'blue-dot': workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Start'}">
+                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Start</span></div>
+                        <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished'}"></div>
+                        <div [ngClass]="{'status-dot': true, 'Ongoing': workStatus.current_status === 'Ongoing', 'blue-dot': workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Ongoing'}">
+                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Ongoing</span></div>
+                        <div [ngClass]="{'status-create': true, 'blue-line':   workStatus.current_status === 'Finished'}"></div>
+                        <div [ngClass]="{'status-dot': true, 'Finished': workStatus.current_status === 'Finished', 'blue-dot': workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Finished'}">
+                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Finished</span></div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                      
+
+                      
                 </div>
             </div>
         </div>

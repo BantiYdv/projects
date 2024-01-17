@@ -186,16 +186,43 @@ export class ApiServiceService {
     return this.http.post(this.keys.updateTaskById, task, { headers });
   }
 
-  deleteTaskById(id: any,is_enabled:any) {
+  deleteTaskById(id: any,is_deleted:any) {
     const data = {
-      project_id: id,
-      is_deleted: is_enabled,
+      task_id: id,
+      is_deleted: is_deleted,
       user_id: localStorage.getItem('userId'),
     };
     const headers = this.headerWithAuth;
     return this.http.post(this.keys.deleteTaskById,data, { headers });
   }
+  
+  assignTask(id: any){
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.AssignTask}?project_id=${id}` ,  { headers });
+  }
+
+  updateTaskStatusEmployee(id:any,status:any){
+    const data = {
+      task_id: id,
+      status: status,
+      user_id: localStorage.getItem('userId'),
+    };
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.updateTaskStatus,data,{headers});
+  }
+
+  updateTaskAssign(id: any, assgined_to: any) {
+    const data = {
+      task_id: id,
+      assgined_to: assgined_to,
+      user_id: localStorage.getItem('userId'),
+    };
+    console.log("assgined_to", assgined_to)
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.updateTaskById, data, { headers });
+  }
   //task code end
+
 
   //TeamMember code start
   getTeamMemberListToAddParticipant(project_id: any) {
@@ -226,6 +253,11 @@ export class ApiServiceService {
       headers,
     });
   }
+  
+  getTeamMemberProjects(id: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getTeamMemberProjects}?team_member_id=${id}`, { headers });
+  }
 
   deleteTeamMemberById(teamMember: any) {
     const headers = this.headerWithAuth;
@@ -239,9 +271,9 @@ export class ApiServiceService {
     return this.http.post(this.keys.saveWorkStatus, workStatus, { headers });
   }
 
-  getWorkStatus() {
+  getClientProjectList(id: any) {
     const headers = this.headerWithAuth;
-    return this.http.get(this.keys.getWorkStatus, { headers });
+    return this.http.get(`${this.keys.getClientProjectList}?client_id=${id}`, { headers });
   }
 
   getWorkStatusById(workStatus: any) {

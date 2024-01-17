@@ -17,7 +17,13 @@ export class LoginComponent {
   reSendData : any = {
     email: this.login.email,
   }
+  showPassword: boolean = false;
   constructor(private apiService: ApiServiceService, private router: Router) {}
+
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   //login code start here
   signIn(userData: any) {
@@ -29,7 +35,7 @@ export class LoginComponent {
         Swal.fire({
           icon: 'success',
           title: 'Login Successful',
-          text: 'User logged in successfully.',
+          text: r.message,
           showConfirmButton: false,
           timer: 3000,
         }).then((result) => {
@@ -75,12 +81,12 @@ export class LoginComponent {
 
   sendOTPForForgetPassword() {
     this.apiService.sendOTPForForgetPassword(this.reSendData).subscribe(
-      (r) => {
+      (r:any) => {
         console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'OTP Resent',
-          text: 'We have resent the OTP to your email.',
+          text: r.message,
           confirmButtonText: 'OK',
         });
       },
@@ -89,7 +95,7 @@ export class LoginComponent {
         Swal.fire({
           icon: 'error',
           title: 'Resend OTP Failed',
-          text: 'There was an error resending the OTP. Please make sure you have filled in a valid email address.',
+          text: e.error.message,
           confirmButtonText: 'OK',
         });
       }

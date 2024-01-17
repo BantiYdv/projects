@@ -38,6 +38,7 @@
     outline: none;
     padding: 10px;
     font-size: 20px;
+    overflow: hidden;
     /* border-radius: 10px; */
 }
 .AVX_login_input i{
@@ -138,4 +139,79 @@
 .error_message span{
     color: red;
     padding: 10px;
+}
+
+@media screen and (max-width: 1200px){
+    .AVX_login_logo img{
+        width: 30%;
+       }
+
+       .AVX_login_input{
+        width: 40%;
+    }
+    .AVX_button_css{
+        width: 40%;
+    }
+    .AVX_login_otp_input{
+        width: 40%;
+    }
+    .AVX_time_out{
+        width: 40%;
+    }
+    .AVX_login_otp_input input{
+        width: 60px;
+        height: 60px;    
+    }
+}
+@media screen and (max-width: 800px){
+    .AVX_login_logo img{
+        width: 40%;
+       }
+
+       .AVX_login_input{
+        width: 50%;
+    }
+    .AVX_button_css{
+        width: 50%;
+    }
+    .AVX_login_otp_input{
+        width: 50%;
+    }
+    .AVX_time_out{
+        width: 50%;
+    }
+    .AVX_login_otp_input input{
+        width: 50px;
+        height: 50px;    
+    }
+}
+@media screen and (max-width: 450px){
+    .AVX_login_logo img{
+        width: 50%;
+       }
+
+       .AVX_login_input{
+        width: 90%;
+    }
+    .AVX_button_css{
+        width: 90%;
+    }
+    .AVX_login_otp_input{
+        width: 90%;
+    }
+    .AVX_time_out{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 340px){
+    .AVX_login_logo img{
+        width: 50%;
+       }
+
+       .AVX_login_input{
+        width: 100%;
+    }
+    .AVX_button_css{
+        width: 100%;
+    }
 }

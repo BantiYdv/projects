@@ -2,7 +2,7 @@
 <div
 class=" col-12 col-md-12 col-xxl-12 d-flex flex-wrap justify-content-center align-items-center">
 <div
-class="col-12 col-md-6 col-xxl-6 d-flex flex-column justify-content-center align-items-center">
+class="col-12 col-md-12 col-lg-6 col-xxl-6 d-flex flex-column justify-content-center align-items-center">
 <div class="signIn_css">
     <p class="wel_text_css">Welcome Back!</p>
     <p class="wel_under_text_css">Login here if you already registered with us.
@@ -17,10 +17,16 @@ class="col-12 col-md-6 col-xxl-6 d-flex flex-column justify-content-center align
             <img src="../../assets/images/password_sign_in.svg" alt=""
                 data-bs-toggle="tooltip" data-bs-placement="top"
                 title="Look at Password">
-            <input type="password" placeholder="Enter registered email Id here" [(ngModel)]="login.password" name="password" required>
+            <input [type]="showPassword ? 'text' : 'password'" placeholder="Enter your password" [(ngModel)]="login.password" name="password" required>
         </div>
-        <div class="forgot_password_css">
-            <p routerLink="/forgot-password">Forgot Password?</p>
+        <div class="d-flex flex-wrap justify-content-between align-items-center w-100">
+            <div class="show_password">
+                <input type="checkbox" id="showPasswordCheckbox" [(ngModel)]="showPassword" (click)="togglePasswordVisibility()">
+                    <label for="showPasswordCheckbox">Show Password</label>
+            </div>
+            <div class="forgot_password_css">
+                <p routerLink="/forgot-password">Forgot Password?</p>
+            </div>
         </div>
         <div class="signIn_button_css">
             <button  [disabled]="loginForm.invalid">SIGN IN</button>
@@ -30,7 +36,7 @@ class="col-12 col-md-6 col-xxl-6 d-flex flex-column justify-content-center align
         </div>
     </div>
 </div>
-<div class="col-12 col-md-6 col-xxl-6 p-3">
+<div class="col-12 col-md-12 col-xxl-6 p-3">
     <div class="sign_in_get_css">
         <p>Sign In to Get <b>AV Script</b> Writing service <span
             class="free_css">Free</span> for <b>1 Year</b></p>

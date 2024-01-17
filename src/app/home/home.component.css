@@ -13,6 +13,9 @@
   src: url("../../assets/font/michroma/Michroma.woff2") format("woff2"),
     url("../../assets/font/michroma/Michroma.woff") format("woff");
 } */
+.container-fluid , .container{
+  width: 100% !important;
+}
 .slider_main_css {
   /* z-index: -1090 !important; */
   /* position: absolute; */
@@ -634,6 +637,7 @@ section .card-content-card .card-content .card-img-text-content .image img {
 .overwhelming_text_css {
   width: 80%;
   font-size: 20px;
+  line-height: 30px;
   text-align: center;
 }
 #client_satisfaction_css {

@@ -27,7 +27,7 @@ export class WorkStatusComponent {
         console.log(r);
         Swal.fire({
           icon: 'success',
-          title: 'Registration Successful',
+          title: 'Successful',
           text: r.data.message,
           showConfirmButton: false,
           timer: 3000,
@@ -46,16 +46,16 @@ export class WorkStatusComponent {
     );
   }
 
-  getWorkStatus(){
-    this.apiService.getWorkStatus().subscribe(
-      (r) => {
-        this.workStatus = r;
-      },
-      (e) => {
-        console.log(e.data.message);
-      }
-    )
-  }
+  // getWorkStatus(){
+  //   this.apiService.getWorkStatus().subscribe(
+  //     (r) => {
+  //       this.workStatus = r;
+  //     },
+  //     (e) => {
+  //       console.log(e.data.message);
+  //     }
+  //   )
+  // }
 
   getWorkStatusById(id:any){
     this.apiService.getWorkStatusById(id).subscribe(
