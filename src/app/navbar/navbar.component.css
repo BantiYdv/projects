@@ -7,9 +7,26 @@
 .navbar_main_component_css:hover{
     background-color: #00000069 !important;
 }
-.navbar_main_css_code{
-    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.445);
+.button_css_pass{
+    background-color: #000000;
+    border-radius: 50px;
 }
+.button_css_pass a{
+    color: #fff !important;
+    padding: 15px;
+}
+.button_css_pass_not{
+    background-color: yellow;
+    border-radius: 50px;
+}
+.button_css_pass_not a{
+    color: #000000 !important;
+    padding: 15px;
+}
+
+/* .navbar_main_css_code{
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.445);
+} */
 .avx_media_logo{
     width: 55%;
 }

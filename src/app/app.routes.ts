@@ -29,16 +29,16 @@ export const routes: Routes = [
     {'path': 'login-with-otp', component:LoginWithOTPComponent},
     {'path': 'forgot-password', component:ForgotPasswordComponent},
 
-    {'path': 'project', component:ProjectComponent,canActivate: [authGuard]},
-    {'path': 'teamMember', component:TeamMemberComponent,canActivate: [authGuard]},
-    {'path': 'task', component:TaskComponent,canActivate: [authGuard]},
-    {'path': 'workStatus', component:WorkStatusComponent,canActivate: [authGuard]},
+    {'path': 'project', component:ProjectComponent,canActivate: [authGuard]},//admin
+    {'path': 'teamMember', component:TeamMemberComponent,canActivate: [authGuard]},//admin
+    {'path': 'task', component:TaskComponent,canActivate: [authGuard]},//admin
+    {'path': 'workStatus', component:WorkStatusComponent,canActivate: [authGuard]},//admin
     
-    {'path': 'employee-project', component:EmployeeProjectComponent,canActivate: [authGuard]},
-    {'path': 'employee-assign-task', component:AssignTaskComponent,canActivate: [authGuard]},
-    {'path': 'view-task', component:ViewTaskComponent,canActivate: [authGuard]},
+    {'path': 'employee-project', component:EmployeeProjectComponent,canActivate: [authGuard]},//employee
+    {'path': 'employee-assign-task', component:AssignTaskComponent,canActivate: [authGuard]},//employee
+    {'path': 'view-task', component:ViewTaskComponent,canActivate: [authGuard]},//employee
 
-    {'path': 'work-status', component:ClientDBComponent,canActivate: [authGuard]},
+    {'path': 'work-status', component:ClientDBComponent,canActivate: [authGuard]},//user
 
 
 

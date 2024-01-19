@@ -20,7 +20,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class HowItWorkComponent implements OnInit {
   //registration var code
-  register: any = {};
+  register: any = {
+    country_code: '+91',
+  };
   confirmPassword: string = '';
   passwordMismatch: boolean = false;
   emailMismatch: boolean = false;
@@ -61,6 +63,7 @@ export class HowItWorkComponent implements OnInit {
     city: string,
     email: string,
     mobile_number: string,
+    country_code: string,
     event_date: string,
     deadline: string,
     desc: string,
@@ -75,6 +78,7 @@ export class HowItWorkComponent implements OnInit {
     city: '',
     email: '',
     mobile_number: '',
+    country_code: '+91',
     event_date: '',
     deadline: '',
     desc: '',
@@ -87,8 +91,31 @@ export class HowItWorkComponent implements OnInit {
   };
   
   bookMeeting: any = {};
-  bookMeetings: any = {};
+  bookMeetings: any = {
+    day: new Date().getDate(),
+    month: this.getMonthName(new Date().getMonth())
+  };
 
+  
+  getMonthName(monthIndex: number): string {
+    // Assume you have an array of month names
+    const monthNames: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    return monthNames[monthIndex];
+  }
+  
+
+  isPastDate(day: number): boolean {
+    const selectedDate = new Date(`${this.bookMeetings.month} ${day}, ${new Date().getFullYear()}`);
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set current date to midnight for accurate comparison
+    return selectedDate < currentDate;
+  }
+  
+  
+ 
+  
+  
   selectTime(time: string) {
     this.selectedTime = time;
   }
@@ -96,6 +123,9 @@ export class HowItWorkComponent implements OnInit {
   
  
   selectedChips: string[] = [];
+
+ 
+  country_code: any = {};
 
   constructor(
     
@@ -116,6 +146,20 @@ export class HowItWorkComponent implements OnInit {
       });
     });
     // this.checkScroll();
+
+    this.countryDialCode();
+  }
+
+  countryDialCode() {
+    this.apiService.countryDialCode().subscribe(
+      (r: any) => {
+        this.country_code = r.data;
+        console.log('country_code ==>', r.data);
+      },
+      (e) => {
+        console.error(e);
+      }
+    );
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -125,8 +169,13 @@ export class HowItWorkComponent implements OnInit {
     this.isSticky = scrollPosition >= this.offset;
   }
 
+ 
+
   decreaseYear() {
-    this.currentYear--;
+    // Check if the current year is already the minimum allowed year
+    if (this.currentYear > new Date().getFullYear()) {
+      this.currentYear--;
+    }
   }
 
   increaseYear() {
