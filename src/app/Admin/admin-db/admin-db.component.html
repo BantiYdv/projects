@@ -1,13 +1,20 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap navbar_css">
-            <div class="col-9 col-md-9 col-xxl-9 offset-1">
-                <div class="header_menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-                    aria-controls="offcanvasExample">
-                    <img src="../../../assets/images/AVX_Media.svg" alt="">
-                </div>
+    <div class="row" >
+        <div class=" d-flex flex-wrap navbar_css">
+            <div class="header_menu">
+                <img src="../../../assets/images/logo-ddd.png" alt="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample">
             </div>
-            <div class="col-2 col-md-2 col-xxl-2 d-flex justify-content-center align-items-center">
+            <div style="font-size: 20px;">
+                <i class="fa fa-bell"></i>
+            </div>
+            <!-- <div class="col-9 col-md-9 col-xxl-9 offset-1">
+                <div class="header_menu">
+                    <img src="../../../assets/images/AVX_Media.svg" alt="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                    aria-controls="offcanvasExample">
+                </div>
+            </div> -->
+            <!-- <div class="col-2 col-md-2 col-xxl-2 d-flex justify-content-center align-items-center">
                 <div class="dropdown">
                     <a href="#"
                         class="profile_img_on_header d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
@@ -17,8 +24,6 @@
                         </strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li> -->
                         <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#profileData">Profile</a>
                         </li>
                         <li>
@@ -27,23 +32,28 @@
                         <li><a class="dropdown-item" href="" (click)="apiService.logOut()">Log Out</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
 
-<div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" style="width: 350px !important;" tabindex="-1" id="offcanvasExample"
+<div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" style="width: 280px !important;  margin-top: 100px;" tabindex="-1" id="offcanvasExample"
     aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header d-flex flex-column px-0">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-end px-3">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
         <div class="col-12 col-md-12 d-flex flex-wrap">
             <div class="col-11 col-md-11">
-                <div class="header_menu d-flex justify-content-center align-items-center">
-                    <img src="../../../assets/images/AVX_Media.svg" alt="">
+                <div class="header_menu_profile d-flex justify-content-center align-items-center">
+                    <img src="../../../assets/images/man_pro.jpg" alt="">
+                    <span>Max Deni</span>
+                    <div class="post_css">Frontend Developer</div>
                 </div>
             </div>
-            <div class="col-1 col-md-1">
+            <!-- <div class="col-1 col-md-1">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
+            </div> -->
         </div>
         <div class="col-12 col-md-12 col-xxl-12 menu_options">
             <ul>
@@ -84,19 +94,6 @@
                         </div>
                     </div>
                 </li>
-                <!-- <li routerLink="/workStatus">
-
-                    <div class="col-12 col-md-12 d-flex">
-                        <div class="col-2 col-md-2 offset-1">
-                            <div class="menu_img_css_1">
-                                <img src="../../../assets/images/team_member_icon_img.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Work Status</div>
-                        </div>
-                    </div>
-                </li> -->
             </ul>
         </div>
     </div>
@@ -127,12 +124,8 @@
                         
                         <div class="profile_icon_img">
                             <i class="fa fa-upload" (click)="uploadFileInput.click()"> Upload</i>
-                            <!-- <i class="fa fa-remove" > Remove</i> -->
                             <input type="file" #uploadFileInput style="display: none" (change)="handleImgFile($event)">
-                            <!-- <input type="file" #removeFileInput style="display: none" (change)="handleVideoFile($event)"> -->
                         </div>
-                        <!-- <label>Name</label>
-                        <span>{{profileData.name || 'Not found'}}</span> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-12 d-flex flex-wrap mt-3">

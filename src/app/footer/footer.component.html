@@ -7,8 +7,9 @@
                         Ready to Xpand Differently?
                     </div>
                     <div class="button_browse_categories gap-3">
-                        <button routerLink="/how-it-works">Collaborate now</button>
-                        <button>Talk to us</button>
+                        <button routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">CONSULT NOW</button>
+                        <button (click)="openWhatsApp('9024588535', 'Hello')"
+                        type="button">TALK TO US</button>
                     </div>
                 </div>
             </div>
@@ -77,7 +78,7 @@
                 All Rights Reserved © 2024
             </div>
             <div class="footer_bottom_css_text_right">
-                Designed & Developed by : <b>Prilient.com</b>
+                Designed & Developed by : <a target="_blank" href="https://prilient.com/"><b>PRILIENT TECHNOLOGIES</b></a>
             </div>
         </div>
     </div>

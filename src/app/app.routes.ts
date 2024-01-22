@@ -20,14 +20,17 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 
 export const routes: Routes = [
     // {'path': '', component:AppComponent },
-    {'path': 'home',component:HomeComponent},
-    {'path': 'portfolio', component:HomeComponent },
-    {'path': 'blog', component:HomeComponent },
-    {'path': 'why-us', component:HomeComponent },
-    {'path': 'how-it-works', component:HowItWorkComponent},
-    {'path': 'log-in', component:LoginComponent},
-    {'path': 'login-with-otp', component:LoginWithOTPComponent},
-    {'path': 'forgot-password', component:ForgotPasswordComponent},
+    // {'path': 'home',component:HomeComponent},
+    // {'path': 'portfolio', component:HomeComponent },
+    // {'path': 'blog', component:HomeComponent },
+    // {'path': 'why-us', component:HomeComponent },
+    // {'path': 'how-it-works', component:HowItWorkComponent},
+    // {'path': 'log-in', component:LoginComponent},
+    { 'path': '', component: HomeComponent },
+    {'path': ':pageType', component:HomeComponent},
+
+    {'path': 'log-in/otp', component:LoginWithOTPComponent},
+    {'path': 'forgot/password', component:ForgotPasswordComponent},
 
     {'path': 'project', component:ProjectComponent,canActivate: [authGuard]},//admin
     {'path': 'teamMember', component:TeamMemberComponent,canActivate: [authGuard]},//admin

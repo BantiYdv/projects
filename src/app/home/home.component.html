@@ -1,874 +1,1532 @@
-<div style="position: relative !important;">
-  <div id="carouselExampleFade" class="carousel slide carousel-fade slider_main_css" data-bs-ride="carousel"
-    data-bs-target="3000">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <!-- <img src="../../assets/images/bg_home_page.svg" class="d-block w-100 main_slider_img" alt="..."> -->
-        <div class="d-block w-100 main_slider_img" style="background-color: rgb(0,0,0,70%);"></div>
-      </div>
-      <!-- <div class="carousel-item">
-        <img src="../../assets/images/slider_2.jpg" class="d-block w-100 main_slider_img" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="../../assets/images/slider_3.jpg" class="d-block w-100 main_slider_img" alt="...">
-      </div> -->
-    </div>
-    <button class="carousel-control-prev d-none" type="button" data-bs-target="#carouselExampleFade"
-      data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next d-none" type="button" data-bs-target="#carouselExampleFade"
-      data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <div class="container-fluid slider_text_css">
-    <div class="col-xxl-12 col-12 d-flex flex-wrap">
-      <div class="col-xxl-12 col-md-12 col-12 text-center">
-        <div>
-          <span class="text_on_slider_css_yellow">From Script to The Final Cut</span>
-        </div>
-        <div class="text_on_slider_under_fff_yellow">ALL YOUR AUDIO-VISUAL CONTENT</div>
-        <div class="text_on_slider_under_fff_yellow_blod" style="color: yellow;">CHALLENGES TAKEN AWAY EFFORTLESSLY</div>
-        <div class="text_second_row_css_3 text-white mt-3">Step into a seamless world where high client appreciation repeats and multiplies business so that you thrive and Xpand Differently</div>
-        <div class="text_on_slider_button">
-          <!-- <button>Collaborate now</button> -->
-          <button routerLink="/how-it-works">CONSULT NOW</button>
-        </div>
-        <a href="#">
-        <div class="watchVideoCss">
-            <i class="fa fa-play-circle"></i> Watch Video
+<div [ngSwitch]="apiService.pageType">
+  <div *ngSwitchCase="'home'">
+    <div style="position: relative !important;">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade slider_main_css" data-bs-ride="carousel"
+        data-bs-target="3000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="d-block w-100 main_slider_img" style="background-color: rgb(0,0,0,70%);"></div>
           </div>
-          </a>
-          <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center mt-4">
-            <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Tailored Premium AV content Production</b>
-              Of any kind under the Sun</div>
-            <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Tailored Anthem Songs</b>
-              To make your message Stick Deeper & Longer</div>
-            <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Custom -To-You Expert AV consultancy</b>
-              From Concept to Claps</div>
+        </div>
+        <button class="carousel-control-prev d-none" type="button" data-bs-target="#carouselExampleFade"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next d-none" type="button" data-bs-target="#carouselExampleFade"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="container-fluid slider_text_css">
+        <div class="col-xxl-12 col-12 d-flex flex-wrap">
+          <div class="col-xxl-12 col-md-12 col-12 text-center">
+            <div>
+              <span class="text_on_slider_css_yellow">From Script to The Final Cut</span>
+            </div>
+            <div class="text_on_slider_under_fff_yellow">ALL YOUR AUDIO-VISUAL CONTENT</div>
+            <div class="text_on_slider_under_fff_yellow_blod" style="color: yellow;">CHALLENGES TAKEN AWAY EFFORTLESSLY
+            </div>
+            <div class="text_second_row_css_3 text-white mt-3">Step into a seamless world where high client appreciation
+              repeats and multiplies business so that you thrive and Xpand Differently</div>
+            <div class="text_on_slider_button">
+              <button routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">CONSULT
+                NOW</button>
+            </div>
+            <a href="#">
+              <div class="watchVideoCss">
+                <i class="fa fa-play-circle"></i> Watch Video
+              </div>
+            </a>
+            <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center marginTOP">
+              <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Tailored Premium AV content
+                  Production</b>
+                Of any kind under the Sun</div>
+              <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Tailored Anthem Songs</b>
+                To make your message Stick Deeper & Longer</div>
+              <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Custom -To-You Expert AV
+                  consultancy</b>
+                From Concept to Claps</div>
+            </div>
           </div>
+          <div class="container-fluid">
+            <div class="logos_img_css_bg_slider">
+              <marquee behavior="scroll" direction="Rights" loop="infinite">
+                <img src="../../assets/images/HCL_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/vodafone_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/airtel_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/idea_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/dp_world_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/hero_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/eduauraa_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/justdial_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/cocacola_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/grant_thornton_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/lumnx_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/lexi_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/bsh_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/dassault_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/concentrix_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/the_times_of_india_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/hindustantimes_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/properties_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/spicejet_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/provogue_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/prozone_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/goverment_of_india_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/bmw_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/cashkaro_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/phoenix_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/amazon_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/akzonobel_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/spice_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/samsuno_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/lg_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/vidyagyan_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/shiv_nadar_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/heroecotech_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/aonhewitt_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/sanofi_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/ascend_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/indosat_logo.svg" class="logos_img_css_1" alt="">
+              </marquee>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid box_main_css">
+        <div class="">
+          <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+            <div class="box_style_css">
+              <span><b>1,200+</b> AVS</span>
+            </div>
+            <div class="box_style_css">
+              <span><b>100+</b> ANTHEM <br>
+                SONGS</span>
+            </div>
+            <div class="box_style_css">
+              <span><b>100+</b> BRANDS</span>
+            </div>
+            <div class="box_style_css">
+              <span><b>15+</b> YEARS AV <br>
+                EXPERIENCE</span>
+            </div>
+            <div class="box_style_css">
+              <span><b>50+</b> EVENT <br>
+                COMPANIES</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="container-fluid">
-        <div class="logos_img_css_bg_slider">
-          <marquee behavior="scroll" direction="Rights" loop="infinite">
-            <img src="../../assets/images/HCL_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/vodafone_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/airtel_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/idea_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/dp_world_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/hero_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/eduauraa_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/justdial_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/cocacola_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/grant_thornton_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/lumnx_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/lexi_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/bsh_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/dassault_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/concentrix_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/the_times_of_india_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/hindustantimes_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/properties_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/spicejet_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/provogue_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/prozone_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/goverment_of_india_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/bmw_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/cashkaro_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/phoenix_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/amazon_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/akzonobel_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/spice_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/samsuno_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/lg_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/vidyagyan_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/shiv_nadar_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/heroecotech_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/aonhewitt_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/sanofi_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/ascend_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/indosat_logo.svg" class="logos_img_css_1" alt="">
-          </marquee>
-        </div>
-      </div>
-      <!-- <div class="col-xl-6 col-md-6 col-12">
-        <div class="slider_on_img_div_css">
-          <div class="slider_on_img_css">
-            <div class="rainbow">
-              <img src="../../assets/images/slider_on_img.jpg" alt="">
+        <div class="row" style="margin-top: 70px;">
+          <div
+            class="col-xl-12 col-md-12 col-12 text-center d-flex flex-column justify-content-center align-items-center">
+            <div class="text_second_row_css_2 text-center" id="text_second_row_css_2_id">Getting <span
+                class="years_15_css">AV Content</span> made can be
+              <span class="years_15_css">overwhelming</span>
             </div>
+            <div class="text_second_row_css_3" style="font-family: 'Michroma', sans-serif;">If you don’t have a strong
+              AV
+              partner...</div>
           </div>
         </div>
-      </div> -->
-    </div>
-  </div>
-  <div class="container-fluid box_main_css">
-    <div class="">
-      <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
-        <!-- <div class="col-12 col-md-2"> -->
-          <div class="box_style_css">
-            <span><b>1,200+</b> AVS</span>
-          </div>
-        <!-- </div>
-        <div class="col-12 col-md-2"> -->
-          <div class="box_style_css">
-            <span><b>100+</b> ANTHEM <br>
-              SONGS</span>
-          </div>
-        <!-- </div>
-        <div class="col-12 col-md-2"> -->
-          <div class="box_style_css">
-            <span><b>100+</b> BRANDS</span>
-          </div>
-        <!-- </div>
-        <div class="col-12 col-md-2"> -->
-          <div class="box_style_css">
-            <span><b>15+</b> YEARS AV <br>
-              EXPERIENCE</span>
-          </div>
-        <!-- </div>
-        <div class="col-12 col-md-2"> -->
-          <div class="box_style_css">
-            <span><b>50+</b> EVENT <br>
-              COMPANIES</span>
-          </div>
-        <!-- </div> -->
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row" style="margin-top: 70px;">
-      <div class="col-xl-12 col-md-12 col-12 text-center d-flex flex-column justify-content-center align-items-center">
-        <div class="text_second_row_css_2 text-center" id="text_second_row_css_2_id">Getting <span class="years_15_css">AV Content</span> made can be
-          <span class="years_15_css">overwhelming</span></div>
-        <div class="text_second_row_css_3" style="font-family: 'Michroma', sans-serif;">If you don’t have a strong AV
-          partner...</div>
-      </div>
-      <!-- font-family: "Michroma", sans-serif; -->
-    </div>
 
-    <div class="row mt-5">
-      <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
-        <div class="col-12 col-md-4 col-xxl-4 my-2 d-flex justify-content-center align-items-center flex-column">
-          <div class="overwhelming_css">
-            <img src="../../assets/images/img_11_img.svg" alt="">
-          </div>
-          <div class="overwhelming_text_css">Getting the right script and then nailing the execution can become
-            extremely stressful and frustrating</div>
-        </div>
-        <div class="col-12 col-md-4 col-xxl-4 my-2  d-flex justify-content-center align-items-center flex-column">
-          <div class="overwhelming_css">
-            <img src="../../assets/images/img_10_img.svg" alt="">
-          </div>
-          <div class="overwhelming_text_css">You waste your valuable time chasing the changes and iteration</div>
-        </div>
-        <div class="col-12 col-md-4 col-xxl-4 my-2  d-flex justify-content-center align-items-center flex-column">
-          <div class="overwhelming_css">
-            <img src="../../assets/images/img_12_img.svg" alt="">
-          </div>
-          <div class="overwhelming_text_css">You find yourself compromising on creative quality due to time pressure
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-center align-items-center flex-column mt-5">
-      <div class="overwhelming_text_css" id="client_satisfaction_css">And this can lead to reduced client satisfaction,
-        risking repeat business and potential revenue growth. We don’t want to see that happen to you.</div> <br>
-      <div class="overwhelming_text_css" id="client_satisfaction_css">Over the past 15+ years, we’ve crafted over 1200
-        audio-visuals for event companies and brands, partnering in their growth and success. Our expertise in cinematic
-        storytelling can propel your vision to new heights as well.</div>
-      <div class="collaborate_now_button_css">
-        <button routerLink="/how-it-works">CONSULT now</button>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="mx-5" style="margin-top: 100px;">
-    <div class="row">
-      <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
-        <div class="col-xl-6 col-md-6 col-12">
-          <div class="home_img_1_css">
-            <img src="../../assets/images/Rise_to_Top In_Class.svg" alt="">
-          </div>
-        </div>
-        <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-start align-items-center">
-          <div class="text-start">
-            <!-- <div class="text_second_row_css_1">We Understand You</div> -->
-            <div class="text_second_row_css_2">Rise to <span class="years_15_css">Top</span> In <span
-                class="years_15_css">Class</span></div>
-            <div class="text_second_row_css_3">At AVX Mediaworkz, we know you are the kind of people who want to be
-              <strong style="font-weight: bold !important;">‘Top in Class’</strong> In order to be that way, you need
-              create high client satisfaction to repeat and multiply business. 
-            </div>
-            <div class="text_second_row_css_3">In the modern landscape, Events today have transformed into an
-              Audio-Visual Experience demanding creative AU prowess but, the problem is there’s not many AV pros who
-              truly get the whole package - the ones who can understand your event's vision, are expert at Film craft,
-              and can write awesome copy.  Which makes you feel stressed and frustrated due to the high client
-              expectations.
-            </div>
-            <!-- <div class="input_discover_works_css">
-              <input type="text" placeholder="Search here...">
-              <div class="button_discover_work_css">
-                <button>Discover Works</button>
+        <div class="row mt-5">
+          <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+            <div class="col-12 col-md-4 col-xxl-4 my-2 d-flex justify-content-center align-items-center flex-column">
+              <div class="overwhelming_css">
+                <img src="../../assets/images/img_11_img.svg" alt="">
               </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-  <div class="mx-5" style="margin-top: 100px;">
-    <div class="row">
-      <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
-
-        <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
-          <div class="text-start">
-            <!-- <div class="text_second_row_css_1">We Understand You</div> The smooth way -->
-            <div class="text_second_row_css_2">The <span class="years_15_css">smooth</span>&nbsp;<span
-                class="years_15_css">way</span></div>
-            <div class="text_second_row_css_3">We believe you shouldn't have to burned out to deliver on Client
-              Expectations as far as Audio -Visuals are concerned. We understand what you go through to execute and
-              deliver those ever-demanding events.
+              <div class="overwhelming_text_css">Getting the right script and then nailing the execution can become
+                extremely stressful and frustrating.</div>
             </div>
-            <div class="text_second_row_css_3">That’s why we make the AV making process as effortless for you as we can,
-              while conceiving cinematic moments that can be felt & treasured through our signature- Cinematic
-              Storytelling! 
-            </div>
-            <!-- <div class="input_discover_works_css">
-              <input type="text" placeholder="Search here...">
-              <div class="button_discover_work_css">
-                <button>Discover Works</button>
+            <div class="col-12 col-md-4 col-xxl-4 my-2  d-flex justify-content-center align-items-center flex-column">
+              <div class="overwhelming_css">
+                <img src="../../assets/images/img_10_img.svg" alt="">
               </div>
-            </div> -->
-          </div>
-        </div>
-        <div class="col-xl-6 col-md-6 col-12">
-          <div class="home_img_1_css">
-            <img src="../../assets/images/The_smooth_way.svg" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="mx-5" style="margin-top: 100px;">
-    <div class="row">
-      <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
-        <div class="col-xl-6 col-md-6 col-12">
-          <div class="home_img_1_css">
-            <img src="../../assets/images/With_3_Simple_Steps_to_Success.svg" alt="">
-          </div>
-        </div>
-        <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
-          <div class="text-start">
-            <!-- <div class="text_second_row_css_1">We Understand You</div>  With 3 Simple Steps to Success-->
-            <div class="text_second_row_css_2">With 3 Simple <span class="years_15_css">Steps</span> to <span
-                class="years_15_css">Success</span></div>
-            <div class="text_second_row_css_3">Here’s how this works in just 3 simple steps. 
+              <div class="overwhelming_text_css">You waste your valuable time chasing the changes and iteration.</div>
             </div>
-            <br>
-            <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 1</span> Just drop on to our
-              website and brief us the way you wish (There are loads of options from voice to video and more)
-            </div>
-            <br>
-            <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 2</span> Schedule a meeting
-              with us or allow us to call you at your convenient time to discuss your project
-            </div>
-            <br>
-            <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 3</span> and sign up with
-              your contact details. 
-            </div>
-            <br>
-            <div class="text_second_row_css_3">That’s all! 
-            </div>
-            <!-- <div class="input_discover_works_css">
-              <input type="text" placeholder="Search here...">
-              <div class="button_discover_work_css">
-                <button>Discover Works</button>
+            <div class="col-12 col-md-4 col-xxl-4 my-2  d-flex justify-content-center align-items-center flex-column">
+              <div class="overwhelming_css">
+                <img src="../../assets/images/img_12_img.svg" alt="">
               </div>
-            </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="mx-5" style="margin-top: 100px;">
-    <div class="row">
-      <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
-
-        <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
-          <div class="text-start">
-            <!-- <div class="text_second_row_css_1">We Understand You</div> Commanding and Controlling -->
-            <div class="text_second_row_css_2"><span class="years_15_css">Commanding</span> and <span
-                class="years_15_css">Controlling</span></div>
-            <div class="text_second_row_css_3">At that moment, our advanced tech-infused systems spring into action,
-              crafting a bespoke dashboard for you. This becomes your command center, where you can steer every aspect
-              of your AV production, from the initial script to the final cut. It's all there at your fingertips,
-              streamlining the entire process with detailed oversight—no more clutter of group chats or endless calls.
-              Plus, we provide a dedicated account manager to ensure everything runs smoothly, done for you as
-              committed, making the complex turn effortless.
-            </div>
-            <!-- <div class="text_second_row_css_3">That’s why we make the AV making process as effortless for you as we can, while conceiving cinematic moments that can be felt & treasured through our signature- Cinematic Storytelling! 
-            </div> -->
-            <!-- <div class="input_discover_works_css">
-              <input type="text" placeholder="Search here...">
-              <div class="button_discover_work_css">
-                <button>Discover Works</button>
+              <div class="overwhelming_text_css">You find yourself compromising on creative quality due to time
+                pressure.
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
-        <div class="col-xl-6 col-md-6 col-12">
-          <div class="home_img_1_css">
-            <img src="../../assets/images/Commanding_and_Controlling.svg" alt="">
+        <div class="row d-flex justify-content-center align-items-center flex-column mt-5">
+          <div class="overwhelming_text_css" id="client_satisfaction_css">And this can lead to reduced client
+            satisfaction,
+            risking repeat business and potential revenue growth. We don’t want to see that happen to you.</div> <br>
+          <div class="overwhelming_text_css" id="client_satisfaction_css">Over the past 15+ years, we’ve crafted over
+            1200
+            audio-visuals for event companies and brands, partnering in their growth and success. Our expertise in
+            cinematic
+            storytelling can propel your vision to new heights as well.</div>
+          <div class="collaborate_now_button_css">
+            <button routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">CONSULT
+              NOW</button>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
 
-  <div class="mx-5" style="margin-top: 100px;">
-    <div class="row">
-      <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
-        <div class="col-xl-6 col-md-6 col-12">
-          <div class="home_img_1_css">
-            <img src="../../assets/images/To_xpand_Differently.svg" alt="">
-          </div>
-        </div>
-        <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
-          <div class="text-start">
-            <!-- <div class="text_second_row_css_1">We Understand You</div> To Expand Differently -->
-            <div class="text_second_row_css_2">To <span class="years_15_css">Expand</span>&nbsp;<span
-                class="years_15_css">Differently</span></div>
-            <div class="text_second_row_css_3">So, collaborate now and stop the cycle of stress, burnout, frustration
-              and anxiety. Leave behind the endless hours in the editing studios, which could be better spent with
-              friends and family or in pursuing new client relationships. End the cycle of settling for just 'nice'
-              responses to your AV Content.  
-            </div>
-            <div class="text_second_row_css_3">Step into a world where High Client Appreciation repeats and multiplies
-              business, setting the stage for your brand to thrive. 
-            </div>
-            <div class="text_second_row_css_3">With AVX, it's more than growth; it's about reshaping the landscape
-              through new ways of making things happen. Collaborating with AVX Mediaworkz you will grow and expand
-              Differently.
-            </div>
-            <!-- <div class="input_discover_works_css">
-              <input type="text" placeholder="Search here...">
-              <div class="button_discover_work_css">
-                <button>Discover Works</button>
+      <div class="mx-5" style="margin-top: 100px;">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+            <div class="col-xl-6 col-md-6 col-12">
+              <div class="home_img_1_css">
+                <img src="../../assets/images/Rise_to_Top In_Class.svg" alt="">
               </div>
-            </div> -->
+            </div>
+            <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-start align-items-center">
+              <div class="text-start">
+                <div class="text_second_row_css_2">Rise to <span class="years_15_css">Top</span> In <span
+                    class="years_15_css">Class</span></div>
+                <div class="text_second_row_css_3">At AVX Mediaworkz, we know you are the kind of people who want to be
+                  <strong style="font-weight: bold !important;">‘Top in Class’</strong> In order to be that way, you
+                  need
+                  create high client satisfaction to repeat and multiply business. 
+                </div>
+                <div class="text_second_row_css_3">In the modern landscape, Events today have transformed into an
+                  Audio-Visual Experience demanding creative AU prowess but, the problem is there’s not many AV pros who
+                  truly get the whole package - the ones who can understand your event's vision, are expert at Film
+                  craft,
+                  and can write awesome copy.  Which makes you feel stressed and frustrated due to the high client
+                  expectations.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
 
 
-  <div class="container-fluid p-0" style="margin-top: 100px;">
-    <div class="another_logos_css">
-      <div class="pb-5" style="background-color: rgb(0,0,0,80%);
+
+      <div class="mx-5" style="margin-top: 100px;">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+
+            <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+              <div class="text-start">
+                <div class="text_second_row_css_2">The <span class="years_15_css">smooth</span>&nbsp;<span
+                    class="years_15_css">way</span></div>
+                <div class="text_second_row_css_3">We believe you shouldn't have to burned out to deliver on Client
+                  Expectations as far as Audio -Visuals are concerned. We understand what you go through to execute and
+                  deliver those ever-demanding events.
+                </div>
+                <div class="text_second_row_css_3">That’s why we make the AV making process as effortless for you as we
+                  can,
+                  while conceiving cinematic moments that can be felt & treasured through our signature- Cinematic
+                  Storytelling! 
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12">
+              <div class="home_img_1_css">
+                <img src="../../assets/images/The_smooth_way.svg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="mx-5" style="margin-top: 100px;">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+            <div class="col-xl-6 col-md-6 col-12">
+              <div class="home_img_1_css">
+                <img src="../../assets/images/With_3_Simple_Steps_to_Success.svg" alt="">
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+              <div class="text-start">
+                <div class="text_second_row_css_2">With 3 Simple <span class="years_15_css">Steps</span> to <span
+                    class="years_15_css">Success</span></div>
+                <div class="text_second_row_css_3">Here’s how this works in just 3 simple steps. 
+                </div>
+                <br>
+                <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 1</span> Just drop on to
+                  our
+                  website and brief us the way you wish (There are loads of options from voice to video and more)
+                </div>
+                <br>
+                <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 2</span> Schedule a
+                  meeting
+                  with us or allow us to call you at your convenient time to discuss your project
+                </div>
+                <br>
+                <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 3</span> and sign up
+                  with
+                  your contact details. 
+                </div>
+                <br>
+                <div class="text_second_row_css_3">That’s all! 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="mx-5" style="margin-top: 100px;">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+
+            <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+              <div class="text-start">
+                <div class="text_second_row_css_2"><span class="years_15_css">Commanding</span> and <span
+                    class="years_15_css">Controlling</span></div>
+                <div class="text_second_row_css_3">At that moment, our advanced tech-infused systems spring into action,
+                  crafting a bespoke dashboard for you. This becomes your command center, where you can steer every
+                  aspect
+                  of your AV production, from the initial script to the final cut. It's all there at your fingertips,
+                  streamlining the entire process with detailed oversight—no more clutter of group chats or endless
+                  calls.
+                  Plus, we provide a dedicated account manager to ensure everything runs smoothly, done for you as
+                  committed, making the complex turn effortless.
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12">
+              <div class="home_img_1_css">
+                <img src="../../assets/images/Commanding_and_Controlling.svg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="mx-5" style="margin-top: 100px;">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+            <div class="col-xl-6 col-md-6 col-12">
+              <div class="home_img_1_css">
+                <img src="../../assets/images/To_xpand_Differently.svg" alt="">
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+              <div class="text-start">
+                <div class="text_second_row_css_2">To <span class="years_15_css">Expand</span>&nbsp;<span
+                    class="years_15_css">Differently</span></div>
+                <div class="text_second_row_css_3">So, collaborate now and stop the cycle of stress, burnout,
+                  frustration
+                  and anxiety. Leave behind the endless hours in the editing studios, which could be better spent with
+                  friends and family or in pursuing new client relationships. End the cycle of settling for just 'nice'
+                  responses to your AV Content.  
+                </div>
+                <div class="text_second_row_css_3">Step into a world where High Client Appreciation repeats and
+                  multiplies
+                  business, setting the stage for your brand to thrive. 
+                </div>
+                <div class="text_second_row_css_3">With AVX, it's more than growth; it's about reshaping the landscape
+                  through new ways of making things happen. Collaborating with AVX Mediaworkz you will grow and expand
+                  Differently.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="container-fluid p-0" style="margin-top: 100px;">
+        <div class="another_logos_css">
+          <div class="pb-5" style="background-color: rgb(0,0,0,80%);
       border-radius: 46px 46px 0px 0px;">
-        <div class="d-flex justify-content-center align-items-center flex-column col-md-12 col-12 text-center">
-          <!-- <div class="we_take_second_text_1">We Take</div> -->
-          <div class="we_take_second_text_2 mt-5">PRIDE IN OUR WORK</div>
-          <div class="we_take_second_text_3 mt-2">Together we have helped more than a dozen companies make their brands
-            better.</div>
-          <div class="logos_imgs_css col-md-12">
-            <img src="../../assets/images/HCL_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/vodafone_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/airtel_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/idea_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/dp_world_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/hero_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/eduauraa_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/justdial_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/cocacola_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/grant_thornton_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/lumnx_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/lexi_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/bsh_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/dassault_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/concentrix_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/the_times_of_india_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/hindustantimes_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/properties_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/spicejet_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/provogue_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/prozone_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/goverment_of_india_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/bmw_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/cashkaro_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/phoenix_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/amazon_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/akzonobel_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/spice_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/samsuno_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/lg_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/vidyagyan_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/shiv_nadar_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/heroecotech_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/aonhewitt_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/sanofi_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/ascend_logo.svg" class="logos_img_css_1" alt="">
-            <img src="../../assets/images/indosat_logo.svg" class="logos_img_css_1" alt="">
-
-            <!-- <div class="col-md-12 col-12  d-flex justify-content-center align-items-center video_img_css_on_img">
-              <img src="../../assets/images/video_img.svg" alt="">
-
-            </div> -->
+            <div class="d-flex justify-content-center align-items-center flex-column col-md-12 col-12 text-center">
+              <div class="we_take_second_text_2 mt-5">PRIDE IN OUR WORK</div>
+              <div class="we_take_second_text_3 mt-2">Together we have helped more than a dozen companies make their
+                brands
+                better.</div>
+              <div class="logos_imgs_css col-md-12">
+                <img src="../../assets/images/HCL_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/vodafone_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/airtel_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/idea_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/dp_world_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/hero_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/eduauraa_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/justdial_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/cocacola_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/grant_thornton_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/lumnx_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/lexi_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/bsh_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/dassault_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/concentrix_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/the_times_of_india_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/hindustantimes_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/properties_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/spicejet_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/provogue_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/prozone_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/goverment_of_india_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/bmw_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/cashkaro_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/phoenix_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/amazon_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/akzonobel_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/spice_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/samsuno_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/lg_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/vidyagyan_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/shiv_nadar_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/heroecotech_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/aonhewitt_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/sanofi_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/ascend_logo.svg" class="logos_img_css_1" alt="">
+                <img src="../../assets/images/indosat_logo.svg" class="logos_img_css_1" alt="">
+              </div>
+            </div>
           </div>
         </div>
+        <div class="container-fluid" style="background-color: yellow; height: 30px; width: 100%;"></div>
+
       </div>
-    </div>
-    <div class="container-fluid" style="background-color: yellow; height: 30px; width: 100%;"></div>
-
-  </div>
-<!-- portfolio portfolio portfolio -->
-  <div class="mt-1 text-center" id="portfolio">
-    <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
-      <div class="we_take_second_text_1" style="color: black;">Have a look over</div>
-      <div class="we_take_second_text_2" style="color: black;"><span class="years_15_css_1">Our</span> work <span
-          class="years_15_css_1">portfolio</span></div>
-          <div class="we_take_second_text_3" style="color: #000000; font-size: 15px !important;">Lorem ipsum dolor sit amet,
+      <div class="mt-1 text-center" id="portfolio">
+        <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
+          <div class="we_take_second_text_1" style="color: black;">Have a look over</div>
+          <div class="we_take_second_text_2" style="color: black;"><span class="years_15_css_1">Our</span> work <span
+              class="years_15_css_1">portfolio</span></div>
+          <div class="we_take_second_text_3" style="color: #000000; font-size: 15px !important;">Lorem ipsum dolor sit
+            amet,
             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-      <div class="">
+          <div class="">
 
-        <div class="col-12 col-md-12 col-xxl-12">
-          <div class="video_portfolio_css">
-            <div *ngFor="let item of items">
-              <video #myVideo (mouseenter)="playVideo(myVideo)" (mouseleave)="pauseVideo(myVideo)">
-                <source src="../../assets/images/video_data.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              
+            <div class="col-12 col-md-12 col-xxl-12">
+              <div class="video_portfolio_css">
+                <div *ngFor="let item of items">
+                  <video #myVideo (mouseenter)="playVideo(myVideo)" (mouseleave)="pauseVideo(myVideo)">
+                    <source src="../../assets/images/video_data.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
 
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
 
 
 
 
-  <div class="mt-5 text-center">
-    <div
-      class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center slider_img_css_bg">
-      <div class="we_take_second_text_1" style="color: black;">What Our</div>
-      <div class="we_take_second_text_2" style="color: black;"><span class="years_15_css_1">client</span> Says <span
-          class="years_15_css_1">about us</span></div>
-      <div class="col-md-12 col-12 card-slider-css" >
-        <section>
-         
-          <p-carousel [value]="cardsArrayData" [numVisible]="3" [autoplayInterval]="3000" [showIndicators]="false" [numScroll]="1" [responsiveOptions]="responsiveOptions">
-            <ng-template let-product pTemplate="item">
-              <div class="container-fluid">
-                <div class="content">
-                  <div class="card-content-card bg-white">
-                    <div class="card-content">
-                      <div class="name-profession">
-                        <p class="name">{{ product.name }}</p>
-                        <p class="profession">{{ product.profession }}</p>
-                      </div>
-          
-                      <div class="card-img-text-content">
-                        <div class="image">
-                          <img [src]="product.imageUrl" alt="">
-                        </div>
-                        <div class="details-user">
-                          <div class="star">
-                            <i class="fa fa-star" *ngFor="let star of getStars(product.stars)"
-                              [style.color]="star ? 'yellow' : '#fff'" id="star"></i>
+      <div class="mt-1 text-center">
+        <div
+          class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center slider_img_css_bg">
+          <div class="we_take_second_text_1" style="color: black;">What Our</div>
+          <div class="we_take_second_text_2" style="color: black;"><span class="years_15_css_1">client</span> Says <span
+              class="years_15_css_1">about us</span></div>
+          <div class="col-md-12 col-12 card-slider-css">
+            <section>
+
+              <p-carousel [value]="cardsArrayData" [numVisible]="3" [showIndicators]="false" [numScroll]="1"
+                [responsiveOptions]="responsiveOptions">
+                <ng-template let-product pTemplate="item">
+                  <div class="container-fluid d-flex justify-content-center align-items-center ">
+                    <div class="content">
+                      <div class="card-content-card bg-white">
+                        <div class="card-content">
+                          <div class="name-profession">
+                            <p class="name">{{ product.name }}</p>
+                            <p class="profession">{{ product.profession }}</p>
                           </div>
-                          <div class="name">{{ product.userName }}</div>
-                          <div class="poistion">{{ product.userPosition }}</div>
+
+                          <div class="card-img-text-content">
+                            <div class="image">
+                              <img [src]="product.imageUrl" alt="">
+                            </div>
+                            <div class="details-user">
+                              <div class="star">
+                                <i class="fa fa-star" *ngFor="let star of getStars(product.stars)"
+                                  [style.color]="star ? 'yellow' : '#fff'" id="star"></i>
+                              </div>
+                              <div class="name">{{ product.userName }}</div>
+                              <div class="poistion">{{ product.userPosition }}</div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </ng-template>
+              </p-carousel>
+
+
+            </section>
+          </div>
+          <div class="container mb-2">
+            <div class="text-black float-end fs-5">Source : <b>Trustpilot</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid text-center mt-3">
+        <div class="text_look_over_div">
+          <div class="we_take_second_text_1" style="color: #000000;">Have a look over</div>
+          <div class="we_take_second_text_2" style="color: #000000;"><span class="years_15_css_1">Our</span> work <span
+              class="years_15_css_1">portfolio</span></div>
+          <div class="we_take_second_text_3" style="color: #000000; font-size: 15px !important;">Lorem ipsum dolor sit
+            amet,
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        </div>
+        <div class="container-fluid p-0">
+          <div class="col-md-12 col-12 card-slider-css-1">
+            <section class="">
+              <p-carousel [value]="cardsArray" [numVisible]="4" [autoplayInterval]="3000" [showIndicators]="false"
+                [numScroll]="1" [responsiveOptions]="responsiveOptions">
+                <ng-template let-product pTemplate="item">
+                  <div class="px-2 d-flex justify-content-center align-items-center">
+                    <div class="card hover_css card_width">
+                      <img [src]="product.imageUrl" class="card-img-top" alt="...">
+                      <div class="info-overlay">
+                        <span><b>{{ product.title }}</b></span>
+                        <span>{{ product.description }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-carousel>
+
+
+
+
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid p-0">
+        <div class="video_bg_css col-md-12 col-12">
+          <img src="../../assets/images/video_bg_img.svg" alt="">
+        </div>
+      </div>
+      <div class="px-5 text-start mt-0" id="why-us">
+        <div class="col-md-12 col-12 d-flex flex-wrap">
+          <div class="col-md-6 col-12 ">
+            <div class="text_look_over_div" style="align-items: start !important;">
+              <div class="we_take_second_text_1 " style="color: #000000;">Check</div>
+              <div class="we_take_second_text_2" style="color: #000000;"><span class="years_15_css_1">Why</span> to
+                <span class="years_15_css_1">choose Us</span>
               </div>
-            </ng-template>
-          </p-carousel>
-          
-  
-        </section>
-      </div>
-      <div class="container mb-2">
-        <div class="text-black float-end fs-5">Source : <b>Trustpilot</b></div>
-      </div>
-    </div>
-  </div>
-  <!-- ban -->
-  <div class="container-fluid text-center mt-3">
-    <div class="text_look_over_div">
-      <div class="we_take_second_text_1" style="color: #000000;">Have a look over</div>
-      <div class="we_take_second_text_2" style="color: #000000;"><span class="years_15_css_1">Our</span> work <span
-          class="years_15_css_1">portfolio</span></div>
-      <div class="we_take_second_text_3" style="color: #000000; font-size: 15px !important;">Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    </div>
-    <div class="container-fluid p-0">
-      <div class="col-md-12 col-12 card-slider-css-1">
-        <section class="">
-          <p-carousel [value]="cardsArray" [numVisible]="4" [autoplayInterval]="3000" [showIndicators]="false" [numScroll]="1" [responsiveOptions]="responsiveOptions">
-            <ng-template let-product pTemplate="item">
-              <div class="px-2">
-                <div class="card hover_css card_width">
-                  <img [src]="product.imageUrl" class="card-img-top" alt="...">
-                  <div class="info-overlay">
-                    <span><b>{{ product.title }}</b></span>
-                    <span>{{ product.description }}</span>
+              <div class="we_take_second_text_3"
+                style="color: #000000; font-size: 15px !important; text-align: start !important; width: 100% !important;">
+                Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 d-flex flex-wrap">
+          <div class="col-md-4 col-12">
+            <div class="row">
+              <div class="col-md-12 col-12 pt-5 d-flex">
+                <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                  <div class="img_icon">
+                    <img src="../../assets/images/Cinematic_Excellence.svg" alt="">
+                  </div>
+                </div>
+                <div class="col-md-10 col-9 ms-2 mx-2">
+                  <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Cinematic
+                    Excellence
+                  </div>
+                  <div class="me-5">We adhere to a premium-only policy that guarantees high-quality cinematic work for
+                    every
+                    project.
                   </div>
                 </div>
               </div>
-            </ng-template>
-          </p-carousel>
-          
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-12 pt-5 d-flex">
+                <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                  <div class="img_icon">
+                    <img src="../../assets/images/Expert_Script_Writers.svg" alt="">
+                  </div>
+                </div>
+                <div class="col-md-10 col-9 mx-2">
+                  <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Expert Script
+                    Writers
+                  </div>
+                  <div class="me-5">Our scripts are penned by seasoned writers with extensive backgrounds in advertising
+                    and
+                    film, ensuring that your client’s message hits the mark from the start.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-12 pt-5 d-flex">
+                <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                  <div class="img_icon">
+                    <img src="../../assets/images/eye_img_oo.svg" alt="">
+                  </div>
+                </div>
+                <div class="col-md-10 col-9 mx-2">
+                  <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Visualised
+                    Precision
+                  </div>
+                  <div class="me-5">To set clear expectations and minimize revisions, we provide detailed mood boards
+                    along
+                    with scripts, enhancing understanding and vision alignment.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-12">
+            <div class="row">
+              <div class="col-md-12 col-12 pt-5 d-flex">
+                <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                  <div class="img_icon">
+                    <img src="../../assets/images/Directed_by_Experts.svg" alt="">
+                  </div>
+                </div>
+                <div class="col-md-10 col-9 mx-2">
+                  <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Directed by
+                    Experts
+                  </div>
+                  <div class="me-5">Your audio-visual content is directed by film and ad film directors, infusing your
+                    projects with cinematic aesthetics and a depth of feeling that elevates the viewer's experience.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-12 pt-5 d-flex">
+                <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                  <div class="img_icon">
+                    <img src="../../assets/images/TECH_ENABLED_Smart_Streamlined_Process.svg" alt="">
+                  </div>
+                </div>
+                <div class="col-md-10 col-9 mx-2">
+                  <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">TECH ENABLED
+                    Smart,
+                    Streamlined Process</div>
+                  <div class="me-5">Our tech-driven workflow empowers you to take CONTROL of your project effortlessly,
+                    saving you time and reducing your effort.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-12 d-flex justify-content-center align-items-center">
+            <img src="../../assets/images/check_to_img.svg" class="w-100" alt="">
+          </div>
 
-
-
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid p-0">
-    <div class="video_bg_css col-md-12 col-12">
-      <img src="../../assets/images/video_bg_img.svg" alt="">
-    </div>
-  </div>
-<!--  why-us why-us why-us -->
-  <div class="px-5 text-start mt-3" id="why-us">
-    <div class="col-md-12 col-12 d-flex flex-wrap">
-      <div class="col-md-6 col-12 ">
-        <div class="text_look_over_div" style="align-items: start !important;">
-          <div class="we_take_second_text_1 " style="color: #000000;">Check</div>
-          <div class="we_take_second_text_2" style="color: #000000;"><span class="years_15_css_1">Why</span> to <span
-              class="years_15_css_1">choose Us</span></div>
-          <div class="we_take_second_text_3"
-            style="color: #000000; font-size: 15px !important; text-align: start !important; width: 100% !important;">
-            Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-        </div>
-
-        <!-- <div class="col-md-12 col-12">
-          <div class="row">
-            <div class="col-md-12 col-12 pt-5 d-flex">
-              <div class="col-md-2 col-3 justify-content-center align-items-center d-flex">
-                <div class="img_icon">
-                  <img src="../../assets/images/star-img.svg" alt="">
-                </div>
-              </div>
-              <div class="col-md-10 col-9">
-                <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">4.8/5 Star rating
-                </div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua.</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 col-12 pt-5 d-flex">
-              <div class="col-md-2 col-3 justify-content-center align-items-center d-flex">
-                <div class="img_icon">
-                  <img src="../../assets/images/Heart_icon.svg" alt="">
-                </div>
-              </div>
-              <div class="col-md-10 col-9">
-                <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">100% Love it
-                </div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua.</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 col-12 pt-5 d-flex">
-              <div class="col-md-2 col-3 justify-content-center align-items-center d-flex">
-                <div class="img_icon">
-                  <img src="../../assets/images/time_icon.svg" alt="">
-                </div>
-              </div>
-              <div class="col-md-10 col-9">
-                <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">24/7 creativity
-                </div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua.</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 col-12 pt-5 d-flex">
-              <div class="col-md-2 col-3 justify-content-center align-items-center d-flex">
-                <div class="img_icon">
-                  <img src="../../assets/images/app_icon.svg" alt="">
-                </div>
-              </div>
-              <div class="col-md-10 col-9">
-                <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">90+ Design
-                  Categories</div>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua.</div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </div>
-      <!-- <div class="col-md-6 col-12">
-        <div class="d-flex justify-content-center align-items-center mt-5 h-100">
-          <img src="../../assets/images/man_video_img.svg" style="width: 100%;" alt="">
-        </div>
-      </div> -->
-    </div>
-    <div class="col-12 col-md-12 d-flex flex-wrap">
-      <div class="col-md-4 col-12">
-        <div class="row">
-          <div class="col-md-12 col-12 pt-5 d-flex">
-            <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
-              <div class="img_icon">
-                <img src="../../assets/images/Cinematic_Excellence.svg" alt="">
-              </div>
-            </div>
-            <div class="col-md-10 col-9 ms-2 mx-2">
-              <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Cinematic
-                Excellence
-              </div>
-              <div class="me-5">We adhere to a premium-only policy that guarantees high-quality cinematic work for every project.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 col-12 pt-5 d-flex">
-            <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
-              <div class="img_icon">
-                <img src="../../assets/images/Expert_Script_Writers.svg" alt="">
-              </div>
-            </div>
-            <div class="col-md-10 col-9 mx-2">
-              <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Expert Script
-                Writers
-              </div>
-              <div class="me-5">Our scripts are penned by seasoned writers with extensive backgrounds in advertising and film,
-                ensuring that your client’s message hits the mark from the start.</div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 col-12 pt-5 d-flex">
-            <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
-              <div class="img_icon">
-                <img src="../../assets/images/eye_img_oo.svg" alt="">
-              </div>
-            </div>
-            <div class="col-md-10 col-9 mx-2">
-              <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Visualised
-                Precision
-              </div>
-              <div class="me-5">To set clear expectations and minimize revisions, we provide detailed mood boards along with scripts,
-                enhancing understanding and vision alignment.</div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="row">
-          <div class="col-md-12 col-12 pt-5 d-flex">
-            <div class="col-md-2 col-3 justify-content-center align-items-center d-flex">
-              <div class="img_icon">
-                <img src="../../assets/images/Directed_by_Experts.svg" alt="">
-              </div>
-            </div>
-            <div class="col-md-10 col-9 mx-2">
-              <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">90+ Design
-                Categories</div>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua.</div>
-            </div>
-          </div>
-        </div> -->
-      </div>
-      <div class="col-md-3 col-12">
-        <div class="row">
-          <div class="col-md-12 col-12 pt-5 d-flex">
-            <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
-              <div class="img_icon">
-                <img src="../../assets/images/Directed_by_Experts.svg" alt="">
-              </div>
-            </div>
-            <div class="col-md-10 col-9 mx-2">
-              <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">90+ Design
-                Categories</div>
-              <div class="me-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua.</div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 col-12 pt-5 d-flex">
-            <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
-              <div class="img_icon">
-                <img src="../../assets/images/TECH_ENABLED_Smart_Streamlined_Process.svg" alt="">
-              </div>
-            </div>
-            <div class="col-md-10 col-9 mx-2">
-              <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">TECH ENABLED Smart,
-                Streamlined Process</div>
-              <div class="me-5">Our tech-driven workflow empowers you to take CONTROL of your project effortlessly, saving you time
-                and reducing your effort.</div>
-            </div>
-          </div>
         </div>
       </div>
-      <div class="col-md-5 col-12 d-flex justify-content-center align-items-center">
-          <!-- <div class="col-md-12 col-12"> -->
-            <!-- <div class="bottom_img">
-              <img src="../../assets/images/bottom_img.svg" alt="">
-            </div>
-            <div class="img_css_commma_2">
-              <img src="../../assets/images/comma_2.svg" class="w-100" alt="">
-            </div>
-            <div class="text-center mt-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-              a galley of type and scrambled it to make a type specimen book.</div>
-            <div class="text-end mt-3"><b>- Vinay Jaiswal</b>, <u>Founder AVX Mediaworkz</u></div>
-            <div class="mt-2">
-              <img src="../../assets/images/comma_1.svg" class="w-100" alt="">
-            </div> -->
-            <!-- <div class="d-flex"> -->
-              <img src="../../assets/images/check_to_img.svg" class="w-100" alt="">
-            <!-- </div> -->
-        <!-- </div> -->
-      </div>
 
-    </div>
-  </div>
-
-  <div class="container d-flex justify-content-center align-items-center mt-5 pb-5">
-    <div class="text_on_slider_button_000">
-      <!-- <button>Get Started <i class="fa fa-arrow-right"></i></button> -->
-      <button routerLink="/how-it-works">Get Started <i class="fa fa-arrow-right"></i></button>
-    </div>
-  </div>
-
-  <div class="mt-5" id="blog">
-    <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
-      <div class="we_take_second_text_1" style="color: black;">Know who is</div>
-      <div class="we_take_second_text_2 text-center" style="color: black;"><span class="years_15_css_1">our</span> <span
-          class="years_15_css_1">founder</span></div>
-      <div class="mt-5">
-        <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
-          <div class="col-12 col-md-6 col-xxl-6 d-flex align-items-center">
-            <div class="col-12 col-md-12 d-flex flex-column">
-              <div class="bottom_img">
-                <img src="../../assets/images/bottom_img.svg" alt="">
-              </div>
-              <div class="img_css_commma_2">
-                <img src="../../assets/images/comma_2.svg" alt="">
-              </div>
-              <div class="img_css_commma_3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                a galley of type and scrambled it to make a type specimen book.</div>
-              <div class="img_css_commma_4"><b>- Vinay Jaiswal</b>, <u>Founder AVX Mediaworkz</u></div>
-              <div class="img_css_commma_1">
-                <img src="../../assets/images/comma_1.svg" alt="">
-              </div> 
-            </div>
-            <!-- <img src="../../assets/images/img_for_down.svg" class="w-100 pe-3" alt=""> -->
-          </div>
-          <div class="col-12 col-md-6 col-xxl-6">
-            <div class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-start align-items-center">
-              <div class="img_css_commma_11">Meet <b>Vinay Jaiswal</b>, Our Founder, the heart and mind behind <b>AVX Mediaworkz</b>.</div>
-              <div class="img_css_commma_11">Starting out as client servicing and then creative director in the bustling world of corporate event management, he spent a decade honing his skills before heeding the call of his first love: filmmaking.</div>
-              <div class="img_css_commma_11"><b>Since 2008</b>, Vinay has been the creative force behind an impressive portfolio of over 1200+ audiovisuals, lending his vision to more than 100 brands and 50+ event companies.</div>
-              <div class="img_css_commma_11"><b>In 2015</b>, Vinay ventured into the realm of advertising films. Over the past 8 years, he's directed over 135 TVCs and DVCs, for top Indian and Global brands. Some of which you might've seen making rounds on the internet and TV (Check them here: <i>www.youtube.com/&#64;directorvinayjaiswal</i>). </div>
-            <div class="readMore_css"><i class="fa fa-chevron-circle-down"></i> Read More</div>
-            </div>
-          </div>
+      <div class="container d-flex justify-content-center align-items-center mt-5 pb-3">
+        <div class="text_on_slider_button_000">
+          <button routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">Get Started <i
+              class="fa fa-arrow-right"></i></button>
         </div>
-        <!-- <div class="container d-flex justify-content-center align-items-center mt-5 pb-5">
-          <div class="text_on_slider_button_000">
-            <button>Read More <i class="fa fa-arrow-right"></i></button>
-          </div>
-        </div> -->
       </div>
 
-    </div>
-  </div>
-
-<!-- Blogs Blogs Blogs -->
-  <div class="mt-5" id="blog">
-    <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
-      <div class="we_take_second_text_1" style="color: black;">Read our</div>
-      <div class="we_take_second_text_2 text-center" style="color: black;"><span class="years_15_css_1">Blogs</span> & <span
-          class="years_15_css_1">Tips School</span></div>
-      <div class="mx-5 mt-5">
-        <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
-          <div class="col-12 col-md-6 col-xxl-6 d-flex align-items-center img_mail_post">
-            <img src="../../assets/images/img_for_down.svg" alt="">
+      <div class="mt-1">
+        <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
+          <div class="we_take_second_text_1" style="color: black;">Know who is</div>
+          <div class="we_take_second_text_2 text-center" style="color: black;"><span class="years_15_css_1">our</span>
+            <span class="years_15_css_1">founder</span>
           </div>
-          <div class="col-12 col-md-6 col-xxl-6 mt-2">
+          <div class="mt-5">
+            <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap justify-content-center align-items-center">
+              <div class="col-12 col-md-6 col-xxl-6 d-flex align-items-center">
+                <div class="col-12 col-md-12 d-flex flex-column">
+                  <div class="bottom_img">
+                    <img src="../../assets/images/bottom_img.svg" alt="">
+                  </div>
+                  <div class="img_css_commma_2">
+                    <img src="../../assets/images/comma_2.svg" alt="">
+                  </div>
+                  <div class="img_css_commma_3">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                    printer
+                    took
+                    a galley of type and scrambled it to make a type specimen book.</div>
+                  <div class="img_css_commma_4"><b>- Vinay Jaiswal</b>, <u>Founder AVX Mediaworkz</u></div>
+                  <div class="img_css_commma_1">
+                    <img src="../../assets/images/comma_1.svg" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-start align-items-center">
+                  <div class="img_css_commma_11">Meet <b>Vinay Jaiswal</b>, Our Founder, the heart and mind behind
+                    <b>AVX
+                      Mediaworkz</b>.
+                  </div>
+                  <div class="img_css_commma_11">Starting out as client servicing and then creative director in the
+                    bustling
+                    world of corporate event management, he spent a decade honing his skills before heeding the call of
+                    his
+                    first love: filmmaking.</div>
+                  <div class="img_css_commma_11"><b>Since 2008</b>, Vinay has been the creative force behind an
+                    impressive
+                    portfolio of over 1200+ audiovisuals, lending his vision to more than 100 brands and 50+ event
+                    companies.</div>
+                  <div class="img_css_commma_11"><b>In 2015</b>, Vinay ventured into the realm of advertising films.
+                    Over
+                    the past 8 years, he's directed over 135 TVCs and DVCs, for top Indian and Global brands. Some of
+                    which
+                    you might've seen making rounds on the internet and TV (Check them here:
+                    <i>www.youtube.com/&#64;directorvinayjaiswal</i>). 
+                  </div>
+                  <div class="readMore_css" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-chevron-circle-down"></i> Read
+                    More</div>
+                </div>
+              </div>
+
+              <div class="collapse mt-5" id="collapseExample">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                  <div class="col-12 col-md-10 d-flex flex-wrap">
+                    <div class="col-12 col-md-6">
+                      His work has brought him in collaboration with more than 35 celebs in Bollywood, sports, and
+                      music,
+                      such as Virat Kohli, Manoj Bajpayee, Tapsee Pannu , Sonu Nigam and many top names to reckon with
+                      in
+                      the world.
+                      Vinay is a creative-preneur, not only the business owner of the company Kreative Fire Media but is
+                      also an accomplished Director, Producer, Song Writer, Music composer, screenwriter and creative
+                      consultant. A rare one of its kind in the country.
+                      Harnessing 25 years of industry experience, Vinay conceived AVX MediaWorkz, a solution-centric
+                      haven
+                      for event companies navigating the multifaceted world of AV content.
+                    </div>
+                    <div class="col-12 col-md-6">
+                      Today, Vinay is not only scaling AVX but also nurturing a tech startup aimed at revolutionizing
+                      the
+                      Media & Entertainment industry, foraying into the music business along with setting up mainstream
+                      feature films.
+                      When he's not weaving stories or sketching out the next big idea, Vinay is a food enthusiast, a
+                      bookworm, and the kind of person you'd want to meet for an inspiring conversation.
+                      Vinay's believes that his life is a service to others, his story isn't just about his
+                      achievements;
+                      it's about a relentless pursuit of pure intent, creativity and a drive to make a difference, one
+                      frame
+                      at a time.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="mt-5" id="blog">
+        <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
+          <div class="we_take_second_text_1" style="color: black;">Read our</div>
+          <div class="we_take_second_text_2 text-center" style="color: black;"><span class="years_15_css_1">Blogs</span>
+            &
+            <span class="years_15_css_1">Tips School</span>
+          </div>
+          <div class="mx-5 mt-5">
             <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
-              <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
-                <img src="../../assets/images/img_for_down_1.svg" alt="">
+              <div class="col-12 col-md-6 col-xxl-6 d-flex align-items-center img_mail_post">
+                <img src="../../assets/images/img_for_down.svg" alt="">
               </div>
-              <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
-                <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like this.</span>
-                <div class="text-black">
-                  <span>5 Months Ago | 15 Minute Read</span>
+              <div class="col-12 col-md-6 col-xxl-6 mt-2">
+                <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
+                  <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
+                    <img src="../../assets/images/img_for_down_1.svg" alt="">
+                  </div>
+                  <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
+                    <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like
+                      this.</span>
+                    <div class="text-black">
+                      <span>5 Months Ago | 15 Minute Read</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
+                  <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
+                    <img src="../../assets/images/blog_2.svg" alt="">
+                  </div>
+                  <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
+                    <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like
+                      this.</span>
+                    <div class="text-black">
+                      <span>5 Months Ago | 15 Minute Read</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
+                  <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
+                    <img src="../../assets/images/blog_3.svg" alt="">
+                  </div>
+                  <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
+                    <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like
+                      this.</span>
+                    <div class="text-black">
+                      <span>5 Months Ago | 15 Minute Read</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
-              <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
-                <img src="../../assets/images/blog_2.svg" alt="">
-              </div>
-              <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
-                <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like this.</span>
-                <div class="text-black">
-                  <span>5 Months Ago | 15 Minute Read</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
-              <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
-                <img src="../../assets/images/blog_3.svg" alt="">
-              </div>
-              <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
-                <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like this.</span>
-                <div class="text-black">
-                  <span>5 Months Ago | 15 Minute Read</span>
-                </div>
+            <div class="container d-flex justify-content-center align-items-center mt-5 pb-5">
+              <div class="text_on_slider_button_000">
+                <button>Read More <i class="fa fa-arrow-right"></i></button>
               </div>
             </div>
           </div>
-        </div>
-        <div class="container d-flex justify-content-center align-items-center mt-5 pb-5">
-          <div class="text_on_slider_button_000">
-            <button>Read More <i class="fa fa-arrow-right"></i></button>
-          </div>
+
         </div>
       </div>
 
     </div>
   </div>
+  <div *ngSwitchCase="'how-it-works'">
+    <div class="container-fluid mt-5" style="background-color: #F8F3F3;">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 d-flex flex-wrap">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-5 offset-xxl-1 how-works-how">
+          <div class="how-it-works-css">how it works</div>
+          <div class="how-it-works-under-text-css">
+            We understand the pulse of your events, the almost impossible timelines, those last-minutechanges. Our
+            secret sauce? A fusion of dynamic storytelling, cinematic finesse, ingeniouscreativity, widely adaptive
+            technology and a hassle-free production process that feels likemagic !
+          </div>
+          <div class="how-it-works-under-text-css">
+            With over 15 years of expertise, we've mastered the art of creating vibes that once felt is long
+            cherished, growing your business in leaps and bounds!
+          </div>
+        </div>
+        <div
+          class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-4 offset-xxl-1 d-flex justify-content-center align-items-center">
+          <div class="how-it-works-img">
+            <img src="../../assets/images/howItWork_img.svg" alt="">
+          </div>
+        </div>
+      </div>
 
+    </div>
+
+    <div class="container-fluid">
+
+      <div
+        class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center text_how_this_css"
+        style="padding: 60px;">
+        <div class="text_how_this_css_1">Here’s <span class="years_15_css">how this works</span> in just <span
+            class="years_15_css">3 simple steps.</span></div>
+        <div class="row">
+          <div
+            class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-center align-items-start flex-wrap">
+            <div
+              class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4 mt-5 d-flex flex-column justify-content-center align-items-center">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="/assets/images/Just_drop.svg" alt="" style="width: 80%;">
+              </div>
+              <div class="text_steps_css">Step 1</div>
+              <div class="text_steps_css_under_text">Just drop on to our website and brief us the way you wish (There
+                are loads of options from voice to video and more)</div>
+            </div>
+            <div
+              class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4 mt-5 d-flex flex-column justify-content-center align-items-center">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="/assets/images/step2Meeting.svg" alt="" style="width: 80%;">
+              </div>
+              <div class="text_steps_css">Step 2</div>
+              <div class="text_steps_css_under_text">Schedule a meeting with us or allow us to call you at your
+                convenient time to discuss your project</div>
+            </div>
+            <div
+              class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4 mt-5 d-flex flex-column justify-content-center align-items-center">
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                <img src="/assets/images/step3SignUp.svg" alt="" style="transform: rotate(-46deg); width: 80%;">
+              </div>
+              <div class="text_steps_css">Step 3</div>
+              <div class="text_steps_css_under_text">and sign up with your contact details. </div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div
+              class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center">
+              <div class="text_steps_css">That’s all!</div>
+              <div class="text_steps_css_under_text text-center w-100">At that moment, our advanced tech-infused
+                systems spring into action, crafting a bespoke dashboard for you. This becomes your command center,
+                where you can steer every aspect of your AV production, from the initial script to the final cut.
+                It's all there at your fingertips, streamlining the entire process with detailed oversight—no more
+                clutter of group chats or endless calls. Plus, we provide a dedicated account manager to ensure
+                everything runs smoothly, done for you as committed, making the complex turn effortless.
+              </div>
+              <div class="text_steps_css_under_text  text-center w-100">Collaborating with AVX Mediaworkz you will grow
+                and Xpand Differently.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid p-0" id="form">
+      <div class="col-12 col-md-12 col-xxl-12 d-flex flex-nowrap justify-content-center align-items-center">
+        <div class="menu_options_css">
+          <div [class.active]="currentStep === 1" class="option_css_meni">Brief Us</div>
+          <div [class.active]="currentStep === 2" class="option_css_meni">Schedule Meeting</div>
+          <div [class.active]="currentStep === 3" class="option_css_meni">Create Account</div>
+        </div>
+
+      </div>
+      <div *ngIf="currentStep === 1"
+        class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center"
+        style="padding: 60px;">
+        <div class="signUp_css">
+          <p class="create_account_css">Brief Us</p>
+          <p class="create_account_under_text_css">Fill the details below to understand us better about
+            your project</p>
+          <form #saveCientRequirementForm="ngForm" (ngSubmit)="saveCientRequirement(userData)">
+            <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
+
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>AV Type :</label>
+                  <input type="text" placeholder="Motivational, Corporate, Launch,..." [(ngModel)]="userData.av_type"
+                    name="av_type" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>City / Place :</label>
+                  <input type="text" placeholder="Enter City Name / Place" [(ngModel)]="userData.city" name="city">
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Email Id :</label>
+                  <input type="email" placeholder="email id" [(ngModel)]="userData.email" name="email" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Phone No. :</label>
+                  <input type="tel" placeholder="phone no." [(ngModel)]="userData.mobile_number" name="mobile_number"
+                    required>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Event Date :</label>
+                  <input type="date" [(ngModel)]="userData.event_date" [min]="currentDate" name="event_date" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Script Deadline :</label>
+                  <input type="date" [(ngModel)]="userData.deadline" [min]="userData.event_date" name="deadline"
+                    id="deadline" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Give Us More Details :</label>
+                  <input type="text" placeholder="Required Details, Launch, etc." [(ngModel)]="userData.desc"
+                    name="desc" required>
+                </div>
+              </div>
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label for="deadline">Script Deadline :</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0">
+                      <input type="date" [(ngModel)]="userData.deadline" [min]="userData.event_date" name="deadline"
+                        id="deadline" required>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- 
+
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label>Give Us More Details :</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0">
+                      <input type="text" placeholder="Required Details, Launch, etc." [(ngModel)]="userData.desc"
+                        name="desc" required>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+
+                      <label>Speak to Our Expert :</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0">
+                      <div class="col-12 col-md-6 d-flex gap-2">
+                        <a href="tel:9024588535">
+                          <div class="call_in_brief_css"><button type="button">
+                              <img src="../../assets/images/icon_for_b_c.svg" class="p-1" alt="">Call</button></div>
+                        </a>
+                        <div class="whatsapp_in_brief_css"><button (click)="openWhatsApp('9024588535', 'Hello')"
+                            type="button">
+                            <img src="../../assets/images/icon_for_b_w.svg" class="p-1" alt="">Whatsapp</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Speak to Our Expert :</label>
+                  <div class="call_video">
+                    <a href="tel:9024588535">
+                      <div class="call_in_brief_css"><button type="button">
+                          <img src="../../assets/images/icon_for_b_c.svg" class="p-1" alt="">Call</button></div>
+                    </a>
+                    <div class="whatsapp_in_brief_css"><button (click)="openWhatsApp('9024588535', 'Hello')"
+                        type="button">
+                        <img src="../../assets/images/icon_for_b_w.svg" class="p-1" alt="">Whatsapp</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Attach Creative Brief :</label>
+                  <input type="file" [(ngModel)]="userData.creative_attach" name="creative_attach"
+                  (change)="handleCAFile($event)">
+                </div>
+              </div>
+
+
+
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label>Attach Creative Brief :</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0">
+
+                      <input type="file" [(ngModel)]="userData.creative_attach" name="creative_attach"
+                        (change)="handleCAFile($event)">
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Record Your Brief :</label>
+                  <div class="audio_whasthass">
+                    <div class="audio_brief_in_brief_css ">
+                      <button type="button" (click)="audioFileInput.click()">
+                        <img src="../../assets/images/Audio_Brief.svg" alt=""> Audio
+                        Brief
+                      </button>
+                      <input type="file" #audioFileInput style="display: none" (change)="handleAudioFile($event)">
+                    </div>
+
+                    <div class="video_brief_in_brief_css ">
+                      <button type="button" (click)="videoFileInput.click()">
+                        <img src="../../assets/images/Video_Brief.svg" alt=""> Video
+                        Brief
+                      </button>
+                      <input type="file" #videoFileInput style="display: none" (change)="handleVideoFile($event)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label>Record Your Brief : </label>
+                    </div>
+                    <div
+                      class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0 d-flex flex-wrap gap-2">
+                      <div class="audio_brief_in_brief_css ">
+                        <button type="button" (click)="audioFileInput.click()">
+                          <img src="../../assets/images/Audio_Brief.svg" alt=""> Audio
+                          Brief
+                        </button>
+                        <input type="file" #audioFileInput style="display: none" (change)="handleAudioFile($event)">
+                      </div>
+
+                      <div class="video_brief_in_brief_css ">
+                        <button type="button" (click)="videoFileInput.click()">
+                          <img src="../../assets/images/Video_Brief.svg" alt=""> Video
+                          Brief
+                        </button>
+                        <input type="file" #videoFileInput style="display: none" (change)="handleVideoFile($event)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Select Budget Range :</label> {{userData.budget}}
+                  <input class="Select_Budget_Range" type="range" [(ngModel)]="userData.budget" name="budget"
+                        min="0" max="10000000">
+                </div>
+              </div>
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label>Select Budget Range :</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0">
+                      <input class="Select_Budget_Range" type="range" [(ngModel)]="userData.budget" name="budget"
+                        min="0" max="10000000">
+                      {{userData.budget}}
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-12 col-md-6 col-xxl-6 d-flex justify-content-start align-items-center">
+                <div class="regis_data_css w-100">
+                  <input type="checkbox" [(ngModel)]="userData.budget_in_mind" name="budget_in_mind">
+                  <p>I don’t have any budget in my mind yet.</p>
+                </div>
+              </div>
+
+
+
+              <div class="col-12 col-md-12 col-xxl-12">
+                <div class="reg_data_css">
+                  <label>Any Reference You Would Like to Attach :</label>
+                  <input type="file" [(ngModel)]="userData.more_attach" name="more_attach"
+                  (change)="handleMAFile($event)">
+                </div>
+              </div>
+              <!-- <div class="col-12 col-md-12 col-xxl-12">
+                <div class="reg_data_css col-md-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-md-4">
+                      <label>Any Reference You Would Like to Attach : </label>
+                    </div>
+                    <div class="col-12 col-md-8 d-flex flex-wrap">
+                      <div class="col-12 col-md-12">
+                        <input type="file" [(ngModel)]="userData.more_attach" name="more_attach"
+                          (change)="handleMAFile($event)">
+                      </div>
+                      <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+                        OR
+                      </div>
+                      <div class="col-12 col-md-12">
+                        <input type="file">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-12 col-md-12 col-xxl-6 d-flex flex-column justify-content-center align-items-center mt-3 mb-3">
+                <div class="signIn_button_css_Brief">
+                  <button [disabled]="saveCientRequirementForm.invalid">Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep === 2"
+        class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center"
+        style="padding: 60px;">
+        <div class="signUp_css">
+          <p class="create_account_css">Schedule meeting</p>
+          <p class="create_account_under_text_css">Book meeting & allow us to call you ( what time would
+            suit you? )</p>
+          <form #bookTimeForMeetingForm="ngForm" (ngSubmit)="bookTimeForMeeting(bookMeeting)">
+            <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
+
+              <div class="col-12 col-md-12 col-xxl-12">
+                <div class="schedule_div_css">
+                  <input type="checkbox" [(ngModel)]="bookMeeting.call_allow" name="call_allow" required>
+                  <label>Allow Us to call You.</label>
+                </div>
+                <div class="schedule_div_css_under_text">
+                  <label>Select <b>Date and Time</b> as per your convenience</label>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-xxl-12 mt-5 d-flex flex-wrap justify-content-center">
+                <div class="col-12 col-md-5 col-xxl-5 d-flex flex-wrap ">
+                  <div class="row col-12 col-md-12 col-xxl-12 d-flex flex-wrap" style="height: 120px;">
+                    <div class="col-4 col-md-4 col-xxl-4 d-flex flex-wrap justify-content-center align-items-center">
+                      <div class="d-flex flex-wrap justify-content-center align-items-center">
+                        <img src="../../assets/images/Calendar_img.svg" alt="">
+                      </div>
+                    </div>
+                    <div class="col-8 col-md-8 col-xxl-8 d-flex flex-column">
+                      <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+                        <!-- <div class="select_css_date">
+                                        <select [(ngModel)]="bookMeetings.day" name="day">
+                                            <option disabled selected>Select</option>
+                                            <option *ngFor="let day of days" [value]="day">{{ day }}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                    <div class="select_css_date">
+                                        <select [(ngModel)]="bookMeetings.month" name="month">
+                                            <option disabled selected>Select</option>
+                                            <option *ngFor="let month of months" [value]="month">{{ month }}
+                                            </option>
+                                        </select>
+
+                                    </div> -->
+
+                        <div class="select_css_date">
+                          <select [(ngModel)]="bookMeetings.day" name="day">
+                            <option disabled selected>Select</option>
+                            <option *ngFor="let day of days" [value]="day" [disabled]="isPastDate(day)">{{ day }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="select_css_date">
+                          <select [(ngModel)]="bookMeetings.month" name="month">
+                            <option disabled selected>Select</option>
+                            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                          </select>
+                        </div>
+
+                      </div>
+                      <div class="col-12 col-md-12">
+                        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+                          <div class="mt-3 d-flex flex-nowrap justify-content-center align-items-center">
+                            <i class="fas fa-caret-left fs-3" (click)="decreaseYear()"></i>
+                            <input type="text" [(ngModel)]="currentYear" name="currentYear" class="currentYear_css"
+                              inputmode="numeric" readonly>
+                            <i class="fas fa-caret-right fs-3" (click)="increaseYear()"></i>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <hr style="width: 2px;"> -->
+                  <div class="row col-12 col-md-12 col-xxl-12 d-flex flex-wrap" style="height: 45px;">
+                    <div class="col-11 col-md-10 offset-md-1 offset-1" style="height: 3.5px; background-color: #ccc;">
+                    </div>
+                  </div>
+                  <div class="row col-12 col-md-12 col-xxl-12 d-flex flex-wrap" style="height: 120px;">
+                    <div class="col-4 col-md-4 col-xxl-4 d-flex flex-wrap justify-content-center align-items-center">
+                      <div class="d-flex flex-wrap justify-content-center align-items-center">
+                        <img src="../../assets/images/Time_img.svg" alt="">
+                      </div>
+                    </div>
+                    <div class="col-8 col-md-8 col-xxl-8">
+                      <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+                        <div class="input_css_hour_minutes">
+                          <input type="tel" placeholder="HH" [(ngModel)]="bookMeetings.hour" name="hour">
+
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center fs-5">
+                          <b>:</b>
+                        </div>
+                        <div class="input_css_hour_minutes">
+                          <input type="tel" placeholder="MM" [(ngModel)]="bookMeetings.minute" name="minute">
+
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+                        <!-- app.component.html -->
+                        <div class="class_bg_csss">
+                          <div class="bg_css_1" [class.bg_css_bg]="selectedTime === 'AM'" (click)="selectTime('AM')">
+                            <label for="AM">AM</label>
+                            <input class="d-none" type="radio" name="time" id="AM" value="AM"
+                              [(ngModel)]="selectedTime">
+                          </div>
+                          <div class="bg_css_1" [class.bg_css_bg]="selectedTime === 'PM'" (click)="selectTime('PM')">
+                            <label for="PM">PM</label>
+                            <input class="d-none" type="radio" name="time" id="PM" value="PM"
+                              [(ngModel)]="selectedTime">
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-12 col-md-2 col-xxl-2 d-flex  flex-wrap">
+                            <div class="d-flex  flex-wrap d-none d-md-flex" style="baborder-right: 4px solid #BABABA;"></div>
+                        </div> -->
+                <div class="col-12 col-md-2 col-xxl-2 d-flex  flex-wrap justify-content-center " style="width: 15px;">
+                  <div class="d-flex  flex-wrap d-none d-md-flex" style="background-color: #BABABA; width: 4px;"></div>
+                </div>
+                <div class="col-12 col-md-5 col-xxl-5 d-flex flex-wrap">
+
+
+
+                  <div class="row col-12 col-md-12 col-xxl-12 d-flex flex-wrap" style="height: 120px;">
+                    <div class="col-12 col-md-11 col-xxl-11 offset-md-1 offset-xxl-1 d-flex flex-wrap gap-2"
+                      style="height: fit-content;">
+                      <div class="text_css_day_css">Today</div>
+                      <div class="text_css_day_css">Tomorrow</div>
+                      <div class="text_css_day_css">Overmorrow</div>
+                    </div>
+                  </div>
+                  <div class="row col-12 col-md-12 col-xxl-12 d-flex flex-wrap" style="height: 45px;">
+                    <div class="col-11 col-md-10 offset-md-1 offset-1" style="height: 3.5px; background-color: #ccc; ">
+                    </div>
+                  </div>
+                  <div class="row col-12 col-md-12 col-xxl-12 d-flex flex-wrap" style="height: 120px;">
+                    <div class="col-12 col-md-11 col-xxl-11 offset-md-1 offset-xxl-1 d-flex flex-wrap gap-2"
+                      style="height: fit-content;">
+                      <div class="text_css_day_css">Morning</div>
+                      <div class="text_css_day_css">After Noon</div>
+                      <div class="text_css_day_css">Evening</div>
+                      <div class="text_css_day_css">10:30 AM</div>
+                      <div class="text_css_day_css">12:00 AM</div>
+                      <div class="text_css_day_css">08:00 PM</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-xxl-6 d-flex flex-column justify-content-center align-items-center mt-3">
+                <div class="signIn_button_css_text_css">
+                  <button>Book Meeting Now</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 3"
+        class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-center align-items-center"
+        style="padding: 60px;">
+        <div class="signUp_css">
+          <p class="create_account_css">Create Account</p>
+          <p class="create_account_under_text_css">Sign Up here if you are not already
+            registered.</p>
+          <form #registerForm="ngForm" (ngSubmit)="signUp(register)">
+            <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap  justify-content-center align-items-center">
+
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Your Name :</label>
+                  <input type="text" placeholder="Enter username here" [(ngModel)]="register.name" name="name" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>City / Place :</label>
+                  <input type="text" placeholder="Enter City Name / Place" [(ngModel)]="register.city" name="city">
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Work Email ID :<span *ngIf="emailMismatch" class="text-danger"
+                    title="Please enter a valid email address.">*</span></label>
+                    <input type="email" [ngClass]="{'border-danger': emailMismatch}" placeholder="Enter work email id"
+                        [(ngModel)]="register.email" name="email" required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" (keyup)="onEmailChange()">
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Mobile No. :</label>
+                  <div class="mobile_number_css">
+
+                    <select class="w-25 px-1" [(ngModel)]="register.country_code" name="country_code">
+                      <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                    </select>
+                    <input type="text" placeholder="Enter Mobile No." class="w-50" [(ngModel)]="register.mobile_number"
+                      name="mobile_number" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-3 col-xxl-4">
+                      <label>Work Email ID: <span *ngIf="emailMismatch" class="text-danger"
+                          title="Please enter a valid email address.">*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 col-xxl-8 mt-2 mt-md-0">
+                      <input type="email" [ngClass]="{'border-danger': emailMismatch}" placeholder="Enter work email id"
+                        [(ngModel)]="register.email" name="email" required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" (keyup)="onEmailChange()">
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label>Create Password :</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-7 col-xxl-8 mt-2 mt-md-0">
+                      <input type="text" placeholder="Create Password" (keyup)="onPasswordChange()"
+                        [(ngModel)]="register.password" name="password" required>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Create Password :</label>
+                  <input type="text" placeholder="Create Password" (keyup)="onPasswordChange()"
+                        [(ngModel)]="register.password" name="password" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Confirm Password : <span *ngIf="passwordMismatch" class="text-danger"
+                    title="Passwords do not match.">*</span></label>
+                    <input type="text" [ngClass]="{'border-danger': passwordMismatch}" placeholder="Re-enter Password"
+                    (keyup)="onPasswordChange()" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Country Name : <span *ngIf="passwordMismatch" class="text-danger"
+                    title="Passwords do not match.">*</span></label>
+                    <select [(ngModel)]="register.country_code" name="country_code">
+                      <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                    </select>
+                </div>
+              </div>
+
+              <!-- <div class="col-12 col-md-6 col-xxl-6">
+                <div class="reg_data_css">
+                  <label>Mobile No. :</label>
+                  <select class="w-25 px-1" [(ngModel)]="register.country_code" name="country_code">
+                    <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                  </select>
+                  <input type="text" placeholder="Enter Mobile No." class="w-50" [(ngModel)]="register.mobile_number"
+                    name="mobile_number" required>
+                </div>
+              </div> -->
+
+
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label>Confirm Password : <span *ngIf="passwordMismatch" class="text-danger"
+                          title="Passwords do not match.">*</span></label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0">
+                      <input type="text" [ngClass]="{'border-danger': passwordMismatch}" placeholder="Re-enter Password"
+                        (keyup)="onPasswordChange()" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="reg_data_css col-sm-12 col-lg-12 col-md-12 col-xl-12 col-xxl-12">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-4 col-xxl-4">
+                      <label>Country Name:</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mt-2 mt-md-0">
+                      <input type="text" placeholder="Enter Country" [(ngModel)]="register.country" name="country_code">
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-12 col-md-6 col-xxl-6 d-flex justify-content-center align-items-center">
+                <div class="regis_data_css">
+                  <input type="checkbox" name="agreeTerms" required>
+                  <p>By clicking here you are agreed to the <span class="terms_conditions">Terms
+                      and Conditions </span> or <span class="privacy_policies">Privacy
+                      Policies.</span></p>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-xxl-6 d-flex flex-column justify-content-center align-items-center mt-3">
+                <div class="signIn_button_css">
+                  <button [disabled]="registerForm.invalid || passwordMismatch  || emailMismatch">SIGN
+                    UP</button>
+                </div>
+                <div class="not_reg_css">
+                  <p>Already Registered? <span routerLink="/log-in">Login</span></p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div *ngSwitchCase="'log-in'">
+    <form #loginForm="ngForm" (ngSubmit)="signIn(login)">
+      <div class=" col-12 col-md-12 col-xxl-12 mt-1 mb-5 d-flex flex-wrap justify-content-center align-items-center">
+        <div class="col-12 col-md-6 col-lg-6 col-xxl-5 d-flex flex-column justify-content-center align-items-center">
+          <div class="signIn_css">
+            <p class="wel_text_css">Welcome Back!</p>
+            <p class="wel_under_text_css">Login here if you already registered with us.
+            </p>
+            <div class="email_id_css w-100">
+              <label>Email ID :</label>
+              <img src="../../assets/images/user_sign_in.svg" alt="">
+              <input type="text" placeholder="Enter email id" [(ngModel)]="login.email" name="email" required>
+            </div>
+            <div class="password_css w-100">
+              <label>Password :</label>
+              <img src="../../assets/images/password_sign_in.svg" alt="" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Look at Password">
+              <input [type]="showPassword ? 'text' : 'password'" placeholder="Enter your password"
+                [(ngModel)]="login.password" name="password" required>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between align-items-center w-100">
+              <div class="show_password">
+                <input type="checkbox" id="showPasswordCheckbox" [(ngModel)]="showPassword"
+                  (click)="togglePasswordVisibility()">
+                <label for="showPasswordCheckbox">Show Password</label>
+              </div>
+              <div class="forgot_password_css">
+                <p routerLink="/forgot/password">Forgot Password?</p>
+              </div>
+            </div>
+            <div class="signIn_button_css">
+              <button [disabled]="loginForm.invalid">SIGN IN</button>
+            </div>
+            <div class="not_reg_css">
+              <p>Not Registered? <span routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">Create Account</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-7 p-3">
+          <div class="sign_in_get_css">
+            <p>Sign In to Get <b>AV Script</b> Writing service <span class="free_css">Free</span> for <b>1 Year</b></p>
+          </div>
+          <div class="sign_in_get_under_text_css">
+            <p>We understand the pulse of your events, the almost impossible timelines,
+              those last-minutechanges. Our secret sauce? A fusion of dynamic
+              storytelling, cinematic finesse, ingeniouscreativity, widely adaptive
+              technology and a hassle-free production process that feels likemagic !
+            </p>
+          </div>
+          <div class="sign_in_get_button_css">
+            <button type="button" routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')" id="freeScript">Yes! I want the FREE Script
+              Service</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div *ngSwitchDefault></div> -->
 </div>
-
-

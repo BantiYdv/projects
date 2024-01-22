@@ -74,10 +74,10 @@ export class AppComponent implements OnInit {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
  loginWithOTP(): boolean {
-  return this.router.url.startsWith('/login-with-otp');
+  return this.router.url.startsWith('/log-in/otp');
 }
 forgotPassword(): boolean {
-  return this.router.url.startsWith('/forgot-password');
+  return this.router.url.startsWith('/forgot/password');
 }
 
 

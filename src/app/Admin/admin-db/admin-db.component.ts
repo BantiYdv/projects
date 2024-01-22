@@ -2,15 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
+import { ToolbarModule } from 'primeng/toolbar';
+import { MenuItem } from 'primeng/api';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @Component({
   selector: 'app-admin-db',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink,ToolbarModule,SplitButtonModule],
   templateUrl: './admin-db.component.html',
   styleUrl: './admin-db.component.css',
 })
 export class AdminDBComponent implements OnInit {
+
+  items: MenuItem[] | undefined;
   profileData: any = {};
   profileAvatarImg:any={};user_id : any;
 
@@ -19,6 +24,16 @@ export class AdminDBComponent implements OnInit {
   ngOnInit(): void {
     this.user_id = localStorage.getItem('userId');
     this.getUserDetails(this.user_id);
+    this.items = [
+      {
+          label: 'Update',
+          icon: 'pi pi-refresh'
+      },
+      {
+          label: 'Delete',
+          icon: 'pi pi-times'
+      }
+  ];
   }
 
   handleImgFile(event: any) {

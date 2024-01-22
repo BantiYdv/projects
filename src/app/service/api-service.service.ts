@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiServiceService {
+  pageType: any;
   token: any = localStorage.getItem('token');
   userId: any = localStorage.getItem('userId');
   // token: any = "Abc";
@@ -25,6 +26,32 @@ export class ApiServiceService {
     private http: HttpClient,
     private router: Router
   ) {}
+
+  showPage(pageType: string) {
+    console.log('page type =>',pageType)
+    this.pageType = pageType;
+  }
+  scrollToSection(sectionId: string): void {
+    console.log(sectionId)
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const elementOffset = element.getBoundingClientRect().top;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const offset = elementOffset - bodyRect;
+      const middleOfPage = offset - window.innerHeight / 90; // Adjust as needed
+      window.scrollTo({ top: middleOfPage, behavior: 'smooth' });
+    }
+  }
+  
+  routePage(pageType: any, sectionId: any): void {
+    this.showPage(pageType);
+  
+    // Delay the scrollToSection call by 3 seconds
+    setTimeout(() => {
+      this.scrollToSection(sectionId);
+    }, 800);
+  }
+  
 
   signUp(userData: any) {
     const headers = this.headersWithOutAuth;
