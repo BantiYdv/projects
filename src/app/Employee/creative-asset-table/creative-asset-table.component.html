@@ -1,0 +1,52 @@
+
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+    <div class="searchBar">
+        <div class="creativeAssetSearch">
+            <input type="text" id="searchBar" placeholder="Search"> <img
+                src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
+        <div class="creativeAsset">
+            Creative Assets
+        </div>
+    </div>
+
+</div>
+
+<div class="">
+    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
+<!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    <div class="d-flex flex-wrap justify-content-center align-items-start" style="width: 90%;"> -->
+        <table class="table tAble_css table-striped">
+            <thead class="table-dark tHead_css">
+                <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Document</th>
+                </tr>
+            </thead>
+            <tbody class="tBody_css">
+                <tr *ngFor="let item of creativeAssetsTable; let i = index;">
+                    <td >{{ i+1 }}</td>
+                    <td>{{ item.name ||
+                        "-"}}</td>
+                    <td><i class="far fa-calendar"></i> {{ item.date | date:
+                        'dd/MM/yyyy' || "-" }}</td>
+                    <td>
+                        <div class="img_dwonLoad_1">
+                            <img src="../../../assets/images/dwonLoad_1.svg" class="w-25" alt="">
+                        </div>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

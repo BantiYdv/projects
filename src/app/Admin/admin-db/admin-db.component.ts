@@ -19,7 +19,7 @@ export class AdminDBComponent implements OnInit {
   profileData: any = {};
   profileAvatarImg:any={};user_id : any;
 
-  constructor(public apiService: ApiServiceService) {}
+  constructor(public apiService: ApiServiceService, private router : Router) {}
 
   ngOnInit(): void {
     this.user_id = localStorage.getItem('userId');
@@ -36,6 +36,10 @@ export class AdminDBComponent implements OnInit {
   ];
   }
 
+  isActive(route: string): boolean {
+    // Check if the current URL matches the specified route
+    return this.router.url === route;
+  }
   handleImgFile(event: any) {
     this.profileAvatarImg.avatar = event.target.files[0];
     this.profileAvatarImg.user_id = localStorage.getItem('userId')

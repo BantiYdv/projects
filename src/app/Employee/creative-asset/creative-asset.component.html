@@ -1,0 +1,32 @@
+
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+    <div class="searchBar">
+   <div class="creativeAssetSearch">
+    <input type="text" id="searchBar" placeholder="Search" > <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+   </div>
+  </div>
+  </div>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-3">
+      <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
+            <div class="creativeAsset">
+                Creative Assets
+            </div>
+        </div>
+       
+    </div>
+
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-2">
+      <div class="d-flex flex-wrap justify-content-start align-items-start" style="width: 90%;">
+      <div class="folder">
+        <div class="d-flex flex-column justify-content-center align-items-center mx-2 my-1 px-2 py-1"  *ngFor="let folder of creativeAssetFolder">
+          <img [src]="folder.img" alt="" class="creativeAssetsFolder">
+          <h4 class="creativeAssetsFolderText">{{folder.name}}</h4>
+        </div>
+      </div>
+        </div>
+       
+    </div>
+
+    

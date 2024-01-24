@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-employee-db',
@@ -10,17 +11,33 @@ import Swal from 'sweetalert2';
   templateUrl: './employee-db.component.html',
   styleUrl: './employee-db.component.css'
 })
-export class EmployeeDBComponent {
+export class EmployeeDBComponent implements OnInit {
+ 
+  items: MenuItem[] | undefined;
   profileData: any = {};
   profileAvatarImg:any={};user_id : any;
 
-  constructor(public apiService: ApiServiceService) {}
+  constructor(public apiService: ApiServiceService, private router : Router) {}
 
   ngOnInit(): void {
     this.user_id = localStorage.getItem('userId');
     this.getUserDetails(this.user_id);
+    this.items = [
+      {
+          label: 'Update',
+          icon: 'pi pi-refresh'
+      },
+      {
+          label: 'Delete',
+          icon: 'pi pi-times'
+      }
+  ];
   }
 
+  isActive(route: string): boolean {
+    // Check if the current URL matches the specified route
+    return this.router.url === route;
+  }
   handleImgFile(event: any) {
     this.profileAvatarImg.avatar = event.target.files[0];
     this.profileAvatarImg.user_id = localStorage.getItem('userId')
@@ -38,7 +55,7 @@ export class EmployeeDBComponent {
 
    
     this.apiService.saveAvatar(formData).subscribe(
-      (response:any) => {
+      (response) => {
         console.log('response =>',response)
         // On success
         Swal.fire({
@@ -72,5 +89,4 @@ export class EmployeeDBComponent {
       }
     );
   }
- 
 }

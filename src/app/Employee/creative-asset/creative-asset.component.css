@@ -1,0 +1,53 @@
+.creativeAsset{
+    font-size: 30px;
+    font-weight: bold;
+    }
+    .creativeAssetSearch{
+        display: flex;
+    border-radius: 10px;
+    border: 2px solid #000;
+    
+    background: #F8F9FF;
+    }
+    
+    .searchBar{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    width: 90%;
+    border-bottom: 2px solid #BCBBC3;
+    padding-bottom: 10px;
+    }
+    
+    .creativeAssetSearch input{
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+    padding: 0 0 0 10px;
+    }
+    
+    
+    .creativeAssetsSearchIcon{
+        width: 40px;
+    height: 40px;
+    padding: 6px;
+       background-color: #393939;
+    }
+    
+    .creativeAssetsFolder{
+        width: 160.76px;
+        height: 160.307px;
+    }
+    
+    .creativeAssetsFolderText{
+        color: #473604;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    }
+    .folder{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+    }

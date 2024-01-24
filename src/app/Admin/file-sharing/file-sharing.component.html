@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
+            <div class="col-12 col-md-6 ">
+                <div class="header_css_added_project">
+                    File Sharing
+                </div>
+            </div>
+            <div class="col-12 col-md-6 ">
+                <div class="header_css_button_project mt-3">
+                    <button data-bs-toggle="modal" data-bs-target="#addNewProject"><i class="fa fa-plus"></i> Add </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 mt-3 overflow-auto">
+            <table class="table tAble_css table-striped">
+                <thead class="table-dark tHead_css">
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">File Name</th>
+                        <th scope="col">File No.</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Download</th>
+                        <th scope="col">Client Review</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="tBody_css">
+                    <tr *ngFor="let projectData of projects; let i = index">
+                        <td scope="row">{{i+1}}</td>
+                        <td>{{ projectData.name ||
+                            "-"}}</td>
+                        <td>{{ projectData.client_id.name || "-"
+                            }}</td>
+                        <!-- <td>{{ projectData.start_date | date:
+                            'dd/MM/yyyy' || "-" }}</td> -->
+                            <td>{{ projectData.handel_by.name || "-"
+                            }}</td>
+                            <td> <i class="far fa-calendar"></i> {{ projectData.deadline | date:
+                                'dd/MM/yyyy' || "-" }}</td>
+                            <td>
+                            <div class="img_dwonLoad_1" >
+                                <img src="../../../assets/images/dwonLoad_1.svg" class="w-25" alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <button class="view_data_css_22" data-bs-toggle="modal" 
+                            data-bs-target="#viewClientReview">View</button>
+                            
+                        </td>
+                        <td>
+                            <div class="icon_t_e_e">
+                                <i class="fa fa-trash"></i>
+                                <i class="fas fa-edit"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="viewClientReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #3B3A70;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Description</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <div>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. At a eveniet quidem maxime amet, officiis dicta voluptatibus hic laborum, minus explicabo incidunt, aspernatur perferendis vel optio iste reprehenderit pariatur cumque!
+                </div>
+                <!-- <div class="col-12 col-md-12">
+                    <div *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index"
+                        class="d-flex justify-content-between align-items-center">
+                        <h2>{{project_resourses.name || 'Document'}}</h2>
+                        <a [href]="'http://101.53.145.234:4005/' + projectUpdate.project_resourses.url" download>
+                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                        </a>
+                    </div>
+                    <div *ngIf="projectUpdate.project_resourses == 0"
+                        class="d-flex justify-content-center align-items-center">
+                        No Document
+                    </div>
+                    <div *ngIf="!projectUpdate.project_resourses"
+                        class="d-flex justify-content-center align-items-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

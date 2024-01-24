@@ -16,7 +16,6 @@ import { KeysServiceService } from './service/keys-service.service';
 import { SecretKeysServiceService } from './service/secret-keys-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
 import { AdminDBComponent } from './Admin/admin-db/admin-db.component';
 import { EmployeeDBComponent } from './Employee/employee-db/employee-db.component';
 import { EmployeeProjectComponent } from './Employee/employee-project/employee-project.component';
@@ -47,7 +46,6 @@ import { LoginWithOTPComponent } from './login-with-otp/login-with-otp.component
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    LoginComponent
   ],
   providers: [ApiServiceService, KeysServiceService, SecretKeysServiceService],
   templateUrl: './app.component.html',

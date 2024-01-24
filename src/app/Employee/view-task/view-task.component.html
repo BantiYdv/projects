@@ -1,194 +1,43 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
-            <div class="col-12 col-md-6 ">
-                <div class="header_css_added_project">
-                    View Task
-                </div>
-            </div>
-            <div class="col-12 col-md-6 ">
-                <div class="header_css_button_project">
-                    <button data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa fa-plus"></i> Add Task</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-12 mt-3 overflow-auto">
-            <table class="table tAble_css">
-                <thead class="table-dark tHead_css">
-                    <tr>
-                        <th scope="col">Task No.</th>
-                        <th scope="col">Task Name</th>
-                        <th scope="col">Download</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">View</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Assign Task</th>
-                    </tr>
-                </thead>
-                <tbody class="tBody_css">
-                    <tr *ngFor="let project of tasks; let i = index">
-                        <td scope="row">{{ i+1 }}</td>
-                        <td scope="row">{{ project.task_info.name }}</td>
-                        <td>
-                            <div  data-bs-toggle="modal" (click)="getTaskById(project.task_info._id)"
-                            data-bs-target="#downloadTask">
-                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                        </div>
-                    </td>
-                        <td>{{ project.task_info.desc.length > 10 ? (project.task_info.desc | slice:0:10) + '...' : project.task_info.desc }}
-                        </td>
-                        <td>
-                            <img src="../../../assets/images/eye_icon_project.svg" class="w-25" alt="" data-bs-toggle="modal" data-bs-target="#viewDescription" (click)="setTaskDescription(project.task_info.desc)">
-                        </td>
-                        <td>
-                            <select class="select_css_code" [(ngModel)]="project.task_info.current_status" name="current_status" (change)="onChangeStatus(project.task_info._id, project.task_info.current_status)">
-                                <option value="Created">Created</option>
-                                <option value="Start">Start</option>
-                                <option value="Ongoing">Ongoing</option>
-                                <option value="Finished">Finished</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="select_css_code" [(ngModel)]="project.assignTo" name="assignTo" (change)="onChangeAssignedStatus(project.task_info._id, project.assignTo)">
-                                <option *ngFor="let assigned of assigned" [value]="assigned._id">{{assigned.name}}</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+    <div class="searchBar">
+        <div class="creativeAssetSearch">
+            <input type="text" id="searchBar" placeholder="Search"> <img
+                src="/assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
         </div>
     </div>
 </div>
 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="viewDescription" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            {{ selectedTaskDescription }}
-        </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div> -->
-      </div>
-    </div>
-  </div>
-
-
-  <div class="modal fade" id="downloadTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
-                <div class="col-12 col-md-12 d-flex flex-nowrap">
-                    <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">{{taskUpdate.name}} Details</div>
-                    </div>
-                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button></div>
-                </div>
-            </div>
-            <div class="modal-body m-4">
-                <div class="col-12 col-md-12">
-                    <div  *ngFor="let attachment of taskUpdate.attachment , let i = index" class="d-flex justify-content-between align-items-center" >
-                        <h2>{{attachment.name}}</h2>
-                        <a href="'http://101.53.145.234:4005/' + project.project_resourses.url" download>
-                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                        </a>
-                    </div>
-                    <div *ngIf="taskUpdate.attachment == 0" class="d-flex justify-content-center align-items-center">
-                        No Document
-                    </div>
-                    <div *ngIf="!taskUpdate.attachment" class="d-flex justify-content-center align-items-center">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                          </div>
-                    </div>
-
-                </div>
-            </div>
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
+        <div class="creativeAsset">
+            Projects
         </div>
     </div>
+
 </div>
 
-
-<!-- Modal addNewTask -->
-<div class="modal fade" id="addNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: #3B3A70;">
-            <div class="col-12 col-md-12 d-flex flex-nowrap">
-                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Add Task</div></div>
-                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-            </div>
-        </div>
-        <div class="modal-body m-4">
-            <form #saveTaskForm="ngForm" (ngSubmit)="saveTask(taskSave)">
-          <div class="col-12 col-md-12 d-flex flex-wrap">
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Select Project</label>
-                    <select [(ngModel)]="taskSave.project_id" name="project_id">
-                        <option disabled value="select">-- Select --</option>
-                        <option *ngFor="let project of projectList" [value]="project._id">{{project.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Task Name</label>
-                    <input type="text" placeholder="Task Name" [(ngModel)]="taskSave.name" name="name" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Assign To Team Member</label>
-                    <select [(ngModel)]="taskSave.assgined_to" name="assgined_to" required>
-                        <option disabled value="select">-- Select --</option>
-                        <option *ngFor="let handel of handel_By" [value]="handel._id">{{handel.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Upload Doc.</label>
-                    <input type="file" (change)="onChangeProjectSave($event)" [(ngModel)]="taskSave.task_attachement" name="task_attachement">
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Start Date</label>
-                    <input type="date" [(ngModel)]="taskSave.start_date" name="start_date" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Deadline Date</label>
-                    <input type="date" [(ngModel)]="taskSave.deadline" name="deadline" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-12">
-                <div class="add_css_pro_code">
-                    <label>Other Information</label>
-                    <input type="text" placeholder="other information"  [(ngModel)]="taskSave.desc" name="desc">
-                </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12">
-            <div class="save_css_button_code">
-                <button  [disabled]="saveTaskForm.invalid">Save</button>
-            </div>
-          </div>
-          </form>
-
-        </div>
-      </div>
+<div class="">
+    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
+        <table class="table tAble_css table-striped">
+            <thead class="table-dark tHead_css">
+                <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Starting Date</th>
+                    <th scope="col">Deadline Date</th>
+                </tr>
+            </thead>
+            <tbody class="tBody_css">
+                <tr *ngFor="let project of tasks; let i = index">
+                    <td scope="row">{{ i+1 }}</td>
+                    <td scope="row">{{ project.name ||
+                        "-"}}</td>
+                    <td><i class="far fa-calendar"></i> {{ project.task_info.createdAt | date:
+                        'dd/MM/yyyy' || "-" }}</td>
+                    <td style="color: #FF5B5B;"><i class="far fa-calendar" style="color: #FF5B5B;"></i> {{ project.task_info.deadline | date:
+                        'dd/MM/yyyy' || "-" }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>

@@ -1,0 +1,36 @@
+.toggle_css {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 1000px) {
+    .toggle_css {
+      width: 90%;
+    }
+}
+.button_css {
+    background-color: transparent;
+    border: 1px solid black;
+    width: 50%;
+    height: 60px;
+    font-size: 22px;
+  }
+  .button_light:hover {
+    background-color: #f0f0f0;
+  }
+  .button_success {
+    background-color: #4cff6b;
+    font-weight: bold;
+  }
+  .button_danger {
+    background-color: #ff4c4c;
+    font-weight: bold;
+  }
+  .button_css:nth-child(1) {
+    border-radius: 50px 0px 0px 50px;
+  }
+  .button_css:nth-child(2) {
+    border-radius: 0px 50px 50px 0px;
+  }

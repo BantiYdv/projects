@@ -1,4 +1,4 @@
-<!-- <div *ngIf="!apiService.isLoggedIn()">
+<div *ngIf="!apiService.isLoggedIn()">
     <app-navbar *ngIf="!loginWithOTP() && !forgotPassword()"></app-navbar>
     <router-outlet></router-outlet>
     <app-footer *ngIf="!loginWithOTP() && !forgotPassword()"></app-footer>
@@ -7,13 +7,13 @@
         <app-employee-db></app-employee-db>
         <router-outlet></router-outlet>
 </div>
-<div *ngIf="apiService.isLoggedIn() && apiService.getRole === 'admin'">     -->
+<div *ngIf="apiService.isLoggedIn() && apiService.getRole === 'admin'">    
         <app-admin-db></app-admin-db>
         <router-outlet></router-outlet>
-<!-- </div>
+</div>
 <div *ngIf="apiService.isLoggedIn() && apiService.getRole === 'user'">    
         <app-client-db></app-client-db>
-</div> -->
+</div>
 <button class="topUP show" [ngClass]="{'show': showScrollButton}" (click)="scrollToTop()" style="position: fixed; bottom: 50px; right: 50px;"><i class="fa fa-angle-double-up"></i></button>
 
 

@@ -1,116 +1,117 @@
-.header_css_added_project{
-    font-size: 30px;
-    font-weight: bold;
+.header_css_added_project {
+  font-size: 30px;
+  font-weight: bold;
 }
-.header_css_button_project{
-    display: flex;
-    justify-content: end;
+.header_css_button_project {
+  display: flex;
+  justify-content: end;
 }
-.header_css_button_project button{
-    font-size: 19px;
-    background-color: yellow;
-    outline: none;
-    padding: 10px;
-    border: 1px solid yellow;
-    border-radius: 10px;
+.header_css_button_project button {
+  font-size: 19px;
+  background-color: yellow;
+  outline: none;
+  padding: 10px;
+  border: 1px solid yellow;
+  border-radius: 10px;
 }
-.header_css_button_project button:active{
-    transform: scale(.9);
+.header_css_button_project button:active {
+  transform: scale(0.9);
 }
-.ban{
-    /* max-width: 1000px; */
-    overflow-x: scroll;
+.ban {
+  /* max-width: 1000px; */
+  overflow-x: scroll;
 }
-.tAble_css{
-    border: 1px solid #E6E5FD;
-    min-width: 1000px;
-    /* overflow-x: scroll;
+.tAble_css {
+  border: 1px solid #e6e5fd;
+  min-width: 1000px;
+  /* overflow-x: scroll;
     overflow-y: hidden; */
 }
-.tHead_css{
-    height: 60px;
+.tHead_css {
+  height: 60px;
 }
-.tHead_css tr th{
-    text-align: center;
-    vertical-align: middle;
+.tHead_css tr th {
+  text-align: center;
+  vertical-align: middle;
 }
-.tBody_css tr{
-    height: 60px;
-    border-bottom: 4px solid #E6E5FD;
+.tBody_css tr {
+  height: 60px;
+  border-bottom: 4px solid #e6e5fd;
 }
-.tBody_css tr td{
-    text-align: center;
-    vertical-align: middle;
+.tBody_css tr td {
+  text-align: center;
+  vertical-align: middle;
 }
-.select_css_code{
-    width: 100%;
-    background-color: #3B3A70;
-    color: #fff;
-    border-radius: 5px;
-    height: 30px;
-    outline: none;
+.select_css_code {
+  width: 100%;
+  background-color: #3b3a70;
+  color: #fff;
+  border-radius: 5px;
+  height: 30px;
+  outline: none;
 }
-.icon_t_e_e i{
-    padding: 0px 5px;
-    cursor: pointer;
+.icon_t_e_e i {
+  padding: 0px 5px;
+  cursor: pointer;
 }
-.icon_t_e_e i:nth-child(1){
-    color: red;
+.icon_t_e_e i:nth-child(1) {
+  color: red;
 }
-.icon_t_e_e i:nth-child(2){
-    color: green;
+.icon_t_e_e i:nth-child(2) {
+  color: green;
 }
-.icon_t_e_e i:nth-child(3){
-    color: black;
+.icon_t_e_e i:nth-child(3) {
+  color: black;
 }
-.text_add_p_css{
-    text-align: center;
-    color: #fff;
-    font-weight: bold;
+.text_add_p_css {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
 }
-.add_css_pro_code{
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+.add_css_pro_code {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
-.add_css_pro_code label{
-    font-size: 17px;
-    font-weight: bold;
+.add_css_pro_code label {
+  font-size: 17px;
+  font-weight: bold;
 }
-.add_css_pro_code input , .add_css_pro_code select{
-    font-size: 15px;
-    border: 2.5px solid #555353;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 5px;
-    width: 80%;
-    /* font-weight: bold; */
+.add_css_pro_code input,
+.add_css_pro_code select {
+  font-size: 15px;
+  border: 2.5px solid #555353;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 5px;
+  width: 80%;
+  /* font-weight: bold; */
 }
-.save_css_button_code{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+.save_css_button_code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
-.save_css_button_code button{
-    background-color: yellow;
-    color: #000;
-    outline: none;
-    border: 1px solid yellow;
-    border-radius: 5px;
-    padding: 10px 40px;
+.save_css_button_code button {
+  background-color: yellow;
+  color: #000;
+  outline: none;
+  border: 1px solid yellow;
+  border-radius: 5px;
+  padding: 10px 40px;
 }
-.save_css_button_code button:active{
-    transform: scale(.9);
+.save_css_button_code button:active {
+  transform: scale(0.9);
 }
-.bg-secondary{
-    background-color: #c2c2c2 !important;
+.bg-secondary {
+  background-color: #c2c2c2 !important;
 }
-.teamMemberAdd{
-    font-size: 15px;
-    border: 2.5px solid #555353;
-    border-radius: 5px;
-    padding: 1px;
-    height: 60px;
-    /* width: 80%; */
+.teamMemberAdd {
+  font-size: 15px;
+  border: 2.5px solid #555353;
+  border-radius: 5px;
+  padding: 1px;
+  height: 60px;
+  /* width: 80%; */
 }

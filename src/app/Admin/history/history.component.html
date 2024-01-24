@@ -1,0 +1,12 @@
+<div class=" d-flex justify-content-center align-items-center">
+    <div class="toggle_css">
+        <button class="button_css" [ngClass]="{'button_light': !isOn, 'button_success': isOn}"
+            (click)="toggleState(true)">
+            Project
+        </button>
+        <button class="button_css" [ngClass]="{'button_light': isOn, 'button_danger': !isOn}"
+            (click)="toggleState(false)">
+            Task
+        </button>
+    </div>
+</div>

@@ -17,7 +17,14 @@ export class EmployeeProjectComponent {
 
   constructor(private apiService:ApiServiceService,private router: Router, public route: ActivatedRoute) {}
   
-  projects: any[] = [];
+  projects: any[] = [
+    {name: 'AVX Media', type:'AVX', start_date:'2023-02-12', deadline:'2023-02-12', },
+    {name: 'AVX Media', type:'AVX', start_date:'2023-02-12', deadline:'2023-02-12', },
+    {name: 'AVX Media', type:'AVX', start_date:'2023-02-12', deadline:'2023-02-12', },
+    {name: 'AVX Media', type:'AVX', start_date:'2023-02-12', deadline:'2023-02-12', },
+    {name: 'AVX Media', type:'AVX', start_date:'2023-02-12', deadline:'2023-02-12', },
+    {name: 'AVX Media', type:'AVX', start_date:'2023-02-12', deadline:'2023-02-12', },
+  ];
   projectUpdate: any = {};
   project_id: any ;
 

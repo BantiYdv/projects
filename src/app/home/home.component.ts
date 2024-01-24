@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, OnInit  } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AppComponent } from '../app.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { ApiServiceService } from '../service/api-service.service';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
@@ -108,9 +108,16 @@ export class HomeComponent implements OnInit {
           block: 'start',
         });
       });
-      // this.checkScroll();
   
       this.countryDialCode();
+
+
+      this.updateCurrentTime();
+    
+      // Update the current time every minute
+      setInterval(() => {
+          this.updateCurrentTime();
+      }, 60000); 
   }
   
  
@@ -475,7 +482,7 @@ getStars(starCount: number): boolean[] {
         localStorage.setItem('userId', r.data._id);
         Swal.fire({
           icon: 'success',
-          title: 'Login Successful',
+          title: 'Successful',
           text: r.message,
           showConfirmButton: false,
           timer: 3000,
@@ -502,17 +509,17 @@ getStars(starCount: number): boolean[] {
         })
         break;
       case 'admin':
-        this.router.navigate(['/project']).then( () => {
+        this.router.navigate(['/admin/briefs']).then( () => {
           window.location.reload();
         })
         break;
       case 'team member':
-        this.router.navigate(['/employee-project']).then( () => {
+        this.router.navigate(['/employee/creative-asset']).then( () => {
           window.location.reload();
         })
         break;
       default:
-        this.router.navigate(['/home']).then( () => {
+        this.router.navigate(['/user/work-status']).then( () => {
           window.location.reload();
         })
         break;
@@ -542,5 +549,129 @@ getStars(starCount: number): boolean[] {
       }
     );
   }
+ 
+  
+  validateHour() {
+    this.bookMeetings.hour = this.bookMeetings.hour.replace(/[^\d]/g, '');
+    const hour = parseInt(this.bookMeetings.hour, 10);
+    if (isNaN(hour) || hour < 1 || hour > 12) {
+        this.bookMeetings.hour = 12; 
+    }
+
+    // Additional logic to check if entered time is before the current time
+  const enteredTime = parseInt(this.bookMeetings.hour);
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+
+  if (enteredTime < currentHour) {
+      // If entered time is before current time, switch to the next AM/PM period
+      this.switchToNextAmPm();
+  }
+}
+
+validateMinute() {
+  this.bookMeetings.minute = this.bookMeetings.minute.replace(/[^\d]/g, '');
+    const minute = parseInt(this.bookMeetings.minute, 10);
+    if (isNaN(minute) || minute < 0 || minute > 59) {
+        this.bookMeetings.minute = 0o0; 
+    }
+    const enteredMinute = parseInt(this.bookMeetings.minute);
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+
+    // Check if the entered time is before the current time
+    if (enteredMinute < currentMinute && parseInt(this.bookMeetings.hour) === currentHour) {
+        // If entered time is before current time and the hour is the same, switch to the next AM/PM period
+        this.switchToNextAmPm();
+    }
+}
+ 
+
+updateMeetingDate() {
+  this.bookMeeting.meeting_date = `${this.bookMeetings.day}/${this.bookMeetings.month}/${this.currentYear}`;
+}
+
+isMeetingDateToday(): boolean {
+  const today = new Date();
+  const selectedDate = new Date(`${this.bookMeetings.month}/${this.bookMeetings.day}/${this.currentYear}`);
+  return this.isSameDate(today, selectedDate);
+}
+
+isSameDate(date1: Date, date2: Date): boolean {
+  return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate();
+}
+
+isTomorrowSelected(): boolean {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const selectedDate = new Date(`${this.bookMeetings.month}/${this.bookMeetings.day}/${this.currentYear}`)
+  return this.isSameDate(tomorrow, selectedDate);
+}
+
+isOvermorrowSelected(): boolean {
+  const overmorrow = new Date();
+  overmorrow.setDate(overmorrow.getDate() + 2);
+
+  const selectedDate = new Date(`${this.bookMeetings.month}/${this.bookMeetings.day}/${this.currentYear}`)
+  
+  return this.isSameDate(overmorrow, selectedDate);
+}
+// Add these methods to your component class
+selectedDateAndMonth: string = '';
+
+selectToday() {
+  const today = new Date();
+  this.bookMeetings.day = formatDate(today, 'd', 'en-US');
+  this.bookMeetings.month = formatDate(today, 'MMMM', 'en-US');
+  this.updateMeetingDate(); // Call the method to update meeting date if needed
+}
+
+
+selectTomorrow() {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  this.bookMeetings.day = formatDate(tomorrow, 'd', 'en-US');
+  this.bookMeetings.month = formatDate(tomorrow, 'MMMM', 'en-US');
+  this.updateMeetingDate(); // Call the method to update meeting date if needed
+}
+
+selectOvermorrow(): void {
+  const overmorrow = new Date();
+  overmorrow.setDate(overmorrow.getDate() + 2);
+  this.bookMeetings.day = formatDate(overmorrow, 'd', 'en-US');
+  this.bookMeetings.month = formatDate(overmorrow, 'MMMM', 'en-US');
+  this.updateMeetingDate();
+}
+
+private updateCurrentTime() {
+  const currentTime = new Date();
+  const hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+
+  // Convert hours to 12-hour format
+  this.bookMeetings.hour = this.formatTimeValue(hours % 12 || 12);
+  this.bookMeetings.minute = this.formatTimeValue(minutes);
+  
+  // Set AM/PM based on hours
+  this.bookMeetings.AmPm = hours >= 12 ? 'PM' : 'AM';
+
+  console.log("time current", currentTime);
+  console.log("time AMPM", this.bookMeetings.AmPm);
+}
+
+private formatTimeValue(value: number): string {
+  // Add leading zero if the value is less than 10
+  return value < 10 ? `0${value}` : `${value}`;
+}
+
+
+
+private switchToNextAmPm() {
+  // Toggle between AM and PM
+  this.bookMeetings.AmPm = this.bookMeetings.AmPm === 'AM' ? 'PM' : 'AM';
+}
+
 }
 

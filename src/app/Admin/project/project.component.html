@@ -1,3 +1,169 @@
+<!-- <div>
+    <div class="row">
+        <div class=" d-flex justify-content-center align-items-center">
+            <div class="toggle_css">
+                <button class="button_css" [ngClass]="{'button_light': !isOn, 'button_success': isOn}"
+                    (click)="toggleState(true)">
+                    Active
+                </button>
+                <button class="button_css" [ngClass]="{'button_light': isOn, 'button_danger': !isOn}"
+                    (click)="toggleState(false)">
+                    Closed
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isOn">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="show_month">January</div>
+        <div class="menu_css_head">
+            <div class="menu_project_css">Projects</div>
+            <div class="weeks_css">1st Week</div>
+            <div class="weeks_css">2nd Week</div>
+            <div class="weeks_css">3rd Week</div>
+            <div class="weeks_css">4th Week</div>
+            <div class="weeks_css">5th Week</div>
+        </div>
+        <div class="sub_menu_head_css">
+            <div class="sub_css_text">Projects</div>
+            <div class="sub_css_text">Tasks</div>
+
+            <div class="sub_days_css_1">
+                <div class="days_css">1</div>
+                <div class="days_css">2</div>
+                <div class="days_css">3</div>
+                <div class="days_css">4</div>
+                <div class="days_css">5</div>
+                <div class="days_css">6</div>
+                <div class="days_css">7</div>
+            </div>
+
+            <div class="sub_days_css_1">
+                <div class="days_css">8</div>
+                <div class="days_css">9</div>
+                <div class="days_css">10</div>
+                <div class="days_css">11</div>
+                <div class="days_css">12</div>
+                <div class="days_css">13</div>
+                <div class="days_css">14</div>
+            </div>
+
+            <div class="sub_days_css_1">
+                <div class="days_css">15</div>
+                <div class="days_css">16</div>
+                <div class="days_css">17</div>
+                <div class="days_css">18</div>
+                <div class="days_css">19</div>
+                <div class="days_css">20</div>
+                <div class="days_css">21</div>
+            </div>
+
+            <div class="sub_days_css_1">
+                <div class="days_css">22</div>
+                <div class="days_css">23</div>
+                <div class="days_css">24</div>
+                <div class="days_css">25</div>
+                <div class="days_css">26</div>
+                <div class="days_css">27</div>
+                <div class="days_css">28</div>
+            </div>
+
+            <div class="sub_days_css_1">
+                <div class="days_css">29</div>
+                <div class="days_css">30</div>
+                <div class="days_css">31</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="pro_tasks">
+        <div class="projects_data_css">
+            <div>AVX Media 1</div>
+            <div>AVX Media 2</div>
+            <div>AVX Media 3</div>
+        </div>
+        <div class="tasks_data_css">
+            <div>Task 1</div>
+            <div>Task 2</div>
+            <div>Task 3</div>
+        </div>
+        <div class="chart_css">
+            <div *ngFor="let task of tasks" class="bar">
+                <div class="progress bg_completed" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.px]="calculateMarginLeft(task.startDate)" [style.width.px]="calculateWidth(task.completed, task.startDate)"></div>
+                <div class="progress bg_start" [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')" [style.margin-left.px]="calculateMarginLeft(task.startDate)" [style.width.px]="calculateWidth(task.start, task.startDate)"></div>
+                <div class="progress bg_created" [title]="task.startDate | date: 'dd-MM-yyyy' + ' to ' + (task.created | date: 'dd-MM-yyyy')" [style.margin-left.px]="calculateMarginLeft(task.startDate)" [style.width.px]="calculateWidth(task.created, task.startDate)"></div>
+                <div class="progress bg_deadline" [title]="task.deadlineDate | date: 'dd-MM-yyyy'" [style.margin-left.px]="calculateMarginLeft(task.deadlineDate)"></div>
+              </div>
+              
+        </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="color_show_date">
+            <div class="d-flex flex-nowrap">
+                <div class="color_css bg_created"></div>
+                <div class="color_name">Created</div>
+            </div>
+            <div class="d-flex flex-nowrap">
+                <div class="color_css bg_start"></div>
+                <div class="color_name">Start</div>
+            </div>
+            <div class="d-flex flex-nowrap">
+                <div class="color_css bg_completed"></div>
+                <div class="color_name">Completed</div>
+            </div>
+            <div class="d-flex flex-nowrap">
+                <div class="color_css bg_deadline"></div>
+                <div class="color_name">Deadline</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div *ngIf="!isOn">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="project_date_css_2">
+                <div>Projects Name</div>
+                <div>Producer Name</div>
+                <div>Handled By</div>
+                <div>Deadline Date</div>
+                <div>Completed On</div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="project_body_css_2">
+                <div class="bg_bg_color"><span>AVX</span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
+            </div>
+            <div class="project_body_css_2">
+                <div class="bg_bg_color"><span>AVX</span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
+            </div>
+            <div class="project_body_css_2">
+                <div class="bg_bg_color"><span>AVX</span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
+                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="view_all_button">View All&nbsp;<i class="fa fa-angle-down"></i></div>
+        </div>
+    </div>
+
+</div> -->
+<div>
+
+
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
@@ -82,9 +248,6 @@
     </div>
 </div>
 
-
-
-<!-- Modal addNewProject -->
 <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -95,7 +258,6 @@
                     </div>
                     <div class="col-1 col-md-1 text-end text-white">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <!-- <i class="fa fa-remove" (click)="closeModal()"></i> -->
                     </div>
                 </div>
             </div>
@@ -230,7 +392,6 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Client Name</label>
-                                <!-- {{projectUpdate.client_id._id}} -->
                                 <select [(ngModel)]="projectUpdate.client_id._id" name="client_id" required>
                                     <option value="" disabled selected>Select Client</option>
                                     <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
@@ -247,14 +408,12 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Handled By</label>
-                                <!-- {{projectUpdate.handel_by._id}} -->
                                 <select [(ngModel)]="projectUpdate.handel_by._id" name="handel_by" required>
                                     <option value="" disabled selected>Select Handled By</option>
                                     <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
                                         {{handel_by.name}}
                                     </option>
                                 </select>
-                                <!-- {{projectUpdate.handel_by._id}} -->
                             </div>
                         </div>
                         <div class="col-12 col-md-12">
@@ -419,7 +578,6 @@
                                 </mat-select>
                             </mat-form-field>
 
-                            <!-- {{addParticipantData}} -->
                         </div>
 
                     </div>
@@ -433,4 +591,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -22,7 +22,8 @@ export class KeysServiceService {
   public updateProfile = `${this.mainUrl}/user/updateProfile`;//done
   public deleteUser = `${this.mainUrl}/user/deleteUser`;//done
 
-
+  public getFinisedProjects = `${this.mainUrl}/project/getFinisedProjects`;
+  public getActiveProjects = `${this.mainUrl}/project/getActiveProjects`;//done
   public saveProject = `${this.mainUrl}/project/saveProject`;//done
   public getProject = `${this.mainUrl}/project/getProject`;//done
   public getProjectById = `${this.mainUrl}/project/getProjectDetailsById`;//done
@@ -33,6 +34,8 @@ export class KeysServiceService {
   public updatedProjectStatus = `${this.mainUrl}/project/updateStatusOfProject`//done
   public addParticipant = `${this.mainUrl}/project/addParticipant `//done
 
+
+  public getTaskListOfActiveProject = `${this.mainUrl}/task/getTaskListOfActiveProject`;
   public saveTask = `${this.mainUrl}/task/createTask`;//done
   public getTask = `${this.mainUrl}/task/getTaskList`;//done
   public getTaskById = `${this.mainUrl}/task/getTaskDetailsById`;

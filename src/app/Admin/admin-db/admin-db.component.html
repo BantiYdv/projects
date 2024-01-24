@@ -8,31 +8,6 @@
             <div style="font-size: 20px;">
                 <i class="fa fa-bell"></i>
             </div>
-            <!-- <div class="col-9 col-md-9 col-xxl-9 offset-1">
-                <div class="header_menu">
-                    <img src="../../../assets/images/AVX_Media.svg" alt="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-                    aria-controls="offcanvasExample">
-                </div>
-            </div> -->
-            <!-- <div class="col-2 col-md-2 col-xxl-2 d-flex justify-content-center align-items-center">
-                <div class="dropdown">
-                    <a href="#"
-                        class="profile_img_on_header d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
-                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong>Welcome {{ (profileData.name || 'Not found').split(' ')[0] || 'Not found' }}
-                        </strong>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#profileData">Profile</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="" (click)="apiService.logOut()">Log Out</a></li>
-                    </ul>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
@@ -40,7 +15,7 @@
 <div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" style="width: 280px !important;  margin-top: 100px;" tabindex="-1" id="offcanvasExample"
     aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header d-flex flex-column px-0">
-        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-end px-3">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-end px-3 " data-bs-theme="dark">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="col-12 col-md-12 d-flex flex-wrap">
@@ -51,46 +26,98 @@
                     <div class="post_css">Frontend Developer</div>
                 </div>
             </div>
-            <!-- <div class="col-1 col-md-1">
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div> -->
         </div>
+        
+    </div>
+    <div class="offcanvas-body body_part">
         <div class="col-12 col-md-12 col-xxl-12 menu_options">
             <ul>
-                <li routerLink="/project">
+                <li routerLink="/admin/briefs" [class.hove_active]="isActive('/admin/briefs')">
                     <div class="col-12 col-md-12 d-flex">
                         <div class="col-2 col-md-2 offset-1">
                             <div class="menu_img_css_1">
-                                <img src="../../../assets/images/project_icon_img.svg" alt="">
+                                <img src="../../../assets/images/Briefs_icon_1.svg" alt="">
                             </div>
                         </div>
                         <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Project</div>
+                            <div class="text_menu_css">Briefs</div>
                         </div>
                     </div>
                 </li>
-                <li routerLink="/task">
+                <li routerLink="/admin/creative-assets" [class.hove_active]="isActive('/admin/creative-assets')">
                     <div class="col-12 col-md-12 d-flex">
                         <div class="col-2 col-md-2 offset-1">
                             <div class="menu_img_css_1">
-                                <img src="../../../assets/images/task_icon_img.svg" alt="">
+                                <img src="../../../assets/images/Creative_Assets_icon_1.svg" alt="">
                             </div>
                         </div>
                         <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Task</div>
+                            <div class="text_menu_css">Creative Assets</div>
                         </div>
                     </div>
                 </li>
-                <li routerLink="/teamMember">
+                <li routerLink="/admin/file-sharing" [class.hove_active]="isActive('/admin/file-sharing')">
 
                     <div class="col-12 col-md-12 d-flex">
                         <div class="col-2 col-md-2 offset-1">
                             <div class="menu_img_css_1">
-                                <img src="../../../assets/images/team_member_icon_img.svg" alt="">
+                                <img src="../../../assets/images/File_sharing_icon_1.svg" alt="">
                             </div>
                         </div>
                         <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Team Member</div>
+                            <div class="text_menu_css">File sharing</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/admin/history" [class.hove_active]="isActive('/admin/history')">
+
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/History_icon_1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">History</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/admin/teamMember" [class.hove_active]="isActive('/admin/teamMember')">
+
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/Team_Members_icon_1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">Team Members</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/admin/client" [class.hove_active]="isActive('/admin/client')">
+
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/Client_icon_1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">Client</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/admin/project" [class.hove_active]="isActive('/admin/project')">
+
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/Project_Management_icon_1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">Project Management</div>
                         </div>
                     </div>
                 </li>

@@ -49,7 +49,7 @@ export class ApiServiceService {
     // Delay the scrollToSection call by 3 seconds
     setTimeout(() => {
       this.scrollToSection(sectionId);
-    }, 800);
+    }, 10);
   }
   
 
@@ -127,6 +127,14 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.get(this.keys.getProject, { headers });
   }
+  getActiveProjects() {
+    const headers = this.headerWithAuth;
+    return this.http.get(this.keys.getActiveProjects, { headers });
+  }
+  getFinisedProjects() {
+    const headers = this.headerWithAuth;
+    return this.http.get(this.keys.getFinisedProjects, { headers });
+  }
 
   getProjectById(project: any) {
     const headers = this.headerWithAuth;
@@ -193,6 +201,10 @@ export class ApiServiceService {
     return this.http.get(this.keys.getTask, { headers });
   }
 
+  getTaskListOfActiveProject(project_id: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getTaskListOfActiveProject}?project_id=${project_id}`, { headers });
+  }
   getTaskById(task: any) {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getTaskById}?task_id=${task}`, { headers });
@@ -343,8 +355,8 @@ export class ApiServiceService {
   }
 
   logOut() {
+    // this.router.navigate(['/log-in']);
     localStorage.clear();
-    this.router.navigate(['/log-in']);
     window.location.reload();
   }
 }

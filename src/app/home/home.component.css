@@ -1884,6 +1884,27 @@ margin-top: 20px;
     background-color: #fff;
     padding: 5px 15px;
     font-size: 14px;
+    cursor: pointer;
+  }
+
+
+  .today {
+    background-color: black;
+    color: white; 
+  }
+  .tomorrow {
+    background-color: black;
+    color: white; 
+  }
+  .overmorrow {
+    background-color: black;
+    color: white; 
+  }
+  
+
+  .text_css_day_css:hover{
+    background-color: #000;
+    color: #fff;
   }
   .bg_css_bg{
     width: 50%;
