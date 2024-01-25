@@ -38,24 +38,14 @@
                         "-"}}</td>
                     <td> {{ item.createdAt | date:'dd/MM/yyyy'|| "-" }}</td>
                     <td>
-                        <!-- <div class="card flex justify-content-center"> -->
-                            <!-- (click)="assignTask(item.project_id)" -->
-                            <!-- <mat-form-field >
-                                <mat-label>Team Member</mat-label>
-                                <mat-select  multiple aria-required="true" [(value)]="addParticipantData">
+                            <mat-form-field class="w-75" >
+                                <mat-label>Assign</mat-label>
+                                <mat-select  multiple aria-required="true" [(value)]="item.member">
                                     <mat-option *ngFor="let getTeamMember of getTeamMemberList"
-                                        [value]="getTeamMember._id">{{getTeamMember.name}}</mat-option>
+                                        [value]="getTeamMember?._id">{{getTeamMember?.name}}</mat-option>
                                 </mat-select>
-                            </mat-form-field> -->
-                            <!-- <select >
-                                <option  *ngFor="let getTeamMember of getTeamMemberList" [value]="getTeamMember._id">{{getTeamMember.name}}</option>
-                            </select> -->
-                            <div *ngFor="let item of getTeamMemberList">
-                                {{item[0]._id}}
-                            </div>
-                            <!-- <button (click)="assignTask(item.project_id)">{{item.project_id}}</button> -->
-                            <!-- <p-multiSelect [options]="cities" [(ngModel)]="selectedCities" optionLabel="name"></p-multiSelect> -->
-                        <!-- </div> -->
+                            </mat-form-field>
+                            <button class="btn btn-sm btn-success m-1" *ngIf="item.member && item.member.length > 0" (click)="assignCreativeAssetsToTeamMember(item.member, item._id)">Save</button>
                     </td>
                         <td>
                             <div class="img_dwonLoad_1" >

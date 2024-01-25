@@ -52,6 +52,7 @@
         border-bottom: 4px solid #E6E5FD;
     }
     .tBody_css tr td{
+        width: 300px;
         text-align: center;
         vertical-align: middle;
     }

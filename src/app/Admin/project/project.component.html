@@ -228,9 +228,13 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
-                                    <label>Upload Doc.</label>
-                                    <input type="file" (change)="onChangeProjectSave($event)"
-                                        [(ngModel)]="projectSave.project_resourses" name="project_resourses">
+                                    <label>Project Type</label>
+                                    <select [(ngModel)]="projectSave.project_type" name="project_type" required>
+                                        <option value="" disabled selected>Select Project Type</option>
+                                        <option *ngFor="let type of get_project_type" [value]="type._id">
+                                            {{type.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -244,17 +248,24 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Upload Doc.</label>
+                                    <input type="file" (change)="onChangeProjectSave($event)"
+                                        [(ngModel)]="projectSave.project_resourses" name="project_resourses">
+                                </div>
+                            </div>
+                            <!-- <div class="col-12 col-md-12">
                                 <div class="add_css_pro_code">
                                     <label>Other Information</label>
                                     <input type="text" placeholder="Other Information" [(ngModel)]="projectSave.desc"
                                         name="desc">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-12 col-md-12">
                             <div class="save_css_button_code">
-                                <button [disabled]="saveProjectForm.invalid">Save</button>
+                                <button [disabled]="saveProjectForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
                             </div>
                         </div>
                     </form>

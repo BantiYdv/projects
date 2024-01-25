@@ -100,6 +100,11 @@
   border-radius: 5px;
   padding: 10px 40px;
 }
+.status_div_css_status{
+  background-color: #9DADFF;
+  border-radius: 5px;
+  padding: 10px;
+}
 .save_css_button_code button:active {
   transform: scale(0.9);
 }

@@ -135,6 +135,10 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.get(this.keys.getFinisedProjects, { headers });
   }
+  getProjectType() {
+    const headers = this.headerWithAuth;
+    return this.http.get(this.keys.getProjectType, { headers });
+  }
 
   getProjectById(project: any) {
     const headers = this.headerWithAuth;
@@ -199,6 +203,10 @@ export class ApiServiceService {
   getTask() {
     const headers = this.headerWithAuth;
     return this.http.get(this.keys.getTask, { headers });
+  }
+  getTaskProject(id:any){
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getTask}/project_id${id}`, { headers });
   }
 
   getTaskListOfActiveProject(project_id: any) {
@@ -333,6 +341,14 @@ export class ApiServiceService {
   cAGetAllCreativeAssets(id: any) {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.cAGetAllCreativeAssets}?project_id=${id}`, { headers });
+  }
+  assignCreativeAssetsToTeamMember(member:any,id:any) {
+    const data ={
+      assests_id:id,
+      members:member,
+    }
+    const headers = this.headerWithAuth;
+    return this.http.post(`${this.keys.assignCreativeAssetsToTeamMember}`,data, { headers });
   }
 
   getWorkStatusById(workStatus: any) {

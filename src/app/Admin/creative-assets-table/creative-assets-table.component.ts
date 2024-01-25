@@ -5,6 +5,7 @@ import { ActivatedRoute, Route } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MatSelectModule } from '@angular/material/select';
+import Swal from 'sweetalert2';
 
 
 interface TableData {
@@ -48,17 +49,38 @@ export class CreativeAssetsTableComponent {
       }
     )
 }
-
-assignTask(){
-  this.apiService.assignTask(this.id).subscribe(
-    (r:any)=> {
-      console.log('r-=-=->',r)
-this.getTeamMemberList = r.data.handel_by;
-console.warn(this.getTeamMemberList)
-    },
-    (e)=> {
-console.error('error =--=-=>',e)
-    }
-  )
+assignCreativeAssetsToTeamMember(member:any,id:any){
+    this.apiService.assignCreativeAssetsToTeamMember(member,id).subscribe(
+      (r: any) => {
+        console.log('done',r);
+        Swal.fire({
+          icon: 'success',
+          title: 'Assets Assigned!',
+          text: 'Creative assets have been successfully assigned to the team member.',
+        });
+      },
+      (e) => {
+        console.error('eerorr',e);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'There was an error assigning creative assets.',
+        });
+      }
+    )
 }
+
+assignTask() {
+  this.apiService.assignTask(this.id).subscribe(
+    (r: any) => {
+      console.log('r-=-=->', r);
+      this.getTeamMemberList = r.data.participants;
+      console.warn(this.getTeamMemberList);
+    },
+    (e) => {
+      console.error('error =--=-=>', e);
+    }
+  );
+}
+
 }

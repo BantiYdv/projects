@@ -362,6 +362,7 @@ getStars(starCount: number): boolean[] {
           timer: 3000,
         }).then((result) => {
           if (result) {
+            this.apiService.showPage('login')
             this.router.navigate(['/log-in']);
           }
         });

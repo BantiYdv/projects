@@ -78,8 +78,10 @@ export class ProjectComponent implements OnInit {
     project_resourses: File,
     handel_by:'',
     client_id:'',
-    desc:''
+    project_type:''
   };
+  
+  get_project_type:any;
   project_id: any;
   addParticipantData : any;
   getTeamMemberList: any;
@@ -110,7 +112,9 @@ export class ProjectComponent implements OnInit {
     const userId = localStorage.getItem('userId')
     this.getProject();
     this.get_client_id();
+    this.getProjectType();
     this.get_handel_by(userId);
+
     // this.getProjectById(userId);
 
   }
@@ -137,7 +141,7 @@ getFormattedValue(value: any): any {
     formData.append('short_name', this.projectSave.short_name);
     formData.append('client_id', this.projectSave.client_id);
     formData.append('handel_by', this.projectSave.handel_by);
-    formData.append('desc', this.projectSave.desc);
+    formData.append('project_type', this.projectSave.project_type);
     formData.append('project_resourses', this.projectSave.project_resourses);
     this.apiService.saveProject(formData).subscribe(
       (r: any) => {
@@ -193,6 +197,17 @@ getFormattedValue(value: any): any {
       (r:any) => {
         this.handel_By = r.data;
         console.log('handel_By',this.handel_By);
+      },
+      (e) => {
+        console.log(e.data.message);
+      }
+    )
+  }
+  getProjectType(){
+    this.apiService.getProjectType().subscribe(
+      (r:any) => {
+        this.get_project_type = r.data;
+        console.log('getProjectType',this.handel_By);
       },
       (e) => {
         console.log(e.data.message);
@@ -263,7 +278,7 @@ getFormattedValue(value: any): any {
     formData.append('deadline', this.projectUpdate.deadline);
     formData.append('client_id', this.projectUpdate.client_id);
     formData.append('handel_by', this.projectUpdate.handel_by);
-    formData.append('desc', this.projectUpdate.desc);
+    formData.append('project_type', this.projectUpdate.project_type);
     formData.append('project_resourses', this.projectUpdate.project_resourses);
     this.apiService.updateProjectById(formData).subscribe(
       (r: any) => {

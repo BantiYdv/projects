@@ -22,6 +22,7 @@ export class KeysServiceService {
   public updateProfile = `${this.mainUrl}/user/updateProfile`;//done
   public deleteUser = `${this.mainUrl}/user/deleteUser`;//done
 
+  public getProjectType = `${this.mainUrl}/project/getProjectType`;
   public getFinisedProjects = `${this.mainUrl}/project/getFinisedProjects`;
   public getActiveProjects = `${this.mainUrl}/project/getActiveProjects`;//done
   public saveProject = `${this.mainUrl}/project/saveProject`;//done
@@ -34,6 +35,10 @@ export class KeysServiceService {
   public updatedProjectStatus = `${this.mainUrl}/project/updateStatusOfProject`//done
   public addParticipant = `${this.mainUrl}/project/addParticipant `//done
 
+
+  
+//localhost:4005/client/getFileSharingForReview?project_id=659e5509f84ed35afef2413d
+public getFileSharingForReview = `${this.mainUrl}/client/getFileSharingForReview`;
 
   public getTaskListOfActiveProject = `${this.mainUrl}/task/getTaskListOfActiveProject`;
   public saveTask = `${this.mainUrl}/task/createTask`;//done
@@ -67,6 +72,8 @@ public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssets/getCreativeAs
 
 
   public cAGetAllCreativeAssets = `${this.mainUrl}/creativeAssests/getAllCreativeAssets`;
+  public assignCreativeAssetsToTeamMember = `${this.mainUrl}/creativeAssests/assignCreativeAssetsToTeamMember`;
+
   
  
   public project_secret_key = this.secretKeys.project_secret_key
