@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
 
@@ -27,7 +27,7 @@ interface Task {
   styleUrl: './view-task.component.css'
 })
 export class ViewTaskComponent {
- 
+ id:any;
   project: any ={};
   tasks: Task[] | any;
   selectedTaskDescription: string = '';
@@ -41,11 +41,14 @@ export class ViewTaskComponent {
   projectList: any = {};
   handel_By: any = {};
 
-  constructor(private apiService:ApiServiceService,private router: Router,) {}
+  constructor(private apiService:ApiServiceService,private router: Router,private route:ActivatedRoute) {}
   
   ngOnInit(): void {
+    this.route.queryParams.subscribe(r => {
+      this.id = r['id'];
+    })
     const userId = localStorage.getItem('userId');
-    this.getTask();
+    this.getTaskProject();
     this.assignedTo(userId);
   }
 
@@ -66,7 +69,7 @@ export class ViewTaskComponent {
           (r: any) => {
             // this.projectSave = r;
             Swal.fire('Updated!', r.data.message, 'success');
-            this.getTask();
+            this.getTaskProject();
           },
           (e) => {
             console.error(e);
@@ -77,11 +80,11 @@ export class ViewTaskComponent {
     });
   }
 
-  getTask() {
-    this.apiService.getTask().subscribe(
+  getTaskProject() {
+    this.apiService.getTaskProject(this.id).subscribe(
       (r: any) => {
         this.tasks = r.data;
-        console.log('tasks ==> ==> ',  this.tasks);
+        console.log('getTaskProject ==> ==> ',  this.tasks);
       },
       (e) => {
         console.error(e);
@@ -141,7 +144,7 @@ export class ViewTaskComponent {
               r.data.message,
               'success'
             );
-            this.getTask();
+            this.getTaskProject();
           },
           (e) => {
             console.error(e);

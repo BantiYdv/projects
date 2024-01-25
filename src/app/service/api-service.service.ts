@@ -206,7 +206,7 @@ export class ApiServiceService {
   }
   getTaskProject(id:any){
     const headers = this.headerWithAuth;
-    return this.http.get(`${this.keys.getTask}/project_id${id}`, { headers });
+    return this.http.get(`${this.keys.getTask}?project_id=${id}`, { headers });
   }
 
   getTaskListOfActiveProject(project_id: any) {
@@ -394,5 +394,20 @@ export class ApiServiceService {
     this.router.navigate(['/home']);
     localStorage.clear();
     window.location.reload();
+  }
+
+  saveFileSharing(project: any) {
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.saveFileSharing, project, { headers });
+  }
+  getFileSharing() {
+    const headers = this.headerWithAuth;
+    return this.http.get(this.keys.getFileSharing, { headers });
+  }
+  
+
+  addClient(userData: any) {
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.addClient, userData, { headers });
   }
 }

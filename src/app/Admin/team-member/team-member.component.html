@@ -1,22 +1,29 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
-            <div class="col-12 col-md-6 ">
-                <div class="header_css_added_project">
-                    Team Member
-                </div>
+<!-- <div class="container"> -->
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+        <div class="searchBar">
+            <div class="header_css_button_project">
+                <button data-bs-toggle="modal" data-bs-target="#addNewTeamMember"><i class="fa fa-plus"></i> Add
+                    New</button>
             </div>
-            <div class="col-12 col-md-6 ">
-                <div class="header_css_button_project">
-                    <button data-bs-toggle="modal" data-bs-target="#addNewTeamMember"><i class="fa fa-plus"></i> Add
-                        New</button>
-                </div>
+            <div class="creativeAssetSearch">
+                <input type="text" id="searchBar" placeholder="Search"> <img
+                    src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
             </div>
         </div>
+        
     </div>
-    <div class="row">
-        <div class="col-12 col-md-12 mt-3 overflow-auto">
-            <table class="table tAble_css">
+    
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+        <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
+            <div class="creativeAsset">
+                Team Member
+            </div>
+        </div>
+    
+    </div>
+    <div class="">
+        <div class="col-12 col-md-12 mt-3 px-5 overflow-auto">
+            <table class="table tAble_css table-striped">
                 <thead class="table-dark tHead_css">
                     <tr>
                         <th scope="col">S.No</th>
@@ -52,15 +59,15 @@
             </table>
         </div>
     </div>
-</div>
+<!-- </div> -->
 
 
 
 <!-- Modal addNewTeamMember -->
 <div class="modal fade" id="addNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
                         <div class="modal-title fs-5" id="exampleModalLabel">Add Team Member</div>
@@ -121,9 +128,9 @@
 
 <!-- Modal updateNewTeamMember -->
 <div class="modal fade" id="updateNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
                         <div class="modal-title fs-5" id="exampleModalLabel">Update Team Member</div>

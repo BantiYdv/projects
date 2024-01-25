@@ -29,14 +29,17 @@ interface Project {
 }
 
 
-// interface Task {
-//   name: string;
-//   startDate: Date;
-//   deadlineDate: Date;
-//   created: Date;
-//   start: Date;
-//   completed: Date;
-// }
+  interface Task {
+    _id: any;
+    name: string;
+    is_enabled: boolean;
+    client_id: string;
+    start_date: Date;
+    deadline: Date;
+    handel_by: { name: string };
+    current_status: string;
+    project_resourses: any[];
+  }
 
 @Component({
   selector: 'app-project',
@@ -47,6 +50,20 @@ interface Project {
   styleUrl: './project.component.css',
 })
 export class ProjectComponent implements OnInit {
+
+  currentDate: string = new Date().toISOString().split('T')[0]; 
+  taskSave: any = {
+    project_id: '',
+    assgined_to: '',
+    start_date: this.currentDate,
+  };
+  taskUpdate: any = {
+    start_date: this.currentDate,
+  };
+  userData: any = {};
+  projectList: any = {};
+  // handel_By: any = {};
+  tasks: Task[] | any;
   
   // tasks: Task[] = [
   //   { name: 'Task 1', startDate: new Date('2024-01-01'), deadlineDate:new Date('2024-01-30'), created: new Date('2024-01-05'), start: new Date('2024-01-11'), completed: new Date('2024-01-31'), },
@@ -69,7 +86,7 @@ export class ProjectComponent implements OnInit {
   // toggleState(value:boolean) {
   //   this.isOn = value;
   // }
-  currentDate: string = new Date().toISOString().split('T')[0]; 
+ 
   projectSave: any = {
     start_date: this.currentDate,
     name: '',
@@ -111,6 +128,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     const userId = localStorage.getItem('userId')
     this.getProject();
+    this.getTask();
     this.get_client_id();
     this.getProjectType();
     this.get_handel_by(userId);
@@ -126,6 +144,151 @@ onChangeProjectSave(event:any){
 onChangeProjectUpdate(event:any){
   this.projectUpdate.project_resourses = event.target.files[0];
   console.log(this.projectUpdate.project_resourses)
+}
+
+onChangeTaskSave(event: any) {
+  this.taskSave.task_attachement = event.target.files[0];
+  console.log(this.taskSave.task_attachement);
+}
+onChangeTaskUpdate(event: any) {
+  this.taskUpdate.task_attachement = event.target.files[0];
+  console.log(this.taskUpdate.task_attachement);
+}
+
+saveTask(task: any) {
+  console.log('====>>>>>>', task);
+
+  this.taskSave.user_id = localStorage.getItem('userId');
+  const formData = new FormData();
+
+  formData.append('name', this.taskSave.name);
+  formData.append('user_id', this.taskSave.user_id);
+  formData.append('project_id', this.taskSave.project_id);
+  formData.append('assgined_to', this.taskSave.assgined_to);
+  formData.append('start_date', this.taskSave.start_date);
+  formData.append('deadline', this.taskSave.deadline);
+  formData.append('desc', this.taskSave.desc);
+  formData.append('task_attachement', this.taskSave.task_attachement);
+
+  this.apiService.saveTask(formData).subscribe(
+    (r: any) => {
+      console.log(r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Successful',
+        text: r.data.message,
+        showConfirmButton: false,
+        timer: 3000,
+      }).then((result) => {
+        if (result) {
+        }
+      });
+      // this.getTask();
+      this.taskSave = {};
+    },
+    (e: any) => {
+      console.error('Error => ', e);
+      Swal.fire('Error', e.error.message, 'error');
+      // this.taskSave = {};
+    }
+  );
+}
+
+getTask() {
+  this.apiService.getTask().subscribe(
+    (r: any) => {
+      this.tasks = r.data;
+      console.log('tasks ==> ==> ', r);
+    },
+    (e) => {
+      console.error(e);
+    }
+  );
+}
+
+getTaskById(id: any) {
+  this.apiService.getTaskById(id).subscribe(
+    (r: any) => {
+      console.log(r.data);
+      this.taskUpdate = r.data;
+    },
+    (e) => {
+      console.error(e);
+    }
+  );
+}
+
+
+updateTask(task: any) {
+  // this.taskUpdate = {};
+  console.log('task', this.taskUpdate)
+  this.taskUpdate.user_id = localStorage.getItem('userId');
+  const formData = new FormData();
+
+  formData.append('task_id', this.taskUpdate._id);
+  formData.append('name', this.taskUpdate.name);
+  formData.append('user_id', this.taskUpdate.user_id);
+  formData.append('assgined_to', this.taskUpdate.assgined_to);
+  formData.append('start_date', this.taskUpdate.start_date);
+  formData.append('deadline', this.taskUpdate.deadline);
+  formData.append('desc', this.taskUpdate.desc);
+  formData.append('task_attachement', this.taskUpdate.task_attachement);
+
+  this.apiService.updateTaskById(formData).subscribe(
+    (r: any) => {
+      console.log(r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Successful',
+        text: r.data.message,
+        showConfirmButton: false,
+        timer: 3000,
+      }).then((result) => {
+        if (result) {
+        }
+      });
+      this.getTask();
+      this.taskUpdate = {};
+    },
+    (e: any) => {
+      console.log('Error => ', e);
+      Swal.fire('Error', e.error.message, 'error');
+      // this.task = {};
+    }
+  );
+}
+
+deleteTask(id: any,is_enabled:any) {
+  // Show confirmation dialog
+  console.log('==> data',id ,is_enabled)
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // If confirmed, proceed with the deletion
+      this.apiService.deleteTaskById(id,is_enabled).subscribe(
+        (r:any) => {
+          // this.task = r;
+          Swal.fire(
+            'Deleted!',
+            r.data.message,
+            'success'
+          );
+          this.getTask();
+        },
+        (e) => {
+          console.log(e.error.message);
+          Swal.fire('Error!', e.error.message, 'error');
+        }
+      );
+    }
+  });
 }
 getFormattedValue(value: any): any {
   return value !== null && value !== '' ? value : "-";
@@ -173,6 +336,7 @@ getFormattedValue(value: any): any {
     this.apiService.getProject().subscribe(
       (r:any) => {
         this.projects = r.data;
+        this.projectList = r.data;
         console.log('==> ==>',r.data)
         console.log('projects',this.projects)
       },
@@ -370,6 +534,33 @@ getFormattedValue(value: any): any {
               e.error.message,
               'error'
             );
+          }
+        );
+      }
+    });
+  }
+  onChangeStatusTask(id: any, status: any) {
+    console.log('status ==> ', status);
+    console.log('id = = >', id);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be change the status!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, change it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiService.updateTaskStatus(id, status).subscribe(
+          (r: any) => {
+            // this.projectSave = r;
+            Swal.fire('Updated!', r.data.message, 'success');
+            this.getProject();
+          },
+          (e) => {
+            console.error(e);
+            Swal.fire('Error!', e.error.message, 'error');
           }
         );
       }

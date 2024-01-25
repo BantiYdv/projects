@@ -74,7 +74,9 @@ public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssets/getCreativeAs
   public cAGetAllCreativeAssets = `${this.mainUrl}/creativeAssests/getAllCreativeAssets`;
   public assignCreativeAssetsToTeamMember = `${this.mainUrl}/creativeAssests/assignCreativeAssetsToTeamMember`;
 
-  
+  public addClient = `${this.mainUrl}/client/addClient`;//done
+  public saveFileSharing = `${this.mainUrl}/file/fileSharingByAdmin`;//done
+  public getFileSharing = `${this.mainUrl}/file/getFileSharingListUploadedByAdmin`;//done
  
   public project_secret_key = this.secretKeys.project_secret_key
 
