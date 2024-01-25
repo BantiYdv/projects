@@ -13,11 +13,14 @@
   src: url("./assets/font/michroma/Michroma.woff2") format("woff2"),
     url("./assets/font/michroma/Michroma.woff") format("woff");
 }
+
 /* @import '~swiper/swiper-bundle.min.css'; */
 body {
     overflow-x: hidden;
   }
   
+
+
   
   /* Add this if you also want to hide the horizontal scrollbar */
   body::-webkit-scrollbar {

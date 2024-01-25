@@ -25,9 +25,10 @@
             <thead class="table-dark tHead_css">
                 <tr>
                     <th scope="col">S.No</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Document</th>
+                    <th scope="col">File Name</th>
+                    <th scope="col">File No.</th>
+                    <th scope="col">Download</th>
+                    <th scope="col">Add Review</th>
                 </tr>
             </thead>
             <tbody class="tBody_css">
@@ -35,11 +36,15 @@
                     <td >{{ i + 1 }}</td>
                     <td>{{ item.name ||
                         "-"}}</td>
-                    <td><i class="far fa-calendar"></i> {{ item.date | date:
-                        'dd/MM/yyyy' || "-" }}</td>
+                    <td> {{ item.fileNo|| "-" }}</td>
                         <td>
                             <div class="img_dwonLoad_1" >
                                 <img src="../../../assets/images/dwonLoad_1.svg" style="width: 40px; height: 40px;" alt="">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="img_dwonLoad_1" >
+                                <img src="../../../assets/images/plus_add_img.svg" style="width: 40px; height: 40px;" alt="">
                             </div>
                         </td>
 

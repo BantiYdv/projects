@@ -28,7 +28,7 @@ interface Project {
   templateUrl: './file-sharing.component.html',
   styleUrl: './file-sharing.component.css'
 })
-export class FileSharingComponent {
+export class FileSharingAdminComponent {
   projects: Project[] | any;
 
   constructor(private apiService:ApiServiceService,private router: Router, public route: ActivatedRoute) {}

@@ -14,6 +14,7 @@ export class HistoryComponent {
 
 
   isOn: boolean = true;
+projects: any;
 
   toggleState(value:boolean) {
     this.isOn = value;

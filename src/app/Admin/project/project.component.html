@@ -1,561 +1,570 @@
-<!-- <div>
-    <div class="row">
+
+<div>
+
+
+    <!-- <div class="container"> -->
+        <!-- <div class="row"> -->
+            <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+                <div class="searchBar">
+                    <div class="header_css_button_project" *ngIf="isOn">
+                        <button data-bs-toggle="modal" data-bs-target="#addNewProject"><i class="fa fa-plus"></i> Add
+                            New</button>
+                    </div>
+                    <div class="header_css_button_project" *ngIf="!isOn">
+                        <button data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa fa-plus"></i> Add
+                            Task</button>
+                    </div>
+               <div class="creativeAssetSearch">
+                <input type="text" id="searchBar" placeholder="Search" > <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+               </div>
+              </div>
+              </div>
+            
+        <!-- </div> -->
         <div class=" d-flex justify-content-center align-items-center">
             <div class="toggle_css">
                 <button class="button_css" [ngClass]="{'button_light': !isOn, 'button_success': isOn}"
                     (click)="toggleState(true)">
-                    Active
-                </button>
-                <button class="button_css" [ngClass]="{'button_light': isOn, 'button_danger': !isOn}"
-                    (click)="toggleState(false)">
-                    Closed
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div *ngIf="isOn">
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="show_month">January</div>
-        <div class="menu_css_head">
-            <div class="menu_project_css">Projects</div>
-            <div class="weeks_css">1st Week</div>
-            <div class="weeks_css">2nd Week</div>
-            <div class="weeks_css">3rd Week</div>
-            <div class="weeks_css">4th Week</div>
-            <div class="weeks_css">5th Week</div>
-        </div>
-        <div class="sub_menu_head_css">
-            <div class="sub_css_text">Projects</div>
-            <div class="sub_css_text">Tasks</div>
-
-            <div class="sub_days_css_1">
-                <div class="days_css">1</div>
-                <div class="days_css">2</div>
-                <div class="days_css">3</div>
-                <div class="days_css">4</div>
-                <div class="days_css">5</div>
-                <div class="days_css">6</div>
-                <div class="days_css">7</div>
-            </div>
-
-            <div class="sub_days_css_1">
-                <div class="days_css">8</div>
-                <div class="days_css">9</div>
-                <div class="days_css">10</div>
-                <div class="days_css">11</div>
-                <div class="days_css">12</div>
-                <div class="days_css">13</div>
-                <div class="days_css">14</div>
-            </div>
-
-            <div class="sub_days_css_1">
-                <div class="days_css">15</div>
-                <div class="days_css">16</div>
-                <div class="days_css">17</div>
-                <div class="days_css">18</div>
-                <div class="days_css">19</div>
-                <div class="days_css">20</div>
-                <div class="days_css">21</div>
-            </div>
-
-            <div class="sub_days_css_1">
-                <div class="days_css">22</div>
-                <div class="days_css">23</div>
-                <div class="days_css">24</div>
-                <div class="days_css">25</div>
-                <div class="days_css">26</div>
-                <div class="days_css">27</div>
-                <div class="days_css">28</div>
-            </div>
-
-            <div class="sub_days_css_1">
-                <div class="days_css">29</div>
-                <div class="days_css">30</div>
-                <div class="days_css">31</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="pro_tasks">
-        <div class="projects_data_css">
-            <div>AVX Media 1</div>
-            <div>AVX Media 2</div>
-            <div>AVX Media 3</div>
-        </div>
-        <div class="tasks_data_css">
-            <div>Task 1</div>
-            <div>Task 2</div>
-            <div>Task 3</div>
-        </div>
-        <div class="chart_css">
-            <div *ngFor="let task of tasks" class="bar">
-                <div class="progress bg_completed" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.px]="calculateMarginLeft(task.startDate)" [style.width.px]="calculateWidth(task.completed, task.startDate)"></div>
-                <div class="progress bg_start" [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')" [style.margin-left.px]="calculateMarginLeft(task.startDate)" [style.width.px]="calculateWidth(task.start, task.startDate)"></div>
-                <div class="progress bg_created" [title]="task.startDate | date: 'dd-MM-yyyy' + ' to ' + (task.created | date: 'dd-MM-yyyy')" [style.margin-left.px]="calculateMarginLeft(task.startDate)" [style.width.px]="calculateWidth(task.created, task.startDate)"></div>
-                <div class="progress bg_deadline" [title]="task.deadlineDate | date: 'dd-MM-yyyy'" [style.margin-left.px]="calculateMarginLeft(task.deadlineDate)"></div>
-              </div>
-              
-        </div>
-        </div>
-    </div>
-
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="color_show_date">
-            <div class="d-flex flex-nowrap">
-                <div class="color_css bg_created"></div>
-                <div class="color_name">Created</div>
-            </div>
-            <div class="d-flex flex-nowrap">
-                <div class="color_css bg_start"></div>
-                <div class="color_name">Start</div>
-            </div>
-            <div class="d-flex flex-nowrap">
-                <div class="color_css bg_completed"></div>
-                <div class="color_name">Completed</div>
-            </div>
-            <div class="d-flex flex-nowrap">
-                <div class="color_css bg_deadline"></div>
-                <div class="color_name">Deadline</div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div *ngIf="!isOn">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="project_date_css_2">
-                <div>Projects Name</div>
-                <div>Producer Name</div>
-                <div>Handled By</div>
-                <div>Deadline Date</div>
-                <div>Completed On</div>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="project_body_css_2">
-                <div class="bg_bg_color"><span>AVX</span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
-            </div>
-            <div class="project_body_css_2">
-                <div class="bg_bg_color"><span>AVX</span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
-            </div>
-            <div class="project_body_css_2">
-                <div class="bg_bg_color"><span>AVX</span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">john amehnas</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
-                <div class="box_css_bg_border"><span class="sub_box_css_bg_border"><span class="sub_sub_box_css_bg_border">12/02/2024</span></span></div>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="view_all_button">View All&nbsp;<i class="fa fa-angle-down"></i></div>
-        </div>
-    </div>
-
-</div> -->
-<div>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
-            <div class="col-12 col-md-6 ">
-                <div class="header_css_added_project">
                     Project
-                </div>
+                </button>
+                <button class="button_css" [ngClass]="{'button_light': isOn, 'button_success': !isOn}"
+                    (click)="toggleState(false)">
+                    Task
+                </button>
             </div>
-            <div class="col-12 col-md-6 ">
-                <div class="header_css_button_project mt-3">
-                    <button data-bs-toggle="modal" data-bs-target="#addNewProject"><i class="fa fa-plus"></i> Add
-                        Project</button>
+        </div>
+        <div class="" *ngIf="isOn">
+            <div class="col-12 col-md-12 px-5 mt-5 overflow-auto ">
+                <table class="table tAble_css table-striped">
+                    <thead class="table-dark tHead_css">
+                        <tr>
+                            <th scope="col">Sr No</th>
+                            <th scope="col">Project Name</th>
+                            <th scope="col">Client Name</th>
+                            <th scope="col">Starting Date</th>
+                            <th scope="col">Deadline Date</th>
+                            <th scope="col">Handel By</th>
+                            <th scope="col">Download</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tBody_css">
+                        <tr *ngFor="let projectData of projects;let i = index;">
+                            <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{i+1}}</td>
+                            <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name ||
+                                "-"}}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
+                                }}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar"></i> {{ projectData.start_date | date:
+                                'dd/MM/yyyy' || "-" }}</td>
+                            <td style="color: #FF5B5B;" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar" style="color: #FF5B5B;"></i> {{ projectData.deadline | date:
+                                'dd/MM/yyyy' || "-" }}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name || "-"
+                                }}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                                <div data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
+                                    data-bs-target="#downloadProject">
+                                    <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                                </div>
+                            </td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                                <select class="select_css_code" [(ngModel)]="projectData.current_status"
+                                    name="current_status"
+                                    (change)="onChangeStatus(projectData._id,projectData.current_status)">
+                                    <option value="Created">Created</option>
+                                    <option value="Start">Start</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Finished">Finished</option>
+                                </select>
+                            </td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                                <div class="icon_t_e_e">
+                                    <i class="fa fa-trash"
+                                        (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
+                                        *ngIf="projectData.is_enabled"></i>
+                                    <i class="fas fa-trash-restore-alt"
+                                        (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
+                                        *ngIf="!projectData.is_enabled"></i>
+                                    <i *ngIf="projectData.is_enabled" class="fa fa-edit"
+                                        (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                        data-bs-target="#updateNewProject"></i>
+                                    <i class="fa fa-eye" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                        data-bs-target="#viewNewProject"></i>
+                                    <i *ngIf="projectData.is_enabled" class="fa fa-users"
+                                        (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                        data-bs-target="#viewProjectOpp"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="" *ngIf="!isOn">
+            <div class="col-12 col-md-12 px-5 mt-5 overflow-auto ">
+                <table class="table tAble_css table-striped">
+                    <thead class="table-dark tHead_css">
+                        <tr>
+                            <th scope="col">S No</th>
+                            <th scope="col">Project Name</th>
+                            <th scope="col">Task Title</th>
+                            <th scope="col">Starting Date</th>
+                            <th scope="col">Deadline Date</th>
+                            <th scope="col">Assign To</th>
+                            <th scope="col">Download</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tBody_css">
+                        <tr *ngFor="let projectData of projects; let i = index">
+                            <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{i+1}}</td>
+                            <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name ||
+                                "-"}}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
+                                }}</td>
+                            <td  [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar"></i> {{ projectData.start_date | date:
+                                'dd/MM/yyyy' || "-" }}</td>
+                            <td style="color: #FF5B5B;" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar" style="color: #FF5B5B;"></i> {{ projectData.deadline | date:
+                                'dd/MM/yyyy' || "-" }}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name || "-"
+                                }}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                                <div data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
+                                    data-bs-target="#downloadProject">
+                                    <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                                </div>
+                            </td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                                <select class="select_css_code" [(ngModel)]="projectData.current_status"
+                                    name="current_status"
+                                    (change)="onChangeStatus(projectData._id,projectData.current_status)">
+                                    <option value="Created">Created</option>
+                                    <option value="Start">Start</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Finished">Finished</option>
+                                </select>
+                            </td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                                <div class="icon_t_e_e">
+                                    <i class="fa fa-trash"
+                                        (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
+                                        *ngIf="projectData.is_enabled"></i>
+                                    <i class="fas fa-trash-restore-alt"
+                                        (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
+                                        *ngIf="!projectData.is_enabled"></i>
+                                    <i *ngIf="projectData.is_enabled" class="fa fa-edit"
+                                        (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                        data-bs-target="#updateNewProject"></i>
+                                    <i class="fa fa-eye" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                        data-bs-target="#viewNewProject"></i>
+                                    <i *ngIf="projectData.is_enabled" class="fa fa-users"
+                                        (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
+                                        data-bs-target="#viewProjectOpp"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow;">
+                    <div class="col-12 col-md-12 d-flex flex-nowrap">
+                        <div class="col-11 col-md-11 text_add_p_css">
+                            <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
+                        </div>
+                        <div class="col-1 col-md-1 text-end text-white">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body m-4">
+                    <form #saveProjectForm="ngForm" (ngSubmit)="saveProject(projectSave)">
+                        <div class="col-12 col-md-12 d-flex flex-wrap">
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Project Name</label>
+                                    <input type="text" placeholder="Project Name" [(ngModel)]="projectSave.name" name="name"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex flex-wrap">
+                                <div class="col-12 col-md-6">
+                                    <div class="add_css_pro_code">
+                                        <label>Starting Date</label>
+                                        <input type="date" [(ngModel)]="projectSave.start_date" [min]="currentDate"
+                                            name="start_date" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="add_css_pro_code">
+                                        <label>Deadline Date</label>
+                                        <input type="date" [(ngModel)]="projectSave.deadline" [min]="projectSave.start_date"
+                                            name="deadline" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Short Name</label>
+                                    <input type="text" placeholder="Short Name" [(ngModel)]="projectSave.short_name"
+                                        name="short_name" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Client Name</label>
+                                    <select [(ngModel)]="projectSave.client_id" name="client_id" required>
+                                        <option value="" disabled selected>Select Client</option>
+                                        <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Upload Doc.</label>
+                                    <input type="file" (change)="onChangeProjectSave($event)"
+                                        [(ngModel)]="projectSave.project_resourses" name="project_resourses">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Handled By</label>
+                                    <select [(ngModel)]="projectSave.handel_by" name="handel_by" required>
+                                        <option value="" disabled selected>Select Handled By</option>
+                                        <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
+                                            {{handel_by.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12">
+                                <div class="add_css_pro_code">
+                                    <label>Other Information</label>
+                                    <input type="text" placeholder="Other Information" [(ngModel)]="projectSave.desc"
+                                        name="desc">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="save_css_button_code">
+                                <button [disabled]="saveProjectForm.invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+    
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-md-12 mt-3 overflow-auto">
-            <table class="table tAble_css">
-                <thead class="table-dark tHead_css">
-                    <tr>
-                        <th scope="col">Project Name</th>
-                        <th scope="col">Client Name</th>
-                        <th scope="col">Starting Date</th>
-                        <th scope="col">Deadline Date</th>
-                        <th scope="col">Handel By</th>
-                        <th scope="col">Download</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Edit</th>
-                    </tr>
-                </thead>
-                <tbody class="tBody_css">
-                    <tr *ngFor="let projectData of projects;">
-                        <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name ||
-                            "-"}}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
-                            }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.start_date | date:
-                            'dd/MM/yyyy' || "-" }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.deadline | date:
-                            'dd/MM/yyyy' || "-" }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.handel_by.name || "-"
-                            }}</td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
-                            <div data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
-                                data-bs-target="#downloadProject">
+    <div class="modal fade" id="addNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow;">
+                    <div class="col-12 col-md-12 d-flex flex-nowrap">
+                        <div class="col-11 col-md-11 text_add_p_css">
+                            <div class="modal-title fs-5" id="exampleModalLabel">Add Task</div>
+                        </div>
+                        <div class="col-1 col-md-1 text-end text-white">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body m-4">
+                    <form #saveProjectForm="ngForm" (ngSubmit)="saveProject(projectSave)">
+                        <div class="col-12 col-md-12 d-flex flex-wrap">
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Project Name</label>
+                                    <input type="text" placeholder="Project Name" [(ngModel)]="projectSave.name" name="name"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex flex-wrap">
+                                <div class="col-12 col-md-6">
+                                    <div class="add_css_pro_code">
+                                        <label>Starting Date</label>
+                                        <input type="date" [(ngModel)]="projectSave.start_date" [min]="currentDate"
+                                            name="start_date" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="add_css_pro_code">
+                                        <label>Deadline Date</label>
+                                        <input type="date" [(ngModel)]="projectSave.deadline" [min]="projectSave.start_date"
+                                            name="deadline" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Short Name</label>
+                                    <input type="text" placeholder="Short Name" [(ngModel)]="projectSave.short_name"
+                                        name="short_name" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Client Name</label>
+                                    <select [(ngModel)]="projectSave.client_id" name="client_id" required>
+                                        <option value="" disabled selected>Select Client</option>
+                                        <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Upload Doc.</label>
+                                    <input type="file" (change)="onChangeProjectSave($event)"
+                                        [(ngModel)]="projectSave.project_resourses" name="project_resourses">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Handled By</label>
+                                    <select [(ngModel)]="projectSave.handel_by" name="handel_by" required>
+                                        <option value="" disabled selected>Select Handled By</option>
+                                        <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
+                                            {{handel_by.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12">
+                                <div class="add_css_pro_code">
+                                    <label>Other Information</label>
+                                    <input type="text" placeholder="Other Information" [(ngModel)]="projectSave.desc"
+                                        name="desc">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="save_css_button_code">
+                                <button [disabled]="saveProjectForm.invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="updateNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow;">
+                    <div class="col-12 col-md-12 d-flex flex-nowrap">
+                        <div class="col-11 col-md-11 text_add_p_css">
+                            <div class="modal-title fs-5" id="exampleModalLabel">Update {{projectUpdate.short_name}} Project
+                            </div>
+                        </div>
+                        <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                                data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    </div>
+                </div>
+                <div class="modal-body m-4">
+                    <form #updateProjectForm="ngForm" (ngSubmit)="updateProjectById(projectUpdate)">
+                        <div class="col-12 col-md-12 d-flex flex-wrap">
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Project Name</label>
+                                    <input type="text" placeholder="Project Name" [(ngModel)]="projectUpdate.name"
+                                        name="name" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex flex-wrap">
+                                <div class="col-12 col-md-6">
+                                    <div class="add_css_pro_code">
+                                        <label>Starting Date</label>
+                                        <input type="date" [(ngModel)]="projectUpdate.start_date" [min]="currentDate"
+                                            name="start_date" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="add_css_pro_code">
+                                        <label>Deadline Date</label>
+                                        <input type="date" [(ngModel)]="projectUpdate.deadline"
+                                            [min]="projectUpdate.start_date  || currentDate" name="deadline" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Short Name</label>
+                                    <input readonly type="text" placeholder="Short Name"
+                                        [(ngModel)]="projectUpdate.short_name" name="short_name" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Client Name</label>
+                                    <select [(ngModel)]="projectUpdate.client_id._id" name="client_id" required>
+                                        <option value="" disabled selected>Select Client</option>
+                                        <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Upload Doc.</label>
+                                    <input type="file" (change)="onChangeProjectUpdate($event)"
+                                        [(ngModel)]="projectUpdate.project_resourses" name="project_resourses">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Handled By</label>
+                                    <select [(ngModel)]="projectUpdate.handel_by._id" name="handel_by" required>
+                                        <option value="" disabled selected>Select Handled By</option>
+                                        <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
+                                            {{handel_by.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12">
+                                <div class="add_css_pro_code">
+                                    <label>Other Information</label>
+                                    <input type="text" placeholder="other information" [(ngModel)]="projectUpdate.desc"
+                                        name="desc">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-12 col-md-12">
+                            <div class="save_css_button_code">
+                                <button [disabled]="updateProjectForm.invalid">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="viewNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow;">
+                    <div class="col-12 col-md-12 d-flex flex-nowrap">
+                        <div class="col-11 col-md-11 text_add_p_css">
+                            <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.short_name}} Details</div>
+                        </div>
+                        <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                                data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    </div>
+                </div>
+                <div class="modal-body m-4">
+                    <div class="col-12 col-md-12 d-flex flex-wrap">
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Project Name</label>
+                                <span>{{projectUpdate.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex flex-wrap">
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Starting Date</label>
+                                    <span>{{projectUpdate.start_date | date:'dd/MM/yyyy'}}</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Deadline Date</label>
+                                    <span>{{projectUpdate.deadline | date:'dd/MM/yyyy'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Handled By</label>
+                                <span>{{projectUpdate.handel_by.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Client Name</label>
+                                <span>{{projectUpdate.client_id.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Upload Doc.</label>
+                                <span *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index">
+                                    {{project_resourses.name|| 'Document'}}</span>
+                                <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex">
+                                    No Document
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Short Name</label>
+                                <span>{{projectUpdate.short_name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="add_css_pro_code">
+                                <label>Other Information</label>
+                                <span>{{projectUpdate.desc}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="modal fade" id="downloadProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow;">
+                    <div class="col-12 col-md-12 d-flex flex-nowrap">
+                        <div class="col-11 col-md-11 text_add_p_css">
+                            <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.short_name}} Details</div>
+                        </div>
+                        <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                                data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    </div>
+                </div>
+                <div class="modal-body m-4">
+                    <div class="col-12 col-md-12">
+                        <div *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index"
+                            class="d-flex justify-content-between align-items-center">
+                            <h2>{{project_resourses.name || 'Document'}}</h2>
+                            <a [href]="'http://101.53.145.234:4005/' + projectUpdate.project_resourses.url" download>
                                 <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                            </div>
-                        </td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
-                            <select class="select_css_code" [(ngModel)]="projectData.current_status"
-                                name="current_status"
-                                (change)="onChangeStatus(projectData._id,projectData.current_status)">
-                                <option value="Created">Created</option>
-                                <option value="Start">Start</option>
-                                <option value="Ongoing">Ongoing</option>
-                                <option value="Finished">Finished</option>
-                            </select>
-                        </td>
-                        <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
-                            <div class="icon_t_e_e">
-                                <i class="fa fa-trash"
-                                    (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
-                                    *ngIf="projectData.is_enabled"></i>
-                                <i class="fas fa-trash-restore-alt"
-                                    (click)="deleteProjectById(projectData._id,projectData.is_enabled)"
-                                    *ngIf="!projectData.is_enabled"></i>
-                                <i *ngIf="projectData.is_enabled" class="fa fa-edit"
-                                    (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
-                                    data-bs-target="#updateNewProject"></i>
-                                <i class="fa fa-eye" (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
-                                    data-bs-target="#viewNewProject"></i>
-                                <i *ngIf="projectData.is_enabled" class="fa fa-users"
-                                    (click)="getProjectById(projectData._id)" data-bs-toggle="modal"
-                                    data-bs-target="#viewProjectOpp"></i>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
-                <div class="col-12 col-md-12 d-flex flex-nowrap">
-                    <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
-                    </div>
-                    <div class="col-1 col-md-1 text-end text-white">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body m-4">
-                <form #saveProjectForm="ngForm" (ngSubmit)="saveProject(projectSave)">
-                    <div class="col-12 col-md-12 d-flex flex-wrap">
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Project Name</label>
-                                <input type="text" placeholder="Project Name" [(ngModel)]="projectSave.name" name="name"
-                                    required>
+                            </a>
+                        </div>
+                        <div *ngIf="projectUpdate.project_resourses == 0"
+                            class="d-flex justify-content-center align-items-center">
+                            No Document
+                        </div>
+                        <div *ngIf="!projectUpdate.project_resourses"
+                            class="d-flex justify-content-center align-items-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 d-flex flex-wrap">
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Starting Date</label>
-                                    <input type="date" [(ngModel)]="projectSave.start_date" [min]="currentDate"
-                                        name="start_date" required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Deadline Date</label>
-                                    <input type="date" [(ngModel)]="projectSave.deadline" [min]="projectSave.start_date"
-                                        name="deadline" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Short Name</label>
-                                <input type="text" placeholder="Short Name" [(ngModel)]="projectSave.short_name"
-                                    name="short_name" required>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Client Name</label>
-                                <select [(ngModel)]="projectSave.client_id" name="client_id" required>
-                                    <option value="" disabled selected>Select Client</option>
-                                    <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Upload Doc.</label>
-                                <input type="file" (change)="onChangeProjectSave($event)"
-                                    [(ngModel)]="projectSave.project_resourses" name="project_resourses">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Handled By</label>
-                                <select [(ngModel)]="projectSave.handel_by" name="handel_by" required>
-                                    <option value="" disabled selected>Select Handled By</option>
-                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
-                                        {{handel_by.name}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12">
-                            <div class="add_css_pro_code">
-                                <label>Other Information</label>
-                                <input type="text" placeholder="Other Information" [(ngModel)]="projectSave.desc"
-                                    name="desc">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-12">
-                        <div class="save_css_button_code">
-                            <button [disabled]="saveProjectForm.invalid">Save</button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="modal fade" id="updateNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
-                <div class="col-12 col-md-12 d-flex flex-nowrap">
-                    <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Update {{projectUpdate.short_name}} Project
-                        </div>
-                    </div>
-                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button></div>
-                </div>
-            </div>
-            <div class="modal-body m-4">
-                <form #updateProjectForm="ngForm" (ngSubmit)="updateProjectById(projectUpdate)">
-                    <div class="col-12 col-md-12 d-flex flex-wrap">
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Project Name</label>
-                                <input type="text" placeholder="Project Name" [(ngModel)]="projectUpdate.name"
-                                    name="name" required>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 d-flex flex-wrap">
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Starting Date</label>
-                                    <input type="date" [(ngModel)]="projectUpdate.start_date" [min]="currentDate"
-                                        name="start_date" required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Deadline Date</label>
-                                    <input type="date" [(ngModel)]="projectUpdate.deadline"
-                                        [min]="projectUpdate.start_date  || currentDate" name="deadline" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Short Name</label>
-                                <input readonly type="text" placeholder="Short Name"
-                                    [(ngModel)]="projectUpdate.short_name" name="short_name" required>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Client Name</label>
-                                <select [(ngModel)]="projectUpdate.client_id._id" name="client_id" required>
-                                    <option value="" disabled selected>Select Client</option>
-                                    <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Upload Doc.</label>
-                                <input type="file" (change)="onChangeProjectUpdate($event)"
-                                    [(ngModel)]="projectUpdate.project_resourses" name="project_resourses">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Handled By</label>
-                                <select [(ngModel)]="projectUpdate.handel_by._id" name="handel_by" required>
-                                    <option value="" disabled selected>Select Handled By</option>
-                                    <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
-                                        {{handel_by.name}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12">
-                            <div class="add_css_pro_code">
-                                <label>Other Information</label>
-                                <input type="text" placeholder="other information" [(ngModel)]="projectUpdate.desc"
-                                    name="desc">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-12">
-                        <div class="save_css_button_code">
-                            <button [disabled]="updateProjectForm.invalid">Update</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="viewNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
-                <div class="col-12 col-md-12 d-flex flex-nowrap">
-                    <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.short_name}} Details</div>
-                    </div>
-                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button></div>
-                </div>
-            </div>
-            <div class="modal-body m-4">
-                <div class="col-12 col-md-12 d-flex flex-wrap">
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Project Name</label>
-                            <span>{{projectUpdate.name}}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 d-flex flex-wrap">
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Starting Date</label>
-                                <span>{{projectUpdate.start_date | date:'dd/MM/yyyy'}}</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Deadline Date</label>
-                                <span>{{projectUpdate.deadline | date:'dd/MM/yyyy'}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Handled By</label>
-                            <span>{{projectUpdate.handel_by.name}}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Client Name</label>
-                            <span>{{projectUpdate.client_id.name}}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Upload Doc.</label>
-                            <span *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index">
-                                {{project_resourses.name|| 'Document'}}</span>
-                            <div *ngIf="projectUpdate.project_resourses == 0" class="d-flex">
-                                No Document
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="add_css_pro_code">
-                            <label>Short Name</label>
-                            <span>{{projectUpdate.short_name}}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-12">
-                        <div class="add_css_pro_code">
-                            <label>Other Information</label>
-                            <span>{{projectUpdate.desc}}</span>
-                        </div>
+    
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-<div class="modal fade" id="downloadProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
-                <div class="col-12 col-md-12 d-flex flex-nowrap">
-                    <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.short_name}} Details</div>
-                    </div>
-                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button></div>
-                </div>
-            </div>
-            <div class="modal-body m-4">
-                <div class="col-12 col-md-12">
-                    <div *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index"
-                        class="d-flex justify-content-between align-items-center">
-                        <h2>{{project_resourses.name || 'Document'}}</h2>
-                        <a [href]="'http://101.53.145.234:4005/' + projectUpdate.project_resourses.url" download>
-                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                        </a>
-                    </div>
-                    <div *ngIf="projectUpdate.project_resourses == 0"
-                        class="d-flex justify-content-center align-items-center">
-                        No Document
-                    </div>
-                    <div *ngIf="!projectUpdate.project_resourses"
-                        class="d-flex justify-content-center align-items-center">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" style=" --bs-modal-zindex: 1000 !important;background-color: #58585867 !important;"
+    <div class="modal fade" style=" --bs-modal-zindex: 1000 !important;background-color: #58585867 !important;"
     id="viewProjectOpp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
                         <div class="modal-title fs-5" id="exampleModalLabel">Add {{projectUpdate.short_name}}
@@ -591,5 +600,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

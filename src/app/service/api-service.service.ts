@@ -160,7 +160,7 @@ export class ApiServiceService {
     return this.http.post(this.keys.deleteProjectById, data, { headers });
   }
 
-  get_client_id(id: any) {
+  get_client_id() {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.get_client_id}`, { headers });
   }
@@ -309,10 +309,30 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.post(this.keys.saveWorkStatus, workStatus, { headers });
   }
+  addCreativeAssets(assets: any) {
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.addCreativeAssets, assets, { headers });
+  }
 
+  getAllCreativeAssetsOfClient() {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getAllCreativeAssetsOfClient}`, { headers });
+  }
   getClientProjectList(id: any) {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getClientProjectList}?client_id=${id}`, { headers });
+  }
+  getCreativeAssetsOfMember(id: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getCreativeAssetsOfMember}?project_id=${id}`, { headers });
+  }
+  getAllCreativeAssets(id: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getAllCreativeAssets}?project_id=${id}`, { headers });
+  }
+  cAGetAllCreativeAssets(id: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.cAGetAllCreativeAssets}?project_id=${id}`, { headers });
   }
 
   getWorkStatusById(workStatus: any) {
@@ -355,7 +375,7 @@ export class ApiServiceService {
   }
 
   logOut() {
-    // this.router.navigate(['/log-in']);
+    this.router.navigate(['/home']);
     localStorage.clear();
     window.location.reload();
   }

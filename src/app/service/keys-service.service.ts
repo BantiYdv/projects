@@ -8,8 +8,8 @@ export class KeysServiceService {
 
   constructor(private secretKeys:SecretKeysServiceService) { }
 
-  public mainUrl = "http://101.53.145.234:4005";
-
+  public mainUrl = "https://api-avx.prilient.com";
+  
   public signIn = `${this.mainUrl}/user/login`;//done
   public signUp = `${this.mainUrl}/user/registration`;//done
   public sendOTPForForgetPassword = `${this.mainUrl}/user/sendOTPForForgetPassword`;
@@ -52,6 +52,11 @@ export class KeysServiceService {
   public updateTeamMemberById = `${this.mainUrl}/updateTeamMemberById`;
   public deleteTeamMemberById = `${this.mainUrl}/deleteTeamMemberById`;
 
+public addCreativeAssets = `${this.mainUrl}/client/addCreativeAssets`;
+public getAllCreativeAssetsOfClient = `${this.mainUrl}/client/getAllCreativeAssetsOfClient`;
+public getAllCreativeAssets = `${this.mainUrl}/client/getAllCreativeAssets`;
+public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssets/getCreativeAssetsOfMember`;
+
   public saveWorkStatus = `${this.mainUrl}/saveWorkStatus`;
   public getClientProjectList = `${this.mainUrl}/user/getClientProjectList`;
   public getWorkStatusById = `${this.mainUrl}/getWorkStatusById`;
@@ -59,6 +64,9 @@ export class KeysServiceService {
   public deleteWorkStatusById = `${this.mainUrl}/deleteWorkStatusById`;
   public saveCientRequirement = `${this.mainUrl}/client/saveCientRequirement`
   public bookTimeForMeeting = `${this.mainUrl}/client/bookTimeForMeeting`
+
+
+  public cAGetAllCreativeAssets = `${this.mainUrl}/creativeAssests/getAllCreativeAssets`;
   
  
   public project_secret_key = this.secretKeys.project_secret_key

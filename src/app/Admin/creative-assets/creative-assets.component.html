@@ -1,1 +1,32 @@
-<p>creative-assets works!</p>
+
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+    <div class="searchBar">
+   <div class="creativeAssetSearch">
+    <input type="text" id="searchBar" placeholder="Search" > <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+   </div>
+  </div>
+  </div>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-3">
+      <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
+            <div class="creativeAsset">
+                Creative Assets
+            </div>
+        </div>
+       
+    </div>
+
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-2">
+      <div class="d-flex flex-wrap justify-content-start align-items-start" style="width: 90%;">
+      <div class="folder">
+        <div class="d-flex flex-column justify-content-center align-items-center mx-2 my-1 px-2 py-1" routerLink="/admin/creative-assets-table"  *ngFor="let folder of creativeAssetFolder" [queryParams]="{ id: folder._id }">
+          <img src="../../../assets/images/creativeAssetsFolder.svg" alt="" class="creativeAssetsFolder">
+          <h4 class="creativeAssetsFolderText">{{folder.short_name}}</h4>
+        </div>
+      </div>
+        </div>
+       
+    </div>
+
+    

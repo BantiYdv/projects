@@ -1,1 +1,138 @@
-<p>client works!</p>
+
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+    <div class="searchBar">
+        <div class="header_css_button_project">
+            <button data-bs-toggle="modal" data-bs-target="#addClient"><i class="fa fa-plus"></i> Add
+                New</button>
+        </div>
+        <div class="creativeAssetSearch">
+            <input type="text" id="searchBar" placeholder="Search"> <img
+                src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+        </div>
+    </div>
+    
+</div>
+
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
+        <div class="creativeAsset">
+            Client
+        </div>
+    </div>
+
+</div>
+
+<div class="">
+    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
+<!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    <div class="d-flex flex-wrap justify-content-center align-items-start" style="width: 90%;"> -->
+        <table class="table tAble_css table-striped">
+            <thead class="table-dark tHead_css">
+                <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email-ID</th>
+                    <th scope="col">Mobile No.</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody class="tBody_css">
+                <tr *ngFor="let item of clients; let i = index;">
+                    <td >{{ i+1 }}</td>
+                    <td>{{ item.name ||
+                        "-"}}</td>
+                    <td>{{ item.email  }}</td>
+                    <td>{{ item.mobile_number  }}</td>
+                    <td>{{ item.city  }}</td>
+                    <td>
+                        <div class="icon_t_e_e">
+                            <i class="fa fa-trash" ></i>
+                            
+                            <i  class="fa fa-edit"></i>
+                           
+                        </div>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="addClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: yellow;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">CLIENT
+                        </div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button></div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <form #updateProjectForm="ngForm" (ngSubmit)="addClient(register)">
+                    <div class="col-12 col-md-12 d-flex flex-wrap">
+                        
+                        
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Producer</label>
+                                <input type="text" placeholder="Short Name"
+                                     name="name" required [(ngModel)]="register.name">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Email-ID</label>
+                                <!-- <select  name="client_id" required>
+                                    <option value="" disabled selected>Select Client</option>
+                                    <option >client</option>
+                                </select> -->
+                                <input type="text" placeholder="Email ID"
+                                     name="email" required [(ngModel)]="register.email">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Mobile Number</label>
+                                <!-- <select  name="client_id" required>
+                                    <option value="" disabled selected>Select Client</option>
+                                    <option >client</option>
+                                </select> -->
+                                <input type="tel" placeholder="Mobile Number"
+                                     name="mobile_number" required [(ngModel)]="register.mobile_number">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>City</label>
+                                <!-- <select  name="client_id" required>
+                                    <option value="" disabled selected>Select Client</option>
+                                    <option >client</option>
+                                </select> -->
+                                <input type="tel" placeholder="City"
+                                     name="city" required [(ngModel)]="register.city">
+                            </div>
+                        </div>
+                       
+                       
+                    </div>
+
+                    <div class="col-12 col-md-12">
+                        <div class="save_css_button_code">
+                            <button [disabled]="updateProjectForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

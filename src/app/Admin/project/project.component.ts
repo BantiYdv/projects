@@ -98,12 +98,18 @@ export class ProjectComponent implements OnInit {
   handel_By : any[] | any;
   projects: Project[] | any;
 
+  isOn: boolean = true;
+
+  toggleState(value:boolean) {
+    this.isOn = value;
+  }
+
   constructor(private apiService:ApiServiceService,private router: Router, public route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const userId = localStorage.getItem('userId')
     this.getProject();
-    this.get_client_id(userId);
+    this.get_client_id();
     this.get_handel_by(userId);
     // this.getProjectById(userId);
 
@@ -171,8 +177,8 @@ getFormattedValue(value: any): any {
       }
     )
   }
-  get_client_id(id:any){
-    this.apiService.get_client_id(id).subscribe(
+  get_client_id(){
+    this.apiService.get_client_id().subscribe(
       (r:any) => {
         this.clients = r.data;
         console.log('clients',this.clients)

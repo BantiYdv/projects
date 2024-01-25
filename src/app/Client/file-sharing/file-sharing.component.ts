@@ -9,14 +9,15 @@ interface Folder {
   name: string;
   short_name: string;
 }
+
 @Component({
-  selector: 'app-creative-assets',
+  selector: 'app-file-sharing',
   standalone: true,
   imports: [CommonModule,FormsModule, RouterLink],
-  templateUrl: './creative-assets.component.html',
-  styleUrl: './creative-assets.component.css'
+  templateUrl: './file-sharing.component.html',
+  styleUrl: './file-sharing.component.css'
 })
-export class CreativeAssetsAdminComponent {
+export class FileSharingUserComponent {
 
 
   creativeAssetFolder: Folder[] = [];
@@ -26,11 +27,12 @@ export class CreativeAssetsAdminComponent {
 
   ngOnInit(): void {
    
-    this.getProject();
+    this.getTeamMemberProjects();
     
   }
-  getProject(){
-    this.apiService.getProject().subscribe(
+  getTeamMemberProjects(){
+    const team_member_id = localStorage.getItem('userId')
+    this.apiService.getTeamMemberProjects(team_member_id).subscribe(
       (r: any) => {
         this.creativeAssetFolder = r.data;
         console.log('Get employee Project List', this.creativeAssetFolder);

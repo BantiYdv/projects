@@ -14,9 +14,6 @@ import { error } from 'console';
   styleUrl: './client-db.component.css'
 })
 export class ClientDBComponent {
-  items = new Array(30);
-  workStatus: any = {};
-  workStatusData: any[] = [];
   
   profileData: any = {};
   profileAvatarImg:any={};user_id : any;
@@ -27,97 +24,12 @@ export class ClientDBComponent {
   ngOnInit(): void {
     this.user_id = localStorage.getItem('userId');
     this.getUserDetails(this.user_id);
-    this.getClientProjectList();
   }
 
-  saveWorkStatus(workStatus:any){
-    console.log('signUp Api =>', workStatus);
-    this.apiService.saveWorkStatus(workStatus).subscribe(
-      (r: any) => {
-        console.log(r);
-        Swal.fire({
-          icon: 'success',
-          title: 'Successful',
-          text: r.data.message,
-          showConfirmButton: false,
-          timer: 3000,
-        }).then((result) => {
-          if (result) {
-            this.router.navigate(['/log-in']);
-          }
-        });
-        this.workStatus={};
-      },
-      (e: any) => {
-        console.log("Error => ",e)
-        Swal.fire('Error', e.error.message, 'error');
-        this.workStatus={};
-      }
-    );
+  isActive(route: string): boolean {
+    // Check if the current URL matches the specified route
+    return this.router.url === route;
   }
-
-  getClientProjectList(){
-    const client_id = localStorage.getItem('userId')
-    this.apiService.getClientProjectList(client_id).subscribe(
-      (r: any) => {
-        this.workStatusData = r.data;
-        console.log('Get Client Project List', this.workStatusData);
-      },
-      (e) => {
-        console.error(e);
-      }
-    )
-  }
-
-  getWorkStatusById(id:any){
-    this.apiService.getWorkStatusById(id).subscribe(
-      (r) => {
-        this.workStatus = r;
-      },
-      (e) => {
-        console.log(e.data.message);
-      }
-    )
-  }
-
-  updateWorkStatusById(workStatus:any){
-    this.apiService.updateWorkStatusById(workStatus).subscribe(
-      (r: any) => {
-        console.log(r);
-        Swal.fire({
-          icon: 'success',
-          title: 'Successful',
-          text: r.data.message,
-          showConfirmButton: false,
-          timer: 3000,
-        }).then((result) => {
-          if (result) {
-            this.router.navigate(['/']);
-          }
-        });
-        this.workStatus={};
-      },
-      (e: any) => {
-        console.log("Error => ",e)
-        Swal.fire('Error', e.error.message, 'error');
-        this.workStatus={};
-      }
-    );
-  }
-
-  deleteWorkStatusById(id:any){
-    this.apiService.deleteWorkStatusById(id).subscribe(
-      (r) => {
-        this.workStatus = r;
-      },
-      (e) => {
-        console.log(e.data.message);
-      }
-    )
-  }
-
-
- 
 
   handleImgFile(event: any) {
     this.profileAvatarImg.avatar = event.target.files[0];

@@ -1,110 +1,122 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap navbar_css">
-            <div class="col-9 col-md-9 col-xxl-9 offset-1">
-                <div class="header_menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-                    aria-controls="offcanvasExample">
-                    <img src="../../../assets/images/AVX_Media.svg" alt="">
-                </div>
+    <div class="row" >
+        <div class=" d-flex flex-wrap navbar_css">
+            <div class="header_menu">
+                <img src="../../../assets/images/logo-ddd.png" alt="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample">
             </div>
-            <div class="col-2 col-md-2 col-xxl-2 d-flex justify-content-center align-items-center">
-                <div class="dropdown">
-                    <a href="#"
-                        class="profile_img_on_header d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
-                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <!-- <strong>mdo</strong> -->
-                        <strong>Welcome {{ (profileData.name || 'Not found').split(' ')[0] || 'Not found' }}
-                        </strong>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                        <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li> -->
-                        <li><a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#profileData">Profile</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="" (click)="apiService.logOut()">Log Out</a></li>
-                    </ul>
-                </div>
+            <div style="font-size: 20px;">
+                <i class="fa fa-bell"></i>
             </div>
         </div>
     </div>
 </div>
 
-<div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" style="width: 350px !important;" tabindex="-1" id="offcanvasExample"
+<div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" style="width: 280px !important;  margin-top: 100px;" tabindex="-1" id="offcanvasExample"
     aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header d-flex flex-column px-0">
+        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-end px-3 " data-bs-theme="dark">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
         <div class="col-12 col-md-12 d-flex flex-wrap">
             <div class="col-11 col-md-11">
-                <div class="header_menu d-flex justify-content-center align-items-center">
-                    <img src="../../../assets/images/AVX_Media.svg" alt="">
+                <div class="header_menu_profile d-flex justify-content-center align-items-center">
+                    <img src="../../../assets/images/man_pro.jpg" alt="">
+                    <span>Max Deni</span>
+                    <div class="post_css">Frontend Developer</div>
                 </div>
             </div>
-            <div class="col-1 col-md-1">
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
         </div>
+        
+    </div>
+    <div class="offcanvas-body body_part">
         <div class="col-12 col-md-12 col-xxl-12 menu_options">
             <ul>
-                <!-- <li routerLink="/project">
+                <li routerLink="/user/work-status" [class.hove_active]="isActive('/user/work-status')">
                     <div class="col-12 col-md-12 d-flex">
                         <div class="col-2 col-md-2 offset-1">
                             <div class="menu_img_css_1">
-                                <img src="../../../assets/images/project_icon_img.svg" alt="">
+                                <img src="../../../assets/images/Creative_Assets_icon_1.svg" alt="">
                             </div>
                         </div>
                         <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Project</div>
+                            <div class="text_menu_css">Projects</div>
                         </div>
                     </div>
                 </li>
-                <li routerLink="/task">
-                    <div class="col-12 col-md-12 d-flex">
-                        <div class="col-2 col-md-2 offset-1">
-                            <div class="menu_img_css_1">
-                                <img src="../../../assets/images/task_icon_img.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Task</div>
-                        </div>
-                    </div>
-                </li>
-                <li routerLink="/teamMember">
+                <li routerLink="/user/creative-assets" [class.hove_active]="isActive('/user/creative-assets')">
 
                     <div class="col-12 col-md-12 d-flex">
                         <div class="col-2 col-md-2 offset-1">
                             <div class="menu_img_css_1">
-                                <img src="../../../assets/images/team_member_icon_img.svg" alt="">
+                                <img src="../../../assets/images/File_sharing_icon_1.svg" alt="">
                             </div>
                         </div>
                         <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Team Member</div>
+                            <div class="text_menu_css">Creative Assets</div>
                         </div>
                     </div>
-                </li> -->
-                <li routerLink="/work-status">
+                </li>
+                <li routerLink="/user/file-sharing" [class.hove_active]="isActive('/user/file-sharing')">
 
                     <div class="col-12 col-md-12 d-flex">
                         <div class="col-2 col-md-2 offset-1">
                             <div class="menu_img_css_1">
-                                <img src="../../../assets/images/team_member_icon_img.svg" alt="">
+                                <img src="../../../assets/images/History_icon_1.svg" alt="">
                             </div>
                         </div>
                         <div class="col-9 col-md-9">
-                            <div class="text_menu_css">Work Status</div>
+                            <div class="text_menu_css">File Sharing</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/user/file-sharing" [class.hove_active]="isActive('/user/file-sharing')">
+
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/Team_Members_icon_1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">Klub X</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/user/file-sharing" [class.hove_active]="isActive('/user/file-sharing')">
+
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/Client_icon_1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">AVX Thrive School</div>
+                        </div>
+                    </div>
+                </li>
+                <li routerLink="/user/file-sharing" [class.hove_active]="isActive('/user/file-sharing')">
+
+                    <div class="col-12 col-md-12 d-flex">
+                        <div class="col-2 col-md-2 offset-1">
+                            <div class="menu_img_css_1">
+                                <img src="../../../assets/images/Project_Management_icon_1.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-9">
+                            <div class="text_menu_css">Klub X Rewards</div>
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
-    <div class="col-12 col-md-12 d-flex justify-content-center align-items-center log_out_css" (click)="apiService.logOut()"> <i class="fa fa-sign-out"></i> log out</div>
+    <div class="col-12 col-md-12 d-flex justify-content-center align-items-center log_out_css"
+        (click)="apiService.logOut()"> <i class="fa fa-sign-out"></i> log Out</div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
             <div class="col-12 col-md-12 ">
@@ -114,17 +126,8 @@
             </div>
         </div>
     </div>
-    </div>
-<div class="container-fluid">
-    <!-- <div class="row">
-        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
-            <div class="col-12 col-md-12 ">
-                <div class="header_css_added_project">
-                    Work Status
-                </div>
-            </div>
-        </div>
     </div> -->
+<!-- <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 d-flex flex-wrap mt-4 justify-content-center align-items-center">
             <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-3 m-4" *ngFor="let workStatus of workStatusData; let odd = odd; let even = even">
@@ -133,15 +136,11 @@
                         
                         <div class="col-12 col-md-12">
                             <div class="work_text_css" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.name}}</div>
-                            <!-- <div class="work_text_pink" [ngClass]="{ 'even': even, 'odd': odd }">1090</div> -->
                         </div>
                     </div>
-                    <!-- <div class="col-12 col-md-12 d-flex justify-content-start ps-3 align-items-center">
-                        <div class="work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">logo,ui,banners</div>
-                    </div> -->
+                    
                     <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center mt-3">
                         <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">Start Date</div>
-                        <!-- <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div> -->
                         <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">Deadline Date</div>
                     </div>
                     <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center mt-3">
@@ -156,31 +155,6 @@
                         <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div>
                         <div class="col-5 col-md-5 d-flex justify-content-center align-items-center deadline" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.deadline}}</div>
                     </div>
-                    <!-- <div class="col-12 col-md-12 d-flex justify-content-center align-items-center work_text_2_code ps-3" [ngClass]="{ 'even': even, 'odd': odd }">
-                        <div>Task detailsxsahxgauxxajsxas</div>
-                    </div> -->
-                    <!-- <div class="col-12 col-md-12">
-                        <div class="px-2 mt-4 bg-danger text-white d-flex justify-content-center align-items-center">
-                            {{workStatus.current_status}}
-                          
-                        </div>
-                    </div>
-
-                    <div class="status-line">
-                        <div class="status-dot create"></div>
-                        <div class="status-create"></div>
-                        <div class="status-dot start"></div>
-                        <div class="status-create"></div>
-                        <div class="status-dot ongoing"></div>
-                        <div class="status-create"></div>
-                        <div class="status-dot finished"></div>
-                      </div> -->
-                      
-                      <!-- <div class="col-12 col-md-12">
-                        <div class="px-2 mt-4 bg-danger text-white d-flex justify-content-center align-items-center">
-                            {{ workStatus.current_status }}
-                        </div>
-                    </div> -->
                     
                     <div class="status-line mt-5">
                         <div [ngClass]="{'status-dot': true, 'Created': workStatus.current_status === 'Created', 'blue-dot': workStatus.current_status === 'Created' || workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Created'}">
@@ -196,19 +170,11 @@
                             <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Finished</span></div>
                     </div>
                     
-                    
-                    
-                    
-                    
-                    
-                      
-
-                      
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
@@ -218,7 +184,7 @@
 
  
   <!-- Modal addNewWorkStatus -->
-  <div class="modal fade" id="addNewWorkStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="addNewWorkStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #3B3A70;">
@@ -283,7 +249,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -310,12 +276,8 @@
                         
                         <div class="profile_icon_img">
                             <i class="fa fa-upload" (click)="uploadFileInput.click()"> Upload</i>
-                            <!-- <i class="fa fa-remove" > Remove</i> -->
                             <input type="file" #uploadFileInput style="display: none" (change)="handleImgFile($event)">
-                            <!-- <input type="file" #removeFileInput style="display: none" (change)="handleVideoFile($event)"> -->
                         </div>
-                        <!-- <label>Name</label>
-                        <span>{{profileData.name || 'Not found'}}</span> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-12 d-flex flex-wrap mt-3">

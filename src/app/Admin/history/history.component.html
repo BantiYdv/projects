@@ -1,12 +1,114 @@
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+    <div class="searchBar">
+   <div class="creativeAssetSearch">
+    <input type="text" id="searchBar" placeholder="Search" > <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+   </div>
+  </div>
+  </div>
+
+<!-- </div> -->
 <div class=" d-flex justify-content-center align-items-center">
-    <div class="toggle_css">
-        <button class="button_css" [ngClass]="{'button_light': !isOn, 'button_success': isOn}"
-            (click)="toggleState(true)">
-            Project
-        </button>
-        <button class="button_css" [ngClass]="{'button_light': isOn, 'button_danger': !isOn}"
-            (click)="toggleState(false)">
-            Task
-        </button>
-    </div>
+<div class="toggle_css">
+    <button class="button_css" [ngClass]="{'button_light': !isOn, 'button_success': isOn}"
+        (click)="toggleState(true)">
+        Project
+    </button>
+    <button class="button_css" [ngClass]="{'button_light': isOn, 'button_success': !isOn}"
+        (click)="toggleState(false)">
+        Task
+    </button>
 </div>
+</div>
+<div class="" *ngIf="isOn">
+<div class="col-12 col-md-12 px-5 mt-5 overflow-auto ">
+    <table class="table tAble_css table-striped">
+        <thead class="table-dark tHead_css">
+            <tr>
+                <th scope="col">Sr No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Produser</th>
+                <th scope="col">Project Type</th>
+                <th scope="col">Starting Date</th>
+                <th scope="col">Deadline Date</th>
+                <th scope="col">Status</th>
+               
+            </tr>
+        </thead>
+        <tbody class="tBody_css">
+            <tr *ngFor="let projectData of projects;">
+                <td>1</td>
+                <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name ||
+                    "-"}}</td>
+                <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
+                    }}</td>
+                <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
+                    }}</td>
+                <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar"></i> {{ projectData.start_date | date:
+                    'dd/MM/yyyy' || "-" }}</td>
+                <td style="color: #FF5B5B;" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar" style="color: #FF5B5B;"></i> {{ projectData.deadline | date:
+                    'dd/MM/yyyy' || "-" }}</td>
+               
+                
+                <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                    <select class="select_css_code" [(ngModel)]="projectData.current_status"
+                        name="current_status"
+                        >
+                        <option value="Created">Created</option>
+                        <option value="Start">Start</option>
+                        <option value="Ongoing">Ongoing</option>
+                        <option value="Finished">Finished</option>
+                    </select>
+                </td>
+               
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+<div class="" *ngIf="!isOn">
+    <div class="col-12 col-md-12 px-5 mt-5 overflow-auto ">
+        <table class="table tAble_css table-striped">
+            <thead class="table-dark tHead_css">
+                <tr>
+                    <th scope="col">Sr No</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Produser</th>
+                    <th scope="col">Project Type</th>
+                    <th scope="col">Starting Date</th>
+                    <th scope="col">Deadline Date</th>
+                    <th scope="col">Status</th>
+                   
+                </tr>
+            </thead>
+            <tbody class="tBody_css">
+                <tr *ngFor="let projectData of projects;">
+                    <td>1</td>
+                    <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name ||
+                        "-"}}</td>
+                    <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
+                        }}</td>
+                    <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
+                        }}</td>
+                    <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar"></i> {{ projectData.start_date | date:
+                        'dd/MM/yyyy' || "-" }}</td>
+                    <td style="color: #FF5B5B;" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"><i class="far fa-calendar" style="color: #FF5B5B;"></i> {{ projectData.deadline | date:
+                        'dd/MM/yyyy' || "-" }}</td>
+                   
+                    
+                    <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
+                        <select class="select_css_code" [(ngModel)]="projectData.current_status"
+                            name="current_status"
+                            >
+                            <option value="Created">Created</option>
+                            <option value="Start">Start</option>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Finished">Finished</option>
+                        </select>
+                    </td>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
