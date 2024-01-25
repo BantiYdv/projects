@@ -146,6 +146,12 @@ export class ApiServiceService {
       headers,
     });
   }
+  getFileSharingForReview(project: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getFileSharingForReview}?project_id=${project}`, {
+      headers,
+    });
+  }
 
   updateProjectById(project: any) {
     const headers = this.headerWithAuth;
@@ -330,6 +336,10 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getClientProjectList}?client_id=${id}`, { headers });
   }
+  // getClientProject() {
+  //   const headers = this.headerWithAuth;
+  //   return this.http.get(`${this.keys.getClientProject}`, { headers });
+  // }
   getCreativeAssetsOfMember(id: any) {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getCreativeAssetsOfMember}?project_id=${id}`, { headers });

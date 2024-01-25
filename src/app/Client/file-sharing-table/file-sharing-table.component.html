@@ -11,7 +11,7 @@
 <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
     <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
         <div class="creativeAsset">
-            Creative Assets
+            File Sharing
         </div>
     </div>
 
@@ -34,16 +34,16 @@
             <tbody class="tBody_css">
                 <tr *ngFor="let item of creativeAssetsTable; let i = index;">
                     <td >{{ i + 1 }}</td>
-                    <td>{{ item.name ||
+                    <td>{{ item.original_name ||
                         "-"}}</td>
-                    <td> {{ item.fileNo|| "-" }}</td>
+                    <td> {{ item.file_number|| "-" }}</td>
                         <td>
                             <div class="img_dwonLoad_1" >
                                 <img src="../../../assets/images/dwonLoad_1.svg" style="width: 40px; height: 40px;" alt="">
                             </div>
                         </td>
                         <td>
-                            <div class="img_dwonLoad_1" >
+                            <div class="img_dwonLoad_1" data-bs-toggle="modal" data-bs-target="#saveReviewData" >
                                 <img src="../../../assets/images/plus_add_img.svg" style="width: 40px; height: 40px;" alt="">
                             </div>
                         </td>
@@ -53,5 +53,45 @@
             </tbody>
 
         </table>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="saveReviewData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: yellow;">
+                <div class="col-12 col-md-12 d-flex flex-nowrap">
+                    <div class="col-11 col-md-11 text_add_p_css">
+                        <div class="modal-title fs-5" id="exampleModalLabel">Add Review</div>
+                    </div>
+                    <div class="col-1 col-md-1 text-end text-white">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body m-4">
+                <form #saveReviewForm="ngForm" (ngSubmit)="saveReviewData()">
+                    <div class="col-12 col-md-12 d-flex flex-wrap">
+                       
+                        
+                        <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Project</label>
+                               
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="save_css_button_code">
+                            <button [disabled]="saveReviewForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
 </div>

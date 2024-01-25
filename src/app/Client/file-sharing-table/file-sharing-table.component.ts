@@ -5,8 +5,8 @@ import { ActivatedRoute, Route } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 
 interface TableData {
-  name: string;
-  fileNo: string;
+  original_name: string;
+  file_number: string;
  
 }
 @Component({
@@ -18,11 +18,7 @@ interface TableData {
 })
 export class FileSharingTableComponent {
   id:any;
-  creativeAssetsTable: TableData[] = [
-    {name:'AVX Media 1', fileNo:'1'},
-    {name:'AVX Media 4', fileNo:'4'},
-    {name:'AVX Media 2', fileNo:'2'}
-  ];
+  creativeAssetsTable: TableData[] = [];
   constructor(private route:ActivatedRoute, private apiService:ApiServiceService){}
 
   ngOnInit(): void {
@@ -34,14 +30,18 @@ export class FileSharingTableComponent {
   }
 
   getProjectById(id:any){
-    this.apiService.getProjectById(id).subscribe(
+    this.apiService.getFileSharingForReview(id).subscribe(
       (r: any) => {
-        this.creativeAssetsTable = r.data.project_resourses;
+        this.creativeAssetsTable = r.data;
         console.log('Get employee Project List', this.creativeAssetsTable);
       },
       (e) => {
         console.error(e);
       }
     )
+}
+
+saveReviewData(){
+  
 }
 }

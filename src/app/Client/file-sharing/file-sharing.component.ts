@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiServiceService } from '../../service/api-service.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 interface Folder {
   _id: any;
@@ -18,21 +18,24 @@ interface Folder {
   styleUrl: './file-sharing.component.css'
 })
 export class FileSharingUserComponent {
-
+id:any;
 
   creativeAssetFolder: Folder[] = [];
 
 
-  constructor(private apiService:ApiServiceService){}
+  constructor(private apiService:ApiServiceService,private route:ActivatedRoute){}
 
   ngOnInit(): void {
    
-    this.getTeamMemberProjects();
-    
+    // this.route.queryParams.subscribe(r => {
+    //   this.id = r['id'];
+    // })
+    const id = localStorage.getItem('userId')
+    this.getClientProjectList(id);
   }
-  getTeamMemberProjects(){
-    const team_member_id = localStorage.getItem('userId')
-    this.apiService.getTeamMemberProjects(team_member_id).subscribe(
+  getClientProjectList(id:any){
+    // const team_member_id = localStorage.getItem('userId')
+    this.apiService.getClientProjectList(id).subscribe(
       (r: any) => {
         this.creativeAssetFolder = r.data;
         console.log('Get employee Project List', this.creativeAssetFolder);

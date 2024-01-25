@@ -64,6 +64,7 @@ public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssets/getCreativeAs
 
   public saveWorkStatus = `${this.mainUrl}/saveWorkStatus`;
   public getClientProjectList = `${this.mainUrl}/user/getClientProjectList`;
+  // public getClientProject = `${this.mainUrl}/user/getClientProject`;
   public getWorkStatusById = `${this.mainUrl}/getWorkStatusById`;
   public updateWorkStatusById = `${this.mainUrl}/updateWorkStatusById`;
   public deleteWorkStatusById = `${this.mainUrl}/deleteWorkStatusById`;
@@ -77,6 +78,7 @@ public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssets/getCreativeAs
   public addClient = `${this.mainUrl}/client/addClient`;//done
   public saveFileSharing = `${this.mainUrl}/file/fileSharingByAdmin`;//done
   public getFileSharing = `${this.mainUrl}/file/getFileSharingListUploadedByAdmin`;//done
+  // public getClientProjectList = `${this.mainUrl}/user/getClientProjectList`;//done
  
   public project_secret_key = this.secretKeys.project_secret_key
 
