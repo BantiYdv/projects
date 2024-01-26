@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
 
   register: any = {
     country_code: '+91',
+    country_name: 'India'
   };
   confirmPassword: string = '';
   passwordMismatch: boolean = false;

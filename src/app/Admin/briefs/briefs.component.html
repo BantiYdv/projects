@@ -274,18 +274,30 @@
             <td style="width: 150px;">
                 <div class="pro_tasks">
                 <div class="tasks_data_css">
-                    <div *ngFor="let task of tasks">{{task.name}}</div>
+                    <div *ngFor="let task of tasks">{{task.task_name}}</div>
                 </div>
             </div>
             </td>
             <td colspan="5" style="width: 1000px;">
                 <div class="pro_tasks">
                 <div class="chart_css">
-                    <div *ngFor="let task of tasks" class="bar" [title]="task.name">
-                        <div class="progress bg_completed" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.startDate)" [style.width.%]="calculateWidth(task.completed, task.created)"></div>
+                    <div *ngFor="let task of tasks" class="bar" [title]="task.task_name">
+                        <!-- <div class="progress bg_completed" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.startDate)" [style.width.%]="calculateWidth(task.completed, task.created)"></div>
                         <div class="progress bg_start" [title]="task.startDate | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.startDate)" [style.width.%]="calculateWidth(task.start, task.created)"></div>
                         <div class="progress bg_created" [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.startDate | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.startDate)" [style.width.%]="calculateWidth(task.startDate, task.created)"></div>
-                        <div class="progress bg_deadline" [title]="task.deadlineDate | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.deadlineDate)"></div>
+                        <div class="progress bg_deadline" [title]="task.deadlineDate | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.deadlineDate)"></div> -->
+
+                        <div class="progress text-white" style="background-color: rgb(233, 233, 233);" [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.deadlineDate | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.created)" [style.width.%]="calculateWidth(task.deadlineDate, task.created)"></div>
+                        <!-- <div class="progress text-white" style="background-color: rgb(0, 255, 238);" [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.created)" [style.width.%]="calculateWidth(task.start, task.created)"></div>
+                        <div class="progress text-white" style="background-color: rgb(0, 255, 238);" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.start)" [style.width.%]="calculateWidth(task.completed, task.start)"></div>
+                        <div class="progress text-white" style="background-color: rgb(229, 255, 0);" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.created)" [style.width.%]="calculateWidth(task.start, task.created)"></div> -->
+                        <div class="progress text-white" style="background-color: #d7e202;" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.start)" [style.width.%]="calculateWidth(task.completed, task.start)"></div> 
+                        <div class="progress text-white" style="background-color: #fcc4d4;" [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.created)" [style.width.%]="calculateWidth(task.start, task.created)"></div> 
+                        <div class="progress text-white" style="background-color: #e5557a; width: 2.5%;" [title]="task.completed | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.completed)">CLL</div>
+                        <div class="progress text-white" style="background-color: #bbc600; width: 2.5%;" [title]="task.start | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.start)">S</div>
+                        <div class="progress text-white" style="background-color: rgb(17, 0, 255); width: 2.5%;" [title]="task.startDate | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.startDate)">SD</div>
+                        <div class="progress text-white" style="background-color: #eca6ba75; width: 2.5%;" [title]="task.created | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.created)"> C</div>
+                        <div class="progress text-white" style="background-color: #c3607c; width: 2.5%;" [title]="task.deadlineDate | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.deadlineDate)">DL</div>
                       </div>
                       
                 </div>
@@ -319,33 +331,72 @@
 
 <div class="table-responsive ps-4 ">
    
-    <table style="width:1300px">
-        <tr>
-            <th style="width: 260px;">
-                <div class="project_date_css_2 project_css_2">
-                    <div>Projects Name</div>
+    <table style="width:1300px;">
+            <tr>
+                <th style="width: 260px;">
+                    <div class="project_date_css_2 project_css_2">
+                        <div>Projects Name</div>
+                    </div>
+                </th>
+                <th style="width: 260px;">
+                    <div class="project_date_css_2 project_css_22">
+                        <div>Producer Name</div>
+                    </div>
+                </th>
+                <th style="width: 260px;">
+                    <div class="project_date_css_2 project_css_22">
+                        <div>Handled By</div>
+                    </div>
+                </th>
+                <th style="width: 260px;">
+                    <div class="project_date_css_2 project_css_22">
+                        <div>Deadline Date</div>
+                    </div>
+                </th>
+                <th style="width: 260px;">
+                    <div class="project_date_css_2 project_css_23">
+                        <div>Completed On</div>
+                    </div>
+                </th>
+            </tr>
+        <tr class="table_data" *ngFor="let pro of projectsFinised">
+            <td>
+                    <div class="bg_bg_color">
+                        <span>{{ pro.name.length > 8 ? (pro.name | slice:0:8) + '...' : pro.name }}</span>
+                    </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.client_id.name}}</span>
+                    </span>
+
                 </div>
-            </th>
-            <th style="width: 260px;">
-                <div class="project_date_css_2 project_css_22">
-                    <div>Producer Name</div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.handel_by.name}}</span>
+                    </span>
+
                 </div>
-            </th>
-            <th style="width: 260px;">
-                <div class="project_date_css_2 project_css_22">
-                    <div>Handled By</div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.deadline}}</span>
+                    </span>
+
                 </div>
-            </th>
-            <th style="width: 260px;">
-                <div class="project_date_css_2 project_css_22">
-                    <div>Deadline Date</div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">john amehnas</span>
+                    </span>
+
                 </div>
-            </th>
-            <th style="width: 260px;">
-                <div class="project_date_css_2 project_css_23">
-                    <div>Completed On</div>
-                </div>
-            </th>
+            </td>
         </tr>
         <tr class="table_data" *ngFor="let pro of projectsFinised">
             <td>
@@ -372,7 +423,7 @@
             <td>
                 <div class="box_css_bg_border">
                     <span class="sub_box_css_bg_border">
-                        <span class="sub_sub_box_css_bg_border">john amehnas</span>
+                        <span class="sub_sub_box_css_bg_border">{{pro.deadline}}</span>
                     </span>
 
                 </div>
@@ -385,7 +436,85 @@
 
                 </div>
             </td>
-        </tr>     
+        </tr>
+        <tr class="table_data" *ngFor="let pro of projectsFinised">
+            <td>
+                    <div class="bg_bg_color">
+                        <span>{{ pro.name.length > 8 ? (pro.name | slice:0:8) + '...' : pro.name }}</span>
+                    </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.client_id.name}}</span>
+                    </span>
+
+                </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.handel_by.name}}</span>
+                    </span>
+
+                </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.deadline}}</span>
+                    </span>
+
+                </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">john amehnas</span>
+                    </span>
+
+                </div>
+            </td>
+        </tr>
+        <tr class="table_data" *ngFor="let pro of projectsFinised">
+            <td>
+                    <div class="bg_bg_color">
+                        <span>{{ pro.name.length > 8 ? (pro.name | slice:0:8) + '...' : pro.name }}</span>
+                    </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.client_id.name}}</span>
+                    </span>
+
+                </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.handel_by.name}}</span>
+                    </span>
+
+                </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">{{pro.deadline}}</span>
+                    </span>
+
+                </div>
+            </td>
+            <td>
+                <div class="box_css_bg_border">
+                    <span class="sub_box_css_bg_border">
+                        <span class="sub_sub_box_css_bg_border">john amehnas</span>
+                    </span>
+
+                </div>
+            </td>
+        </tr>
     </table>
 </div>
 <div class=" d-flex justify-content-center align-items-center">

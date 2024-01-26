@@ -39,7 +39,7 @@ export class EmployeeProjectComponent {
     this.apiService.getTeamMemberProjects(team_member_id).subscribe(
       (r: any) => {
         this.projects = r.data;
-        console.log('Get employee Project List', this.projects);
+        console.log('Get ====> ===><', this.projects);
       },
       (e) => {
         console.error(e);

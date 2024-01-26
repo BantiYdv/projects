@@ -38,18 +38,20 @@
                         "-"}}</td>
                     <td> {{ item.createdAt | date:'dd/MM/yyyy'|| "-" }}</td>
                     <td>
-                            <mat-form-field class="w-75" >
+                        <i class="fa fa-users" data-bs-toggle="modal"
+                                        data-bs-target="#viewProjectOpp" (click)="sendId_Data(item._id)"></i>
+                            <!-- <mat-form-field class="w-75" >
                                 <mat-label>Assign</mat-label>
                                 <mat-select  multiple aria-required="true" [(value)]="item.member">
                                     <mat-option *ngFor="let getTeamMember of getTeamMemberList"
                                         [value]="getTeamMember?._id">{{getTeamMember?.name}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <button class="btn btn-sm btn-success m-1" *ngIf="item.member && item.member.length > 0" (click)="assignCreativeAssetsToTeamMember(item.member, item._id)">Save</button>
+                            <button class="btn btn-sm btn-success m-1" *ngIf="item.member && item.member.length > 0" (click)="assignCreativeAssetsToTeamMember(item.member, item._id)">Save</button> -->
                     </td>
                         <td>
                             <div class="img_dwonLoad_1" >
-                                <a href="https://api-avx.prilient.com/upload/creative_attach/4434894d-425c-44ec-b87b-5e2f9d5ddc0e.png" download>Download</a>
+                                <!-- <a href="https://api-avx.prilient.com/upload/creative_attach/4434894d-425c-44ec-b87b-5e2f9d5ddc0e.png" download>Download</a> -->
 
                                 <img src="../../../assets/images/dwonLoad_1.svg" style="width: 40px; height: 40px;" alt="">
                             </div>
@@ -62,4 +64,48 @@
 
         </table>
     </div>
+</div>
+
+
+<div class="modal fade" style=" --bs-modal-zindex: 1000 !important;background-color: #58585867 !important;"
+id="viewProjectOpp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+<div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+        <div class="modal-header" style="background-color: yellow;">
+            <div class="col-12 col-md-12 d-flex flex-nowrap">
+                <div class="col-11 col-md-11 text_add_p_css">
+                    <div class="modal-title fs-5" id="exampleModalLabel">Assign To</div>
+                </div>
+                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button></div>
+            </div>
+        </div>
+        <div class="modal-body m-4">
+            <!-- <form #saveAssignToForm="ngForm" > -->
+            <form #saveAssignToForm="ngForm" (ngSubmit)="assignCreativeAssetsToTeamMember(assignTo)">
+                <div class="col-12 col-md-12 d-flex justify-content-center align-items-center">
+
+                    <div class="teamMemberAdd">
+                        <mat-form-field>
+                            <mat-label>Assign To</mat-label>
+                            <mat-select multiple aria-required="true" [(value)]="assignTo">
+                                <mat-option *ngFor="let getTeamMember of getTeamMemberList"
+                                        [value]="getTeamMember?._id">{{getTeamMember?.name}}</mat-option>
+                                        <mat-option *ngIf="getTeamMemberList.length == 0">Not Found</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-12">
+                    <div class="save_css_button_code">
+                        <button [disabled]="saveAssignToForm.invalid"  data-bs-dismiss="modal" aria-label="Close">Save</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 </div>

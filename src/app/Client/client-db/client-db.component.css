@@ -7,6 +7,19 @@
   padding: 0px 50px;
   background-color: yellow;
 }
+.sub_head_css{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sub_head_css i:nth-child(1){
+  font-size: 20px;
+  padding: 10px;
+}
+.sub_head_css i:nth-child(2){
+  font-size: 30px;
+  padding: 10px;
+}
 .body_part::-webkit-scrollbar {
   width: 0.5em;
 }

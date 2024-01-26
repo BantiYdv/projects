@@ -130,12 +130,12 @@
     padding: 20px;
 }
 .footer_bottom_css .footer_bottom_css_text_left, .footer_bottom_css_text_right{
-    font-size: 20px;
+    font-size: 14px;
     padding-top: 10px;
     margin-left: 93px;
 }
 .footer_bottom_css .footer_bottom_css_text_left, .footer_bottom_css_text_right a{
-    font-size: 20px;
+    font-size: 14px;
     text-decoration: none;
     color: #000;
 }

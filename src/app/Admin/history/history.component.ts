@@ -15,12 +15,13 @@ export class HistoryComponent {
 
 
   isOn: boolean = true;
-projects: any;
-tasks: any;
+projects: any = [];
+tasks: any = [];
 
 constructor(private apiService:ApiServiceService,private router: Router, public route: ActivatedRoute) {}
 
 ngOnInit(): void {
+  this.projects = [];
   this.getProject();
   this.getTask();
   // this.getProjectById(userId);
@@ -32,7 +33,7 @@ ngOnInit(): void {
   }
 
   getProject(){
-    this.projects = {};
+    // this.projects = {};
     this.apiService.getProject().subscribe(
       (r:any) => {
         this.projects = r.data;
@@ -45,7 +46,7 @@ ngOnInit(): void {
     )
   }
   getTask(){
-    this.projects = {};
+    // this.projects = {};
     this.apiService.getTask().subscribe(
       (r:any) => {
         this.tasks = r.data;

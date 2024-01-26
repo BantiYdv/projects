@@ -390,9 +390,13 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
-                                    <label>Short Name</label>
-                                    <input readonly type="text" placeholder="Short Name"
-                                        [(ngModel)]="projectUpdate.short_name" name="short_name" required>
+                                    <label>Project Type</label>
+                                    <select [(ngModel)]="projectSave.project_type._id" name="project_type" required>
+                                        <option value="" disabled selected>Select Project Type</option>
+                                        <option *ngFor="let type of get_project_type" [value]="type._id">
+                                            {{type.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -422,13 +426,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-12">
+                            <!-- <div class="col-12 col-md-12">
                                 <div class="add_css_pro_code">
                                     <label>Other Information</label>
                                     <input type="text" placeholder="other information" [(ngModel)]="projectUpdate.desc"
                                         name="desc">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
     
                         <div class="col-12 col-md-12">
@@ -505,8 +509,8 @@
                         </div>
                         <div class="col-12 col-md-12">
                             <div class="add_css_pro_code">
-                                <label>Other Information</label>
-                                <span>{{projectUpdate.desc}}</span>
+                                <label>Project Type</label>
+                                <span>{{projectUpdate.project_type?.name}}</span>
                             </div>
                         </div>
                     </div>
@@ -664,12 +668,12 @@
                     <input type="date" [(ngModel)]="taskSave.deadline" [min]="taskSave.start_date || currentDate " name="deadline" required>
                 </div>
             </div>
-            <div class="col-12 col-md-12">
+            <!-- <div class="col-12 col-md-12">
                 <div class="add_css_pro_code">
                     <label>Other Information</label>
                     <input type="text" placeholder="other information"  [(ngModel)]="taskSave.desc" name="desc">
                 </div>
-            </div>
+            </div> -->
           </div>
           <div class="col-12 col-md-12">
             <div class="save_css_button_code">
@@ -739,12 +743,12 @@
                             <input type="date" [(ngModel)]="taskUpdate.deadline" [min]="taskUpdate.start_date  || currentDate" name="deadline" required>
                         </div>
                     </div>
-                    <div class="col-12 col-md-12">
+                    <!-- <div class="col-12 col-md-12">
                         <div class="add_css_pro_code">
                             <label>Other Information</label>
                             <input type="text" placeholder="other information"  [(ngModel)]="taskUpdate.desc" name="desc">
                         </div>
-                    </div>
+                    </div> -->
                   </div>
           <div class="col-12 col-md-12">
             <div class="save_css_button_code">
@@ -806,12 +810,12 @@
                         </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            <!-- <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Description</label>
                     <span>{{taskUpdate.desc}}</span>
                 </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

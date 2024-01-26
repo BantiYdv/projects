@@ -104,12 +104,15 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Mobile Number</label>
-                                <!-- <select  name="client_id" required>
-                                    <option value="" disabled selected>Select Client</option>
-                                    <option >client</option>
-                                </select> -->
-                                <input type="tel" placeholder="Mobile Number"
-                                     name="mobile_number" required [(ngModel)]="register.mobile_number">
+                                <div class="col-12 col-md-12 d-flex w-100">
+                                    <select class="w-25 px-1" [(ngModel)]="clientUpdate.country_code" name="country_code">
+                                        <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                                    </select>
+                                    <input type="tel" placeholder="Number" class="w-50"
+                                        [(ngModel)]="clientUpdate.mobile_number" name="mobile_number" required>
+                            </div>
+                                <!-- <input type="tel" placeholder="Mobile Number"
+                                     name="mobile_number" required [(ngModel)]="register.mobile_number"> -->
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -145,7 +148,7 @@
             <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Update Team Member</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">Update Client</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
                             data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -182,15 +185,15 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
-                                <label>Designation</label>
-                                <input type="text" placeholder="Designation" [(ngModel)]="clientUpdate.designation"
-                                    name="designation" required>
+                                <label>City</label>
+                                <input type="text" placeholder="City" [(ngModel)]="clientUpdate.city"
+                                    name="city" required>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
-                            <button [disabled]="updateTeamMemberForm.invalid">Update</button>
+                            <button [disabled]="updateTeamMemberForm.invalid" data-bs-dismiss="modal" aria-label="Close">Update</button>
                         </div>
                     </div>
                 </form>

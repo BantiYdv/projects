@@ -23,7 +23,8 @@ interface TableData {
 })
 export class CreativeAssetsTableComponent {
   id:any;
-  addParticipantData : any;
+  creativeAssetsTableIdData: any;
+  assignTo : any;
   getTeamMemberList: any;
   creativeAssetsTable: any = [];
   constructor(private route:ActivatedRoute, private apiService:ApiServiceService){}
@@ -38,6 +39,10 @@ export class CreativeAssetsTableComponent {
     this.assignTask();
   }
 
+  sendId_Data(id:any){
+this.creativeAssetsTableIdData = id;
+  }
+
   cAGetAllCreativeAssets(id:any){
     this.apiService.cAGetAllCreativeAssets(id).subscribe(
       (r: any) => {
@@ -49,8 +54,8 @@ export class CreativeAssetsTableComponent {
       }
     )
 }
-assignCreativeAssetsToTeamMember(member:any,id:any){
-    this.apiService.assignCreativeAssetsToTeamMember(member,id).subscribe(
+assignCreativeAssetsToTeamMember(member:any){
+    this.apiService.assignCreativeAssetsToTeamMember(member,this.creativeAssetsTableIdData).subscribe(
       (r: any) => {
         console.log('done',r);
         Swal.fire({
@@ -58,6 +63,7 @@ assignCreativeAssetsToTeamMember(member:any,id:any){
           title: 'Assets Assigned!',
           text: 'Creative assets have been successfully assigned to the team member.',
         });
+        this.assignTo = '';
       },
       (e) => {
         console.error('eerorr',e);

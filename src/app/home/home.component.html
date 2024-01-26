@@ -1389,8 +1389,8 @@
                 <div class="reg_data_css">
                   <label>Country Name : <span *ngIf="passwordMismatch" class="text-danger"
                     title="Passwords do not match.">*</span></label>
-                    <select [(ngModel)]="register.country_code" name="country_code">
-                      <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                    <select [(ngModel)]="register.country_name" name="country_name">
+                      <option *ngFor="let code of country_code" [value]="code.country_name">{{code.country_code}}-{{code.country_name}}</option>
                     </select>
                 </div>
               </div>
@@ -1514,5 +1514,797 @@
       </div>
     </form>
   </div>
-  <!-- <div *ngSwitchDefault></div> -->
+  <div *ngSwitchDefault>
+    <div>
+      <div style="position: relative !important;">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade slider_main_css" data-bs-ride="carousel"
+          data-bs-target="3000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="d-block w-100 main_slider_img" style="background-color: rgb(0,0,0,70%);"></div>
+            </div>
+          </div>
+          <button class="carousel-control-prev d-none" type="button" data-bs-target="#carouselExampleFade"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next d-none" type="button" data-bs-target="#carouselExampleFade"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="container-fluid slider_text_css">
+          <div class="col-xxl-12 col-12 d-flex flex-wrap">
+            <div class="col-xxl-12 col-md-12 col-12 text-center">
+              <div>
+                <span class="text_on_slider_css_yellow">From Script to The Final Cut</span>
+              </div>
+              <div class="text_on_slider_under_fff_yellow">ALL YOUR AUDIO-VISUAL CONTENT</div>
+              <div class="text_on_slider_under_fff_yellow_blod" style="color: yellow;">CHALLENGES TAKEN AWAY EFFORTLESSLY
+              </div>
+              <div class="text_second_row_css_3 text-white mt-3">Step into a seamless world where high client appreciation
+                repeats and multiplies business so that you thrive and Xpand Differently</div>
+              <div class="text_on_slider_button">
+                <button routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">CONSULT
+                  NOW</button>
+              </div>
+              <a href="#">
+                <div class="watchVideoCss">
+                  <i class="fa fa-play-circle"></i> Watch Video
+                </div>
+              </a>
+              <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center marginTOP">
+                <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Tailored Premium AV content
+                    Production</b>
+                  Of any kind under the Sun</div>
+                <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Tailored Anthem Songs</b>
+                  To make your message Stick Deeper & Longer</div>
+                <div class="col-12 col-md-3 bg-white text-black m-2 text_text_css"><b>Custom -To-You Expert AV
+                    Consultancy</b>
+                  From Concept to Claps</div>Vinay Jaiswal
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="logos_img_css_bg_slider">
+                <marquee behavior="scroll" direction="Rights" loop="infinite">
+                  <img src="../../assets/images/HCL_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/vodafone_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/airtel_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/idea_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/dp_world_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/hero_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/eduauraa_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/justdial_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/cocacola_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/grant_thornton_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/lumnx_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/lexi_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/bsh_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/dassault_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/concentrix_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/the_times_of_india_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/hindustantimes_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/properties_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/spicejet_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/provogue_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/prozone_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/goverment_of_india_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/bmw_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/cashkaro_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/phoenix_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/amazon_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/akzonobel_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/spice_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/samsuno_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/lg_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/vidyagyan_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/shiv_nadar_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/heroecotech_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/aonhewitt_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/sanofi_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/ascend_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/indosat_logo.svg" class="logos_img_css_1" alt="">
+                </marquee>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid box_main_css">
+          <div class="">
+            <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center">
+              <div class="box_style_css">
+                <span><b>1,200+</b> AVS</span>
+              </div>
+              <div class="box_style_css">
+                <span><b>100+</b> ANTHEM <br>
+                  SONGS</span>
+              </div>
+              <div class="box_style_css">
+                <span><b>100+</b> BRANDS</span>
+              </div>
+              <div class="box_style_css">
+                <span><b>15+</b> YEARS AV <br>
+                  EXPERIENCE</span>
+              </div>
+              <div class="box_style_css">
+                <span><b>50+</b> EVENT <br>
+                  COMPANIES</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row" style="margin-top: 70px;">
+            <div
+              class="col-xl-12 col-md-12 col-12 text-center d-flex flex-column justify-content-center align-items-center">
+              <div class="text_second_row_css_2 text-center" id="text_second_row_css_2_id">Getting <span
+                  class="years_15_css">AV Content</span> made can be
+                <span class="years_15_css">overwhelming</span>
+              </div>
+              <div class="text_second_row_css_3" style="font-family: 'Michroma', sans-serif;">If you don’t have a strong
+                AV
+                partner...</div>
+            </div>
+          </div>
+  
+          <div class="row mt-5">
+            <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+              <div class="col-12 col-md-4 col-xxl-4 my-2 d-flex justify-content-center align-items-center flex-column">
+                <div class="overwhelming_css">
+                  <img src="../../assets/images/img_11_img.svg" alt="">
+                </div>
+                <div class="overwhelming_text_css">Getting the right script and then nailing the execution can become
+                  extremely stressful and frustrating.</div>
+              </div>
+              <div class="col-12 col-md-4 col-xxl-4 my-2  d-flex justify-content-center align-items-center flex-column">
+                <div class="overwhelming_css">
+                  <img src="../../assets/images/img_10_img.svg" alt="">
+                </div>
+                <div class="overwhelming_text_css">You waste your valuable time chasing the changes and iteration.</div>
+              </div>
+              <div class="col-12 col-md-4 col-xxl-4 my-2  d-flex justify-content-center align-items-center flex-column">
+                <div class="overwhelming_css">
+                  <img src="../../assets/images/img_12_img.svg" alt="">
+                </div>
+                <div class="overwhelming_text_css">You find yourself compromising on creative quality due to time
+                  pressure.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center align-items-center flex-column mt-5">
+            <div class="overwhelming_text_css" id="client_satisfaction_css">And this can lead to reduced client
+              satisfaction,
+              risking repeat business and potential revenue growth. We don’t want to see that happen to you.</div> <br>
+            <div class="overwhelming_text_css" id="client_satisfaction_css">Over the past 15+ years, we’ve crafted over
+              1200
+              audio-visuals for event companies and brands, partnering in their growth and success. Our expertise in
+              cinematic
+              storytelling can propel your vision to new heights as well.</div>
+            <div class="collaborate_now_button_css">
+              <button routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">CONSULT
+                NOW</button>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="mx-5" style="margin-top: 100px;">
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+              <div class="col-xl-6 col-md-6 col-12">
+                <div class="home_img_1_css">
+                  <img src="../../assets/images/Rise_to_Top In_Class.svg" alt="">
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-start align-items-center">
+                <div class="text-start">
+                  <div class="text_second_row_css_2">Rise to <span class="years_15_css">Top</span> In <span
+                      class="years_15_css">Class</span></div>
+                  <div class="text_second_row_css_3">At AVX Mediaworkz, we know you are the kind of people who want to be
+                    <strong style="font-weight: bold !important;">‘Top in Class’</strong> In order to be that way, you
+                    need
+                    create high client satisfaction to repeat and multiply business. 
+                  </div>
+                  <div class="text_second_row_css_3">In the modern landscape, Events today have transformed into an
+                    Audio-Visual Experience demanding creative AU prowess but, the problem is there’s not many AV pros who
+                    truly get the whole package - the ones who can understand your event's vision, are expert at Film
+                    craft,
+                    and can write awesome copy.  Which makes you feel stressed and frustrated due to the high client
+                    expectations.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+        <div class="mx-5" style="margin-top: 100px;">
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+  
+              <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+                <div class="text-start">
+                  <div class="text_second_row_css_2">The <span class="years_15_css">smooth</span>&nbsp;<span
+                      class="years_15_css">way</span></div>
+                  <div class="text_second_row_css_3">We believe you shouldn't have to burned out to deliver on Client
+                    Expectations as far as Audio -Visuals are concerned. We understand what you go through to execute and
+                    deliver those ever-demanding events.
+                  </div>
+                  <div class="text_second_row_css_3">That’s why we make the AV making process as effortless for you as we
+                    can,
+                    while conceiving cinematic moments that can be felt & treasured through our signature- Cinematic
+                    Storytelling! 
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-6 col-12">
+                <div class="home_img_1_css">
+                  <img src="../../assets/images/The_smooth_way.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="mx-5" style="margin-top: 100px;">
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+              <div class="col-xl-6 col-md-6 col-12">
+                <div class="home_img_1_css">
+                  <img src="../../assets/images/With_3_Simple_Steps_to_Success.svg" alt="">
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+                <div class="text-start">
+                  <div class="text_second_row_css_2">With 3 Simple <span class="years_15_css">Steps</span> to <span
+                      class="years_15_css">Success</span></div>
+                  <div class="text_second_row_css_3">Here’s how this works in just 3 simple steps. 
+                  </div>
+                  <br>
+                  <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 1</span> Just drop on to
+                    our
+                    website and brief us the way you wish (There are loads of options from voice to video and more)
+                  </div>
+                  <br>
+                  <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 2</span> Schedule a
+                    meeting
+                    with us or allow us to call you at your convenient time to discuss your project
+                  </div>
+                  <br>
+                  <div class="text_second_row_css_3"><span class="text-white bg-dark px-2">STEP - 3</span> and sign up
+                    with
+                    your contact details. 
+                  </div>
+                  <br>
+                  <div class="text_second_row_css_3">That’s all! 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="mx-5" style="margin-top: 100px;">
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+  
+              <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+                <div class="text-start">
+                  <div class="text_second_row_css_2"><span class="years_15_css">Commanding</span> and <span
+                      class="years_15_css">Controlling</span></div>
+                  <div class="text_second_row_css_3">At that moment, our advanced tech-infused systems spring into action,
+                    crafting a bespoke dashboard for you. This becomes your command center, where you can steer every
+                    aspect
+                    of your AV production, from the initial script to the final cut. It's all there at your fingertips,
+                    streamlining the entire process with detailed oversight—no more clutter of group chats or endless
+                    calls.
+                    Plus, we provide a dedicated account manager to ensure everything runs smoothly, done for you as
+                    committed, making the complex turn effortless.
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-6 col-12">
+                <div class="home_img_1_css">
+                  <img src="../../assets/images/Commanding_and_Controlling.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="mx-5" style="margin-top: 100px;">
+          <div class="row">
+            <div class="col-xl-12 col-md-12 col-12 d-flex flex-wrap">
+              <div class="col-xl-6 col-md-6 col-12">
+                <div class="home_img_1_css">
+                  <img src="../../assets/images/To_xpand_Differently.svg" alt="">
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
+                <div class="text-start">
+                  <div class="text_second_row_css_2">To <span class="years_15_css">Expand</span>&nbsp;<span
+                      class="years_15_css">Differently</span></div>
+                  <div class="text_second_row_css_3">So, collaborate now and stop the cycle of stress, burnout,
+                    frustration
+                    and anxiety. Leave behind the endless hours in the editing studios, which could be better spent with
+                    friends and family or in pursuing new client relationships. End the cycle of settling for just 'nice'
+                    responses to your AV Content.  
+                  </div>
+                  <div class="text_second_row_css_3">Step into a world where High Client Appreciation repeats and
+                    multiplies
+                    business, setting the stage for your brand to thrive. 
+                  </div>
+                  <div class="text_second_row_css_3">With AVX, it's more than growth; it's about reshaping the landscape
+                    through new ways of making things happen. Collaborating with AVX Mediaworkz you will grow and expand
+                    Differently.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+        <div class="container-fluid p-0" style="margin-top: 100px;">
+          <div class="another_logos_css">
+            <div class="pb-5" style="background-color: rgb(0,0,0,80%);
+        border-radius: 46px 46px 0px 0px;">
+              <div class="d-flex justify-content-center align-items-center flex-column col-md-12 col-12 text-center">
+                <div class="we_take_second_text_2 mt-5">PRIDE IN OUR WORK</div>
+                <div class="we_take_second_text_3 mt-2">Together we have helped more than a dozen companies make their
+                  brands
+                  better.</div>
+                <div class="logos_imgs_css col-md-12">
+                  <img src="../../assets/images/HCL_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/vodafone_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/airtel_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/idea_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/dp_world_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/hero_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/eduauraa_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/justdial_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/cocacola_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/grant_thornton_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/lumnx_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/lexi_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/bsh_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/dassault_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/concentrix_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/the_times_of_india_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/hindustantimes_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/properties_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/spicejet_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/provogue_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/prozone_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/goverment_of_india_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/bmw_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/cashkaro_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/phoenix_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/amazon_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/akzonobel_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/spice_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/samsuno_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/lg_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/vidyagyan_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/shiv_nadar_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/heroecotech_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/aonhewitt_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/sanofi_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/ascend_logo.svg" class="logos_img_css_1" alt="">
+                  <img src="../../assets/images/indosat_logo.svg" class="logos_img_css_1" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid" style="background-color: yellow; height: 30px; width: 100%;"></div>
+  
+        </div>
+        <div class="mt-1 text-center" id="portfolio">
+          <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
+            <div class="we_take_second_text_1" style="color: black;">Have a look over</div>
+            <div class="we_take_second_text_2" style="color: black;"><span class="years_15_css_1">Our</span> work <span
+                class="years_15_css_1">portfolio</span></div>
+            <div class="we_take_second_text_3" style="color: #000000; font-size: 15px !important;">Lorem ipsum dolor sit
+              amet,
+              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+            <div class="">
+  
+              <div class="col-12 col-md-12 col-xxl-12">
+                <div class="video_portfolio_css">
+                  <div *ngFor="let item of items">
+                    <video #myVideo (mouseenter)="playVideo(myVideo)" (mouseleave)="pauseVideo(myVideo)">
+                      <source src="../../assets/images/video_data.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+  
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+        <div class="mt-1 text-center">
+          <div
+            class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center slider_img_css_bg">
+            <div class="we_take_second_text_1" style="color: black;">What Our</div>
+            <div class="we_take_second_text_2" style="color: black;"><span class="years_15_css_1">client</span> Says <span
+                class="years_15_css_1">about us</span></div>
+            <div class="col-md-12 col-12 card-slider-css">
+              <section>
+  
+                <p-carousel [value]="cardsArrayData" [numVisible]="3" [showIndicators]="false" [numScroll]="1"
+                  [responsiveOptions]="responsiveOptions">
+                  <ng-template let-product pTemplate="item">
+                    <div class="container-fluid d-flex justify-content-center align-items-center ">
+                      <div class="content">
+                        <div class="card-content-card bg-white">
+                          <div class="card-content">
+                            <div class="name-profession">
+                              <p class="name">{{ product.name }}</p>
+                              <p class="profession">{{ product.profession }}</p>
+                            </div>
+  
+                            <div class="card-img-text-content">
+                              <div class="image">
+                                <img [src]="product.imageUrl" alt="">
+                              </div>
+                              <div class="details-user">
+                                <div class="star">
+                                  <i class="fa fa-star" *ngFor="let star of getStars(product.stars)"
+                                    [style.color]="star ? 'yellow' : '#fff'" id="star"></i>
+                                </div>
+                                <div class="name">{{ product.userName }}</div>
+                                <div class="poistion">{{ product.userPosition }}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </p-carousel>
+  
+  
+              </section>
+            </div>
+            <div class="container mb-2">
+              <div class="text-black float-end fs-5">Source : <b>Trustpilot</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid text-center mt-3">
+          <div class="text_look_over_div">
+            <div class="we_take_second_text_1" style="color: #000000;">Have a look over</div>
+            <div class="we_take_second_text_2" style="color: #000000;"><span class="years_15_css_1">Our</span> work <span
+                class="years_15_css_1">portfolio</span></div>
+            <div class="we_take_second_text_3" style="color: #000000; font-size: 15px !important;">Lorem ipsum dolor sit
+              amet,
+              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+          </div>
+          <div class="container-fluid p-0">
+            <div class="col-md-12 col-12 card-slider-css-1">
+              <section class="">
+                <p-carousel [value]="cardsArray" [numVisible]="4" [autoplayInterval]="3000" [showIndicators]="false"
+                  [numScroll]="1" [responsiveOptions]="responsiveOptions">
+                  <ng-template let-product pTemplate="item">
+                    <div class="px-2 d-flex justify-content-center align-items-center">
+                      <div class="card hover_css card_width">
+                        <img [src]="product.imageUrl" class="card-img-top" alt="...">
+                        <div class="info-overlay">
+                          <span><b>{{ product.title }}</b></span>
+                          <span>{{ product.description }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </p-carousel>
+  
+  
+  
+  
+              </section>
+            </div>
+          </div>
+        </div>
+  
+        <div class="container-fluid p-0">
+          <div class="video_bg_css col-md-12 col-12">
+            <img src="../../assets/images/video_bg_img.svg" alt="">
+          </div>
+        </div>
+        <div class="px-5 text-start mt-0" id="why-us">
+          <div class="col-md-12 col-12 d-flex flex-wrap">
+            <div class="col-md-6 col-12 ">
+              <div class="text_look_over_div" style="align-items: start !important;">
+                <div class="we_take_second_text_1 " style="color: #000000;">Check</div>
+                <div class="we_take_second_text_2" style="color: #000000;"><span class="years_15_css_1">Why</span> to
+                  <span class="years_15_css_1">choose Us</span>
+                </div>
+                <div class="we_take_second_text_3"
+                  style="color: #000000; font-size: 15px !important; text-align: start !important; width: 100% !important;">
+                  Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 d-flex flex-wrap">
+            <div class="col-md-4 col-12">
+              <div class="row">
+                <div class="col-md-12 col-12 pt-5 d-flex">
+                  <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                    <div class="img_icon">
+                      <img src="../../assets/images/Cinematic_Excellence.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-9 ms-2 mx-2">
+                    <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Cinematic
+                      Excellence
+                    </div>
+                    <div class="me-5">We adhere to a premium-only policy that guarantees high-quality cinematic work for
+                      every
+                      project.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-12 pt-5 d-flex">
+                  <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                    <div class="img_icon">
+                      <img src="../../assets/images/Expert_Script_Writers.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-9 mx-2">
+                    <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Expert Script
+                      Writers
+                    </div>
+                    <div class="me-5">Our scripts are penned by seasoned writers with extensive backgrounds in advertising
+                      and
+                      film, ensuring that your client’s message hits the mark from the start.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-12 pt-5 d-flex">
+                  <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                    <div class="img_icon">
+                      <img src="../../assets/images/eye_img_oo.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-9 mx-2">
+                    <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Visualised
+                      Precision
+                    </div>
+                    <div class="me-5">To set clear expectations and minimize revisions, we provide detailed mood boards
+                      along
+                      with scripts, enhancing understanding and vision alignment.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-12">
+              <div class="row">
+                <div class="col-md-12 col-12 pt-5 d-flex">
+                  <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                    <div class="img_icon">
+                      <img src="../../assets/images/Directed_by_Experts.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-9 mx-2">
+                    <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">Directed by
+                      Experts
+                    </div>
+                    <div class="me-5">Your audio-visual content is directed by film and ad film directors, infusing your
+                      projects with cinematic aesthetics and a depth of feeling that elevates the viewer's experience.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-12 pt-5 d-flex">
+                  <div class="col-md-2 col-3 justify-content-center align-items-start d-flex">
+                    <div class="img_icon">
+                      <img src="../../assets/images/TECH_ENABLED_Smart_Streamlined_Process.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-9 mx-2">
+                    <div style="font-size: 20px; font-weight: bold; font-family: 'Helvetica', sans-serif;">TECH ENABLED
+                      Smart,
+                      Streamlined Process</div>
+                    <div class="me-5">Our tech-driven workflow empowers you to take CONTROL of your project effortlessly,
+                      saving you time and reducing your effort.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-12 d-flex justify-content-center align-items-center">
+              <img src="../../assets/images/check_to_img.svg" class="w-100" alt="">
+            </div>
+  
+          </div>
+        </div>
+  
+        <div class="container d-flex justify-content-center align-items-center mt-5 pb-3">
+          <div class="text_on_slider_button_000">
+            <button routerLink="/how-it-works" (click)="apiService.routePage('how-it-works','form')">Get Started <i
+                class="fa fa-arrow-right"></i></button>
+          </div>
+        </div>
+  
+        <div class="mt-1">
+          <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
+            <div class="we_take_second_text_1" style="color: black;">Know who is</div>
+            <div class="we_take_second_text_2 text-center" style="color: black;"><span class="years_15_css_1">our</span>
+              <span class="years_15_css_1">founder</span>
+            </div>
+            <div class="mt-5">
+              <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap justify-content-center align-items-center">
+                <div class="col-12 col-md-6 col-xxl-6 d-flex align-items-center">
+                  <div class="col-12 col-md-12 d-flex flex-column">
+                    <div class="bottom_img">
+                      <img src="../../assets/images/bottom_img.svg" alt="">
+                    </div>
+                    <div class="img_css_commma_2">
+                      <img src="../../assets/images/comma_2.svg" alt="">
+                    </div>
+                    <div class="img_css_commma_3">Meet <b>Vinay Jaiswal</b>, Our Founder, the heart and mind behind
+                      <b>AVX
+                        Mediaworkz</b></div>
+                    <div class="img_css_commma_3">Starting out as client servicing and then creative director in the
+                      bustling world of corporate event management, he spent a decade honing his skills before heeding the call of
+                      his first love: filmmaking.</div>
+                    <div class="img_css_commma_4"><b>- Vinay Jaiswal</b>, <u>Founder AVX Mediaworkz</u></div>
+                    <div class="img_css_commma_1">
+                      <img src="../../assets/images/comma_1.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-xxl-6">
+                  <div class="col-12 col-md-12 col-xxl-12 d-flex flex-column justify-content-start align-items-center">
+                  
+                    <div class="img_css_commma_11"><b>Since 2008</b>, Vinay has been the creative force behind an
+                      impressive
+                      portfolio of over 1200+ audiovisuals, lending his vision to more than 100 brands and 50+ event
+                      companies.</div>
+                    <div class="img_css_commma_11"><b>In 2015</b>, Vinay ventured into the realm of advertising films.
+                      Over
+                      the past 8 years, he's directed over 135 TVCs and DVCs, for top Indian and Global brands. Some of
+                      which
+                      you might've seen making rounds on the internet and TV (Check them here:
+                      <i>www.youtube.com/&#64;directorvinayjaiswal</i>). 
+                    </div>
+                      <!-- <div class="img_css_commma_11">Meet <b>Vinay Jaiswal</b>, Our Founder, the heart and mind behind
+                      <b>AVX
+                        Mediaworkz</b>.
+                    </div> -->
+                    <div class="img_css_commma_11"> His work has brought him in collaboration with more than 35 celebs in Bollywood, sports, and
+                      music,
+                      such as Virat Kohli, Manoj Bajpayee, Tapsee Pannu , Sonu Nigam and many top names to reckon with
+                      in
+                      the world.</div>
+                    <div class="readMore_css" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                      aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-chevron-circle-down"></i> Read
+                      More</div>
+                  </div>
+                </div>
+  
+                <div class="collapse mt-5" id="collapseExample">
+                  <div class="card-body d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-10 d-flex flex-wrap">
+                      <div class="col-12 col-md-6">
+                        <!-- His work has brought him in collaboration with more than 35 celebs in Bollywood, sports, and
+                        music,
+                        such as Virat Kohli, Manoj Bajpayee, Tapsee Pannu , Sonu Nigam and many top names to reckon with
+                        in
+                        the world. -->
+                        Vinay is a creative-preneur, not only the business owner of the company Kreative Fire Media but is
+                        also an accomplished Director, Producer, Song Writer, Music composer, screenwriter and creative
+                        consultant. A rare one of its kind in the country.
+                        Harnessing 25 years of industry experience, Vinay conceived AVX MediaWorkz, a solution-centric
+                        haven
+                        for event companies navigating the multifaceted world of AV content.
+                      </div>
+                      <div class="col-12 col-md-6">
+                        Today, Vinay is not only scaling AVX but also nurturing a tech startup aimed at revolutionizing
+                        the
+                        Media & Entertainment industry, foraying into the music business along with setting up mainstream
+                        feature films.
+                        When he's not weaving stories or sketching out the next big idea, Vinay is a food enthusiast, a
+                        bookworm, and the kind of person you'd want to meet for an inspiring conversation.
+                        Vinay's believes that his life is a service to others, his story isn't just about his
+                        achievements;
+                        it's about a relentless pursuit of pure intent, creativity and a drive to make a difference, one
+                        frame
+                        at a time.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+        <div class="mt-5" id="blog">
+          <div class="col-md-12 col-12 d-flex flex-wrap flex-column justify-content-center align-items-center">
+            <div class="we_take_second_text_1" style="color: black;">Read our</div>
+            <div class="we_take_second_text_2 text-center" style="color: black;"><span class="years_15_css_1">Blogs</span>
+              &
+              <span class="years_15_css_1">Tips School</span>
+            </div>
+            <div class="mx-5 mt-5">
+              <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
+                <div class="col-12 col-md-6 col-xxl-6 d-flex align-items-center img_mail_post">
+                  <img src="../../assets/images/img_for_down.svg" alt="">
+                </div>
+                <div class="col-12 col-md-6 col-xxl-6 mt-2">
+                  <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
+                    <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
+                      <img src="../../assets/images/img_for_down_1.svg" alt="">
+                    </div>
+                    <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
+                      <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like
+                        this.</span>
+                      <div class="text-black">
+                        <span>5 Months Ago | 15 Minute Read</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
+                    <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
+                      <img src="../../assets/images/blog_2.svg" alt="">
+                    </div>
+                    <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
+                      <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like
+                        this.</span>
+                      <div class="text-black">
+                        <span>5 Months Ago | 15 Minute Read</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-12 col-xxl-12 d-flex flex-wrap">
+                    <div class="col-12 col-md-3 col-xxl-3 img_blog_post">
+                      <img src="../../assets/images/blog_3.svg" alt="">
+                    </div>
+                    <div class="col-12 col-md-9 col-xxl-9 ps-2 d-flex justify-content-around flex-column">
+                      <span class="blog_css_text">Blog Headline Here, Lorem ipsum for example, It May look like
+                        this.</span>
+                      <div class="text-black">
+                        <span>5 Months Ago | 15 Minute Read</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container d-flex justify-content-center align-items-center mt-5 pb-5">
+                <div class="text_on_slider_button_000">
+                  <button>Read More <i class="fa fa-arrow-right"></i></button>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
 </div>

@@ -44,17 +44,11 @@ export class BriefsComponent {
   projectsFinised: Project[] | any;
   // tasks: Task[] | any;
   tasks: any[] = [
-    { name: 'Task 1', startDate: new Date('2024-01-05'), deadlineDate:new Date('2024-01-30'), created: new Date('2024-01-01'), start: new Date('2024-01-11'), completed: new Date('2024-01-31'), },
-    { name: 'Task 2', startDate: new Date('2024-01-12'), deadlineDate:new Date('2024-01-31'), created: new Date('2024-01-13'), start: new Date('2024-01-14'), completed: new Date('2024-01-16'), },
-    { name: 'Task 3', startDate: new Date('2024-01-03'), deadlineDate:new Date('2024-01-01'), created: new Date('2024-01-07'), start: new Date('2024-01-13'), completed: new Date('2024-01-17'), },
-    { name: 'Task 4', startDate: new Date('2024-01-01'), deadlineDate:new Date('2024-01-30'), created: new Date('2024-01-05'), start: new Date('2024-01-11'), completed: new Date('2024-01-31'), },
-    { name: 'Task 5', startDate: new Date('2024-01-12'), deadlineDate:new Date('2024-01-31'), created: new Date('2024-01-13'), start: new Date('2024-01-14'), completed: new Date('2024-01-16'), },
-    { name: 'Task 6', startDate: new Date('2024-01-03'), deadlineDate:new Date('2024-01-01'), created: new Date('2024-01-07'), start: new Date('2024-01-13'), completed: new Date('2024-01-17'), },
-    { name: 'Task 7', startDate: new Date('2024-01-03'), deadlineDate:new Date('2024-01-01'), created: new Date('2024-01-07'), start: new Date('2024-01-13'), completed: new Date('2024-01-17'), },
-    { name: 'Task 8', startDate: new Date('2024-01-01'), deadlineDate:new Date('2024-01-30'), created: new Date('2024-01-05'), start: new Date('2024-01-11'), completed: new Date('2024-01-31'), },
-    { name: 'Task 9', startDate: new Date('2024-01-12'), deadlineDate:new Date('2024-01-31'), created: new Date('2024-01-13'), start: new Date('2024-01-14'), completed: new Date('2024-01-16'), },
-    { name: 'Task 10', startDate: new Date('2024-01-03'), deadlineDate:new Date('2024-01-01'), created: new Date('2024-01-07'), start: new Date('2024-01-13'), completed: new Date('2024-01-17'), },
+    { name: 'Task 1',created: new Date('2024-01-01'), startDate: new Date('2024-01-01'), deadlineDate:new Date('2024-01-25'), start: new Date('2024-01-11'), completed: new Date('2024-01-31'), },
+    { name: 'Task 2',created: new Date('2024-01-03'), startDate: new Date('2024-01-04'), deadlineDate:new Date('2024-01-31'), start: new Date('2024-01-14'), completed: new Date('2024-01-16'), },
+    { name: 'Task 3',created: new Date('2024-01-07'), startDate: new Date('2024-01-15'), deadlineDate:new Date('2024-01-29'), start: new Date('2024-01-10'), completed: new Date('2024-01-17'), },
   ];
+  // tasks: any;
   
 
 
@@ -67,14 +61,17 @@ export class BriefsComponent {
   }
 
   calculateMarginLeft(startDate: Date): number {
+    // console.warn('start Date',startDate)
     const diffInDays = Math.floor((startDate.getDate())-1);
-    return diffInDays * 2.7;
+    return diffInDays * 2.88;
+    // return diffInDays * 2.7;
   }
 
   calculateWidth(date: Date, startDate: Date): number {
     const diffInDays = Math.floor((date.getDate() - startDate.getDate()) +1);
     // console.log('kkkklklklklk -===>',diffInDays)
-    return diffInDays * 2.859;
+    return diffInDays * 2.79;
+    // return diffInDays * 2.859;
   }
  
   isOn: boolean = true;
@@ -119,7 +116,7 @@ export class BriefsComponent {
     this.apiService.getTaskListOfActiveProject(project_id).subscribe(
       (r: any) => {
         console.log('getTaskListOfActiveProject =>', r);
-        this.tasks = r.data.task_info;
+        this.tasks = r.data;
         console.warn('tasks ==> ',this.tasks)
         // this.tasks = r.data.filter((project: { is_enabled: boolean; current_status: string; }) => {
         //   return project.is_enabled === true && project.current_status !== 'Finished';

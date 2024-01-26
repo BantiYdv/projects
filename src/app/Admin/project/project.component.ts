@@ -95,7 +95,10 @@ export class ProjectComponent implements OnInit {
     project_resourses: File,
     handel_by:'',
     client_id:'',
-    project_type:''
+    project_type:{
+      _id:'',
+      name:''
+    }
   };
   
   get_project_type:any;
@@ -387,7 +390,7 @@ getFormattedValue(value: any): any {
       (r:any) => {
         this.projectUpdate = r.data;
         this.project_id = r.data._id
-        console.log('data.project_id',r.data._id)
+        console.log('data.project Data',r)
       },
       (e) => {
         console.error('error -->',e);

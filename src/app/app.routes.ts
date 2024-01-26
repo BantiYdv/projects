@@ -65,8 +65,5 @@ export const routes: Routes = [
     {'path': 'user/file-sharing', component:FileSharingUserComponent,canActivate: [authGuard]},//user
     {'path': 'user/file-sharing-table', component:FileSharingTableComponent,canActivate: [authGuard]},//user
 
-
-
-
-    { path: '**', redirectTo: 'home' }
+    { path: '**', redirectTo: '' }
 ];

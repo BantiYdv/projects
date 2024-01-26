@@ -42,3 +42,156 @@ button:disabled{
 .container-fluid{
   width: 100% !important;
 }
+
+.not_data_img_div {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.not-found-text {
+  font-size: 20px;
+
+  margin-bottom: 10px;
+  color: #554F50;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.not-found-image {
+  width: 35%;
+
+}
+.text_add_p_css {
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+}
+.add_css_pro_code {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.add_css_pro_code label {
+  font-size: 17px;
+  font-weight: bold;
+}
+.add_css_pro_code input,
+.add_css_pro_code select {
+  font-size: 15px;
+  border: 2.5px solid #555353;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 5px;
+  width: 80%;
+}
+.save_css_button_code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.save_css_button_code button {
+  background-color: yellow;
+  color: #000;
+  outline: none;
+  border: 1px solid yellow;
+  border-radius: 5px;
+  padding: 10px 40px;
+}
+.save_css_button_code button:active {
+  transform: scale(0.9);
+}
+
+/* for pagenation start  */
+.added_positions_list_right {
+  display: flex;
+  align-items: center;
+  float: left;
+}
+
+.added_positions_under_head {
+  font-size: 14px;
+  padding: 10px;
+}
+
+.added_positions_under_head_select {
+  border: 1px solid #adadad;
+  font-size: 18px;
+  padding: 0px;
+  border-radius: 8px;
+}
+
+.table_footer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.table_footer button{
+  transition: transform .3s ease;
+}
+.table_footer button:active{
+  transform: scale(.9);
+  
+}
+
+.recruitment_list_number {
+  margin: 0px 10px;
+  display: flex;
+  cursor: pointer;
+}
+.recruitment_list_number_value.active_num {
+  background-color: #d9d9d9;
+
+}
+
+.recruitment_list_number_value {
+  background-color: #ffffff00;
+  color: #000000;
+  border-radius: 15px;
+  height: 25px;
+  width: 25px;
+  padding: 2px 8px;
+  margin: 0px 5px;
+}
+ /* for pagenation end  */
+
+
+ /* for search bar */
+ .creativeAssetSearch{
+  display: flex;
+border-radius: 10px;
+float: right;
+border: 2px solid #000;
+background: #F8F9FF;
+}
+
+.searchBar{
+width: 90%;
+border-bottom: 2px solid #BCBBC3;
+padding-bottom: 10px;
+}
+
+.creativeAssetSearch input{
+border: none;
+background: transparent;
+outline: none;
+font-size: 18px;
+padding: 0 0 0 10px;
+}
+
+
+.creativeAssetsSearchIcon{
+  width: 40px;
+height: 40px;
+border-radius: 0px 8px 8px 0px;
+padding: 6px;
+ background-color: #393939;
+}
+ /* for search bar */

@@ -67,6 +67,11 @@
         </tbody>
     </table>
 </div>
+
+<div class="not_data_img_div" *ngIf="projects.length === 0">
+    <p class="not-found-text">Data Not Found!</p>
+    <img class="not-found-image" src="../../assets/images/notFound.png" alt="Image Not Found">
+  </div>
 </div>
 
 <div class="" *ngIf="!isOn">
@@ -106,4 +111,8 @@
             </tbody>
         </table>
     </div>
+    <div class="not_data_img_div" *ngIf="tasks.length === 0">
+        <p class="not-found-text">Data Not Found!</p>
+        <img class="not-found-image" src="../../assets/images/notFound.png" alt="Image Not Found">
+      </div>
     </div>
