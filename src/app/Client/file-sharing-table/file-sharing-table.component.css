@@ -63,44 +63,19 @@
         transform: scale(.9);
       }
 
-
-      .text_add_p_css {
-        text-align: center;
-        color: #000;
-        font-weight: bold;
+      .accect_button button{
+background-color: #47C17A;
       }
-      .add_css_pro_code {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
+      .decline_button button{
+background-color: #FF4370;
       }
-      .add_css_pro_code label {
-        font-size: 17px;
-        font-weight: bold;
+      .accect_button button , .decline_button button{
+        border: 1px solid transparent;
+        padding: 10px 20px 10px 20px;
+        border-radius: 10px;
+        font-size: 20px;
+        transition: transform .3s ease;
       }
-      .add_css_pro_code input,
-      .add_css_pro_code select {
-        font-size: 15px;
-        border: 2.5px solid #555353;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 5px;
-        width: 80%;
-      }
-      .save_css_button_code {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-      }
-      .save_css_button_code button {
-        background-color: yellow;
-        color: #000;
-        outline: none;
-        border: 1px solid yellow;
-        border-radius: 5px;
-        padding: 10px 40px;
-      }
-      .save_css_button_code button:active {
-        transform: scale(0.9);
+      .accect_button button:active , .decline_button button:active{
+transform: scale(.9);
       }

@@ -82,7 +82,8 @@ line-height: normal;
   font-weight: bold;
 }
 .add_css_pro_code input,
-.add_css_pro_code select {
+.add_css_pro_code select,
+.add_css_pro_code textarea {
   font-size: 15px;
   border: 2.5px solid #555353;
   border-radius: 5px;

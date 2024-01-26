@@ -414,6 +414,15 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.get(this.keys.getFileSharing, { headers });
   }
+  shareReviewForFiles(id:any,accpet:any, comment:any) {
+    const data =  {
+fileshareing_id:id,
+is_accpeted:accpet,
+review_comment:comment
+    }
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.shareReviewForFiles, data, { headers });
+  }
   
 
   addClient(userData: any) {

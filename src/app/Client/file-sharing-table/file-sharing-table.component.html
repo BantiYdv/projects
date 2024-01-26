@@ -43,7 +43,7 @@
                             </div>
                         </td>
                         <td>
-                            <div class="img_dwonLoad_1" data-bs-toggle="modal" data-bs-target="#saveReviewData" >
+                            <div class="img_dwonLoad_1" data-bs-toggle="modal" data-bs-target="#saveReviewData"  >
                                 <img src="../../../assets/images/plus_add_img.svg" style="width: 40px; height: 40px;" alt="">
                             </div>
                         </td>
@@ -59,7 +59,7 @@
 
 
 <div class="modal fade" id="saveReviewData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
             <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
@@ -72,24 +72,32 @@
                 </div>
             </div>
             <div class="modal-body m-4">
-                <form #saveReviewForm="ngForm" (ngSubmit)="saveReviewData()">
+                <form>
                     <div class="col-12 col-md-12 d-flex flex-wrap">
-                       
-                        
-                        <div class="col-12 col-md-6">
-                            <div class="add_css_pro_code">
-                                <label>Project</label>
-                               
-                            </div>
+                      <div class="col-12 col-md-12 d-flex justify-content-center align-items-center gap-3">
+                        <div class="accect_button" *ngIf="is_accepted != false">
+                          <button (click)="accept()" data-bs-dismiss="modal" aria-label="Close">Accept</button>
                         </div>
-                      
-                    </div>
-                    <div class="col-12 col-md-12">
-                        <div class="save_css_button_code">
-                            <button [disabled]="saveReviewForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                        <div class="decline_button" *ngIf="is_accepted != false">
+                          <button (click)="decline()">Decline</button>
                         </div>
+                      </div>
                     </div>
-                </form>
+                  
+                    <div class="col-12 col-md-12" *ngIf="is_accepted == false">
+                      <div class="add_css_pro_code">
+                        <label>Review</label>
+                        <textarea [(ngModel)]="review_comment" name="project_resourses" rows="5" cols="10" placeholder="write here"></textarea>
+                      </div>
+                    </div>
+                  
+                    <div class="col-12 col-md-12" *ngIf="is_accepted == false">
+                      <div class="save_css_button_code">
+                        <button (click)="saveReviewData()" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                  
 
             </div>
         </div>
