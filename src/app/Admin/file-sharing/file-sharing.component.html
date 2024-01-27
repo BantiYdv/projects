@@ -1,20 +1,60 @@
-<!-- <div class="container"> -->
-    
+    <!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+        <div class="searchBar">
+            <div class="header_css_button_project">
+                <button data-bs-toggle="modal" data-bs-target="#addFileSharing"><i class="fa fa-plus"></i> Add
+                    New</button>
+            </div>
+            <div class="added_positions_list_right" *ngIf="currentFileSharingTablePage === 1">
+                <div class="added_positions_under_head">Show</div>
+                <div>
+                  <select class="added_positions_under_head_select" [(ngModel)]="FileSharingTablePageperPage">
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                  </select>
+                </div>
+                <div class="added_positions_under_head">Enteries</div>
+              </div>
+            <div class="creativeAssetSearch">
+                <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchFileSharingTable"
+                (keyup)="FilterFileSharingTable()"> <img
+                    src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+            </div>
+        </div>
+        
+    </div> -->
+
     <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
         <div class="searchBar">
             <div class="header_css_button_project">
                 <button data-bs-toggle="modal" data-bs-target="#addFileSharing"><i class="fa fa-plus"></i> Add
                     New</button>
             </div>
+            <div class="added_positions_list_right" *ngIf="currentFileSharingTablePage === 1">
+                <div class="added_positions_under_head">Show</div>
+                <div>
+                    <select class="added_positions_under_head_select" [(ngModel)]="FileSharingTablePageperPage">
+                        <option value="12">12</option>
+                        <option value="24">24</option>
+                        <option value="36">36</option>
+                        <option value="48">48</option>
+                        <option value="60">60</option>
+                    </select>
+                </div>
+                <div class="added_positions_under_head">Enteries</div>
+            </div>
             <div class="creativeAssetSearch">
-                <input type="text" id="searchBar" placeholder="Search"> <img
-                    src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+                <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchFileSharingTable" (keyup)="FilterFileSharingTable()">
+                <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
             </div>
         </div>
-        
-    </div>
     
-    <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    </div>
+
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-4" *ngIf="getPaginatedFileSharingTableData().length !== 0">
         <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
             <div class="creativeAsset">
                 File Sharing
@@ -23,7 +63,7 @@
     
     </div>
         <div class="">
-            <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
+            <div class="col-12 col-md-12 mt-4 px-5 overflow-auto" *ngIf="getPaginatedFileSharingTableData().length !== 0">
                 <table class="table tAble_css table-striped">
                     <thead class="table-dark tHead_css">
                         <tr>
@@ -38,7 +78,8 @@
                         </tr>
                     </thead>
                     <tbody class="tBody_css">
-                        <tr *ngFor="let projectData of projects; let i = index">
+                        <tr *ngFor="let projectData of getPaginatedFileSharingTableData(); let i = index">
+
                             <td scope="row">{{i+1}}</td>
                             <td>{{ projectData.project_id.name ||
                                 "-"}}</td>
@@ -50,12 +91,14 @@
                                     'dd/MM/yyyy' || "-" }}</td>
                                 <td>
                                 <div class="img_dwonLoad_1" >
+                                    <a [href]="'https://api-avx.prilient.com/download?url=' + projectData.url" download>
                                     <img src="../../../assets/images/dwonLoad_1.svg" class="w-25" alt="">
+                                    </a>
                                 </div>
                             </td>
                             <td>
                                 <button class="view_data_css_22"  data-bs-toggle="modal" 
-                                data-bs-target="#viewClientReview">View</button>
+                                data-bs-target="#viewClientReview" (click)="sendData(projectData.is_accpeted,projectData.review_comment,projectData.is_viewed_by_client)">View</button>
                                 
                             </td>
                             <td>
@@ -68,7 +111,37 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="modal-footer mb-2" style="width: 80%;">
+                <div class="col-md-12" *ngIf="getTotalPagesFileSharingTable() > 1">
+                  <div class="table_footer mt-2">
+                    <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                      style="background-color:yellow; color: #000;" (click)="previousFileSharingTablePage()"
+                      [disabled]="currentFileSharingTablePage == 1">
+                      <i class="fa fa-angle-left"></i> Previous
+                    </button>
+                    <div class="recruitment_list_number">
+                      <div *ngFor="let pageNumber of getPageNumbersFileSharingTable()"
+                        [class.active_num]="pageNumber === currentFileSharingTablePage" class="recruitment_list_number_value"
+                        (click)="changePageFileSharingTable(pageNumber)">
+                        {{ pageNumber }}
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                      style="background-color:yellow; color: #000;" (click)="nextPageFileSharingTable()"
+                      [disabled]="currentFileSharingTablePage == getTotalPagesFileSharingTable()">
+                      Next <i class="fa fa-angle-right"></i>
+                    </button>
+            
+                  </div>
+                </div>
+                </div>
         </div>
+
+        <div class="not_data_img_div" *ngIf="getPaginatedFileSharingTableData().length == 0">
+            <p class="not-found-text">Data Not Found!</p>
+            <img class="not-found-image" src="/assets/images/notFound.png" alt="Image Not Found">
+          </div>
     <!-- </div> -->
     
     <div class="modal fade" id="addFileSharing" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,28 +209,28 @@
                 </div>
                 <div class="modal-body m-4">
                     <div>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. At a eveniet quidem maxime amet, officiis dicta voluptatibus hic laborum, minus explicabo incidunt, aspernatur perferendis vel optio iste reprehenderit pariatur cumque!
-                    </div>
-                    <!-- <div class="col-12 col-md-12">
-                        <div *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index"
-                            class="d-flex justify-content-between align-items-center">
-                            <h2>{{project_resourses.name || 'Document'}}</h2>
-                            <a [href]="'http://101.53.145.234:4005/' + projectUpdate.project_resourses.url" download>
-                                <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
-                            </a>
-                        </div>
-                        <div *ngIf="projectUpdate.project_resourses == 0"
-                            class="d-flex justify-content-center align-items-center">
-                            No Document
-                        </div>
-                        <div *ngIf="!projectUpdate.project_resourses"
-                            class="d-flex justify-content-center align-items-center">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                        <div class="col-12 col-md-12 d-flex flex-wrap" *ngIf="is_viewed_by_client">
+                            <div class="col-12 col-md-12 d-flex flex-column justify-content-center align-items-center gap-3">
+                              <div class="accect_button" *ngIf="is_accpeted == true">
+                                <button>Accept</button>
+                              </div>
+                              <div class="decline_button" *ngIf="is_accpeted == false">
+                                <button>Decline</button>
+                              </div>
+                              <div *ngIf="is_accpeted == false">{{review_comment}}</div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center" *ngIf="is_viewed_by_client == false">
+                            <div class="add_css_pro_code">
+                                Client has not seen yet.
                             </div>
                         </div>
-    
-                    </div> -->
+                          <div class="col-12 col-md-12 d-flex flex-wrap justify-content-center align-items-center" *ngIf="is_viewed_by_client && is_accpeted == undefined">
+                            <div class="add_css_pro_code">
+                                Client has seen.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

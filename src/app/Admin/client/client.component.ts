@@ -16,15 +16,15 @@ import Swal from 'sweetalert2';
 })
 export class ClientComponent {
   clients : any[] | any;
+  ClientData: any;
   register: any = {
     country_code: '+91'
-
   };
  
   clientUpdate: any = {
     country_code: '+91',
   };
-  country_code: any = {};
+  country_code: any;
 
   constructor(private apiService:ApiServiceService, private router: Router,) {}
 
@@ -32,6 +32,7 @@ export class ClientComponent {
   ngOnInit(): void {
     // const userId = localStorage.getItem('userId')
     this.get_client_id();
+    this.countryDialCode();
     
 
   }
@@ -41,6 +42,7 @@ export class ClientComponent {
     this.apiService.get_client_id().subscribe(
       (r:any) => {
         this.clients = r.data;
+        this.ClientData = r.data;
         console.log('clients',this.clients)
       },
       (e) => {
@@ -49,6 +51,17 @@ export class ClientComponent {
     )
   }
 
+  countryDialCode() {
+    this.apiService.countryDialCode().subscribe(
+      (r: any) => {
+        this.country_code = r.data;
+        console.log('country_code ==>', r.data);
+      },
+      (e) => {
+        console.error(e);
+      }
+    );
+  }
   addClient(register: any) {
     console.log('Client Api =>', register);
     this.apiService.addClient(register).subscribe(
@@ -113,7 +126,7 @@ export class ClientComponent {
       email: this.clientUpdate.email,
       mobile_number: this.clientUpdate.mobile_number,
       country_code: this.clientUpdate.country_code,
-      designation: this.clientUpdate.designation,
+      // designation: this.clientUpdate.designation,
     };
     this.apiService.updateProfile(data).subscribe(
       (r: any) => {
@@ -148,4 +161,57 @@ export class ClientComponent {
       }
     );
   }
+
+  searchClient: string = '';
+  ClientPageperPage: number = 12;
+  currentClientPage: number = 1;
+ 
+  FilterClient() {
+   this.clients = this.ClientData.filter((item: { name: string; }) =>
+   item.name.toLowerCase().includes(this.searchClient.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedClientData(): any[] {
+    const startIndex = (this.currentClientPage - 1) * this.ClientPageperPage;
+    const endIndex = startIndex + this.ClientPageperPage;
+    return this.clients.slice(startIndex, endIndex);
+  }
+
+  previousClientPage(): void {
+    if (this.currentClientPage > 1) {
+      this.currentClientPage--;
+    }
+  }
+
+  changePageClient(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesClient()) {
+      this.currentClientPage = pageNumber;
+    }
+  }
+  
+  
+  nextPageClient(): void {
+    const totalPages = Math.ceil(
+      this.clients.length / this.ClientPageperPage
+    );
+    if (this.currentClientPage < totalPages) {
+      this.currentClientPage++;
+    }
+  }
+
+  getPageNumbersClient(): number[] {
+    const totalPages = Math.ceil(
+      this.clients.length / this.ClientPageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagesClient(): number {
+    return Math.ceil(
+      this.clients.length / this.ClientPageperPage
+    );
+  }
+
 }

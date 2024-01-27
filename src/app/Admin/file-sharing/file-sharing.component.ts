@@ -30,7 +30,15 @@ interface Project {
   styleUrl: './file-sharing.component.css'
 })
 export class FileSharingAdminComponent {
-  projects: Project[] | any;
+
+
+  is_accpeted:boolean|any;
+  is_viewed_by_client:boolean|any;
+  review_comment:string|any;
+
+  
+  FileSharingTable: any = [];
+  FileSharingTableData: any;
   projectsName: any;
   FileSharing: any = {
     project_id:'',
@@ -60,12 +68,13 @@ export class FileSharingAdminComponent {
   }
 
   getFileSharing(){
-    this.projects = {};
+    this.FileSharingTable = {};
     this.apiService.getFileSharing().subscribe(
       (r:any) => {
-        this.projects = r.data;
+        this.FileSharingTableData = r.data;
+        this.FileSharingTable = r.data;
         console.log('==> ==>',r.data)
-        console.log('get file sharing',this.projects)
+        console.log('get file sharing',this.FileSharingTable)
       },
       (e) => {
         console.error(e);
@@ -112,4 +121,63 @@ export class FileSharingAdminComponent {
   }
 
 
+
+  sendData(accpet:any,comment:any,viewed:any){
+this.is_accpeted = accpet;
+this.review_comment = comment;
+this.is_viewed_by_client = viewed;
+  }
+
+
+  searchFileSharingTable: string = '';
+  FileSharingTablePageperPage: number = 12;
+  currentFileSharingTablePage: number = 1;
+ 
+  FilterFileSharingTable() {
+   this.FileSharingTable = this.FileSharingTableData.filter((projectData: { project_id: {name:string}; }) =>
+   projectData.project_id.name.toLowerCase().includes(this.searchFileSharingTable.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedFileSharingTableData(): any[] {
+    const startIndex = (this.currentFileSharingTablePage - 1) * this.FileSharingTablePageperPage;
+    const endIndex = startIndex + this.FileSharingTablePageperPage;
+    return this.FileSharingTable.slice(startIndex, endIndex);
+  }
+
+  previousFileSharingTablePage(): void {
+    if (this.currentFileSharingTablePage > 1) {
+      this.currentFileSharingTablePage--;
+    }
+  }
+
+  changePageFileSharingTable(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesFileSharingTable()) {
+      this.currentFileSharingTablePage = pageNumber;
+    }
+  }
+  
+  
+  nextPageFileSharingTable(): void {
+    const totalPages = Math.ceil(
+      this.FileSharingTable.length / this.FileSharingTablePageperPage
+    );
+    if (this.currentFileSharingTablePage < totalPages) {
+      this.currentFileSharingTablePage++;
+    }
+  }
+
+  getPageNumbersFileSharingTable(): number[] {
+    const totalPages = Math.ceil(
+      this.FileSharingTable.length / this.FileSharingTablePageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagesFileSharingTable(): number {
+    return Math.ceil(
+      this.FileSharingTable.length / this.FileSharingTablePageperPage
+    );
+  }
 }

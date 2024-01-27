@@ -29,7 +29,9 @@ interface Task {
 export class ViewTaskComponent {
  id:any;
   project: any ={};
-  tasks: Task[] | any;
+  // tasks: Task[] | any;
+  tasks: any = [] ;
+  TaskTableData: any;
   selectedTaskDescription: string = '';
   http: any;
   taskUpdate: any ={};
@@ -81,10 +83,11 @@ export class ViewTaskComponent {
   }
 
   getTaskProject() {
-    this.apiService.getTaskProject(this.id).subscribe(
+    this.apiService.getTaskListOfActiveProject(this.id).subscribe(
       (r: any) => {
         this.tasks = r.data;
-        console.log('getTaskProject ==> ==> ',  this.tasks);
+        this.TaskTableData = r.data;
+        console.log('-=-=-=-=-=-- ==> ==> ',  this.tasks);
       },
       (e) => {
         console.error(e);
@@ -200,6 +203,58 @@ export class ViewTaskComponent {
         Swal.fire('Error', e.error.message, 'error');
         // this.taskSave = {};
       }
+    );
+  }
+
+  searchTask: string = '';
+  TaskPageperPage: number = 12;
+  currentTaskPage: number = 1;
+ 
+  FilterTask() {
+   this.tasks = this.TaskTableData.filter((project: { task_name: string; }) =>
+   project.task_name.toLowerCase().includes(this.searchTask.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedTaskData(): any[] {
+    const startIndex = (this.currentTaskPage - 1) * this.TaskPageperPage;
+    const endIndex = startIndex + this.TaskPageperPage;
+    return this.tasks.slice(startIndex, endIndex);
+  }
+
+  previousTaskPage(): void {
+    if (this.currentTaskPage > 1) {
+      this.currentTaskPage--;
+    }
+  }
+
+  changePageTask(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTask()) {
+      this.currentTaskPage = pageNumber;
+    }
+  }
+  
+  
+  nextPageTask(): void {
+    const totalPages = Math.ceil(
+      this.tasks.length / this.TaskPageperPage
+    );
+    if (this.currentTaskPage < totalPages) {
+      this.currentTaskPage++;
+    }
+  }
+
+  getPageNumbersTask(): number[] {
+    const totalPages = Math.ceil(
+      this.tasks.length / this.TaskPageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagesTask(): number {
+    return Math.ceil(
+      this.tasks.length / this.TaskPageperPage
     );
   }
 

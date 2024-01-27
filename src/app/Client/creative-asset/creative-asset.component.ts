@@ -33,6 +33,7 @@ export class CreativeAssetsUserComponent {
   projects:any =[
     {_id:''}
   ];
+  assetsFolderClientData: any;
   assetsSave: any = {
     title:'',
     project_id:'',
@@ -88,6 +89,7 @@ getAllCreativeAssetsOfClient(){
     this.apiService.getAllCreativeAssetsOfClient().subscribe(
       (r: any) => {
         this.creativeAssetsTable = r.data;
+        this.assetsFolderClientData = r.data;
         console.log('getAllCreativeAssetsOfClient', r);
       },
       (e) => {
@@ -129,4 +131,57 @@ addCreativeAssets(data:any){
     }
   );
 }
+
+searchcreativeAssetClient: string = '';
+  creativeAssetClientPageperPage: number = 12;
+  currentcreativeAssetClientPage: number = 1;
+ 
+  FiltercreativeAssetClient() {
+   this.creativeAssetsTable = this.assetsFolderClientData.filter((folder: { creativeInfo: {title:string}; }) =>
+   folder.creativeInfo.title.toLowerCase().includes(this.searchcreativeAssetClient.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedcreativeAssetClientData(): any[] {
+    const startIndex = (this.currentcreativeAssetClientPage - 1) * this.creativeAssetClientPageperPage;
+    const endIndex = startIndex + this.creativeAssetClientPageperPage;
+    return this.creativeAssetsTable.slice(startIndex, endIndex);
+  }
+
+  previouscreativeAssetClientPage(): void {
+    if (this.currentcreativeAssetClientPage > 1) {
+      this.currentcreativeAssetClientPage--;
+    }
+  }
+
+  changePagecreativeAssetClient(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagescreativeAssetClient()) {
+      this.currentcreativeAssetClientPage = pageNumber;
+    }
+  }
+  
+  
+  nextPagecreativeAssetClient(): void {
+    const totalPages = Math.ceil(
+      this.creativeAssetsTable.length / this.creativeAssetClientPageperPage
+    );
+    if (this.currentcreativeAssetClientPage < totalPages) {
+      this.currentcreativeAssetClientPage++;
+    }
+  }
+
+  getPageNumberscreativeAssetClient(): number[] {
+    const totalPages = Math.ceil(
+      this.creativeAssetsTable.length / this.creativeAssetClientPageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagescreativeAssetClient(): number {
+    return Math.ceil(
+      this.creativeAssetsTable.length / this.creativeAssetClientPageperPage
+    );
+  }
+
 }

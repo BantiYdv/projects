@@ -1,14 +1,28 @@
 <!-- <div class="container"> -->
     <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
         <div class="searchBar">
+            <div class="added_positions_list_right" *ngIf="currentEmployeeProjectPage === 1">
+                <div class="added_positions_under_head">Show</div>
+                <div>
+                  <select class="added_positions_under_head_select" [(ngModel)]="EmployeeProjectPageperPage">
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                  </select>
+                </div>
+                <div class="added_positions_under_head">Enteries</div>
+              </div>
             <div class="creativeAssetSearch">
-                <input type="text" id="searchBar" placeholder="Search"> <img
+                  <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchEmployeeProject"
+                  (keyup)="FilterEmployeeProject()">  <img
                     src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
             </div>
         </div>
     </div>
     
-    <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-4" *ngIf="getPaginatedEmployeeProjectData().length !== 0">
         <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
             <div class="creativeAsset">
                 Projects
@@ -18,7 +32,7 @@
     </div>
 
     <div class="">
-        <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
+        <div class="col-12 col-md-12 mt-4 px-5 overflow-auto" *ngIf="getPaginatedEmployeeProjectData().length !== 0">
             <table class="table tAble_css table-striped">
                 <thead class="table-dark tHead_css">
                     <tr>
@@ -32,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody class="tBody_css">
-                    <tr *ngFor="let project of projects; let i = index">
+                    <tr *ngFor="let project of getPaginatedEmployeeProjectData(); let i = index">
                         <td scope="row">{{ i+1 }}</td>
                         <td scope="row">{{ project.name ||
                             "-"}}</td>
@@ -43,9 +57,9 @@
                         <td><i class="far fa-calendar"></i> {{ project.deadline | date:
                             'dd/MM/yyyy' || "-" }}</td>
                         <td>
-                            <div  class="img_dwonLoad_1"  data-bs-toggle="modal" (click)="getProjectById(project._id)"
+                            <div data-bs-toggle="modal" (click)="getProjectById(project._id)"
                             data-bs-target="#downloadProject">
-                            <img src="../../../assets/images/dwonLoad_1.svg" class="w-25" alt="" style="cursor: pointer;">
+                            <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
                         </div>
                     </td>
                         <td>
@@ -54,5 +68,73 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="modal-footer mb-2" style="width: 80%;">
+            <div class="col-md-12" *ngIf="getTotalPagesEmployeeProject() > 1">
+              <div class="table_footer mt-2">
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                  style="background-color:yellow; color: #000;" (click)="previousEmployeeProjectPage()"
+                  [disabled]="currentEmployeeProjectPage == 1">
+                  <i class="fa fa-angle-left"></i> Previous
+                </button>
+                <div class="recruitment_list_number">
+                  <div *ngFor="let pageNumber of getPageNumbersEmployeeProject()"
+                    [class.active_num]="pageNumber === currentEmployeeProjectPage" class="recruitment_list_number_value"
+                    (click)="changePageEmployeeProject(pageNumber)">
+                    {{ pageNumber }}
+                  </div>
+                </div>
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                  style="background-color:yellow; color: #000;" (click)="nextPageEmployeeProject()"
+                  [disabled]="currentEmployeeProjectPage == getTotalPagesEmployeeProject()">
+                  Next <i class="fa fa-angle-right"></i>
+                </button>
+        
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="not_data_img_div" *ngIf="getPaginatedEmployeeProjectData().length == 0">
+        <p class="not-found-text">Data Not Found!</p>
+        <img class="not-found-image" src="/assets/images/notFound.png" alt="Image Not Found">
+      </div>
+
+
+
+    <div class="modal fade" id="downloadProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow;">
+                    <div class="col-12 col-md-12 d-flex flex-nowrap">
+                        <div class="col-11 col-md-11 text_add_p_css">
+                            <div class="modal-title fs-5" id="exampleModalLabel">{{projectUpdate.short_name}} Details</div>
+                        </div>
+                        <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                                data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    </div>
+                </div>
+                <div class="modal-body m-4">
+                    <div class="col-12 col-md-12">
+                        <div *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index"
+                            class="d-flex justify-content-between align-items-center">
+                            <h2>{{project_resourses.name || 'Document'}}</h2>
+                            <a [href]="'https://api-avx.prilient.com/download?url='+ project_resourses.url" download>
+                                <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                            </a>
+                        </div>
+                        <div *ngIf="projectUpdate.project_resourses == 0"
+                            class="d-flex justify-content-center align-items-center">
+                            No Document
+                        </div>
+                        <div *ngIf="!projectUpdate.project_resourses"
+                            class="d-flex justify-content-center align-items-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
         </div>
     </div>

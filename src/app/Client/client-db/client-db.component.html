@@ -6,9 +6,15 @@
             </div>
             <div class="sub_head_css">
                 <i class="fa fa-bell"></i>
-                <i class="fa fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"></i>
+                <!-- <i class="fa fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"></i> -->
             </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="d-flex flex-wrap sub_head_css_data">
+            <i class="fa fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"></i>
         </div>
     </div>
 </div>
@@ -24,7 +30,8 @@
                 <div class="header_menu_profile d-flex justify-content-center align-items-center">
                     <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="">
                     <span>{{profileData.name || 'Not found'}}</span>
-                    <div class="post_css">{{profileData.email || 'Not found'}}</div>
+                    <div class="post_css" data-bs-toggle="modal"
+                    data-bs-target="#profileData">{{profileData.email || 'Not found'}}</div>
                 </div>
             </div>
         </div>
@@ -71,7 +78,7 @@
                         </div>
                     </div>
                 </li>
-                <li routerLink="/user/file-sharing" [class.hove_active]="isActive('/user/file-sharing')">
+                <!-- <li routerLink="/user/file-sharing" [class.hove_active]="isActive('/user/file-sharing')">
 
                     <div class="col-12 col-md-12 d-flex">
                         <div class="col-2 col-md-2 offset-1">
@@ -109,157 +116,19 @@
                             <div class="text_menu_css">Klub X Rewards</div>
                         </div>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
     <div class="col-12 col-md-12 d-flex justify-content-center align-items-center log_out_css"
         (click)="apiService.logOut()"> <i class="fa fa-sign-out"></i> log Out</div>
 </div>
-
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-12 col-md-12 d-flex flex-wrap justify-content-around mt-5">
-            <div class="col-12 col-md-12 ">
-                <div class="header_css_added_project">
-                    Work Status
-                </div>
-            </div>
-        </div>
-    </div>
-    </div> -->
-<!-- <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 d-flex flex-wrap mt-4 justify-content-center align-items-center">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-3 m-4" *ngFor="let workStatus of workStatusData; let odd = odd; let even = even">
-                <div class="work_card" [ngClass]="{ 'even': even, 'odd': odd }">
-                    <div class="col-12 col-sm-12 col-md-12 d-flex flex-nowrap">
-                        
-                        <div class="col-12 col-md-12">
-                            <div class="work_text_css" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.name}}</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center mt-3">
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">Start Date</div>
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">Deadline Date</div>
-                    </div>
-                    <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center mt-3">
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.start_date}} &nbsp;
-                            <ng-container *ngIf="even">
-                                <img src="/assets/images/calenderIcon.png" alt="" class="calenderIcon">
-                              </ng-container>
-                              <ng-container *ngIf="odd">
-                                <img src="/assets/images/calenderIcon2.svg" alt="" class="calenderIcon">
-                              </ng-container>
-                        </div>
-                        <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div>
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center deadline" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.deadline}}</div>
-                    </div>
-                    
-                    <div class="status-line mt-5">
-                        <div [ngClass]="{'status-dot': true, 'Created': workStatus.current_status === 'Created', 'blue-dot': workStatus.current_status === 'Created' || workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Created'}">
-                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Created</span></div>
-                        <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished'}"></div>
-                        <div [ngClass]="{'status-dot': true, 'Start': workStatus.current_status === 'Start', 'blue-dot': workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Start'}">
-                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Start</span></div>
-                        <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished'}"></div>
-                        <div [ngClass]="{'status-dot': true, 'Ongoing': workStatus.current_status === 'Ongoing', 'blue-dot': workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Ongoing'}">
-                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Ongoing</span></div>
-                        <div [ngClass]="{'status-create': true, 'blue-line':   workStatus.current_status === 'Finished'}"></div>
-                        <div [ngClass]="{'status-dot': true, 'Finished': workStatus.current_status === 'Finished', 'blue-dot': workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Finished'}">
-                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Finished</span></div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-
-
-
-
-
  
-  <!-- Modal addNewWorkStatus -->
-  <!-- <div class="modal fade" id="addNewWorkStatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: #3B3A70;">
-            <div class="col-12 col-md-12 d-flex flex-nowrap">
-                <div class="col-11 col-md-11 text_add_p_css"><div class="modal-title fs-5" id="exampleModalLabel">Add Work Status</div></div>
-                <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-            </div>
-        </div>
-        <div class="modal-body m-4">
-            <form #saveWorkStatusForm="ngForm" (ngSubmit)="saveWorkStatus(workStatus)">
-          <div class="col-12 col-md-12 d-flex flex-wrap">
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Project Name</label>
-                    <input type="text" placeholder="Project Name" [(ngModel)]="workStatus.name" name="name" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 d-flex flex-wrap">
-                <div class="col-12 col-md-6">
-                    <div class="add_css_pro_code">
-                        <label>Starting Date</label>
-                        <input type="date" [(ngModel)]="workStatus.start_date" name="start_date" required>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="add_css_pro_code">
-                        <label>Deadline Date</label>
-                        <input type="date" [(ngModel)]="workStatus.deadline" name="deadline" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Task Name</label>
-                    <input type="text" placeholder="Task Name" [(ngModel)]="workStatus.task_name" name="task_name" required>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Task No.</label>
-                    <select  [(ngModel)]="workStatus.task_no" name="task_no" required>
-                        <option>1</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Status</label>
-                    <select  [(ngModel)]="workStatus.status" name="status" required>
-                        <option>Ongoing</option>
-                    </select>
-                </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12">
-            <div class="save_css_button_code">
-                <button  [disabled]="saveWorkStatusForm.invalid">Save</button>
-            </div>
-          </div>
-          </form>
-
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-
-  
 
 <div class="modal fade" id="profileData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
                         <div class="modal-title fs-5" id="exampleModalLabel">Profile Details</div>
@@ -278,17 +147,22 @@
                         <div class="profile_icon_img">
                             <i class="fa fa-upload" (click)="uploadFileInput.click()"> Upload</i>
                             <input type="file" #uploadFileInput style="display: none" (change)="handleImgFile($event)">
-                        </div>
+                        
+                            <i class="fa fa-edit" *ngIf="!showEditForm" (click)="toggleEditForm(true)"> Edit</i>
+                            <i class="fa fa-close" *ngIf="showEditForm" (click)="toggleEditForm(false)"> Close</i>
+                            <!-- <button type="button" class="btn btn-warning mr-2 m-1 EditButton" *ngIf="!showEditForm" (click)="toggleEditForm(true)">Edit</button>
+                            <button type="button" class="btn btn-danger mr-2 m-1 EditButton" *ngIf="showEditForm" (click)="toggleEditForm(false)">close</button> -->
+                          </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 d-flex flex-wrap mt-3">
+                <div class="col-12 col-md-12 d-flex flex-wrap mt-3" *ngIf="!showEditForm">
                     <div class="col-12 col-md-6">
                         <div class="add_css_pro_code">
                             <label>Name</label>
                             <span>{{profileData.name || 'Not found'}}</span>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 d-flex flex-wrap">
+                    <div class="col-12 col-md-6 ">
                             <div class="add_css_pro_code">
                                 <label>Email Id</label>
                                 <span>{{profileData.email || 'Not found'}}</span>
@@ -308,6 +182,45 @@
                         </div>
                     </div>
                 </div>
+                <form *ngIf="showEditForm">
+                    <!-- Input form for editing -->
+                    <div class="col-12 col-md-12 d-flex flex-wrap mt-3">
+                      <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                          <label>Name</label>
+                          <input type="text" name="name" [(ngModel)]="profileData.name" placeholder="Enter Name" />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 ">
+                        <div class="add_css_pro_code">
+                          <label>Email Id</label>
+                          <input type="text" name="email" [(ngModel)]="profileData.email" placeholder="Enter Email Id" />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                          <label>Mobile no.</label>
+                          <div class="col-12 col-md-12 d-flex w-100">
+                          <select class="w-25 px-1" [(ngModel)]="profileData.country_code" name="country_code">
+                            <option *ngFor="let code of country_code" [value]="code.dial_code">
+                                {{code.dial_code}}</option>
+                        </select>
+                          <input type="tel" name="mobile_number" class="w-50" [(ngModel)]="profileData.mobile_number" placeholder="Enter Mobile Number" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                          <label>City</label>
+                          <input type="text" name="city" [(ngModel)]="profileData.city" placeholder="Enter City" />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 header_css_button_project d-flex justify-content-center align-items-center pt-2">
+                        <button  type="submit" id="submit" name="submit" (click)="updateProfile(profileData)">Save</button>
+
+                      </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

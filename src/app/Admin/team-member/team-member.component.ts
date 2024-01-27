@@ -13,6 +13,8 @@ import { ApiServiceService } from '../../service/api-service.service';
   styleUrl: './team-member.component.css',
 })
 export class TeamMemberComponent {
+
+  TeamMemberData: any;
   teamMemberSave: any = {
     country_code: '+91',
   };
@@ -62,6 +64,7 @@ export class TeamMemberComponent {
           timer: 3000,
         }).then((result) => {
           if (result) {
+            this.getTeamMember();
           }
         });
         this.getTeamMember();
@@ -78,6 +81,7 @@ export class TeamMemberComponent {
     this.apiService.getTeamMember().subscribe(
       (r: any) => {
         this.teamMembers = r.data;
+        this.TeamMemberData = r.data;
         console.log('getTeamMember ==> ==>', r);
       },
       (e) => {
@@ -97,34 +101,67 @@ export class TeamMemberComponent {
     );
   }
   deleteUser(id: any,is_deleted:boolean) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // If confirmed, proceed with the deletion
-        this.apiService.deleteUser(id,is_deleted).subscribe(
-          (r:any) => {
-            console.log(r)
-            Swal.fire(
-              'Deleted!',
-              r.message,
-              'success'
-            );
-            this.getTeamMember();
-          },
-          (e) => {
-            console.error(e)
-            Swal.fire('Error!', e.error.message, 'error');
-          }
-        );
-      }
-    });
+    if(is_deleted == true){
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If confirmed, proceed with the deletion
+          this.apiService.deleteUser(id,is_deleted).subscribe(
+            (r:any) => {
+              console.log(r)
+              Swal.fire(
+                'Deleted!',
+                r.message,
+                'success'
+              );
+              this.getTeamMember();
+            },
+            (e) => {
+              console.error(e)
+              Swal.fire('Error!', e.error.message, 'error');
+            }
+          );
+        }
+      });
+    }
+    if(is_deleted == false){
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, undo it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If confirmed, proceed with the deletion
+          this.apiService.deleteUser(id,is_deleted).subscribe(
+            (r:any) => {
+              console.log(r)
+              Swal.fire(
+                'Undo!',
+                'user undo',
+                'success'
+              );
+              this.getTeamMember();
+            },
+            (e) => {
+              console.error(e)
+              Swal.fire('Error!', e.error.message, 'error');
+            }
+          );
+        }
+      });
+    }
+    
   }
 
   updateTeamMemberById(teamMember: any) {
@@ -155,6 +192,59 @@ export class TeamMemberComponent {
         Swal.fire('Error', e.error.message, 'error');
         // this.teamMemberUpdate= {};
       }
+    );
+  }
+
+
+  searchTeamMember: string = '';
+  TeamMemberPageperPage: number = 12;
+  currentTeamMemberPage: number = 1;
+ 
+  FilterTeamMember() {
+   this.teamMembers = this.TeamMemberData.filter((teamMember: { name: string; }) =>
+   teamMember.name.toLowerCase().includes(this.searchTeamMember.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedTeamMemberData(): any[] {
+    const startIndex = (this.currentTeamMemberPage - 1) * this.TeamMemberPageperPage;
+    const endIndex = startIndex + this.TeamMemberPageperPage;
+    return this.teamMembers.slice(startIndex, endIndex);
+  }
+
+  previousTeamMemberPage(): void {
+    if (this.currentTeamMemberPage > 1) {
+      this.currentTeamMemberPage--;
+    }
+  }
+
+  changePageTeamMember(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTeamMember()) {
+      this.currentTeamMemberPage = pageNumber;
+    }
+  }
+  
+  
+  nextPageTeamMember(): void {
+    const totalPages = Math.ceil(
+      this.teamMembers.length / this.TeamMemberPageperPage
+    );
+    if (this.currentTeamMemberPage < totalPages) {
+      this.currentTeamMemberPage++;
+    }
+  }
+
+  getPageNumbersTeamMember(): number[] {
+    const totalPages = Math.ceil(
+      this.teamMembers.length / this.TeamMemberPageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagesTeamMember(): number {
+    return Math.ceil(
+      this.teamMembers.length / this.TeamMemberPageperPage
     );
   }
 

@@ -1,13 +1,27 @@
 <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
     <div class="searchBar">
+        <div class="added_positions_list_right" *ngIf="currentTaskPage === 1">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="TaskPageperPage">
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+                <option value="48">48</option>
+                <option value="60">60</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
         <div class="creativeAssetSearch">
-            <input type="text" id="searchBar" placeholder="Search"> <img
+            <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchTask"
+            (keyup)="FilterTask()">  <img
                 src="/assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
         </div>
     </div>
 </div>
 
-<div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-4" *ngIf="getPaginatedTaskData().length !== 0">
     <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
         <div class="creativeAsset">
             Projects
@@ -17,7 +31,7 @@
 </div>
 
 <div class="">
-    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
+    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto" *ngIf="getPaginatedTaskData().length !== 0">
         <table class="table tAble_css table-striped">
             <thead class="table-dark tHead_css">
                 <tr>
@@ -28,16 +42,45 @@
                 </tr>
             </thead>
             <tbody class="tBody_css">
-                <tr *ngFor="let project of tasks; let i = index">
+                <tr *ngFor="let project of getPaginatedTaskData(); let i = index">
                     <td scope="row">{{ i+1 }}</td>
-                    <td scope="row">{{ project.task_info.name ||
+                    <td scope="row">{{ project.task_name ||
                         "-"}}</td>
-                    <td><i class="far fa-calendar"></i> {{ project.task_info.createdAt | date:
+                    <td><i class="far fa-calendar"></i> {{ project.task_to_be_start_date | date:
                         'dd/MM/yyyy' || "-" }}</td>
-                    <td style="color: #FF5B5B;"><i class="far fa-calendar" style="color: #FF5B5B;"></i> {{ project.task_info.deadline | date:
+                    <td style="color: #FF5B5B;"><i class="far fa-calendar" style="color: #FF5B5B;"></i> {{ project.task_to_be_deadline | date:
                         'dd/MM/yyyy' || "-" }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <div class="modal-footer mb-2" style="width: 80%;">
+        <div class="col-md-12" *ngIf="getTotalPagesTask() > 1">
+          <div class="table_footer mt-2">
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:yellow; color: #000;" (click)="previousTaskPage()"
+              [disabled]="currentTaskPage == 1">
+              <i class="fa fa-angle-left"></i> Previous
+            </button>
+            <div class="recruitment_list_number">
+              <div *ngFor="let pageNumber of getPageNumbersTask()"
+                [class.active_num]="pageNumber === currentTaskPage" class="recruitment_list_number_value"
+                (click)="changePageTask(pageNumber)">
+                {{ pageNumber }}
+              </div>
+            </div>
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:yellow; color: #000;" (click)="nextPageTask()"
+              [disabled]="currentTaskPage == getTotalPagesTask()">
+              Next <i class="fa fa-angle-right"></i>
+            </button>
+    
+          </div>
+        </div>
+      </div>
 </div>
+
+<div class="not_data_img_div" *ngIf="getPaginatedTaskData().length == 0">
+    <p class="not-found-text">Data Not Found!</p>
+    <img class="not-found-image" src="/assets/images/notFound.png" alt="Image Not Found">
+  </div>

@@ -20,6 +20,7 @@ interface TableData {
 export class CreativeAssetTableComponent {
   id:any;
   creativeAssetsTable: TableData[] = [];
+  assetsFolderTableData: any;
   constructor(private route:ActivatedRoute, private apiService:ApiServiceService){}
 
   ngOnInit(): void {
@@ -34,6 +35,7 @@ export class CreativeAssetTableComponent {
     this.apiService.getCreativeAssetsOfMember(id).subscribe(
       (r: any) => {
         this.creativeAssetsTable = r.data;
+        this.assetsFolderTableData = r.data
         console.log('getProjectById =>', this.creativeAssetsTable);
       },
       (e) => {
@@ -41,6 +43,58 @@ export class CreativeAssetTableComponent {
       }
     )
 }
+
+searchcreativeAssetTable: string = '';
+  creativeAssetTablePageperPage: number = 12;
+  currentcreativeAssetTablePage: number = 1;
+ 
+  FiltercreativeAssetTable() {
+   this.creativeAssetsTable = this.assetsFolderTableData.filter((folder: { short_name: string; }) =>
+   folder.short_name.toLowerCase().includes(this.searchcreativeAssetTable.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedcreativeAssetTableData(): any[] {
+    const startIndex = (this.currentcreativeAssetTablePage - 1) * this.creativeAssetTablePageperPage;
+    const endIndex = startIndex + this.creativeAssetTablePageperPage;
+    return this.creativeAssetsTable.slice(startIndex, endIndex);
+  }
+
+  previouscreativeAssetTablePage(): void {
+    if (this.currentcreativeAssetTablePage > 1) {
+      this.currentcreativeAssetTablePage--;
+    }
+  }
+
+  changePagecreativeAssetTable(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagescreativeAssetTable()) {
+      this.currentcreativeAssetTablePage = pageNumber;
+    }
+  }
+  
+  
+  nextPagecreativeAssetTable(): void {
+    const totalPages = Math.ceil(
+      this.creativeAssetsTable.length / this.creativeAssetTablePageperPage
+    );
+    if (this.currentcreativeAssetTablePage < totalPages) {
+      this.currentcreativeAssetTablePage++;
+    }
+  }
+
+  getPageNumberscreativeAssetTable(): number[] {
+    const totalPages = Math.ceil(
+      this.creativeAssetsTable.length / this.creativeAssetTablePageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagescreativeAssetTable(): number {
+    return Math.ceil(
+      this.creativeAssetsTable.length / this.creativeAssetTablePageperPage
+    );
+  }
 
 
 }

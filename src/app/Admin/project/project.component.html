@@ -4,24 +4,66 @@
 
     <!-- <div class="container"> -->
         <!-- <div class="row"> -->
-            <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+            <div class="d-flex flex-wrap justify-content-center align-items-center mt-5" *ngIf="isOn">
                 <div class="searchBar">
                     <div class="header_css_button_project" *ngIf="isOn">
                         <button data-bs-toggle="modal" data-bs-target="#addNewProject"><i class="fa fa-plus"></i> Add
                             New</button>
                     </div>
+
+                    <div class="added_positions_list_right" *ngIf="currentHistoryProjectPage === 1">
+                        <div class="added_positions_under_head">Show</div>
+                        <div>
+                          <select class="added_positions_under_head_select" [(ngModel)]="HistoryProjectPageperPage">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                            <option value="48">48</option>
+                            <option value="60">60</option>
+                          </select>
+                        </div>
+                        <div class="added_positions_under_head">Enteries</div>
+                      </div>
+
                     <div class="header_css_button_project" *ngIf="!isOn">
                         <button data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa fa-plus"></i> Add
                             Task</button>
                     </div>
                <div class="creativeAssetSearch">
-                <input type="text" id="searchBar" placeholder="Search" > <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+                <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchHistoryProject"
+                (keyup)="FilterHistoryProject()"> <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
                </div>
               </div>
               </div>
             
+              <div class="d-flex flex-wrap justify-content-center align-items-center mt-5" *ngIf="!isOn">
+                <div class="searchBar">
+                    <div class="header_css_button_project" *ngIf="!isOn">
+                        <button data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa fa-plus"></i> Add
+                            Task</button>
+                    </div>
+                    <div class="added_positions_list_right" *ngIf="currentHistoryProjectPage === 1">
+                        <div class="added_positions_under_head">Show</div>
+                        <div>
+                          <select class="added_positions_under_head_select" [(ngModel)]="HistoryProjectPageperPage">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                            <option value="48">48</option>
+                            <option value="60">60</option>
+                          </select>
+                        </div>
+                        <div class="added_positions_under_head">Enteries</div>
+                      </div>
+                    
+               <div class="creativeAssetSearch">
+                <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchHistoryProject"
+                (keyup)="FilterHistoryProject()"> <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+               </div>
+              </div>
+              </div>
         <!-- </div> -->
-        <div class=" d-flex justify-content-center align-items-center">
+        <div class=" d-flex justify-content-center align-items-center mt-1" >
             <div class="toggle_css">
                 <button class="button_css" [ngClass]="{'button_light': !isOn, 'button_success': isOn}"
                     (click)="toggleState(true)">
@@ -34,7 +76,11 @@
             </div>
         </div>
         <div class="" *ngIf="isOn">
-            <div class="col-12 col-md-12 px-5 mt-5 overflow-auto ">
+
+            <!-- <a href="https://api-avx.prilient.com/download?url=upload/project_resource/2e3401fe-86fd-4622-b6fe-556d536736b0.jpg" download>
+                <img src="https://api-avx.prilient.com/upload/project_resource/2e3401fe-86fd-4622-b6fe-556d536736b0.jpg" alt="W3Schools" width="104" height="142">
+              </a> -->
+              <div class="col-12 col-md-12 px-5 mt-5 overflow-auto " *ngIf="projects.length !== 0">
                 <table class="table tAble_css table-striped">
                     <thead class="table-dark tHead_css">
                         <tr>
@@ -52,7 +98,7 @@
                     <tbody class="tBody_css">
                         <tr *ngFor="let projectData of projects;let i = index;">
                             <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{i+1}}</td>
-                            <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.name ||
+                            <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }" (click)="getTaskProject(projectData._id)">{{ projectData.name ||
                                 "-"}}</td>
                             <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.client_id.name || "-"
                                 }}</td>
@@ -65,7 +111,9 @@
                             <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                                 <div data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
                                     data-bs-target="#downloadProject">
+                                    
                                     <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                                  
                                 </div>
                             </td>
                             <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
@@ -100,9 +148,40 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="modal-footer mb-2" style="width: 80%;">
+                <div class="col-md-12" *ngIf="getTotalPagesHistoryProject() > 1">
+                  <div class="table_footer mt-2">
+                    <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                      style="background-color:yellow; color: #000;" (click)="previousHistoryProjectPage()"
+                      [disabled]="currentHistoryProjectPage == 1">
+                      <i class="fa fa-angle-left"></i> Previous
+                    </button>
+                    <div class="recruitment_list_number">
+                      <div *ngFor="let pageNumber of getPageNumbersHistoryProject()"
+                        [class.active_num]="pageNumber === currentHistoryProjectPage" class="recruitment_list_number_value"
+                        (click)="changePageHistoryProject(pageNumber)">
+                        {{ pageNumber }}
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                      style="background-color:yellow; color: #000;" (click)="nextPageHistoryProject()"
+                      [disabled]="currentHistoryProjectPage == getTotalPagesHistoryProject()">
+                      Next <i class="fa fa-angle-right"></i>
+                    </button>
+            
+                  </div>
+                </div>
+              </div>
         </div>
+        <div class="not_data_img_div" *ngIf="projects.length === 0">
+            <p class="not-found-text">Data Not Found!</p>
+            <img class="not-found-image" src="../../assets/images/notFound.png" alt="Image Not Found">
+          </div>
+        </div>
+   
         <div class="" *ngIf="!isOn">
-            <div class="col-12 col-md-12 px-5 mt-5 overflow-auto ">
+            <div class="col-12 col-md-12 px-5 mt-5 overflow-auto " *ngIf="tasks.length !== 0">
                 <table class="table tAble_css table-striped">
                     <thead class="table-dark tHead_css">
                         <tr>
@@ -131,7 +210,7 @@
                             </div>
                         </td>
                             <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">
-                              <select class="select_css_code" [(ngModel)]="task.task_info.current_status" name="current_status" (change)="onChangeStatus(task.task_info._id,task.task_info.current_status)">
+                              <select class="select_css_code" [(ngModel)]="task.task_info.current_status" name="current_status" (change)="onChangeStatusTask(task.task_info._id,task.task_info.current_status)">
                                 <option value="Created">Created</option>
                                     <option value="Start">Start</option>
                                     <option value="Ongoing">Ongoing</option>
@@ -150,8 +229,36 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
+            <div class="modal-footer mb-2" style="width: 80%;">
+                <div class="col-md-12" *ngIf="getTotalPagesHistoryTask() > 1">
+                  <div class="table_footer mt-2">
+                    <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                      style="background-color:yellow; color: #000;" (click)="previousHistoryTaskPage()"
+                      [disabled]="currentHistoryTaskPage == 1">
+                      <i class="fa fa-angle-left"></i> Previous
+                    </button>
+                    <div class="recruitment_list_number">
+                      <div *ngFor="let pageNumber of getPageNumbersHistoryTask()"
+                        [class.active_num]="pageNumber === currentHistoryTaskPage" class="recruitment_list_number_value"
+                        (click)="changePageHistoryTask(pageNumber)">
+                        {{ pageNumber }}
+                      </div>
+                    </div>
+                    <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                      style="background-color:yellow; color: #000;" (click)="nextPageHistoryTask()"
+                      [disabled]="currentHistoryTaskPage == getTotalPagesHistoryTask()">
+                      Next <i class="fa fa-angle-right"></i>
+                    </button>
+            
+                  </div>
+                </div>
+              </div>
+
+              <div class="not_data_img_div" *ngIf="tasks.length === 0">
+                <p class="not-found-text">Data Not Found!</p>
+                <img class="not-found-image" src="../../assets/images/notFound.png" alt="Image Not Found">
+              </div>
+            </div>
     
     <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -391,10 +498,10 @@
                             <div class="col-12 col-md-6">
                                 <div class="add_css_pro_code">
                                     <label>Project Type</label>
-                                    <select [(ngModel)]="projectSave.project_type._id" name="project_type" required>
+                                    <select [(ngModel)]="projectUpdate.project_type._id" name="project_type" required>
                                         <option value="" disabled selected>Select Project Type</option>
                                         <option *ngFor="let type of get_project_type" [value]="type._id">
-                                            {{type.name}}
+                                            {{type.name}}-{{type._id}}
                                         </option>
                                     </select>
                                 </div>
@@ -437,7 +544,7 @@
     
                         <div class="col-12 col-md-12">
                             <div class="save_css_button_code">
-                                <button [disabled]="updateProjectForm.invalid">Update</button>
+                                <button [disabled]="updateProjectForm.invalid" data-bs-dismiss="modal" aria-label="Close">Update</button>
                             </div>
                         </div>
                     </form>
@@ -537,7 +644,7 @@
                         <div *ngFor="let project_resourses of projectUpdate.project_resourses , let i = index"
                             class="d-flex justify-content-between align-items-center">
                             <h2>{{project_resourses.name || 'Document'}}</h2>
-                            <a [href]="'http://101.53.145.234:4005/' + projectUpdate.project_resourses.url" download>
+                            <a [href]="'https://api-avx.prilient.com/download?url='+ project_resourses.url" download>
                                 <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
                             </a>
                         </div>
@@ -589,7 +696,7 @@
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
-                            <button [disabled]="saveTeamMemberForm.invalid">Save</button>
+                            <button [disabled]="saveTeamMemberForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
                         </div>
                     </div>
                 </form>
@@ -677,7 +784,7 @@
           </div>
           <div class="col-12 col-md-12">
             <div class="save_css_button_code">
-                <button  [disabled]="saveTaskForm.invalid">Save</button>
+                <button  [disabled]="saveTaskForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
             </div>
           </div>
           </form>
@@ -752,7 +859,7 @@
                   </div>
           <div class="col-12 col-md-12">
             <div class="save_css_button_code">
-                <button [disabled]="updateTaskForm.invalid">Update</button>
+                <button [disabled]="updateTaskForm.invalid" data-bs-dismiss="modal" aria-label="Close">Update</button>
             </div>
           </div>
         </form>
@@ -840,7 +947,8 @@
                 <div class="col-12 col-md-12">
                     <div  *ngFor="let attachment of taskUpdate.attachment , let i = index" class="d-flex justify-content-between align-items-center" >
                         <h2>{{attachment.name}}</h2>
-                        <a href="'http://101.53.145.234:4005/' + taskUpdate.attachment.url" download>
+                        <a [href]="'https://api-avx.prilient.com/download?url=' + attachment.url" download>
+                        <!-- <a href="'http://101.53.145.234:4005/' + taskUpdate.attachment.url" download> -->
                             <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
                         </a>
                     </div>

@@ -77,7 +77,7 @@
       .icon_t_e_e i:nth-child(3) {
         color: black;
       }
-
+/* 
       .header_css_button_project{
         display: flex;
         justify-content: end;
@@ -93,7 +93,7 @@
     }
     .header_css_button_project button:active{
         transform: scale(.9);
-    }
+    } */
 
 
     .text_add_p_css {

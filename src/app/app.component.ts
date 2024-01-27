@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 // import { CategoriesComponent } from './categories/categories.component';
@@ -47,7 +47,7 @@ import { LoginWithOTPComponent } from './login-with-otp/login-with-otp.component
     HttpClientModule,
     FormsModule,
   ],
-  providers: [ApiServiceService, KeysServiceService, SecretKeysServiceService],
+  providers: [ApiServiceService, KeysServiceService, SecretKeysServiceService,DatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

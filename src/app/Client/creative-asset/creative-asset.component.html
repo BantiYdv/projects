@@ -5,14 +5,29 @@
             <button data-bs-toggle="modal" data-bs-target="#addNewProject"><i class="fa fa-plus"></i> Add
                 New</button>
         </div>
+
+        <div class="added_positions_list_right" *ngIf="currentcreativeAssetClientPage === 1">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="creativeAssetClientPageperPage">
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+                <option value="48">48</option>
+                <option value="60">60</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
         <div class="creativeAssetSearch">
-            <input type="text" id="searchBar" placeholder="Search"> <img
+            <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchcreativeAssetClient"
+            (keyup)="FiltercreativeAssetClient()"> <img
                 src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
         </div>
     </div>
 </div>
 
-<div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-4" *ngIf="getPaginatedcreativeAssetClientData().length !== 0">
     <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
         <div class="creativeAsset">
             Creative Assets
@@ -22,7 +37,7 @@
 </div>
 
 <div class="">
-    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
+    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto" *ngIf="getPaginatedcreativeAssetClientData().length !== 0">
 <!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
     <div class="d-flex flex-wrap justify-content-center align-items-start" style="width: 90%;"> -->
         <table class="table tAble_css table-striped">
@@ -35,7 +50,7 @@
                 </tr>
             </thead>
             <tbody class="tBody_css">
-                <tr *ngFor="let item of creativeAssetsTable; let i = index;">
+                <tr *ngFor="let item of getPaginatedcreativeAssetClientData(); let i = index;">
                     <td >{{ i + 1 }}</td>
                     <td>{{ item.creativeInfo.title ||
                         "-"}}</td>
@@ -43,7 +58,9 @@
                         'dd/MM/yyyy' || "-" }}</td>
                         <td>
                             <div class="img_dwonLoad_1" >
+                                <a [href]="'https://api-avx.prilient.com/download?url=' + item.creativeInfo.url" download>
                                 <img src="../../../assets/images/dwonLoad_1.svg" style="width: 40px; height: 40px;" alt="">
+                                </a>
                             </div>
                         </td>
 
@@ -53,7 +70,36 @@
 
         </table>
     </div>
+
+    <div class="modal-footer mb-2" style="width: 80%;">
+        <div class="col-md-12" *ngIf="getTotalPagescreativeAssetClient() > 1">
+          <div class="table_footer mt-2">
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:yellow; color: #000;" (click)="previouscreativeAssetClientPage()"
+              [disabled]="currentcreativeAssetClientPage == 1">
+              <i class="fa fa-angle-left"></i> Previous
+            </button>
+            <div class="recruitment_list_number">
+              <div *ngFor="let pageNumber of getPageNumberscreativeAssetClient()"
+                [class.active_num]="pageNumber === currentcreativeAssetClientPage" class="recruitment_list_number_value"
+                (click)="changePagecreativeAssetClient(pageNumber)">
+                {{ pageNumber }}
+              </div>
+            </div>
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              style="background-color:yellow; color: #000;" (click)="nextPagecreativeAssetClient()"
+              [disabled]="currentcreativeAssetClientPage == getTotalPagescreativeAssetClient()">
+              Next <i class="fa fa-angle-right"></i>
+            </button>
+    
+          </div>
+        </div>
+        </div>
 </div>
+<div class="not_data_img_div" *ngIf="getPaginatedcreativeAssetClientData().length == 0">
+    <p class="not-found-text">Data Not Found!</p>
+    <img class="not-found-image" src="/assets/images/notFound.png" alt="Image Not Found">
+  </div>
 
 <div class="modal fade" id="addNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -61,7 +107,7 @@
             <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
-                        <div class="modal-title fs-5" id="exampleModalLabel">Add Project</div>
+                        <div class="modal-title fs-5" id="exampleModalLabel">Add Assets</div>
                     </div>
                     <div class="col-1 col-md-1 text-end text-white">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

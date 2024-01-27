@@ -110,6 +110,9 @@ export class ProjectComponent implements OnInit {
       _id: "",
       name: "",
     },
+    project_type :{
+      _id:""
+    },
     start_date: this.currentDate,
     handel_by: {
       _id: "",
@@ -119,12 +122,20 @@ export class ProjectComponent implements OnInit {
   clients : any[] | any;
   handel_By : any[] | any;
   projects: Project[] | any;
-
+  HistoryTaskData:any;
+  historyProjectData: any;
   isOn: boolean = true;
 
   toggleState(value:boolean) {
     this.isOn = value;
+    if(this.isOn == false){
+      this.getTask();
+    }
+
   }
+
+
+
 
   constructor(private apiService:ApiServiceService,private router: Router, public route: ActivatedRoute) {}
 
@@ -201,7 +212,22 @@ getTask() {
   this.apiService.getTask().subscribe(
     (r: any) => {
       this.tasks = r.data;
+      this.HistoryTaskData = r.data;
       console.log('tasks ==> ==> ', r);
+    },
+    (e) => {
+      console.error(e);
+    }
+  );
+}
+
+getTaskProject(id:any) {
+  this.apiService.getTaskProject(id).subscribe(
+    (r: any) => {
+      this.isOn = false;
+      this.tasks = r.data;
+      this.HistoryTaskData = r.data;
+      console.log('getTaskProject ==> ==> ',  this.tasks);
     },
     (e) => {
       console.error(e);
@@ -264,34 +290,68 @@ updateTask(task: any) {
 deleteTask(id: any,is_enabled:any) {
   // Show confirmation dialog
   console.log('==> data',id ,is_enabled)
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // If confirmed, proceed with the deletion
-      this.apiService.deleteTaskById(id,is_enabled).subscribe(
-        (r:any) => {
-          // this.task = r;
-          Swal.fire(
-            'Deleted!',
-            r.data.message,
-            'success'
-          );
-          this.getTask();
-        },
-        (e) => {
-          console.log(e.error.message);
-          Swal.fire('Error!', e.error.message, 'error');
-        }
-      );
-    }
-  });
+
+  if(is_enabled ==true){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If confirmed, proceed with the deletion
+        this.apiService.deleteTaskById(id,is_enabled).subscribe(
+          (r:any) => {
+            // this.task = r;
+            Swal.fire(
+              'Deleted!',
+              r.data.message,
+              'success'
+            );
+            this.getTask();
+          },
+          (e) => {
+            console.log(e.error.message);
+            Swal.fire('Error!', e.error.message, 'error');
+          }
+        );
+      }
+    });
+  }
+  if(is_enabled == false){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, undo it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If confirmed, proceed with the deletion
+        this.apiService.deleteTaskById(id,is_enabled).subscribe(
+          (r:any) => {
+            // this.task = r;
+            Swal.fire(
+              'Undo!',
+              'task undo',
+              'success'
+            );
+            this.getTask();
+          },
+          (e) => {
+            console.log(e.error.message);
+            Swal.fire('Error!', e.error.message, 'error');
+          }
+        );
+      }
+    });
+  }
+ 
 }
 getFormattedValue(value: any): any {
   return value !== null && value !== '' ? value : "-";
@@ -340,6 +400,8 @@ getFormattedValue(value: any): any {
       (r:any) => {
         this.projects = r.data;
         this.projectList = r.data;
+        this.historyProjectData = r.data;
+        // this.HistoryTaskData = r.data;
         console.log('==> ==>',r.data)
         console.log('projects',this.projects)
       },
@@ -405,6 +467,7 @@ getFormattedValue(value: any): any {
     this.projectUpdate.project_id = project._id;
     this.projectUpdate.client_id = this.projectUpdate.client_id._id;
     this.projectUpdate.handel_by = this.projectUpdate.handel_by._id;
+    this.projectUpdate.project_type = this.projectUpdate.project_type._id;
     // const formData = new FormData();
 
     // const appendFormData = (property: string, value: any) => {
@@ -472,38 +535,77 @@ getFormattedValue(value: any): any {
 
   deleteProjectById(id: any,is_enabled:any) {
     
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.apiService.deleteProjectById(id,is_enabled).subscribe(
-          (r:any) => {
-            this.projectSave = r;
-            console.log('====>',r.message)
-            Swal.fire(
-              'Deleted!',
-              r.message,
-              'success'
-            );
-            this.getProject();
-          },
-          (e) => {
-            console.log(e.error.message);
-            Swal.fire(
-              'Error!',
-              e.error.message,
-              'error'
-            );
-          }
-        );
-      }
-    });
+    if(is_enabled == true){
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.apiService.deleteProjectById(id,is_enabled).subscribe(
+            (r:any) => {
+              this.projectSave = r;
+              console.log('====>',r.message)
+              Swal.fire(
+                'Deleted!',
+                r.message,
+                'success'
+              );
+              this.getProject();
+            },
+            (e) => {
+              console.log(e.error.message);
+              Swal.fire(
+                'Error!',
+                e.error.message,
+                'error'
+              );
+            }
+          );
+        }
+      });
+    }
+   
+if(is_enabled == false){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You won\'t be able to revert this!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, undo it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.apiService.deleteProjectById(id,is_enabled).subscribe(
+        (r:any) => {
+          this.projectSave = r;
+          console.log('====>',r.message)
+          Swal.fire(
+            'Undo!',
+            'project undo',
+            'success'
+          );
+          this.getProject();
+        },
+        (e) => {
+          console.log(e.error.message);
+          Swal.fire(
+            'Error!',
+            e.error.message,
+            'error'
+          );
+        }
+      );
+    }
+  });
+}
+
+   
   }
 
 
@@ -610,4 +712,108 @@ getFormattedValue(value: any): any {
     )
   }
   
+
+  searchHistoryProject: string = '';
+  HistoryProjectPageperPage: number = 12;
+  currentHistoryProjectPage: number = 1;
+ 
+  FilterHistoryProject() {
+   this.projects = this.historyProjectData.filter((projectData: { name: string; }) =>
+   projectData.name.toLowerCase().includes(this.searchHistoryProject.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedHistoryProjectData(): any[] {
+    const startIndex = (this.currentHistoryProjectPage - 1) * this.HistoryProjectPageperPage;
+    const endIndex = startIndex + this.HistoryProjectPageperPage;
+    return this.projects.slice(startIndex, endIndex);
+  }
+
+  previousHistoryProjectPage(): void {
+    if (this.currentHistoryProjectPage > 1) {
+      this.currentHistoryProjectPage--;
+    }
+  }
+
+  changePageHistoryProject(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesHistoryProject()) {
+      this.currentHistoryProjectPage = pageNumber;
+    }
+  }
+  
+  
+  nextPageHistoryProject(): void {
+    const totalPages = Math.ceil(
+      this.projects.length / this.HistoryProjectPageperPage
+    );
+    if (this.currentHistoryProjectPage < totalPages) {
+      this.currentHistoryProjectPage++;
+    }
+  }
+
+  getPageNumbersHistoryProject(): number[] {
+    const totalPages = Math.ceil(
+      this.projects.length / this.HistoryProjectPageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagesHistoryProject(): number {
+    return Math.ceil(
+      this.projects.length / this.HistoryProjectPageperPage
+    );
+  }
+  
+  searchHistoryTask: string = '';
+  HistoryTaskPageperPage: number = 12;
+  currentHistoryTaskPage: number = 1;
+ 
+  FilterHistoryTask() {
+   this.tasks = this.HistoryTaskData.filter((task: { project_name: string; }) =>
+   task.project_name.toLowerCase().includes(this.searchHistoryTask.toLowerCase()) 
+    );
+  }
+  
+
+  getPaginatedHistoryTaskData(): any[] {
+    const startIndex = (this.currentHistoryTaskPage - 1) * this.HistoryTaskPageperPage;
+    const endIndex = startIndex + this.HistoryTaskPageperPage;
+    return this.tasks.slice(startIndex, endIndex);
+  }
+
+  previousHistoryTaskPage(): void {
+    if (this.currentHistoryTaskPage > 1) {
+      this.currentHistoryTaskPage--;
+    }
+  }
+
+  changePageHistoryTask(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesHistoryTask()) {
+      this.currentHistoryTaskPage = pageNumber;
+    }
+  }
+  
+  
+  nextPageHistoryTask(): void {
+    const totalPages = Math.ceil(
+      this.tasks.length / this.HistoryTaskPageperPage
+    );
+    if (this.currentHistoryTaskPage < totalPages) {
+      this.currentHistoryTaskPage++;
+    }
+  }
+
+  getPageNumbersHistoryTask(): number[] {
+    const totalPages = Math.ceil(
+      this.tasks.length / this.HistoryTaskPageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagesHistoryTask(): number {
+    return Math.ceil(
+      this.tasks.length / this.HistoryTaskPageperPage
+    );
+  }
 }

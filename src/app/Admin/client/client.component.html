@@ -1,19 +1,32 @@
-
 <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
     <div class="searchBar">
         <div class="header_css_button_project">
             <button data-bs-toggle="modal" data-bs-target="#addClient"><i class="fa fa-plus"></i> Add
                 New</button>
         </div>
+        <div class="added_positions_list_right" *ngIf="currentClientPage === 1">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+                <select class="added_positions_under_head_select" [(ngModel)]="ClientPageperPage">
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+        </div>
         <div class="creativeAssetSearch">
-            <input type="text" id="searchBar" placeholder="Search"> <img
-                src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
+            <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchClient" (keyup)="FilterClient()">
+            <img src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
         </div>
     </div>
-    
+
 </div>
 
-<div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-4"
+    *ngIf="getPaginatedClientData().length !== 0">
     <div class="d-flex justify-content-start align-items-start" style="width: 90%;">
         <div class="creativeAsset">
             Client
@@ -23,8 +36,9 @@
 </div>
 
 <div class="">
-    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto">
-<!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+    <div class="col-12 col-md-12 mt-4 px-5 overflow-auto" *ngIf="getPaginatedClientData().length !== 0">
+        <!-- <div class="col-12 col-md-12 mt-4 px-5 overflow-auto"> -->
+        <!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
     <div class="d-flex flex-wrap justify-content-center align-items-start" style="width: 90%;"> -->
         <table class="table tAble_css table-striped">
             <thead class="table-dark tHead_css">
@@ -39,19 +53,20 @@
             </thead>
             <tbody class="tBody_css">
                 <tr *ngFor="let item of clients; let i = index;">
-                    <td >{{ i+1 }}</td>
+                    <td>{{ i+1 }}</td>
                     <td>{{ item.name ||
                         "-"}}</td>
-                    <td>{{ item.email  }}</td>
-                    <td>{{ item.mobile_number  }}</td>
-                    <td>{{ item.city  }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.mobile_number }}</td>
+                    <td>{{ item.city }}</td>
                     <td>
                         <div class="icon_t_e_e">
-                            <i class="fa fa-trash" (click)="deleteUser(item._id,item.is_enable)" *ngIf="item.is_enable"></i>
-                            
+                            <i class="fa fa-trash" (click)="deleteUser(item._id,item.is_enable)"
+                                *ngIf="item.is_enable"></i>
+
                             <i class="fa fa-edit" (click)="getUserDetails(item._id)" data-bs-toggle="modal"
-                                    data-bs-target="#updateClient" *ngIf="item.is_enable"></i>
-                           
+                                data-bs-target="#updateClient" *ngIf="item.is_enable"></i>
+
                         </div>
                     </td>
 
@@ -61,7 +76,37 @@
 
         </table>
     </div>
+
+    <div class="modal-footer mb-2" style="width: 80%;">
+        <div class="col-md-12" *ngIf="getTotalPagesClient() > 1">
+            <div class="table_footer mt-2">
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                    style="background-color:yellow; color: #000;" (click)="previousClientPage()"
+                    [disabled]="currentClientPage == 1">
+                    <i class="fa fa-angle-left"></i> Previous
+                </button>
+                <div class="recruitment_list_number">
+                    <div *ngFor="let pageNumber of getPageNumbersClient()"
+                        [class.active_num]="pageNumber === currentClientPage" class="recruitment_list_number_value"
+                        (click)="changePageClient(pageNumber)">
+                        {{ pageNumber }}
+                    </div>
+                </div>
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                    style="background-color:yellow; color: #000;" (click)="nextPageClient()"
+                    [disabled]="currentClientPage == getTotalPagesClient()">
+                    Next <i class="fa fa-angle-right"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="not_data_img_div" *ngIf="getPaginatedClientData().length == 0">
+    <p class="not-found-text">Data Not Found!</p>
+    <img class="not-found-image" src="/assets/images/notFound.png" alt="Image Not Found">
+  </div>
 
 
 
@@ -81,38 +126,33 @@
             <div class="modal-body m-4">
                 <form #updateProjectForm="ngForm" (ngSubmit)="addClient(register)">
                     <div class="col-12 col-md-12 d-flex flex-wrap">
-                        
-                        
+
+
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Producer</label>
-                                <input type="text" placeholder="Short Name"
-                                     name="name" required [(ngModel)]="register.name">
+                                <input type="text" placeholder="Producer Name" name="name" required
+                                    [(ngModel)]="register.name">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Email-ID</label>
-                                <!-- <select  name="client_id" required>
-                                    <option value="" disabled selected>Select Client</option>
-                                    <option >client</option>
-                                </select> -->
-                                <input type="text" placeholder="Email ID"
-                                     name="email" required [(ngModel)]="register.email">
+                                <input type="text" placeholder="Email ID" name="email" required
+                                    [(ngModel)]="register.email">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Mobile Number</label>
                                 <div class="col-12 col-md-12 d-flex w-100">
-                                    <select class="w-25 px-1" [(ngModel)]="clientUpdate.country_code" name="country_code">
-                                        <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                                    <select class="w-25 px-1" [(ngModel)]="register.country_code" name="country_code">
+                                        <option *ngFor="let code of country_code" [value]="code.dial_code">
+                                            {{code.dial_code}}</option>
                                     </select>
                                     <input type="tel" placeholder="Number" class="w-50"
-                                        [(ngModel)]="clientUpdate.mobile_number" name="mobile_number" required>
-                            </div>
-                                <!-- <input type="tel" placeholder="Mobile Number"
-                                     name="mobile_number" required [(ngModel)]="register.mobile_number"> -->
+                                        [(ngModel)]="register.mobile_number" name="mobile_number" required>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -122,17 +162,17 @@
                                     <option value="" disabled selected>Select Client</option>
                                     <option >client</option>
                                 </select> -->
-                                <input type="tel" placeholder="City"
-                                     name="city" required [(ngModel)]="register.city">
+                                <input type="tel" placeholder="City" name="city" required [(ngModel)]="register.city">
                             </div>
                         </div>
-                       
-                       
+
+
                     </div>
 
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
-                            <button [disabled]="updateProjectForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                            <button [disabled]="updateProjectForm.invalid" data-bs-dismiss="modal"
+                                aria-label="Close">Save</button>
                         </div>
                     </div>
                 </form>
@@ -167,33 +207,36 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Email-ID</label>
-                                <input type="email" placeholder="Team Member Email-Id"
-                                    [(ngModel)]="clientUpdate.email" name="email" required>
+                                <input type="email" placeholder="Team Member Email-Id" [(ngModel)]="clientUpdate.email"
+                                    name="email" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>Phone no.</label>
                                 <div class="col-12 col-md-12 d-flex w-100">
-                                    <select class="w-25 px-1" [(ngModel)]="clientUpdate.country_code" name="country_code">
-                                        <option *ngFor="let code of country_code" [value]="code.dial_code">{{code.dial_code}}</option>
+                                    <select class="w-25 px-1" [(ngModel)]="clientUpdate.country_code"
+                                        name="country_code">
+                                        <option *ngFor="let code of country_code" [value]="code.dial_code">
+                                            {{code.dial_code}}</option>
                                     </select>
                                     <input type="tel" placeholder="Number" class="w-50"
                                         [(ngModel)]="clientUpdate.mobile_number" name="mobile_number" required>
-                            </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>City</label>
-                                <input type="text" placeholder="City" [(ngModel)]="clientUpdate.city"
-                                    name="city" required>
+                                <input type="text" placeholder="City" [(ngModel)]="clientUpdate.city" name="city"
+                                    required>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
-                            <button [disabled]="updateTeamMemberForm.invalid" data-bs-dismiss="modal" aria-label="Close">Update</button>
+                            <button [disabled]="updateTeamMemberForm.invalid" data-bs-dismiss="modal"
+                                aria-label="Close">Update</button>
                         </div>
                     </div>
                 </form>

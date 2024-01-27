@@ -6,17 +6,17 @@
             </div>
             <div class="sub_head_css">
                 <i class="fa fa-bell"></i>
-                <i class="fa fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"></i>
+                <!-- <i class="fa fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"></i> -->
             </div>
         </div>
     </div>
-    <!-- <div class="row d-flex justify-content-center align-items-center">
-        <div class="d-flex flex-wrap sub_head_css">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="d-flex flex-wrap sub_head_css_data">
             <i class="fa fa-bars" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
             aria-controls="offcanvasExample"></i>
         </div>
-    </div> -->
+    </div>
 </div>
 
 <div class="offcanvas offcanvas-start text-bg-dark d-flex justify-content-between" style="width: 280px !important;  margin-top: 100px;" tabindex="-1" id="offcanvasExample"
@@ -30,7 +30,8 @@
                 <div class="header_menu_profile d-flex justify-content-center align-items-center">
                     <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="">
                     <span>{{profileData.name || 'Not found'}}</span>
-                    <div class="post_css">{{profileData.email || 'Not found'}}</div>
+                    <div class="post_css" data-bs-toggle="modal"
+                    data-bs-target="#profileData">{{profileData.email || 'Not found'}}</div>
                 </div>
             </div>
         </div>
@@ -136,11 +137,10 @@
 </div>
 
 
-
 <div class="modal fade" id="profileData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #3B3A70;">
+            <div class="modal-header" style="background-color: yellow;">
                 <div class="col-12 col-md-12 d-flex flex-nowrap">
                     <div class="col-11 col-md-11 text_add_p_css">
                         <div class="modal-title fs-5" id="exampleModalLabel">Profile Details</div>
@@ -159,17 +159,22 @@
                         <div class="profile_icon_img">
                             <i class="fa fa-upload" (click)="uploadFileInput.click()"> Upload</i>
                             <input type="file" #uploadFileInput style="display: none" (change)="handleImgFile($event)">
-                        </div>
+                        
+                            <i class="fa fa-edit" *ngIf="!showEditForm" (click)="toggleEditForm(true)"> Edit</i>
+                            <i class="fa fa-close" *ngIf="showEditForm" (click)="toggleEditForm(false)"> Close</i>
+                            <!-- <button type="button" class="btn btn-warning mr-2 m-1 EditButton" *ngIf="!showEditForm" (click)="toggleEditForm(true)">Edit</button>
+                            <button type="button" class="btn btn-danger mr-2 m-1 EditButton" *ngIf="showEditForm" (click)="toggleEditForm(false)">close</button> -->
+                          </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 d-flex flex-wrap mt-3">
+                <div class="col-12 col-md-12 d-flex flex-wrap mt-3" *ngIf="!showEditForm">
                     <div class="col-12 col-md-6">
                         <div class="add_css_pro_code">
                             <label>Name</label>
                             <span>{{profileData.name || 'Not found'}}</span>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 d-flex flex-wrap">
+                    <div class="col-12 col-md-6 ">
                             <div class="add_css_pro_code">
                                 <label>Email Id</label>
                                 <span>{{profileData.email || 'Not found'}}</span>
@@ -189,7 +194,47 @@
                         </div>
                     </div>
                 </div>
+                <form *ngIf="showEditForm">
+                    <!-- Input form for editing -->
+                    <div class="col-12 col-md-12 d-flex flex-wrap mt-3">
+                      <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                          <label>Name</label>
+                          <input type="text" name="name" [(ngModel)]="profileData.name" placeholder="Enter Name" />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6 ">
+                        <div class="add_css_pro_code">
+                          <label>Email Id</label>
+                          <input type="text" name="email" [(ngModel)]="profileData.email" placeholder="Enter Email Id" />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                          <label>Mobile no.</label>
+                          <div class="col-12 col-md-12 d-flex w-100">
+                          <select class="w-25 px-1" [(ngModel)]="profileData.country_code" name="country_code">
+                            <option *ngFor="let code of country_code" [value]="code.dial_code">
+                                {{code.dial_code}}</option>
+                        </select>
+                          <input type="tel" name="mobile_number" class="w-50" [(ngModel)]="profileData.mobile_number" placeholder="Enter Mobile Number" />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="add_css_pro_code">
+                          <label>City</label>
+                          <input type="text" name="city" [(ngModel)]="profileData.city" placeholder="Enter City" />
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 header_css_button_project d-flex justify-content-center align-items-center pt-2">
+                        <button  type="submit" id="submit" name="submit" (click)="updateProfile(profileData)">Save</button>
+
+                      </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+

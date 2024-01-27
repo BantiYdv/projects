@@ -175,6 +175,9 @@ background: #F8F9FF;
 
 .searchBar{
 width: 90%;
+display: flex;
+justify-content: space-between;
+align-items: center;
 border-bottom: 2px solid #BCBBC3;
 padding-bottom: 10px;
 }
@@ -196,3 +199,35 @@ padding: 6px;
  background-color: #393939;
 }
  /* for search bar */
+
+
+ /* for add button */
+ 
+ .header_css_button_project{
+  display: flex;
+  justify-content: end;
+}
+.header_css_button_project button{
+  font-size: 19px;
+  background-color: yellow;
+  outline: none;
+  padding: 10px;
+  border: 1px solid yellow;
+  border-radius: 10px;
+  transition: transform .3s ease;
+}
+.header_css_button_project button:active{
+  transform: scale(.9);
+}
+
+ /* for add button */
+ /* for bars */
+ .sub_head_css_data{
+  width: 90%;
+ }
+ .sub_head_css_data i{
+  /* width: 90%; */
+  font-size: 35px;
+  padding: 10px 0px 0px 80px;
+ }
+ /* for bars */

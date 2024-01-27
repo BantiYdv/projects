@@ -121,7 +121,7 @@
 
 .text_add_p_css {
   text-align: center;
-  color: #fff;
+  color: #000000;
   font-weight: bold;
 }
 .profile_icon_img {
@@ -142,7 +142,7 @@
   /* padding: 10px; */
   background-color: green;
 }
-.profile_icon_img i:nth-child(2) {
+.profile_icon_img i:nth-child(3) {
   /* padding: 10px; */
   background-color: red;
 }
