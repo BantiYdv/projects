@@ -468,37 +468,7 @@ getFormattedValue(value: any): any {
     this.projectUpdate.client_id = this.projectUpdate.client_id._id;
     this.projectUpdate.handel_by = this.projectUpdate.handel_by._id;
     this.projectUpdate.project_type = this.projectUpdate.project_type._id;
-    // const formData = new FormData();
-
-    // const appendFormData = (property: string, value: any) => {
-    //   formData.append(property, value);
-    // };
-    
-    // const projectProperties = [
-    //   'project_id',
-    //   'name',
-    //   'user_id',
-    //   'start_date',
-    //   'deadline',
-    //   'client_id',
-    //   'handel_by',
-    //   'desc'
-    // ];
-  
-    // // Append each property to the formData
-    // projectProperties.forEach((property) => {
-    //   if (property === 'project_resourses' && Array.isArray(this.projectUpdate[property])) {
-    //     this.projectUpdate[property].forEach((resource: any, index: any) => {
-    //       appendFormData(`${property}[${index}]`, resource);
-    //     });
-    //   } else {
-    //     // Otherwise, append the property normally
-    //     appendFormData(property, this.projectUpdate[property]);
-    //   }
-    // });
-  
-    // console.log('formData =>', formData);
-  
+     
     const formData = new FormData();
 
     formData.append('name', this.projectUpdate.name);

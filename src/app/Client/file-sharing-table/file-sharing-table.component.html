@@ -52,7 +52,7 @@
                         "-"}}</td>
                     <td> {{ item.file_number|| "-" }}</td>
                         <td>
-                            <div class="img_dwonLoad_1" >
+                            <div class="img_dwonLoad_1" (click)="changesFileSeen(item._id)" >
                                 <a [href]="'https://api-avx.prilient.com/download?url=' + item.url" download>
                                 <img src="../../../assets/images/dwonLoad_1.svg" style="width: 40px; height: 40px;" alt="">
                                 </a>

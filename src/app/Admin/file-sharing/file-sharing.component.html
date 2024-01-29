@@ -80,31 +80,33 @@
                     <tbody class="tBody_css">
                         <tr *ngFor="let projectData of getPaginatedFileSharingTableData(); let i = index">
 
-                            <td scope="row">{{i+1}}</td>
-                            <td>{{ projectData.project_id.name ||
+                            <td scope="row" [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{i+1}}</td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.project_id.name ||
                                 "-"}}</td>
-                            <td>{{ projectData.original_name || "-"
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.original_name || "-"
                                 }}</td>
-                                <td>{{ projectData.file_number || "-"
+                                <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">{{ projectData.file_number || "-"
                                 }}</td>
-                                <td> <i class="far fa-calendar"></i> {{ projectData.createdAt | date:
+                                <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }"> <i class="far fa-calendar"></i> {{ projectData.createdAt | date:
                                     'dd/MM/yyyy' || "-" }}</td>
-                                <td>
+                                <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                                 <div class="img_dwonLoad_1" >
                                     <a [href]="'https://api-avx.prilient.com/download?url=' + projectData.url" download>
                                     <img src="../../../assets/images/dwonLoad_1.svg" class="w-25" alt="">
                                     </a>
                                 </div>
                             </td>
-                            <td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                                 <button class="view_data_css_22"  data-bs-toggle="modal" 
                                 data-bs-target="#viewClientReview" (click)="sendData(projectData.is_accpeted,projectData.review_comment,projectData.is_viewed_by_client)">View</button>
                                 
                             </td>
-                            <td>
+                            <td [ngClass]="{ 'bg-secondary': !projectData.is_enabled }">
                                 <div class="icon_t_e_e">
-                                    <i class="fa fa-trash"></i>
-                                    <i class="fas fa-edit"></i>
+                                    <i class="fa fa-trash" *ngIf="projectData.is_enabled" (click)="deleteFileSharing(projectData._id,projectData.is_enabled)"></i>
+                                    <i class="fas fa-trash-restore-alt" *ngIf="!projectData.is_enabled" (click)="deleteFileSharing(projectData._id,projectData.is_enabled)"></i>
+                                    <i class="fas fa-edit" data-bs-toggle="modal"
+                                    data-bs-target="#updateNewFile" (click)="updateFileData(projectData.project_id._id,projectData._id,projectData.original_name)"  *ngIf="projectData.is_enabled"></i>
                                 </div>
                             </td>
                         </tr>
@@ -231,6 +233,56 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateNewFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: yellow;">
+                    <div class="col-12 col-md-12 d-flex flex-nowrap">
+                        <div class="col-11 col-md-11 text_add_p_css">
+                            <div class="modal-title fs-5" id="exampleModalLabel">Update {{filsharing_name_data}} File
+                            </div>
+                        </div>
+                        <div class="col-1 col-md-1 text-end text-white"><button type="button" class="btn-close"
+                                data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    </div>
+                </div>
+                <div class="modal-body m-4">
+                    <form #saveFileSharingUpdateForm="ngForm" (ngSubmit)="updateFileSharing()">
+                        <div class="col-12 col-md-12 d-flex flex-wrap">
+                           
+                            
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Project</label>
+                                    <select [(ngModel)]="project_id_data" name="project_id_data" required>
+                                        <option value="" disabled selected>Select Project</option>
+                                        <option *ngFor="let project_id of projectsName" [value]="project_id._id">
+                                            {{project_id.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Upload Doc.</label>
+                                    <input type="file" (change)="onChangeFileSharingUpdate($event)"
+                                        [(ngModel)]="file_sharing" name="file_sharing">
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="save_css_button_code">
+                                <button [disabled]="saveFileSharingUpdateForm.invalid">Save</button>
+                            </div>
+                        </div>
+                    </form>
+    
                 </div>
             </div>
         </div>

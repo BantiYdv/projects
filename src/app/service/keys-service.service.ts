@@ -21,6 +21,11 @@ export class KeysServiceService {
   public getUserDetails = `${this.mainUrl}/user/getUserDetails`;//done
   public updateProfile = `${this.mainUrl}/user/updateProfile`;//done
   public deleteUser = `${this.mainUrl}/user/deleteUser`;//done
+  
+  public deleteFileSharing = `${this.mainUrl}/file/deleteFileSharing`;//done
+  public updateFileSharing = `${this.mainUrl}/file/updateFileSharing`;//done
+  public fileMarkAsSeen = `${this.mainUrl}/client/fileMarkAsSeen`;//done
+
 
   public getProjectType = `${this.mainUrl}/project/getProjectType`;
   public getFinisedProjects = `${this.mainUrl}/project/getFinisedProjects`;

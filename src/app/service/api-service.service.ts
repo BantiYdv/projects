@@ -117,6 +117,30 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.post(this.keys.deleteUser, data, { headers });
   }
+
+  deleteFileSharing(fileshareing_id:any,is_deleted:boolean){
+    console.log(fileshareing_id);
+    const data = {
+      fileshareing_id: fileshareing_id,
+      is_deleted:is_deleted
+    };
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.deleteFileSharing, data, { headers });
+  }
+  updateFileSharing(userData:any){
+    console.warn('FormData',userData)
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.updateFileSharing, userData, { headers });
+  }
+  fileMarkAsSeen(id:any){
+    const data = {
+      fileshareing_id:id
+    }
+    const headers = this.headerWithAuth;
+    return this.http.post(this.keys.fileMarkAsSeen, data, { headers }); 
+  }
+
+
   //project code start
   saveProject(project: any) {
     const headers = this.headerWithAuth;

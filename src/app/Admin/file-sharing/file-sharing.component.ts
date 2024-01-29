@@ -44,6 +44,14 @@ export class FileSharingAdminComponent {
     project_id:'',
     file_sharing: File,
   };
+  fileUpdate:any;
+  project_id_data:any;
+  filsharing_id_data:any;
+  filsharing_name_data:any;
+  file_sharing:any;
+  
+
+  
 
 
   constructor(private apiService:ApiServiceService,private router: Router, public route: ActivatedRoute) {}
@@ -87,6 +95,10 @@ export class FileSharingAdminComponent {
   onChangeFileSharing(event:any){
     this.FileSharing.file_sharing = event.target.files[0];
     console.log(this.FileSharing.file_sharing)
+  }
+  onChangeFileSharingUpdate(event:any){
+    this.file_sharing = event.target.files[0];
+    console.log(this.file_sharing)
   }
 
   saveFileSharing(project:any){
@@ -180,4 +192,110 @@ this.is_viewed_by_client = viewed;
       this.FileSharingTable.length / this.FileSharingTablePageperPage
     );
   }
+  deleteFileSharing(fileshareing_id:any,is_deleted:boolean){
+
+    if(is_deleted == true){
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If confirmed, proceed with the deletion
+          this.apiService.deleteFileSharing(fileshareing_id,is_deleted).subscribe(
+            (r:any) => {
+              console.log(r)
+              Swal.fire(
+                'Deleted!',
+                r.message,
+                'success'
+              );
+              this.getFileSharing();
+              // this.get_client_id();
+            },
+            (e) => {
+              console.error(e)
+              Swal.fire('Error!', e.error.message, 'error');
+            }
+          );
+        }
+      });
+    }
+
+    if(is_deleted == false){
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, undo it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If confirmed, proceed with the deletion
+          this.apiService.deleteFileSharing(fileshareing_id,is_deleted).subscribe(
+            (r:any) => {
+              console.log(r)
+              Swal.fire(
+                'Undo!',
+                'file undo',
+                'success'
+              );
+              this.getFileSharing();
+              // this.get_client_id();
+            },
+            (e) => {
+              console.error(e)
+              Swal.fire('Error!', e.error.message, 'error');
+            }
+          );
+        }
+      });
+    }
+    }
+   
+    
+
+    updateFileData(project_id:any,fileshareing_id:any,fileshareing_name:any){
+this.project_id_data = project_id;
+this.filsharing_id_data = fileshareing_id;
+this.filsharing_name_data = fileshareing_name;
+    }
+
+    updateFileSharing(){
+      const formData = new FormData();
+
+      formData.append('project_id', this.project_id_data);
+      formData.append('fileshareing_id', this.filsharing_id_data);
+      formData.append('file_sharing', this.file_sharing);
+
+   
+      this.apiService.updateFileSharing(formData).subscribe(
+        (r: any) => {
+          console.log(r);
+          // this.getProjectById(project._id)
+          Swal.fire({
+            icon: 'success',
+            title: 'Successful',
+            text: r.data.message,
+            showConfirmButton: false,
+            timer: 3000,
+          }).then((result) => {
+            if (result) {
+              this.getFileSharing();
+            }
+          });
+        },
+        (e: any) => {
+          console.log("Error => ",e)
+          Swal.fire('Error', e.error.message, 'error');
+        }
+      );
+    }
+   
 }

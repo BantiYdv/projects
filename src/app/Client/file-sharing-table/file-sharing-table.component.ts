@@ -6,40 +6,41 @@ import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
 
 interface TableData {
-  _id:any;
+  _id: any;
   original_name: string;
   file_number: string;
-  url:string;
-  
+  url: string;
 }
 @Component({
   selector: 'app-file-sharing-table',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './file-sharing-table.component.html',
-  styleUrl: './file-sharing-table.component.css'
+  styleUrl: './file-sharing-table.component.css',
 })
 export class FileSharingTableComponent {
-  
   is_accepted: boolean | any;
   review_comment: string | any;
-  fileshareing_id:any;
+  fileshareing_id: any;
 
-  id:any;
+  id: any;
   // creativeAssetsTable: TableData[] = [];
   FileSharingTable: TableData[] = [];
   FileSharingTableData: any;
-  constructor(private route:ActivatedRoute, private apiService:ApiServiceService){}
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiServiceService
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(r => {
+    this.route.queryParams.subscribe((r) => {
       this.id = r['id'];
-    })
+    });
 
-    this.getProjectById(this.id)
+    this.getProjectById(this.id);
   }
 
-  getProjectById(id:any){
+  getProjectById(id: any) {
     this.apiService.getFileSharingForReview(id).subscribe(
       (r: any) => {
         this.FileSharingTableData = r.data;
@@ -51,58 +52,66 @@ export class FileSharingTableComponent {
       (e) => {
         console.error(e);
       }
-    )
-}
-sendId(id:any){
-  this.fileshareing_id = id;
-}
-
-accept() {
-  this.is_accepted = true;
-  this.saveReviewData();
-}
-
-decline() {
-  this.is_accepted = false;
-}
-
-saveReviewData(){
-  this.apiService.shareReviewForFiles(this.fileshareing_id,this.is_accepted,this.review_comment).subscribe(
-    (r)=> {
-console.log('shareReviewForFiles =>',r)
-Swal.fire({
-  icon: 'success',
-  title: 'Review Saved',
-  text: 'Your review has been saved successfully!',
-});
-
-this.is_accepted = '';
-this.review_comment = '';
-
-    },
-    (e) => {
-console.error('shareReviewForFiles',e)
-Swal.fire({
-  icon: 'error',
-  title: 'Error',
-  text: 'An error occurred while saving the review. Please try again.',
-});
-    }
-  )
-}
-searchFileSharingTable: string = '';
-  FileSharingTablePageperPage: number = 12;
-  currentFileSharingTablePage: number = 1;
- 
-  FilterFileSharingTable() {
-   this.FileSharingTable = this.FileSharingTableData.filter((folder: { original_name: string; }) =>
-   folder.original_name.toLowerCase().includes(this.searchFileSharingTable.toLowerCase()) 
     );
   }
-  
+  sendId(id: any) {
+    this.fileshareing_id = id;
+  }
+
+  accept() {
+    this.is_accepted = true;
+    this.saveReviewData();
+  }
+
+  decline() {
+    this.is_accepted = false;
+  }
+
+  saveReviewData() {
+    this.apiService
+      .shareReviewForFiles(
+        this.fileshareing_id,
+        this.is_accepted,
+        this.review_comment
+      )
+      .subscribe(
+        (r) => {
+          console.log('shareReviewForFiles =>', r);
+          Swal.fire({
+            icon: 'success',
+            title: 'Review Saved',
+            text: 'Your review has been saved successfully!',
+          });
+
+          this.is_accepted = '';
+          this.review_comment = '';
+        },
+        (e) => {
+          console.error('shareReviewForFiles', e);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while saving the review. Please try again.',
+          });
+        }
+      );
+  }
+  searchFileSharingTable: string = '';
+  FileSharingTablePageperPage: number = 12;
+  currentFileSharingTablePage: number = 1;
+
+  FilterFileSharingTable() {
+    this.FileSharingTable = this.FileSharingTableData.filter(
+      (folder: { original_name: string }) =>
+        folder.original_name
+          .toLowerCase()
+          .includes(this.searchFileSharingTable.toLowerCase())
+    );
+  }
 
   getPaginatedFileSharingTableData(): any[] {
-    const startIndex = (this.currentFileSharingTablePage - 1) * this.FileSharingTablePageperPage;
+    const startIndex =
+      (this.currentFileSharingTablePage - 1) * this.FileSharingTablePageperPage;
     const endIndex = startIndex + this.FileSharingTablePageperPage;
     return this.FileSharingTable.slice(startIndex, endIndex);
   }
@@ -118,8 +127,7 @@ searchFileSharingTable: string = '';
       this.currentFileSharingTablePage = pageNumber;
     }
   }
-  
-  
+
   nextPageFileSharingTable(): void {
     const totalPages = Math.ceil(
       this.FileSharingTable.length / this.FileSharingTablePageperPage
@@ -140,5 +148,17 @@ searchFileSharingTable: string = '';
     return Math.ceil(
       this.FileSharingTable.length / this.FileSharingTablePageperPage
     );
+  }
+
+  changesFileSeen(id: any) {
+    this.apiService.fileMarkAsSeen(id).subscribe(
+      (r) => {
+        console.log('r', r);
+      },
+      (e) => {
+        console.error('e', e);
+      }
+    );
+    // fileMarkAsSeen
   }
 }
