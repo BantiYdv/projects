@@ -435,7 +435,7 @@
               <div class="container">
                 <div class="birthday">
                   <h5 class="text-center mb-4 mt-2 birthdayHeader">Birthdays</h5>
-                  <div class="card-body birthdayBody d-flex flex-column align-items-center"
+                  <div class="card-body birthdayBody d-flex flex-column "
                     *ngFor="let dob of birthday, let i = index">
                     
                     <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
@@ -443,7 +443,7 @@
                     <div class="d-flex flex-row">
                       <div class="ml-3">
                         <div class="birthName">{{birthday[i].firstname + " " +birthday[i].lastname}}</div>
-                        <div class="birthdesc">{{birthday[i].dob}}</div>
+                        <div class="birthdesc">{{birthday[i].dob  | date: 'MMMM, dd' }}</div>
                       </div>
                     </div>
                   </div>

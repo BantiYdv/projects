@@ -3523,9 +3523,19 @@ addInterviewUpdateRecruitment(id: any, interview: any, selectedFileName: any){
   // shiftForm!: NgForm;
 
 // add shift time start
+shiftTime = {
+  checkInTime: '',
+  checkOutTime:'',
+  checkInGraceTime:'',
+  checkOutGraceTime:'',
 
-shiftTime: any = {};
+  halfDayHrs: '00:00:00',
+  absentHrs: '00:00:00',
+  presentHrs: '00:00:00',
+  overTimeHrs: '00:00:00'
+};
 addShiftTime() {
+  
   console.log('shift form', this.shiftTime);
   this.testService.addShift(this.shiftTime).subscribe(
     (response) => {
@@ -3549,6 +3559,40 @@ addShiftTime() {
   );
 }
 // add shift time end
+
+// show shift time in time formate start
+formatTime(data: any, name: any) {
+  // Get the current value from ngModel
+  let inputValue: string = data.replace(/\D/g, '');
+
+  // Ensure the input value is not empty
+  if (inputValue.length > 0) {
+    // Pad the input value with leading zeros
+    inputValue = inputValue.padStart(6, '0');
+
+    // Insert colons to format the time
+    inputValue = inputValue.slice(0, 2) + ':' + inputValue.slice(2, 4) + ':' + inputValue.slice(4, 6);
+  }
+
+  // Update the ngModel with the formatted value
+  if(name == 'halfDayHrs'){
+
+    this.shiftTime.halfDayHrs = inputValue;
+  }
+  if(name == 'absentHrs'){
+
+    this.shiftTime.absentHrs = inputValue;
+  }
+  if(name == 'presentHrs'){
+
+    this.shiftTime.presentHrs = inputValue;
+  }
+  if(name == 'overTimeHrs'){
+
+    this.shiftTime.overTimeHrs = inputValue;
+  }
+}
+// show shift time in time formate end
 
 // search for  leave table start
 searchShift: string = '';

@@ -60,7 +60,7 @@ absentCount: number | undefined;
 casualCount: number | undefined;
 sickCount: number | undefined;
 totalEmpCount: number | undefined;
-
+totalWorkingHours: number | undefined;
 fullTimeCount: number | undefined;
 fullTime = '';
 partTime = '';
@@ -68,7 +68,7 @@ intern = '';
   // bar chart  start
   public chart: any;
   //bar chart end
-
+  totalCheckOutEarly: any;
 
   // change password validation start
   showNewPassword: boolean = false;
@@ -131,7 +131,9 @@ intern = '';
     this.absentShow();
     this.casualShow();
     this.sickShow();
-    // this.birthdayUser();
+    this.birthdayUser();
+    this.workingHours();
+    this.checkOutEarly();
     // this.createLineChart();
   }
  
@@ -705,20 +707,50 @@ totalEmpCountShow(){
 
   // API for show birthday start
   birthday: any;
-  // birthdayUser() {
+  birthdayUser() {
    
-  //     this.adminService.birthday().subscribe(
-  //       (response: any) => {
-  //        this.birthday = response
-  //         console.log("birthday",response);
-  //       },
-  //       error => {
-  //         Swal.fire('Error', error.error, 'error');  
+      this.adminService.birthday().subscribe(
+        (response: any) => {
+         this.birthday = response
+          console.log("birthday",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
         
-  //       }
-  //     );
+        }
+      );
    
-  // }
+  }
   // API for show birthday end
+
+  // total Working Hours start
+workingHours(){
+  this.dashboardService.totalWorkingHours().subscribe(
+    (response: any) => {
+      this.totalWorkingHours = response.totalWorkingHours;
+      console.log("total Working Hours", this.totalWorkingHours)
+    },
+    (error) => {
+      
+    }
+  );
+}
+// total Working Hours end
+
+  // check Out Early start
+checkOutEarly(){
+  this.dashboardService.checkOutEarly().subscribe(
+    (response: any) => {
+      this.totalCheckOutEarly = response;
+      console.log("check Out Early", this.totalCheckOutEarly)
+    },
+    (error) => {
+      
+    }
+  );
+}
+// check Out Early end
+
+
 }
 

@@ -623,10 +623,10 @@ addShift(shiftTime: any){
   shiftDetails: {
     checkInGraceTime: shiftTime.checkInGraceTime,
     checkOutGraceTime: shiftTime.checkOutGraceTime,
-    halfDay: shiftTime.halfDay,
-    absentCount: shiftTime.absentCount,
-    present: shiftTime.present,
-    overtime: shiftTime.overtime
+    halfDayHrs: shiftTime.halfDayHrs,
+    absentHrs: shiftTime.absentHrs,
+    presentHrs: shiftTime.presentHrs,
+    overTimeHrs: shiftTime.overTimeHrs
   }
 }
   return this.http.post(url, data, { headers });

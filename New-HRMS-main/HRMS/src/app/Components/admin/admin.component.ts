@@ -201,8 +201,8 @@ export class AdminComponent {
   this.takenLeaveUser();
     this.totalWfhUser();
     this.remainingWfhUser();
-  // this.takenWfhUser();
-  // this.birthdayUser();
+  this.takenWfhUser();
+  this.birthdayUser();
   }
 
 
@@ -754,20 +754,20 @@ updateNumberOfDays() {
   // API for taken wfh of user start
   
   takenWfh: any;
-  // takenWfhUser() {
+  takenWfhUser() {
    
-  //     this.adminService.wfhTakenUser().subscribe(
-  //       (response: any) => {
-  //        this.takenWfh = response
-  //         console.log("taken wfh",response);
-  //       },
-  //       error => {
-  //         Swal.fire('Error', error.error, 'error');  
+      this.adminService.wfhTakenUser().subscribe(
+        (response: any) => {
+         this.takenWfh = response
+          console.log("taken wfh",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
         
-  //       }
-  //     );
+        }
+      );
    
-  // }
+  }
   // API for taken wfh of user end
 
   // API for remaining wfh of user start
@@ -790,20 +790,21 @@ updateNumberOfDays() {
 
   // API for show birthday start
   birthday: any;
-  // birthdayUser() {
+  birthdayUser() {
    
-  //     this.adminService.birthday().subscribe(
-  //       (response: any) => {
-  //        this.birthday = response
-  //         console.log("birthday",response);
-  //       },
-  //       error => {
-  //         Swal.fire('Error', error.error, 'error');  
+      this.adminService.birthday().subscribe(
+        (response: any) => {
+         this.birthday = response
+          console.log("birthday",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
         
-  //       }
-  //     );
+        }
+      );
    
-  // }
+  }
+  
   // API for show birthday end
   
 

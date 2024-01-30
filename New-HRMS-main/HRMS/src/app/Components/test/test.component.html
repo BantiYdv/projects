@@ -1288,7 +1288,7 @@
                     <div class="mb-3">
                       <label for="endDate" class="col-form-label">End Date:</label>
                       <input type="date" class="form-control" name="toDate" id="toDate" formControlName="toDate"
-                        [value]="calculateEndDate()" [readonly]="true">
+                        [value]="calculateEndDate()" [readonly]="false">
                     </div>
                   </ng-container>
 
@@ -2598,7 +2598,9 @@
                   <label class="recruit_label">Half Day </label>
                 </div>
                 <div class="col-lg-7 col-12">
-                  <input type="time" class="recruit_input" name="halfDay" id="halfDay" [(ngModel)]="shiftTime.halfDay">
+                  <!-- <input type="number" class="recruit_input" name="halfDay" id="halfDay" [(ngModel)]="shiftTime.halfDay"> -->
+                  <input type="text" class="recruit_input" name="halfDayHrs" id="halfDayHrs" [(ngModel)]="shiftTime.halfDayHrs" (keyup)="formatTime(shiftTime.halfDayHrs, 'halfDayHrs')">
+
                 </div>
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
@@ -2606,8 +2608,9 @@
                   <label class="recruit_label">Absent Count </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
-                  <input type="time" class="recruit_input" name="absentCount" id="absentCount" [(ngModel)]="shiftTime.absentCount">
-                  
+                  <!-- <input type="number" class="recruit_input" name="absentCount" id="absentCount" [(ngModel)]="shiftTime.absentCount"> -->
+                  <input type="text" class="recruit_input" name="absentHrs" id="absentHrs" [(ngModel)]="shiftTime.absentHrs" (keyup)="formatTime(shiftTime.absentHrs, 'absentHrs')">
+
                 </div>
               </div>
             </div>
@@ -2617,7 +2620,9 @@
                   <label class="recruit_label">Present </label>
                 </div>
                 <div class="col-lg-7 col-12">
-                  <input type="time" class="recruit_input" name="present" id="present" [(ngModel)]="shiftTime.present">
+                  <!-- <input type="number" class="recruit_input" name="present" id="present" [(ngModel)]="shiftTime.present"> -->
+                  <input type="text" class="recruit_input" name="presentHrs" id="presentHrs" [(ngModel)]="shiftTime.presentHrs" (keyup)="formatTime(shiftTime.presentHrs, 'presentHrs')">
+
                 </div>
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
@@ -2625,8 +2630,9 @@
                   <label class="recruit_label">Over Time </label>
                 </div>
                 <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
-                  <input type="time" class="recruit_input" name="overtime" id="overtime" [(ngModel)]="shiftTime.overtime">
-                  
+                  <!-- <input type="number" class="recruit_input" name="overtime" id="overtime" [(ngModel)]="shiftTime.overtime"> -->
+                  <input type="text" class="recruit_input" name="overTimeHrs" id="overTimeHrs" [(ngModel)]="shiftTime.overTimeHrs" (keyup)="formatTime(shiftTime.overTimeHrs, 'overTimeHrs')">
+
                 </div>
               </div>
             </div>
@@ -2706,10 +2712,10 @@
             <td class="textNormal">{{ item.checkOutTime }}</td>
             <td class="textNormal">{{ item.shiftDetails.checkInGraceTime }}</td>
             <td class="textNormal">{{ item.shiftDetails.checkOutGraceTime }}</td>
-            <td class="textNormal">{{ item.shiftDetails.halfDay }}</td>
-            <td class="textNormal">{{ item.shiftDetails.absentCount }}</td>
-            <td class="textNormal">{{ item.shiftDetails.present }}</td>
-            <td class="textNormal">{{ item.shiftDetails.overtime }}</td>
+            <td class="textNormal">{{ item.shiftDetails.halfDayHrs }}</td>
+            <td class="textNormal">{{ item.shiftDetails.absentHrs }}</td>
+            <td class="textNormal">{{ item.shiftDetails.presentHrs }}</td>
+            <td class="textNormal">{{ item.shiftDetails.overTimeHrs }}</td>
             <td class="textNormal"><button class="btn btn-success" (click)="editShift(item.id)">Edit Shift</button></td>
           </tr>
         </tbody>

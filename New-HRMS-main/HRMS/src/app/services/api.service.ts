@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.30:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.30:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -50,8 +50,8 @@ export class ApiService {
   public ApplyLeave = `${this.apiUrl}gateway/hrms/leave`;
   public ViewLeave = `${this.apiUrl}gateway/hrms/oneleave`;
   public ViewAllLeave = `${this.apiUrl}gateway/hrms/lea`;
-  public CheckIn = `${this.apiUrl}gateway/hrms/checkin`;
-  public CheckOut = `${this.apiUrl}gateway/hrms/checkout`;
+  public CheckIn = `${this.apiUrl}gateway/hrms/checkinn`;
+  public CheckOut = `${this.apiUrl}gateway/hrms/checkoutt`;
   public EmpAtt = `${this.apiUrl}gateway/hrms/attend`;
   public ViewAllAtt = `${this.apiUrl}gateway/hrms/attendancelist`;
   public ApplyWfh = `${this.apiUrl}gateway/hrms/wfh`;
@@ -111,11 +111,17 @@ export class ApiService {
   public LeaveTakenByUser = `${this.apiUrl}gateway/hrms/totalLeaveTakenByUser`;
   public remainingLeaveUser = `${this.apiUrl}gateway/hrms/totalRemainingLeave`;
   public totalWfhUser = `${this.apiUrl}gateway/hrms/totalWorkFromHomeOfUser`;
-  // public WfhTakenByUser = `${this.apiUrl}gateway/hrms/workFromHomeTakenByUser`;
+  public WfhTakenByUser = `${this.apiUrl}gateway/hrms/workFromHomeTakenByUser`;
   public remainingWfhUser = `${this.apiUrl}gateway/hrms/remainingWorkFromHome`;
-  // public birthdays = `${this.apiUrl}gateway/hrms/birthdayTodayAndUpcomingBirthdays`;
+  public birthdays = `${this.apiUrl}gateway/hrms/birthdayTodayAndUpcomingBirthdays`;
   public uploadHolidayPdfUrl = `${this.apiUrl}gateway/hrms/uploadHolidayPdf`;
+  public workingHours = `${this.apiUrl}gateway/hrms/totalWorkingHoursForCurrentDate`;
+  public checkOutEarly = `${this.apiUrl}gateway/hrms/usersCheckedOutEarlyLast7Days`;
 
   constructor(private http: HttpClient) { }
 
 }
+// Angular CLI: 16.2.2
+// Node: 18.15.0
+// Package Manager: npm 9.5.0
+// OS: win32 x64

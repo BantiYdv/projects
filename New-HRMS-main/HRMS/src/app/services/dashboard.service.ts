@@ -290,4 +290,20 @@ interntime(){
   return this.http.get(`${this.api.internTime}`, { headers });
 }
 // show intern time employee end
+
+// show working hours strat
+totalWorkingHours(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.workingHours}`, { headers });
+}
+// show working hours end
+
+// show check Out Early strat
+checkOutEarly(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.checkOutEarly}`, { headers });
+}
+// show check Out Early end
 }
