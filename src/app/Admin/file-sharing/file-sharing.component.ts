@@ -122,6 +122,7 @@ export class FileSharingAdminComponent {
            
             this.getFileSharing();
             this.FileSharing = {};
+            
           }
         });
       },

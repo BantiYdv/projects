@@ -67,7 +67,7 @@ export class BriefsComponent {
     },
   ];
   // tasks: any;
-  
+  // selectedMonth: string = ''; 
 
 
 
@@ -180,5 +180,19 @@ calculateMarginLeft(startDate: Date): number {
     return startStatus ? new Date(startStatus.date) : new Date(); // Default value
   }
   
-  
+
+//   onSearchMonth() {
+//     // Filter projects based on the selected month
+//     this.projectsActive = this.projectsActive.filter((projectsActive: { start_date: string | number | Date; }) => {
+//       const projectMonth = new Date(projectsActive.start_date).toLocaleString('en-US', { month: '2-digit' });
+//       console.log("selected month", this.selectedMonth);
+//       return projectMonth === this.selectedMonth;
+//     });
+//   }
+//  FilterMonth(){
+//   if(this.selectedMonth){
+//     this.projectsActive = this.projectsActive.filter((item: { name: string;}) =>
+//    item.name.toLowerCase().includes(this.selectedMonth.toLowerCase()) 
+//    )};
+//  }
 }

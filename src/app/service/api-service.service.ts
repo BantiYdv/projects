@@ -381,6 +381,7 @@ export class ApiServiceService {
       assests_id:id,
       members:member,
     }
+    console.log("assign to>>>>>>>?????>>>>>>>", data);
     const headers = this.headerWithAuth;
     return this.http.post(`${this.keys.assignCreativeAssetsToTeamMember}`,data, { headers });
   }

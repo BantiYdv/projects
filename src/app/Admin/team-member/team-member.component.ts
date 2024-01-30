@@ -5,6 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiServiceService } from '../../service/api-service.service';
 
+
+declare var $: any;
+interface JQuery {
+  modal(action: string): void;
+}
+
 @Component({
   selector: 'app-team-member',
   standalone: true,
@@ -64,6 +70,7 @@ export class TeamMemberComponent {
           timer: 3000,
         }).then((result) => {
           if (result) {
+            $('#addNewTeamMember').modal('hide');
             this.getTeamMember();
           }
         });

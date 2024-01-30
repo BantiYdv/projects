@@ -26,13 +26,13 @@
                         <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_3_code" [ngClass]="{ 'even': even, 'odd': odd }">Deadline Date</div>
                     </div>
                     <div class="col-12 col-md-12 d-flex flex-nowrap justify-content-center align-items-center mt-3">
-                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.start_date}} &nbsp;
-                            <ng-container *ngIf="even">
+                        <div class="col-5 col-md-5 d-flex justify-content-center align-items-center startDate" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.start_date}} &nbsp;
+                            <!-- <ng-container *ngIf="even">
                                 <img src="/assets/images/calenderIcon.png" alt="" class="calenderIcon">
                               </ng-container>
                               <ng-container *ngIf="odd">
                                 <img src="/assets/images/calenderIcon2.svg" alt="" class="calenderIcon">
-                              </ng-container>
+                              </ng-container> -->
                         </div>
                         <div class="col-2 col-md-2 d-flex justify-content-center align-items-center work_text_2_code" [ngClass]="{ 'even': even, 'odd': odd }"><i class="fa fa-arrow-right"></i></div>
                         <div class="col-5 col-md-5 d-flex justify-content-center align-items-center deadline" [ngClass]="{ 'even': even, 'odd': odd }">{{workStatus.deadline}}</div>

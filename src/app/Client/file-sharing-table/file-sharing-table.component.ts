@@ -81,6 +81,10 @@ export class FileSharingTableComponent {
             icon: 'success',
             title: 'Review Saved',
             text: 'Your review has been saved successfully!',
+          }).then((result) => {
+            if (result) {
+              location.reload();
+            }
           });
 
           this.is_accepted = '';

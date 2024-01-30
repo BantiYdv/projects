@@ -49,8 +49,8 @@ searchcreativeAssetTable: string = '';
   currentcreativeAssetTablePage: number = 1;
  
   FiltercreativeAssetTable() {
-   this.creativeAssetsTable = this.assetsFolderTableData.filter((folder: { short_name: string; }) =>
-   folder.short_name.toLowerCase().includes(this.searchcreativeAssetTable.toLowerCase()) 
+   this.creativeAssetsTable = this.assetsFolderTableData.filter((folder: { title: string; }) =>
+   folder.title.toLowerCase().includes(this.searchcreativeAssetTable.toLowerCase()) 
     );
   }
   

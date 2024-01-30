@@ -5,21 +5,21 @@
             <div class="header_css_button_project">
                 <button data-bs-toggle="modal" data-bs-target="#addNewTeamMember"><i class="fa fa-plus"></i> Add
                     New</button>
+                    <div class="added_positions_list_right" *ngIf="currentTeamMemberPage === 1">
+                        <div class="added_positions_under_head">Show</div>
+                        <div>
+                          <select class="added_positions_under_head_select" [(ngModel)]="TeamMemberPageperPage">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                            <option value="48">48</option>
+                            <option value="60">60</option>
+                          </select>
+                        </div>
+                        <div class="added_positions_under_head">Enteries</div>
+                      </div>
             </div>
 
-            <div class="added_positions_list_right" *ngIf="currentTeamMemberPage === 1">
-                <div class="added_positions_under_head">Show</div>
-                <div>
-                  <select class="added_positions_under_head_select" [(ngModel)]="TeamMemberPageperPage">
-                    <option value="12">12</option>
-                    <option value="24">24</option>
-                    <option value="36">36</option>
-                    <option value="48">48</option>
-                    <option value="60">60</option>
-                  </select>
-                </div>
-                <div class="added_positions_under_head">Enteries</div>
-              </div>
             <div class="creativeAssetSearch">
                 <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchTeamMember"
                 (keyup)="FilterTeamMember()"> <img
@@ -108,7 +108,7 @@
 
 
 <!-- Modal addNewTeamMember -->
-<div class="modal fade" id="addNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addNewTeamMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color: yellow;">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="save_css_button_code">
-                            <button [disabled]="saveTeamMemberForm.invalid" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                            <button [disabled]="saveTeamMemberForm.invalid"  aria-label="Close">Save</button>
                         </div>
                     </div>
                 </form>

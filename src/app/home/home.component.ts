@@ -516,7 +516,7 @@ getStars(starCount: number): boolean[] {
         })
         break;
       case 'team member':
-        this.router.navigate(['/employee/creative-asset']).then( () => {
+        this.router.navigate(['/employee/employee-project']).then( () => {
           window.location.reload();
         })
         break;

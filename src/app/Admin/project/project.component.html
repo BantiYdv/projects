@@ -9,21 +9,21 @@
                     <div class="header_css_button_project" *ngIf="isOn">
                         <button data-bs-toggle="modal" data-bs-target="#addNewProject"><i class="fa fa-plus"></i> Add
                             New</button>
+                            <div class="added_positions_list_right" *ngIf="currentHistoryProjectPage === 1">
+                                <div class="added_positions_under_head">Show</div>
+                                <div>
+                                  <select class="added_positions_under_head_select" [(ngModel)]="HistoryProjectPageperPage">
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="36">36</option>
+                                    <option value="48">48</option>
+                                    <option value="60">60</option>
+                                  </select>
+                                </div>
+                                <div class="added_positions_under_head">Enteries</div>
+                              </div>
                     </div>
 
-                    <div class="added_positions_list_right" *ngIf="currentHistoryProjectPage === 1">
-                        <div class="added_positions_under_head">Show</div>
-                        <div>
-                          <select class="added_positions_under_head_select" [(ngModel)]="HistoryProjectPageperPage">
-                            <option value="12">12</option>
-                            <option value="24">24</option>
-                            <option value="36">36</option>
-                            <option value="48">48</option>
-                            <option value="60">60</option>
-                          </select>
-                        </div>
-                        <div class="added_positions_under_head">Enteries</div>
-                      </div>
 
                     <div class="header_css_button_project" *ngIf="!isOn">
                         <button data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa fa-plus"></i> Add
@@ -41,20 +41,20 @@
                     <div class="header_css_button_project" *ngIf="!isOn">
                         <button data-bs-toggle="modal" data-bs-target="#addNewTask"><i class="fa fa-plus"></i> Add
                             Task</button>
+                            <div class="added_positions_list_right" *ngIf="currentHistoryProjectPage === 1">
+                                <div class="added_positions_under_head">Show</div>
+                                <div>
+                                  <select class="added_positions_under_head_select" [(ngModel)]="HistoryProjectPageperPage">
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="36">36</option>
+                                    <option value="48">48</option>
+                                    <option value="60">60</option>
+                                  </select>
+                                </div>
+                                <div class="added_positions_under_head">Enteries</div>
+                              </div>
                     </div>
-                    <div class="added_positions_list_right" *ngIf="currentHistoryProjectPage === 1">
-                        <div class="added_positions_under_head">Show</div>
-                        <div>
-                          <select class="added_positions_under_head_select" [(ngModel)]="HistoryProjectPageperPage">
-                            <option value="12">12</option>
-                            <option value="24">24</option>
-                            <option value="36">36</option>
-                            <option value="48">48</option>
-                            <option value="60">60</option>
-                          </select>
-                        </div>
-                        <div class="added_positions_under_head">Enteries</div>
-                      </div>
                     
                <div class="creativeAssetSearch">
                 <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchHistoryProject"
@@ -92,7 +92,7 @@
                             <th scope="col">Handel By</th>
                             <th scope="col">Download</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Edit</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="tBody_css">
@@ -112,7 +112,7 @@
                                 <div data-bs-toggle="modal" (click)="getProjectById(projectData._id)"
                                     data-bs-target="#downloadProject">
                                     
-                                    <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                                    <img src="../../../assets/images/dwonLoad_1.svg" class="w-25" alt="">
                                   
                                 </div>
                             </td>
@@ -192,7 +192,7 @@
                             <th scope="col">Assign To</th>
                             <th scope="col">Download</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Edit</th>
+                            <th scope="col">Action</th>
                           </tr>
                     </thead>
                     <tbody class="tBody_css">
@@ -206,7 +206,7 @@
                             <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">
                                 <div  data-bs-toggle="modal" (click)="getTaskById(task.task_info._id)"
                                 data-bs-target="#downloadTask">
-                                <img src="../../../assets/images/download_css_ing.svg" class="w-25" alt="">
+                                <img src="../../../assets/images/dwonLoad_1.svg" class="w-25" alt="">
                             </div>
                         </td>
                             <td [ngClass]="{ 'bg-secondary': !task.task_info.is_enabled }">
@@ -904,7 +904,7 @@
             <div class="col-12 col-md-6">
                 <div class="add_css_pro_code">
                     <label>Assign To Team Member</label>
-                    <span>{{taskUpdate.assgined_to}}</span>
+                    <span>{{taskUpdate.assgined_to_name}}</span>
                 </div>
             </div>
             <div class="col-12 col-md-6">

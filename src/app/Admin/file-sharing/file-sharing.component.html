@@ -1,49 +1,22 @@
-    <!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
-        <div class="searchBar">
-            <div class="header_css_button_project">
-                <button data-bs-toggle="modal" data-bs-target="#addFileSharing"><i class="fa fa-plus"></i> Add
-                    New</button>
-            </div>
-            <div class="added_positions_list_right" *ngIf="currentFileSharingTablePage === 1">
-                <div class="added_positions_under_head">Show</div>
-                <div>
-                  <select class="added_positions_under_head_select" [(ngModel)]="FileSharingTablePageperPage">
-                    <option value="12">12</option>
-                    <option value="24">24</option>
-                    <option value="36">36</option>
-                    <option value="48">48</option>
-                    <option value="60">60</option>
-                  </select>
-                </div>
-                <div class="added_positions_under_head">Enteries</div>
-              </div>
-            <div class="creativeAssetSearch">
-                <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchFileSharingTable"
-                (keyup)="FilterFileSharingTable()"> <img
-                    src="../../../assets/images/creativeAssetsSearchIcon.svg" alt="" class="creativeAssetsSearchIcon">
-            </div>
-        </div>
-        
-    </div> -->
 
     <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
         <div class="searchBar">
             <div class="header_css_button_project">
                 <button data-bs-toggle="modal" data-bs-target="#addFileSharing"><i class="fa fa-plus"></i> Add
                     New</button>
-            </div>
-            <div class="added_positions_list_right" *ngIf="currentFileSharingTablePage === 1">
-                <div class="added_positions_under_head">Show</div>
-                <div>
-                    <select class="added_positions_under_head_select" [(ngModel)]="FileSharingTablePageperPage">
-                        <option value="12">12</option>
-                        <option value="24">24</option>
-                        <option value="36">36</option>
-                        <option value="48">48</option>
-                        <option value="60">60</option>
-                    </select>
-                </div>
-                <div class="added_positions_under_head">Enteries</div>
+                    <div class="added_positions_list_right" *ngIf="currentFileSharingTablePage === 1">
+                        <div class="added_positions_under_head">Show</div>
+                        <div>
+                            <select class="added_positions_under_head_select" [(ngModel)]="FileSharingTablePageperPage">
+                                <option value="12">12</option>
+                                <option value="24">24</option>
+                                <option value="36">36</option>
+                                <option value="48">48</option>
+                                <option value="60">60</option>
+                            </select>
+                        </div>
+                        <div class="added_positions_under_head">Enteries</div>
+                    </div>
             </div>
             <div class="creativeAssetSearch">
                 <input type="text" id="searchBar" placeholder="Search" [(ngModel)]="searchFileSharingTable" (keyup)="FilterFileSharingTable()">
@@ -186,7 +159,7 @@
                         </div>
                         <div class="col-12 col-md-12">
                             <div class="save_css_button_code">
-                                <button [disabled]="saveFileSharingForm.invalid">Save</button>
+                                <button [disabled]="saveFileSharingForm.invalid" data-bs-dismiss="modal">Save</button>
                             </div>
                         </div>
                     </form>
@@ -272,8 +245,17 @@
                                     <label>Upload Doc.</label>
                                     <input type="file" (change)="onChangeFileSharingUpdate($event)"
                                         [(ngModel)]="file_sharing" name="file_sharing">
+                                        <span>{{filsharing_name_data}}</span>
                                 </div>
                             </div>
+                            <!-- <div class="col-12 col-md-6">
+                                <div class="add_css_pro_code">
+                                    <label>Upload Doc.</label>
+                                    <input type="file" (change)="onChangeFileSharingUpdate($event)"
+                                        [ngModel]="file_sharing ? file_sharing.original_name : ''" name="file_sharing">
+                                </div>
+                            </div> -->
+                            
                           
                         </div>
                         <div class="col-12 col-md-12">

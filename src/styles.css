@@ -176,6 +176,7 @@ background: #F8F9FF;
 .searchBar{
 width: 90%;
 display: flex;
+flex-wrap: wrap;
 justify-content: space-between;
 align-items: center;
 border-bottom: 2px solid #BCBBC3;
@@ -228,6 +229,6 @@ padding: 6px;
  .sub_head_css_data i{
   /* width: 90%; */
   font-size: 35px;
-  padding: 10px 0px 0px 80px;
+  padding: 10px 0px 0px 56px;
  }
  /* for bars */

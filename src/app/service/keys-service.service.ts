@@ -65,7 +65,7 @@ public getFileSharingForReview = `${this.mainUrl}/client/getFileSharingForReview
 public addCreativeAssets = `${this.mainUrl}/client/addCreativeAssets`;
 public getAllCreativeAssetsOfClient = `${this.mainUrl}/client/getAllCreativeAssetsOfClient`;
 public getAllCreativeAssets = `${this.mainUrl}/client/getAllCreativeAssets`;
-public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssets/getCreativeAssetsOfMember`;
+public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssests/getCreativeAssetsOfMember`;
 
   public saveWorkStatus = `${this.mainUrl}/saveWorkStatus`;
   public getClientProjectList = `${this.mainUrl}/user/getClientProjectList`;

@@ -59,13 +59,16 @@ this.creativeAssetsTableIdData = id;
 assignCreativeAssetsToTeamMember(member:any){
     this.apiService.assignCreativeAssetsToTeamMember(member,this.creativeAssetsTableIdData).subscribe(
       (r: any) => {
-        console.log('done',r);
         Swal.fire({
           icon: 'success',
           title: 'Assets Assigned!',
           text: 'Creative assets have been successfully assigned to the team member.',
         });
-        this.assignTo = '';
+        console.log('done',r);
+        // this.assignTo = '';
+        console.log("assign to", this.assignTo);
+        console.log("assign to>>>>>>>>>>>>", this.creativeAssetsTableIdData);
+        console.log("assign to///////////", member);
       },
       (e) => {
         console.error('eerorr',e);
@@ -78,12 +81,31 @@ assignCreativeAssetsToTeamMember(member:any){
     )
 }
 
+// assignTask() {
+//   this.apiService.assignTask(this.id).subscribe(
+//     (r: any) => {
+//       console.log('r-=-=->', r.data);
+//       this.getTeamMemberList = r.data.participants;
+//       // console.warn(this.getTeamMemberList);
+//       console.log("team member assign to", this.getTeamMemberList);
+//     },
+//     (e) => {
+//       console.error('error =--=-=>', e);
+//     }
+//   );
+// }
 assignTask() {
   this.apiService.assignTask(this.id).subscribe(
     (r: any) => {
-      console.log('r-=-=->', r);
-      this.getTeamMemberList = r.data.participants;
-      console.warn(this.getTeamMemberList);
+      console.log('r-=-=->', r.data);
+
+      // Extracting the data from handel_by
+      const handelByData = r.data.handel_by;
+
+      // Merging handel_by and participants data
+      this.getTeamMemberList = handelByData ? [handelByData, ...r.data.participants] : r.data.participants;
+
+      console.log("team member assign to", this.getTeamMemberList);
     },
     (e) => {
       console.error('error =--=-=>', e);
