@@ -833,4 +833,54 @@ private showErrorAlert(message: string): void {
 }
 // upload pdf end
 
+
+// save holiday start
+saveHoliday(holiday: any){
+  const url = `${this.api.saveHoliday}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const data = {
+    date: holiday.date,
+    day: holiday.day,
+    holiDayReason: holiday.holiDayReason
+  };
+  return this.http.post(url, data, { headers });
+}
+// save holiday end
+
+// get holiday start
+
+getHoliday(){
+  const url = `${this.api.getHoliday}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// get holiday end
+
+// delete Holiday start
+deleteHoliday(id: number): Observable<any> {
+  const url = `${this.api.deleteHoliday}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.delete(url, { headers });
+}
+// delete Holiday end
+
+//Update Employee Attendance start
+updateHoliday(id: any, holiday: any): Observable<any> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ const data = {
+  date: holiday.date,
+  day: holiday.day,
+  holiDayReason: holiday.holiDayReason
+ }
+  const url = `${this.api.updateHoliday}/${id}`;
+  return this.http.put(url, data, { headers });
+}
+//Update Employee Attendance end
+
 }

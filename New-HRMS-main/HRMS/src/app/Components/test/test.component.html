@@ -1,6 +1,6 @@
 <div [ngSwitch]="loginService.tableType">
 
-  <!-- create role start -->
+  <!-- create Holiday start -->
 
   <div *ngSwitchCase="'createRole'">
     <div class="content m-1 mt-4">
@@ -4874,6 +4874,176 @@
   <!-- add holiday upload start -->
 <div *ngSwitchCase="'addHoliday'">
   <div class="content m-1 mt-4">
+    <div class="container">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Add Holidays</span>
+      </div>
+      <!-- <div class="row justify-content-center">
+        <div class="col-md-12"> -->
+
+          <div class="row">
+            <div class="col-md-6 d-flex justify-content-start">
+              <div class="added_positions_list_right">
+                <div class="added_positions_under_head">Show</div>
+                <div>
+                  <select class="added_positions_under_head_select" [(ngModel)]="holidayPerPage">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+                <div class="added_positions_under_head">Enteries</div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end align-items-center" >
+              <div class="">
+                <div class="search-container ">
+                  <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                    alt="">
+                  <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchHoliday"
+                    (keyup)="FilterHoliday()">
+                </div>
+              </div>
+              <div class="">
+                <button class="button_added_position_list">Search</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+
+            <div class="recruit_table">
+              <div class="table_head" style="background-color: #3330B1;">
+                <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
+                  S.No</div>
+                <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
+
+                  &nbsp; Date
+                </div>
+                <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
+
+                  &nbsp; Day
+                </div>
+                <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
+
+                  &nbsp; Holiday
+                </div>
+
+                <div class="table_head_topics" style="width: 20%; color: #FFFFFF;">Action</div>
+              </div>
+
+              <div class="my-1">
+                <!-- <div class="table_body" *ngFor="let item of getPaginatedHolidayData(); let i = index">
+                  <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                  </div>
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
+                    item.date }}</div>
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
+                    item.day }}</div>
+                  <div class="table_body_topics my-2"
+                    style="width: 30%;border-right: 2px solid #ADADAD;">
+                    {{item.holiDayReason}}
+                  </div>
+                  <div class="table_body_topics mt-2" style="width: 20%;">
+                    <button type="button" class="btn " ><img src="/assets/image/EditHolidayIcon.svg" alt="" class="EditHolidayIcon">update</button>
+                    <button type="button" class="btn " (click)="deleteHoliday(item.id)"><img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
+                  </div>
+
+
+                </div> -->
+                <div class="table_body" *ngFor="let item of getPaginatedHolidayData(); let i = index">
+                  <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}</div>
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex !== i">
+                    {{ item.date }}
+                  </div>
+                  <input *ngIf="editModeIndex === i" type="date" name="date" class="holidayReason" [(ngModel)]="item.date">
+                
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex !== i">
+                    {{ item.day }}
+                  </div>
+                  <input *ngIf="editModeIndex === i" type="text" name="day" class="holidayReason" [(ngModel)]="item.day" readonly>
+                
+                  <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD;" *ngIf="editModeIndex !== i">
+                    {{ item.holiDayReason }}
+                  </div>
+                  <input *ngIf="editModeIndex === i" type="text" name="holiDayReason" class="holidayReason" [(ngModel)]="item.holiDayReason">
+                
+                  <div class="table_body_topics mt-2" style="width: 20%;">
+                    <button *ngIf="editModeIndex !== i" type="button" class="btn" (click)="startEdit(i)">
+                      <img src="/assets/image/EditHolidayIcon.svg" alt="" class="EditHolidayIcon"> 
+                    </button>
+                    <button *ngIf="editModeIndex !== i" type="button" class="btn" (click)="deleteHoliday(item.id)">
+                      <img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon">
+                    </button>
+                    <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Approve" (click)="stopEdit()">
+                      Update
+                    </button>
+                    <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Reject" (click)="stopEdit()">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+                
+
+                <div class="table_body" *ngIf="isTableBodyVisible">
+                  <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{getPaginatedHolidayData().length+1}} </div>
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD;">
+                    <input type="date" name="date" class="holidayReason"  [(ngModel)]="holiday.date" (change)="updateSelectedDay()">
+                  </div>
+                  
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD;"><input type="text" name="day" class="holidayReason" style="text-align: center;" [(ngModel)]="holiday.day" readonly></div>
+             
+                  <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; "> <input type="text" name="holiDayReason" class="holidayReason" [(ngModel)]="holiday.holiDayReason"> </div>
+                 
+                  <div class="table_body_topics mt-2" style="width: 20%;">
+    
+                    <button *ngIf="isEditMode" type="button" class="btn m-1 Approve" (click)="saveHoliday()">Save</button>
+                    <button *ngIf="isEditMode" type="button" class="btn m-1 Reject" (click)="cancelEdit()">Cancel</button>
+                    
+                   
+                    <button *ngIf="!isEditMode" type="button" class="btn" ><img src="/assets/image/EditHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
+                    <button *ngIf="!isEditMode" type="button" class="btn" ><img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
+                  </div>
+                </div>
+                <div class="not_data_img_div" *ngIf="getPaginatedHolidayData().length == 0">
+                  <p>Not Data !!</p>
+                </div>
+              </div>
+              <button type="button" class="btn Approve" *ngIf="!isEditMode" (click)="toggleTableBody()">+ Add</button>
+
+
+            </div>
+           
+          </div>
+
+          <div class="col-md-12" *ngIf="getTotalPagesHoliday() > 1">
+            <div class="table_footer mt-2">
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                style="background-color:#421cdd;" (click)="previousHolidayPage()" [disabled]="holidayCurrentPage == 1">
+                <i class="fa fa-angle-left"></i> Previous
+              </button>
+              <div class="recruitment_list_number">
+                <div *ngFor="let pageNumber of getPageNumbersHoliday()" [class.active_num]="pageNumber === holidayCurrentPage"
+                  class="recruitment_list_number_value" (click)="changePageHoliday(pageNumber)">
+                  {{ pageNumber }}
+                </div>
+              </div>
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                style="background-color:#421cdd;" (click)="nextPageHoliday()"
+                [disabled]="holidayCurrentPage == getTotalPagesHoliday()">
+                Next <i class="fa fa-angle-right"></i>
+              </button>
+
+            </div>
+          </div>
+
+    </div>
+    
+  </div>
+  <!-- <div class="content m-1 mt-4">
     <div class="recruit_form_other_rule mb-5 ">
       <div class="row justify-content-center">
         <div class="col-lg-10 col-md-12 col-sm-12 col-12">
@@ -4897,14 +5067,14 @@
             </div>
 
             <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
-              <!-- <button class="recruitment_button" type="submit" (click)="uploadLeavePolicy()">Upload</button> -->
+              
               <button class="recruitment_button" type="submit" >View File</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <!-- add holiday upload end -->

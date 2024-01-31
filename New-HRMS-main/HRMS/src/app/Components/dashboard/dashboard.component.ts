@@ -69,7 +69,8 @@ intern = '';
   public chart: any;
   //bar chart end
   totalCheckOutEarly: any;
-
+  totalCheckedInLate: any;
+  presentLast7Days: any;
   // change password validation start
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
@@ -134,6 +135,9 @@ intern = '';
     this.birthdayUser();
     this.workingHours();
     this.checkOutEarly();
+    this.checkedInLate();
+    this.presentUsersLast7Days();
+  
     // this.createLineChart();
   }
  
@@ -245,40 +249,88 @@ intern = '';
   
   
   
+  // createChart() {
+  //   if (this.presentLast7Days !== undefined && this.totalCheckOutEarly !== undefined) {
+  //   this.chart = new Chart("MyChart", {
+  //     type: 'bar', //this denotes tha type of chart
+  //     data: {// values on X-Axis
+  //       labels: ['Mon', 'Tue', 'Wed', 'Thu',
+  //         'Fri', 'Sat', 'Sun'],
+  //       datasets: [
+  //         {
+  //           label: "present",
+  //           data: [`${this.presentLast7Days}`],
+  //           backgroundColor: '#421CDD'
+  //         },
+  //         {
+  //           label: "Late Arrival",
+  //           data: ['40', '90', '50', '30', '60',
+  //             '40', '80', '60', '30', '50', '90', '60'],
+  //           backgroundColor: '#FFCE62'
+  //         },
+  //         {
+  //           label: "Early Departure",
+  //           data:[`${this.totalCheckOutEarly}`],
+  //           backgroundColor: '#F97165'
+  //         }
+  //       ]
+  //     },
+  //     options: {
+  //       aspectRatio: 1.5
+  //     }
+
+  //   });
+  // }
+  // }
+  
   createChart() {
-
-    this.chart = new Chart("MyChart", {
-      type: 'bar', //this denotes tha type of chart
-      data: {// values on X-Axis
-        labels: ['Mon', 'Tue', 'Wed', 'Thu',
-          'Fri', 'Sat', 'Sun'],
-        datasets: [
-          {
-            label: "present",
-            data: ['50', '20', '40', '30', '60',
-              '30', '60', '40', '60', '70', '50', '100'],
-            backgroundColor: '#421CDD'
-          },
-          {
-            label: "Late Arrival",
-            data: ['40', '90', '50', '30', '60',
-              '40', '80', '60', '30', '50', '90', '60'],
-            backgroundColor: '#FFCE62'
-          },
-          {
-            label: "Early Departure",
-            data: ['30', '20', '80', '50', '80',
-              '100', '40', '90', '60', '70', '30', '80'],
-            backgroundColor: '#F97165'
-          }
-        ]
-      },
-      options: {
-        aspectRatio: 1.5
+    if (this.presentLast7Days !== undefined && this.totalCheckOutEarly !== undefined) {
+      // Create an array to store the last 7 days' dates
+      const last7DaysDates = [];
+  
+      // Define an array of month names
+      const monthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      ];
+  
+      // Populate the array with the last 7 days' dates excluding today
+      for (let i = 1; i <= 7; i++) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        // Format the date as month name and date
+        const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}`;
+        last7DaysDates.push(formattedDate);
       }
-
-    });
+  
+      this.chart = new Chart("MyChart", {
+        type: 'bar',
+        data: {
+          labels: last7DaysDates, // Set the last 7 days' dates as labels
+          datasets: [
+            {
+              label: "present",
+              data: [`${this.presentLast7Days}`],
+              backgroundColor: '#421CDD'
+            },
+            {
+              label: "Late Arrival",
+              data: ['40', '90', '50', '30', '60', '40', '80'],
+              backgroundColor: '#FFCE62'
+            },
+            {
+              label: "Early Departure",
+              data: [`${this.totalCheckOutEarly}`],
+              backgroundColor: '#F97165'
+            }
+          ]
+        },
+        options: {
+          aspectRatio: 1.5
+        }
+      });
+    }
   }
+  
   
   
  
@@ -505,10 +557,10 @@ intern = '';
     this.dashboardService.fulltime().subscribe(
       (response: any) => {
         
+        this.fullTime = response;
+        this.createLineChart();
           console.log('full time Data:', response);
           
-       this.fullTime = response;
-       this.createLineChart()
 
       },
       (error) => {
@@ -521,11 +573,13 @@ intern = '';
 
   // part time employee start
   partTimeShow(){
+    // this.fullTimeShow();
+    // this.internShow();
     this.dashboardService.parttime().subscribe(
       (response: any) => {
        
+        this.partTime = response;
           console.log('part time Data:', response);
-          this.partTime = response;
           
       },
       (error) => {
@@ -537,11 +591,13 @@ intern = '';
 
   // intern employee start
   internShow(){
+    // this.fullTimeShow();
+    // this.partTimeShow();
     this.dashboardService.interntime().subscribe(
       (response: any) => {
        
+        this.intern = response;
           console.log('intern Data:', response);
-          this.intern = response;
           
       },
       (error) => {
@@ -741,15 +797,49 @@ workingHours(){
 checkOutEarly(){
   this.dashboardService.checkOutEarly().subscribe(
     (response: any) => {
-      this.totalCheckOutEarly = response;
-      console.log("check Out Early", this.totalCheckOutEarly)
+      this.totalCheckOutEarly = response.length;
+      console.log("check Out Early", this.totalCheckOutEarly);
+      this.createChart();
     },
     (error) => {
       
     }
   );
 }
+
+
+
 // check Out Early end
+
+  // check In Late start
+checkedInLate(){
+  this.dashboardService.checkedInLate().subscribe(
+    (response: any) => {
+      this.totalCheckedInLate = response;
+      console.log("check In late", this.totalCheckedInLate)
+    },
+    (error) => {
+      
+    }
+  );
+}
+// check In Late end
+
+  // present Users Last 7Days start
+  presentUsersLast7Days(){
+  this.dashboardService.presentUsersLast7Days().subscribe(
+    (response: any) => {
+      this.presentLast7Days = response.length;
+      console.log("present Last 7Days", this.presentLast7Days);
+      this.createChart();
+    },
+    (error) => {
+      
+    }
+  );
+}
+// present Users Last 7Days end
+
 
 
 }

@@ -306,4 +306,21 @@ checkOutEarly(){
   return this.http.get(`${this.api.checkOutEarly}`, { headers });
 }
 // show check Out Early end
+
+// show check in Late strat
+checkedInLate(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.checkedInLate}`, { headers });
+}
+// show check in Late end
+
+// show present Users Last 7Days strat
+presentUsersLast7Days(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.api.presentUsersLast7Days}`, { headers });
+}
+// show present Users Last 7Days end
+
 }

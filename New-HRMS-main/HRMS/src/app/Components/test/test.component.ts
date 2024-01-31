@@ -25,7 +25,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent {
-  role: any;
+  // holiday: any;
 sortOrderSalary: any;
   
 selectOption(_t52: string) {
@@ -78,11 +78,11 @@ throw new Error('Method not implemented.');
   fillterinternEmpData: any;
   url: any;
   profileDetails: any;
-  //for create role start
+  //for create holidayPstart
   form: any;
   name: any;
 
-  // for create role end
+  // for create holidayPend
   passwordForm: any;              //for change password
   leaveForm!: any;                //for change password
 
@@ -97,7 +97,9 @@ throw new Error('Method not implemented.');
   allShiftData: any;
   id: any;
   permissionNames: any;
-
+  holiday: any = {};
+  getHolidayData: any;
+  fillterGetHoliday: any;
 
 
   // change password validation start
@@ -314,6 +316,7 @@ isDropdownOpen: any;
     this.viewinternEmp();
     // this.viewAllAttendance();
     // this.onSearchMonth();
+    this.getHoliday();
     
     // data show change routing without reload start
     this.router.events.pipe(
@@ -5189,5 +5192,229 @@ onFileSelectedHoliday(event: any): void {
 
 
 // upload holiday end
+
+// In your component class
+isTableBodyVisible: boolean = false;
+isEditMode: boolean = false;
+
+toggleTableBody() {
+  this.isTableBodyVisible = !this.isTableBodyVisible;
+  this.isEditMode = true; // Reset edit mode when showing the table body
+}
+
+cancelEdit() {
+  this.isEditMode = false;
+  this.isTableBodyVisible = false;
+}
+
+
+
+  // selectedDate: Date | any; // Variable to store the selected date
+  // selectedDay: string = ''; // Variable to store the corresponding day
+
+  // Function to update the selectedDay when the date changes
+  updateSelectedDay() {
+    const date = new Date(this.holiday.date);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    this.holiday.day = days[date.getDay()];
+
+  }
+
+  // save holiday start
+
+
+saveHoliday() {
+  // Populate the 'date' property if not set already
+  if (!this.holiday.date) {
+    this.holiday.date = this.holiday.date;
+    this.holiday.day = this.holiday.day;
+    this.holiday.holiDayReason = this.holiday.holiDayReason
+  }
+
+  this.testService.saveHoliday(this.holiday).subscribe(
+    (response: any) => {
+      console.log("save holiday", response);
+      Swal.fire({
+        title: 'success!',
+        text: 'Holiday saved successfully.',
+        icon: 'success'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.loginService.showTable('addHoliday');
+          this.router.navigate(['/addHoliday']);
+          this.isEditMode = false;
+          this.isTableBodyVisible = false;
+          this.getHoliday();
+          // Handle confirmation if needed
+        }
+      });
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');
+    }
+  );
+}
+
+    // save holiday end
+
+    // get holiday start
+    getHoliday() {
+      
+        // if ('/todayCasualLeave' === this.router.url) {
+    
+        // Call the service method to fetch all attendance data
+        this.testService.getHoliday().subscribe(
+          (response: any) => {
+            // Convert the response object to an array
+            const dataArray = Object.values(response);
+            // Reverse the received array
+            const reversedData = dataArray.reverse();
+    
+            // Set the reversed array as the data source
+            this.getHolidayData = reversedData;
+            this.fillterGetHoliday = reversedData;
+            console.log("get holiday",response);
+          },
+          error => {
+            Swal.fire('Error', error.error, 'error');  
+            // Hide the table if an error occurs
+            // this.showAllAttTable = false;
+          }
+        );
+      // }
+    }
+    // get holiday end
+
+    // pagination and search for holiday start
+
+    holidayPerPage: number = 10;
+holidayCurrentPage: number = 1;
+
+searchHoliday: string = '';
+
+
+FilterHoliday() {
+  this.fillterGetHoliday = this.getHolidayData.filter((item: { holiDayReason: string }) =>
+    item.holiDayReason.toLowerCase().includes(this.searchHoliday.toLowerCase()) 
+  );
+}
+
+getPaginatedHolidayData(): any[] {
+  const startIndex = (this.holidayCurrentPage - 1) * this.holidayPerPage;
+  const endIndex = startIndex + this.holidayPerPage;
+  return this.fillterGetHoliday.slice(startIndex, endIndex);
+}
+
+previousHolidayPage(): void {
+  if (this.holidayCurrentPage > 1) {
+    this.holidayCurrentPage--;
+  }
+}
+
+getPageNumbersHoliday(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterGetHoliday.length / this.holidayPerPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageHoliday(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesHoliday()) {
+    this.holidayCurrentPage = pageNumber;
+  }
+}
+
+
+nextPageHoliday(): void {
+  const totalPages = Math.ceil(
+    this.fillterGetHoliday.length / this.holidayPerPage
+  );
+  if (this.holidayCurrentPage < totalPages) {
+    this.holidayCurrentPage++;
+  }
+}
+
+
+getTotalPagesHoliday(): number {
+  return Math.ceil(
+    this.fillterGetHoliday.length / this.holidayPerPage
+  );
+}
+ // pagination and search for holiday end
+
+  // API for delete holiday start
+  deleteHoliday(id: any): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to delete this Holiday?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.testService.deleteHoliday(id).subscribe(
+          (response) => {
+            console.log('holiday deleted successfully.');
+            console.log("delete holiday", response);
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Holiday has been deleted.',
+              icon: 'success'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.loginService.showTable('addHoliday');
+                this.router.navigate(['/addHoliday']);
+                this.getHoliday();
+              }
+            });
+          },
+          (error) => {
+            Swal.fire('Error', error.error, 'error');
+          }
+        );
+      }
+    });
+  }
+  // API for delete holiday end
+
+   // API for update holiday start
+  updateHoliday(id: number, holiday: any){
+    this.testService.updateHoliday(id, holiday).subscribe(
+      (response: any) => {
+        
+        console.log("updated holiday",response);
+        Swal.fire({
+          title: 'Updated!',
+          text: 'Holiday has been updated.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // this.showAllAttTable = false;
+            this.getHoliday();
+
+          }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+        
+      }
+    );
+  }
+   // API for update holiday end
+
+   editModeIndex: number = -1; // Initialize as -1, indicating no row is in edit mode initially
+
+// Function to start editing a specific row
+startEdit(index: number) {
+  this.editModeIndex = index;
+}
+
+// Function to stop editing
+stopEdit() {
+  this.editModeIndex = -1;
+}
 
 }

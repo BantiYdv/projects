@@ -117,6 +117,12 @@ export class ApiService {
   public uploadHolidayPdfUrl = `${this.apiUrl}gateway/hrms/uploadHolidayPdf`;
   public workingHours = `${this.apiUrl}gateway/hrms/totalWorkingHoursForCurrentDate`;
   public checkOutEarly = `${this.apiUrl}gateway/hrms/usersCheckedOutEarlyLast7Days`;
+  public presentUsersLast7Days = `${this.apiUrl}gateway/hrms/presentUsersLast7Days`;
+  public checkedInLate = `${this.apiUrl}gateway/hrms/usersCheckedInLateLast7Days`;
+  public saveHoliday = `${this.apiUrl}gateway/hrms/saveHoliday`;
+  public getHoliday = `${this.apiUrl}gateway/hrms/getHoliday`;
+  public deleteHoliday = `${this.apiUrl}gateway/hrms/deleteHoliday`;
+  public updateHoliday = `${this.apiUrl}gateway/hrms/updateHoliday`;
 
   constructor(private http: HttpClient) { }
 

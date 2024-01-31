@@ -2047,3 +2047,21 @@ background: #FFF;
 /* / recruitment css end / */
 
 
+.EditHolidayIcon{
+  width: 24px;
+height: 20px;
+flex-shrink: 0;
+}
+
+.holidayReason{
+  display: flex;
+/* width: 200px; */
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 10px;
+border: 1px solid #ADADAD;
+background: #FFF;
+text-align: center;
+}
