@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(){
       const currentRoutePath = this.router.url;
       console.log('<= currentRoutePath =>',currentRoutePath);
-      this.apiService.showPage(currentRoutePath.replace('/',''));
+      this.apiService.showPage(currentRoutePath.replace('/home/',''));
       this.apiService.scrollToSection(currentRoutePath.replace('/',''));
 
 

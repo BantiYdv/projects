@@ -11,7 +11,6 @@ export class ApiServiceService {
   pageType: any;
   token: any = localStorage.getItem('token');
   userId: any = localStorage.getItem('userId');
-  // token: any = "Abc";
   headersWithOutAuth = new HttpHeaders({
     project_secret_key: this.keys.project_secret_key,
   });
@@ -372,10 +371,6 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getClientFileSharingProjects}?client_id=${id}`, { headers });
   }
-  // getClientProject() {
-  //   const headers = this.headerWithAuth;
-  //   return this.http.get(`${this.keys.getClientProject}`, { headers });
-  // }
   getCreativeAssetsOfMember(id: any) {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getCreativeAssetsOfMember}?project_id=${id}`, { headers });
@@ -393,7 +388,6 @@ export class ApiServiceService {
       assests_id:id,
       members:member,
     }
-    console.log("assign to>>>>>>>?????>>>>>>>", data);
     const headers = this.headerWithAuth;
     return this.http.post(`${this.keys.assignCreativeAssetsToTeamMember}`,data, { headers });
   }

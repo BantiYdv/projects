@@ -1,3 +1,4 @@
+<div *ngIf="!notFound()">
 <div *ngIf="!apiService.isLoggedIn()">
     <app-navbar *ngIf="!loginWithOTP() && !forgotPassword()"></app-navbar>
     <router-outlet></router-outlet>
@@ -16,10 +17,5 @@
         <router-outlet></router-outlet>
 </div>
 <button class="topUP show" [ngClass]="{'show': showScrollButton}" (click)="scrollToTop()" style="position: fixed; bottom: 50px; right: 50px;"><i class="fa fa-angle-double-up"></i></button>
-
-
-
-
-<img src="../../node_modules/primeng/resources/primeng.min.css" alt="">
-<img src="../../node_modules/primeng/resources/themes/nova-accent/theme.css" alt="">
-<img src="../../node_modules/primeng/resources/themes/" alt="">
+</div>
+<div *ngIf="notFound()"><router-outlet></router-outlet></div>

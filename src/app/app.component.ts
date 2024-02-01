@@ -22,6 +22,7 @@ import { EmployeeProjectComponent } from './Employee/employee-project/employee-p
 import { AssignTaskComponent } from './Employee/assign-task/assign-task.component';
 import { ClientDBComponent } from './Client/client-db/client-db.component';
 import { LoginWithOTPComponent } from './login-with-otp/login-with-otp.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 
 @Component({
@@ -46,6 +47,7 @@ import { LoginWithOTPComponent } from './login-with-otp/login-with-otp.component
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    NotFoundPageComponent
   ],
   providers: [ApiServiceService, KeysServiceService, SecretKeysServiceService,DatePipe],
   templateUrl: './app.component.html',
@@ -76,6 +78,9 @@ export class AppComponent implements OnInit {
 }
 forgotPassword(): boolean {
   return this.router.url.startsWith('/forgot/password');
+}
+notFound(): boolean {
+  return this.router.url.startsWith('/not-found/404');
 }
 
 

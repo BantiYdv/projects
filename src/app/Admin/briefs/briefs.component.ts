@@ -10,8 +10,10 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { ProjectComponent } from '../project/project.component';
 
 interface Task {
+  task_current_status: string,
   name: string;
   startDate: Date;
   deadlineDate: Date;
@@ -40,7 +42,7 @@ interface Project {
 @Component({
   selector: 'app-briefs',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink,ProjectComponent],
   templateUrl: './briefs.component.html',
   styleUrl: './briefs.component.css',
 })
@@ -55,6 +57,7 @@ export class BriefsComponent {
   // ];
   tasks: Task[] = [
     {
+      task_current_status: 'completed',
       created: new Date('Sat Jan 01 2024 13:14:17 GMT+0530'),
       deadlineDate: new Date('Thu Apr 25  2024 05:30:00 GMT+0530'),
       name: 'Add in Wishlist Item.',
@@ -63,16 +66,16 @@ export class BriefsComponent {
       completed: new Date('Wed Apr 17 2024 05:30:00 GMT+0530'),
     },
     {
+      task_current_status: 'created',
       created: new Date('Sat Jan 02 2024 15:37:41 GMT+0530'),
       deadlineDate: new Date('Wed Feb 28 2024 05:30:00 GMT+0530'),
       name: 'Set in Product price.',
       start: new Date('Wed Mar 20 2024 15:37:07 GMT+0530'),
       startDate: new Date('Sat Jan 05 2024 05:30:00 GMT+0530'),
       completed: new Date('Wed Apr 17 2024 05:30:00 GMT+0530'),
-      // completed: new Date("Wed Jan 27 2024 05:30:00 GMT+0530"),
     },
   ];
-  // tasks: any;
+  // tasks: any = [];
   // selectedMonth: string = '';
   // currentMonth: string = new Date().toISOString().split('T')[0];
   checkDataMonth: Date | any;
@@ -85,13 +88,14 @@ export class BriefsComponent {
   ngOnInit(): void {
     this.getActiveProjects();
     this.getFinisedProjects();
-    console.warn('tasks -=-=-=-=-=>>>>>', this.tasks);
-    // const today = new Date();
-    // const nextMonth = new Date(today.getFullYear(), today.getMonth() + 5, 15);
-    // this.checkDataMonth = nextMonth;
-    const today = this.formatDateObject();
-    this.checkDataMonth = today;
+    const today = new Date();
+    const nextMonth = new Date(today.getFullYear(), today.getMonth());
+    this.checkDataMonth = nextMonth;
+    // const today = this.formatDateObject();
+    // this.checkDataMonth = today;
+   
   }
+ 
 
   getCurrentDate(): string {
     const today = new Date();
@@ -285,6 +289,7 @@ export class BriefsComponent {
       },
       (e) => {
         console.error(e);
+        this.tasks = [];
       }
     );
   }
@@ -316,13 +321,13 @@ export class BriefsComponent {
 
   extractStartDate(statusArray: any[]): Date {
     const startStatus = statusArray.find((status) => status.state === 'Start');
-    return startStatus ? new Date(startStatus.date) : new Date(); // Default value
+    return startStatus ? new Date(startStatus.date) : new Date('1001-01-01'); // Default value
   }
   extractFinishedDate(statusArray: any[]): Date {
     const finishedStatus = statusArray.find(
       (status) => status.state === 'Finished'
     );
-    return finishedStatus ? new Date(finishedStatus.date) : new Date(); // Default value
+    return finishedStatus ? new Date(finishedStatus.date) : new Date('1001-01-01'); // Default value
   }
 
   //   onSearchMonth() {
