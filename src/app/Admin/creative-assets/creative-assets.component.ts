@@ -30,7 +30,7 @@ export class CreativeAssetsAdminComponent {
     
   }
   getProject(){
-    this.apiService.getProject().subscribe(
+    this.apiService.getProjectListOfCreativeAssets().subscribe(
       (r: any) => {
         this.assetsFolderData = r.data
         this.creativeAssetFolder = r.data;

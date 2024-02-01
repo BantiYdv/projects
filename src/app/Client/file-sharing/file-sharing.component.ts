@@ -36,7 +36,7 @@ id:any;
   }
   getClientProjectList(id:any){
     // const team_member_id = localStorage.getItem('userId')
-    this.apiService.getClientProjectList(id).subscribe(
+    this.apiService.getClientFileSharingProjects(id).subscribe(
       (r: any) => {
         // this.creativeAssetFolder = r.data;
         this.FileSharingClientData = r.data;

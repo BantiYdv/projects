@@ -35,7 +35,7 @@ export class CreativeAssetsEmployeeComponent {
   }
   getTeamMemberProjects(){
     const team_member_id = localStorage.getItem('userId')
-    this.apiService.getTeamMemberProjects(team_member_id).subscribe(
+    this.apiService.getTeamMemberCreativeProjects(team_member_id).subscribe(
       (r: any) => {
         this.creativeAssetFolder = r.data;
         this.assetsFolderData = r.data

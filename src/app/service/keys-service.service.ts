@@ -32,6 +32,7 @@ export class KeysServiceService {
   public getActiveProjects = `${this.mainUrl}/project/getActiveProjects`;//done
   public saveProject = `${this.mainUrl}/project/saveProject`;//done
   public getProject = `${this.mainUrl}/project/getProject`;//done
+  public getProjectListOfCreativeAssets = `${this.mainUrl}/creativeAssests/getProjectListOfCreativeAssets`;//done
   public getProjectById = `${this.mainUrl}/project/getProjectDetailsById`;//done
   public updateProjectById = `${this.mainUrl}/project/updateProject`;//done
   public deleteProjectById = `${this.mainUrl}/project/deleteProject`;//done
@@ -59,6 +60,7 @@ public getFileSharingForReview = `${this.mainUrl}/client/getFileSharingForReview
   public getTeamMember = `${this.mainUrl}/teamMembers/getTeamMemberList`;//done
   public getTeamMemberById = `${this.mainUrl}/getTeamMemberById`;
   public getTeamMemberProjects = `${this.mainUrl}/teamMember/getTeamMemberProjects`;
+  public getTeamMemberCreativeProjects = `${this.mainUrl}/teamMember/getTeamMemberCreativeProjects`;
   public updateTeamMemberById = `${this.mainUrl}/updateTeamMemberById`;
   public deleteTeamMemberById = `${this.mainUrl}/deleteTeamMemberById`;
 
@@ -69,6 +71,8 @@ public getCreativeAssetsOfMember = `${this.mainUrl}/creativeAssests/getCreativeA
 
   public saveWorkStatus = `${this.mainUrl}/saveWorkStatus`;
   public getClientProjectList = `${this.mainUrl}/user/getClientProjectList`;
+  public getClientFileSharingProjects = `${this.mainUrl}/client/getClientFileSharingProjects`;
+  
   // public getClientProject = `${this.mainUrl}/user/getClientProject`;
   public getWorkStatusById = `${this.mainUrl}/getWorkStatusById`;
   public updateWorkStatusById = `${this.mainUrl}/updateWorkStatusById`;

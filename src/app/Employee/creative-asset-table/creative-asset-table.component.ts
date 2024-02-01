@@ -27,8 +27,9 @@ export class CreativeAssetTableComponent {
     this.route.queryParams.subscribe(r => {
       this.id = r['id'];
     })
-
-    this.getCreativeAssetsOfMember(this.id)
+if(this.id){
+  this.getCreativeAssetsOfMember(this.id)
+}
   }
 
   getCreativeAssetsOfMember(id:any){

@@ -151,6 +151,10 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.get(this.keys.getProject, { headers });
   }
+  getProjectListOfCreativeAssets() {
+    const headers = this.headerWithAuth;
+    return this.http.get(this.keys.getProjectListOfCreativeAssets, { headers });
+  }
   getActiveProjects() {
     const headers = this.headerWithAuth;
     return this.http.get(this.keys.getActiveProjects, { headers });
@@ -335,6 +339,10 @@ export class ApiServiceService {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getTeamMemberProjects}?team_member_id=${id}`, { headers });
   }
+  getTeamMemberCreativeProjects(id: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getTeamMemberCreativeProjects}?team_member_id=${id}`, { headers });
+  }
 
   deleteTeamMemberById(teamMember: any) {
     const headers = this.headerWithAuth;
@@ -359,6 +367,10 @@ export class ApiServiceService {
   getClientProjectList(id: any) {
     const headers = this.headerWithAuth;
     return this.http.get(`${this.keys.getClientProjectList}?client_id=${id}`, { headers });
+  }
+  getClientFileSharingProjects(id: any) {
+    const headers = this.headerWithAuth;
+    return this.http.get(`${this.keys.getClientFileSharingProjects}?client_id=${id}`, { headers });
   }
   // getClientProject() {
   //   const headers = this.headerWithAuth;

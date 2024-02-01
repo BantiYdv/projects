@@ -34,9 +34,13 @@
     <div class="d-flex flex-wrap justify-content-center align-items-center mt-2" *ngIf="FileSharingClientFolder.length !== 0">
       <div class="d-flex flex-wrap justify-content-start align-items-start" style="width: 90%;">
       <div class="folder">
-        <div class="d-flex flex-column justify-content-center align-items-center mx-3 my-1 px-1 py-1" routerLink="/user/file-sharing-table"  *ngFor="let folder of getPaginatedFileSharingClientData()" [queryParams]="{ id: folder._id }">
+        <div class=" position-relative d-flex flex-column justify-content-center align-items-center mx-3 my-1 px-1 py-1" routerLink="/user/file-sharing-table"  *ngFor="let folder of getPaginatedFileSharingClientData()" [queryParams]="{ id: folder._id }">
+          <span *ngIf="folder.is_find_new_file" style="top: 30px; right: -5px; background-color: rgb(43, 255, 0);" class="position-absolute translate-middle p-2 border border-light rounded-circle">
+            <span class="visually-hidden">New alerts</span>
+          </span>  
           <img src="../../../assets/images/creativeAssetsFolder.svg" alt="" class="creativeAssetsFolder">
           <h4 class="creativeAssetsFolderText">{{folder.short_name}}</h4>
+          <!-- is_find_new_file -->
         </div>
       </div>
         </div>
