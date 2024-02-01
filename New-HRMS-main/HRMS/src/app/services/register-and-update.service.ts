@@ -17,7 +17,7 @@ export class RegisterAndUpdateService {
   // team lead show start
   getTeamLeads(): Observable<any> {
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     return this.http.get(`${this.api.TeamLeadShow}`, { headers });
   }
   // team lead show end
@@ -25,7 +25,7 @@ export class RegisterAndUpdateService {
   // designation show start
   getdesignation(): Observable<any> {
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     return this.http.get(`${this.api.designationShow}`, { headers });
   }
   // designation show end
@@ -33,7 +33,7 @@ export class RegisterAndUpdateService {
   // designation show start
   getdepartment(): Observable<any> {
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     return this.http.get(`${this.api.departmentShow}`, { headers });
   }
   // designation show end
@@ -41,7 +41,7 @@ export class RegisterAndUpdateService {
   // designation show start
   getrole(): Observable<any> {
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     return this.http.get(`${this.api.RoleShow}`, { headers });
   }
   // designation show end
@@ -49,7 +49,7 @@ export class RegisterAndUpdateService {
   // Registration start
   registerUser(registrationData: any): Observable<any> {
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
     return this.http.post(`${this.api.Registration}`, registrationData, { headers });
   }
@@ -58,7 +58,7 @@ export class RegisterAndUpdateService {
   // show user data when update start
   fetchData(id: number): Observable<any> {
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     const url = `${this.api.Userdatashow}/${id}`;
     return this.http.get(url, { headers });
   }
@@ -68,7 +68,7 @@ export class RegisterAndUpdateService {
   updateEmployee(employeeId: string, data: any) {
     const updateUrl = `${this.api.UpdateEmp}/${employeeId}`;
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     
 console.log("adasswss", data);
 console.log("wwswswewe", token);
@@ -82,7 +82,7 @@ console.log("wwswswewe", token);
 // empdetails(id: number): Observable<any> {
 //   const url = `${this.api.Empdetail}/${id}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -92,7 +92,7 @@ console.log("wwswswewe", token);
 uploadDocs(formData: any, id: number) {
   
   const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const url = `${this.api.uploadDocsUrl}/${id}`;
 
  return this.http.post(url, formData, { headers });
@@ -105,7 +105,7 @@ uploadDocs(formData: any, id: number) {
 viewShift(){
   const url = `${this.api.viewShiftTime}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }

@@ -943,7 +943,7 @@ console.log("perission", permissionNames);
 
 
     // Create the request headers with the token
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
     this.testService.getEmployeeListExcel(headers).subscribe((response: HttpResponse<Blob>) => {
       // Check if the response body is not null
@@ -5219,7 +5219,13 @@ cancelEdit() {
     this.holiday.day = days[date.getDay()];
 
   }
+  item: any = {};
 
+  updateSelectedDayUpdate(item: any) {
+    const date = new Date(item.date);
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    item.day = days[date.getDay()];
+  }
   // save holiday start
 
 
@@ -5380,8 +5386,8 @@ getTotalPagesHoliday(): number {
   // API for delete holiday end
 
    // API for update holiday start
-  updateHoliday(id: number, holiday: any){
-    this.testService.updateHoliday(id, holiday).subscribe(
+  updateHoliday(item: any){
+    this.testService.updateHoliday(item).subscribe(
       (response: any) => {
         
         console.log("updated holiday",response);
@@ -5391,8 +5397,11 @@ getTotalPagesHoliday(): number {
           icon: 'success'
         }).then((result) => {
           if (result.isConfirmed) {
-            // this.showAllAttTable = false;
-            this.getHoliday();
+            this.loginService.showTable('addHoliday');
+          this.router.navigate(['/addHoliday']);
+         
+          this.editModeIndex = -1;
+          this.getHoliday();
 
           }
         });

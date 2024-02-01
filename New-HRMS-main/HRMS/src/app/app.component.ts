@@ -211,7 +211,7 @@ scrollToHoliday() {
   ngOnInit(): void {
     this.getUserPhoto();
     // this.viewProfile();    // for getting user firstname and lastname for default image in navbar
-    console.log("permission", this.userPermissions);
+    // console.log("permission", this.userPermissions);
   }
 
   // for changepassword and view profile not show when i am on profile page start

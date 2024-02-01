@@ -190,7 +190,7 @@ console.log("load data url",currentRoute)
   //   console.log('Token:', token);
   
   //   // Set the token in the request headers
-  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  //   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   //      // Fetch the team leads from the API endpoint
   //      this.http.get('http://192.168.1.11:9191/show',{ headers })
   //      .subscribe(
@@ -322,7 +322,7 @@ DownloadDocs(id: number, filename: string) {
     //   console.log('Token:', token);
     
     //   // Set the token in the request headers
-    //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     
     //   // Prepare the data to be sent in the request body
     //   const requestBody = {
@@ -435,7 +435,7 @@ DownloadDocs(id: number, filename: string) {
     
     // fetchProfileDetails() {
     //   const token = localStorage.getItem('jwtToken');
-    //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     
     //   this.http.get('http://192.168.1.11:9191/oneuserpersonalDetailes', { headers }).subscribe(
     //     (response: any) => {
@@ -509,7 +509,7 @@ DownloadDocs(id: number, filename: string) {
   //     console.log('Upload:', token);
     
   //     // Set the token in the request headers
-  //     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  //     const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   //     const file: File = event.target.files[0];
 
   //      // Check if the file format is JPG, JPEG, or PNG
@@ -643,7 +643,7 @@ this.getUserPhoto();
     //   const token = localStorage.getItem('jwtToken');
     // console.log("current", token);
 
-    //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     
     
     //   this.http.get(apiUrl, { headers, responseType: 'blob' }).subscribe(
@@ -682,7 +682,7 @@ this.getUserPhoto();
     //   //   return;
     //   // }
   
-    //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
     //   this.http.get(apiUrl, { headers, responseType: 'blob' }).subscribe(
     //     (response: Blob) => {
@@ -722,7 +722,7 @@ this.getUserPhoto();
     //     if (result.isConfirmed) {
         
     //       const token = localStorage.getItem('jwtToken'); 
-    //       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //       const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     //       // const urlParams = new URLSearchParams(window.location.search);
     //       // const employeeId = urlParams.get('id')
     //       const updateUrl = `http://192.168.1.11:9191/deleteMydetail`;

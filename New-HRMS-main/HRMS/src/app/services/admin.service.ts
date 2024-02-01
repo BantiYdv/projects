@@ -30,7 +30,7 @@ export class AdminService {
   // show profile name in top start
 getShowData(): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.EmpNameShow}`, { headers });
 }
 // show profile name in top end
@@ -39,7 +39,7 @@ getShowData(): Observable<any> {
 // applyLeave(formData: any) {
 //   const url = `${this.api.ApplyLeave}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.post(url, formData, { headers });
 // }
@@ -49,7 +49,7 @@ getShowData(): Observable<any> {
 // getViewLeave() {
 //   const url = `${this.api.ViewLeave}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -59,7 +59,7 @@ getShowData(): Observable<any> {
 // getAllLeave() {
 //   const url = `${this.api.ViewAllLeave}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -69,7 +69,7 @@ getShowData(): Observable<any> {
 // performCheckin() {
 //   const url = `${this.api.CheckIn}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const requestData = {
 //     checkedIn: 'checkedIn' // Remove the curly braces
 //   };
@@ -95,7 +95,7 @@ private deviceIpAddress: string | any ;
 
 
 //     const headers = new HttpHeaders()
-//       .set('Authorization', `Bearer ${token}`);
+//       .set('Authorization', ` ${token}`);
 
 //     const requestData = {
 //       checkedIn: 'checkedIn',
@@ -128,7 +128,7 @@ performCheckin() {
        console.log("Device type", deviceType);
 
       const headers = new HttpHeaders()
-        .set('Authorization', `Bearer ${token}`);
+        .set('Authorization', ` ${token}`);
 
       const requestData = {
         checkedIn: 'checkedIn',
@@ -258,7 +258,7 @@ getDeviceType() {
 performCheckout() {
   const url = `${this.api.CheckOut}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const requestData = {
     checkedOut: 'checkedOut'
   };
@@ -271,7 +271,7 @@ performCheckout() {
 // getAttendance() {
 //   const url = `${this.api.EmpAtt}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -281,7 +281,7 @@ performCheckout() {
 // getAllAttendance() {
 //   const url = `${this.api.ViewAllAtt}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -291,7 +291,7 @@ performCheckout() {
 // applyWfh(formData: any) {
 //   const url = `${this.api.ApplyWfh}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.post(url, formData, { headers });
 // }
@@ -301,7 +301,7 @@ performCheckout() {
 // getWfhData() {
 //   const url = `${this.api.ViewWfh}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -311,7 +311,7 @@ performCheckout() {
 // getAllWfhData() {
 //   const url = `${this.api.ViewAllWfh}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -321,7 +321,7 @@ performCheckout() {
 // getEmployeeList() {
 //   const url = `${this.api.ViewEmpList}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -331,7 +331,7 @@ performCheckout() {
 editUserProfile(requestBody: any) {
   const url = `${this.api.EditProfile}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.put(url, requestBody, { headers });
 }
@@ -341,7 +341,7 @@ editUserProfile(requestBody: any) {
 
 DownloadLeavePolicy(): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const url = `${this.api.DownloadPdf}`;
   return this.http.get(url, {
     headers,
@@ -355,7 +355,7 @@ DownloadLeavePolicy(): Observable<HttpResponse<Blob>> {
 
 // DownloadDocs(id: number): Observable<HttpResponse<Blob>> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const url = `${this.api.DownloadDocs}/${id}`;
 //   return this.http.get(url, {
 //     headers,
@@ -370,7 +370,7 @@ totalLeaveUser(){
   
   const url = `${this.api.totalLeaveUser}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -382,7 +382,7 @@ leaveTakenUser(){
   
   const url = `${this.api.LeaveTakenByUser}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -394,7 +394,7 @@ remainingLeaveUser(){
   
   const url = `${this.api.remainingLeaveUser}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -407,7 +407,7 @@ totalWfhUser(){
   
   const url = `${this.api.totalWfhUser}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -419,7 +419,7 @@ wfhTakenUser(){
   
   const url = `${this.api.WfhTakenByUser}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -431,7 +431,7 @@ remainingWfhUser(){
   
   const url = `${this.api.remainingWfhUser}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -443,11 +443,25 @@ birthday(){
   
   const url = `${this.api.birthdays}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
 }
 // birthday end
+
+// Today And Upcoming Holidays start
+TodayAndUpcomingHolidays(){
+  
+  const url = `${this.api.TodayAndUpcomingHolidays}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// Today And Upcoming Holidays end
+
+
 
 }

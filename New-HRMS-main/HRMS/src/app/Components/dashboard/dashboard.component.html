@@ -196,7 +196,7 @@
           </div>
 
         </div>
-        <div class="container mt-5" style="border-radius: 7px; border: 2px solid #CDCDCD;">
+        <div class="container mt-5 pb-3" style="border-radius: 7px; border: 2px solid #CDCDCD;">
           <div class="row d-flex flex-wrap">
             <!-- <div class="col-xl-4 col-lg-12 col-md-12 mt-4"> -->
             <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4'">
@@ -226,58 +226,23 @@
             <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
               <div class="container">
                 <!-- <div class="card"> -->
-                <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Holiday </h5>
-                <div class="card-body ">
+                <h5 class="text-center mb-2 mt-2 ActivitiesHeader">Holiday </h5>
+                <div class="card-body holidayBody" *ngFor="let upcomingHoliday of UpcomingHolidays, let i = index">
                   <div class="container">
-                    <span class="weekName">TUE</span><br>
-                    <span class="dateName">06</span><br>
-                    <p class="yearName">JANUARY</p>
+                    <span class="weekName">{{ getShortDayName(upcomingHoliday.day) }}</span><br>
+                    <span class="dateName">{{ upcomingHoliday.date.split('-')[2] }}</span><br>
+                    <p class="yearName">{{ getMonthNameHoliday(upcomingHoliday.date) }}</p>
                   </div>
                   <div class="birthday d-flex align-items-center">
                     <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
                   </div>
-                  <div class="birth">BOSS KI SHADI</div>
-                  <div class="desc">SABHI KA JANA COMPULSURY HAI</div>
+                  <div class="birth">{{ upcomingHoliday.holiDayReason }}</div>
+                  <!-- <div class="desc">SABHI KA JANA COMPULSURY HAI</div> -->
                 </div>
 
-                <div class="card-body mt-4">
-                  <div class="container">
-                    <span class="weekName">WED</span><br>
-                    <span class="dateName">14</span><br>
-                    <p class="yearName">JANUARY</p>
-                  </div>
-                  <div class="birthday d-flex align-items-center">
-                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                  </div>
-                  <div class="birth" style="color: #47C17A;">MAKAR SANKRANTI</div>
-                  <div class="desc">INDIAN FESTIVAL OF KITES</div>
-                </div>
 
-                <div class="card-body mt-4">
-                  <div class="container">
-                    <span class="weekName">SAT</span><br>
-                    <span class="dateName">24</span><br>
-                    <p class="yearName">JANUARY</p>
-                  </div>
-                  <div class="birthday d-flex align-items-center">
-                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                  </div>
-                  <div class="birth" style="color: #F97165;">FREE KI CHUTTI</div>
-                  <div class="desc">SALARY KISI KI NHI KATEGI</div>
-                </div>
 
-                <div class="card-body mt-4">
-                  <div class="container">
-                    <span class="weekName">MON</span><br>
-                    <span class="dateName">26</span><br>
-                    <p class="yearName">JANUARY</p>
-                  </div>
-                  <div class="birthday d-flex align-items-center">
-                    <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                  </div>
-                  <div class="birth" style="color: #A036CF;">EK OR CHUTTI</div>
-                  <div class="desc">SALARY KISI KI NHI KATEGI</div>
-                </div>
+              
                 <!-- </div> -->
               </div>
             </div>

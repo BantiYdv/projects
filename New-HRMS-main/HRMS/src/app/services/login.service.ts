@@ -145,7 +145,7 @@ forgetPass(emailid: any) {
 // current photo start
 getCurrentPhoto(): Observable<Blob> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
   return this.http.get(this.api.currentPhoto, { headers, responseType: 'blob' });
 }
@@ -176,7 +176,7 @@ SignOut(): Observable<any> {
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem('jwtToken');
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+        const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
         this.http.get(this.api.signOut,  { headers }).subscribe(
           () => {
@@ -219,7 +219,7 @@ SignOut(): Observable<any> {
 changePassword(oldPassword: string, newPassword: string, confirmPassword: string) {
   const url = `${this.api.changePassword}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
   const requestBody = {
     oldPassword,

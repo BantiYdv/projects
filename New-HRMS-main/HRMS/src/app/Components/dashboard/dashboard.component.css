@@ -1060,7 +1060,7 @@ line-height: normal;
   }
   .ActivityVector{
     width: 25px;
-height: 286px;
+height: 300px;
 flex-shrink: 0;
 margin-top: 28px;
   }
@@ -1086,7 +1086,7 @@ margin-left: 4rem;
 .weekName{
     color: #000;
 text-align: right;
-font-size: 12px;
+font-size: 10px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -1095,15 +1095,15 @@ letter-spacing: 1.2px;
 
 .dateName{
     color: #2F37A4;
-font-size: 20px;
+font-size: 16px;
 font-style: normal;
 font-weight: 800;
-line-height: normal;
+line-height: revert;
 }
 
 .yearName{
     color: #000;
-font-size: 7px;
+font-size: 10px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -1116,6 +1116,10 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 margin-left: 6rem;
+}
+
+.holidayBody{
+    padding: 14px 23px 16px 11px;
 }
 
 .birthdayIcon{
@@ -1218,6 +1222,7 @@ height: 32px;
     border-radius: 50%; 
     background-color:rgba(66, 28, 221, 0.10); /* Grey background color for today's date */
     margin: 0;
+    line-height: inherit;
   }
 
  #MyChart{

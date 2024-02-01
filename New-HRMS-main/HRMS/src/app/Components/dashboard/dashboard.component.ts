@@ -68,9 +68,9 @@ intern = '';
   // bar chart  start
   public chart: any;
   //bar chart end
-  totalCheckOutEarly: any;
-  totalCheckedInLate: any;
-  presentLast7Days: any;
+  totalCheckOutEarly: any = {};
+  totalCheckedInLate: any = {};
+  presentLast7Days: any = {};
   // change password validation start
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
@@ -118,6 +118,9 @@ intern = '';
 
   ngOnInit(): void {
     // this.createChart(this.data);
+    this.checkOutEarly();
+    this.checkedInLate();
+    this.presentUsersLast7Days();
     this.fullTimeShow()
     this.partTimeShow();
     this.internShow();
@@ -134,9 +137,8 @@ intern = '';
     this.sickShow();
     this.birthdayUser();
     this.workingHours();
-    this.checkOutEarly();
-    this.checkedInLate();
-    this.presentUsersLast7Days();
+    this.viewPresentUsersLast7Days();
+   this.TodayAndUpcomingHolidays();
   
     // this.createLineChart();
   }
@@ -190,314 +192,130 @@ intern = '';
 
   }
 
-
-
-
-
-  // bar chart start
-  // createChart() {
-
-  //   this.chart = new Chart("MyChart", {
-  //     type: 'bar', //this denotes tha type of chart
-  //     data: {// values on X-Axis
-  //       labels: ['Jan', 'Fab', 'Mar', 'Apr',
-  //         'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-  //       datasets: [
-  //         {
-  //           label: "persent",
-  //           data: ['31', '28', '31', '30', '31',
-  //             '30', '31', '31', '30', '31', '30', '31'],
-  //           backgroundColor: 'blue'
-  //         },
-  //         {
-  //           label: "absent",
-  //           data: ['25', '22', '31', '29', '25',
-  //             '30', '28', '25', '29', '22', '26', '27'],
-  //           backgroundColor: 'limegreen'
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5
-  //     }
-
-  //   });
-  // }
-
  
+//   createChart() {
+//   if (this.presentLast7Days !== undefined && this.totalCheckOutEarly !== undefined) {
+//     // Create an array to store the last 7 days' dates
+//     const last7DaysDates = [];
+//     const earlyDepartureData = [];
 
-  // viewAllAttendance() {
-   
-  //     // Call the service method to fetch all attendance data
-  //     this.testService.getAllAttendance().subscribe(
-  //       (response: any) => {
-  //         const responseData: any[] = response as any[]; // Explicitly cast to any[]
-  //         console.log('Attendance Data:', responseData);
-  //         // Call the createChart function with the response data
-  //         this.createChart(responseData);
-  //         console.log("chart att", response);
-  //       },
-  //       error => {
-  //         // Handle errors here
-  //         console.error('Error fetching attendance data:', error);
-      
-  //       }
-  //     );
-    
-  // }
-  
-  
-  
-  
-  // createChart() {
-  //   if (this.presentLast7Days !== undefined && this.totalCheckOutEarly !== undefined) {
-  //   this.chart = new Chart("MyChart", {
-  //     type: 'bar', //this denotes tha type of chart
-  //     data: {// values on X-Axis
-  //       labels: ['Mon', 'Tue', 'Wed', 'Thu',
-  //         'Fri', 'Sat', 'Sun'],
-  //       datasets: [
-  //         {
-  //           label: "present",
-  //           data: [`${this.presentLast7Days}`],
-  //           backgroundColor: '#421CDD'
-  //         },
-  //         {
-  //           label: "Late Arrival",
-  //           data: ['40', '90', '50', '30', '60',
-  //             '40', '80', '60', '30', '50', '90', '60'],
-  //           backgroundColor: '#FFCE62'
-  //         },
-  //         {
-  //           label: "Early Departure",
-  //           data:[`${this.totalCheckOutEarly}`],
-  //           backgroundColor: '#F97165'
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5
-  //     }
+//     // Define an array of month names
+//     const monthNames = [
+//       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+//     ];
 
-  //   });
-  // }
-  // }
-  
-  createChart() {
-    if (this.presentLast7Days !== undefined && this.totalCheckOutEarly !== undefined) {
-      // Create an array to store the last 7 days' dates
-      const last7DaysDates = [];
-  
-      // Define an array of month names
-      const monthNames = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-      ];
-  
-      // Populate the array with the last 7 days' dates excluding today
-      for (let i = 1; i <= 7; i++) {
-        const date = new Date();
-        date.setDate(date.getDate() - i);
-        // Format the date as month name and date
-        const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}`;
-        last7DaysDates.push(formattedDate);
-      }
-  
-      this.chart = new Chart("MyChart", {
-        type: 'bar',
-        data: {
-          labels: last7DaysDates, // Set the last 7 days' dates as labels
-          datasets: [
-            {
-              label: "present",
-              data: [`${this.presentLast7Days}`],
-              backgroundColor: '#421CDD'
-            },
-            {
-              label: "Late Arrival",
-              data: ['40', '90', '50', '30', '60', '40', '80'],
-              backgroundColor: '#FFCE62'
-            },
-            {
-              label: "Early Departure",
-              data: [`${this.totalCheckOutEarly}`],
-              backgroundColor: '#F97165'
-            }
-          ]
-        },
-        options: {
-          aspectRatio: 1.5
-        }
-      });
+//     // Populate the array with the last 7 days' dates excluding today
+//     for (let i = 1; i <= 7; i++) {
+//       const date = new Date();
+//       date.setDate(date.getDate() - i);
+//       // Format the date as month name and date
+//       const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}`;
+//       last7DaysDates.push(formattedDate);
+
+//       // Check if there's data available for the current date in totalCheckOutEarly
+//       const count = this.totalCheckOutEarly[formattedDate] || 0;
+//       earlyDepartureData.push(count);
+//     }
+
+//     this.chart = new Chart("MyChart", {
+//       type: 'bar',
+//       data: {
+//         labels: last7DaysDates, // Set the last 7 days' dates as labels
+//         datasets: [
+//           {
+//             label: "present",
+//             data: [this.presentLast7Days],
+//             backgroundColor: '#421CDD'
+//           },
+//           {
+//             label: "Late Arrival",
+//             data: ['40', '90', '50', '30', '60', '40', '80'],
+//             backgroundColor: '#FFCE62'
+//           },
+//           {
+//             label: "Early Departure",
+//             data: earlyDepartureData,
+//             backgroundColor: '#F97165'
+//           }
+//         ]
+//       },
+//       options: {
+//         aspectRatio: 1.5
+//       }
+//     });
+//   }
+// }
+
+createChart() {
+  if (this.presentLast7Days !== undefined && this.totalCheckOutEarly !== undefined && this.totalCheckedInLate !== undefined) {
+    const last7DaysDates = [];
+    const earlyDepartureData = [];
+    const lateArrivalData = [];
+    const presentLast7DaysData = [];
+
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    for (let i = 1; i <= 7; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const formattedDay = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}`;
+      last7DaysDates.push(formattedDay);
+     const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`; 
+      // last7DaysDates.push(formattedDate);
+
+      const count = this.totalCheckOutEarly[formattedDate] || 0;
+      earlyDepartureData.push(count);
+
+      const lateArrival = this.totalCheckedInLate[formattedDate] || 0;
+      lateArrivalData.push(lateArrival);
+
+      const presentLast7Days = this.presentLast7Days[formattedDate] || 0;
+      presentLast7DaysData.push(presentLast7Days);
     }
+
+    // console.log("Last 7 Days Dates:", last7DaysDates);
+    // console.log("Early Departure Data:", earlyDepartureData);
+    // console.log("late  Arrival Data:", lateArrivalData);
+    // console.log("present Last 7Days Data:", presentLast7DaysData);
+
+    // Check if a chart instance already exists and destroy it
+    if (this.chart) {
+      this.chart.destroy();
+    }
+
+    // Create a new chart instance
+    this.chart = new Chart("MyChart", {
+      type: 'bar',
+      data: {
+        labels: last7DaysDates,
+        datasets: [
+          {
+            label: "present",
+            data: presentLast7DaysData,
+            backgroundColor: '#421CDD'
+          },
+          {
+            label: "Late Arrival",
+            data: lateArrivalData,
+            backgroundColor: '#FFCE62'
+          },
+          {
+            label: "Early Departure",
+            data: earlyDepartureData,
+            backgroundColor: '#F97165'
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 1.5
+      }
+    });
   }
-  
-  
-  
- 
-  // createChart(data: any[]) {
-  //   // Ensure that data is an array before proceeding
-  //   if (!data || !Array.isArray(data)) {
-  //     console.error('Invalid or undefined data for chart.');
-  //     return;
-  //   }
-  
-  //   // Group data by month and count occurrences of each status
-  //   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
-  //   const monthlyStatusCounts: Record<string, { present: number; absent: number }> = {};
-  //   data.forEach(item => {
-  //     const monthIndex = new Date(item.checkDate).getMonth();
-  //     const monthName = monthNames[monthIndex];
-  //     const status = item.status.toUpperCase(); // Convert to uppercase for consistency
-  
-  //     if (!monthlyStatusCounts[monthName]) {
-  //       monthlyStatusCounts[monthName] = { present: 0, absent: 0 };
-  //     }
-  
-  //     if (status === 'PRESENT') {
-  //       monthlyStatusCounts[monthName].present += 1;
-  //     } else if (status === 'ABSENT') {
-  //       monthlyStatusCounts[monthName].absent += 1;
-  //     }
-  //   });
-  
-  //   // Create the chart
-  //   this.chart = new Chart("MyChart", {
-  //     type: 'bar',
-  //     data: {
-  //       labels: monthNames,
-  //       datasets: [
-  //         {
-  //           label: "Present",
-  //           data: monthNames.map(month => monthlyStatusCounts[month]?.present || 0),
-  //           backgroundColor: 'blue',
-  //         },
-  //         {
-  //           label: "Absent",
-  //           data: monthNames.map(month => monthlyStatusCounts[month]?.absent || 0),
-  //           backgroundColor: 'limegreen',
-  //         }
-  //       ],
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5,
-  //     },
-  //   });
-  // }
-  
-  
-  // bar chart end
+}
 
-  //line chart start
-  // createLineChart() {
 
-  //   this.chart = new Chart("MyLineChart", {
-  //     type: 'line', //this denotes the type of chart
 
-  //     data: {// values on X-Axis
-  //       labels: ['Jan', 'Fab', 'Mar', 'Apr',
-  //         'May', 'June', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-  //       datasets: [
-  //         {
-  //           label: "Sales",
-  //           data: ['31', '28', '31', '30', '31',
-  //             '30', '31', '31', '30', '31', '30', '31'],
-  //           backgroundColor: 'blue'
-  //         },
-  //         {
-  //           label: "Profit",
-  //           data: ['25', '22', '31', '29', '25',
-  //             '30', '28', '25', '29', '22', '26', '27'],
-  //           backgroundColor: 'limegreen'
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5
-  //     }
 
-  //   });
-  // }
-  //line chart end
-
-  // createLineChart(data: any[]) {
-
-  //   this.chart = new Chart("MyPieChart", {
-  //     type: 'pie', //this denotes the type of chart
-
-  //     data: {// values on X-Axis
-  //       // labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
-  //       datasets: [
-  //         {
-  //           data: [70, 20, 50], // Adjust these values based on your data
-  //           backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
-  //         }
-  //       ]
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5
-  //     }
-
-  //   });
-  // }
-  
-
-  // createLineChart() {
- 
-  //   this.chart = new Chart("MyPieChart", {
-  //     type: 'pie', //this denotes the type of chart
-
-  //     data: {// values on X-Axis
-  //       labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
-  //       datasets: [
-  //         {
-  //           data: [`${this.fullTime}`, `${this.partTime}`, `${this.intern}`], // Adjust these values based on your data
-  //           backgroundColor: ['#FD7A8C', '#9747FF', '#FFCE62']
-  //         }
-  //       ]
-        
-  //     },
-  //     options: {
-  //       aspectRatio: 1.5,
-  //       plugins: {
-  //         legend: {
-  //           display: false
-  //         }
-  //       },
-  //       // for click on full time part time and intern employee start
-  //       onClick: (event, elements) => {
-  //         if (elements.length > 0) {
-  //           const clickedSegment = elements[0].index;
-  
-  //           switch (clickedSegment) {
-  //             case 0: 
-  //               this.navigateToEmployee('fullTimeEmployee');
-  //               break;
-  //             case 1: 
-  //               this.navigateToEmployee('PartTimeEmp');
-  //               break;
-  //             case 2: 
-  //               this.navigateToEmployee('internEmp');
-  //               break;
-             
-  //           }
-  //         }
-  //       }
-  //       // for click on full time part time and intern employee end
-  //     }
-      
-
-  //   });
-  // }
-  // loadData() {
-  //     // Assuming getData() is a function that fetches your data asynchronously
-  //     getData().then(data => {
-  //       this.fullTime = data.fullTime;
-  //       this.partTime = data.partTime;
-  //       this.intern = data.intern;
-  //       this.createLineChart();
-  //     });
-  //   }
   createLineChart() {
     // Check if data is available before creating the chart
     if (this.fullTime !== undefined && this.partTime !== undefined && this.intern !== undefined) {
@@ -559,7 +377,7 @@ intern = '';
         
         this.fullTime = response;
         this.createLineChart();
-          console.log('full time Data:', response);
+          // console.log('full time Data:', response);
           
 
       },
@@ -579,7 +397,7 @@ intern = '';
       (response: any) => {
        
         this.partTime = response;
-          console.log('part time Data:', response);
+          // console.log('part time Data:', response);
           
       },
       (error) => {
@@ -597,7 +415,7 @@ intern = '';
       (response: any) => {
        
         this.intern = response;
-          console.log('intern Data:', response);
+          // console.log('intern Data:', response);
           
       },
       (error) => {
@@ -655,7 +473,7 @@ totalEmpCountShow(){
   this.dashboardService.totalEmpCount().subscribe(
     (response: any) => {
       this.totalEmpCount = response;
-      console.log("total employee count", this.totalEmpCount)
+      // console.log("total employee count", this.totalEmpCount)
     },
     (error) => {
       
@@ -669,7 +487,7 @@ totalEmpCountShow(){
     this.dashboardService.wfhCount().subscribe(
       (response: any) => {
         this.wfhCount = response;
-        console.log("wfh count", this.wfhCount)
+        // console.log("wfh count", this.wfhCount)
       },
       (error) => {
         
@@ -683,7 +501,7 @@ totalEmpCountShow(){
     this.dashboardService.presentCount().subscribe(
       (response: any) => {
         this.presentCount = response;
-        console.log("present count", this.presentCount)
+        // console.log("present count", this.presentCount)
       },
       (error) => {
         
@@ -697,7 +515,7 @@ totalEmpCountShow(){
     this.dashboardService.absentCount().subscribe(
       (response: any) => {
         this.absentCount = response;
-        console.log("absent count", this.absentCount)
+        // console.log("absent count", this.absentCount)
       },
       (error) => {
         
@@ -711,7 +529,7 @@ totalEmpCountShow(){
     this.dashboardService.casualCount().subscribe(
       (response: any) => {
         this.casualCount = response;
-        console.log("casual count", this.casualCount)
+        // console.log("casual count", this.casualCount)
       },
       (error) => {
         
@@ -725,7 +543,7 @@ totalEmpCountShow(){
     this.dashboardService.sickCount().subscribe(
       (response: any) => {
         this.sickCount = response;
-        console.log("casual count", this.sickCount)
+        // console.log("casual count", this.sickCount)
       },
       (error) => {
         
@@ -768,7 +586,7 @@ totalEmpCountShow(){
       this.adminService.birthday().subscribe(
         (response: any) => {
          this.birthday = response
-          console.log("birthday",response);
+          // console.log("birthday",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -784,7 +602,7 @@ workingHours(){
   this.dashboardService.totalWorkingHours().subscribe(
     (response: any) => {
       this.totalWorkingHours = response.totalWorkingHours;
-      console.log("total Working Hours", this.totalWorkingHours)
+      // console.log("total Working Hours", this.totalWorkingHours)
     },
     (error) => {
       
@@ -794,17 +612,49 @@ workingHours(){
 // total Working Hours end
 
   // check Out Early start
-checkOutEarly(){
+// checkOutEarly(){
+//   this.dashboardService.checkOutEarly().subscribe(
+//     (response: any) => {
+//       this.totalCheckOutEarly = response;
+//       console.log("check Out Early", this.totalCheckOutEarly);
+//       this.createChart();
+//     },
+//     (error) => {
+      
+//     }
+//   );
+// }
+checkOutEarly() {
   this.dashboardService.checkOutEarly().subscribe(
     (response: any) => {
-      this.totalCheckOutEarly = response.length;
-      console.log("check Out Early", this.totalCheckOutEarly);
+      this.totalCheckOutEarly = this.processCheckOutEarlyResponse(response);
+      // console.log("check Out Early", this.totalCheckOutEarly);
       this.createChart();
+      // Additional logic or function calls can be placed here
     },
     (error) => {
-      
+      // Handle error if needed
     }
   );
+}
+
+processCheckOutEarlyResponse(response: any[]): { [date: string]: number } {
+  const result: { [date: string]: number } = {};
+
+  response.forEach(item => {
+    const date = item.date;
+    const count = item.count;
+
+    // If the date is not present in the result, initialize it to 0
+    if (!result[date]) {
+      result[date] = 0;
+    }
+
+    // Increment the count for the corresponding date
+    result[date] += count;
+  });
+
+  return result;
 }
 
 
@@ -815,13 +665,33 @@ checkOutEarly(){
 checkedInLate(){
   this.dashboardService.checkedInLate().subscribe(
     (response: any) => {
-      this.totalCheckedInLate = response;
-      console.log("check In late", this.totalCheckedInLate)
+      this.totalCheckedInLate = this.processCheckInEarlyResponse(response);
+      // console.log("check In late", this.totalCheckedInLate);
+     this.createChart();
     },
     (error) => {
       
     }
   );
+}
+
+processCheckInEarlyResponse(response: any[]): { [date: string]: number } {
+  const result: { [date: string]: number } = {};
+
+  response.forEach(item => {
+    const date = item.date;
+    const count = item.count;
+
+    // If the date is not present in the result, initialize it to 0
+    if (!result[date]) {
+      result[date] = 0;
+    }
+
+    // Increment the count for the corresponding date
+    result[date] += count;
+  });
+
+  return result;
 }
 // check In Late end
 
@@ -829,8 +699,8 @@ checkedInLate(){
   presentUsersLast7Days(){
   this.dashboardService.presentUsersLast7Days().subscribe(
     (response: any) => {
-      this.presentLast7Days = response.length;
-      console.log("present Last 7Days", this.presentLast7Days);
+      this.presentLast7Days = this.processPresentUsersResponse(response);;
+      // console.log("present Last 7Days", this.presentLast7Days);
       this.createChart();
     },
     (error) => {
@@ -838,9 +708,86 @@ checkedInLate(){
     }
   );
 }
+
+processPresentUsersResponse(response: any[]): { [date: string]: number } {
+  const result: { [date: string]: number } = {};
+
+  response.forEach(item => {
+    const date = item.date;
+    const count = item.count;
+
+    // If the date is not present in the result, initialize it to 0
+    if (!result[date]) {
+      result[date] = 0;
+    }
+
+    // Increment the count for the corresponding date
+    result[date] += count;
+  });
+
+  return result;
+}
 // present Users Last 7Days end
 
 
+// for view all user present Last 7Days start
+viewPresentUsersLast7Days(){
+  this.dashboardService.presentUsersLast7Days().subscribe(
+    (response: any) => {
+      this.presentLast7Days = response;
+      // console.log("view present Last 7Days", this.presentLast7Days);
+ 
+    },
+    (error) => {
+      
+    }
+  );
+}
+// for view all user present Last 7Days end
+
+// API for show Today And Upcoming Holidays start
+UpcomingHolidays: any;
+TodayAndUpcomingHolidays() {
+ 
+    this.adminService.TodayAndUpcomingHolidays().subscribe(
+      (response: any) => {
+       this.UpcomingHolidays = response
+       //  console.log("Today And Upcoming Holidays", this.UpcomingHolidays);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+      
+      }
+    );
+ 
+}
+
+getShortDayName(day: string): string {
+ const dayMap: { [key: string]: string } = {
+   'Monday': 'MON',
+   'Tuesday': 'TUE',
+   'Wednesday': 'WED',
+   'Thursday': 'THU',
+   'Friday': 'FRI',
+   'Saturday': 'SAT',
+   'Sunday': 'SUN'
+ };
+
+ return dayMap[day] || day; // Default to the original day if not found in the map
+}
+
+getMonthNameHoliday(date: string): string {
+ const monthNames = [
+   'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+ ];
+
+ const parts = date.split('-');
+ const monthIndex = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript Date object
+
+ return monthNames[monthIndex];
+}
+
+// API for show Today And Upcoming Holidays end
 
 }
 

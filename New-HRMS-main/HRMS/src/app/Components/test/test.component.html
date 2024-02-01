@@ -4959,17 +4959,23 @@
                   <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex !== i">
                     {{ item.date }}
                   </div>
-                  <input *ngIf="editModeIndex === i" type="date" name="date" class="holidayReason" [(ngModel)]="item.date">
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex === i">
+                    <input  type="date" name="date" class="holidayReason" [(ngModel)]="item.date" (change)="updateSelectedDayUpdate(item)">
+                  </div>
                 
                   <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex !== i">
                     {{ item.day }}
                   </div>
-                  <input *ngIf="editModeIndex === i" type="text" name="day" class="holidayReason" [(ngModel)]="item.day" readonly>
+                  <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex === i">
+                  <input  type="text" name="day" class="holidayReason" [(ngModel)]="item.day" >
+                  </div>
                 
                   <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD;" *ngIf="editModeIndex !== i">
                     {{ item.holiDayReason }}
                   </div>
-                  <input *ngIf="editModeIndex === i" type="text" name="holiDayReason" class="holidayReason" [(ngModel)]="item.holiDayReason">
+                  <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD;" *ngIf="editModeIndex === i">
+                  <input  type="text" name="holiDayReason" class="holidayReason" [(ngModel)]="item.holiDayReason">
+                  </div>
                 
                   <div class="table_body_topics mt-2" style="width: 20%;">
                     <button *ngIf="editModeIndex !== i" type="button" class="btn" (click)="startEdit(i)">
@@ -4978,7 +4984,7 @@
                     <button *ngIf="editModeIndex !== i" type="button" class="btn" (click)="deleteHoliday(item.id)">
                       <img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon">
                     </button>
-                    <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Approve" (click)="stopEdit()">
+                    <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Approve" (click)="updateHoliday(item)">
                       Update
                     </button>
                     <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Reject" (click)="stopEdit()">
@@ -5079,6 +5085,104 @@
 
 <!-- add holiday upload end -->
 
+<!--show last 7days persent user start -->
+<div *ngSwitchCase="'viewLast7DaysPresent'">
+  <div class="container px-4 py-0 text-center" >
+
+    <div class="table-responsive mt-2">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Present</span>
+      </div>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-start">
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="todayAttPerPage">
+                <option value="10">10</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+                <option value="60">60</option>
+                <option value="75">75</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+         
+          
+          <div class="">
+            <div class="search-container">
+              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                alt="">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchTodayAtt"
+                (keyup)="FilterTodayAtt()">
+            </div>
+          </div>
+          <div class="">
+            <button class="button_added_position_list">Search</button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+        <thead>
+          <tr>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Email Id</th>
+            <th class="thName" (click)="sortByFromDateTodayAtt()">
+              <i class="fa fa-arrow-up" [ngStyle]="{'color': sortFDate === 'asc' ? '#000' : '#ccc'}"></i>
+              <i class="fa fa-arrow-down" [ngStyle]="{'color': sortFDate === 'desc' ? '#000' : '#ccc'}"></i>
+              &nbsp;
+              Date</th>
+            <th class="thName">Check-In</th>
+            
+          </tr>
+        </thead>
+       
+        <tbody class="tdData">
+          <tr *ngFor="let item of getPaginatedTodayattData() let i = index">
+            <td class="textNormal">{{ i + 1 }}</td>
+            <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+            <td class="emailId">{{ item.emailid }}</td>
+            <td class="textNormal">{{ item.checkDate }}</td>
+            <td class="textNormal">{{ item.checkin }}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="not_data_img_div" *ngIf="getPaginatedTodayattData().length == 0">
+        <p>Not Data !!</p>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesTodayatt() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="previousTodayattPage()" [disabled]="currentTodayAttPage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersTodayatt()" [class.active_num]="pageNumber === currentTodayAttPage"
+              class="recruitment_list_number_value" (click)="changePageTodayatt(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="nextPageTodayatt()"
+            [disabled]="currentTodayAttPage == getTotalPagesTodayatt()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--show last 7days persent user end -->
 
 
 </div>

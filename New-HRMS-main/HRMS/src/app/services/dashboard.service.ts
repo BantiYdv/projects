@@ -15,7 +15,7 @@ export class DashboardService {
 //   // team leave start
 // getTeamLeaveData(): Observable<any> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
 //   return this.http.get(this.api.teamLeave, { headers });
 // }
@@ -27,7 +27,7 @@ uploadPdf(file: File): void {
   formData.append('file', file, file.name);
 
   const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
   this.http.post(this.api.uploadPdfUrl, formData, { headers }).subscribe(
     () => {
@@ -117,7 +117,7 @@ toggleSidebar(isHovered: boolean) {
 // // team wfh start
 // getTeamWfhData(): Observable<any> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
 //   return this.http.get(this.api.teamWfh, { headers });
 // }
@@ -128,7 +128,7 @@ toggleSidebar(isHovered: boolean) {
 // //Approve leave start
 // approveLeave(id: number): Observable<any> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const requestBody = {
 //     approval: 'Approved'
 //   };
@@ -140,7 +140,7 @@ toggleSidebar(isHovered: boolean) {
 // //Reject leave start
 // rejectLeave(id: number): Observable<any> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const requestBody = {
 //     approval: 'Rejected'
 //   };
@@ -152,7 +152,7 @@ toggleSidebar(isHovered: boolean) {
 // //Approve wfh start
 // approveWfh(id: number): Observable<any> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const requestBody = {
 //     approval: 'Approved'
 //   };
@@ -164,7 +164,7 @@ toggleSidebar(isHovered: boolean) {
 // //Reject wfh start
 // rejectWfh(id: number): Observable<any> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const requestBody = {
 //     approval: 'Rejected'
 //   };
@@ -178,7 +178,7 @@ toggleSidebar(isHovered: boolean) {
 // deleteEmployee(id: number): Observable<any> {
 //   const url = `${this.api.DeleteEmp}/${id}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   return this.http.delete(url, { headers });
 // }
 // //Delete Employee end
@@ -189,7 +189,7 @@ toggleSidebar(isHovered: boolean) {
 //   const token = localStorage.getItem('jwtToken');
 //   const headers = new HttpHeaders({
 //     'Content-Type': 'application/json',
-//     'Authorization': `Bearer ${token}`
+//     'Authorization': ` ${token}`
 //   });
 
 //   const payload = {
@@ -205,7 +205,7 @@ toggleSidebar(isHovered: boolean) {
 // empdetails(id: number): Observable<any> {
 //   const url = `${this.api.Empdetail}/${id}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -214,7 +214,7 @@ toggleSidebar(isHovered: boolean) {
 // show profile name in top start
 getShowData(): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.EmpNameShow}`, { headers });
 }
 // show profile name in top end
@@ -222,7 +222,7 @@ getShowData(): Observable<any> {
 // show total employee count start
 totalEmpCount(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.totalEmpCount}`, { headers });
 }
 // show total employee count end
@@ -230,7 +230,7 @@ totalEmpCount(){
 // show wfh count start
 wfhCount(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.wfhCount}`, { headers });
 }
 // show wfh count end
@@ -238,7 +238,7 @@ wfhCount(){
 // show today present employee start
 presentCount(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.presentCount}`, { headers });
 }
 // show today present employee end
@@ -246,7 +246,7 @@ presentCount(){
 // show today absent employee start
 absentCount(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.absentCount}`, { headers });
 }
 // show today absent employee end
@@ -254,7 +254,7 @@ absentCount(){
 // show today casual leave employee start
 casualCount(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.casualCount}`, { headers });
 }
 // show today casual leave employee end
@@ -262,7 +262,7 @@ casualCount(){
 // show today sick leave employee start
 sickCount(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.sickCount}`, { headers });
 }
 // show today sick leave employee end
@@ -270,7 +270,7 @@ sickCount(){
 // show full time employee start
 fulltime(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.fullTime}`, { headers });
 }
 // show full time employee end
@@ -278,7 +278,7 @@ fulltime(){
 // show part time employee start
 parttime(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.partTime}`, { headers });
 }
 // show part time employee end
@@ -286,7 +286,7 @@ parttime(){
 // show intern time employee start
 interntime(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.internTime}`, { headers });
 }
 // show intern time employee end
@@ -294,7 +294,7 @@ interntime(){
 // show working hours strat
 totalWorkingHours(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.workingHours}`, { headers });
 }
 // show working hours end
@@ -302,7 +302,7 @@ totalWorkingHours(){
 // show check Out Early strat
 checkOutEarly(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.checkOutEarly}`, { headers });
 }
 // show check Out Early end
@@ -310,7 +310,7 @@ checkOutEarly(){
 // show check in Late strat
 checkedInLate(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.checkedInLate}`, { headers });
 }
 // show check in Late end
@@ -318,7 +318,7 @@ checkedInLate(){
 // show present Users Last 7Days strat
 presentUsersLast7Days(){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.presentUsersLast7Days}`, { headers });
 }
 // show present Users Last 7Days end

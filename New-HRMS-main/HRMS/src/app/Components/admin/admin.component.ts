@@ -57,7 +57,8 @@ export class AdminComponent {
   public bloodGroup: string = '';
   public skills: string = '';
   public emergencyContact: string = '';
-
+  getHolidayData: any;
+  // fillterGetHoliday: any;
   // for profile modal end
 
   // for update page start
@@ -203,6 +204,8 @@ export class AdminComponent {
     this.remainingWfhUser();
   this.takenWfhUser();
   this.birthdayUser();
+  this.getHoliday();
+  this.TodayAndUpcomingHolidays();
   }
 
 
@@ -626,7 +629,7 @@ updateNumberOfDays() {
  // API for Apply Leave start
 
  onSubmit() {
-  console.log("leave form", this.leaveForm);
+  // console.log("leave form", this.leaveForm);
       // Call the service method to apply leave with form data and token
       this.testService.applyLeave(this.leaveForm.value).subscribe(
         (response) => {
@@ -638,7 +641,7 @@ updateNumberOfDays() {
           this.showAdminLeaveTable = false;
           // this.toggleAdminLeaveTable();
           this.loginService.showTable('viewLeave')
-  console.log("leave apply", response);
+  // console.log("leave apply", response);
   
   
         },
@@ -682,7 +685,7 @@ updateNumberOfDays() {
       this.adminService.totalLeaveUser().subscribe(
         (response: any) => {
          this.totalLeave = response
-          console.log("total leave",response);
+          // console.log("total leave",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -702,7 +705,7 @@ updateNumberOfDays() {
       this.adminService.leaveTakenUser().subscribe(
         (response: any) => {
          this.takenLeave = response
-          console.log("taken leave",response);
+          // console.log("taken leave",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -720,7 +723,7 @@ updateNumberOfDays() {
       this.adminService.remainingLeaveUser().subscribe(
         (response: any) => {
          this.remainingLeave = response
-          console.log("remaining leave",response);
+          // console.log("remaining leave",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -739,7 +742,7 @@ updateNumberOfDays() {
       this.adminService.totalWfhUser().subscribe(
         (response: any) => {
          this.totalWfh = response
-          console.log("total Wfh",response);
+          // console.log("total Wfh",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -759,7 +762,7 @@ updateNumberOfDays() {
       this.adminService.wfhTakenUser().subscribe(
         (response: any) => {
          this.takenWfh = response
-          console.log("taken wfh",response);
+          // console.log("taken wfh",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -777,7 +780,7 @@ updateNumberOfDays() {
       this.adminService.remainingWfhUser().subscribe(
         (response: any) => {
          this.remainingWfh = response
-          console.log("remaining Wfh",response);
+          // console.log("remaining Wfh",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -795,7 +798,7 @@ updateNumberOfDays() {
       this.adminService.birthday().subscribe(
         (response: any) => {
          this.birthday = response
-          console.log("birthday",response);
+          // console.log("birthday",response);
         },
         error => {
           Swal.fire('Error', error.error, 'error');  
@@ -809,6 +812,7 @@ updateNumberOfDays() {
   
 
   // view holiday start
+  holidaysData: any;
   public currentYear: number = new Date().getFullYear();
 
   holidayPre() {
@@ -818,8 +822,110 @@ updateNumberOfDays() {
   holidayNext() {
     this.currentYear++;
   }
+
+      // get holiday start
+      getHoliday() {
+      
+        this.testService.getHoliday().subscribe(
+          (response: any) => {
+        const dataArray = Object.values(response);
+           
+            const reversedData = dataArray.reverse();
+            this.getHolidayData = reversedData;
+            // this.fillterGetHoliday = reversedData;
+            // console.log("get holiday",response);
+          },
+          error => {
+            Swal.fire('Error', error.error, 'error');  
+          
+          }
+        );
+      
+    }
+// get holiday end
+
+    // get month name and date start
+    getMonthName(date: string): string {
+      const monthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      ];
+    
+      const parts = date.split('-');
+      const monthIndex = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript Date object
+    
+      return monthNames[monthIndex];
+    }
+    getDayFromDate(date: string): string {
+      const parts = date.split('-');
+      return parts[2];
+    }
+      // get month name and date start
+      getMonthColor(month: string): string {
+        const monthColorMap: { [key: string]: string } = {
+          'Jan': 'green',
+          'Feb': 'purple',
+          'Mar': 'blue',
+          'Apr': 'red',
+          'May': 'black',
+          'Jun': 'green',
+          'Jul': 'red',
+          'Aug': 'purple',
+          'Sep': 'red',
+          'Oct': 'black',
+          'Nov': 'blue',
+          'Dec': 'purple'
+        };
+      
+        return monthColorMap[month] || 'gray'; // Default color for unknown months
+      }
+      
+      
+    
   // view holiday end
 
+ // API for show Today And Upcoming Holidays start
+ UpcomingHolidays: any;
+ TodayAndUpcomingHolidays() {
+  
+     this.adminService.TodayAndUpcomingHolidays().subscribe(
+       (response: any) => {
+        this.UpcomingHolidays = response
+        //  console.log("Today And Upcoming Holidays", this.UpcomingHolidays);
+       },
+       error => {
+         Swal.fire('Error', error.error, 'error');  
+       
+       }
+     );
+  
+ }
+ 
+ getShortDayName(day: string): string {
+  const dayMap: { [key: string]: string } = {
+    'Monday': 'MON',
+    'Tuesday': 'TUE',
+    'Wednesday': 'WED',
+    'Thursday': 'THU',
+    'Friday': 'FRI',
+    'Saturday': 'SAT',
+    'Sunday': 'SUN'
+  };
+
+  return dayMap[day] || day; // Default to the original day if not found in the map
+}
+
+getMonthNameHoliday(date: string): string {
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const parts = date.split('-');
+  const monthIndex = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript Date object
+
+  return monthNames[monthIndex];
+}
+
+ // API for show Today And Upcoming Holidays end
   
 }
 function updateEmployee(employeeId: any, number: any) {

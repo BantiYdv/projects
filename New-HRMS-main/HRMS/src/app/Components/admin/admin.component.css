@@ -1392,7 +1392,7 @@ font-family: Poppins;
 font-size: 22.118px;
 font-style: normal;
 font-weight: 700;
-line-height: normal;
+line-height: inherit;
 text-transform: uppercase;
 }
 
@@ -1516,7 +1516,7 @@ bottom: 76px;
     margin-left: 10px; /* Adjust margin as needed */
     position: absolute;
     /* margin-top: 186px; */
-    bottom: 37px;
+    bottom: 23px;
 }
 .headerH {
     display: flex;
@@ -1528,7 +1528,7 @@ bottom: 76px;
 .weekName{
     color: #000;
 text-align: right;
-font-size: 12px;
+font-size: 10px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -1537,15 +1537,15 @@ letter-spacing: 1.2px;
 
 .dateName{
     color: #2F37A4;
-font-size: 20px;
+font-size: 16px;
 font-style: normal;
 font-weight: 800;
-line-height: normal;
+line-height: revert;
 }
 
 .yearName{
     color: #000;
-font-size: 7px;
+font-size: 10px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -1568,6 +1568,7 @@ margin-left: 4rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    
 }
 
 .desc{
@@ -1580,7 +1581,7 @@ margin-left: 6rem;
 }
 
 .holidayBody{
-    padding: 2px 23px 7px 46px;
+    padding: 14px 23px 16px 46px;
 }
 
 .holidayVector3{
@@ -1974,7 +1975,7 @@ text-transform: capitalize;
     color: #3430B3;
 
 font-family: Poppins;
-font-size: 40px;
+font-size: 30px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -1985,6 +1986,7 @@ line-height: normal;
     /* align-items: center; */
     /* gap: 25px; */
     flex-direction: column;
+    width: 115px;
 }
   .monthHoliday{
 color: #FFF;
@@ -2012,7 +2014,7 @@ color: #343A40;
 
 text-align: center;
 font-family: Poppins;
-font-size: 32px;
+font-size: 18px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;

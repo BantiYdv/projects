@@ -16,7 +16,7 @@ export class TestService {
 getEmployeeList() {
   const url = `${this.api.ViewEmpList}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -25,7 +25,7 @@ getEmployeeList() {
 // team leave start
 getTeamLeaveData(): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
   return this.http.get(this.api.teamLeave, { headers });
 }
@@ -34,7 +34,7 @@ getTeamLeaveData(): Observable<any> {
 //Approve leave start
 approveLeave(id: number): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const requestBody = {
     approval: 'Approved'
   };
@@ -46,7 +46,7 @@ approveLeave(id: number): Observable<any> {
 //Reject leave start
 rejectLeave(id: number): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const requestBody = {
     approval: 'Rejected'
   };
@@ -58,7 +58,7 @@ rejectLeave(id: number): Observable<any> {
 // team wfh start
 getTeamWfhData(): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
   return this.http.get(this.api.teamWfh, { headers });
 }
@@ -67,7 +67,7 @@ getTeamWfhData(): Observable<any> {
 //Approve wfh start
 approveWfh(id: number): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const requestBody = {
     approval: 'Approved'
   };
@@ -79,7 +79,7 @@ approveWfh(id: number): Observable<any> {
 //Reject wfh start
 rejectWfh(id: number): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const requestBody = {
     approval: 'Rejected'
   };
@@ -94,7 +94,7 @@ createRole(name: string, permissionNames: string[]): Observable<any> {
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
+    'Authorization': ` ${token}`
   });
 
   const payload = {
@@ -112,7 +112,7 @@ createRole(name: string, permissionNames: string[]): Observable<any> {
 ViewRolewithPermission(){
   const url = `${this.api.RoleWithPermission}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -121,7 +121,7 @@ ViewRolewithPermission(){
 viewRole(id: number): Observable<any> {
   const url = `${this.api.RoleWithPermission}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -131,7 +131,7 @@ viewRole(id: number): Observable<any> {
 AddPermissionName(id: number, permissionNames: string[]) {
   const url = `${this.api.AddPermission}/${id}/addPermission`; // Correct the URL
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const requestBody = {
     permissionNames: permissionNames
   };
@@ -146,19 +146,19 @@ AddPermissionName(id: number, permissionNames: string[]) {
 // RemovePermission(id: number): Observable<any> {
 //   const url = `${this.api.RemovePermission}/removePermission/${id}`;
 //     const token = localStorage.getItem('jwtToken');
-//     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//     const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //     return this.http.post(url, { headers });
 // }
 // RemovePermission(id: number, selectedPermissions: string[]): Observable<any> {
 //   const url = `${this.api.RemovePermission}/removePermission/${id}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   return this.http.post(url, { selectedPermissions }, { headers });
 // }
 RemovePermission(id: number, permissionNames: string[]): Observable<any> {
   const url = `${this.api.RemovePermission}/removePermission/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const requestBody = {
     permissionNames: permissionNames
   };
@@ -173,7 +173,7 @@ RemovePermission(id: number, permissionNames: string[]): Observable<any> {
 deleteRole(id: number): Observable<any> {
   const url = `${this.api.DeleteRole}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.delete(url, { headers });
 }
 // delete role end
@@ -193,7 +193,7 @@ getEmployeeListExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
 getEmployeeLeaveExcel(employeeName: any): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
 
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   if(employeeName){
     console.log("excel employee name", `${this.api.EmpLeaveExcel}?username=${employeeName}`)
     return this.http.get(`${this.api.EmpLeaveExcel}?username=${employeeName}`, {
@@ -217,7 +217,7 @@ getEmployeeLeaveExcel(employeeName: any): Observable<HttpResponse<Blob>> {
 getEmployeeAttExcel(employeeName: any): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
 
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   if(employeeName){
     console.log("excel employee name", `${this.api.EmpAttExcel}?username=${employeeName}`)
     return this.http.get(`${this.api.EmpAttExcel}?username=${employeeName}`, {
@@ -239,7 +239,7 @@ getEmployeeAttExcel(employeeName: any): Observable<HttpResponse<Blob>> {
 getEmployeeWfhExcel(employeeName: any): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
 
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   if(employeeName){
     console.log("excel employee name", `${this.api.EmpWfhExcel}?username=${employeeName}`)
     return this.http.get(`${this.api.EmpWfhExcel}?username=${employeeName}`, {
@@ -261,7 +261,7 @@ getEmployeeWfhExcel(employeeName: any): Observable<HttpResponse<Blob>> {
 applyLeave(formData: any) {
   const url = `${this.api.ApplyLeave}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.post(url, formData, { headers });
 }
@@ -271,7 +271,7 @@ applyLeave(formData: any) {
 getViewLeave() {
   const url = `${this.api.ViewLeave}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -281,7 +281,7 @@ getViewLeave() {
 getAttendance() {
   const url = `${this.api.EmpAtt}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -291,7 +291,7 @@ getAttendance() {
 applyWfh(formData: any) {
   const url = `${this.api.ApplyWfh}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.post(url, formData, { headers });
 }
@@ -301,7 +301,7 @@ applyWfh(formData: any) {
 getWfhData() {
   const url = `${this.api.ViewWfh}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -311,7 +311,7 @@ getWfhData() {
 getAllAttendance() {
   const url = `${this.api.ViewAllAtt}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -321,7 +321,7 @@ getAllAttendance() {
 getAllWfhData() {
   const url = `${this.api.ViewAllWfh}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -331,7 +331,7 @@ getAllWfhData() {
 getAllLeave() {
   const url = `${this.api.ViewAllLeave}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -344,7 +344,7 @@ getAllLeave() {
 deleteEmployee(id: number): Observable<any> {
   const url = `${this.api.DeleteEmp}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.delete(url, { headers });
 }
 //Delete Employee end
@@ -354,7 +354,7 @@ deleteEmployee(id: number): Observable<any> {
 // AddShift(){
 //   const url = `${this.api.shift}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
@@ -363,7 +363,7 @@ deleteEmployee(id: number): Observable<any> {
 //Update Employee Attendance start
 updateAtt(id: number, status: string): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  const data = {
 status : status
  }
@@ -377,7 +377,7 @@ addPosition(position: any){
 
   const url = `${this.api.addPosition}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     type: position.positionName,
     numberOfPositions: position.numberOfPositions,
@@ -403,7 +403,7 @@ viewPosition(){
 
   const url = `${this.api.viewPosition}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  
   return this.http.get(url,  { headers });
 }
@@ -414,7 +414,7 @@ viewPositionById(id: any){
 
   const url = `${this.api.viewPositionById}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  
   return this.http.get(url,  { headers });
 }
@@ -425,7 +425,7 @@ updatePosition(position: any){
 
   const url = `${this.api.updatePositionById}/${position.id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     type: position.positionName,
     numberOfPositions: position.numberOfPositions,
@@ -450,7 +450,7 @@ deletePositionById(id: any){
 
   const url = `${this.api.deletePositionById}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  
   return this.http.delete(url,  { headers });
 }
@@ -461,7 +461,7 @@ addInterview(interview: any, selectedFileName: any){
 
   const url = `${this.api.addInterview}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     nameOfInterviewee: interview.nameOfInterviewee,
     emailOfInterviewee: interview.emailOfInterviewee,
@@ -489,7 +489,7 @@ viewPositionName(){
 
   const url = `${this.api.PositionName}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  
   return this.http.get(url,  { headers });
 }
@@ -500,7 +500,7 @@ updatePositionstatus(positionId: any, positionStatus: any){
 
   const url = `${this.api.updatePositionStatus}/${positionId}/close`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     closed: positionStatus,
   };
@@ -513,7 +513,7 @@ getCandidatePosition(positionName: any){
 
   const url = `${this.api.getCandidateInterview}${positionName}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  
   return this.http.get(url,  { headers });
 }
@@ -524,7 +524,7 @@ downloadCandidateCV(id: any){
 
   const url = `${this.api.downloadCandidateCV}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  
   return this.http.get(url,  { headers, observe: 'response', responseType: 'blob'  });
 }
@@ -535,7 +535,7 @@ sendMail(id: any, data: any){
 
   const url = `${this.api.sendMail}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const dataStatus = {
     interviewStatus: data,
   };
@@ -547,7 +547,7 @@ sendMail(id: any, data: any){
 updateConfirmationStatus(confirmationId: any, confirmationStatus: any){
   const url = `${this.api.updateConfirmationStatus}/${confirmationId}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const dataStatus = {
     confirmation: confirmationStatus,
   };
@@ -560,7 +560,7 @@ updateConfirmationStatus(confirmationId: any, confirmationStatus: any){
 findCandidateById(id: any){
   const url = `${this.api.findCandidate}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url,  { headers });
 }
@@ -570,7 +570,7 @@ findCandidateById(id: any){
 deleteCandidateInterviewById(id: any){
   const url = `${this.api.deleteCandidateInterview}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.delete(url,  { headers });
 }
@@ -580,7 +580,7 @@ deleteCandidateInterviewById(id: any){
 updateInterviewById(id: any, interview: any, selectedFileName: any){
   const url = `${this.api.updateInterview}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     nameOfInterviewee: interview.nameOfInterviewee,
     emailOfInterviewee: interview.emailOfInterviewee,
@@ -606,7 +606,7 @@ updateInterviewById(id: any, interview: any, selectedFileName: any){
 addShift(shiftTime: any){
   const url = `${this.api.addShiftTime}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
   //   shiftName: "Day Shift",
   // shiftTime: "15:30-15:40",
@@ -637,7 +637,7 @@ addShift(shiftTime: any){
 viewShiftDetails(){
   const url = `${this.api.viewAllShiftTimeDetails}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 }
@@ -646,7 +646,7 @@ viewShiftDetails(){
 // update shift time start
 updateShiftTime(shiftTime: any){
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  const data = {
   checkInTime: shiftTime.checkInTime,
   checkOutTime: shiftTime.checkOutTime,
@@ -668,7 +668,7 @@ updateShiftTime(shiftTime: any){
 noticePeriod(notice: number){
   const url = `${this.api.noticePeriod}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     noOfDays: notice,
   };
@@ -681,7 +681,7 @@ noticePeriod(notice: number){
 addLeaveRule(leaveRule: any){
   const url = `${this.api.addLeaveRule}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     sickLeaveCarryForward: leaveRule.sickLeaveCarryForward,
     sickLeaveEncashment: leaveRule.sickLeaveEncashment,
@@ -702,7 +702,7 @@ getTodayPresent(){
   
     const url = `${this.api.viewTodayPresent}`;
     const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     
     return this.http.get(url, { headers });
   
@@ -714,7 +714,7 @@ getTodayWfh(){
   
   const url = `${this.api.viewTodayWfh}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -726,7 +726,7 @@ getTodaySick(){
   
   const url = `${this.api.viewTodaySickLeave}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -738,7 +738,7 @@ getTodayCasual(){
   
   const url = `${this.api.viewTodayCasualLeave}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -750,7 +750,7 @@ getTodayAbsent(){
   
   const url = `${this.api.viewTodayAbsentLeave}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -764,7 +764,7 @@ getFullTimeEmp(){
   
   const url = `${this.api.viewFullTimeEmp}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -776,7 +776,7 @@ getPartTimeEmp(){
   
   const url = `${this.api.viewPartTimeEmp}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -788,7 +788,7 @@ getinternEmp(){
   
   const url = `${this.api.viewInternEmp}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -801,7 +801,7 @@ uploadHolidayPdf(file: File): void {
   formData.append('HolidayFile', file, file.name);
 
   const token = localStorage.getItem('jwtToken'); // Replace with your authorization token logic
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 
   this.http.post(this.api.uploadHolidayPdfUrl, formData, { headers }).subscribe(
     () => {
@@ -838,7 +838,7 @@ private showErrorAlert(message: string): void {
 saveHoliday(holiday: any){
   const url = `${this.api.saveHoliday}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const data = {
     date: holiday.date,
     day: holiday.day,
@@ -853,7 +853,7 @@ saveHoliday(holiday: any){
 getHoliday(){
   const url = `${this.api.getHoliday}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.get(url, { headers });
 
@@ -864,21 +864,21 @@ getHoliday(){
 deleteHoliday(id: number): Observable<any> {
   const url = `${this.api.deleteHoliday}/${id}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.delete(url, { headers });
 }
 // delete Holiday end
 
 //Update Employee Attendance start
-updateHoliday(id: any, holiday: any): Observable<any> {
+updateHoliday(holiday: any): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
  const data = {
   date: holiday.date,
   day: holiday.day,
   holiDayReason: holiday.holiDayReason
  }
-  const url = `${this.api.updateHoliday}/${id}`;
+  const url = `${this.api.updateHoliday}/${holiday.id}`;
   return this.http.put(url, data, { headers });
 }
 //Update Employee Attendance end

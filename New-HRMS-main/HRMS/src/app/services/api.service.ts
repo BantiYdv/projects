@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  // public apiUrl = 'https://hrms.prilient.com/';
-  public apiUrl = 'http://192.168.1.30:9191/';
+  public apiUrl = 'https://hrms.prilient.com/';
+  // public apiUrl = 'http://192.168.1.30:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -21,13 +21,13 @@ export class ApiService {
   public EmpLeaveExcel = `${this.apiUrl}gateway/hrms/leavelist/excel`;
   public EmpAttExcel = `${this.apiUrl}gateway/hrms/attendancelist/excel`;
   public EmpWfhExcel = `${this.apiUrl}gateway/hrms/workfromhomelist/excel`;
-  public teamLeave = `${this.apiUrl}gateway/hrms/leaves`;
+  public teamLeave = `${this.apiUrl}gateway/hrms/showLeavesTeamLead`;
   public teamWfh = `${this.apiUrl}gateway/hrms/work`;
   public changePassword = `${this.apiUrl}gateway/hrms/change-password`;
-  public ApproveLeave = `${this.apiUrl}gateway/hrms/leaves`;
-  public RejectLeave = `${this.apiUrl}gateway/hrms/leaves`;
-  public ApproveWfh = `${this.apiUrl}gateway/hrms/wfh`;
-  public RejectWfh = `${this.apiUrl}gateway/hrms/wfh`;
+  public ApproveLeave = `${this.apiUrl}gateway/hrms/approveAndRejectLeave`;
+  public RejectLeave = `${this.apiUrl}gateway/hrms/approveAndRejectLeave`;
+  public ApproveWfh = `${this.apiUrl}gateway/hrms/approveAndRejectWorkFromHome`;
+  public RejectWfh = `${this.apiUrl}gateway/hrms/approveAndRejectWorkFromHome`;
   public DeleteEmp = `${this.apiUrl}gateway/hrms/delete`;
   public Role = `${this.apiUrl}gateway/hrms/role`;
   public AddPermission = `${this.apiUrl}gateway/hrms/role`;
@@ -47,16 +47,16 @@ export class ApiService {
   public Docs = `${this.apiUrl}gateway/hrms/downloadFile`;
   public Userdatashow = `${this.apiUrl}gateway/hrms/findAll`;
   public UpdateEmp = `${this.apiUrl}gateway/hrms/pass`;
-  public ApplyLeave = `${this.apiUrl}gateway/hrms/leave`;
-  public ViewLeave = `${this.apiUrl}gateway/hrms/oneleave`;
-  public ViewAllLeave = `${this.apiUrl}gateway/hrms/lea`;
-  public CheckIn = `${this.apiUrl}gateway/hrms/checkinn`;
-  public CheckOut = `${this.apiUrl}gateway/hrms/checkoutt`;
-  public EmpAtt = `${this.apiUrl}gateway/hrms/attend`;
-  public ViewAllAtt = `${this.apiUrl}gateway/hrms/attendancelist`;
-  public ApplyWfh = `${this.apiUrl}gateway/hrms/wfh`;
-  public ViewWfh = `${this.apiUrl}gateway/hrms/onewfh`;
-  public ViewAllWfh = `${this.apiUrl}gateway/hrms/showwfhAdmin`;
+  public ApplyLeave = `${this.apiUrl}gateway/hrms/applyLeave`;
+  public ViewLeave = `${this.apiUrl}gateway/hrms/getLeavesOfLoggedInUser`;
+  public ViewAllLeave = `${this.apiUrl}gateway/hrms/findAllLeave`;
+  public CheckIn = `${this.apiUrl}gateway/hrms/checkin`;
+  public CheckOut = `${this.apiUrl}gateway/hrms/checkout`;
+  public EmpAtt = `${this.apiUrl}gateway/hrms/loggedInUserAttendance`;
+  public ViewAllAtt = `${this.apiUrl}gateway/hrms/AllEmployeesAttendanceList`;
+  public ApplyWfh = `${this.apiUrl}gateway/hrms/applyWorkFromHome`;
+  public ViewWfh = `${this.apiUrl}gateway/hrms/findWorkFromHomeOfLoggedInUser`;
+  public ViewAllWfh = `${this.apiUrl}gateway/hrms/getAllWorkFromHome`;
   public ViewEmpList = `${this.apiUrl}gateway/hrms/registerlist`;
   public EditProfile = `${this.apiUrl}gateway/hrms/edituser`;
   public personalDetailsUpdate = `${this.apiUrl}gateway/hrms/oneuserpersonalDetailes`;
@@ -95,7 +95,7 @@ export class ApiService {
   public updateShiftTime = `${this.apiUrl}gateway/hrms/updateShiftTime`;
   public noticePeriod = `${this.apiUrl}gateway/onboard/addNoOfDays`;
   public addLeaveRule = `${this.apiUrl}gateway/onboard/addLeaveRule`;
-  public viewTodayPresent = `${this.apiUrl}gateway/hrms/checkedInToday`;
+  public viewTodayPresent = `${this.apiUrl}gateway/hrms/findUsersCheckedInToday`;
   // public viewTodayWfh = `${this.apiUrl}gateway/hrms/WorkFromHomeUserToday`;
   public viewTodayWfh = `${this.apiUrl}gateway/hrms/UserOnWorkFromHomeToday`;
   // public viewTodaySickLeave = `${this.apiUrl}gateway/hrms/userOnSickLeaveToday`;
@@ -123,6 +123,7 @@ export class ApiService {
   public getHoliday = `${this.apiUrl}gateway/hrms/getHoliday`;
   public deleteHoliday = `${this.apiUrl}gateway/hrms/deleteHoliday`;
   public updateHoliday = `${this.apiUrl}gateway/hrms/updateHoliday`;
+  public TodayAndUpcomingHolidays = `${this.apiUrl}gateway/hrms/HolidayTodayAndUpcomingHolidays`;
 
   constructor(private http: HttpClient) { }
 

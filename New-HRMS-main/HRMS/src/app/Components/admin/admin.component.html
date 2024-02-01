@@ -361,20 +361,24 @@
                 <!-- <div class="card"> -->
                 <div class="Holiday">
                   <h5 class="text-center mb-4 mt-2 holidayHeader">Holidays </h5>
-                  <div class="card-body holidayBody">
+                  <div class="card-body holidayBody" *ngFor="let upcomingHoliday of UpcomingHolidays, let i = index">
                     <div class="container">
-                      <span class="weekName">TUE</span><br>
-                      <span class="dateName">06</span><br>
-                      <p class="yearName">JANUARY</p>
+                      <span class="weekName">{{ getShortDayName(upcomingHoliday.day) }}</span><br>
+                      <span class="dateName">{{ upcomingHoliday.date.split('-')[2] }}</span><br>
+                      <p class="yearName">{{ getMonthNameHoliday(upcomingHoliday.date) }}</p>
                     </div>
                     <div class="d-flex align-items-center">
                       <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
                     </div>
-                    <div class="birth">BOSS KI SHADI</div>
-                    <div class="desc">SABHI KA JANA COMPULSURY HAI</div>
+                    <div class="birth">{{ upcomingHoliday.holiDayReason }}</div>
+                    <!-- <div class="desc">SABHI KA JANA COMPULSURY HAI</div> -->
                   </div>
+                  
 
-                  <div class="card-body holidayBody mt-4">
+
+
+
+                  <!-- <div class="card-body holidayBody mt-4">
                     <div class="container">
                       <span class="weekName">WED</span><br>
                       <span class="dateName">14</span><br>
@@ -411,7 +415,7 @@
                     </div>
                     <div class="birth" style="color: #A036CF;">EK OR CHUTTI</div>
                     <div class="desc">SALARY KISI KI NHI KATEGI</div>
-                  </div>
+                  </div> -->
 
                   <div class="headerH">
                     <div class="left-sectionHoliday">
@@ -549,22 +553,22 @@ data-bs-backdrop="false">
             </div>
           </div>
           
-              <div class="row justify-content-center mt-3">
+              <div class="row justify-content-center  mt-3">
 
-                <div class="col-md-6">
-                  <div class="d-flex justify-content-start">
+                <div class="col-md-6" *ngFor="let holiday of getHolidayData, let i = index">
+                  <div class="d-flex justify-content-start ">
                     <div class="monthDateHoliday">
-                      <span class="monthHoliday">Jan</span>
-                      <span class="dateHoliday">15</span>
+                      <span class="monthHoliday" [style.backgroundColor]="getMonthColor(getMonthName(holiday.date))">{{ getMonthName(holiday.date) }}</span>
+                      <span class="dateHoliday">{{ getDayFromDate(holiday.date) }}</span>
                     </div>
-                    <div class="m-0"> 
-                      <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                      <span class="dayHoliday">Monday</span>
+                    <div class="mt-2"> 
+                      <span class="descHoliday">{{holiday.holiDayReason}}</span><br>
+                      <span class="dayHoliday">{{holiday.day}}</span>
                     </div>
                   </div>
                 </div>
                 
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                   <div class="d-flex justify-content-start">
                     <div class="monthDateHoliday">
                       <span class="monthHoliday" style="background: #D2A32D !important;">Jan</span>
@@ -575,153 +579,10 @@ data-bs-backdrop="false">
                       <span class="dayHoliday">Monday</span>
                     </div>
                   </div>
+                </div> -->
                 </div>
-                </div>
 
-                <div class="row justify-content-center mt-3">
-
-                  <div class="col-md-6">
-                    <div class="d-flex justify-content-start">
-                      <div class="monthDateHoliday">
-                        <span class="monthHoliday">Jan</span>
-                        <span class="dateHoliday">15</span>
-                      </div>
-                      <div class="m-0"> 
-                        <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                        <span class="dayHoliday">Monday</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <div class="d-flex justify-content-start">
-                      <div class="monthDateHoliday">
-                        <span class="monthHoliday">Jan</span>
-                        <span class="dateHoliday">26</span>
-                      </div>
-                      <div class="m-0"> 
-                        <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                        <span class="dayHoliday">Monday</span>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="row justify-content-center mt-3">
-
-                    <div class="col-md-6">
-                      <div class="d-flex justify-content-start">
-                        <div class="monthDateHoliday">
-                          <span class="monthHoliday">Jan</span>
-                          <span class="dateHoliday">15</span>
-                        </div>
-                        <div class="m-0"> 
-                          <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                          <span class="dayHoliday">Monday</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                      <div class="d-flex justify-content-start">
-                        <div class="monthDateHoliday">
-                          <span class="monthHoliday">Jan</span>
-                          <span class="dateHoliday">26</span>
-                        </div>
-                        <div class="m-0"> 
-                          <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                          <span class="dayHoliday">Monday</span>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-
-                    <div class="row justify-content-center mt-3">
-
-                      <div class="col-md-6">
-                        <div class="d-flex justify-content-start">
-                          <div class="monthDateHoliday">
-                            <span class="monthHoliday">Jan</span>
-                            <span class="dateHoliday">15</span>
-                          </div>
-                          <div class="m-0"> 
-                            <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                            <span class="dayHoliday">Monday</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="col-md-6">
-                        <div class="d-flex justify-content-start">
-                          <div class="monthDateHoliday">
-                            <span class="monthHoliday">Jan</span>
-                            <span class="dateHoliday">26</span>
-                          </div>
-                          <div class="m-0"> 
-                            <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                            <span class="dayHoliday">Monday</span>
-                          </div>
-                        </div>
-                      </div>
-                      </div>
-
-                      <div class="row justify-content-center mt-3">
-
-                        <div class="col-md-6">
-                          <div class="d-flex justify-content-start">
-                            <div class="monthDateHoliday">
-                              <span class="monthHoliday">Jan</span>
-                              <span class="dateHoliday">15</span>
-                            </div>
-                            <div class="m-0"> 
-                              <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                              <span class="dayHoliday">Monday</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                          <div class="d-flex justify-content-start">
-                            <div class="monthDateHoliday">
-                              <span class="monthHoliday">Jan</span>
-                              <span class="dateHoliday">26</span>
-                            </div>
-                            <div class="m-0"> 
-                              <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                              <span class="dayHoliday">Monday</span>
-                            </div>
-                          </div>
-                        </div>
-                        </div>
-
-                        <div class="row justify-content-center mt-3">
-
-                          <div class="col-md-6">
-                            <div class="d-flex justify-content-start">
-                              <div class="monthDateHoliday">
-                                <span class="monthHoliday">Jan</span>
-                                <span class="dateHoliday">15</span>
-                              </div>
-                              <div class="m-0"> 
-                                <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                                <span class="dayHoliday">Monday</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div class="col-md-6">
-                            <div class="d-flex justify-content-start">
-                              <div class="monthDateHoliday">
-                                <span class="monthHoliday">Jan</span>
-                                <span class="dateHoliday">26</span>
-                              </div>
-                              <div class="m-0"> 
-                                <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
-                                <span class="dayHoliday">Monday</span>
-                              </div>
-                            </div>
-                          </div>
-                          </div>
+              
       
       <div class="mb-3 col-12 d-flex justify-content-center mt-3">
         <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal">Close</button>
@@ -798,7 +659,7 @@ data-bs-backdrop="false">
                               <div class="mb-3">
                                 <label for="endDate" class="col-form-label leaveType">End Date:</label>
                                 <input type="date" class="form-control leaveInput" name="toDate" id="toDate"
-                                  formControlName="toDate" [value]="calculateEndDate()" [readonly]="true">
+                                  formControlName="toDate" [value]="calculateEndDate()" >
                               </div>
                             </ng-container>
 
@@ -877,7 +738,7 @@ data-bs-backdrop="false">
                             <div class="mb-3">
                               <label for="endDate" class="col-form-label leaveType">End Date:</label>
                               <input type="date" class="form-control leaveInput" name="toDateWfh" id="toDateWfh"
-                                formControlName="toDateWfh" [value]="calculateWFHEndDate()" [readonly]="true">
+                                formControlName="toDateWfh" [value]="calculateWFHEndDate()" >
                             </div>
 
                             <div class="modal-footer">

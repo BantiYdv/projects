@@ -15,7 +15,7 @@ export class ProfileService {
 editUserProfile(requestBody: any) {
   const url = `${this.api.EditProfile}`;
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
   return this.http.post(url, requestBody, { headers });
 }
@@ -24,7 +24,7 @@ editUserProfile(requestBody: any) {
 // delete user personal detail start
 deletePersonalDetails() {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.delete(`${this.api.DeletepersonalDetails}`, { headers });
 }
 // delete user personal detail end
@@ -32,7 +32,7 @@ deletePersonalDetails() {
 // upload photo start
 uploadPhoto(file: File){
   const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', ` ${token}`);
     
     const formData: FormData = new FormData();
     formData.append('photo', file);
@@ -45,7 +45,7 @@ uploadPhoto(file: File){
 // show personal details start
 personaldetail(): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const url = `${this.api.personalDetailsUpdate}`;
 
   return this.http.get(url, { headers });
@@ -54,7 +54,7 @@ personaldetail(): Observable<any> {
 // show other user basic info start 
 userBasicInfo(id: number): Observable<any>{
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const url = `${this.api.USerBasicInfo}/${id}`;
   return this.http.get(url, { headers });
 }
@@ -63,13 +63,13 @@ userBasicInfo(id: number): Observable<any>{
 
 // getdocumentData(id: number): Observable<any>{
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const url = `${this.api.Docs}/${id}`;
 //   return this.http.get(url, { headers });
 // }
 // DownloadDocs(id: number, filename: string): Observable<HttpResponse<Blob>> {
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
 //   const url = `${this.api.Docs}`;
 //   return this.http.get(url, {
 //     headers,
@@ -80,7 +80,7 @@ userBasicInfo(id: number): Observable<any>{
 // }
 DownloadDocs(id: number, filename: string): Observable<HttpResponse<Blob>> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const url = `${this.api.Docs}`;
   return this.http.get(url, {
     headers,
@@ -93,13 +93,13 @@ DownloadDocs(id: number, filename: string): Observable<HttpResponse<Blob>> {
 // getAllDocs(id: number) {
 //   const url = `${this.api.AllDocsUrl}/${id}`;
 //   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   
 //   return this.http.get(url, { headers });
 // }
 getAllDocs(id: string): Observable<Blob> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   const url = `${this.api.AllDocsUrl}/${id}`;
 
   return this.http.get(url, {
@@ -113,7 +113,7 @@ getAllDocs(id: string): Observable<Blob> {
 // show profile name in top start
 getShowData(): Observable<any> {
   const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
   return this.http.get(`${this.api.EmpNameShow}`, { headers });
 }
 // show profile name in top end
