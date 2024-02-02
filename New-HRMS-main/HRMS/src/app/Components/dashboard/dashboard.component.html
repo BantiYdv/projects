@@ -110,31 +110,36 @@
           <div class="col-xl-6 col-lg-12 col-md-12 mb-4">
             <div class="card" id="Barchart">
               <div class="card-header">
-                <h3 class="card-title">Attendance</h3>
+                <h3 class="card-title d-flex justify-content-between align-items-center">
+                  <span class="mx-auto">Attendance</span>
+                  <i class="fas fa-sync-alt" (click)="reloadChartData()"></i>
+                </h3>
               </div>
               <div class="card-body">
-                <div class="chart-container">
+                <div class="chart-container attendanceChart">
                   <canvas id="MyChart">{{ chart }}</canvas>
                 </div>
               </div>
             </div>
-
           </div>
 
          
 
           <div class="col-xl-6 col-lg-12 col-md-12">
             <div class="card" id="pieChart" >
-              <div class="mt-2 mb-2" >
-                <h3 class="card-title">Employee Info </h3>
+              <div class="card-header" >
+                <h3 class="card-title d-flex justify-content-between align-items-center">
+                  <span class="mx-auto"> Employee Info</span>
+                  <i class="fas fa-sync-alt" (click)="reloadPieChartData()"></i>
+                  </h3>
               </div>
-              <div class="card-body">
+              <div class="card-body mt-4">
                 <div class="chart-container pieEmp">
                   <canvas id="MyPieChart" style="margin-top: 10px;">{{ chart }}</canvas>
                 </div>
 
-                <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector d-none d-md-inline">
-                  <table class="table-responsive-md" style="position:absolute;top:4rem;right:48px;color:#545454">
+                <div class="legend "><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector d-none d-md-inline">
+                  <table class="table-responsive-md mt-4" style="position:absolute;top:4rem;right:48px;color:#545454">
                     <tbody>
                       <tr>
                         <td class="legendColorBox">

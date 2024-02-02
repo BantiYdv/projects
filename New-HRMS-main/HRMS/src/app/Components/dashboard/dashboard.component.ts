@@ -67,6 +67,7 @@ partTime = '';
 intern = '';
   // bar chart  start
   public chart: any;
+  public chartPie: any;
   //bar chart end
   totalCheckOutEarly: any = {};
   totalCheckedInLate: any = {};
@@ -125,6 +126,7 @@ intern = '';
     this.partTimeShow();
     this.internShow();
     this.createChart();
+    this.createLineChart();
     this.viewEmployeeProfile();
     // this.viewAllAttendance();
     this.currentDate = moment();
@@ -138,6 +140,8 @@ intern = '';
     this.birthdayUser();
     this.workingHours();
     this.viewPresentUsersLast7Days();
+    this.viewAllCheckOutEarly();
+    this.viewAllCheckedInLate();
    this.TodayAndUpcomingHolidays();
   
     // this.createLineChart();
@@ -290,7 +294,7 @@ createChart() {
         labels: last7DaysDates,
         datasets: [
           {
-            label: "present",
+            label: "Present",
             data: presentLast7DaysData,
             backgroundColor: '#421CDD'
           },
@@ -307,19 +311,48 @@ createChart() {
         ]
       },
       options: {
-        aspectRatio: 1.5
+        aspectRatio: 1.5,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: 'black', 
+              
+            },
+            title: {
+              font: {
+                weight: 'bolder' 
+              }
+            }
+          },
+        
       }
+    }
     });
   }
 }
 
-
+reloadChartData(){
+  this.checkOutEarly();
+  this.checkedInLate();
+  this.presentUsersLast7Days();
+}
 
 
   createLineChart() {
     // Check if data is available before creating the chart
     if (this.fullTime !== undefined && this.partTime !== undefined && this.intern !== undefined) {
-      this.chart = new Chart("MyPieChart", {
+      
+    // Check if a chart instance already exists and destroy it
+    if (this.chartPie) {
+      this.chartPie.destroy();
+    }
+
+      this.chartPie = new Chart("MyPieChart", {
         type: 'pie',
         data: {
           labels: ['Full Time', 'Part Time', 'Intern/Trainee'],
@@ -358,6 +391,12 @@ createChart() {
     }
   }
 
+  reloadPieChartData(){
+    this.fullTimeShow()
+    this.partTimeShow();
+    this.internShow();
+  }
+
   // navigate full time part toime and intern table start
   navigateToEmployee(route: string) {
     // Use Angular Router to navigate to the specified route
@@ -377,7 +416,7 @@ createChart() {
         
         this.fullTime = response;
         this.createLineChart();
-          // console.log('full time Data:', response);
+          console.log('full time Data:', response);
           
 
       },
@@ -397,7 +436,7 @@ createChart() {
       (response: any) => {
        
         this.partTime = response;
-          // console.log('part time Data:', response);
+          console.log('part time Data:', response);
           
       },
       (error) => {
@@ -415,7 +454,7 @@ createChart() {
       (response: any) => {
        
         this.intern = response;
-          // console.log('intern Data:', response);
+          console.log('intern Data:', response);
           
       },
       (error) => {
@@ -735,7 +774,7 @@ viewPresentUsersLast7Days(){
   this.dashboardService.presentUsersLast7Days().subscribe(
     (response: any) => {
       this.presentLast7Days = response;
-      // console.log("view present Last 7Days", this.presentLast7Days);
+      console.log("view present Last 7Days", this.presentLast7Days);
  
     },
     (error) => {
@@ -744,6 +783,39 @@ viewPresentUsersLast7Days(){
   );
 }
 // for view all user present Last 7Days end
+
+// for view all user check Out Early start
+
+viewAllCheckOutEarly() {
+  this.dashboardService.checkOutEarly().subscribe(
+    (response: any) => {
+      this.totalCheckOutEarly = response;
+      console.log("check Out Early", this.totalCheckOutEarly);
+   
+      // Additional logic or function calls can be placed here
+    },
+    (error) => {
+      // Handle error if needed
+    }
+  );
+}
+
+// for view all user check Out Early end
+
+// for view all user check In Late start
+viewAllCheckedInLate(){
+  this.dashboardService.checkedInLate().subscribe(
+    (response: any) => {
+      this.totalCheckedInLate = response;
+      console.log("check In late", this.totalCheckedInLate);
+   
+    },
+    (error) => {
+      
+    }
+  );
+}
+// for view all user check In Late end
 
 // API for show Today And Upcoming Holidays start
 UpcomingHolidays: any;

@@ -838,6 +838,7 @@ font-weight: 700;
 line-height: normal;
 }
 
+
 .RegButton{
     width: 25px;
     height: 21.344px;
@@ -871,7 +872,7 @@ margin-right: 11px;
 }
 #pieChart{
     width: 100%;
-height: 181px;
+height: 200px;
 flex-shrink: 0;
 border-radius: 7px;
 border: 2px solid #CDCDCD;
@@ -1225,10 +1226,12 @@ height: 32px;
     line-height: inherit;
   }
 
- #MyChart{
+
+ .attendanceChart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     width: 100% !important;
-    height: 304px !important;
-   
- } 
-
-
+    height: 321px !important;
+}
