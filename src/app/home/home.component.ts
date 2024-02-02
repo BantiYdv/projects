@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(){
       const currentRoutePath = this.router.url;
       console.log('<= currentRoutePath =>',currentRoutePath);
-      this.apiService.showPage(currentRoutePath.replace('/home/',''));
+      this.apiService.showPage(currentRoutePath.replace('/user/',''));
       this.apiService.scrollToSection(currentRoutePath.replace('/',''));
 
 
@@ -506,7 +506,7 @@ getStars(starCount: number): boolean[] {
   getRouteUrl(role: any) {
     switch (role) {
       case 'user':
-        this.router.navigate(['/user/work-status']).then( () => {
+        this.router.navigate(['/client/work-status']).then( () => {
           window.location.reload();
         })
         break;
@@ -521,7 +521,7 @@ getStars(starCount: number): boolean[] {
         })
         break;
       default:
-        this.router.navigate(['/home']).then( () => {
+        this.router.navigate(['/user/home']).then( () => {
           window.location.reload();
         })
         break;

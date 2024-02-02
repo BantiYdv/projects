@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isHomeRoute = this.router.url !== '/home/how-it-works' && this.router.url !== '/home/log-in';
+        this.isHomeRoute = this.router.url !== '/user/how-it-works' && this.router.url !== '/user/log-in';
       }
     });
   }

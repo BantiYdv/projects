@@ -32,7 +32,7 @@ import { NotFoundPageComponent } from "./not-found-page/not-found-page.component
 
 export const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "home/:pageType", component: HomeComponent },
+  { path: "user/:pageType", component: HomeComponent },
 
   { path: "log-in/otp", component: LoginWithOTPComponent },
   { path: "forgot/password", component: ForgotPasswordComponent },
@@ -111,22 +111,22 @@ export const routes: Routes = [
   }, //employee
 
   {
-    path: "user/work-status",
+    path: "client/work-status",
     component: WorkStatusComponent,
     canActivate: [authGuard],
   }, //user
   {
-    path: "user/creative-assets",
+    path: "client/creative-assets",
     component: CreativeAssetsUserComponent,
     canActivate: [authGuard],
   }, //user
   {
-    path: "user/file-sharing",
+    path: "client/file-sharing",
     component: FileSharingUserComponent,
     canActivate: [authGuard],
   }, //user
   {
-    path: "user/file-sharing-table",
+    path: "client/file-sharing-table",
     component: FileSharingTableComponent,
     canActivate: [authGuard],
   }, //user

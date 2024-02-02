@@ -432,9 +432,13 @@ export class ApiServiceService {
   }
 
   logOut() {
-    this.router.navigate(['/home/log-in']);
+    this.router.navigate(['/user/log-in']);
     localStorage.clear();
-    window.location.reload();
+    // window.location.reload();
+    setTimeout(() => {
+      // localStorage.clear();
+      window.location.reload();
+    }, 1000);
   }
 
   saveFileSharing(project: any) {
