@@ -1118,6 +1118,7 @@ text-transform: capitalize;
 
 .probationStatus {
     display: flex;
+    justify-content: center;
     width: 262px;
     padding: 14px 36px;
     align-items: center;

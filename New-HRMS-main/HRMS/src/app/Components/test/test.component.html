@@ -4882,7 +4882,7 @@
         <div class="col-md-12"> -->
 
           <div class="row">
-            <div class="col-md-6 d-flex justify-content-start">
+            <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': holidayCurrentPage === 1}" *ngIf="holidayCurrentPage === 1">
               <div class="added_positions_list_right">
                 <div class="added_positions_under_head">Show</div>
                 <div>
@@ -4897,7 +4897,7 @@
                 <div class="added_positions_under_head">Enteries</div>
               </div>
             </div>
-            <div class="col-md-6 d-flex justify-content-end align-items-center" >
+            <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': holidayCurrentPage === 1, 'col-md-12': holidayCurrentPage >= 2}">
               <div class="">
                 <div class="search-container ">
                   <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
