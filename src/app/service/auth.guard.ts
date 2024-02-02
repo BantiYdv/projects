@@ -6,7 +6,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 })
 export class authGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -18,7 +18,7 @@ export class authGuard implements CanActivate {
       // this.router.navigate(['/project']);
       return true; 
     } else {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/user/log-in']);
       return false;
     }
   }

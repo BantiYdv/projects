@@ -29,106 +29,110 @@ import { CreativeAssetsUserComponent } from "./Client/creative-asset/creative-as
 import { FileSharingTableComponent } from "./Client/file-sharing-table/file-sharing-table.component";
 import { CreativeAssetsTableComponent } from "./Admin/creative-assets-table/creative-assets-table.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
+import { roleAuthAdminGuard } from "./service/role-auth-admin.guard";
+import { roleAuthEmployeeGuard } from "./service/role-auth-employee.guard";
+import { roleAuthUserGuard } from "./service/role-auth-user.guard";
+import { notLoggedInGuard } from "./service/not-logged-in.guard";
 
 export const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "user/:pageType", component: HomeComponent },
+  { path: "", component: HomeComponent ,canActivate: [notLoggedInGuard]},
+  { path: "user/:pageType", component: HomeComponent,canActivate: [notLoggedInGuard] },
 
-  { path: "log-in/otp", component: LoginWithOTPComponent },
-  { path: "forgot/password", component: ForgotPasswordComponent },
+  { path: "log-in/otp", component: LoginWithOTPComponent,canActivate: [notLoggedInGuard] },
+  { path: "forgot/password", component: ForgotPasswordComponent,canActivate: [notLoggedInGuard] },
 
   {
     path: "admin/project",
     component: ProjectComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
   {
     path: "admin/briefs",
     component: BriefsComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
   {
     path: "admin/client",
     component: ClientComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
   {
     path: "admin/creative-assets",
     component: CreativeAssetsAdminComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
   {
     path: "admin/creative-assets-table",
     component: CreativeAssetsTableComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
   {
     path: "admin/file-sharing",
     component: FileSharingAdminComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
   {
     path: "admin/history",
     component: HistoryComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
   {
     path: "admin/teamMember",
     component: TeamMemberComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
-  { path: "admin/task", component: TaskComponent, canActivate: [authGuard] }, //admin
+  { path: "admin/task", component: TaskComponent, canActivate: [authGuard, roleAuthAdminGuard] }, //admin
   {
     path: "workStatus",
     component: WorkStatusComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthAdminGuard],
   }, //admin
 
   {
     path: "employee/creative-asset",
     component: CreativeAssetsEmployeeComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthEmployeeGuard],
   }, //employee
   {
     path: "employee/creative-asset-table",
     component: CreativeAssetTableComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthEmployeeGuard],
   }, //employee
   {
     path: "employee/employee-project",
     component: EmployeeProjectComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthEmployeeGuard],
   }, //employee
   {
     path: "employee/employee-assign-task",
     component: AssignTaskComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthEmployeeGuard],
   }, //employee
   {
     path: "employee/view-task",
     component: ViewTaskComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthEmployeeGuard],
   }, //employee
 
   {
     path: "client/work-status",
     component: WorkStatusComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthUserGuard],
   }, //user
   {
     path: "client/creative-assets",
     component: CreativeAssetsUserComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthUserGuard],
   }, //user
   {
     path: "client/file-sharing",
     component: FileSharingUserComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthUserGuard],
   }, //user
   {
     path: "client/file-sharing-table",
     component: FileSharingTableComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, roleAuthUserGuard],
   }, //user
   { path: "not-found/404", component: NotFoundPageComponent },
   { path: "**", redirectTo: "not-found/404" },
