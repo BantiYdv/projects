@@ -118,6 +118,14 @@ getShowData(): Observable<any> {
 }
 // show profile name in top end
 
+// delete documents strat
+deleteDocs(id: any, documentType: any): Observable<any>  {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  const deleteUrl = `${this.api.deleteDocument}/${id}/${documentType}`;
+  return this.http.delete(deleteUrl, { headers });
+}
+// delete documents end
 
 
 }

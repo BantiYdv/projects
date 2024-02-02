@@ -1326,6 +1326,7 @@
                       <th class="thName">S.No</th>
                       <th class="thName">Document Name</th>
                       <th class="thName">Download</th>
+                      <th class="thName">Action</th>
 
                     </tr>
                   </thead>
@@ -1340,6 +1341,11 @@
                             <img src="/assets/image/icon/download.svg" alt="" class="download">
                           </button>
                         </td>
+                        <td>
+                          <button type="button" class="btn btn-link"
+                            (click)="deleteDocs(profileDetailsUser?.id, document.property)">
+                            <img src="/assets/image/deleteHolidayIcon.svg" alt="" class="deleteDocIcon">
+                          </button></td>
                       </tr>
                     </ng-container>
                   </tbody>

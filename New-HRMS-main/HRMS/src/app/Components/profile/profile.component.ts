@@ -897,6 +897,43 @@ getDocumentIndexProfile(document: any): number {
 }
 // show documnets of employee to admin end
 
+// delete documents start
 
+deleteDocs(id: any, documentType: any): void {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Are you sure you want to delete this document?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.profileService.deleteDocs(id, documentType).subscribe(
+        () => {
+          
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Document has been deleted.',
+            icon: 'success'
+          }).then((result) => {
+  //           if (result.isConfirmed) {
+  //             this.router.navigate(['/profile', 'viewProfile']);
+  //     this.profileDetails = true;
+      this.userProfile();
+  // this.loginService.showTable('viewProfile')
+              
+  //           }
+          });
+        },
+        (error) => {
+          console.error('An error occurred while deleting the document:', error);
+        }
+      );
+    }
+  });
+}
+// delete documents end
 
 }

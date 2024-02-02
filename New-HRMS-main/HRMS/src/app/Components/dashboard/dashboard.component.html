@@ -50,10 +50,10 @@
                           class="cardIcon" style="margin-left: 0px !important;"></i>
                     </div>
                     <div class="media-body">
-                      <a [routerLink]="['/viewAllAtt']"
-                (click)="loginService.showTable('viewAllAtt')" style="text-decoration: none;">
-                      <p class="cardIconNum">{{totalWorkingHours || 0}}</p>
-                      <span class="cardIconText">Working Hours</span>
+                      <a [routerLink]="['/notCheckedInUser']"
+                (click)="loginService.showTable('notCheckedInUser')" style="text-decoration: none;">
+                      <p class="cardIconNum">{{notCheckedIn || 0}}</p>
+                      <span class="cardIconText">Absent</span>
                       </a>
                     </div>
                   </div>

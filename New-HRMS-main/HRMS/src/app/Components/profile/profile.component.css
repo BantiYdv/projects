@@ -621,3 +621,10 @@ gap: 10px;
 border-radius: 8px;
 background: #129B4B;
 }
+
+.deleteDocIcon{
+    width: 24px;
+  height: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  }

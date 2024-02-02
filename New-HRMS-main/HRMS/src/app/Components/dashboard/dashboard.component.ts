@@ -72,6 +72,8 @@ intern = '';
   totalCheckOutEarly: any = {};
   totalCheckedInLate: any = {};
   presentLast7Days: any = {};
+  notCheckedIn: any;
+
   // change password validation start
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
@@ -143,7 +145,8 @@ intern = '';
     this.viewAllCheckOutEarly();
     this.viewAllCheckedInLate();
    this.TodayAndUpcomingHolidays();
-  
+  this.notCheckedInUsersCount();
+
     // this.createLineChart();
   }
  
@@ -252,10 +255,11 @@ intern = '';
 
 createChart() {
   if (this.presentLast7Days !== undefined && this.totalCheckOutEarly !== undefined && this.totalCheckedInLate !== undefined) {
-    const last7DaysDates = [];
+    const last7DaysDates: any[] = [];
     const earlyDepartureData = [];
     const lateArrivalData = [];
     const presentLast7DaysData = [];
+    const last7Days: any[] = [];
 
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -265,7 +269,7 @@ createChart() {
       const formattedDay = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}`;
       last7DaysDates.push(formattedDay);
      const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`; 
-      // last7DaysDates.push(formattedDate);
+      last7Days.push(formattedDate);
 
       const count = this.totalCheckOutEarly[formattedDate] || 0;
       earlyDepartureData.push(count);
@@ -328,8 +332,19 @@ createChart() {
                 weight: 'bolder' 
               }
             }
+          }
           },
-        
+          onClick: (event, elements) => {
+            if (elements && elements.length > 0) {
+              const clickedIndex = elements[0].index;
+              const clickedDate = last7Days[clickedIndex];
+              // Now you can use clickedDate to fetch and display data for the selected date
+              console.log("Clicked Date:", clickedDate);
+               // Add your logic to navigate to the desired route
+          this.router.navigate(['/viewLast7DaysPresent', clickedDate]);
+              // Add your logic to show data for the selected date
+            }
+          
       }
     }
     });
@@ -860,6 +875,23 @@ getMonthNameHoliday(date: string): string {
 }
 
 // API for show Today And Upcoming Holidays end
+
+// not Checked In Users Count start
+notCheckedInUsersCount(){
+  this.dashboardService.notCheckedInUsersCount().subscribe(
+    (response: any) => {
+      this.notCheckedIn = response;
+      console.log("not Checked In Users Count", this.notCheckedIn);
+ 
+    },
+    (error) => {
+      
+    }
+  );
+}
+//not Checked In Users Count end
+
+
 
 }
 

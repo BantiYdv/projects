@@ -100,8 +100,10 @@ throw new Error('Method not implemented.');
   holiday: any = {};
   getHolidayData: any;
   fillterGetHoliday: any;
+  getAbsentData: any;
+  fillterGetAbsent: any;
 
-
+  viewNotCheckedIn: any;
   // change password validation start
   showNewPassword: boolean = false;
   showoldPassword: boolean = false;
@@ -329,6 +331,8 @@ isDropdownOpen: any;
 
 
 this.checkRouteAndLoadData();
+this.viewPresentUsersLast7Days();
+this.viewNotCheckedInUsersCount();
   }
 
 
@@ -5425,5 +5429,102 @@ startEdit(index: number) {
 stopEdit() {
   this.editModeIndex = -1;
 }
+
+
+
+
+// view not Checked In Users Count start
+viewNotCheckedInUsersCount(){
+  this.dashboardService.viewNotCheckedInUsersCount().subscribe(
+    (response: any) => {
+      const dataArray = Object.values(response);
+      // Reverse the received array
+      const reversedData = dataArray.reverse();
+
+      // Set the reversed array as the data source
+      this.getAbsentData = reversedData;
+      this.fillterGetAbsent = reversedData;
+ 
+      console.log("view not Checked In Users Count", response);
+ 
+    },
+    (error) => {
+      Swal.fire('Error', error.error, 'error'); 
+    }
+  );
+}
+// view not Checked In Users Count end
+
+// view not Checked In Users start
+absentPerPage: number = 10;
+absentCurrentPage: number = 1;
+
+searchAbsent: string = '';
+
+
+FilterAbsent() {
+  this.fillterGetAbsent = this.getAbsentData.filter((item: { holiDayReason: string }) =>
+    item.holiDayReason.toLowerCase().includes(this.searchAbsent.toLowerCase()) 
+  );
+}
+
+getPaginatedAbsentData(): any[] {
+  const startIndex = (this.absentCurrentPage - 1) * this.absentPerPage;
+  const endIndex = startIndex + this.absentPerPage;
+  return this.fillterGetAbsent.slice(startIndex, endIndex);
+}
+
+previousAbsentPage(): void {
+  if (this.absentCurrentPage > 1) {
+    this.absentCurrentPage--;
+  }
+}
+
+getPageNumbersAbsent(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterGetAbsent.length / this.absentPerPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageAbsent(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAbsent()) {
+    this.absentCurrentPage = pageNumber;
+  }
+}
+
+
+nextPageAbsent(): void {
+  const totalPages = Math.ceil(
+    this.fillterGetAbsent.length / this.absentPerPage
+  );
+  if (this.absentCurrentPage < totalPages) {
+    this.absentCurrentPage++;
+  }
+}
+
+
+getTotalPagesAbsent(): number {
+  return Math.ceil(
+    this.fillterGetAbsent.length / this.absentPerPage
+  );
+}
+// view not Checked In Users end
+
+
+presentLast7Days: any = {};
+viewPresentUsersLast7Days(){
+  this.dashboardService.presentUsersLast7Days().subscribe(
+    (response: any) => {
+      this.presentLast7Days = response;
+      console.log("view present Last 7Days", this.presentLast7Days);
+ 
+    },
+    (error) => {
+      
+    }
+  );
+}
+
 
 }

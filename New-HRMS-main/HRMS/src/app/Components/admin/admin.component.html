@@ -553,7 +553,7 @@ data-bs-backdrop="false">
             </div>
           </div>
           
-              <div class="row justify-content-center  mt-3">
+              <div class="row justify-content-start  mt-3">
 
                 <div class="col-md-6" *ngFor="let holiday of getHolidayData, let i = index">
                   <div class="d-flex justify-content-start ">
@@ -659,7 +659,7 @@ data-bs-backdrop="false">
                               <div class="mb-3">
                                 <label for="endDate" class="col-form-label leaveType">End Date:</label>
                                 <input type="date" class="form-control leaveInput" name="toDate" id="toDate"
-                                  formControlName="toDate" [value]="calculateEndDate()" >
+                                  formControlName="toDate" [value]="calculateEndDate()" [min]="leaveForm.get('fromDate').value" >
                               </div>
                             </ng-container>
 

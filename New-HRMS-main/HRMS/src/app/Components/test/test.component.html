@@ -102,7 +102,7 @@
           <div class="col-md-12"> -->
 
             <div class="row">
-              <div class="col-md-6 d-flex justify-content-start">
+              <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPage === 1}" *ngIf="currentPage === 1">
                 <div class="added_positions_list_right">
                   <div class="added_positions_under_head">Show</div>
                   <div>
@@ -117,7 +117,7 @@
                   <div class="added_positions_under_head">Enteries</div>
                 </div>
               </div>
-              <div class="col-md-6 d-flex justify-content-end align-items-center" >
+              <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentPage === 1, 'col-md-12': currentPage >= 2}">
                 <div class="">
                   <div class="search-container ">
                     <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -498,9 +498,9 @@
           <span class="allEmp">All Employee</span>
         </div>
         <div class="row ">
-          <div class="col-md-8 d-flex justify-content-start">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-8': currentemployeePage === 1}" *ngIf="currentemployeePage === 1">
             
-            <div class="added_positions_list_right">
+            <div class="added_positions_list_right" >
               <div class="added_positions_under_head">Show</div>
               <div>
                 <select class="added_positions_under_head_select" [(ngModel)]="employeeperPage">
@@ -514,7 +514,7 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-4 d-flex justify-content-end mb-3">
+          <div class="d-flex justify-content-end mb-3" [ngClass]="{'col-md-4': currentemployeePage === 1, 'col-md-12': currentemployeePage >= 2}">
             <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list"
               (click)="listView()">
             <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list"
@@ -622,7 +622,7 @@
             </div>
 
             <div class="row mt-4">
-              <div class="col-md-8 d-flex justify-content-start">
+              <div class="d-flex justify-content-start" [ngClass]="{'col-md-8': currentemployeePage === 1}" *ngIf="currentemployeePage === 1">
                 <div class="added_positions_list_right">
                   <div class="added_positions_under_head">Show</div>
                   <div>
@@ -637,7 +637,7 @@
                   <div class="added_positions_under_head">Enteries</div>
                 </div>
               </div>
-              <div class="col-md-4 d-flex justify-content-end mb-3">
+              <div class="d-flex justify-content-end mb-3" [ngClass]="{'col-md-4': currentemployeePage === 1, 'col-md-12': currentemployeePage >= 2}">
                 <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list"
                   (click)="listView()">
                 <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list"
@@ -761,7 +761,7 @@
         <span class="allEmp">Team Leave</span>
       </div>
       <div class="col-12 row">
-        <div class="col-md-6 d-flex justify-content-start">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTeamLeavePage === 1}" *ngIf="currentTeamLeavePage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -776,7 +776,7 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTeamLeavePage === 1, 'col-md-12': currentTeamLeavePage >= 2}">
           <div class="">
             <div class="search-container ">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -884,7 +884,7 @@
         <span class="allEmp">Team WFH</span>
       </div>
       <div class="row">
-        <div class="col-md-6 d-flex justify-content-start">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTeamWfhPage === 1}" *ngIf="currentTeamWfhPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -899,7 +899,7 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTeamWfhPage === 1, 'col-md-12': currentTeamWfhPage >= 2}">
           <div class="">
             <div class="search-container ">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -1339,7 +1339,7 @@
           <span class="allEmp">Leave</span>
         </div>
         <div class="col-12 row">
-          <div class="col-md-6 d-flex justify-content-start">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentLeavePage === 1}" *ngIf="currentLeavePage === 1">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -1354,7 +1354,7 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentLeavePage === 1, 'col-md-12': currentLeavePage >= 2}">
             <div class="">
               <div class="search-container ">
                 <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -1453,7 +1453,7 @@
           <span class="allEmp">Attendance</span>
         </div>
         <div class="row">
-          <div class="col-md-4 d-flex justify-content-start">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentattPage === 1}" *ngIf="currentattPage === 1">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -1468,7 +1468,7 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-4 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentattPage === 1, 'col-md-6': currentattPage >= 2}">
            
             
             <div class="">
@@ -1483,7 +1483,7 @@
               <button class="button_added_position_list">Search</button>
             </div>
           </div>
-          <div class="col-md-4 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentattPage === 1, 'col-md-6': currentattPage >= 2}">
             <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAtt" (change)="onSearchMonthUser()">
           </div>
         </div>
@@ -1676,7 +1676,7 @@
           <span class="allEmp">WFH</span>
         </div>
         <div class="col-12 row">
-          <div class="col-md-6 d-flex justify-content-start">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentWfhPage === 1}" *ngIf="currentWfhPage === 1">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -1691,7 +1691,7 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentWfhPage === 1, 'col-md-12': currentWfhPage >= 2}">
             <div class="">
               <div class="search-container ">
                 <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -1788,7 +1788,7 @@
           <span class="allEmp">Attendance</span>
         </div>
         <div class="row">
-          <div class="col-md-4 d-flex justify-content-start">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentAllattPage === 1}" *ngIf="currentAllattPage === 1">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -1803,7 +1803,7 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-4 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentAllattPage === 1, 'col-md-6': currentAllattPage >= 2}">
            
             
             <div class="">
@@ -1818,7 +1818,7 @@
               <button class="button_added_position_list">Search</button>
             </div>
           </div>
-          <div class="col-md-4 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentAllattPage === 1, 'col-md-6': currentAllattPage >= 2}">
             <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonth" (change)="onSearchMonth()">
           </div>
         </div>
@@ -3037,7 +3037,7 @@
                 <p>Added Positions</p>
               </div>
               <div class="col-12 row">
-                <div class="col-md-6 d-flex justify-content-start">
+                <div class="col-md-6 d-flex justify-content-start" >
                   <div class="added_positions_list_right">
                     <div class="added_positions_under_head">Show</div>
                     <div>
@@ -4098,7 +4098,7 @@
         <span class="allEmp">Present</span>
       </div>
       <div class="row">
-        <div class="col-md-6 d-flex justify-content-start">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTodayAttPage === 1}" *ngIf="currentTodayAttPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -4113,7 +4113,7 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTodayAttPage === 1, 'col-md-12': currentTodayAttPage >= 2}">
          
           
           <div class="">
@@ -4199,7 +4199,7 @@
         <span class="allEmp">WFH</span>
       </div>
       <div class="row">
-        <div class="col-md-6 d-flex justify-content-start">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTodayWfhPage === 1}" *ngIf="currentTodayWfhPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -4214,7 +4214,7 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTodayWfhPage === 1, 'col-md-12': currentTodayWfhPage >= 2}">
          
           
           <div class="">
@@ -4291,7 +4291,7 @@
       <span class="allEmp">Sick Leave</span>
     </div>
     <div class="col-12 row">
-      <div class="col-md-6 d-flex justify-content-start">
+      <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTodaySickPage === 1}" *ngIf="currentTodaySickPage === 1">
         <div class="added_positions_list_right">
           <div class="added_positions_under_head">Show</div>
           <div>
@@ -4306,7 +4306,7 @@
           <div class="added_positions_under_head">Enteries</div>
         </div>
       </div>
-      <div class="col-md-6 d-flex justify-content-end align-items-center">
+      <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTodaySickPage === 1, 'col-md-12': currentTodaySickPage >= 2}">
         <div class="">
           <div class="search-container ">
             <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -4395,7 +4395,7 @@
       <span class="allEmp">Casual Leave</span>
     </div>
     <div class="col-12 row">
-      <div class="col-md-6 d-flex justify-content-start">
+      <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTodayCasualPage === 1}" *ngIf="currentTodayCasualPage === 1">
         <div class="added_positions_list_right">
           <div class="added_positions_under_head">Show</div>
           <div>
@@ -4410,7 +4410,7 @@
           <div class="added_positions_under_head">Enteries</div>
         </div>
       </div>
-      <div class="col-md-6 d-flex justify-content-end align-items-center">
+      <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTodayCasualPage === 1, 'col-md-12': currentTodayCasualPage >= 2}">
         <div class="">
           <div class="search-container ">
             <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -4499,7 +4499,7 @@
       <span class="allEmp">Absent Leave</span>
     </div>
     <div class="col-12 row">
-      <div class="col-md-6 d-flex justify-content-start">
+      <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTodayAbsentPage === 1}" *ngIf="currentTodayAbsentPage === 1">
         <div class="added_positions_list_right">
           <div class="added_positions_under_head">Show</div>
           <div>
@@ -4514,7 +4514,7 @@
           <div class="added_positions_under_head">Enteries</div>
         </div>
       </div>
-      <div class="col-md-6 d-flex justify-content-end align-items-center">
+      <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTodayAbsentPage === 1, 'col-md-12': currentTodayAbsentPage >= 2}">
         <div class="">
           <div class="search-container ">
             <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -4604,7 +4604,7 @@
         <span class="allEmp">Full Time Employee's</span>
       </div>
       <div class="col-12 row">
-        <div class="col-md-6 d-flex justify-content-start">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentFullTimeEmpPage === 1}" *ngIf="currentFullTimeEmpPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -4619,7 +4619,7 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentFullTimeEmpPage === 1, 'col-md-12': currentFullTimeEmpPage >= 2}">
           <div class="">
             <div class="search-container ">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -4696,7 +4696,7 @@
         <span class="allEmp">Part Time Employee's</span>
       </div>
       <div class="col-12 row">
-        <div class="col-md-6 d-flex justify-content-start">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPartTimeEmpPage === 1}" *ngIf="currentPartTimeEmpPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -4711,7 +4711,7 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentPartTimeEmpPage === 1, 'col-md-12': currentPartTimeEmpPage >= 2}">
           <div class="">
             <div class="search-container ">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -4788,7 +4788,7 @@
         <span class="allEmp">Intern Employee's</span>
       </div>
       <div class="col-12 row">
-        <div class="col-md-6 d-flex justify-content-start">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentinternEmpPage === 1}" *ngIf="currentinternEmpPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -4803,7 +4803,7 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="col-md-6 d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentinternEmpPage === 1, 'col-md-12': currentinternEmpPage >= 2}">
           <div class="">
             <div class="search-container ">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
@@ -5093,7 +5093,7 @@
       <div class="col-md-12 d-flex justify-content-start">
         <span class="allEmp">Present</span>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-6 d-flex justify-content-start">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
@@ -5124,41 +5124,38 @@
             <button class="button_added_position_list">Search</button>
           </div>
         </div>
-      </div>
+      </div> -->
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
         <thead>
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
-            <th class="thName">Email Id</th>
-            <th class="thName" (click)="sortByFromDateTodayAtt()">
-              <i class="fa fa-arrow-up" [ngStyle]="{'color': sortFDate === 'asc' ? '#000' : '#ccc'}"></i>
-              <i class="fa fa-arrow-down" [ngStyle]="{'color': sortFDate === 'desc' ? '#000' : '#ccc'}"></i>
-              &nbsp;
-              Date</th>
             <th class="thName">Check-In</th>
+            <th class="thName" >
+              Check-Out</th>
+            <th class="thName">Status</th>
             
           </tr>
         </thead>
        
         <tbody class="tdData">
-          <tr *ngFor="let item of getPaginatedTodayattData() let i = index">
+          <tr *ngFor="let item of presentLast7Days let i = index">
             <td class="textNormal">{{ i + 1 }}</td>
-            <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
-            <td class="emailId">{{ item.emailid }}</td>
-            <td class="textNormal">{{ item.checkDate }}</td>
-            <td class="textNormal">{{ item.checkin }}</td>
+            <td class="textNormal">{{ item.name }}</td>
+            <td class="emailId">{{ item.name }}</td>
+            <td class="textNormal">{{ item.name }}</td>
+            <td class="textNormal">{{ item.name }}</td>
            
           </tr>
         </tbody>
       </table>
 
-      <div class="not_data_img_div" *ngIf="getPaginatedTodayattData().length == 0">
+      <div class="not_data_img_div" *ngIf="presentLast7Days.length == 0">
         <p>Not Data !!</p>
       </div>
 
     </div>
-    <div class="modal-footer">
+    <!-- <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesTodayatt() > 1">
         <div class="table_footer mt-2">
           <button class="btn btn-secondary d-flex justify-content-center align-items-center"
@@ -5179,10 +5176,103 @@
   
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 <!--show last 7days persent user end -->
+
+<!-- view not checked in user start -->
+<div *ngSwitchCase="'notCheckedInUser'">
+  <div class="container px-4 py-0 text-center" >
+
+    <div class="table-responsive mt-2">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Not Checked-In Users</span>
+      </div>
+      <div class="row">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': absentCurrentPage === 1}" *ngIf="absentCurrentPage === 1">
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="absentPerPage">
+                <option value="10">10</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+                <option value="60">60</option>
+                <option value="75">75</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': absentCurrentPage === 1, 'col-md-12': absentCurrentPage >= 2}">
+         
+          
+          <div class="">
+            <div class="search-container">
+              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                alt="">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchAbsent"
+                (keyup)="FilterAbsent()">
+            </div>
+          </div>
+          <div class="">
+            <button class="button_added_position_list">Search</button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+        <thead>
+          <tr>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Email Id</th>
+            
+            
+          </tr>
+        </thead>
+       
+        <tbody class="tdData">
+          <tr *ngFor="let item of getPaginatedAbsentData() let i = index">
+            <td class="textNormal">{{ i + 1 }}</td>
+            <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
+            <td class="emailId">{{ item.emailid }}</td>
+           
+           
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="not_data_img_div" *ngIf="getPaginatedAbsentData().length == 0">
+        <p>Not Data !!</p>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesAbsent() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="previousAbsentPage()" [disabled]="absentCurrentPage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersAbsent()" [class.active_num]="pageNumber === absentCurrentPage"
+              class="recruitment_list_number_value" (click)="changePageAbsent(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="nextPageAbsent()"
+            [disabled]="absentCurrentPage == getTotalPagesAbsent()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- view not checked in user end -->
 
 
 </div>

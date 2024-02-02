@@ -323,4 +323,22 @@ presentUsersLast7Days(){
 }
 // show present Users Last 7Days end
 
+// not Checked In Users Count strat
+notCheckedInUsersCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  return this.http.get(`${this.api.notCheckedInUsersCount}`, { headers });
+}
+// not Checked In Users Count end
+
+// view not Checked In Users Count strat
+viewNotCheckedInUsersCount(){
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  return this.http.get(`${this.api.viewNotCheckedInUsers}`, { headers });
+}
+// view not Checked In Users Count end
+
+
+
 }
