@@ -34,8 +34,6 @@
 
 <div class="">
     <div class="col-12 col-md-12 mt-4 px-5 overflow-auto" *ngIf="getPaginatedcreativeAssetTableData().length !== 0">
-<!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
-    <div class="d-flex flex-wrap justify-content-center align-items-start" style="width: 90%;"> -->
         <table class="table tAble_css table-striped">
             <thead class="table-dark tHead_css">
                 <tr>
@@ -55,18 +53,9 @@
                     <td>
                         <i class="fa fa-users" data-bs-toggle="modal"
                                         data-bs-target="#viewProjectOpp" (click)="sendId_Data(item._id)"></i>
-                            <!-- <mat-form-field class="w-75" >
-                                <mat-label>Assign</mat-label>
-                                <mat-select  multiple aria-required="true" [(value)]="item.member">
-                                    <mat-option *ngFor="let getTeamMember of getTeamMemberList"
-                                        [value]="getTeamMember?._id">{{getTeamMember?.name}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <button class="btn btn-sm btn-success m-1" *ngIf="item.member && item.member.length > 0" (click)="assignCreativeAssetsToTeamMember(item.member, item._id)">Save</button> -->
                     </td>
                         <td>
                             <div class="img_dwonLoad_1" >
-                                <!-- <a href="https://api-avx.prilient.com/upload/creative_attach/4434894d-425c-44ec-b87b-5e2f9d5ddc0e.png" download>Download</a> -->
                                 <a [href]="'https://api-avx.prilient.com/download?url=' + item.url" download>
                                 <img src="../../../assets/images/dwonLoad_1.svg" style="width: 40px; height: 40px;" alt="">
                                 </a>

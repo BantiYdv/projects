@@ -1,14 +1,13 @@
 
 import { CommonModule } from '@angular/common';
-import { Component, OnInit ,ElementRef, ViewChild} from '@angular/core';
-import { FormControl, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { SelectButtonModule } from 'primeng/selectbutton';
 
 interface ProjectResource {
   url: string;
@@ -62,31 +61,8 @@ export class ProjectComponent implements OnInit {
   };
   userData: any = {};
   projectList: any = {};
-  // handel_By: any = {};
   tasks: Task[] | any;
   
-  // tasks: Task[] = [
-  //   { name: 'Task 1', startDate: new Date('2024-01-01'), deadlineDate:new Date('2024-01-30'), created: new Date('2024-01-05'), start: new Date('2024-01-11'), completed: new Date('2024-01-31'), },
-  //   { name: 'Task 2', startDate: new Date('2024-01-12'), deadlineDate:new Date('2024-01-31'), created: new Date('2024-01-13'), start: new Date('2024-01-14'), completed: new Date('2024-01-16'), },
-  //   { name: 'Task 3', startDate: new Date('2024-01-03'), deadlineDate:new Date('2024-01-31'), created: new Date('2024-01-07'), start: new Date('2024-01-13'), completed: new Date('2024-01-17'), }
-  // ];
-
-  // calculateMarginLeft(startDate: Date): number {
-  //   const diffInDays = Math.floor((startDate.getDate()));
-  //   return diffInDays * 20;
-  // }
-
-  // calculateWidth(date: Date, startDate: Date): number {
-  //   const diffInDays = Math.floor((date.getDate() - startDate.getDate()));
-  //   return diffInDays * 21.2;
-  // }
- 
-  // isOn: boolean = false;
-
-  // toggleState(value:boolean) {
-  //   this.isOn = value;
-  // }
- 
   projectSave: any = {
     start_date: this.currentDate,
     name: '',
@@ -147,7 +123,6 @@ export class ProjectComponent implements OnInit {
     this.getProjectType();
     this.get_handel_by(userId);
 
-    // this.getProjectById(userId);
 
   }
 

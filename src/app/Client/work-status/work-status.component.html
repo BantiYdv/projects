@@ -39,14 +39,14 @@
                     </div>
                     
                     <div class="status-line mt-5">
-                        <div [ngClass]="{'status-dot': true, 'Created': workStatus.current_status === 'Created', 'blue-dot': workStatus.current_status === 'Created' || workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Created'}">
+                        <div [ngClass]="{'status-dot': true, 'Created': workStatus.current_status === 'Created', 'blue-dot': workStatus.current_status === 'Created' || workStatus.current_status === 'Start' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Created'}">
                             <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Created</span></div>
-                        <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished'}"></div>
-                        <div [ngClass]="{'status-dot': true, 'Start': workStatus.current_status === 'Start', 'blue-dot': workStatus.current_status === 'Start' || workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Start'}">
+                        <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Start' || workStatus.current_status === 'Finished'}"></div>
+                        <div [ngClass]="{'status-dot': true, 'Start': workStatus.current_status === 'Start', 'blue-dot': workStatus.current_status === 'Start' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Start'}">
                             <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Start</span></div>
-                        <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished'}"></div>
+                        <!-- <div [ngClass]="{'status-create': true, 'blue-line': workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished'}"></div>
                         <div [ngClass]="{'status-dot': true, 'Ongoing': workStatus.current_status === 'Ongoing', 'blue-dot': workStatus.current_status === 'Ongoing' || workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Ongoing'}">
-                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Ongoing</span></div>
+                            <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Ongoing</span></div> -->
                         <div [ngClass]="{'status-create': true, 'blue-line':   workStatus.current_status === 'Finished'}"></div>
                         <div [ngClass]="{'status-dot': true, 'Finished': workStatus.current_status === 'Finished', 'blue-dot': workStatus.current_status === 'Finished', 'dark-blue-dot': workStatus.current_status === 'Finished'}">
                             <span class="status-name" [ngClass]="{ 'even': even, 'odd': odd }">Finished</span></div>

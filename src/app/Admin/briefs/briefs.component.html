@@ -1,18 +1,3 @@
-<!-- <div class="d-flex justify-content-center align-items-center w-100">
-    <div *ngIf="isLoading; else content">
-        Loading…
-    </div>
-    <ng-template #content>
-        <app-project *ngIf="!hasError; else error"></app-project>
-    </ng-template>
-    <ng-template #error>
-        Loading failed :(
-    </ng-template>
-    <ng-template #placeholder>
-        <img src="comments-placeholder.png">
-    </ng-template>
-</div> -->
-
 <div class="">
     <div class=" d-flex justify-content-center align-items-center">
         <div class="toggle_css">
@@ -152,66 +137,6 @@
                 <div class="pro_tasks" *ngIf="tasks.length >= 1">
                     <div class="chart_css">
                         <div *ngFor="let task of tasks" class="bar" [title]="task.name">
-
-                            <!-- <div class="progress bg_completed" [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.startDate)" [style.width.%]="calculateWidth(task.completed, task.created)"></div>
-                            <div class="progress bg_start" [title]="task.startDate | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.startDate)" [style.width.%]="calculateWidth(task.start, task.created)"></div>
-                            <div class="progress bg_created" [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.startDate | date: 'dd-MM-yyyy')" [style.margin-left.%]="calculateMarginLeft(task.startDate)" [style.width.%]="calculateWidth(task.startDate, task.created)"></div>
-                            <div class="progress bg_deadline" [title]="task.deadlineDate | date: 'dd-MM-yyyy'" [style.margin-left.%]="calculateMarginLeft(task.deadlineDate)"></div> -->
-
-                            <!-- <div *ngIf="isSameMonthAndYear(checkDataMonth, task.deadlineDate)"
-                                [ngClass]="{'d-none': isSameMonthAndYear(checkDataMonth, task.deadlineDate) == false}"
-                                class="progress text-white" style="background-color: rgb(233, 233, 233);"
-                                [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.deadlineDate | date: 'dd-MM-yyyy')"
-                                [style.width.%]="calculateMarginLeft(task.deadlineDate)">same 1
-                            </div> -->
-                            <!-- <div *ngIf="isSameMonthAndYear(checkDataMonth, task.deadlineDate)"
-                                        class="progress text-white" style="background-color: rgb(233, 233, 233);"
-                                        [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.deadlineDate | date: 'dd-MM-yyyy')"
-                                        [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                        [style.width.%]="calculateWidth(task.deadlineDate, task.created)">same
-                                    </div> -->
-
-                            <!-- <div *ngIf="isSameMonthAndYear(checkDataMonth, task.start)" class="progress text-white"
-                                    style="background-color: #d7e202;"
-                                    [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
-                                    [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                    [style.width.%]="calculateWidth(task.completed, task.start)">same
-                                </div>
-    
-                                <div *ngIf="isSameMonthAndYear(checkDataMonth, task.created)"
-                                 class="progress text-white"
-                                    style="background-color: #fcc4d4;"
-                                    [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')"
-                                    [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                    [style.width.%]="calculateWidth(task.start, task.created)">same
-                                </div>
-    
-    
-    
-                                <div *ngIf="isSameMonthAndYear(checkDataMonth, task.deadlineDate)"
-                                [ngClass]="{'d-none': !isSameMonthAndYear(checkDataMonth, task.deadlineDate) == false}"
-                                    class="progress text-white" style="background-color: rgb(233, 233, 233);"
-                                    [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                    [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.deadlineDate | date: 'dd-MM-yyyy')"
-                                    [style.width.%]="calculateMarginLeft(task.deadlineDate)">next</div>
-                                <div *ngIf="isSameMonthAndYear(checkDataMonth, task.completed)" class="progress text-white"
-                                    style="background-color: #d7e202;"
-                                    [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
-                                    [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                    [style.width.%]="calculateMarginLeft(task.completed)">next</div>
-                                <div *ngIf="isSameMonthAndYear(checkDataMonth, task.start)" class="progress text-white"
-                                [ngClass]="{'d-none': isSameMonthAndYear(checkDataMonth, task.start) == false}"
-                                    style="background-color: #fcc4d4;"
-                                    [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')"
-                                    [style.width.%]="calculateMarginLeft(task.start)">next</div> -->
-
-
-                            <!-- <div *ngIf="isSameMonthAndYear(checkDataMonth, task.deadlineDate)"
-                                        class="progress text-white" style="background-color: rgb(233, 233, 233);"
-                                        [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                        [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.deadlineDate | date: 'dd-MM-yyyy')"
-                                        [style.width.%]="calculateMarginLeft(task.deadlineDate)">next</div> -->
-
                             <div class="d-flex justify-content-center align-items-center w-100">
                                 <div
                                     *ngIf="!isSameMonthAndYear(checkDataMonth, task.deadlineDate) && !isSameMonthAndYear(checkDataMonth, task.completed) && !isSameMonthAndYear(checkDataMonth, task.start) && !isSameMonthAndYear(checkDataMonth, task.startDate) && !isSameMonthAndYear(checkDataMonth, task.created)">
@@ -243,40 +168,50 @@
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.completed) && !isSameMonthAndYear(task.start, task.completed)"
                                 class="progress text-white" style="background-color: #cfda0a;"
                                 [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
-                                [style.width.%]="calculateMarginLeft(task.completed)">111111</div>
+                                [style.width.%]="calculateMarginLeft(task.completed)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.completed) && isSameMonthAndYear(task.start, task.completed)"
                                 class="progress text-white" style="background-color: #cfda0a;"
                                 [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
                                 [style.margin-left.%]="calculateMarginLeft(task.start)"
-                                [style.width.%]="calculateWidth(task.completed,task.start)">2222222</div>
+                                [style.width.%]="calculateWidth(task.completed,task.start)"></div>
                             <div *ngIf="!isSameMonthAndYear(checkDataMonth, task.completed) && !isSameMonthAndYear(task.start, task.completed)  && isCheckDataMonthPresent(task.start, task.completed)"
                                 class="progress text-white" style="background-color: #cfda0a;"
                                 [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
                                 [style.margin-left.%]="calculateMarginLeft(task.start)"
-                                [style.width.%]="calculateWidth(task.completed,task.start)">333333</div>
-                            <div *ngIf="isCheckDataMonthPresent(task.start, task.completed) && !isSameMonthAndYear(checkDataMonth, task.start) && !isSameMonthAndYear(checkDataMonth, task.completed)"
+                                [style.width.%]="calculateWidth(task.completed,task.start)"></div>
+                            <div *ngIf="isCheckDataMonthPresent(task.start, task.completed) == true && !isSameMonthAndYear(checkDataMonth, task.start) && !isSameMonthAndYear(checkDataMonth, task.completed)"
                                 class="progress text-white" style="background-color: #cfda0a;"
                                 [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
-                                [style.width.%]="calculateWidth(task.completed,task.start)">4444444</div>
+                                [style.width.%]="calculateWidth(task.completed,task.start)"></div>
+
+                            <div 
+                            *ngIf="checkMonthYears(formatDateObject(),task.start,task.completed) && checkMonthMonth2(formatDateObject())"
+                                class="progress text-white" style="background-color: #cfda0a;"
+                                [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
+                                [style.width.%]="calculateWidth(task.completed,task.start)"></div>
+<!-- <button (click)="checkMonthYears(formatDateObject(),task.start,task.completed)">'button'</button>
+<button (click)="checkMonthMonth2(formatDateObject())">'button'</button> -->
+
+
 
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.start) && !isSameMonthAndYear(task.created, task.start)"
                                 class="progress text-white" style="background-color: #fabcce;"
                                 [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')"
-                                [style.width.%]="calculateMarginLeft(task.start)">1111111111111111</div>
+                                [style.width.%]="calculateMarginLeft(task.start)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.start) && isSameMonthAndYear(task.created, task.start)"
                                 class="progress text-white" style="background-color: #fabcce;"
                                 [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')"
                                 [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                [style.width.%]="calculateWidth(task.start,task.created)">2222222222</div>
+                                [style.width.%]="calculateWidth(task.start,task.created)"></div>
                             <div *ngIf="!isSameMonthAndYear(checkDataMonth, task.start) && !isSameMonthAndYear(task.created, task.start) && isCheckDataMonthPresent(task.created, task.start)"
                                 class="progress text-white" style="background-color: #fabcce;"
                                 [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')"
                                 [style.margin-left.%]="calculateMarginLeft(task.created)"
-                                [style.width.%]="calculateWidth(task.start,task.created)">333333333333</div>
+                                [style.width.%]="calculateWidth(task.start,task.created)"></div>
                             <div *ngIf="isCheckDataMonthPresent(task.created, task.start) && !isSameMonthAndYear(checkDataMonth, task.start) && !isSameMonthAndYear(checkDataMonth, task.created)"
                                 class="progress text-white" style="background-color: #fabcce;"
                                 [title]="task.created | date: 'dd-MM-yyyy' + ' to ' + (task.start | date: 'dd-MM-yyyy')"
-                                [style.width.%]="calculateWidth(task.start,task.created)">44444444444</div>
+                                [style.width.%]="calculateWidth(task.start,task.created)"></div>
 
 
 

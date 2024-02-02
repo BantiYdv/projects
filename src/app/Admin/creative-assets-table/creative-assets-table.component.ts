@@ -81,19 +81,6 @@ assignCreativeAssetsToTeamMember(member:any){
     )
 }
 
-// assignTask() {
-//   this.apiService.assignTask(this.id).subscribe(
-//     (r: any) => {
-//       console.log('r-=-=->', r.data);
-//       this.getTeamMemberList = r.data.participants;
-//       // console.warn(this.getTeamMemberList);
-//       console.log("team member assign to", this.getTeamMemberList);
-//     },
-//     (e) => {
-//       console.error('error =--=-=>', e);
-//     }
-//   );
-// }
 assignTask() {
   this.apiService.assignTask(this.id).subscribe(
     (r: any) => {

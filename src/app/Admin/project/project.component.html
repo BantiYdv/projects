@@ -122,7 +122,6 @@
                                     (change)="onChangeStatus(projectData._id,projectData.current_status)">
                                     <option value="Created">Created</option>
                                     <option value="Start">Start</option>
-                                    <option value="Ongoing">Ongoing</option>
                                     <option value="Finished">Finished</option>
                                 </select>
                             </td>
@@ -213,7 +212,6 @@
                               <select class="select_css_code" [(ngModel)]="task.task_info.current_status" name="current_status" (change)="onChangeStatusTask(task.task_info._id,task.task_info.current_status)">
                                 <option value="Created">Created</option>
                                     <option value="Start">Start</option>
-                                    <option value="Ongoing">Ongoing</option>
                                     <option value="Finished">Finished</option>
                               </select>
                             </td>
@@ -344,13 +342,6 @@
                                         [(ngModel)]="projectSave.project_resourses" name="project_resourses">
                                 </div>
                             </div>
-                            <!-- <div class="col-12 col-md-12">
-                                <div class="add_css_pro_code">
-                                    <label>Other Information</label>
-                                    <input type="text" placeholder="Other Information" [(ngModel)]="projectSave.desc"
-                                        name="desc">
-                                </div>
-                            </div> -->
                         </div>
                         <div class="col-12 col-md-12">
                             <div class="save_css_button_code">
@@ -363,98 +354,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="modal fade" id="addNewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: yellow;">
-                    <div class="col-12 col-md-12 d-flex flex-nowrap">
-                        <div class="col-11 col-md-11 text_add_p_css">
-                            <div class="modal-title fs-5" id="exampleModalLabel">Add Task</div>
-                        </div>
-                        <div class="col-1 col-md-1 text-end text-white">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-body m-4">
-                    <form #saveProjectForm="ngForm" (ngSubmit)="saveProject(projectSave)">
-                        <div class="col-12 col-md-12 d-flex flex-wrap">
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Project Name</label>
-                                    <input type="text" placeholder="Project Name" [(ngModel)]="projectSave.name" name="name"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 d-flex flex-wrap">
-                                <div class="col-12 col-md-6">
-                                    <div class="add_css_pro_code">
-                                        <label>Starting Date</label>
-                                        <input type="date" [(ngModel)]="projectSave.start_date" [min]="currentDate"
-                                            name="start_date" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="add_css_pro_code">
-                                        <label>Deadline Date</label>
-                                        <input type="date" [(ngModel)]="projectSave.deadline" [min]="projectSave.start_date"
-                                            name="deadline" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Short Name</label>
-                                    <input type="text" placeholder="Short Name" [(ngModel)]="projectSave.short_name"
-                                        name="short_name" required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Client Name</label>
-                                    <select [(ngModel)]="projectSave.client_id" name="client_id" required>
-                                        <option value="" disabled selected>Select Client</option>
-                                        <option *ngFor="let client of clients" [value]="client._id">{{client.name}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Upload Doc.</label>
-                                    <input type="file" (change)="onChangeProjectSave($event)"
-                                        [(ngModel)]="projectSave.project_resourses" name="project_resourses">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="add_css_pro_code">
-                                    <label>Handled By</label>
-                                    <select [(ngModel)]="projectSave.handel_by" name="handel_by" required>
-                                        <option value="" disabled selected>Select Handled By</option>
-                                        <option *ngFor="let handel_by of handel_By" [value]="handel_by._id">
-                                            {{handel_by.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-12">
-                                <div class="add_css_pro_code">
-                                    <label>Other Information</label>
-                                    <input type="text" placeholder="Other Information" [(ngModel)]="projectSave.desc"
-                                        name="desc">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12">
-                            <div class="save_css_button_code">
-                                <button [disabled]="saveProjectForm.invalid">Save</button>
-                            </div>
-                        </div>
-                    </form>
-    
-                </div>
-            </div>
-        </div>
-    </div> -->
     
     <div class="modal fade" id="updateNewProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -533,13 +432,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- <div class="col-12 col-md-12">
-                                <div class="add_css_pro_code">
-                                    <label>Other Information</label>
-                                    <input type="text" placeholder="other information" [(ngModel)]="projectUpdate.desc"
-                                        name="desc">
-                                </div>
-                            </div> -->
                         </div>
     
                         <div class="col-12 col-md-12">
@@ -775,12 +667,6 @@
                     <input type="date" [(ngModel)]="taskSave.deadline" [min]="taskSave.start_date || currentDate " name="deadline" required>
                 </div>
             </div>
-            <!-- <div class="col-12 col-md-12">
-                <div class="add_css_pro_code">
-                    <label>Other Information</label>
-                    <input type="text" placeholder="other information"  [(ngModel)]="taskSave.desc" name="desc">
-                </div>
-            </div> -->
           </div>
           <div class="col-12 col-md-12">
             <div class="save_css_button_code">
@@ -850,12 +736,6 @@
                             <input type="date" [(ngModel)]="taskUpdate.deadline" [min]="taskUpdate.start_date  || currentDate" name="deadline" required>
                         </div>
                     </div>
-                    <!-- <div class="col-12 col-md-12">
-                        <div class="add_css_pro_code">
-                            <label>Other Information</label>
-                            <input type="text" placeholder="other information"  [(ngModel)]="taskUpdate.desc" name="desc">
-                        </div>
-                    </div> -->
                   </div>
           <div class="col-12 col-md-12">
             <div class="save_css_button_code">
@@ -917,12 +797,6 @@
                         </div>
                 </div>
             </div>
-            <!-- <div class="col-12 col-md-6">
-                <div class="add_css_pro_code">
-                    <label>Description</label>
-                    <span>{{taskUpdate.desc}}</span>
-                </div>
-            </div> -->
           </div>
         </div>
       </div>

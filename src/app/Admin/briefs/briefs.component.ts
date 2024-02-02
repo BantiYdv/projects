@@ -1,43 +1,19 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { ProjectComponent } from '../project/project.component';
 
-interface Task {
-  task_current_status: string,
-  name: string;
-  startDate: Date;
-  deadlineDate: Date;
-  created: Date;
-  start: Date;
-  completed: Date;
-}
-// interface ProjectResource {
-//   url: string;
-//   type: string;
-//   _id: string;
+// interface Task {
+//   task_current_status: string,
+//   name: string;
+//   startDate: Date;
+//   deadlineDate: Date;
+//   created: Date;
+//   start: Date;
+//   completed: Date;
 // }
-
-interface Project {
-  _id: any;
-  name: string;
-  // is_enabled: boolean;
-  // client_id: string;
-  // start_date: Date;
-  // deadline: Date;
-  // handel_by: { name: string };
-  // current_status: string;
-  // project_resourses: ProjectResource[];
-}
 
 @Component({
   selector: 'app-briefs',
@@ -49,35 +25,37 @@ interface Project {
 export class BriefsComponent {
   projectsActive: any = [];
   projectsFinised: any = [];
-  // tasks: Task[] | any;
-  // tasks: any[] = [
-  //   { name: 'Task 1',created: new Date('2024-01-01'), startDate: new Date('2024-01-01'), deadlineDate:new Date('2024-01-25'), start: new Date('2024-01-11'), completed: new Date('2024-01-31'), },
-  //   { name: 'Task 2',created: new Date('2024-01-03'), startDate: new Date('2024-01-04'), deadlineDate:new Date('2024-01-31'), start: new Date('2024-01-14'), completed: new Date('2024-01-16'), },
-  //   { name: 'Task 3',created: new Date('2024-01-07'), startDate: new Date('2024-01-15'), deadlineDate:new Date('2024-01-29'), start: new Date('2024-01-10'), completed: new Date('2024-01-17'), },
+ 
+  // tasks: Task[] = [
+  //   {
+  //     task_current_status: 'completed',
+  //     created: new Date('Sat Jan 01 2024 13:14:17 GMT+0530'),
+  //     deadlineDate: new Date('Thu May 23  2024 05:30:00 GMT+0530'),
+  //     name: 'Add in Wishlist Item.',
+  //     start: new Date('Wed Jan 31 2024 13:14:17 GMT+0530'),
+  //     // start: new Date('Sat Jan 27 2024 13:14:17 GMT+0530'),
+  //     startDate: new Date('Wed Jan 02 2024 05:30:00 GMT+0530'),
+  //     completed: new Date('Wed May 15 2024 05:30:00 GMT+0530'),
+
+  //     // task_current_status: 'completed',
+  //     // created: new Date('Sat Jan 20 2024 13:14:17 GMT+0530'),
+  //     // deadlineDate: new Date('Mon Apr 15 2024 05:30:00 GMT+0530'),
+  //     // name: 'Add in Wishlist Item.',
+  //     // start: new Date('Tue Jan 30 2024 18:49:28 GMT+0530'),
+  //     // startDate: new Date('Thu Jan 25 2024 05:30:00 GMT+0530'),
+  //     // completed: new Date('Sun Mar 10 2024 18:49:36 GMT+0530'),
+  //   },
+  //   {
+  //     task_current_status: 'created',
+  //     created: new Date('Sat Jan 02 2024 15:37:41 GMT+0530'),
+  //     deadlineDate: new Date('Wed Feb 28 2024 05:30:00 GMT+0530'),
+  //     name: 'Set in Product price.',
+  //     start: new Date('Wed Mar 20 2024 15:37:07 GMT+0530'),
+  //     startDate: new Date('Sat Jan 05 2024 05:30:00 GMT+0530'),
+  //     completed: new Date('Wed Apr 17 2024 05:30:00 GMT+0530'),
+  //   },
   // ];
-  tasks: Task[] = [
-    {
-      task_current_status: 'completed',
-      created: new Date('Sat Jan 01 2024 13:14:17 GMT+0530'),
-      deadlineDate: new Date('Thu Apr 25  2024 05:30:00 GMT+0530'),
-      name: 'Add in Wishlist Item.',
-      start: new Date('Sat Jan 18 2024 13:14:17 GMT+0530'),
-      startDate: new Date('Wed Jan 02 2024 05:30:00 GMT+0530'),
-      completed: new Date('Wed Apr 17 2024 05:30:00 GMT+0530'),
-    },
-    {
-      task_current_status: 'created',
-      created: new Date('Sat Jan 02 2024 15:37:41 GMT+0530'),
-      deadlineDate: new Date('Wed Feb 28 2024 05:30:00 GMT+0530'),
-      name: 'Set in Product price.',
-      start: new Date('Wed Mar 20 2024 15:37:07 GMT+0530'),
-      startDate: new Date('Sat Jan 05 2024 05:30:00 GMT+0530'),
-      completed: new Date('Wed Apr 17 2024 05:30:00 GMT+0530'),
-    },
-  ];
-  // tasks: any = [];
-  // selectedMonth: string = '';
-  // currentMonth: string = new Date().toISOString().split('T')[0];
+  tasks: any = [];
   checkDataMonth: Date | any;
   constructor(
     private apiService: ApiServiceService,
@@ -95,48 +73,37 @@ export class BriefsComponent {
     // this.checkDataMonth = today;
    
   }
- 
-
-  getCurrentDate(): string {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because months are zero-indexed
-    return `${year}-${month}`;
-  }
-
   isSameMonthAndYear(date1: Date, date2: Date): boolean {
-    const formattedDate1 = new Date(date1); // Assuming date1 is in the format 'yyyy-MM'
-
-    // Compare year and month of date1 and date2
+    const formattedDate1 = new Date(date1); 
     return (
       formattedDate1.getFullYear() === date2.getFullYear() &&
       formattedDate1.getMonth() === date2.getMonth()
     );
   }
-
-  sendDataForCheck(start: Date, end: Date, check: Date){
-    const startDate = start;
-    const endDate = end;
-
-    const result = this.isCheckDataMonthPresent(
-      startDate,
-      endDate
-    );
-    console.warn('result =-=-=-=- result', result);
+  calculateWidth(deadlineDate: Date, startDate: Date): number {
+    let diffInDays =
+      Math.floor(
+        (deadlineDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
+      ) + 1;
+    return diffInDays * 2.88;
+  }
+  calculateMarginLeft(startDate: Date): number {
+    const diffInDays = Math.floor(startDate.getDate() - 1);
+    return diffInDays * 2.88;
   }
 
   getMonthsAndYearsBetweenDates(
     startDate: Date,
     endDate: Date
   ): { year: number; month: number }[] {
-    const monthsAndYears: { year: number; month: number }[] = [];
+    const monthsAndYears: { year: number; month: number}[] = [];
 
     let currentDate = new Date(startDate);
 
     while (currentDate <= endDate) {
       monthsAndYears.push({
         year: currentDate.getFullYear(),
-        month: currentDate.getMonth(),
+        month: currentDate.getMonth()
       });
 
       currentDate.setMonth(currentDate.getMonth() + 1);
@@ -147,19 +114,11 @@ export class BriefsComponent {
 
   isCheckDataMonthPresent(startDate: Date, endDate: Date): boolean {
     const checkDataMonth = this.formatDateObject();
-
-    // console.log('startDate -=-=->', typeof(startDate), startDate);
-    // console.log('endDate -=-=->', typeof(endDate), endDate);
-    // console.log('checkDataMonth -=-=->', typeof(checkDataMonth), checkDataMonth);
-
     if (!(checkDataMonth instanceof Date)) {
-        // console.error('-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
-        // handle the case where checkDataMonth is not a Date object
         return false;
     }
-
     const monthsAndYears = this.getMonthsAndYearsBetweenDates(startDate, endDate);
-
+    
     return monthsAndYears.some(
         (monthAndYear) =>
             monthAndYear.year === checkDataMonth.getFullYear() &&
@@ -168,7 +127,6 @@ export class BriefsComponent {
 }
 
 
-  dateString = 'Fri Mar 01 2024 05:30:00 GMT+0530 (India Standard Time)';
 
   formatDateObject(): Date | string {
     const dateObject = new Date(this.checkDataMonth);
@@ -179,61 +137,15 @@ export class BriefsComponent {
       return 'Invalid Date';
     }
   }
-
-
-  // calculateMarginLeft(startDate: Date): number {
-  //   const diffInDays = Math.floor((startDate.getDate())-1);
-  //   return diffInDays * 2.88;
-  // }
-
-  // calculateWidth(date: Date, startDate: Date): number {
-  //   const diffInDays = Math.floor((date.getDate() - startDate.getDate()) +1);
-  //   return diffInDays * 2.79;
-  // }
-  calculateWidth(deadlineDate: Date, startDate: Date): number {
-    let diffInDays =
-      Math.floor(
-        (deadlineDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
-      ) + 1;
-    // console.warn('diffIndays',diffInDays)
-    return diffInDays * 2.88;
+ 
+  checkMonthMonth2(date: any): boolean{
+    return 1 == date.getMonth();
   }
-  calculateMarginLeft(startDate: Date): number {
-    const diffInDays = Math.floor(startDate.getDate() - 1);
-    return diffInDays * 2.88;
-  }
-  isBetweenCheckMonth(start: Date, completed: Date, checkDate: Date): boolean {
-    const areYearAndMonthEqual = (date1: Date, date2: Date): boolean => {
-      return (
-        date1.getFullYear() === date2.getFullYear() &&
-        date1.getMonth() === date2.getMonth()
-      );
-    };
-
-    return (
-      !areYearAndMonthEqual(checkDate, start) &&
-      !areYearAndMonthEqual(checkDate, completed)
-    );
-  }
-
-  isEarlierMonthAndYear(created: Date, start: Date, checkData: Date): boolean {
-    const yearCheck = checkData.getFullYear();
-    const monthCheck = checkData.getMonth();
-
-    const yearCreated = created.getFullYear();
-    const monthCreated = created.getMonth();
-
-    const yearStart = start.getFullYear();
-    const monthStart = start.getMonth();
-
-    return (
-      (yearCreated < yearCheck ||
-        (yearCreated === yearCheck && monthCreated < monthCheck)) &&
-      (yearStart < yearCheck ||
-        (yearStart === yearCheck && monthStart < monthCheck))
-    );
-  }
-
+  checkMonthYears(dateObject: any, s:Date,  e:Date): boolean {    
+      return Array.from({length: e.getFullYear() - s.getFullYear() + 1}, (_, index) => s.getFullYear() + index).includes(dateObject.getFullYear());
+    }
+  
+  
   isOn: boolean = true;
 
   toggleState(value: boolean) {
@@ -245,8 +157,6 @@ export class BriefsComponent {
     this.apiService.getActiveProjects().subscribe(
       (r: any) => {
         console.log('getActiveProjects =>', r);
-
-        // Filter projects based on conditions
         this.projectsActive = r.data.filter(
           (project: { is_enabled: boolean; current_status: string }) => {
             return (
@@ -276,16 +186,11 @@ export class BriefsComponent {
   }
 
   getTaskListOfActiveProject(project_id: any) {
-    // this.tasks = {};
     this.apiService.getTaskListOfActiveProject(project_id).subscribe(
       (r: any) => {
         console.log('getTaskListOfActiveProject =>', r);
-        // this.tasks = r.data;
         this.tasks = this.convertResponsesToTasks(r.data);
         console.warn('tasks ==> ', this.tasks);
-        // this.tasks = r.data.filter((project: { is_enabled: boolean; current_status: string; }) => {
-        //   return project.is_enabled === true && project.current_status !== 'Finished';
-        // });
       },
       (e) => {
         console.error(e);
@@ -329,19 +234,4 @@ export class BriefsComponent {
     );
     return finishedStatus ? new Date(finishedStatus.date) : new Date('1001-01-01'); // Default value
   }
-
-  //   onSearchMonth() {
-  //     // Filter projects based on the selected month
-  //     this.projectsActive = this.projectsActive.filter((projectsActive: { start_date: string | number | Date; }) => {
-  //       const projectMonth = new Date(projectsActive.start_date).toLocaleString('en-US', { month: '2-digit' });
-  //       console.log("selected month", this.selectedMonth);
-  //       return projectMonth === this.selectedMonth;
-  //     });
-  //   }
-  //  FilterMonth(){
-  //   if(this.selectedMonth){
-  //     this.projectsActive = this.projectsActive.filter((item: { name: string;}) =>
-  //    item.name.toLowerCase().includes(this.selectedMonth.toLowerCase())
-  //    )};
-  //  }
 }

@@ -37,9 +37,6 @@
 
 <div class="">
     <div class="col-12 col-md-12 mt-4 px-5 overflow-auto" *ngIf="getPaginatedClientData().length !== 0">
-        <!-- <div class="col-12 col-md-12 mt-4 px-5 overflow-auto"> -->
-        <!-- <div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
-    <div class="d-flex flex-wrap justify-content-center align-items-start" style="width: 90%;"> -->
         <table class="table tAble_css table-striped">
             <thead class="table-dark tHead_css">
                 <tr>
@@ -158,10 +155,6 @@
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
                                 <label>City</label>
-                                <!-- <select  name="client_id" required>
-                                    <option value="" disabled selected>Select Client</option>
-                                    <option >client</option>
-                                </select> -->
                                 <input type="tel" placeholder="City" name="city" required [(ngModel)]="register.city">
                             </div>
                         </div>
