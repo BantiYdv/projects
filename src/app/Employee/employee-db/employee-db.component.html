@@ -29,7 +29,7 @@
         <div class="col-12 col-md-12 d-flex flex-wrap">
             <div class="col-11 col-md-11">
                 <div class="header_menu_profile d-flex justify-content-center align-items-center">
-                    <img [src]="profileData.avatar_url ? 'http://101.53.145.234:4005/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="">
+                    <img [src]="profileData.avatar_url ? 'https://api-avx.prilient.com/download?url=/' + profileData.avatar_url : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'" alt="">
                     <span>{{profileData.name || 'Not found'}}</span>
                     <div class="post_css" data-bs-toggle="modal" data-bs-target="#profileData"
                     >{{profileData.email || 'Not found'}}</div>
