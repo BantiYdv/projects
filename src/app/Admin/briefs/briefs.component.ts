@@ -176,6 +176,7 @@ export class BriefsComponent {
     this.apiService.getFinisedProjects().subscribe(
       (r: any) => {
         this.projectsFinised = r.data;
+        console.log(r)
       },
       (e) => {
         console.error(e);

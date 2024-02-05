@@ -7,6 +7,10 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { MatSelectModule } from '@angular/material/select';
 import Swal from 'sweetalert2';
 
+declare var $: any;
+interface JQuery {
+  modal(action: string): void;
+}
 
 interface TableData {
   title: string;
@@ -62,7 +66,9 @@ assignCreativeAssetsToTeamMember(member:any){
           icon: 'success',
           title: 'Assets Assigned!',
           text: 'Creative assets have been successfully assigned to the team member.',
-        });
+        }).then(()=>{
+          $('#viewProjectOpp').modal('hide');
+        })
       },
       (e) => {
         Swal.fire({
