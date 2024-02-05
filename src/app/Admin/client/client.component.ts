@@ -5,7 +5,10 @@ import { ApiServiceService } from '../../service/api-service.service';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import Swal from 'sweetalert2';
 
-
+declare var $: any;
+interface JQuery {
+  modal(action: string): void;
+}
 
 @Component({
   selector: 'app-client',
@@ -71,8 +74,9 @@ export class ClientComponent {
           timer: 3000,
         }).then((result) => {
           if (result) {
-            this.router.navigate(['/admin/client']);
+            $('#addClient').modal('hide');
             this.get_client_id();
+            this.register = {};
           }
         });
       },
@@ -130,9 +134,11 @@ export class ClientComponent {
           text: r.data.message,
           showConfirmButton: false,
           timer: 3000,
+        }).then(()=> {
+          $('#updateClient').modal('hide');
+          this.  get_client_id();
+          this.clientUpdate = {};
         })
-        this.  get_client_id();
-        this.clientUpdate = {};
       },
       (e: any) => {
         Swal.fire('Error', e.error.message, 'error');

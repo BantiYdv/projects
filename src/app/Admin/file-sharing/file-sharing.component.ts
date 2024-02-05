@@ -5,6 +5,10 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
 
+declare var $: any;
+interface JQuery {
+  modal(action: string): void;
+}
 
 interface ProjectResource {
   url: string;
@@ -112,8 +116,7 @@ export class FileSharingAdminComponent {
           timer: 3000,
         }).then((result) => {
           if (result) {
-            
-           
+            $('#addFileSharing').modal('hide');
             this.getFileSharing();
             this.FileSharing = {};
             
@@ -278,6 +281,7 @@ this.filsharing_name_data = fileshareing_name;
             timer: 3000,
           }).then((result) => {
             if (result) {
+              $('#updateNewFile').modal('hide');
               this.getFileSharing();
             }
           });

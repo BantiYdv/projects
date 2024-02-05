@@ -9,6 +9,11 @@ import { DatePipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
+declare var $: any;
+interface JQuery {
+  modal(action: string): void;
+}
+
 interface ProjectResource {
   url: string;
   type: string;
@@ -164,10 +169,11 @@ saveTask(task: any) {
         timer: 3000,
       }).then((result) => {
         if (result) {
+          $('#addNewTask').modal('hide');
+          this.getTask();
+          this.taskSave = {};
         }
       });
-      // this.getTask();
-      this.taskSave = {};
     },
     (e: any) => {
       Swal.fire('Error', e.error.message, 'error');
@@ -236,10 +242,11 @@ updateTask(task: any) {
         timer: 3000,
       }).then((result) => {
         if (result) {
+          $('#updateNewTask').modal('hide');
+          this.getTask();
+          this.taskUpdate = {};
         }
       });
-      this.getTask();
-      this.taskUpdate = {};
     },
     (e: any) => {
       Swal.fire('Error', e.error.message, 'error');
@@ -336,7 +343,7 @@ getFormattedValue(value: any): any {
         }).then((result) => {
           if (result) {
             
-           
+            $('#addNewProject').modal('hide');
             this.getProject();
             this.projectSave = {};
           }
@@ -437,6 +444,7 @@ getFormattedValue(value: any): any {
           timer: 3000,
         }).then((result) => {
           if (result) {
+            $('#updateNewProject').modal('hide');
             this.getProject();
           }
         });
@@ -591,6 +599,8 @@ if(is_enabled == false){
           text: r.data.message,
           showConfirmButton: false,
           timer: 3000,
+        }).then(()=>{
+          $('#viewProjectOpp').modal('hide');
         })
       },
       (e:any) => {

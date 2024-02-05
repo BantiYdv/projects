@@ -179,9 +179,11 @@ export class TeamMemberComponent {
           text: r.data.message,
           showConfirmButton: false,
           timer: 3000,
+        }).then(()=>{
+          $('#updateNewTeamMember').modal('hide');
+          this.getTeamMember();
+          this.teamMemberUpdate = {};
         })
-        this.getTeamMember();
-        this.teamMemberUpdate = {};
       },
       (e: any) => {
         Swal.fire('Error', e.error.message, 'error');

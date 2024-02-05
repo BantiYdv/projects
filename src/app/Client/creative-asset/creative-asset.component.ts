@@ -6,6 +6,12 @@ import { ApiServiceService } from '../../service/api-service.service';
 import Swal from 'sweetalert2';
 import { MultiSelectModule } from 'primeng/multiselect';
 
+
+declare var $: any;
+interface JQuery {
+  modal(action: string): void;
+}
+
 interface TableData {
   creativeInfo:{
     title:'',
@@ -112,10 +118,8 @@ addCreativeAssets(data:any){
         timer: 3000,
       }).then((result) => {
         if (result) {
-          
-         
+          $('#addNewProject').modal('hide');
           this.getAllCreativeAssetsOfClient();
-          // this.projectSave = {};
           this.assetsSave = {};
         }
       });
