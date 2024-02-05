@@ -128,24 +128,19 @@ export class ProjectComponent implements OnInit {
 
 onChangeProjectSave(event:any){
   this.projectSave.project_resourses = event.target.files[0];
-  console.log(this.projectSave.project_resourses)
 }
 onChangeProjectUpdate(event:any){
   this.projectUpdate.project_resourses = event.target.files[0];
-  console.log(this.projectUpdate.project_resourses)
 }
 
 onChangeTaskSave(event: any) {
   this.taskSave.task_attachement = event.target.files[0];
-  console.log(this.taskSave.task_attachement);
 }
 onChangeTaskUpdate(event: any) {
   this.taskUpdate.task_attachement = event.target.files[0];
-  console.log(this.taskUpdate.task_attachement);
 }
 
 saveTask(task: any) {
-  console.log('====>>>>>>', task);
 
   this.taskSave.user_id = localStorage.getItem('userId');
   const formData = new FormData();
@@ -161,7 +156,6 @@ saveTask(task: any) {
 
   this.apiService.saveTask(formData).subscribe(
     (r: any) => {
-      console.log(r);
       Swal.fire({
         icon: 'success',
         title: 'Successful',
@@ -176,7 +170,6 @@ saveTask(task: any) {
       this.taskSave = {};
     },
     (e: any) => {
-      console.error('Error => ', e);
       Swal.fire('Error', e.error.message, 'error');
       // this.taskSave = {};
     }
@@ -188,7 +181,6 @@ getTask() {
     (r: any) => {
       this.tasks = r.data;
       this.HistoryTaskData = r.data;
-      console.log('tasks ==> ==> ', r);
     },
     (e) => {
       console.error(e);
@@ -202,7 +194,6 @@ getTaskProject(id:any) {
       this.isOn = false;
       this.tasks = r.data;
       this.HistoryTaskData = r.data;
-      console.log('getTaskProject ==> ==> ',  this.tasks);
     },
     (e) => {
       console.error(e);
@@ -213,7 +204,6 @@ getTaskProject(id:any) {
 getTaskById(id: any) {
   this.apiService.getTaskById(id).subscribe(
     (r: any) => {
-      console.log(r.data);
       this.taskUpdate = r.data;
     },
     (e) => {
@@ -224,8 +214,6 @@ getTaskById(id: any) {
 
 
 updateTask(task: any) {
-  // this.taskUpdate = {};
-  console.log('task', this.taskUpdate)
   this.taskUpdate.user_id = localStorage.getItem('userId');
   const formData = new FormData();
 
@@ -240,7 +228,6 @@ updateTask(task: any) {
 
   this.apiService.updateTaskById(formData).subscribe(
     (r: any) => {
-      console.log(r);
       Swal.fire({
         icon: 'success',
         title: 'Successful',
@@ -255,7 +242,6 @@ updateTask(task: any) {
       this.taskUpdate = {};
     },
     (e: any) => {
-      console.log('Error => ', e);
       Swal.fire('Error', e.error.message, 'error');
       // this.task = {};
     }
@@ -263,9 +249,6 @@ updateTask(task: any) {
 }
 
 deleteTask(id: any,is_enabled:any) {
-  // Show confirmation dialog
-  console.log('==> data',id ,is_enabled)
-
   if(is_enabled ==true){
     Swal.fire({
       title: 'Are you sure?',
@@ -289,7 +272,6 @@ deleteTask(id: any,is_enabled:any) {
             this.getTask();
           },
           (e) => {
-            console.log(e.error.message);
             Swal.fire('Error!', e.error.message, 'error');
           }
         );
@@ -319,7 +301,6 @@ deleteTask(id: any,is_enabled:any) {
             this.getTask();
           },
           (e) => {
-            console.log(e.error.message);
             Swal.fire('Error!', e.error.message, 'error');
           }
         );
@@ -346,7 +327,6 @@ getFormattedValue(value: any): any {
     formData.append('project_resourses', this.projectSave.project_resourses);
     this.apiService.saveProject(formData).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -363,7 +343,6 @@ getFormattedValue(value: any): any {
         });
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -376,9 +355,6 @@ getFormattedValue(value: any): any {
         this.projects = r.data;
         this.projectList = r.data;
         this.historyProjectData = r.data;
-        // this.HistoryTaskData = r.data;
-        console.log('==> ==>',r.data)
-        console.log('projects',this.projects)
       },
       (e) => {
         console.error(e);
@@ -389,7 +365,6 @@ getFormattedValue(value: any): any {
     this.apiService.get_client_id().subscribe(
       (r:any) => {
         this.clients = r.data;
-        console.log('clients',this.clients)
       },
       (e) => {
         console.log(e.data.message);
@@ -400,7 +375,6 @@ getFormattedValue(value: any): any {
     this.apiService.get_handel_by(id).subscribe(
       (r:any) => {
         this.handel_By = r.data;
-        console.log('handel_By',this.handel_By);
       },
       (e) => {
         console.log(e.data.message);
@@ -411,7 +385,6 @@ getFormattedValue(value: any): any {
     this.apiService.getProjectType().subscribe(
       (r:any) => {
         this.get_project_type = r.data;
-        console.log('getProjectType',this.handel_By);
       },
       (e) => {
         console.log(e.data.message);
@@ -427,17 +400,15 @@ getFormattedValue(value: any): any {
       (r:any) => {
         this.projectUpdate = r.data;
         this.project_id = r.data._id
-        console.log('data.project Data',r)
       },
       (e) => {
-        console.error('error -->',e);
+        console.error('error =>',e);
 
       }
     )
   }
 
   updateProjectById(project:any){
-    console.log('project id ==>',project._id)
     this.projectUpdate.user_id = localStorage.getItem('userId')
     this.projectUpdate.project_id = project._id;
     this.projectUpdate.client_id = this.projectUpdate.client_id._id;
@@ -457,7 +428,6 @@ getFormattedValue(value: any): any {
     formData.append('project_resourses', this.projectUpdate.project_resourses);
     this.apiService.updateProjectById(formData).subscribe(
       (r: any) => {
-        console.log(r);
         this.getProjectById(project._id)
         Swal.fire({
           icon: 'success',
@@ -472,7 +442,6 @@ getFormattedValue(value: any): any {
         });
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -494,7 +463,6 @@ getFormattedValue(value: any): any {
           this.apiService.deleteProjectById(id,is_enabled).subscribe(
             (r:any) => {
               this.projectSave = r;
-              console.log('====>',r.message)
               Swal.fire(
                 'Deleted!',
                 r.message,
@@ -529,7 +497,6 @@ if(is_enabled == false){
       this.apiService.deleteProjectById(id,is_enabled).subscribe(
         (r:any) => {
           this.projectSave = r;
-          console.log('====>',r.message)
           Swal.fire(
             'Undo!',
             'project undo',
@@ -555,8 +522,6 @@ if(is_enabled == false){
 
 
   onChangeStatus(id:any,status:any){
-    console.log('status ==> ',status)
-    console.log('id = = >',id)
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be change the status!',
@@ -590,8 +555,6 @@ if(is_enabled == false){
     });
   }
   onChangeStatusTask(id: any, status: any) {
-    console.log('status ==> ', status);
-    console.log('id = = >', id);
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be change the status!",
@@ -622,7 +585,6 @@ if(is_enabled == false){
 
     this.apiService.addParticipant(this.project_id,addParticipant).subscribe(
       (r:any) => {
-        console.log('addParticipant',r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -632,7 +594,6 @@ if(is_enabled == false){
         })
       },
       (e:any) => {
-        console.error('addParticipant',e);
         Swal.fire({
           icon: 'error',
           title: 'Error',
@@ -648,11 +609,10 @@ if(is_enabled == false){
   getTeamMemberListToAddParticipant(project_id:any){
     this.apiService.getTeamMemberListToAddParticipant(project_id).subscribe(
       (r:any) => {
-        console.log('getTeamMemberListToAddParticipant',r);
         this.getTeamMemberList = r.data;
       },
       (e:any) => {
-        console.error('getTeamMemberListToAddParticipant',e);
+        console.error('error =>',e);
       }
     )
   }

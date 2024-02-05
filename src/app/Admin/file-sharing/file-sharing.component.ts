@@ -66,8 +66,6 @@ export class FileSharingAdminComponent {
     this.apiService.getProject().subscribe(
       (r:any) => {
         this.projectsName = r.data;
-        console.log('==> ==>',r.data)
-        console.log('projects Name',this.projectsName)
       },
       (e) => {
         console.error(e);
@@ -81,8 +79,6 @@ export class FileSharingAdminComponent {
       (r:any) => {
         this.FileSharingTableData = r.data;
         this.FileSharingTable = r.data;
-        console.log('==> ==>',r.data)
-        console.log('get file sharing',this.FileSharingTable)
       },
       (e) => {
         console.error(e);
@@ -94,11 +90,9 @@ export class FileSharingAdminComponent {
 
   onChangeFileSharing(event:any){
     this.FileSharing.file_sharing = event.target.files[0];
-    console.log(this.FileSharing.file_sharing)
   }
   onChangeFileSharingUpdate(event:any){
     this.file_sharing = event.target.files[0];
-    console.log(this.file_sharing)
   }
 
   saveFileSharing(project:any){
@@ -127,7 +121,6 @@ export class FileSharingAdminComponent {
         });
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -241,7 +234,6 @@ this.is_viewed_by_client = viewed;
           // If confirmed, proceed with the deletion
           this.apiService.deleteFileSharing(fileshareing_id,is_deleted).subscribe(
             (r:any) => {
-              console.log(r)
               Swal.fire(
                 'Undo!',
                 'file undo',
@@ -278,8 +270,6 @@ this.filsharing_name_data = fileshareing_name;
    
       this.apiService.updateFileSharing(formData).subscribe(
         (r: any) => {
-          console.log(r);
-          // this.getProjectById(project._id)
           Swal.fire({
             icon: 'success',
             title: 'Successful',
@@ -293,7 +283,6 @@ this.filsharing_name_data = fileshareing_name;
           });
         },
         (e: any) => {
-          console.log("Error => ",e)
           Swal.fire('Error', e.error.message, 'error');
         }
       );

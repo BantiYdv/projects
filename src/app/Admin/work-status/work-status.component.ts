@@ -21,10 +21,8 @@ export class WorkStatusComponent {
   constructor(private apiService:ApiServiceService,private router: Router,) {}
 
   saveWorkStatus(workStatus:any){
-    console.log('signUp Api =>', workStatus);
     this.apiService.saveWorkStatus(workStatus).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -39,7 +37,6 @@ export class WorkStatusComponent {
         this.workStatus={};
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
         this.workStatus={};
       }
@@ -52,7 +49,6 @@ export class WorkStatusComponent {
   //       this.workStatus = r;
   //     },
   //     (e) => {
-  //       console.log(e.data.message);
   //     }
   //   )
   // }
@@ -71,7 +67,6 @@ export class WorkStatusComponent {
   updateWorkStatusById(workStatus:any){
     this.apiService.updateWorkStatusById(workStatus).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -86,7 +81,6 @@ export class WorkStatusComponent {
         this.workStatus={};
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
         this.workStatus={};
       }

@@ -41,7 +41,6 @@ export class EmployeeProjectComponent {
       (r: any) => {
         this.projects = r.data;
         this.EmployeeProjectData = r.data
-        console.log('Get ====> ===><', this.projects);
       },
       (e) => {
         console.error(e);
@@ -57,7 +56,6 @@ export class EmployeeProjectComponent {
       (r:any) => {
         this.projectUpdate = r.data;
         this.project_id = r.data._id
-        console.log('data.project_id',r.data._id)
       },
       (e) => {
         console.error('error -->',e);

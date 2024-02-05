@@ -55,8 +55,6 @@ export class ViewTaskComponent {
   }
 
   onChangeStatus(id: any, status: any) {
-    console.log('status ==> ', status);
-    console.log('id = = >', id);
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be change the status!",
@@ -87,7 +85,6 @@ export class ViewTaskComponent {
       (r: any) => {
         this.tasks = r.data;
         this.TaskTableData = r.data;
-        console.log('-=-=-=-=-=-- ==> ==> ',  this.tasks);
       },
       (e) => {
         console.error(e);
@@ -104,7 +101,6 @@ export class ViewTaskComponent {
   getTaskById(id:any){
     this.apiService.getTaskById(id).subscribe(
       (r:any) => {
-        console.log(r)
         this.taskUpdate = r.data;
       },
       (e) => {
@@ -117,7 +113,6 @@ export class ViewTaskComponent {
     this.apiService.get_handel_by(id).subscribe(
       (r: any) => {
         this.assigned = r.data;
-        console.log('member name for assigned task', this.assigned);
       },
       (e) => {
         console.log(e.data.message);
@@ -127,7 +122,6 @@ export class ViewTaskComponent {
 
   assignTo: any;
   onChangeAssignedStatus(id: any, assgined_to:any){
-    console.log("?>>>>>>??????",assgined_to)
     Swal.fire({
       title: 'Are you sure?',
       text: 'You won\'t be change the status!',
@@ -141,7 +135,6 @@ export class ViewTaskComponent {
         this.apiService.updateTaskAssign(id, assgined_to).subscribe(
           (r: any) => {
             this.project = r;
-            console.log("assign task response", r)
             Swal.fire(
               'Updated!',
               r.data.message,
@@ -150,7 +143,6 @@ export class ViewTaskComponent {
             this.getTaskProject();
           },
           (e) => {
-            console.error(e);
             Swal.fire(
               'Error!',
               e.error.message,
@@ -164,10 +156,8 @@ export class ViewTaskComponent {
 
   onChangeProjectSave(event: any) {
     this.taskSave.task_attachement = event.target.files[0];
-    console.log(this.taskSave.task_attachement);
   }
   saveTask(task: any) {
-    console.log('====>>>>>>', task);
 
     this.taskSave.user_id = localStorage.getItem('userId');
     const formData = new FormData();
@@ -184,7 +174,6 @@ export class ViewTaskComponent {
 
     this.apiService.saveTask(formData).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Registration Successful',
@@ -199,7 +188,6 @@ export class ViewTaskComponent {
         this.taskSave = {};
       },
       (e: any) => {
-        console.error('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
         // this.taskSave = {};
       }

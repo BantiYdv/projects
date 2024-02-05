@@ -48,7 +48,6 @@ export class LoginWithOTPComponent implements OnInit {
 
   move(e: any, p: any, c: any, n: any) {
     c.value = c.value.replace(/[^0-9]/g, '');
-    // console.log(e)
     var length = c.value.length;
     var maxlength = c.getAttribute('maxlength');
     if (length == maxlength) {
@@ -72,7 +71,6 @@ export class LoginWithOTPComponent implements OnInit {
 
   startTimer(): void {
     this.reSendData.email = this.verifyOTP.email;
-    console.log('AVX', this.reSendData.email);
     if (this.verifyOTP.email != '') {
       // this.sendOTPForForgetPassword();
 
@@ -115,8 +113,6 @@ export class LoginWithOTPComponent implements OnInit {
   verificationOTP() {
     this.apiService.verifyOtp(this.verifyOTP).subscribe(
       (r: any) => {
-        console.log(r);
-        console.log(r.data[0]._id);
         localStorage.setItem('savePasswordId', r.data[0]._id);
         Swal.fire({
           icon: 'success',
@@ -128,7 +124,6 @@ export class LoginWithOTPComponent implements OnInit {
         });
       },
       (e) => {
-        console.error(e);
 
         Swal.fire({
           icon: 'error',
@@ -143,7 +138,6 @@ export class LoginWithOTPComponent implements OnInit {
   savePassword() {
     this.apiService.savePassword(this.password).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Password Saved',
@@ -155,7 +149,6 @@ export class LoginWithOTPComponent implements OnInit {
         });
       },
       (e) => {
-        console.error(e);
         Swal.fire({
           icon: 'error',
           title: 'Error Saving Password',
@@ -167,10 +160,8 @@ export class LoginWithOTPComponent implements OnInit {
     );
   }
   sendOTPForForgetPassword() {
-    console.log('data => ', this.reSendData)
     this.apiService.sendOTPForForgetPassword(this.reSendData).subscribe(
       (r:any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'OTP Resent',
@@ -180,7 +171,6 @@ export class LoginWithOTPComponent implements OnInit {
         this.startTimer();
       },
       (e) => {
-        console.error(e);
         Swal.fire({
           icon: 'error',
           title: 'Resend OTP Failed',

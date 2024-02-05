@@ -34,7 +34,6 @@ export class CreativeAssetsAdminComponent {
       (r: any) => {
         this.assetsFolderData = r.data
         this.creativeAssetFolder = r.data;
-        console.log('Get employee Project List', this.creativeAssetFolder);
       },
       (e) => {
         console.error(e);

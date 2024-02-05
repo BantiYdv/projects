@@ -45,9 +45,7 @@ export class FileSharingTableComponent {
       (r: any) => {
         this.FileSharingTableData = r.data;
         this.FileSharingTable = r.data;
-        console.log('Get employee Project List', this.FileSharingTable);
         // this.creativeAssetsTable = r.data;
-        // console.log('Get employee Project List', this.creativeAssetsTable);
       },
       (e) => {
         console.error(e);
@@ -76,7 +74,6 @@ export class FileSharingTableComponent {
       )
       .subscribe(
         (r) => {
-          console.log('shareReviewForFiles =>', r);
           Swal.fire({
             icon: 'success',
             title: 'Review Saved',
@@ -91,7 +88,6 @@ export class FileSharingTableComponent {
           this.review_comment = '';
         },
         (e) => {
-          console.error('shareReviewForFiles', e);
           Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -157,7 +153,6 @@ export class FileSharingTableComponent {
   changesFileSeen(id: any) {
     this.apiService.fileMarkAsSeen(id).subscribe(
       (r) => {
-        console.log('r', r);
       },
       (e) => {
         console.error('e', e);

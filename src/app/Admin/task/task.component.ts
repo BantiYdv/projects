@@ -87,7 +87,6 @@ export class TaskComponent {
     this.apiService.getProject().subscribe(
       (r: any) => {
         this.projectList = r.data;
-        console.log('projects', this.projectList);
       },
       (e) => {
         console.error(e);
@@ -98,7 +97,6 @@ export class TaskComponent {
     this.apiService.get_handel_by(id).subscribe(
       (r: any) => {
         this.handel_By = r.data;
-        console.log('handel_By', this.handel_By);
       },
       (e) => {
         console.log(e.data.message);
@@ -108,14 +106,11 @@ export class TaskComponent {
 
   onChangeProjectSave(event: any) {
     this.taskSave.task_attachement = event.target.files[0];
-    console.log(this.taskSave.task_attachement);
   }
   onChangeProjectUpdate(event: any) {
     this.taskUpdate.task_attachement = event.target.files[0];
-    console.log(this.taskUpdate.task_attachement);
   }
   saveTask(task: any) {
-    console.log('====>>>>>>', task);
 
     this.taskSave.user_id = localStorage.getItem('userId');
     const formData = new FormData();
@@ -131,7 +126,6 @@ export class TaskComponent {
 
     this.apiService.saveTask(formData).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -146,7 +140,6 @@ export class TaskComponent {
         this.taskSave = {};
       },
       (e: any) => {
-        console.error('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
         // this.taskSave = {};
       }
@@ -157,7 +150,6 @@ export class TaskComponent {
     this.apiService.getTask().subscribe(
       (r: any) => {
         this.tasks = r.data;
-        console.log('tasks ==> ==> ', r);
       },
       (e) => {
         console.error(e);
@@ -168,7 +160,6 @@ export class TaskComponent {
   getTaskById(id: any) {
     this.apiService.getTaskById(id).subscribe(
       (r: any) => {
-        console.log(r.data);
         this.taskUpdate = r.data;
       },
       (e) => {
@@ -179,7 +170,6 @@ export class TaskComponent {
 
   updateTask(task: any) {
     // this.taskUpdate = {};
-    console.log('task', this.taskUpdate)
     this.taskUpdate.user_id = localStorage.getItem('userId');
     const formData = new FormData();
 
@@ -194,7 +184,6 @@ export class TaskComponent {
 
     this.apiService.updateTaskById(formData).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -209,7 +198,6 @@ export class TaskComponent {
         this.taskUpdate = {};
       },
       (e: any) => {
-        console.log('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
         // this.task = {};
       }
@@ -218,7 +206,6 @@ export class TaskComponent {
 
   deleteTask(id: any,is_enabled:any) {
     // Show confirmation dialog
-    console.log('==> data',id ,is_enabled)
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -241,7 +228,6 @@ export class TaskComponent {
             this.getTask();
           },
           (e) => {
-            console.log(e.error.message);
             Swal.fire('Error!', e.error.message, 'error');
           }
         );
@@ -250,8 +236,6 @@ export class TaskComponent {
   }
 
   onChangeStatus(id: any, status: any) {
-    console.log('status ==> ', status);
-    console.log('id = = >', id);
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be change the status!",
@@ -269,7 +253,6 @@ export class TaskComponent {
             this.getProject();
           },
           (e) => {
-            console.error(e);
             Swal.fire('Error!', e.error.message, 'error');
           }
         );

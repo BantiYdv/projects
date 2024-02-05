@@ -43,10 +43,9 @@ export class ClientComponent {
       (r:any) => {
         this.clients = r.data;
         this.ClientData = r.data;
-        console.log('clients',this.clients)
       },
       (e) => {
-        console.log(e.data.message);
+        console.log(e);
       }
     )
   }
@@ -55,7 +54,6 @@ export class ClientComponent {
     this.apiService.countryDialCode().subscribe(
       (r: any) => {
         this.country_code = r.data;
-        console.log('country_code ==>', r.data);
       },
       (e) => {
         console.error(e);
@@ -63,10 +61,8 @@ export class ClientComponent {
     );
   }
   addClient(register: any) {
-    console.log('Client Api =>', register);
     this.apiService.addClient(register).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Client added Successful',
@@ -81,7 +77,6 @@ export class ClientComponent {
         });
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -101,7 +96,6 @@ export class ClientComponent {
         // If confirmed, proceed with the deletion
         this.apiService.deleteUser(id,is_deleted).subscribe(
           (r:any) => {
-            console.log(r)
             Swal.fire(
               'Deleted!',
               r.message,
@@ -110,7 +104,6 @@ export class ClientComponent {
             this.get_client_id();
           },
           (e) => {
-            console.error(e)
             Swal.fire('Error!', e.error.message, 'error');
           }
         );
@@ -142,7 +135,6 @@ export class ClientComponent {
         this.clientUpdate = {};
       },
       (e: any) => {
-        console.log('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
         // this.teamMemberUpdate= {};
       }
@@ -154,7 +146,6 @@ export class ClientComponent {
     this.apiService.getUserDetails(id).subscribe(
       (r: any) => {
         this.clientUpdate = r.data;
-        console.log('client Update ==>', r);
       },
       (e) => {
         console.error(e);

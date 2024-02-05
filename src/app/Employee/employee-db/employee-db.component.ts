@@ -46,7 +46,6 @@ export class EmployeeDBComponent implements OnInit {
     this.apiService.countryDialCode().subscribe(
       (r: any) => {
         this.country_code = r.data;
-        console.log('country_code ==>', r.data);
       },
       (e) => {
         console.error(e);
@@ -61,10 +60,8 @@ export class EmployeeDBComponent implements OnInit {
   handleImgFile(event: any) {
     this.profileAvatarImg.avatar = event.target.files[0];
     this.profileAvatarImg.user_id = localStorage.getItem('userId')
-    console.log('3 ==>',this.profileAvatarImg)
     if(this.profileAvatarImg.avatarImg != ''){
       this.saveAvatar();
-      console.log('1',this.profileAvatarImg)
     }
   }
 
@@ -76,8 +73,6 @@ export class EmployeeDBComponent implements OnInit {
    
     this.apiService.saveAvatar(formData).subscribe(
       (response) => {
-        console.log('response =>',response)
-        // On success
         Swal.fire({
           title: 'Avatar Saved!',
           text: response.message,
@@ -87,8 +82,6 @@ export class EmployeeDBComponent implements OnInit {
         this.getUserDetails(this.user_id);
       },
       (error) => {
-        console.error('error =>',error)
-        // On error
         Swal.fire({
           title: 'Error',
           text: error.error.message,
@@ -102,7 +95,6 @@ export class EmployeeDBComponent implements OnInit {
     this.apiService.getUserDetails(id).subscribe(
       (r: any) => {
         this.profileData = r.data
-        console.log('Profile Data ==>', r);
       },
       (e) => {
         console.error(e);
@@ -110,9 +102,7 @@ export class EmployeeDBComponent implements OnInit {
     );
   }
 
-  // id: any;
   updateProfile(teamMember: any) {
-    // this.teamMemberUpdate.user_id = localStorage.getItem('userId');
     const data = {
       user_id: localStorage.getItem('userId'),
       name: this.profileData.name,
@@ -123,7 +113,6 @@ export class EmployeeDBComponent implements OnInit {
     };
     this.apiService.updateProfile(data).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -135,7 +124,6 @@ export class EmployeeDBComponent implements OnInit {
         this.profileData = {};
       },
       (e: any) => {
-        console.log('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
         // this.teamMemberUpdate= {};
       }

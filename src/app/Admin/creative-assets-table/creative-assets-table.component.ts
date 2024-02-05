@@ -49,7 +49,6 @@ this.creativeAssetsTableIdData = id;
       (r: any) => {
         this.creativeAssetsTable = r.data;
         this.assetsFolderTableData = r.data
-        console.log('Get ==>>>', this.creativeAssetsTable);
       },
       (e) => {
         console.error(e);
@@ -64,14 +63,8 @@ assignCreativeAssetsToTeamMember(member:any){
           title: 'Assets Assigned!',
           text: 'Creative assets have been successfully assigned to the team member.',
         });
-        console.log('done',r);
-        // this.assignTo = '';
-        console.log("assign to", this.assignTo);
-        console.log("assign to>>>>>>>>>>>>", this.creativeAssetsTableIdData);
-        console.log("assign to///////////", member);
       },
       (e) => {
-        console.error('eerorr',e);
         Swal.fire({
           icon: 'error',
           title: 'Error!',
@@ -84,18 +77,11 @@ assignCreativeAssetsToTeamMember(member:any){
 assignTask() {
   this.apiService.assignTask(this.id).subscribe(
     (r: any) => {
-      console.log('r-=-=->', r.data);
-
-      // Extracting the data from handel_by
       const handelByData = r.data.handel_by;
-
-      // Merging handel_by and participants data
       this.getTeamMemberList = handelByData ? [handelByData, ...r.data.participants] : r.data.participants;
-
-      console.log("team member assign to", this.getTeamMemberList);
     },
     (e) => {
-      console.error('error =--=-=>', e);
+      console.error('error =>', e);
     }
   );
 }

@@ -44,7 +44,6 @@ export class ForgotPasswordComponent {
 
   move(e: any, p: any, c: any, n: any) {
     c.value = c.value.replace(/[^0-9]/g, '');
-    // console.log(e)
     var length = c.value.length;
     var maxlength = c.getAttribute('maxlength');
     if (length == maxlength) {
@@ -61,7 +60,6 @@ export class ForgotPasswordComponent {
       this.otpValue3 || ''
     }${this.otpValue4 || ''}`;
 
-    console.log('====? data ?====',this.verifyOTP)
   }
 
   togglePasswordVisibility() {
@@ -127,8 +125,6 @@ export class ForgotPasswordComponent {
 
   sendOTP() {
     this.verifyOTP.email = this.sendData.email;
-    console.log('verifyOtp 1',this.verifyOTP)
-    console.log('sendData 1',this.sendData)
     this.apiService.sendOTPForForgetPassword(this.sendData).subscribe(
       (r:any) => {
         Swal.fire({
@@ -138,7 +134,6 @@ export class ForgotPasswordComponent {
           confirmButtonText: 'OK',
         });
         this.currentStep = 2;
-        console.log(r);
         this.startTimer();
        
       },
@@ -149,18 +144,13 @@ export class ForgotPasswordComponent {
           text: e.error.message,
           confirmButtonText: 'OK',
         });
-        console.error(e);
       }
     );
-    console.log('verifyOtp 11',this.verifyOTP)
   }
 
   verificationOTP() {
-    console.log('verifyOtp',this.verifyOTP)
     this.apiService.verifyOtpUsers(this.verifyOTP).subscribe(
       (r: any) => {
-        console.log(r);
-        console.log(r.data[0]._id);
         localStorage.setItem('savePasswordId', r.data[0]._id);
         Swal.fire({
           icon: 'success',
@@ -172,7 +162,6 @@ export class ForgotPasswordComponent {
         });
       },
       (e) => {
-        console.error(e);
 
         Swal.fire({
           icon: 'error',
@@ -187,7 +176,6 @@ export class ForgotPasswordComponent {
   savePassword() {
     this.apiService.savePassword(this.password).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Password Saved',

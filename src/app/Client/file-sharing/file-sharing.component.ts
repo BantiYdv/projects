@@ -41,8 +41,6 @@ id:any;
         // this.creativeAssetFolder = r.data;
         this.FileSharingClientData = r.data;
         this.FileSharingClientFolder = r.data;
-        console.log('Get employee Project List', this.FileSharingClientFolder);
-        // console.log('Get employee Project List', this.creativeAssetFolder);
       },
       (e) => {
         console.error(e);

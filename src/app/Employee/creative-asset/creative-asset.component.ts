@@ -39,7 +39,6 @@ export class CreativeAssetsEmployeeComponent {
       (r: any) => {
         this.creativeAssetFolder = r.data;
         this.assetsFolderData = r.data
-        console.log('Get employee Project List', this.creativeAssetFolder);
       },
       (e) => {
         console.error(e);

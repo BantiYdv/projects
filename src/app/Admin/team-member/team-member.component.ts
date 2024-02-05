@@ -48,7 +48,6 @@ export class TeamMemberComponent {
     this.apiService.getUserDetails(id).subscribe(
       (r: any) => {
         this.teamMemberUpdate = r.data;
-        console.log('teamMemberUpdate ==>', r);
       },
       (e) => {
         console.error(e);
@@ -58,10 +57,8 @@ export class TeamMemberComponent {
 
   saveTeamMember(teamMember: any) {
     this.teamMemberSave.country_code = '+91';
-    console.log('signUp Api =>', teamMember);
     this.apiService.saveTeamMember(teamMember).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -78,7 +75,6 @@ export class TeamMemberComponent {
         this.teamMemberSave = {};
       },
       (e: any) => {
-        console.error('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -89,7 +85,6 @@ export class TeamMemberComponent {
       (r: any) => {
         this.teamMembers = r.data;
         this.TeamMemberData = r.data;
-        console.log('getTeamMember ==> ==>', r);
       },
       (e) => {
         console.error(e);
@@ -100,7 +95,6 @@ export class TeamMemberComponent {
     this.apiService.countryDialCode().subscribe(
       (r: any) => {
         this.country_code = r.data;
-        console.log('country_code ==>', r.data);
       },
       (e) => {
         console.error(e);
@@ -122,7 +116,6 @@ export class TeamMemberComponent {
           // If confirmed, proceed with the deletion
           this.apiService.deleteUser(id,is_deleted).subscribe(
             (r:any) => {
-              console.log(r)
               Swal.fire(
                 'Deleted!',
                 r.message,
@@ -149,10 +142,8 @@ export class TeamMemberComponent {
         confirmButtonText: 'Yes, undo it!',
       }).then((result) => {
         if (result.isConfirmed) {
-          // If confirmed, proceed with the deletion
           this.apiService.deleteUser(id,is_deleted).subscribe(
             (r:any) => {
-              console.log(r)
               Swal.fire(
                 'Undo!',
                 'user undo',
@@ -161,7 +152,6 @@ export class TeamMemberComponent {
               this.getTeamMember();
             },
             (e) => {
-              console.error(e)
               Swal.fire('Error!', e.error.message, 'error');
             }
           );
@@ -183,7 +173,6 @@ export class TeamMemberComponent {
     };
     this.apiService.updateProfile(data).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -195,7 +184,6 @@ export class TeamMemberComponent {
         this.teamMemberUpdate = {};
       },
       (e: any) => {
-        console.log('Error => ', e);
         Swal.fire('Error', e.error.message, 'error');
         // this.teamMemberUpdate= {};
       }

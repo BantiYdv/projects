@@ -66,9 +66,6 @@ export class AppComponent implements OnInit {
     this.showScrollButton = window.scrollY > 0;
   }
  ngOnInit(): void {
-  // this.loginWithOTP();
-
-      console.log('===> <====',this.router.url)
  }
  scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });

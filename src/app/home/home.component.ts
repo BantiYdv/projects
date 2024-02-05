@@ -95,7 +95,6 @@ export class HomeComponent implements OnInit {
   ) {}
   ngOnInit(){
       const currentRoutePath = this.router.url;
-      console.log('<= currentRoutePath =>',currentRoutePath);
       this.apiService.showPage(currentRoutePath.replace('/user/',''));
       this.apiService.scrollToSection(currentRoutePath.replace('/',''));
 
@@ -253,7 +252,6 @@ getStars(starCount: number): boolean[] {
     this.apiService.countryDialCode().subscribe(
       (r: any) => {
         this.country_code = r.data;
-        console.log('country_code ==>', r.data);
       },
       (e) => {
         console.error(e);
@@ -306,19 +304,15 @@ getStars(starCount: number): boolean[] {
     switch (activeSlideIndex) {
       case 0:
         this.activeMenuItem = 'Brief Us';
-        console.log("Brief Us");
         break;
       case 1:
         this.activeMenuItem = 'Schedule Meeting';
-        console.log("Schedule Meeting");
         break;
       case 2:
         this.activeMenuItem = 'Create Account';
-        console.log("Create Account");
         break;
       default:
         this.activeMenuItem = 'Brief Us';
-        console.log("Brief Us");
         break;
     }
   }
@@ -351,10 +345,8 @@ getStars(starCount: number): boolean[] {
     }
   }
   signUp(userData: any) {
-    console.log('signUp Api =>', userData);
     this.apiService.signUp(userData).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Registration Successful',
@@ -369,7 +361,6 @@ getStars(starCount: number): boolean[] {
         });
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -381,20 +372,16 @@ getStars(starCount: number): boolean[] {
 
   handleAudioFile(event: any) {
     this.userData.audio = event.target.files[0];
-    console.log('Selected Audio File:', this.userData.audio);
   }
   handleVideoFile(event: any) {
     this.userData.video = event.target.files[0];
-    console.log('Selected Audio File:', this.userData.video);
   }
 
   handleCAFile(event: any) {
     this.userData.creative_attach = event.target.files[0];
-    console.log(this.userData.creative_attach);
   }
   handleMAFile(event: any) {
     this.userData.more_attach = event.target.files[0];
-    console.log(this.userData.more_attach);
   }
   saveCientRequirement(userData:any){
     const formData = new FormData();
@@ -416,7 +403,6 @@ getStars(starCount: number): boolean[] {
     
     this.apiService.saveCientRequirement(formData).subscribe(
       (r: any) => {
-        console.log(r);
         localStorage.setItem('client_id',r.data._id)
         Swal.fire({
           icon: 'success',
@@ -433,7 +419,6 @@ getStars(starCount: number): boolean[] {
         this.nextStep();
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -442,10 +427,8 @@ getStars(starCount: number): boolean[] {
     this.bookMeeting.client_requirement_id = localStorage.getItem('client_id')
     this.bookMeeting.meeting_time = `${this.bookMeetings.day}/${this.bookMeetings.month}/${this.currentYear}`;
     this.bookMeeting.meeting_date = `${this.bookMeetings.hour} : ${this.bookMeetings.minute}`
-    console.log('signUp Api =>', userData);
     this.apiService.bookTimeForMeeting(userData).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -460,7 +443,6 @@ getStars(starCount: number): boolean[] {
         });
       },
       (e: any) => {
-        console.log("Error => ",e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -479,7 +461,6 @@ getStars(starCount: number): boolean[] {
   signIn(userData: any) {
     this.apiService.signIn(userData).subscribe(
       (r: any) => {
-        console.log(r);
         localStorage.setItem('token', r.token);
         localStorage.setItem('userId', r.data._id);
         Swal.fire({
@@ -491,14 +472,11 @@ getStars(starCount: number): boolean[] {
         }).then((result) => {
           if (result) {
             localStorage.setItem('role', r.data.role);
-            // this.router.navigate(['/home'])
             this.getRouteUrl(r.data.role);
           }
-          // window.location.reload();
         });
       },
       (e: any) => {
-        console.error(e)
         Swal.fire('Error', e.error.message, 'error');
       }
     );
@@ -532,7 +510,6 @@ getStars(starCount: number): boolean[] {
   sendOTPForForgetPassword() {
     this.apiService.sendOTPForForgetPassword(this.reSendData).subscribe(
       (r:any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'OTP Resent',
@@ -541,7 +518,6 @@ getStars(starCount: number): boolean[] {
         });
       },
       (e) => {
-        console.error(e);
         Swal.fire({
           icon: 'error',
           title: 'Resend OTP Failed',
@@ -659,8 +635,6 @@ private updateCurrentTime() {
   // Set AM/PM based on hours
   this.bookMeetings.AmPm = hours >= 12 ? 'PM' : 'AM';
 
-  console.log("time current", currentTime);
-  console.log("time AMPM", this.bookMeetings.AmPm);
 }
 
 private formatTimeValue(value: number): string {

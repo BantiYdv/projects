@@ -156,7 +156,6 @@ export class BriefsComponent {
     this.projectsActive = [];
     this.apiService.getActiveProjects().subscribe(
       (r: any) => {
-        console.log('getActiveProjects =>', r);
         this.projectsActive = r.data.filter(
           (project: { is_enabled: boolean; current_status: string }) => {
             return (
@@ -176,7 +175,6 @@ export class BriefsComponent {
     this.projectsFinised = [];
     this.apiService.getFinisedProjects().subscribe(
       (r: any) => {
-        console.log('getFinisedProjects =>', r);
         this.projectsFinised = r.data;
       },
       (e) => {
@@ -188,9 +186,7 @@ export class BriefsComponent {
   getTaskListOfActiveProject(project_id: any) {
     this.apiService.getTaskListOfActiveProject(project_id).subscribe(
       (r: any) => {
-        console.log('getTaskListOfActiveProject =>', r);
         this.tasks = this.convertResponsesToTasks(r.data);
-        console.warn('tasks ==> ', this.tasks);
       },
       (e) => {
         console.error(e);

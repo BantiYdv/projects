@@ -27,11 +27,9 @@ export class ApiServiceService {
   ) {}
 
   showPage(pageType: string) {
-    console.log('page type =>',pageType)
     this.pageType = pageType;
   }
   scrollToSection(sectionId: string): void {
-    console.log(sectionId)
     const element = document.getElementById(sectionId);
     if (element) {
       const elementOffset = element.getBoundingClientRect().top;
@@ -107,7 +105,6 @@ export class ApiServiceService {
     return this.http.post(this.keys.updateProfile, userData, { headers });
   }
   deleteUser(id:any,is_deleted:boolean){
-    console.log(id);
     const data = {
       admin_id: localStorage.getItem('userId'),
       is_deleted:is_deleted,
@@ -118,7 +115,6 @@ export class ApiServiceService {
   }
 
   deleteFileSharing(fileshareing_id:any,is_deleted:boolean){
-    console.log(fileshareing_id);
     const data = {
       fileshareing_id: fileshareing_id,
       is_deleted:is_deleted
@@ -127,7 +123,6 @@ export class ApiServiceService {
     return this.http.post(this.keys.deleteFileSharing, data, { headers });
   }
   updateFileSharing(userData:any){
-    console.warn('FormData',userData)
     const headers = this.headerWithAuth;
     return this.http.post(this.keys.updateFileSharing, userData, { headers });
   }
@@ -186,7 +181,6 @@ export class ApiServiceService {
   }
 
   deleteProjectById(id: any, is_enabled: boolean) {
-    console.log(id);
     const data = {
       project_id: id,
       is_deleted: is_enabled,
@@ -221,7 +215,6 @@ export class ApiServiceService {
       team_members: addParticipant,
       user_id: localStorage.getItem('userId'),
     };
-    console.log('data ==> ',data)
     const headers = this.headerWithAuth;
     return this.http.post(this.keys.addParticipant, data, { headers });
   }
@@ -297,7 +290,6 @@ export class ApiServiceService {
       assgined_to: assgined_to,
       user_id: localStorage.getItem('userId'),
     };
-    console.log("assgined_to", assgined_to)
     const headers = this.headerWithAuth;
     return this.http.post(this.keys.updateTaskById, data, { headers });
   }

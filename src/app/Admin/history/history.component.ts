@@ -40,8 +40,6 @@ ngOnInit(): void {
       (r:any) => {
         this.historyProjectData = r.data;
         this.projects = r.data;
-        console.log('==> ==>',r.data)
-        console.log('projects',this.projects)
       },
       (e) => {
         console.error(e);
@@ -54,8 +52,6 @@ ngOnInit(): void {
       (r:any) => {
         this.HistoryTaskData = r.data;
         this.tasks = r.data;
-        console.log('==> ==>',r.data)
-        console.log('tasks = > => =>',this.tasks)
       },
       (e) => {
         console.error(e);

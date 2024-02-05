@@ -48,7 +48,6 @@ export class CreativeAssetsUserComponent {
   ngOnInit(): void {
 
     this.assetsSave.created_date = this.currentDate;
-    console.log('dfghjkl ==>',this.assetsSave.created_date)
     this.route.queryParams.subscribe(r => {
       this.id = r['id'];
     })
@@ -71,14 +70,12 @@ export class CreativeAssetsUserComponent {
   }
   onChangeProjectSave(event:any){
     this.assetsSave.creative_attach = event.target.files[0];
-    console.log(this.assetsSave.creative_attach)
   }
 
 //   getProjectById(id:any){
 //     this.apiService.getProjectById(id).subscribe(
 //       (r: any) => {
 //         this.creativeAssetsTable = r.data.project_resourses;
-//         console.log('Get employee Project List', this.creativeAssetsTable);
 //       },
 //       (e) => {
 //         console.error(e);
@@ -90,7 +87,6 @@ getAllCreativeAssetsOfClient(){
       (r: any) => {
         this.creativeAssetsTable = r.data;
         this.assetsFolderClientData = r.data;
-        console.log('getAllCreativeAssetsOfClient', r);
       },
       (e) => {
         console.error(e);
@@ -108,7 +104,6 @@ addCreativeAssets(data:any){
   
   this.apiService.addCreativeAssets(formData).subscribe(
     (r: any) => {
-      console.log(r);
       Swal.fire({
         icon: 'success',
         title: 'Successful',
@@ -126,7 +121,6 @@ addCreativeAssets(data:any){
       });
     },
     (e: any) => {
-      console.log("Error => ",e)
       Swal.fire('Error', e.error.message, 'error');
     }
   );
