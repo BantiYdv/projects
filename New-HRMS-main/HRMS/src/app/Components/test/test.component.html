@@ -1096,7 +1096,7 @@
 
   <div *ngSwitchCase="'reports'">
     <!-- <div *ngIf="isHashEqualTo('/test/reports')"> -->
-    <div class="px-5 py-5" id="hanging-icons">
+    <div class="px-4 py-5" id="hanging-icons">
       <div class="row">
         <div class="d-flex justify-content-start"
           [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-5 mb-2' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2'">
@@ -5014,11 +5014,11 @@
                     <button *ngIf="!isEditMode" type="button" class="btn" ><img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
                   </div>
                 </div>
+                <button type="button" class="btn Approve mt-2" *ngIf="!isEditMode" (click)="toggleTableBody()">+ Add</button>
                 <div class="not_data_img_div" *ngIf="getPaginatedHolidayData().length == 0">
                   <p>Not Data !!</p>
                 </div>
               </div>
-              <button type="button" class="btn Approve" *ngIf="!isEditMode" (click)="toggleTableBody()">+ Add</button>
 
 
             </div>
@@ -5085,101 +5085,290 @@
 
 <!-- add holiday upload end -->
 
-<!--show last 7days persent user start -->
-<div *ngSwitchCase="'viewLast7DaysPresent'">
+<!--show last 7days present user start -->
+<div *ngSwitchCase="'viewLast7DaysPresent/'+ clickedDate">
   <div class="container px-4 py-0 text-center" >
 
     <div class="table-responsive mt-2">
       <div class="col-md-12 d-flex justify-content-start">
         <span class="allEmp">Present</span>
       </div>
-      <!-- <div class="row">
-        <div class="col-md-6 d-flex justify-content-start">
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-start" [ngClass]="{'col-md-6': currentLast7DaysPresentPage === 1}" *ngIf="currentLast7DaysPresentPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
-              <select class="added_positions_under_head_select" [(ngModel)]="todayAttPerPage">
+              <select class="added_positions_under_head_select" [(ngModel)]="Last7DaysPresentPerPage">
                 <option value="10">10</option>
+                <option value="20">20</option>
                 <option value="30">30</option>
-                <option value="45">45</option>
-                <option value="60">60</option>
-                <option value="75">75</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
               </select>
             </div>
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-center">
+        <div class="col-md-6 d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentLast7DaysPresentPage === 1, 'col-md-12': currentLast7DaysPresentPage >= 2}">
          
           
           <div class="">
             <div class="search-container">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
                 alt="">
-              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchTodayAtt"
-                (keyup)="FilterTodayAtt()">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchLast7DaysPresent"
+                (keyup)="FilterLast7DaysPresent()">
             </div>
           </div>
           <div class="">
             <button class="button_added_position_list">Search</button>
           </div>
         </div>
-      </div> -->
+      </div>
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
         <thead>
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
             <th class="thName">Check-In</th>
-            <th class="thName" >
-              Check-Out</th>
+            <th class="thName">Check-Out</th>
             <th class="thName">Status</th>
             
           </tr>
         </thead>
        
         <tbody class="tdData">
-          <tr *ngFor="let item of presentLast7Days let i = index">
+          <tr *ngFor="let item of getPaginatedLast7DaysPresentData() let i = index">
             <td class="textNormal">{{ i + 1 }}</td>
             <td class="textNormal">{{ item.name }}</td>
-            <td class="emailId">{{ item.name }}</td>
-            <td class="textNormal">{{ item.name }}</td>
-            <td class="textNormal">{{ item.name }}</td>
+            <td class="emailId">{{ item.checkInTime }}</td>
+            <td class="textNormal">{{ item.checkOutTime }}</td>
+            <td class="textNormal">{{ item.status }}</td>
            
           </tr>
         </tbody>
       </table>
 
-      <div class="not_data_img_div" *ngIf="presentLast7Days.length == 0">
+      <div class="not_data_img_div" *ngIf="getPaginatedLast7DaysPresentData().length == 0">
         <p>Not Data !!</p>
       </div>
 
     </div>
-    <!-- <div class="modal-footer">
-      <div class="col-md-12" *ngIf="getTotalPagesTodayatt() > 1">
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesLast7DaysPresent() > 1">
         <div class="table_footer mt-2">
           <button class="btn btn-secondary d-flex justify-content-center align-items-center"
-            style="background-color:#421cdd;" (click)="previousTodayattPage()" [disabled]="currentTodayAttPage == 1">
+            style="background-color:#421cdd;" (click)="previousLast7DaysPresentPage()" [disabled]="currentLast7DaysPresentPage == 1">
             <i class="fa fa-angle-left"></i> Previous
           </button>
           <div class="recruitment_list_number">
-            <div *ngFor="let pageNumber of getPageNumbersTodayatt()" [class.active_num]="pageNumber === currentTodayAttPage"
-              class="recruitment_list_number_value" (click)="changePageTodayatt(pageNumber)">
+            <div *ngFor="let pageNumber of getPageNumbersLast7DaysPresent()" [class.active_num]="pageNumber === currentLast7DaysPresentPage"
+              class="recruitment_list_number_value" (click)="changePageLast7DaysPresent(pageNumber)">
               {{ pageNumber }}
             </div>
           </div>
           <button class="btn btn-secondary d-flex justify-content-center align-items-center"
-            style="background-color:#421cdd;" (click)="nextPageTodayatt()"
-            [disabled]="currentTodayAttPage == getTotalPagesTodayatt()">
+            style="background-color:#421cdd;" (click)="nextPageLast7DaysPresent()"
+            [disabled]="currentLast7DaysPresentPage == getTotalPagesLast7DaysPresent()">
             Next <i class="fa fa-angle-right"></i>
           </button>
   
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
-<!--show last 7days persent user end -->
+<!--show last 7days present user end -->
+
+<!--show last 7days late arrival user start -->
+<div *ngSwitchCase="'viewLast7DaysLateArrival/'+ clickedDate">
+  <div class="container px-4 py-0 text-center" >
+
+    <div class="table-responsive mt-2">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Late Arrival</span>
+      </div>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-start" [ngClass]="{'col-md-6': currentLast7DaysLateArrivalPage === 1}" *ngIf="currentLast7DaysLateArrivalPage === 1">
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="Last7DaysLateArrivalPerPage">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentLast7DaysLateArrivalPage === 1, 'col-md-12': currentLast7DaysLateArrivalPage >= 2}">
+         
+          
+          <div class="">
+            <div class="search-container">
+              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                alt="">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchLast7DaysLateArrival"
+                (keyup)="FilterLast7DaysLateArrival()">
+            </div>
+          </div>
+          <div class="">
+            <button class="button_added_position_list">Search</button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+        <thead>
+          <tr>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Check-In</th>
+            <th class="thName">Check-Out</th>
+            <th class="thName">Status</th>
+            
+          </tr>
+        </thead>
+       
+        <tbody class="tdData">
+          <tr *ngFor="let item of getPaginatedLast7DaysLateArrivalData() let i = index">
+            <td class="textNormal">{{ i + 1 }}</td>
+            <td class="textNormal">{{ item.name }}</td>
+            <td class="emailId">{{ item.checkInTime }}</td>
+            <td class="textNormal">{{ item.checkOutTime }}</td>
+            <td class="textNormal">{{ item.status }}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="not_data_img_div" *ngIf="getPaginatedLast7DaysLateArrivalData().length == 0">
+        <p>Not Data !!</p>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesLast7DaysLateArrival() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="previousLast7DaysLateArrivalPage()" [disabled]="currentLast7DaysLateArrivalPage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersLast7DaysLateArrival()" [class.active_num]="pageNumber === currentLast7DaysLateArrivalPage"
+              class="recruitment_list_number_value" (click)="changePageLast7DaysLateArrival(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="nextPageLast7DaysLateArrival()"
+            [disabled]="currentLast7DaysLateArrivalPage == getTotalPagesLast7DaysLateArrival()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--show last 7days late arrival user end -->
+
+<!--show last 7days early departure user start -->
+<div *ngSwitchCase="'viewLast7DaysEarlyDeparture/'+ clickedDate">
+  <div class="container px-4 py-0 text-center" >
+
+    <div class="table-responsive mt-2">
+      <div class="col-md-12 d-flex justify-content-start">
+        <span class="allEmp">Early Departure</span>
+      </div>
+      <div class="row">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentLast7DaysEarlyDeparturePage === 1}" *ngIf="currentLast7DaysEarlyDeparturePage === 1">
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="Last7DaysEarlyDeparturePerPage">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentLast7DaysEarlyDeparturePage === 1, 'col-md-12': currentLast7DaysEarlyDeparturePage >= 2}">
+         
+          
+          <div class="">
+            <div class="search-container">
+              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                alt="">
+              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchLast7DaysEarlyDeparture"
+                (keyup)="FilterLast7DaysEarlyDeparture()">
+            </div>
+          </div>
+          <div class="">
+            <button class="button_added_position_list">Search</button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
+        <thead>
+          <tr>
+            <th class="thName">S.No</th>
+            <th class="thName">Name</th>
+            <th class="thName">Check-In</th>
+            <th class="thName">Check-Out</th>
+            <th class="thName">Status</th>
+            
+          </tr>
+        </thead>
+       
+        <tbody class="tdData">
+          <tr *ngFor="let item of getPaginatedLast7DaysEarlyDepartureData() let i = index">
+            <td class="textNormal">{{ i + 1 }}</td>
+            <td class="textNormal">{{ item.name }}</td>
+            <td class="emailId">{{ item.checkInTime }}</td>
+            <td class="textNormal">{{ item.checkOutTime }}</td>
+            <td class="textNormal">{{ item.status }}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="not_data_img_div" *ngIf="getPaginatedLast7DaysEarlyDepartureData().length == 0">
+        <p>Not Data !!</p>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <div class="col-md-12" *ngIf="getTotalPagesLast7DaysEarlyDeparture() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="previousLast7DaysEarlyDeparturePage()" [disabled]="currentLast7DaysEarlyDeparturePage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersLast7DaysEarlyDeparture()" [class.active_num]="pageNumber === currentLast7DaysEarlyDeparturePage"
+              class="recruitment_list_number_value" (click)="changePageLast7DaysEarlyDeparture(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            style="background-color:#421cdd;" (click)="nextPageLast7DaysEarlyDeparture()"
+            [disabled]="currentLast7DaysEarlyDeparturePage == getTotalPagesLast7DaysEarlyDeparture()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--show last 7days early departure user end -->
 
 <!-- view not checked in user start -->
 <div *ngSwitchCase="'notCheckedInUser'">
@@ -5196,10 +5385,10 @@
             <div>
               <select class="added_positions_under_head_select" [(ngModel)]="absentPerPage">
                 <option value="10">10</option>
+                <option value="20">20</option>
                 <option value="30">30</option>
-                <option value="45">45</option>
-                <option value="60">60</option>
-                <option value="75">75</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
               </select>
             </div>
             <div class="added_positions_under_head">Enteries</div>

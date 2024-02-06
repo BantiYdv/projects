@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver'
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { LoginService } from 'src/app/services/login.service';
@@ -98,7 +98,7 @@ intern = '';
 
 
 
-  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public dashboardService: DashboardService, public loginService: LoginService, public testService: TestService, public adminService: AdminService) {
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public dashboardService: DashboardService, public loginService: LoginService, public testService: TestService, public adminService: AdminService, private route: ActivatedRoute) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -263,23 +263,41 @@ createChart() {
 
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    for (let i = 1; i <= 7; i++) {
+    // for (let i = 1; i <= 7; i++) {
+    //   const date = new Date();
+    //   date.setDate(date.getDate() - i);
+    //   const formattedDay = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}`;
+    //   last7DaysDates.push(formattedDay);
+    //  const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`; 
+    //   last7Days.push(formattedDate);
+
+    //   const count = this.totalCheckOutEarly[formattedDate] || 0;
+    //   earlyDepartureData.push(count);
+
+    //   const lateArrival = this.totalCheckedInLate[formattedDate] || 0;
+    //   lateArrivalData.push(lateArrival);
+
+    //   const presentLast7Days = this.presentLast7Days[formattedDate] || 0;
+    //   presentLast7DaysData.push(presentLast7Days);
+    // }
+    for (let i = 7; i >= 1; i--) {
       const date = new Date();
       date.setDate(date.getDate() - i);
       const formattedDay = `${monthNames[date.getMonth()]} ${date.getDate().toString().padStart(2, '0')}`;
       last7DaysDates.push(formattedDay);
-     const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`; 
+      const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`; 
       last7Days.push(formattedDate);
-
+    
       const count = this.totalCheckOutEarly[formattedDate] || 0;
       earlyDepartureData.push(count);
-
+    
       const lateArrival = this.totalCheckedInLate[formattedDate] || 0;
       lateArrivalData.push(lateArrival);
-
+    
       const presentLast7Days = this.presentLast7Days[formattedDate] || 0;
       presentLast7DaysData.push(presentLast7Days);
     }
+    
 
     // console.log("Last 7 Days Dates:", last7DaysDates);
     // console.log("Early Departure Data:", earlyDepartureData);
@@ -334,18 +352,41 @@ createChart() {
             }
           }
           },
-          onClick: (event, elements) => {
-            if (elements && elements.length > 0) {
-              const clickedIndex = elements[0].index;
-              const clickedDate = last7Days[clickedIndex];
-              // Now you can use clickedDate to fetch and display data for the selected date
-              console.log("Clicked Date:", clickedDate);
-               // Add your logic to navigate to the desired route
-          this.router.navigate(['/viewLast7DaysPresent', clickedDate]);
-              // Add your logic to show data for the selected date
-            }
+      //     onClick: (event, elements) => {
+      //       if (elements && elements.length > 0) {
+      //         const clickedIndex = elements[0].index;
+      //         const clickedDate = last7Days[clickedIndex];
+      //         // Now you can use clickedDate to fetch and display data for the selected date
+      //         console.log("Clicked Date:", clickedDate);
+      //          // Add your logic to navigate to the desired route
+      //     this.router.navigate(['/viewLast7DaysPresent', clickedDate]);
+      //         // Add your logic to show data for the selected date
+      //       }
           
+      // }
+      onClick: (event, elements) => {
+        if (elements && elements.length > 0) {
+          const clickedIndex = elements[0].index;
+          const clickedDate = last7Days[clickedIndex];
+          const clickedLabel = this.chart.data.datasets[elements[0].datasetIndex].label;
+      
+          switch(clickedLabel) {
+            case "Present":
+              this.router.navigate(['/viewLast7DaysPresent', clickedDate]);
+              break;
+            case "Late Arrival":
+              this.router.navigate(['/viewLast7DaysLateArrival', clickedDate]);
+              break;
+            case "Early Departure":
+              this.router.navigate(['/viewLast7DaysEarlyDeparture', clickedDate]);
+              break;
+            default:
+              // Handle unexpected label
+              break;
+          }
+        }
       }
+      
     }
     });
   }
@@ -846,7 +887,6 @@ TodayAndUpcomingHolidays() {
       
       }
     );
- 
 }
 
 getShortDayName(day: string): string {

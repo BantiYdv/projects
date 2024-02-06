@@ -770,8 +770,8 @@ h3,
 .hello {
     color: #343A40;
     /* text-align: center; */
-    font-family: Poppins;
-    font-size: 40px;
+    /* font-family: Poppins; */
+    font-size: 30px;
     font-style: normal;
     font-weight: 600;
     /* line-height: normal; */
@@ -1622,12 +1622,12 @@ border: 1px solid #421CDD;
 color: #421CDD;
 text-align: center;
 font-family: Poppins;
-font-size: 15px;
+font-size: 12px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
 text-transform: capitalize;
-margin-top: 64px;
+margin-top: 70px;
 }
 .holidayViewMore{
     width: 20px;

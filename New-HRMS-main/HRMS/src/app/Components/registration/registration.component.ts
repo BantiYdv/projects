@@ -47,7 +47,8 @@ export class RegistrationComponent {
   selectedFileName: any;
   selectedAssets: string[] = [];
   // assetDetailsList: { [key: string]: AssetData } = {};
-  assetDetailsList: AssetData[] = [];
+  // assetDetailsList: AssetData[] = [];
+  assetDetailsList: any = [];
   activeSlideIndex = 0;
 
   assetDataListqw() {
@@ -101,14 +102,14 @@ export class RegistrationComponent {
   }
 
   getAssetData(AssetData: any): AssetData {
-    if (!this.assetDetailsList[AssetData]) {
-      this.assetDetailsList[AssetData] = {
+    if (!this.assetDetailsList) {
+      this.assetDetailsList = [{
         laptopModelInfo: '',
         identification: '',
         configuration: '',
         useHistory: '',
         description: '',
-      };
+      }];
     }
 // console.log("asset data", this.assetDetailsList[assetType]);
     return this.assetDetailsList[AssetData];
@@ -273,7 +274,8 @@ export class RegistrationComponent {
     ExperienceLetter: '',
     salarySlip1: '',
     // assetDetailsMap: this.assetDetailsList,   
-    assetDetailsList: this.assetDetailsList,   
+    // assetDetailsList: this.assetDetailsList, 
+    assetDetailsList: [],  
   };
 
   imageUrl: SafeUrl | undefined;
@@ -345,6 +347,16 @@ export class RegistrationComponent {
       designation: new FormControl(''),
     });
     this.currentDate = new Date().toISOString().split('T')[0]; 
+
+    this.assetOptions.forEach(() => {
+      this.user.assetDetailsList.push({
+        laptopModelInfo: '',
+        identification: '',
+        configuration: '',
+        useHistory: '',
+        description: ''
+      });
+    });
   }
 
   syncProbationStartDate() {
@@ -480,15 +492,18 @@ export class RegistrationComponent {
       );
     }
     //API for getting shift time end
+    getFilteredAssetDetailsList() {
+      return this.user.assetDetailsList.filter((assetDetails: { laptopModelInfo: string; }) => assetDetails.laptopModelInfo.trim() !== '');
+    }
 
   onSubmit() {
     this.isLoading = true;
-
+    this.user.assetDetailsList = this.getFilteredAssetDetailsList()
     console.log('<<<<<<user>>>>>', this.user);
 
-    if (Array.isArray(this.user.assetName)) {
-      this.user.assetName = this.user.assetName.join(', ');
-    }
+    // if (Array.isArray(this.user.assetName)) {
+    //   this.user.assetName = this.user.assetName.join(', ');
+    // }
 this.user.dob = this.formatDOB();
     this.RegisterAndUpdate.registerUser(this.user).subscribe(
       (response: any) => {

@@ -828,10 +828,11 @@ updateNumberOfDays() {
       
         this.testService.getHoliday().subscribe(
           (response: any) => {
-        const dataArray = Object.values(response);
+        // const dataArray = Object.values(response);
            
-            const reversedData = dataArray.reverse();
-            this.getHolidayData = reversedData;
+        //     const reversedData = dataArray.reverse();
+        //     this.getHolidayData = reversedData;
+            this.getHolidayData = response;
             // this.fillterGetHoliday = reversedData;
             // console.log("get holiday",response);
           },

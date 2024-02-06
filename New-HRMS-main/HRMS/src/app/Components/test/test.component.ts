@@ -117,10 +117,23 @@ throw new Error('Method not implemented.');
       "LEAVE_SHOW_TEAMLEAD",
       "WFH_SHOW_TEAMLEAD",
       "ALL_WFH_EMPLOYEES",
-      "VIEW_ALL_LEAVE"
+      "VIEW_ALL_LEAVE",
+      "ADD_HOLIDAY",
+      "CREATE_ROLE",
+      "DOWNLOAD_REPORTS",
+      "DOWNLOAD_EMPLOYEE_REPORTS",
+      "DOWNLOAD_WORKFROMHOME_REPORTS",
+      "DOWNLOAD_LEAVES_REPORTS",
+      "UPLOAD_LEAVE_POLICY"
   ];
 isDropdownOpen: any;
-
+clickedDate: any;
+presentLast7Days: any[] = [];
+totalCheckedInLate: any[] = [];
+totalCheckOutEarly: any[] = [];
+  fillterLast7DaysPresentData: any;
+  fillterLast7DaysLateArrivalData: any;
+  fillterLast7DaysEarlyDepartureData: any;
   // remove underscore and change name from permission name start
   formatOption(option: string): string {
     return option.replace(/_/g, ' ');
@@ -135,7 +148,14 @@ isDropdownOpen: any;
     "LEAVE_SHOW_TEAMLEAD":"Team Leave",
     "WFH_SHOW_TEAMLEAD":"Team WFH",
     "ALL_WFH_EMPLOYEES":"All Employees WFH",
-    "VIEW_ALL_LEAVE":"All Employees Leave"
+    "VIEW_ALL_LEAVE":"All Employees Leave",
+    "ADD_HOLIDAY":"Add Holiday",
+    "CREATE_ROLE":"Create Role",
+    "DOWNLOAD_REPORTS":"Download Reports",
+    "DOWNLOAD_EMPLOYEE_REPORTS":"Download Employee Reports",
+    "DOWNLOAD_WORKFROMHOME_REPORTS":"Download WFH Report",
+    "DOWNLOAD_LEAVES_REPORTS":"Download Leave Report",
+    "UPLOAD_LEAVE_POLICY":"Upload Leave Policy"
   };
   transformPermission(permission: string): string {
     return this.permissionMapping[permission] || permission;
@@ -279,6 +299,7 @@ isDropdownOpen: any;
     this.formArray = this.formBuilder.array([]);
     // shift time end
     
+    
   }
  
   selectedPermission: any; 
@@ -332,6 +353,8 @@ isDropdownOpen: any;
 
 this.checkRouteAndLoadData();
 this.viewPresentUsersLast7Days();
+this.viewLast7DaysLateArrival();
+this.viewLast7DaysEarlyDeparture();
 this.viewNotCheckedInUsersCount();
   }
 
@@ -1707,7 +1730,14 @@ permissionId: any;
       "LEAVE_SHOW_TEAMLEAD",
       "WFH_SHOW_TEAMLEAD",
       "ALL_WFH_EMPLOYEES",
-      "VIEW_ALL_LEAVE"
+      "VIEW_ALL_LEAVE",
+      "ADD_HOLIDAY",
+      "CREATE_ROLE",
+      "DOWNLOAD_REPORTS",
+      "DOWNLOAD_EMPLOYEE_REPORTS",
+      "DOWNLOAD_WORKFROMHOME_REPORTS",
+      "DOWNLOAD_LEAVES_REPORTS",
+      "UPLOAD_LEAVE_POLICY"
     ];
 
     // Assign the available options to a new property (e.g., availablePermissionOptions)
@@ -1763,7 +1793,14 @@ permissionId: any;
       (this.selectedPermissions.includes('LEAVE_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('WFH_SHOW_TEAMLEAD') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('ALL_WFH_EMPLOYEES') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS')
+      (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ADD_HOLIDAY') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('CREATE_ROLE') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('DOWNLOAD_REPORTS') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('DOWNLOAD_EMPLOYEE_REPORTS') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('DOWNLOAD_WORKFROMHOME_REPORTS') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('DOWNLOAD_LEAVES_REPORTS') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('UPLOAD_LEAVE_POLICY') && option === 'NO_ACCESS') 
 
     ) {
       return true; // Disable the option
@@ -5254,6 +5291,7 @@ saveHoliday() {
           this.router.navigate(['/addHoliday']);
           this.isEditMode = false;
           this.isTableBodyVisible = false;
+          location.reload();
           this.getHoliday();
           // Handle confirmation if needed
         }
@@ -5463,8 +5501,10 @@ searchAbsent: string = '';
 
 
 FilterAbsent() {
-  this.fillterGetAbsent = this.getAbsentData.filter((item: { holiDayReason: string }) =>
-    item.holiDayReason.toLowerCase().includes(this.searchAbsent.toLowerCase()) 
+  this.fillterGetAbsent = this.getAbsentData.filter((item: { firstname: string; lastname: string; }) =>
+    item.firstname.toLowerCase().includes(this.searchAbsent.toLowerCase()) ||
+    item.lastname.toLowerCase().includes(this.searchAbsent.toLowerCase()) 
+
   );
 }
 
@@ -5512,19 +5552,271 @@ getTotalPagesAbsent(): number {
 // view not Checked In Users end
 
 
-presentLast7Days: any = {};
-viewPresentUsersLast7Days(){
+
+// View present Last 7Days start
+Last7DaysPresentPerPage: number = 10;
+currentLast7DaysPresentPage: number = 1;
+
+searchLast7DaysPresent: string = '';
+
+ FilterLast7DaysPresent() {
+   this.fillterLast7DaysPresentData = this.presentLast7Days.filter((item: { name: string; }) =>
+   item.name.toLowerCase().includes(this.searchLast7DaysPresent.toLowerCase()) 
+  
+   );
+ }
+
+ 
+
+getPaginatedLast7DaysPresentData(): any[] {
+  const startIndex = (this.currentLast7DaysPresentPage - 1) * this.Last7DaysPresentPerPage;
+  const endIndex = startIndex + this.Last7DaysPresentPerPage;
+  return this.fillterLast7DaysPresentData.slice(startIndex, endIndex);
+}
+
+previousLast7DaysPresentPage(): void {
+  if (this.currentLast7DaysPresentPage > 1) {
+    this.currentLast7DaysPresentPage--;
+  }
+}
+
+
+getPageNumbersLast7DaysPresent(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+
+changePageLast7DaysPresent(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysPresent()) {
+    this.currentLast7DaysPresentPage = pageNumber;
+  }
+}
+
+
+nextPageLast7DaysPresent(): void {
+  const totalPages = Math.ceil(
+    this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
+  );
+  if (this.currentLast7DaysPresentPage < totalPages) {
+    this.currentLast7DaysPresentPage++;
+  }
+}
+
+
+getTotalPagesLast7DaysPresent(): number {
+  return Math.ceil(
+    this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
+  );
+}
+
+
+viewPresentUsersLast7Days() {
+  // Get the date from the URL
+  this.clickedDate = this.route.snapshot.paramMap.get('date');
+console.log("click date ????", this.clickedDate);
   this.dashboardService.presentUsersLast7Days().subscribe(
     (response: any) => {
-      this.presentLast7Days = response;
-      console.log("view present Last 7Days", this.presentLast7Days);
- 
+      // Filter the response based on the clicked date
+      const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
+console.log("date??>>>>>>>>>>", filteredData);
+console.log("response", response);
+      if (filteredData.length > 0) {
+      
+        this.presentLast7Days = filteredData[0].userData;
+        this.fillterLast7DaysPresentData = filteredData[0].userData;
+        console.log("hgjhgjhgjhgjh", this.presentLast7Days[0].name)
+        console.log("View present Last 7Days>>>>>>", this.presentLast7Days);
+      } else {
+        console.log("No data available for the selected date");
+        // Handle the case when no data is available for the selected date
+      }
     },
     (error) => {
-      
+      // Handle the error
     }
   );
 }
+
+// View present Last 7Days end
+
+// View late arrival Last 7Days start
+Last7DaysLateArrivalPerPage: number = 10;
+currentLast7DaysLateArrivalPage: number = 1;
+
+searchLast7DaysLateArrival: string = '';
+
+ FilterLast7DaysLateArrival() {
+   this.fillterLast7DaysLateArrivalData = this.totalCheckedInLate.filter((item: { name: string; }) =>
+   item.name.toLowerCase().includes(this.searchLast7DaysLateArrival.toLowerCase()) 
+  
+   );
+ }
+
+ 
+
+getPaginatedLast7DaysLateArrivalData(): any[] {
+  const startIndex = (this.currentLast7DaysLateArrivalPage - 1) * this.Last7DaysLateArrivalPerPage;
+  const endIndex = startIndex + this.Last7DaysLateArrivalPerPage;
+  return this.fillterLast7DaysLateArrivalData.slice(startIndex, endIndex);
+}
+
+previousLast7DaysLateArrivalPage(): void {
+  if (this.currentLast7DaysLateArrivalPage > 1) {
+    this.currentLast7DaysLateArrivalPage--;
+  }
+}
+
+
+getPageNumbersLast7DaysLateArrival(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+
+changePageLast7DaysLateArrival(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysLateArrival()) {
+    this.currentLast7DaysLateArrivalPage = pageNumber;
+  }
+}
+
+
+nextPageLast7DaysLateArrival(): void {
+  const totalPages = Math.ceil(
+    this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
+  );
+  if (this.currentLast7DaysLateArrivalPage < totalPages) {
+    this.currentLast7DaysLateArrivalPage++;
+  }
+}
+
+
+getTotalPagesLast7DaysLateArrival(): number {
+  return Math.ceil(
+    this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
+  );
+}
+
+viewLast7DaysLateArrival() {
+  // Get the date from the URL
+  this.clickedDate = this.route.snapshot.paramMap.get('date');
+
+  this.dashboardService.checkedInLate().subscribe(
+    (response: any) => {
+      // Filter the response based on the clicked date
+      const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
+console.log("date??>>>>>>>>>>", filteredData);
+console.log("response", response);
+      if (filteredData.length > 0) {
+        this.totalCheckedInLate = filteredData[0].userData;
+        this.fillterLast7DaysLateArrivalData = filteredData[0].userData;
+        console.log("late arrival", this.totalCheckedInLate[0].name)
+        console.log("View late arrival Last 7Days>>>>>>", this.totalCheckedInLate);
+      } else {
+        console.log("No data available for the selected date");
+        // Handle the case when no data is available for the selected date
+      }
+    },
+    (error) => {
+      // Handle the error
+    }
+  );
+}
+// View late arrival Last 7Days end
+
+
+// View early departure Last 7Days start
+
+Last7DaysEarlyDeparturePerPage: number = 10;
+currentLast7DaysEarlyDeparturePage: number = 1;
+
+searchLast7DaysEarlyDeparture: string = '';
+
+ FilterLast7DaysEarlyDeparture() {
+   this.fillterLast7DaysEarlyDepartureData = this.totalCheckOutEarly.filter((item: { name: string; }) =>
+   item.name.toLowerCase().includes(this.searchLast7DaysEarlyDeparture.toLowerCase()) 
+  
+   );
+ }
+
+ 
+
+getPaginatedLast7DaysEarlyDepartureData(): any[] {
+  const startIndex = (this.currentLast7DaysEarlyDeparturePage - 1) * this.Last7DaysEarlyDeparturePerPage;
+  const endIndex = startIndex + this.Last7DaysEarlyDeparturePerPage;
+  return this.fillterLast7DaysEarlyDepartureData.slice(startIndex, endIndex);
+}
+
+previousLast7DaysEarlyDeparturePage(): void {
+  if (this.currentLast7DaysEarlyDeparturePage > 1) {
+    this.currentLast7DaysEarlyDeparturePage--;
+  }
+}
+
+
+getPageNumbersLast7DaysEarlyDeparture(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+
+changePageLast7DaysEarlyDeparture(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysEarlyDeparture()) {
+    this.currentLast7DaysEarlyDeparturePage = pageNumber;
+  }
+}
+
+
+nextPageLast7DaysEarlyDeparture(): void {
+  const totalPages = Math.ceil(
+    this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
+  );
+  if (this.currentLast7DaysEarlyDeparturePage < totalPages) {
+    this.currentLast7DaysEarlyDeparturePage++;
+  }
+}
+
+
+getTotalPagesLast7DaysEarlyDeparture(): number {
+  return Math.ceil(
+    this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
+  );
+}
+
+viewLast7DaysEarlyDeparture() {
+  // Get the date from the URL
+  this.clickedDate = this.route.snapshot.paramMap.get('date');
+
+  this.dashboardService.checkOutEarly().subscribe(
+    (response: any) => {
+      // Filter the response based on the clicked date
+      const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
+console.log("date??>>>>>>>>>>", filteredData);
+console.log("response", response);
+      if (filteredData.length > 0) {
+        this.totalCheckOutEarly = filteredData[0].userData;
+        this.fillterLast7DaysEarlyDepartureData = filteredData[0].userData;
+    
+
+        console.log("early departure", this.totalCheckOutEarly[0].name)
+        console.log("View early departure Last 7Days>>>>>>", this.totalCheckOutEarly);
+      } else {
+        console.log("No data available for the selected date");
+        // Handle the case when no data is available for the selected date
+      }
+    },
+    (error) => {
+      // Handle the error
+    }
+  );
+}
+// View early departure Last 7Days end
 
 
 }

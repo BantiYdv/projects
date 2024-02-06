@@ -75,6 +75,12 @@ const routes: Routes = [
     canActivate:[authGuard]
   },
   {
+    path:":tableType/:date",
+    component: TestComponent,
+    pathMatch: "full",
+    canActivate:[authGuard]
+  },
+  {
     path:"**",
     component: NotFoundComponent,
     pathMatch: "full",

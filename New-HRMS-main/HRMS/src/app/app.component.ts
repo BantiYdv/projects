@@ -142,7 +142,7 @@ id: any;
 // for show side nav bar according to user login with permission start
 permissionSet = [
   { name: 'ALL_EMPLOYEES_DATA', router:'/employee', function:'employee',  imgName: "All Employees", src: '/assets/image/icon/All Employees.png', hover:"hoverEmp"},
-  { name: 'NEW_REGISTRATION', router: '/registration', function: "registration", imgName: "Registeration", src: '/assets/image/icon/Registration.png', hover:"hoverreg"},
+  { name: 'NEW_REGISTRATION', router: '/registration', function: "registration", imgName: "Registration", src: '/assets/image/icon/Registration.png', hover:"hoverreg"},
   { name: 'ALL_EMPLOYEES_ATTENDANCE', router: '/viewAllAtt', function: "viewAllAtt", imgName: "All Attendance", src: '/assets/image/icon/attendance.png', hover:"hoverAttendance"},
   { name: 'LEAVE_SHOW_TEAMLEAD', router: '/teamleave', function: 'teamleave', imgName: "Team Leaves", src: '/assets/image/icon/Team leave.png', hover:"hoverTeamLeave" },
   { name: 'WFH_SHOW_TEAMLEAD', router: '/teamwfh', function: 'teamwfh', imgName: "Team WFH", src: '/assets/image/icon/Team WFH.png', hover:"hoverTeamWfh"},
@@ -150,6 +150,13 @@ permissionSet = [
   { name: 'ADMIN_LEAVES', router: '/test/', function: '', imgName: "Admin Leave", src: 'https://cdn-icons-png.flaticon.com/128/5590/5590545.png'},
   { name: 'ADMIN_WFH', router: '/test/', function: '', imgName: "Admin WFH", src: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRGwlYfdcbTYW72vNkR7gkq8iXUmDEtd0bl_ohNaZZA7RMq92QE'},
   { name: 'VIEW_ALL_LEAVE', router: '/viewAllLeave', function: 'viewAllLeave', imgName: "All Leaves", src: '/assets/image/icon/Team WFH.png', hover:""},
+  { name: 'ADD_HOLIDAY', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
+  { name: 'CREATE_ROLE', router: '/createRole', function: 'createRole', imgName: "Create Role", src: '/assets/image/icon/Role.png', hover:"hoverRole"},
+  { name: 'DOWNLOAD_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
+  { name: 'DOWNLOAD_EMPLOYEE_REPORTS', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
+  { name: 'DOWNLOAD_WORKFROMHOME_REPORTS', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
+  { name: 'DOWNLOAD_LEAVES_REPORTS', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
+  { name: 'UPLOAD_LEAVE_POLICY', router: '/leavePolicy', function: 'leavePolicy', imgName: "Upload Leave Policy", src: '/assets/image/icon/leave policy.png', hover:"hoverLeavePolicy"},
 ]
 
 // for show side nav bar according to user login with permission end
