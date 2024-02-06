@@ -219,23 +219,23 @@
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.completed)" class="progress text-white"
                                 style="background-color: #e55579; width: 2.87%;"
                                 [title]="task.completed | date: 'dd-MM-yyyy'"
-                                [style.margin-left.%]="calculateMarginLeft(task.completed)">CLL</div>
+                                [style.margin-left.%]="calculateMarginLeft(task.completed)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.start)" class="progress text-white"
                                 style="background-color: #bcc600; width: 2.87%;"
                                 [title]="task.start | date: 'dd-MM-yyyy'"
-                                [style.margin-left.%]="calculateMarginLeft(task.start)">S</div>
+                                [style.margin-left.%]="calculateMarginLeft(task.start)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.startDate)" class="progress text-white"
                                 style="background-color: rgb(17, 0, 255); width: 2.87%;"
                                 [title]="task.startDate | date: 'dd-MM-yyyy'"
-                                [style.margin-left.%]="calculateMarginLeft(task.startDate)">SD</div>
+                                [style.margin-left.%]="calculateMarginLeft(task.startDate)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.created)" class="progress text-white"
                                 style="background-color: #eca6ba; width: 2.87%;"
                                 [title]="task.created | date: 'dd-MM-yyyy'"
-                                [style.margin-left.%]="calculateMarginLeft(task.created)"> C</div>
+                                [style.margin-left.%]="calculateMarginLeft(task.created)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.deadlineDate)"
                                 class="progress text-white" style="background-color: #c3607c; width: 2.87%;"
                                 [title]="task.deadlineDate | date: 'dd-MM-yyyy'"
-                                [style.margin-left.%]="calculateMarginLeft(task.deadlineDate)">DL</div>
+                                [style.margin-left.%]="calculateMarginLeft(task.deadlineDate)"></div>
                         </div>
                     </div>
                 </div>
