@@ -185,7 +185,7 @@
                                 [style.width.%]="calculateWidth(task.completed,task.start)"></div>
 
                             <div 
-                            *ngIf="checkMonthYears(formatDateObject(),task.start,task.completed) && checkMonthMonth2(formatDateObject())"
+                            *ngIf="checkMonthYears(formatDateObject(),task.start,task.completed) && checkMonthMonth2(formatDateObject()) &&  !isSameMonthAndYear(checkDataMonth, task.completed)"
                                 class="progress text-white" style="background-color: #cfda0a;"
                                 [title]="task.start | date: 'dd-MM-yyyy' + ' to ' + (task.completed | date: 'dd-MM-yyyy')"
                                 [style.width.%]="calculateWidth(task.completed,task.start)"></div>
@@ -300,15 +300,15 @@
                     </div>
                 </th>
             </tr>
-            <tr class="table_data" *ngFor="let pro of projectsFinised">
-                <td>
+            <tr class="table_data" *ngFor="let pro of projectsFinised.slice(0, 3)">
+                <td [title]="pro.name">
                     <div class="bg_bg_color">
                         <span>{{ pro.name.length > 8 ? (pro.name | slice:0:8) + '...' : pro.name }}</span>
                     </div>
                 </td>
                 <td>
                     <div class="box_css_bg_border">
-                        <span class="sub_box_css_bg_border">
+                        <span class="sub_box_css_bg_border" [title]="pro.client_id.name">
                             <span class="sub_sub_box_css_bg_border">{{pro.client_id.name}}</span>
                         </span>
 
@@ -316,7 +316,7 @@
                 </td>
                 <td>
                     <div class="box_css_bg_border">
-                        <span class="sub_box_css_bg_border">
+                        <span class="sub_box_css_bg_border" [title]="pro.handel_by.name">
                             <span class="sub_sub_box_css_bg_border">{{pro.handel_by.name}}</span>
                         </span>
 
@@ -324,7 +324,7 @@
                 </td>
                 <td>
                     <div class="box_css_bg_border">
-                        <span class="sub_box_css_bg_border">
+                        <span class="sub_box_css_bg_border" [title]="pro.deadline">
                             <span class="sub_sub_box_css_bg_border">{{pro.deadline}}</span>
                         </span>
 
@@ -342,7 +342,7 @@
         </table>
     </div>
     <div class=" d-flex justify-content-center align-items-center" *ngIf="projectsFinised.length > 0">
-        <div class="view_all_button">View All&nbsp;<i class="fa fa-angle-down"></i></div>
+        <div class="view_all_button" routerLink="/admin/history">View All&nbsp;<i class="fa fa-angle-down"></i></div>
     </div>
 
 </div>

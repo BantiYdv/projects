@@ -164,6 +164,8 @@ export class BriefsComponent {
             );
           }
         );
+
+         this.getTaskListOfActiveProject(this.projectsActive[0]._id)
       },
       (e) => {
         console.error(e);
