@@ -225,7 +225,7 @@
                                 [title]="task.start | date: 'dd-MM-yyyy'"
                                 [style.margin-left.%]="calculateMarginLeft(task.start)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.startDate)" class="progress text-white"
-                                style="background-color: rgb(17, 0, 255); width: 2.87%;"
+                                style="background-color: #6E86FF; width: 2.87%;"
                                 [title]="task.startDate | date: 'dd-MM-yyyy'"
                                 [style.margin-left.%]="calculateMarginLeft(task.startDate)"></div>
                             <div *ngIf="isSameMonthAndYear(checkDataMonth, task.created)" class="progress text-white"
@@ -247,6 +247,10 @@
             <div class="d-flex flex-nowrap">
                 <div class="color_css bg_created"></div>
                 <div class="color_name">Created</div>
+            </div>
+            <div class="d-flex flex-nowrap">
+                <div class="color_css bg_startDate"></div>
+                <div class="color_name">Start Date</div>
             </div>
             <div class="d-flex flex-nowrap">
                 <div class="color_css bg_start"></div>
