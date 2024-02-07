@@ -177,21 +177,46 @@
                 <h3 class="card-title">Today’s Leave Info </h3>
               </div>
               <div class="card-body d-flex" style="justify-content: space-evenly;">
-                <div [routerLink]="['/todayAbsentLeave']"
+                <!-- <div [routerLink]="['/todayAbsentLeave']"
                 (click)="loginService.showTable('todayAbsentLeave')">
                   <div class="pie animate no-round leaveChart" [style.--p]="absentCount" [style.--c]="'#F97165'"  [style.--b]="'10px'"> {{absentCount}}</div><br>Absent
+                </div> -->
+                <div *ngIf="absentCount !== 0" [routerLink]="['/todayAbsentLeave']" (click)="loginService.showTable('todayAbsentLeave')">
+                  <div class="pie animate no-round leaveChart" [style.--p]="absentCount" [style.--c]="'#F97165'" [style.--b]="'10px'">{{absentCount}}</div><br>Absent
                 </div>
+                <div *ngIf="absentCount === 0">
+                  <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="absentCount" [style.--c]="'#F97165'" [style.--b]="'10px'">{{absentCount}}</div><br>Absent
+                  </div>
+                </div>
+                
                 <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
-                <div [routerLink]="['/todayCasualLeave']"
+                <!-- <div [routerLink]="['/todayCasualLeave']"
                 (click)="loginService.showTable('todayCasualLeave')">
                   <div class="pie animate no-round leaveChart" [style.--p]="casualCount" [style.--c]="'#421CDD'" [style.--b]="'10px'"> {{casualCount}}</div><br>Casual
                   Leave
+                </div> -->
+                <div *ngIf="casualCount !== 0" [routerLink]="['/todayCasualLeave']" (click)="loginService.showTable('todayCasualLeave')">
+                  <div class="pie animate no-round leaveChart" [style.--p]="casualCount" [style.--c]="'#421CDD'" [style.--b]="'10px'">{{casualCount}}</div><br>Casual Leave
+                </div>
+                <div *ngIf="casualCount === 0">
+                  <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="casualCount" [style.--c]="'#421CDD'" [style.--b]="'10px'">{{casualCount}}</div><br>Casual Leave
+                  </div>
                 </div>
                 <div class="legend"><img src="/assets/image/icon/LeaveChartVector.png" alt="" class="leaveVector"></div>
-                <div [routerLink]="['/todaySickLeave']"
+                <!-- <div [routerLink]="['/todaySickLeave']"
                 (click)="loginService.showTable('todaySickLeave')">
                   <div class="pie animate no-round leaveChart" [style.--p]="sickCount" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{sickCount}}</div><br>Sick
                   Leave
+                </div> -->
+                <div *ngIf="sickCount !== 0" [routerLink]="['/todaySickLeave']" (click)="loginService.showTable('todaySickLeave')">
+                  <div class="pie animate no-round leaveChart" [style.--p]="sickCount" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{sickCount}}</div><br>Sick Leave
+                </div>
+                <div *ngIf="sickCount === 0">
+                  <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="sickCount" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{sickCount}}</div><br>Sick Leave
+                  </div>
                 </div>
                 <!-- <div class="legend"><img src="/assets/image/icon/EmpInfoVector.png" alt="" class="EmpInfoVector"><table style="position:absolute;top:4rem;right:52px;;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FD7A8C;overflow:hidden"></div></div></td><td class="legendLabel">Full Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #9747FF;overflow:hidden"></div></div></td><td class="legendLabel">Part Time</td></tr><tr><td class="legendColorBox"><div style="border:1px solid transparent;padding:1px"><div style="width:4px;height:0;border:5px solid #FFCE62;overflow:hidden"></div></div></td><td class="legendLabel">Intern/Trainee</td></tr></tbody></table></div> -->
               </div>

@@ -152,10 +152,11 @@ permissionSet = [
   { name: 'VIEW_ALL_LEAVE', router: '/viewAllLeave', function: 'viewAllLeave', imgName: "All Leaves", src: '/assets/image/icon/Team WFH.png', hover:""},
   { name: 'ADD_HOLIDAY', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
   { name: 'CREATE_ROLE', router: '/createRole', function: 'createRole', imgName: "Create Role", src: '/assets/image/icon/Role.png', hover:"hoverRole"},
-  { name: 'DOWNLOAD_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
-  { name: 'DOWNLOAD_EMPLOYEE_REPORTS', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
-  { name: 'DOWNLOAD_WORKFROMHOME_REPORTS', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
-  { name: 'DOWNLOAD_LEAVES_REPORTS', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
+  // { name: 'DOWNLOAD_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
+  { name: 'DOWNLOAD_EMPLOYEE_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
+  { name: 'DOWNLOAD_WORKFROMHOME_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
+  { name: 'DOWNLOAD_LEAVES_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
+  { name: 'DOWNLOAD_ATTENDANCE_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
   { name: 'UPLOAD_LEAVE_POLICY', router: '/leavePolicy', function: 'leavePolicy', imgName: "Upload Leave Policy", src: '/assets/image/icon/leave policy.png', hover:"hoverLeavePolicy"},
 ]
 

@@ -142,9 +142,13 @@
                 Parternity:
                 <p class="m-0"><span id="casualLeavesPerMonth">{{ profileDetails?.paternity }}</span></p>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+              <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Assigning assets:
                 <p class="m-0"><span id="assetName">{{ profileDetails?.assetName }}</span></p>
+              </li> -->
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
+                Assigning assets:
+                <p class="m-0"><span id="assetName" *ngFor="let asset of profileDetails?.assetDetailsList; let last = last">{{ asset.assetName }}{{ !last ? ', ' : '' }}</span></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Role:
@@ -1185,7 +1189,7 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Assigning assets:
-                <p class="m-0"><span id="assetName">{{ profileDetailsUser?.assetDetailsList.assetName }}</span></p>
+                <p class="m-0"><span id="assetName" *ngFor="let asset of profileDetailsUser?.assetDetailsList; let last = last">{{ asset.assetName }}{{ !last ? ', ' : '' }}</span></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap py-2 detailsText">
                 Role:

@@ -127,6 +127,7 @@ export class ApiService {
   public deleteDocument = `${this.apiUrl}gateway/hrms/deleteDocument`;
   public notCheckedInUsersCount = `${this.apiUrl}gateway/hrms/not-checkedIn-users-count`;
   public viewNotCheckedInUsers = `${this.apiUrl}gateway/hrms/not-checkedIn-users`;
+  public deleteShiftTime = `${this.apiUrl}gateway/hrms/deleteShiftTime`;
 
   constructor(private http: HttpClient) { }
 

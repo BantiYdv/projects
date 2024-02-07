@@ -883,4 +883,14 @@ updateHoliday(holiday: any): Observable<any> {
 }
 //Update Employee Attendance end
 
+//Delete shift time start
+
+deleteShift(id: number): Observable<any> {
+  const url = `${this.api.deleteShiftTime}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  return this.http.delete(url, { headers });
+}
+//Delete shift time end
+
 }

@@ -754,14 +754,14 @@
 
 
   <div *ngSwitchCase="'teamleave'">
-
+    <div class="container px-4 py-0 text-center">
     <!-- <div *ngIf="isHashEqualTo('/test/teamleave')"> -->
     <div class="table-responsive mt-2">
       <div class="col-md-12 d-flex justify-content-start">
         <span class="allEmp">Team Leave</span>
       </div>
-      <div class="col-12 row">
-        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTeamLeavePage === 1}" *ngIf="currentTeamLeavePage === 1">
+      <div class="row">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentTeamLeavePage === 1}" *ngIf="currentTeamLeavePage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -776,24 +776,27 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTeamLeavePage === 1, 'col-md-12': currentTeamLeavePage >= 2}">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentTeamLeavePage === 1, 'col-md-6': currentTeamLeavePage >= 2}">
           <div class="">
             <div class="search-container ">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
                 alt="">
               <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchTeamLeave"
-                (keyup)="FilterTeamLeave()">
+                (keyup)="onSearchTeamLeave()">
             </div>
           </div>
           <div class="">
             <button class="button_added_position_list">Search</button>
           </div>
         </div>
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentTeamLeavePage === 1, 'col-md-6': currentTeamLeavePage >= 2}">
+          <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthTeamLeave" (change)="onSearchMonthTeamLeave()">
+        </div>
       </div>
     
-      <table class="table table-sm">
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
 
-        <thead style="height: 50px; vertical-align: middle !important;">
+        <thead >
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -870,6 +873,7 @@
       <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button> -->
     </div>
   </div>
+  </div>
 
   <!-- view team leave end -->
 
@@ -884,7 +888,7 @@
         <span class="allEmp">Team WFH</span>
       </div>
       <div class="row">
-        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentTeamWfhPage === 1}" *ngIf="currentTeamWfhPage === 1">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentTeamWfhPage === 1}" *ngIf="currentTeamWfhPage === 1">
           <div class="added_positions_list_right">
             <div class="added_positions_under_head">Show</div>
             <div>
@@ -899,18 +903,21 @@
             <div class="added_positions_under_head">Enteries</div>
           </div>
         </div>
-        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentTeamWfhPage === 1, 'col-md-12': currentTeamWfhPage >= 2}">
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentTeamWfhPage === 1, 'col-md-6': currentTeamWfhPage >= 2}">
           <div class="">
             <div class="search-container ">
               <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
                 alt="">
               <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchTeamWfh"
-                (keyup)="FilterTeamWfh()">
+                (keyup)="onSearchTeamWFH()">
             </div>
           </div>
           <div class="">
             <button class="button_added_position_list">Search</button>
           </div>
+        </div>
+        <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentTeamWfhPage === 1, 'col-md-6': currentTeamWfhPage >= 2}">
+          <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthTeamWFH" (change)="onSearchMonthTeamWFH()">
         </div>
       </div>
       
@@ -1906,8 +1913,8 @@
         <div class="col-md-12 d-flex justify-content-start">
           <span class="allEmp">WFH</span>
         </div>
-        <div class="col-12 row">
-          <div class="col-md-6 d-flex justify-content-start">
+        <div class="row">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentAllWfhPage === 1}" *ngIf="currentAllWfhPage === 1">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -1922,18 +1929,21 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentAllWfhPage === 1, 'col-md-6': currentAllWfhPage >= 2}">
             <div class="">
               <div class="search-container ">
                 <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
                   alt="">
                 <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchAllWfh"
-                  (keyup)="FilterAllWfh()">
+                  (keyup)="onSearchAllWFH()">
               </div>
             </div>
             <div class="">
               <button class="button_added_position_list">Search</button>
             </div>
+          </div>
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentAllWfhPage === 1, 'col-md-6': currentAllWfhPage >= 2}">
+            <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAllWFH" (change)="onSearchMonthAllWFH()">
           </div>
         </div>
         <table class="table table-sm" style="width: 100% !important;">
@@ -2020,8 +2030,8 @@
         <div class="col-md-12 d-flex justify-content-start">
           <span class="allEmp">Leave</span>
         </div>
-        <div class="col-12 row">
-          <div class="col-md-6 d-flex justify-content-start">
+        <div class="row">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentAllLeavePage === 1}" *ngIf="currentAllLeavePage === 1">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -2036,18 +2046,21 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="col-md-6 d-flex justify-content-end align-items-center">
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentAllLeavePage === 1, 'col-md-6': currentAllLeavePage >= 2}">
             <div class="">
               <div class="search-container ">
                 <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
                   alt="">
                 <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchAllLeave"
-                  (keyup)="FilterAllLeave()">
+                  (keyup)="onSearchAllLeave()">
               </div>
             </div>
             <div class="">
               <button class="button_added_position_list">Search</button>
             </div>
+          </div>
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentAllLeavePage === 1, 'col-md-6': currentAllLeavePage >= 2}">
+            <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAllLeave" (change)="onSearchMonthAllLeave()">
           </div>
         </div>
         <table class="table table-sm" style="width: 100% !important;">
@@ -2716,10 +2729,15 @@
             <td class="textNormal">{{ item.shiftDetails.absentHrs }}</td>
             <td class="textNormal">{{ item.shiftDetails.presentHrs }}</td>
             <td class="textNormal">{{ item.shiftDetails.overTimeHrs }}</td>
-            <td class="textNormal"><button class="btn btn-success" (click)="editShift(item.id)">Edit Shift</button></td>
+            <td class="textNormal"><i class="fa fa-edit m-1" style="color: #129B4B;" (click)="editShift(item.id)"></i> 
+            <i class="fa fa-trash m-1" style="color: #DD1717;" (click)="deleteShift(item.id)"></i>
+            </td>
           </tr>
         </tbody>
       </table>
+      <div class="not_data_img_div" *ngIf="fillterShiftData.length == 0">
+        <p>Not Data !!</p>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>

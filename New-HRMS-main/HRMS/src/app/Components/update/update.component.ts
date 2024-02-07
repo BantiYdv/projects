@@ -12,6 +12,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { CountryCodeService } from 'src/app/services/country-code.service';
 
 export interface AssetData {
+  assetName:string;
   laptopModelInfo: string;
   identification: string;
   configuration: string;
@@ -133,7 +134,7 @@ export class UpdateComponent {
    selectedCountryEmergencyNo: string = 'IN';
    shiftTime: any;
    selectedAssets: string[] = [];
-   assetDataList: { [key: string]: AssetData } = {};
+  //  assetDataList: { [key: string]: AssetData } = {};
  
    address: {
      addressLine1: string;
@@ -200,8 +201,8 @@ export class UpdateComponent {
     RelievingLetter: '',
     ExperienceLetter: '',
     salarySlip1: '',
-    assetDetailsMap: this.assetDataList, 
-
+    // assetDetailsMap: this.assetDataList, 
+    assetDetailsList: [],  
   };
 
   username: any;
@@ -215,6 +216,8 @@ export class UpdateComponent {
 
   totalleaves: any;
   response: any;
+  assetDetailsList: any = [];
+  activeSlideIndex = 0;
 
   validateDateOfBirth() {
     const currentDate = new Date();
@@ -395,6 +398,17 @@ calculateTotalLeaves() {
 
   constructor(private http: HttpClient, public loginService: LoginService, public RegisterAndUpdate: RegisterAndUpdateService, public dashboardService: DashboardService, private route: ActivatedRoute, public testService: TestService, private router: Router, private _formBuilder: FormBuilder, private countryCode: CountryCodeService) {
     this.currentDate = new Date().toISOString().split('T')[0]; // set probation start date
+
+    this.assetOptions.forEach(option => {
+      this.user.assetDetailsList.push({
+        assetName: option,
+        laptopModelInfo: '',
+        identification: '',
+        configuration: '',
+        useHistory: '',
+        description: ''
+      });
+    });
   }
 
   ngOnInit() {
@@ -761,18 +775,36 @@ console.log("docs id>>>>>", this.registerId);
   }
   //   add more assets end
   assetOptions = ['Laptop', 'Desktop', 'Monitor'];
-  saveAssetData(assetType: string, assetData: AssetData) {
-    this.assetDataList[assetType] = assetData;
-    console.log('Saved data for', this.assetDataList);
+  // saveAssetData(assetType: string, assetData: AssetData) {
+  //   this.assetDataList[assetType] = assetData;
+  //   console.log('Saved data for', this.assetDataList);
+  // }
+  saveAssetData( AssetData: any) {
+    this.assetDetailsList.push(AssetData);
+    console.log('Saved data for', this.assetDetailsList);
   }
 
   assetDataListqw() {
-    console.log('assetDataList', this.assetDataList);
+    console.log('assetDataList', this.assetDetailsList);
   }
 
-  getAssetData(assetType: string): AssetData {
-    if (!this.assetDataList[assetType]) {
-      this.assetDataList[assetType] = {
+  // getAssetData(assetType: string): AssetData {
+  //   if (!this.assetDataList[assetType]) {
+  //     this.assetDataList[assetType] = {
+  //       laptopModelInfo: '',
+  //       identification: '',
+  //       configuration: '',
+  //       useHistory: '',
+  //       description: '',
+  //     };
+  //   }
+
+  //   return this.assetDataList[assetType];
+  // }
+  getAssetData(): AssetData {
+    if (!this.assetDetailsList) {
+      this.assetDetailsList = {
+        assetName:'',
         laptopModelInfo: '',
         identification: '',
         configuration: '',
@@ -780,8 +812,7 @@ console.log("docs id>>>>>", this.registerId);
         description: '',
       };
     }
-
-    return this.assetDataList[assetType];
+    return this.assetDetailsList;
   }
   numberCode(): void {
     this.countries = this.countryCode.countryCode();
@@ -796,6 +827,10 @@ console.log("docs id>>>>>", this.registerId);
     if (this.currentStep > 1) {
       this.currentStep--;
     }
+  }
+
+  onSelectedAssetsChange() {
+    this.activeSlideIndex = 0;
   }
 
 }

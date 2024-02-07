@@ -11,6 +11,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { CountryCodeService } from 'src/app/services/country-code.service';
 
 export interface AssetData {
+  assetName:string;
   laptopModelInfo: string;
   identification: string;
   configuration: string;
@@ -101,20 +102,35 @@ export class RegistrationComponent {
     this.activeSlideIndex = 0;
   }
 
-  getAssetData(AssetData: any): AssetData {
-    if (!this.assetDetailsList) {
-      this.assetDetailsList = [{
-        laptopModelInfo: '',
-        identification: '',
-        configuration: '',
-        useHistory: '',
-        description: '',
-      }];
-    }
-// console.log("asset data", this.assetDetailsList[assetType]);
-    return this.assetDetailsList[AssetData];
+//   getAssetData(AssetData: any): AssetData {
+//     if (!this.assetDetailsList) {
+//       this.assetDetailsList = [{
+//         assetName:'',
+//         laptopModelInfo: '',
+//         identification: '',
+//         configuration: '',
+//         useHistory: '',
+//         description: '',
+//       }];
+//     }
+// // console.log("asset data", this.assetDetailsList[assetType]);
+//     return this.assetDetailsList[AssetData];
     
+//   }
+getAssetData(): AssetData {
+  if (!this.assetDetailsList) {
+    this.assetDetailsList = {
+      assetName:'',
+      laptopModelInfo: '',
+      identification: '',
+      configuration: '',
+      useHistory: '',
+      description: '',
+    };
   }
+  return this.assetDetailsList;
+}
+
 
   numberCode(): void {
     this.countries = this.countryCode.countryCode();
@@ -348,8 +364,19 @@ export class RegistrationComponent {
     });
     this.currentDate = new Date().toISOString().split('T')[0]; 
 
-    this.assetOptions.forEach(() => {
+    // this.assetOptions.forEach(() => {
+    //   this.user.assetDetailsList.push({
+    //     assetName:'Laptop',
+    //     laptopModelInfo: '',
+    //     identification: '',
+    //     configuration: '',
+    //     useHistory: '',
+    //     description: ''
+    //   });
+    // });
+    this.assetOptions.forEach(option => {
       this.user.assetDetailsList.push({
+        assetName: option,
         laptopModelInfo: '',
         identification: '',
         configuration: '',
@@ -357,6 +384,7 @@ export class RegistrationComponent {
         description: ''
       });
     });
+    
   }
 
   syncProbationStartDate() {
@@ -501,9 +529,9 @@ export class RegistrationComponent {
     this.user.assetDetailsList = this.getFilteredAssetDetailsList()
     console.log('<<<<<<user>>>>>', this.user);
 
-    // if (Array.isArray(this.user.assetName)) {
-    //   this.user.assetName = this.user.assetName.join(', ');
-    // }
+    if (Array.isArray(this.user.assetName)) {
+      this.user.assetName = this.user.assetName.join(', ');
+    }
 this.user.dob = this.formatDOB();
     this.RegisterAndUpdate.registerUser(this.user).subscribe(
       (response: any) => {

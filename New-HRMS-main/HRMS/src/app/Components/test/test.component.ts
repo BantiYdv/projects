@@ -120,10 +120,11 @@ throw new Error('Method not implemented.');
       "VIEW_ALL_LEAVE",
       "ADD_HOLIDAY",
       "CREATE_ROLE",
-      "DOWNLOAD_REPORTS",
+      // "DOWNLOAD_REPORTS",
       "DOWNLOAD_EMPLOYEE_REPORTS",
       "DOWNLOAD_WORKFROMHOME_REPORTS",
       "DOWNLOAD_LEAVES_REPORTS",
+      "DOWNLOAD_ATTENDANCE_REPORTS",
       "UPLOAD_LEAVE_POLICY"
   ];
 isDropdownOpen: any;
@@ -151,10 +152,11 @@ totalCheckOutEarly: any[] = [];
     "VIEW_ALL_LEAVE":"All Employees Leave",
     "ADD_HOLIDAY":"Add Holiday",
     "CREATE_ROLE":"Create Role",
-    "DOWNLOAD_REPORTS":"Download Reports",
+    // "DOWNLOAD_REPORTS":"Download Reports",
     "DOWNLOAD_EMPLOYEE_REPORTS":"Download Employee Reports",
     "DOWNLOAD_WORKFROMHOME_REPORTS":"Download WFH Report",
     "DOWNLOAD_LEAVES_REPORTS":"Download Leave Report",
+    "DOWNLOAD_ATTENDANCE_REPORTS":"Download Attendance Report",
     "UPLOAD_LEAVE_POLICY":"Upload Leave Policy"
   };
   transformPermission(permission: string): string {
@@ -510,11 +512,19 @@ this.viewNotCheckedInUsersCount();
           // Reverse the received array
           const reversedData = dataArray.reverse();
           // Assign the received data to the TeamLeaveData property
-          this.TeamLeaveData = reversedData
-          this.fillterTeamLeaveData = reversedData;
-          console.log("leave", response);
-        
-        },
+         if(this.searchTeamLeave !='' || this.selectedMonthTeamLeave !=''){
+    this.TeamLeaveData = reversedData
+    this.fillterTeamLeaveData = reversedData;
+    this.FilterTeamLeave();
+    console.log("leave", response);
+  
+  }else{
+    this.fillterTeamLeaveData = response.filter((item: { fromDate: string; }) =>
+    item.fromDate.includes(this.viewAllTodayTeamLeave()))
+    this.TeamLeaveData = response.filter((item: { fromDate: string; }) =>
+    item.fromDate.includes(this.viewAllTodayTeamLeave()))
+  }
+  },
         (error) => {
           Swal.fire('Error', error.error, 'error');
           // this.showTeamLeaveTable = false; // Hide the table if an error occurs
@@ -523,6 +533,18 @@ this.viewNotCheckedInUsersCount();
     }
   }
   //API for team Leave end
+  // if(this.searchAllatt !='' || this.selectedMonth !=''){
+  //   this.TeamLeaveData = reversedData
+  //   this.fillterTeamLeaveData = reversedData;
+  //   console.log("leave", response);
+  
+  // }else{
+  //   this.fillterTeamLeaveData = response.filter((item: { checkDate: string; }) =>
+  //   item.checkDate.includes(this.viewAllTodayAttendance()))
+  //   this.AllAttData = response.filter((item: { checkDate: string; }) =>
+  //   item.checkDate.includes(this.viewAllTodayAttendance()))
+  // }
+  // },
   // close team leave list start
   closeleavelist(): void {
     this.showTeamLeaveTable = false;
@@ -593,9 +615,19 @@ this.viewNotCheckedInUsersCount();
           // Reverse the received array
           const reversedData = dataArray.reverse();
           // Assign the received data to the TeamLeaveData property
-          this.TeamWfhData = reversedData;
-          this.fillterTeamWfhData = reversedData;
-          console.log("wfh", response);
+          if(this.searchTeamWfh !='' || this.selectedMonthTeamWFH !=''){
+            this.TeamWfhData = reversedData;
+            this.fillterTeamWfhData = reversedData;
+        this.FilterTeamWfh();
+            console.log("wfh", response);
+          
+          }else{
+            this.fillterTeamWfhData = response.filter((item: { fromdateWfh: string; }) =>
+            item.fromdateWfh.includes(this.viewAllTodayTeamWFH()))
+            this.TeamWfhData = response.filter((item: { fromdateWfh: string; }) =>
+            item.fromdateWfh.includes(this.viewAllTodayTeamWFH()))
+          }
+         
         },
         (error) => {
           Swal.fire('Error', error.error, 'error');
@@ -1436,9 +1468,19 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
             const dateB = new Date(b.toDateWfh).getTime();
             return dateB - dateA;
         });
-        this.AllwfhData = sortedData;
-        this.fillterAllWfhData = sortedData;
-        console.log("all wfh ", this.fillterAllWfhData);
+        if(this.searchAllWfh !='' || this.selectedMonthAllWFH !=''){
+          this.AllwfhData = sortedData;
+          this.fillterAllWfhData = sortedData;
+          this.FilterAllWfh();
+          console.log("all wfh ", this.fillterAllWfhData);
+        
+        }else{
+          this.fillterAllWfhData = response.filter((item: { fromdateWfh: string; }) =>
+          item.fromdateWfh.includes(this.viewAllTodayAllWFH()))
+          this.AllwfhData = response.filter((item: { fromdateWfh: string; }) =>
+          item.fromdateWfh.includes(this.viewAllTodayAllWFH()))
+        }
+       
         },
         error => {
           Swal.fire('Error', error.error, 'error');
@@ -1474,8 +1516,20 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
             const dateB = new Date(b.toDate).getTime();
             return dateB - dateA;
         });
-        this.leaveAllData = sortedData;
+        if(this.searchAllLeave !='' || this.selectedMonthAllLeave !=''){
+          this.leaveAllData = sortedData;
         this.fillterAllLeaveData = sortedData;
+          this.FilterAllLeave();
+          console.log("leave", response);
+        
+        }else{
+          this.fillterAllLeaveData = response.filter((item: { fromDate: string; }) =>
+          item.fromDate.includes(this.viewTodayAllLeave()))
+          this.leaveAllData = response.filter((item: { fromDate: string; }) =>
+          item.fromDate.includes(this.viewTodayAllLeave()))
+        }
+        // this.leaveAllData = sortedData;
+        // this.fillterAllLeaveData = sortedData;
         
         },
         error => {
@@ -1733,10 +1787,11 @@ permissionId: any;
       "VIEW_ALL_LEAVE",
       "ADD_HOLIDAY",
       "CREATE_ROLE",
-      "DOWNLOAD_REPORTS",
+      // "DOWNLOAD_REPORTS",
       "DOWNLOAD_EMPLOYEE_REPORTS",
       "DOWNLOAD_WORKFROMHOME_REPORTS",
       "DOWNLOAD_LEAVES_REPORTS",
+      "DOWNLOAD_ATTENDANCE_REPORTS",
       "UPLOAD_LEAVE_POLICY"
     ];
 
@@ -1796,10 +1851,11 @@ permissionId: any;
       (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('ADD_HOLIDAY') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('CREATE_ROLE') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('DOWNLOAD_REPORTS') && option === 'NO_ACCESS') ||
+      // (this.selectedPermissions.includes('DOWNLOAD_REPORTS') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('DOWNLOAD_EMPLOYEE_REPORTS') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('DOWNLOAD_WORKFROMHOME_REPORTS') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('DOWNLOAD_LEAVES_REPORTS') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('DOWNLOAD_ATTENDANCE_REPORTS') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('UPLOAD_LEAVE_POLICY') && option === 'NO_ACCESS') 
 
     ) {
@@ -2130,14 +2186,46 @@ console.log("serch designation", this.designation);
 
   //  search for team leave table start
    searchTeamLeave: string = '';
-
+   selectedMonthTeamLeave: string = '';
  
    FilterTeamLeave() {
+    if(this.searchTeamLeave){
     this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { firstname: string; lastname: string; }) =>
     item.firstname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) ||
     item.lastname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) 
-     );
+     )}else if(this.selectedMonthTeamLeave){
+      this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { fromDate: string;}) =>
+      item.fromDate.toLowerCase().includes(this.selectedMonthTeamLeave.toLowerCase()) 
+     )};
    }
+   onSearchTeamLeave() {
+    // Clear the date input field when searching in the name input field
+    if (this.searchTeamLeave.trim() !== '') {
+      this.selectedMonthTeamLeave = '';
+    }
+    this.teamleave();
+  
+    this.FilterTeamLeave();
+  }
+  onSearchMonthTeamLeave() {
+    // Clear the date input field when searching in the name input field
+    if (this.selectedMonthTeamLeave !== '') {
+      this.searchTeamLeave = '';
+     }
+     this.teamleave();
+  
+ console.log("selected month ", this.selectedMonthTeamLeave)
+   this.FilterTeamLeave();
+ }
+ viewAllTodayTeamLeave(){
+  const todayDate = new Date();
+  const year = todayDate.getFullYear();
+    const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = todayDate.getDate().toString().padStart(2, '0');
+  this.selectedMonthTeamLeave = `${year}-${month}-${day}`;
+  console.log("today all team leave", this.selectedMonthTeamLeave)
+ return this.selectedMonthTeamLeave;
+}
 
    //  search for team leave table end
 
@@ -2192,14 +2280,46 @@ console.log("serch designation", this.designation);
 
     // search for team wfh table start
     searchTeamWfh: string = '';
+    selectedMonthTeamWFH: string = '';
     
   FilterTeamWfh() {
+    if(this.searchTeamWfh){
     this.fillterTeamWfhData = this.TeamWfhData.filter((item: { firstname: string; lastname: string; }) =>
     item.firstname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) ||
     item.lastname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) 
-     );
+     )}else if(this.selectedMonthTeamWFH){
+      this.fillterTeamWfhData = this.TeamWfhData.filter((item: { fromdateWfh: string;}) =>
+      item.fromdateWfh.toLowerCase().includes(this.selectedMonthTeamWFH.toLowerCase()) 
+     )};
   }
-
+  onSearchTeamWFH() {
+    // Clear the date input field when searching in the name input field
+    if (this.searchTeamWfh.trim() !== '') {
+      this.selectedMonthTeamWFH = '';
+    }
+    this.teamwfh();
+  
+    this.FilterTeamWfh();
+  }
+  onSearchMonthTeamWFH() {
+    // Clear the date input field when searching in the name input field
+    if (this.selectedMonthTeamWFH !== '') {
+      this.searchTeamWfh = '';
+     }
+     this.teamwfh();
+  
+ console.log("selected month ", this.selectedMonthTeamWFH)
+   this.FilterTeamWfh();
+ }
+ viewAllTodayTeamWFH(){
+  const todayDate = new Date();
+  const year = todayDate.getFullYear();
+    const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = todayDate.getDate().toString().padStart(2, '0');
+  this.selectedMonthTeamWFH = `${year}-${month}-${day}`;
+  console.log("today all team wfh", this.selectedMonthTeamWFH)
+ return this.selectedMonthTeamWFH;
+}
    // search for team wfh table end
 
 
@@ -3714,6 +3834,45 @@ console.log("shift select", this.selectedItem);
 }
 // for view update shift time end
 
+// for delete shift time start
+
+deleteShift(id: any): void {
+ 
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to delete this Shift?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.testService.deleteShift(id).subscribe(
+          () => {
+            console.log('Shift deleted successfully.');
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Shift has been deleted.',
+              icon: 'success'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // location.reload();
+                this.loginService.showTable('viewShiftTime');
+          this.viewShiftTimeDetails();
+              }
+            });
+          },
+          (error) => {
+            Swal.fire('Error', error.error, 'error');
+          }
+        );
+      }
+    });
+ 
+}
+// for delete shift time end
+
 // notice period start
 noticePeriod: number = 1;
 
@@ -4958,14 +5117,46 @@ viewinternEmp() {
 
     // search for all  wfh table start
     searchAllWfh: string = '';
+    selectedMonthAllWFH: string = '';
     
  FilterAllWfh() {
+  if(this.searchAllWfh){
    this.fillterAllWfhData = this.AllwfhData.filter((item: { firstname: string; lastname: string; }) =>
    item.firstname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) ||
    item.lastname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) 
-    );
+    )}else if(this.selectedMonthAllWFH){
+      this.fillterAllWfhData = this.AllwfhData.filter((item: { fromdateWfh: string;}) =>
+      item.fromdateWfh.toLowerCase().includes(this.selectedMonthAllWFH.toLowerCase()) 
+     )};
  }
+ onSearchAllWFH() {
+  // Clear the date input field when searching in the name input field
+  if (this.searchAllWfh.trim() !== '') {
+    this.selectedMonthAllWFH = '';
+  }
+  this.toggleAllWfhTable();
 
+  this.FilterAllWfh();
+}
+onSearchMonthAllWFH() {
+  // Clear the date input field when searching in the name input field
+  if (this.selectedMonthAllWFH !== '') {
+    this.searchAllWfh = '';
+   }
+   this.toggleAllWfhTable();
+
+console.log("selected month ", this.selectedMonthAllWFH)
+ this.FilterAllWfh();
+}
+viewAllTodayAllWFH(){
+  const todayDate = new Date();
+  const year = todayDate.getFullYear();
+    const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = todayDate.getDate().toString().padStart(2, '0');
+  this.selectedMonthAllWFH = `${year}-${month}-${day}`;
+  console.log("today all  wfh", this.selectedMonthAllWFH)
+ return this.selectedMonthAllWFH;
+}
   // search for all wfh table end
 
    // pagination for view all  wfh start
@@ -5073,14 +5264,46 @@ sortByWhomeAllWfh(): void {
 
  // search for all leave table start
  searchAllLeave: string = '';
+ selectedMonthAllLeave: string = '';
     
  FilterAllLeave() {
+  if(this.searchAllLeave){
    this.fillterAllLeaveData = this.leaveAllData.filter((item: { firstname: string; lastname: string; }) =>
    item.firstname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) ||
    item.lastname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) 
-    );
+    )}else if(this.selectedMonthAllLeave){
+      this.fillterAllLeaveData = this.leaveAllData.filter((item: { fromDate: string;}) =>
+      item.fromDate.toLowerCase().includes(this.selectedMonthAllLeave.toLowerCase()) 
+     )};
  }
+ onSearchAllLeave() {
+  // Clear the date input field when searching in the name input field
+  if (this.searchAllLeave.trim() !== '') {
+    this.selectedMonthAllLeave = '';
+  }
+  this.toggleAllLeaveTable();
 
+  this.FilterAllLeave();
+}
+onSearchMonthAllLeave() {
+  // Clear the date input field when searching in the name input field
+  if (this.selectedMonthAllLeave !== '') {
+    this.searchAllLeave = '';
+   }
+   this.toggleAllLeaveTable();
+
+console.log("selected month ", this.selectedMonthAllLeave)
+ this.FilterAllLeave();
+}
+viewTodayAllLeave(){
+  const todayDate = new Date();
+  const year = todayDate.getFullYear();
+    const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = todayDate.getDate().toString().padStart(2, '0');
+  this.selectedMonthAllLeave = `${year}-${month}-${day}`;
+  console.log("today all  leave", this.selectedMonthAllLeave)
+ return this.selectedMonthAllLeave;
+}
   // search for all leave table end
 
    // pagination for view all  leave start
