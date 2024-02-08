@@ -228,6 +228,8 @@ export class UpdateComponent {
   }
   // date of birth select only 18 years old only end
 
+
+  
   // set probation end date start
   // endDateEnabled: boolean = false;
 
@@ -409,6 +411,8 @@ calculateTotalLeaves() {
         description: ''
       });
     });
+    this.selectedAssets = this.user.assetDetailsList.map((asset: { assetName: any; }) => asset.assetName);  // for show selected assets in update form
+
   }
 
   ngOnInit() {

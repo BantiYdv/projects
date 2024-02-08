@@ -215,7 +215,7 @@
 
   <!--  view modal for edit permission start -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    data-bs-backdrop="false">
+    data-bs-backdrop="false" style=" --bs-modal-zindex: 1000 !important;background-color: #58585867 !important;">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
 
@@ -794,9 +794,9 @@
         </div>
       </div>
     
-      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-
-        <thead >
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;white-space: nowrap;">
+    
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -832,7 +832,7 @@
             <td class="textNormal">{{ item.fromDate }}</td>
             <td class="textNormal">{{ item.toDate }}</td>
             <td class="textBold">{{ item.noOfDays }}</td>
-            <td class="textNormal">{{ item.leaveType }}</td>
+            <td class="textNormal">{{ item.leaveType }} <span *ngIf="item.reason">({{ item.reason }})</span></td>
             <td class="textNormal" [ngStyle]="{'color': item.approval === 'Approved' ? '#129B4B' : (item.approval === 'Rejected' ? '#DD1717' : 'rgb(255 154 0)')}">{{ item.approval }}</td>
             <td class="textNormal">{{ item.approvedBy }}</td>
             <td class="textBold">{{ item.teamlead }}</td>
@@ -921,8 +921,8 @@
         </div>
       </div>
       
-      <table class="table table-sm" style="width: 100% !important;">
-        <thead>
+      <table class="table table-sm" style="width: 100% !important; white-space: nowrap;">
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -1126,7 +1126,7 @@
           <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
             <div class="card m-1 Report">
               <div class="card-content">
-                <div class="card-body">
+                <div class="card-body" >
                   <div class="media d-flex justify-content-between align-item-center">
                     <div class="align-self-center">
                       <i class="cardIcon float-left"><img src="/assets/image/icon/leaveReport.png" alt=""
@@ -1376,7 +1376,7 @@
           </div>
         </div>
         <table class="table table-sm" style="width: 100% !important;">
-          <thead>
+          <thead style="background-color: #3330B1;">
             <tr>
               <th class="thName">S.No</th>
               <th class="thName">Name</th>
@@ -1713,7 +1713,7 @@
           </div>
         </div>
         <table class="table table-sm" style="width: 100% !important;">
-          <thead>
+          <thead style="background-color: #3330B1;">
             <tr>
               <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -1830,7 +1830,7 @@
           </div>
         </div>
         <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-          <thead>
+          <thead style="background-color: #3330B1;">
             <tr>
               <th class="thName">S.No</th>
               <th class="thName">Name</th>
@@ -1946,8 +1946,8 @@
             <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAllWFH" (change)="onSearchMonthAllWFH()">
           </div>
         </div>
-        <table class="table table-sm" style="width: 100% !important;">
-          <thead>
+        <table class="table table-sm" style="width: 100% !important; white-space: nowrap;">
+          <thead style="background-color: #3330B1;">
             <tr>
               <th class="thName">S.No</th>
               <th class="thName">Name</th>
@@ -2063,8 +2063,8 @@
             <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAllLeave" (change)="onSearchMonthAllLeave()">
           </div>
         </div>
-        <table class="table table-sm" style="width: 100% !important;">
-          <thead>
+        <table class="table table-sm" style="width: 100% !important; white-space: nowrap;">
+          <thead style="background-color: #3330B1;">
             <tr>
               <th class="thName">S.No</th>
               <th class="thName">Name</th>
@@ -2263,6 +2263,7 @@
                   <button id="select-file-btn" type="button" (click)="leavePolicy.click()">Add File</button>
                   <input #leavePolicy type="file" id="file-input" (change)="onFileSelectedLeavePolicy($event)"
                     style="display: none;" />
+
                 </div>
               </div>
             </div>
@@ -2704,7 +2705,7 @@
       </div>
 
       <table class="table table-sm" style="width: 100% !important;">
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Check In Time</th>
@@ -3087,10 +3088,10 @@
               </div>
             </div>
             <!-- <div *ngIf="getPaginatedData().length == 0"> noo!!</div> -->
-            <div class="not_data_img_div" *ngIf="getPaginatedData().length == 0">
-              <!-- <img src="../../../assets/image/not_data.svg" alt=""> -->
+            <!-- <div class="not_data_img_div" *ngIf="getPaginatedData().length == 0">
+              
               <p>Not Data !!</p>
-            </div>
+            </div> -->
             <div class="row" *ngIf="getPaginatedData().length != 0">
               <div class="recruit_table">
                 <div class="table_head">
@@ -3140,6 +3141,10 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="not_data_img_div" *ngIf="getPaginatedData().length == 0">
+              
+              <p>Not Data !!</p>
             </div>
           </div>
           <div class="col-md-12" *ngIf="getTotalPages() > 1">
@@ -4148,7 +4153,7 @@
         </div>
       </div>
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -4248,8 +4253,8 @@
           </div>
         </div>
       </div>
-      <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-        <thead>
+      <table class="table table-sm" style="width: 100% !important;vertical-align: middle; white-space: nowrap;">
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -4341,7 +4346,7 @@
   
     <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
 
-      <thead>
+      <thead style="background-color: #3330B1;">
         <tr>
           <th class="thName">S.No</th>
           <th class="thName">Name</th>
@@ -4445,7 +4450,7 @@
   
     <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
 
-      <thead>
+      <thead style="background-color: #3330B1;">
         <tr>
           <th class="thName">S.No</th>
           <th class="thName">Name</th>
@@ -4549,7 +4554,7 @@
   
     <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
 
-      <thead>
+      <thead style="background-color: #3330B1;">
         <tr>
           <th class="thName">S.No</th>
           <th class="thName">Name</th>
@@ -4654,7 +4659,7 @@
     
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
   
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -4746,7 +4751,7 @@
     
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
   
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -4838,7 +4843,7 @@
     
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
   
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -5144,7 +5149,7 @@
         </div>
       </div>
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -5239,7 +5244,7 @@
         </div>
       </div>
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -5334,7 +5339,7 @@
         </div>
       </div>
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>
@@ -5429,7 +5434,7 @@
         </div>
       </div>
       <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
-        <thead>
+        <thead style="background-color: #3330B1;">
           <tr>
             <th class="thName">S.No</th>
             <th class="thName">Name</th>

@@ -128,4 +128,22 @@ deleteDocs(id: any, documentType: any): Observable<any>  {
 // delete documents end
 
 
+// Remaining Leave Show To Admin start
+RemainingLeaveShowToAdmin(id: number): Observable<any>{
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  const url = `${this.api.RemainingLeaveShowToAdmin}/${id}`;
+  return this.http.get(url, { headers });
+}
+// Remaining Leave Show To Admin end
+
+// Leave taken Show To Admin start
+LeaveTakenShowToAdmin(id: number): Observable<any>{
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  const url = `${this.api.LeaveTakenShowToAdmin}/${id}`;
+  return this.http.get(url, { headers });
+}
+// Leave taken Show To Admin end
+
 }

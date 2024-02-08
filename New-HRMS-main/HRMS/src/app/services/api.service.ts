@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.30:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.30:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -128,6 +128,8 @@ export class ApiService {
   public notCheckedInUsersCount = `${this.apiUrl}gateway/hrms/not-checkedIn-users-count`;
   public viewNotCheckedInUsers = `${this.apiUrl}gateway/hrms/not-checkedIn-users`;
   public deleteShiftTime = `${this.apiUrl}gateway/hrms/deleteShiftTime`;
+  public RemainingLeaveShowToAdmin = `${this.apiUrl}gateway/hrms/totalRemainingLeaveOfUserBy`;
+  public LeaveTakenShowToAdmin = `${this.apiUrl}gateway/hrms/totalLeaveTakenByUserWith`;
 
   constructor(private http: HttpClient) { }
 

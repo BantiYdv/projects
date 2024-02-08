@@ -11,6 +11,7 @@ import { RegisterAndUpdateService } from 'src/app/services/register-and-update.s
 import { FormBuilder } from '@angular/forms';
 import * as saveAs from 'file-saver';
 import { filter } from 'rxjs';
+import { AdminService } from 'src/app/services/admin.service';
 
 // interface BasicInfo{
 //   phonenumber:any;
@@ -78,7 +79,7 @@ defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.p
   // when add profile then show basic info in form end
 
   
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer, public loginService: LoginService, public profileService: ProfileService, public dashboardService: DashboardService, public testService: TestService, private route: ActivatedRoute, public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, private _formBuilder: FormBuilder) {
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer, public loginService: LoginService, public profileService: ProfileService, public dashboardService: DashboardService, public testService: TestService, private route: ActivatedRoute, public RegisterAndUpdate: RegisterAndUpdateService, private router: Router, private _formBuilder: FormBuilder,public adminService: AdminService) {
 
 // Initialize the imageUrl with the default image URL as a SafeUrl object
 // this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.defaultImageUrl);
@@ -141,6 +142,10 @@ this.getUserPhoto();
 
 
 this.checkRouteAndLoadData();
+this.remainingLeaveUser();
+this.takenLeaveUser();
+this.RemainingLeaveShowToAdmin();
+this.LeaveTakenShowToAdmin();
   }
 
   // check routing for reload page start
@@ -935,5 +940,93 @@ deleteDocs(id: any, documentType: any): void {
   });
 }
 // delete documents end
+
+takenLeave: any;
+takenLeaveUser() {
+ 
+    this.adminService.leaveTakenUser().subscribe(
+      (response: any) => {
+       this.takenLeave = response
+        console.log("taken leave",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+      
+      }
+    );
+ 
+}
+remainingLeave: any;
+remainingLeaveUser() {
+ 
+    this.adminService.remainingLeaveUser().subscribe(
+      (response: any) => {
+       this.remainingLeave = response
+        console.log("remaining leave",response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');  
+      
+      }
+    );
+ 
+}
+
+
+// Remaining Leave Show To Admin start
+RemainingLeaveShow:any;
+RemainingLeaveShowToAdmin(){
+  this.route.queryParams.subscribe(params => {
+    const id = params['id'];
+console.log("User Basic Info id", id);
+    if (id) {
+      // Use the 'id' variable to fetch data
+      this.profileService.RemainingLeaveShowToAdmin(id).subscribe(
+        (response) => {
+          
+          // Handle the response and update the input fields accordingly
+          this.RemainingLeaveShow = response;
+          console.log("Remaining Leave Show To Admin", response);
+          console.log("Remaining Leave Show To Admin >>>>>>>>", this.RemainingLeaveShow);
+        },
+        (error) => {
+          Swal.fire('Error', error.error, 'error');  
+          
+        }
+      );
+    } else {
+      console.error('Employee ID not found in URL');
+    }
+  });
+}
+// Remaining Leave Show To Admin end
+
+// Leave taken Show To Admin start
+LeaveTakenShow:any;
+LeaveTakenShowToAdmin(){
+  this.route.queryParams.subscribe(params => {
+    const id = params['id'];
+console.log("User Basic Info id", id);
+    if (id) {
+      // Use the 'id' variable to fetch data
+      this.profileService.LeaveTakenShowToAdmin(id).subscribe(
+        (response) => {
+          
+          // Handle the response and update the input fields accordingly
+          this.LeaveTakenShow = response;
+          console.log("Leave taken Show To Admin", response);
+          console.log("Leave taken Show To Admin >>>>>>>>", this.LeaveTakenShow);
+        },
+        (error) => {
+          Swal.fire('Error', error.error, 'error');  
+          
+        }
+      );
+    } else {
+      console.error('Employee ID not found in URL');
+    }
+  });
+}
+// Leave taken Show To Admin end
 
 }

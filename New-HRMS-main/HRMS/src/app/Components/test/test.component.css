@@ -418,7 +418,7 @@ h3,
   }
   .table_head {
     line-height: 50px;
-    background-color: #fff;
+    background-color: #3330B1;
     /* color: #000; */
     display: flex;
     flex: 1;
@@ -450,7 +450,7 @@ h3,
     align-items: center;
     cursor: pointer;
 
-    color: #000;
+    color: #fff;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -969,7 +969,7 @@ background: #421CDD;
 /*  */
 
 .thName{
-  color: #000;
+  color: #fff;
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
@@ -1563,8 +1563,8 @@ background: #FFF;
 }
 .table_head {
   line-height: 50px;
-  background-color: #fff;
-  color: #000;
+  background-color: #3330B1;
+  color: #fff;
   display: flex;
   flex: 1;
   justify-content: space-around;

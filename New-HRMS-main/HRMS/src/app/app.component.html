@@ -660,9 +660,7 @@
             <li class="nav-item text-center" *ngFor="let option of filteredOptions">
               <a class="nav-link align-middle px-0" [routerLink]="[option.router]" (click)="loginService.showTable(option.function)">
                 <div class="image-container">
-                  <img class="sidebarPageLogo" src="{{option.src}}" alt="" 
-                     />
-
+                  <img class="sidebarPageLogo" src="{{option.src}}" alt="" />
                   </div>
                   <span class="image-namenew">{{option.imgName}}</span>
               </a>

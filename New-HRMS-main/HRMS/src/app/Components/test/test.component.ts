@@ -26,11 +26,11 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class TestComponent {
   // holiday: any;
-sortOrderSalary: any;
-  
-selectOption(_t52: string) {
-throw new Error('Method not implemented.');
-}
+  sortOrderSalary: any;
+
+  selectOption(_t52: string) {
+    throw new Error('Method not implemented.');
+  }
   showAdminLeaveTable!: any;
   leaveAdminData!: any;
   fillterLeaveData: any;
@@ -110,28 +110,28 @@ throw new Error('Method not implemented.');
   showconfirmPassword: boolean = false;
   availablePermissionOptions: string[] = [
     "NO_ACCESS",
-      "ALL_ACCESS",
-      "ALL_EMPLOYEES_DATA",
-      "NEW_REGISTRATION",
-      "ALL_EMPLOYEES_ATTENDANCE",
-      "LEAVE_SHOW_TEAMLEAD",
-      "WFH_SHOW_TEAMLEAD",
-      "ALL_WFH_EMPLOYEES",
-      "VIEW_ALL_LEAVE",
-      "ADD_HOLIDAY",
-      "CREATE_ROLE",
-      // "DOWNLOAD_REPORTS",
-      "DOWNLOAD_EMPLOYEE_REPORTS",
-      "DOWNLOAD_WORKFROMHOME_REPORTS",
-      "DOWNLOAD_LEAVES_REPORTS",
-      "DOWNLOAD_ATTENDANCE_REPORTS",
-      "UPLOAD_LEAVE_POLICY"
+    "ALL_ACCESS",
+    "ALL_EMPLOYEES_DATA",
+    "NEW_REGISTRATION",
+    "ALL_EMPLOYEES_ATTENDANCE",
+    "LEAVE_SHOW_TEAMLEAD",
+    "WFH_SHOW_TEAMLEAD",
+    "ALL_WFH_EMPLOYEES",
+    "VIEW_ALL_LEAVE",
+    "ADD_HOLIDAY",
+    "CREATE_ROLE",
+    // "DOWNLOAD_REPORTS",
+    "DOWNLOAD_EMPLOYEE_REPORTS",
+    "DOWNLOAD_WORKFROMHOME_REPORTS",
+    "DOWNLOAD_LEAVES_REPORTS",
+    "DOWNLOAD_ATTENDANCE_REPORTS",
+    "UPLOAD_LEAVE_POLICY"
   ];
-isDropdownOpen: any;
-clickedDate: any;
-presentLast7Days: any[] = [];
-totalCheckedInLate: any[] = [];
-totalCheckOutEarly: any[] = [];
+  isDropdownOpen: any;
+  clickedDate: any;
+  presentLast7Days: any[] = [];
+  totalCheckedInLate: any[] = [];
+  totalCheckOutEarly: any[] = [];
   fillterLast7DaysPresentData: any;
   fillterLast7DaysLateArrivalData: any;
   fillterLast7DaysEarlyDepartureData: any;
@@ -141,35 +141,35 @@ totalCheckOutEarly: any[] = [];
   }
 
   permissionMapping: { [key: string]: string } = {
-    "NO_ACCESS":"No Access",
-    "ALL_ACCESS":"All Access",
-    "ALL_EMPLOYEES_DATA":"All Employees Data",
-    "NEW_REGISTRATION":"New Registration",
-    "ALL_EMPLOYEES_ATTENDANCE":"All Employees Attendance",
-    "LEAVE_SHOW_TEAMLEAD":"Team Leave",
-    "WFH_SHOW_TEAMLEAD":"Team WFH",
-    "ALL_WFH_EMPLOYEES":"All Employees WFH",
-    "VIEW_ALL_LEAVE":"All Employees Leave",
-    "ADD_HOLIDAY":"Add Holiday",
-    "CREATE_ROLE":"Create Role",
+    "NO_ACCESS": "No Access",
+    "ALL_ACCESS": "All Access",
+    "ALL_EMPLOYEES_DATA": "All Employees Data",
+    "NEW_REGISTRATION": "New Registration",
+    "ALL_EMPLOYEES_ATTENDANCE": "All Employees Attendance",
+    "LEAVE_SHOW_TEAMLEAD": "Team Leave",
+    "WFH_SHOW_TEAMLEAD": "Team WFH",
+    "ALL_WFH_EMPLOYEES": "All Employees WFH",
+    "VIEW_ALL_LEAVE": "All Employees Leave",
+    "ADD_HOLIDAY": "Add Holiday",
+    "CREATE_ROLE": "Create Role",
     // "DOWNLOAD_REPORTS":"Download Reports",
-    "DOWNLOAD_EMPLOYEE_REPORTS":"Download Employee Reports",
-    "DOWNLOAD_WORKFROMHOME_REPORTS":"Download WFH Report",
-    "DOWNLOAD_LEAVES_REPORTS":"Download Leave Report",
-    "DOWNLOAD_ATTENDANCE_REPORTS":"Download Attendance Report",
-    "UPLOAD_LEAVE_POLICY":"Upload Leave Policy"
+    "DOWNLOAD_EMPLOYEE_REPORTS": "Download Employee Reports",
+    "DOWNLOAD_WORKFROMHOME_REPORTS": "Download WFH Report",
+    "DOWNLOAD_LEAVES_REPORTS": "Download Leave Report",
+    "DOWNLOAD_ATTENDANCE_REPORTS": "Download Attendance Report",
+    "UPLOAD_LEAVE_POLICY": "Upload Leave Policy"
   };
   transformPermission(permission: string): string {
     return this.permissionMapping[permission] || permission;
   }
-// remove underscore and change name from permission name end
+  // remove underscore and change name from permission name end
 
 
-  
+
   showAllDocsTable: any;
-  
+
   imageUrl: SafeUrl | undefined;
-  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'; 
+  defaultImageURL: string = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
 
   shiftform: any;
   // search start
@@ -213,18 +213,18 @@ totalCheckOutEarly: any[] = [];
   }
   // change password validation end
 
-   // employee list search start
+  // employee list search start
   searchTerm: string = '';
   searchEmail: string = '';
   searchdesignation: string = '';
-  
-  
+
+
   filteredEmployeeData: any[] = [];
 
   applyFilter() {
     this.filteredEmployeeData = this.EmployeeData.filter((item: { firstname: string; lastname: string; }) =>
       item.firstname.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.lastname.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+      item.lastname.toLowerCase().includes(this.searchTerm.toLowerCase())
       // || item.designation.toLowerCase().includes(this.searchTerm.toLowerCase()) 
       // || item.emailid.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
@@ -232,21 +232,21 @@ totalCheckOutEarly: any[] = [];
 
   applyFilterEmail() {
     this.filteredEmployeeData = this.EmployeeData.filter((item: { emailid: string; }) =>
-     
+
       item.emailid.toLowerCase().includes(this.searchEmail.toLowerCase())
     );
   }
 
   applyFilterDesignation() {
     this.filteredEmployeeData = this.EmployeeData.filter((item: { designation: string; }) =>
-    item.designation.toLowerCase().includes(this.searchdesignation.toLowerCase()) 
+      item.designation.toLowerCase().includes(this.searchdesignation.toLowerCase())
     );
     console.log("filter designation", this.filteredEmployeeData)
   }
 
-  
+
   // employee list search start
- 
+
 
   // role and permission  list search start
   searchRole: string = '';
@@ -254,11 +254,11 @@ totalCheckOutEarly: any[] = [];
 
   FilterRole() {
     this.fillterAllRoleData = this.AllRoleData.filter((item: { name: string }) =>
-      item.name.toLowerCase().includes(this.searchRole.toLowerCase()) 
+      item.name.toLowerCase().includes(this.searchRole.toLowerCase())
     );
   }
 
-   // role and permission list search end
+  // role and permission list search end
 
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute, private countryCode: CountryCodeService, public adminService: AdminService) {
     //for change password start
@@ -269,8 +269,8 @@ totalCheckOutEarly: any[] = [];
       confirmPassword: ['', Validators.required]
     });
     // for change password end
-  
-    
+
+
 
 
     this.leaveForm = this.formBuilder.group({
@@ -292,7 +292,7 @@ totalCheckOutEarly: any[] = [];
 
     });
 
-// shift time start
+    // shift time start
     this.shiftform = this.formBuilder.group({
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
@@ -300,18 +300,18 @@ totalCheckOutEarly: any[] = [];
     });
     this.formArray = this.formBuilder.array([]);
     // shift time end
-    
-    
+
+
   }
- 
-  selectedPermission: any; 
+
+  selectedPermission: any;
   showDropdown = false;
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
-  
+
   ngOnInit() {
     this.viewRole();
     this.openEmployee();
@@ -342,7 +342,7 @@ totalCheckOutEarly: any[] = [];
     // this.viewAllAttendance();
     // this.onSearchMonth();
     this.getHoliday();
-    
+
     // data show change routing without reload start
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -353,19 +353,23 @@ totalCheckOutEarly: any[] = [];
     // data show change routing without reload end
 
 
-this.checkRouteAndLoadData();
-this.viewPresentUsersLast7Days();
-this.viewLast7DaysLateArrival();
-this.viewLast7DaysEarlyDeparture();
-this.viewNotCheckedInUsersCount();
+    this.checkRouteAndLoadData();
+    this.viewPresentUsersLast7Days();
+    this.viewLast7DaysLateArrival();
+    this.viewLast7DaysEarlyDeparture();
+    this.viewNotCheckedInUsersCount();
+
+    
   }
 
 
- 
+  
+  
+
   firstname: string = ''; // Replace with user's first name
   lastname: string = ''; // Replace with user's last name
 
-  
+
   generateDefaultImageUser(): string {
     // console.log("f name", this.EmployeeData.firstname);
     // console.log("l name", this.EmployeeData.lastname)
@@ -386,11 +390,11 @@ this.viewNotCheckedInUsersCount();
       return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
     }
   }
-    // // after reload to show
-    // isHashEqualTo(hash: string): boolean {
-    //   return window.location.hash === `#${hash}`;
-    // }
-    // API for view employee list start
+  // // after reload to show
+  // isHashEqualTo(hash: string): boolean {
+  //   return window.location.hash === `#${hash}`;
+  // }
+  // API for view employee list start
 
   // API for view employee list start
 
@@ -399,9 +403,9 @@ this.viewNotCheckedInUsersCount();
     // this.isModalOpen = true;
 
     // if (this.showAllAdminTable && '#/employee' === window.location.hash) {
-      if ('/employee' === this.router.url || '/reports' === this.router.url) {
+    if ('/employee' === this.router.url || '/reports' === this.router.url) {
 
-   
+
       // Call the service method to fetch the list of employees
       this.testService.getEmployeeList().subscribe(
         (response: any) => {
@@ -412,7 +416,7 @@ this.viewNotCheckedInUsersCount();
 
           // Set the reversed array as the data source
           this.EmployeeData = reversedData;
-          this.filteredEmployeeData = reversedData; 
+          this.filteredEmployeeData = reversedData;
           console.log("employe>>>", response);
         },
         error => {
@@ -442,9 +446,9 @@ this.viewNotCheckedInUsersCount();
   // close team wfh list end
 
   // check routing for reload page start
-  checkRouteAndLoadData(): void { 
+  checkRouteAndLoadData(): void {
     const currentRoute = this.router.url;
-    if (currentRoute.includes(currentRoute.substring(1))) {   
+    if (currentRoute.includes(currentRoute.substring(1))) {
       this.loginService.showTable(currentRoute.substring(1));
     }
   }
@@ -502,29 +506,62 @@ this.viewNotCheckedInUsersCount();
 
   //API for team Leave start
 
+  // teamleave(): void {
+  //   // this.showTeamLeaveTable = !this.showTeamLeaveTable;
+
+  //   if ('/teamleave' === this.router.url) {
+  //     this.testService.getTeamLeaveData().subscribe(
+  //       (response: any) => {
+  //         const dataArray = Object.values(response);
+  //         // Reverse the received array
+  //         const reversedData = dataArray.reverse();
+  //         // Assign the received data to the TeamLeaveData property
+  //         if (this.searchTeamLeave != '' || this.selectedMonthTeamLeave != '') {
+  //           this.TeamLeaveData = reversedData
+  //           this.fillterTeamLeaveData = reversedData;
+  //           this.FilterTeamLeave();
+  //           console.log("leave", response);
+
+  //         } else {
+  //           this.fillterTeamLeaveData = response.filter((item: { fromDate: string; }) =>
+  //             item.fromDate.includes(this.viewAllTodayTeamLeave()))
+  //           this.TeamLeaveData = response.filter((item: { fromDate: string; }) =>
+  //             item.fromDate.includes(this.viewAllTodayTeamLeave()))
+  //         }
+  //       },
+  //       (error) => {
+  //         Swal.fire('Error', error.error, 'error');
+  //         // this.showTeamLeaveTable = false; // Hide the table if an error occurs
+  //       }
+  //     );
+  //   }
+  // }
+
   teamleave(): void {
     // this.showTeamLeaveTable = !this.showTeamLeaveTable;
 
     if ('/teamleave' === this.router.url) {
       this.testService.getTeamLeaveData().subscribe(
-        (response: any) => {
+        (response: any[]) => {
           const dataArray = Object.values(response);
           // Reverse the received array
           const reversedData = dataArray.reverse();
-          // Assign the received data to the TeamLeaveData property
-         if(this.searchTeamLeave !='' || this.selectedMonthTeamLeave !=''){
-    this.TeamLeaveData = reversedData
-    this.fillterTeamLeaveData = reversedData;
-    this.FilterTeamLeave();
-    console.log("leave", response);
-  
-  }else{
-    this.fillterTeamLeaveData = response.filter((item: { fromDate: string; }) =>
-    item.fromDate.includes(this.viewAllTodayTeamLeave()))
-    this.TeamLeaveData = response.filter((item: { fromDate: string; }) =>
-    item.fromDate.includes(this.viewAllTodayTeamLeave()))
-  }
-  },
+          // Sort the reversedData array based on the fromDate property in descending order
+          const sortedData = reversedData.sort((a, b) => new Date(b.fromDate).getTime() - new Date(a.fromDate).getTime());
+          // Assign the sorted data to the TeamLeaveData property
+          if (this.searchTeamLeave != '' || this.selectedMonthTeamLeave != '') {
+            this.TeamLeaveData = sortedData;
+            this.fillterTeamLeaveData = sortedData;
+            this.FilterTeamLeave();
+            console.log("leave", response);
+          } else {
+            // Filter and sort data based on the current date
+            const currentDateData = response.filter((item: { fromDate: string; }) =>
+              item.fromDate.includes(this.viewAllTodayTeamLeave())).sort((a, b) => new Date(b.fromDate).getTime() - new Date(a.fromDate).getTime());
+            this.fillterTeamLeaveData = currentDateData;
+            this.TeamLeaveData = currentDateData;
+          }
+        },
         (error) => {
           Swal.fire('Error', error.error, 'error');
           // this.showTeamLeaveTable = false; // Hide the table if an error occurs
@@ -532,19 +569,9 @@ this.viewNotCheckedInUsersCount();
       );
     }
   }
+
   //API for team Leave end
-  // if(this.searchAllatt !='' || this.selectedMonth !=''){
-  //   this.TeamLeaveData = reversedData
-  //   this.fillterTeamLeaveData = reversedData;
-  //   console.log("leave", response);
-  
-  // }else{
-  //   this.fillterTeamLeaveData = response.filter((item: { checkDate: string; }) =>
-  //   item.checkDate.includes(this.viewAllTodayAttendance()))
-  //   this.AllAttData = response.filter((item: { checkDate: string; }) =>
-  //   item.checkDate.includes(this.viewAllTodayAttendance()))
-  // }
-  // },
+ 
   // close team leave list start
   closeleavelist(): void {
     this.showTeamLeaveTable = false;
@@ -608,26 +635,26 @@ this.viewNotCheckedInUsersCount();
     // this.showTeamWfhTable = !this.showTeamWfhTable;
 
     // if (this.showTeamWfhTable && '#/teamwfh' === window.location.hash) {
-      if ('/teamwfh' === this.router.url) {
+    if ('/teamwfh' === this.router.url) {
       this.testService.getTeamWfhData().subscribe(
         (response: any) => {
           const dataArray = Object.values(response);
           // Reverse the received array
           const reversedData = dataArray.reverse();
           // Assign the received data to the TeamLeaveData property
-          if(this.searchTeamWfh !='' || this.selectedMonthTeamWFH !=''){
+          if (this.searchTeamWfh != '' || this.selectedMonthTeamWFH != '') {
             this.TeamWfhData = reversedData;
             this.fillterTeamWfhData = reversedData;
-        this.FilterTeamWfh();
+            this.FilterTeamWfh();
             console.log("wfh", response);
-          
-          }else{
+
+          } else {
             this.fillterTeamWfhData = response.filter((item: { fromdateWfh: string; }) =>
-            item.fromdateWfh.includes(this.viewAllTodayTeamWFH()))
+              item.fromdateWfh.includes(this.viewAllTodayTeamWFH()))
             this.TeamWfhData = response.filter((item: { fromdateWfh: string; }) =>
-            item.fromdateWfh.includes(this.viewAllTodayTeamWFH()))
+              item.fromdateWfh.includes(this.viewAllTodayTeamWFH()))
           }
-         
+
         },
         (error) => {
           Swal.fire('Error', error.error, 'error');
@@ -706,10 +733,10 @@ this.viewNotCheckedInUsersCount();
     console.log('Form Value Before Create Role:', this.form.value);
     // const permissionNames = this.form.value.permissionNames;
     const name = this.form.value.role;
-console.log("role name", name);
+    console.log("role name", name);
     const permissionNames = this.form.value.url; // Updated property name to 'permissionNames'
 
-console.log("perission", permissionNames);
+    console.log("perission", permissionNames);
     this.testService.createRole(name, permissionNames).subscribe(
       (response) => {
         // Handle the successful response here
@@ -757,12 +784,12 @@ console.log("perission", permissionNames);
       (response: any) => {
 
         const dataArray = Object.values(response);
-          // Reverse the received array
-          const reversedData = dataArray.reverse();
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
         this.AllRoleData = reversedData; // Assign the fetched role data to AllRoleData
         console.log("view role", response);
         console.log("role all", this.AllRoleData);
-        this.fillterAllRoleData = reversedData; 
+        this.fillterAllRoleData = reversedData;
       },
       (error: any) => {
         console.error('Error fetching role data:', error);
@@ -804,39 +831,39 @@ console.log("perission", permissionNames);
   //   });
   // }
   AddPermission(id: any) {
-   
-  
-      if (id) {
-        this.testService.AddPermissionName(id, this.selectedPermissions).subscribe(
-          (response) => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Added',
-              text: 'Permissions added successfully',
-            }).then(() => {
-              this.loginService.showTable('viewRole');
-              this.router.navigate(['/viewRole']);
-              this.viewRole();
-              // Clear query parameters after successful update
-              this.router.navigate([], {
-                relativeTo: this.route,
-                queryParams: {},
-                queryParamsHandling: 'merge',
-              });
+
+
+    if (id) {
+      this.testService.AddPermissionName(id, this.selectedPermissions).subscribe(
+        (response) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Added',
+            text: 'Permissions added successfully',
+          }).then(() => {
+            this.loginService.showTable('viewRole');
+            this.router.navigate(['/viewRole']);
+            this.viewRole();
+            // Clear query parameters after successful update
+            this.router.navigate([], {
+              relativeTo: this.route,
+              queryParams: {},
+              queryParamsHandling: 'merge',
             });
-            console.log("permission added", response);
-          },
-          (error) => {
-            console.error('Error fetching role data:', error);
-          }
-        );
-      } else {
-        // Handle the case when 'id' is not available
-        console.log("No 'id' available");
-      }
-  
+          });
+          console.log("permission added", response);
+        },
+        (error) => {
+          console.error('Error fetching role data:', error);
+        }
+      );
+    } else {
+      // Handle the case when 'id' is not available
+      console.log("No 'id' available");
+    }
+
   }
-  
+
   //  API for add permission end
 
   // API for delete permission start
@@ -990,7 +1017,7 @@ console.log("perission", permissionNames);
   searchEmployee: string = '';
   applyFilterEmployee() {
     this.filteredEmployeeData = this.EmployeeData.filter((item: { username: string; }) =>
-    item.username.toLowerCase().includes(this.searchEmployee.toLowerCase()) 
+      item.username.toLowerCase().includes(this.searchEmployee.toLowerCase())
     );
     console.log("filter Employee name", this.filteredEmployeeData)
   }
@@ -1028,10 +1055,10 @@ console.log("perission", permissionNames);
 
 
   getAllEmployeesLeave() {
-    
+
 
     this.testService.getEmployeeLeaveExcel(this.searchEmployee).subscribe((response: HttpResponse<Blob>) => {
-     
+
       if (response.body) {
         const contentDisposition = response.headers.get('content-disposition');
 
@@ -1045,12 +1072,12 @@ console.log("perission", permissionNames);
         }
 
 
-        saveAs(response.body, fileName); 
+        saveAs(response.body, fileName);
       } else {
 
       }
     }, (error) => {
-      
+
 
     });
 
@@ -1063,7 +1090,7 @@ console.log("perission", permissionNames);
 
 
   getAllEmployeesAtt() {
-   
+
 
     this.testService.getEmployeeAttExcel(this.searchEmployee).subscribe((response: HttpResponse<Blob>) => {
       // Check if the response body is not null
@@ -1090,7 +1117,7 @@ console.log("perission", permissionNames);
 
 
   getAllEmployeesWfh() {
-    
+
 
     this.testService.getEmployeeWfhExcel(this.searchEmployee).subscribe((response: HttpResponse<Blob>) => {
       // Check if the response body is not null
@@ -1229,7 +1256,7 @@ console.log("perission", permissionNames);
   // API for Apply Leave start
 
   onSubmit() {
-console.log("leave form", this.leaveForm);
+    console.log("leave form", this.leaveForm);
     // Call the service method to apply leave with form data and token
     this.testService.applyLeave(this.leaveForm.value).subscribe(
       (response) => {
@@ -1241,7 +1268,7 @@ console.log("leave form", this.leaveForm);
         this.showAdminLeaveTable = false;
         this.toggleAdminLeaveTable();
         this.loginService.showTable('viewLeave')
-console.log("leave apply", response);
+        console.log("leave apply", response);
 
 
       },
@@ -1274,7 +1301,7 @@ console.log("leave apply", response);
           this.fillterLeaveData = reversedData;
         },
         error => {
-          Swal.fire('Error', error.error, 'error');  
+          Swal.fire('Error', error.error, 'error');
           // Hide the table if an error occurs
           this.showAdminLeaveTable = false;
         }
@@ -1288,7 +1315,7 @@ console.log("leave apply", response);
   viewattendance() {
     // this.showAttTable = !this.showAttTable;
 
-    if ('/viewAtt' === this.router.url){
+    if ('/viewAtt' === this.router.url) {
 
       // Call the service method to fetch attendance data
       this.testService.getAttendance().subscribe(
@@ -1297,17 +1324,17 @@ console.log("leave apply", response);
           const dataArray = Object.values(response);
           // Reverse the received array
           const reversedData = dataArray.reverse();
-          if(this.searchatt !='' || this.selectedMonthAtt !=''){
+          if (this.searchatt != '' || this.selectedMonthAtt != '') {
 
             this.AttData = reversedData;
             this.fillterattData = reversedData;
             this.Filteratt();
-          }else{
+          } else {
             this.fillterattData = response.filter((item: { checkDate: string; }) =>
-            item.checkDate.includes(this.viewTodayAttendance()))
+              item.checkDate.includes(this.viewTodayAttendance()))
             this.AttData = response.filter((item: { checkDate: string; }) =>
-            item.checkDate.includes(this.viewTodayAttendance()))
-            
+              item.checkDate.includes(this.viewTodayAttendance()))
+
           }
           // this.AttData = reversedData;
           console.log("User attendance", response);
@@ -1378,51 +1405,51 @@ console.log("leave apply", response);
   // API for view WFH end
 
 
-// API for view All Attendance start
+  // API for view All Attendance start
   viewAllattendance() {
     // this.showAllAttTable = !this.showAllAttTable;
 
     // if (this.showAllAttTable && '#/viewAllAtt' === window.location.hash) {
-      if ('/viewAllAtt' === this.router.url) {
+    if ('/viewAllAtt' === this.router.url) {
 
       this.testService.getAllAttendance().subscribe(
         (response: any) => {
-        
-          const dataArray = Object.values(response);
-        
-          const reversedData = dataArray.reverse();
-if(this.searchAllatt !='' || this.selectedMonth !=''){
 
-  this.AllAttData = reversedData;
-  this.fillterAllattData = reversedData;
-  this.FilterAllatt();
-}else{
-  this.fillterAllattData = response.filter((item: { checkDate: string; }) =>
-  item.checkDate.includes(this.viewAllTodayAttendance()))
-  this.AllAttData = response.filter((item: { checkDate: string; }) =>
-  item.checkDate.includes(this.viewAllTodayAttendance()))
-  
-}
-          console.log("atttttt",response);
+          const dataArray = Object.values(response);
+
+          const reversedData = dataArray.reverse();
+          if (this.searchAllatt != '' || this.selectedMonth != '') {
+
+            this.AllAttData = reversedData;
+            this.fillterAllattData = reversedData;
+            this.FilterAllatt();
+          } else {
+            this.fillterAllattData = response.filter((item: { checkDate: string; }) =>
+              item.checkDate.includes(this.viewAllTodayAttendance()))
+            this.AllAttData = response.filter((item: { checkDate: string; }) =>
+              item.checkDate.includes(this.viewAllTodayAttendance()))
+
+          }
+          console.log("atttttt", response);
         },
         error => {
-          Swal.fire('Error', error.error, 'error');  
-          
+          Swal.fire('Error', error.error, 'error');
+
           this.showAllAttTable = false;
         }
       );
     }
   }
-  
+
   // API for view All Attendance end
 
 
   // API for update employee attendance start
-  updateAtt(id: number, status: string){
+  updateAtt(id: number, status: string) {
     this.testService.updateAtt(id, status).subscribe(
       (response: any) => {
-        
-        console.log("updated att",response);
+
+        console.log("updated att", response);
         Swal.fire({
           title: 'Updated!',
           text: 'Employee Attendance has been updated.',
@@ -1436,13 +1463,13 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
         });
       },
       error => {
-        Swal.fire('Error', error.error, 'error');  
-        
+        Swal.fire('Error', error.error, 'error');
+
       }
     );
   }
 
-  
+
   // API for update employee attendance end
 
   // API for view All WFH start
@@ -1451,7 +1478,7 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
     // this.showAllWfhTable = !this.showAllWfhTable;
 
     // if (this.showAllWfhTable && '#/viewAllWfh' === window.location.hash) {
-      if ('/viewAllWfh' === this.router.url) {
+    if ('/viewAllWfh' === this.router.url) {
       // Call the service method to fetch all WFH data for administrators
       this.testService.getAllWfhData().subscribe(
         (response: any) => {
@@ -1467,20 +1494,20 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
             const dateA = new Date(a.fromdateWfh).getTime();
             const dateB = new Date(b.toDateWfh).getTime();
             return dateB - dateA;
-        });
-        if(this.searchAllWfh !='' || this.selectedMonthAllWFH !=''){
-          this.AllwfhData = sortedData;
-          this.fillterAllWfhData = sortedData;
-          this.FilterAllWfh();
-          console.log("all wfh ", this.fillterAllWfhData);
-        
-        }else{
-          this.fillterAllWfhData = response.filter((item: { fromdateWfh: string; }) =>
-          item.fromdateWfh.includes(this.viewAllTodayAllWFH()))
-          this.AllwfhData = response.filter((item: { fromdateWfh: string; }) =>
-          item.fromdateWfh.includes(this.viewAllTodayAllWFH()))
-        }
-       
+          });
+          if (this.searchAllWfh != '' || this.selectedMonthAllWFH != '') {
+            this.AllwfhData = sortedData;
+            this.fillterAllWfhData = sortedData;
+            this.FilterAllWfh();
+            console.log("all wfh ", this.fillterAllWfhData);
+
+          } else {
+            this.fillterAllWfhData = response.filter((item: { fromdateWfh: string; }) =>
+              item.fromdateWfh.includes(this.viewAllTodayAllWFH()))
+            this.AllwfhData = response.filter((item: { fromdateWfh: string; }) =>
+              item.fromdateWfh.includes(this.viewAllTodayAllWFH()))
+          }
+
         },
         error => {
           Swal.fire('Error', error.error, 'error');
@@ -1499,7 +1526,7 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
 
     // if (this.showAllLeaveTable && '#/viewAllLeave' === window.location.hash) {
 
-      if ('/viewAllLeave' === this.router.url) {
+    if ('/viewAllLeave' === this.router.url) {
       // Call the service method to fetch all leave data
       this.testService.getAllLeave().subscribe(
         (response: any) => {
@@ -1515,25 +1542,25 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
             const dateA = new Date(a.fromDate).getTime();
             const dateB = new Date(b.toDate).getTime();
             return dateB - dateA;
-        });
-        if(this.searchAllLeave !='' || this.selectedMonthAllLeave !=''){
-          this.leaveAllData = sortedData;
-        this.fillterAllLeaveData = sortedData;
-          this.FilterAllLeave();
-          console.log("leave", response);
-        
-        }else{
-          this.fillterAllLeaveData = response.filter((item: { fromDate: string; }) =>
-          item.fromDate.includes(this.viewTodayAllLeave()))
-          this.leaveAllData = response.filter((item: { fromDate: string; }) =>
-          item.fromDate.includes(this.viewTodayAllLeave()))
-        }
-        // this.leaveAllData = sortedData;
-        // this.fillterAllLeaveData = sortedData;
-        
+          });
+          if (this.searchAllLeave != '' || this.selectedMonthAllLeave != '') {
+            this.leaveAllData = sortedData;
+            this.fillterAllLeaveData = sortedData;
+            this.FilterAllLeave();
+            console.log("leave", response);
+
+          } else {
+            this.fillterAllLeaveData = response.filter((item: { fromDate: string; }) =>
+              item.fromDate.includes(this.viewTodayAllLeave()))
+            this.leaveAllData = response.filter((item: { fromDate: string; }) =>
+              item.fromDate.includes(this.viewTodayAllLeave()))
+          }
+          // this.leaveAllData = sortedData;
+          // this.fillterAllLeaveData = sortedData;
+
         },
         error => {
-          Swal.fire('Error', error.error, 'error');  
+          Swal.fire('Error', error.error, 'error');
           // Hide the table if an error occurs
           this.showAllLeaveTable = false;
         }
@@ -1724,10 +1751,10 @@ if(this.searchAllatt !='' || this.selectedMonth !=''){
   //   this.loginService.showTable('addPermission');
   // }
 
-  
 
 
-permissionId: any;
+
+  permissionId: any;
 
   // openAddPermission(item: any) {
   //   this.permissionId = item.id
@@ -1765,15 +1792,15 @@ permissionId: any;
     this.permissionId = item.id
     this.selectedRole = item;
     // Check if "NO_ACCESS" is in the permissions list
-  const hasNoAccess = item.permissions.some((permission: { permissionName: any; }) => permission.permissionName === 'NO_ACCESS');
+    const hasNoAccess = item.permissions.some((permission: { permissionName: any; }) => permission.permissionName === 'NO_ACCESS');
 
-  if (hasNoAccess) {
-    // If "NO_ACCESS" is present, remove all other permissions
-    this.selectedPermissions = ['NO_ACCESS'];
-  } else {
-    // If "NO_ACCESS" is not present, keep the existing permissions
-    this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
-  }
+    if (hasNoAccess) {
+      // If "NO_ACCESS" is present, remove all other permissions
+      this.selectedPermissions = ['NO_ACCESS'];
+    } else {
+      // If "NO_ACCESS" is not present, keep the existing permissions
+      this.selectedPermissions = item.permissions.map((permission: { permissionName: any; }) => permission.permissionName);
+    }
     // Define an array of available permission options, excluding the selectedPermissions
     const availablePermissionOptions = [
       "NO_ACCESS",
@@ -1815,9 +1842,9 @@ permissionId: any;
       this.form.get('url').patchValue([...this.form.get('url').value.filter((opt: any) => opt !== permission)]);
     }
   }
-  
-   // for click on cross to remove permission start
- 
+
+  // for click on cross to remove permission start
+
   // onPermissionSelectionChange() {
   //   if (this.selectedPermissions.includes("ALL_ACCESS")) {
   //     // If "ALL_ACCESS" is selected, set selectedPermissions to all available options except "NO_ACCESS"
@@ -1834,7 +1861,7 @@ permissionId: any;
       this.selectedPermissions = this.availablePermissionOptions.filter(option => option !== "NO_ACCESS");
     }
   }
-  
+
 
   isOptionDisabled(option: string): boolean {
 
@@ -1856,7 +1883,7 @@ permissionId: any;
       (this.selectedPermissions.includes('DOWNLOAD_WORKFROMHOME_REPORTS') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('DOWNLOAD_LEAVES_REPORTS') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('DOWNLOAD_ATTENDANCE_REPORTS') && option === 'NO_ACCESS') ||
-      (this.selectedPermissions.includes('UPLOAD_LEAVE_POLICY') && option === 'NO_ACCESS') 
+      (this.selectedPermissions.includes('UPLOAD_LEAVE_POLICY') && option === 'NO_ACCESS')
 
     ) {
       return true; // Disable the option
@@ -1903,213 +1930,213 @@ permissionId: any;
     console.log("shift", this.formArray.value);
   }
 
-  AssinShift(){
+  AssinShift() {
 
   }
-// shift time end
+  // shift time end
 
 
 
-// pagination for view role start
-RoleperPage: number = 5;
-currentPage: number = 1;
+  // pagination for view role start
+  RoleperPage: number = 5;
+  currentPage: number = 1;
 
 
 
-getPaginatedData(): any[] {
-  const startIndex = (this.currentPage - 1) * this.RoleperPage;
-  const endIndex = startIndex + this.RoleperPage;
-  return this.fillterAllRoleData.slice(startIndex, endIndex);
-}
-
-previousPage(): void {
-  if (this.currentPage > 1) {
-    this.currentPage--;
+  getPaginatedData(): any[] {
+    const startIndex = (this.currentPage - 1) * this.RoleperPage;
+    const endIndex = startIndex + this.RoleperPage;
+    return this.fillterAllRoleData.slice(startIndex, endIndex);
   }
-}
 
-getPageNumbersRole(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterAllRoleData.length / this.RoleperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageRole(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesRole()) {
-    this.currentPage = pageNumber;
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
-}
 
-
-nextPageRole(): void {
-  const totalPages = Math.ceil(
-    this.fillterAllRoleData.length / this.RoleperPage
-  );
-  if (this.currentPage < totalPages) {
-    this.currentPage++;
+  getPageNumbersRole(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterAllRoleData.length / this.RoleperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-}
 
-
-getTotalPagesRole(): number {
-  return Math.ceil(
-    this.fillterAllRoleData.length / this.RoleperPage
-  );
-}
-// pagination for view role end
-
-// pagination for view Employee start
-employeeperPage: number = 8;
-currentemployeePage: number = 1;
-
-
-
-getPaginatedEmpData(): any[] {
-  const startIndex = (this.currentemployeePage - 1) * this.employeeperPage;
-  const endIndex = startIndex + this.employeeperPage;
-  return this.filteredEmployeeData.slice(startIndex, endIndex);
-}
-
-previousEmpPage(): void {
-  if (this.currentemployeePage > 1) {
-    this.currentemployeePage--;
+  changePageRole(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesRole()) {
+      this.currentPage = pageNumber;
+    }
   }
-}
 
-getPageNumbersEmp(): number[] {
-  const totalPages = Math.ceil(
-    this.filteredEmployeeData.length / this.employeeperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
 
-changePageEmp(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesEmp()) {
-    this.currentemployeePage = pageNumber;
+  nextPageRole(): void {
+    const totalPages = Math.ceil(
+      this.fillterAllRoleData.length / this.RoleperPage
+    );
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+    }
   }
-}
 
 
-nextPageEmp(): void {
-  const totalPages = Math.ceil(
-    this.filteredEmployeeData.length / this.employeeperPage
-  );
-  if (this.currentemployeePage < totalPages) {
-    this.currentemployeePage++;
+  getTotalPagesRole(): number {
+    return Math.ceil(
+      this.fillterAllRoleData.length / this.RoleperPage
+    );
   }
-}
+  // pagination for view role end
 
-
-getTotalPagesEmp(): number {
-  return Math.ceil(
-    this.filteredEmployeeData.length / this.employeeperPage
-  );
-}
-// pagination for view Employee end
-
-// pagination for view team leave start
-TeamLeavePageperPage: number = 10;
-currentTeamLeavePage: number = 1;
+  // pagination for view Employee start
+  employeeperPage: number = 8;
+  currentemployeePage: number = 1;
 
 
 
-getPaginatedTeamLeaveData(): any[] {
-  const startIndex = (this.currentTeamLeavePage - 1) * this.TeamLeavePageperPage;
-  const endIndex = startIndex + this.TeamLeavePageperPage;
-  return this.fillterTeamLeaveData.slice(startIndex, endIndex);
-}
-
-previousTeamLeavePage(): void {
-  if (this.currentTeamLeavePage > 1) {
-    this.currentTeamLeavePage--;
+  getPaginatedEmpData(): any[] {
+    const startIndex = (this.currentemployeePage - 1) * this.employeeperPage;
+    const endIndex = startIndex + this.employeeperPage;
+    return this.filteredEmployeeData.slice(startIndex, endIndex);
   }
-}
 
-getPageNumbersTeamLeave(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageTeamLeave(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTeamLeave()) {
-    this.currentTeamLeavePage = pageNumber;
+  previousEmpPage(): void {
+    if (this.currentemployeePage > 1) {
+      this.currentemployeePage--;
+    }
   }
-}
 
-
-nextPageTeamLeave(): void {
-  const totalPages = Math.ceil(
-    this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
-  );
-  if (this.currentTeamLeavePage < totalPages) {
-    this.currentTeamLeavePage++;
+  getPageNumbersEmp(): number[] {
+    const totalPages = Math.ceil(
+      this.filteredEmployeeData.length / this.employeeperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-}
 
-
-getTotalPagesTeamLeave(): number {
-  return Math.ceil(
-    this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
-  );
-}
-// pagination for view team leave end
-
-// pagination for view team wfh start
-TeamWfhPageperPage: number = 10;
-currentTeamWfhPage: number = 1;
-
-
-
-getPaginatedTeamWfhData(): any[] {
-  const startIndex = (this.currentTeamWfhPage - 1) * this.TeamWfhPageperPage;
-  const endIndex = startIndex + this.TeamWfhPageperPage;
-  return this.fillterTeamWfhData.slice(startIndex, endIndex);
-}
-
-previousTeamWfhPage(): void {
-  if (this.currentTeamWfhPage > 1) {
-    this.currentTeamWfhPage--;
+  changePageEmp(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesEmp()) {
+      this.currentemployeePage = pageNumber;
+    }
   }
-}
 
-getPageNumbersTeamWfh(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterTeamWfhData.length / this.TeamWfhPageperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
 
-changePageTeamWfh(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTeamWfh()) {
-    this.currentTeamWfhPage = pageNumber;
+  nextPageEmp(): void {
+    const totalPages = Math.ceil(
+      this.filteredEmployeeData.length / this.employeeperPage
+    );
+    if (this.currentemployeePage < totalPages) {
+      this.currentemployeePage++;
+    }
   }
-}
 
 
-nextPageTeamWfh(): void {
-  const totalPages = Math.ceil(
-    this.fillterTeamWfhData.length / this.TeamWfhPageperPage
-  );
-  if (this.currentTeamWfhPage < totalPages) {
-    this.currentTeamWfhPage++;
+  getTotalPagesEmp(): number {
+    return Math.ceil(
+      this.filteredEmployeeData.length / this.employeeperPage
+    );
   }
-}
+  // pagination for view Employee end
+
+  // pagination for view team leave start
+  TeamLeavePageperPage: number = 10;
+  currentTeamLeavePage: number = 1;
 
 
-getTotalPagesTeamWfh(): number {
-  return Math.ceil(
-    this.fillterTeamWfhData.length / this.TeamWfhPageperPage
-  );
-}
-// pagination for view team wfh end
+
+  getPaginatedTeamLeaveData(): any[] {
+    const startIndex = (this.currentTeamLeavePage - 1) * this.TeamLeavePageperPage;
+    const endIndex = startIndex + this.TeamLeavePageperPage;
+    return this.fillterTeamLeaveData.slice(startIndex, endIndex);
+  }
+
+  previousTeamLeavePage(): void {
+    if (this.currentTeamLeavePage > 1) {
+      this.currentTeamLeavePage--;
+    }
+  }
+
+  getPageNumbersTeamLeave(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  changePageTeamLeave(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTeamLeave()) {
+      this.currentTeamLeavePage = pageNumber;
+    }
+  }
 
 
-isGridView = true; // Initial view is grid
+  nextPageTeamLeave(): void {
+    const totalPages = Math.ceil(
+      this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
+    );
+    if (this.currentTeamLeavePage < totalPages) {
+      this.currentTeamLeavePage++;
+    }
+  }
 
-listView() {
+
+  getTotalPagesTeamLeave(): number {
+    return Math.ceil(
+      this.fillterTeamLeaveData.length / this.TeamLeavePageperPage
+    );
+  }
+  // pagination for view team leave end
+
+  // pagination for view team wfh start
+  TeamWfhPageperPage: number = 10;
+  currentTeamWfhPage: number = 1;
+
+
+
+  getPaginatedTeamWfhData(): any[] {
+    const startIndex = (this.currentTeamWfhPage - 1) * this.TeamWfhPageperPage;
+    const endIndex = startIndex + this.TeamWfhPageperPage;
+    return this.fillterTeamWfhData.slice(startIndex, endIndex);
+  }
+
+  previousTeamWfhPage(): void {
+    if (this.currentTeamWfhPage > 1) {
+      this.currentTeamWfhPage--;
+    }
+  }
+
+  getPageNumbersTeamWfh(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterTeamWfhData.length / this.TeamWfhPageperPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  changePageTeamWfh(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTeamWfh()) {
+      this.currentTeamWfhPage = pageNumber;
+    }
+  }
+
+
+  nextPageTeamWfh(): void {
+    const totalPages = Math.ceil(
+      this.fillterTeamWfhData.length / this.TeamWfhPageperPage
+    );
+    if (this.currentTeamWfhPage < totalPages) {
+      this.currentTeamWfhPage++;
+    }
+  }
+
+
+  getTotalPagesTeamWfh(): number {
+    return Math.ceil(
+      this.fillterTeamWfhData.length / this.TeamWfhPageperPage
+    );
+  }
+  // pagination for view team wfh end
+
+
+  isGridView = true; // Initial view is grid
+
+  listView() {
     this.isGridView = false;
   }
 
@@ -2117,14 +2144,14 @@ listView() {
     this.isGridView = true;
   }
 
-   //API for getting designation start
-   designation: string[] = [];
-   designations() {
+  //API for getting designation start
+  designation: string[] = [];
+  designations() {
 
     this.RegisterAndUpdate.getdesignation().subscribe(
       (response: any) => {
         this.designation = response; // Assuming the API response is an array of team leads
-console.log("serch designation", this.designation);
+        console.log("serch designation", this.designation);
         // this.token = response.token;
       },
       (error) => {
@@ -2171,65 +2198,67 @@ console.log("serch designation", this.designation);
   sortByWhome(): void {
     // Toggle the sort order
     this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
-  
+
     // Sort the positions array based on the approvedBy property
     this.fillterTeamLeaveData.sort((a: any, b: any) => {
       const approvedByA = a.approvedBy || ''; // Default to an empty string if null
       const approvedByB = b.approvedBy || ''; // Default to an empty string if null
-  
+
       const orderFactor = this.sortBy === 'asc' ? 1 : -1;
       return orderFactor * approvedByA.localeCompare(approvedByB);
     });
   }
-  
-   // sort data in team leave table end
+
+  // sort data in team leave table end
 
   //  search for team leave table start
-   searchTeamLeave: string = '';
-   selectedMonthTeamLeave: string = '';
- 
-   FilterTeamLeave() {
-    if(this.searchTeamLeave){
-    this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { firstname: string; lastname: string; }) =>
-    item.firstname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) ||
-    item.lastname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) 
-     )}else if(this.selectedMonthTeamLeave){
-      this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { fromDate: string;}) =>
-      item.fromDate.toLowerCase().includes(this.selectedMonthTeamLeave.toLowerCase()) 
-     )};
-   }
-   onSearchTeamLeave() {
+  searchTeamLeave: string = '';
+  selectedMonthTeamLeave: string = '';
+
+  FilterTeamLeave() {
+    if (this.searchTeamLeave) {
+      this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { firstname: string; lastname: string; }) =>
+        item.firstname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) ||
+        item.lastname.toLowerCase().includes(this.searchTeamLeave.toLowerCase())
+      )
+    } else if (this.selectedMonthTeamLeave) {
+      this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { fromDate: string; }) =>
+        item.fromDate.toLowerCase().includes(this.selectedMonthTeamLeave.toLowerCase())
+      )
+    };
+  }
+  onSearchTeamLeave() {
     // Clear the date input field when searching in the name input field
     if (this.searchTeamLeave.trim() !== '') {
       this.selectedMonthTeamLeave = '';
     }
     this.teamleave();
-  
+
     this.FilterTeamLeave();
   }
   onSearchMonthTeamLeave() {
     // Clear the date input field when searching in the name input field
     if (this.selectedMonthTeamLeave !== '') {
       this.searchTeamLeave = '';
-     }
-     this.teamleave();
-  
- console.log("selected month ", this.selectedMonthTeamLeave)
-   this.FilterTeamLeave();
- }
- viewAllTodayTeamLeave(){
-  const todayDate = new Date();
-  const year = todayDate.getFullYear();
+    }
+    this.teamleave();
+
+    console.log("selected month ", this.selectedMonthTeamLeave)
+    this.FilterTeamLeave();
+  }
+  viewAllTodayTeamLeave() {
+    const todayDate = new Date();
+    const year = todayDate.getFullYear();
     const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
     const day = todayDate.getDate().toString().padStart(2, '0');
-  this.selectedMonthTeamLeave = `${year}-${month}-${day}`;
-  console.log("today all team leave", this.selectedMonthTeamLeave)
- return this.selectedMonthTeamLeave;
-}
+    this.selectedMonthTeamLeave = `${year}-${month}-${day}`;
+    console.log("today all team leave", this.selectedMonthTeamLeave)
+    return this.selectedMonthTeamLeave;
+  }
 
-   //  search for team leave table end
+  //  search for team leave table end
 
-    // sort data in team wfh table start
+  // sort data in team wfh table start
   // sortTDate: 'asc' | 'desc' = 'asc';
   sortByTeamToDateWFH(): void {
     this.sortTDate =
@@ -2265,32 +2294,34 @@ console.log("serch designation", this.designation);
   sortTeamByWhomeWFH(): void {
     // Toggle the sort order
     this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
-  
+
     // Sort the positions array based on the approvedBy property
     this.fillterTeamWfhData.sort((a: any, b: any) => {
       const approvedByA = a.approvedBy || ''; // Default to an empty string if null
       const approvedByB = b.approvedBy || ''; // Default to an empty string if null
-  
+
       const orderFactor = this.sortBy === 'asc' ? 1 : -1;
       return orderFactor * approvedByA.localeCompare(approvedByB);
     });
   }
-  
-   // sort data in team wfh table end
 
-    // search for team wfh table start
-    searchTeamWfh: string = '';
-    selectedMonthTeamWFH: string = '';
-    
+  // sort data in team wfh table end
+
+  // search for team wfh table start
+  searchTeamWfh: string = '';
+  selectedMonthTeamWFH: string = '';
+
   FilterTeamWfh() {
-    if(this.searchTeamWfh){
-    this.fillterTeamWfhData = this.TeamWfhData.filter((item: { firstname: string; lastname: string; }) =>
-    item.firstname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) ||
-    item.lastname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) 
-     )}else if(this.selectedMonthTeamWFH){
-      this.fillterTeamWfhData = this.TeamWfhData.filter((item: { fromdateWfh: string;}) =>
-      item.fromdateWfh.toLowerCase().includes(this.selectedMonthTeamWFH.toLowerCase()) 
-     )};
+    if (this.searchTeamWfh) {
+      this.fillterTeamWfhData = this.TeamWfhData.filter((item: { firstname: string; lastname: string; }) =>
+        item.firstname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) ||
+        item.lastname.toLowerCase().includes(this.searchTeamWfh.toLowerCase())
+      )
+    } else if (this.selectedMonthTeamWFH) {
+      this.fillterTeamWfhData = this.TeamWfhData.filter((item: { fromdateWfh: string; }) =>
+        item.fromdateWfh.toLowerCase().includes(this.selectedMonthTeamWFH.toLowerCase())
+      )
+    };
   }
   onSearchTeamWFH() {
     // Clear the date input field when searching in the name input field
@@ -2298,316 +2329,318 @@ console.log("serch designation", this.designation);
       this.selectedMonthTeamWFH = '';
     }
     this.teamwfh();
-  
+
     this.FilterTeamWfh();
   }
   onSearchMonthTeamWFH() {
     // Clear the date input field when searching in the name input field
     if (this.selectedMonthTeamWFH !== '') {
       this.searchTeamWfh = '';
-     }
-     this.teamwfh();
-  
- console.log("selected month ", this.selectedMonthTeamWFH)
-   this.FilterTeamWfh();
- }
- viewAllTodayTeamWFH(){
-  const todayDate = new Date();
-  const year = todayDate.getFullYear();
+    }
+    this.teamwfh();
+
+    console.log("selected month ", this.selectedMonthTeamWFH)
+    this.FilterTeamWfh();
+  }
+  viewAllTodayTeamWFH() {
+    const todayDate = new Date();
+    const year = todayDate.getFullYear();
     const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
     const day = todayDate.getDate().toString().padStart(2, '0');
-  this.selectedMonthTeamWFH = `${year}-${month}-${day}`;
-  console.log("today all team wfh", this.selectedMonthTeamWFH)
- return this.selectedMonthTeamWFH;
-}
-   // search for team wfh table end
+    this.selectedMonthTeamWFH = `${year}-${month}-${day}`;
+    console.log("today all team wfh", this.selectedMonthTeamWFH)
+    return this.selectedMonthTeamWFH;
+  }
+  // search for team wfh table end
 
 
   //  view leave table function start
 
- // search for  leave table start
- searchLeave: string = '';
-    
- FilterLeave() {
-   this.fillterLeaveData = this.leaveAdminData.filter((item: { firstname: string; lastname: string; }) =>
-   item.firstname.toLowerCase().includes(this.searchLeave.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchLeave.toLowerCase()) 
+  // search for  leave table start
+  searchLeave: string = '';
+
+  FilterLeave() {
+    this.fillterLeaveData = this.leaveAdminData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchLeave.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchLeave.toLowerCase())
     );
- }
+  }
 
   // search for leave table end
 
-   // pagination for view  leave start
-LeavePageperPage: number = 10;
-currentLeavePage: number = 1;
+  // pagination for view  leave start
+  LeavePageperPage: number = 10;
+  currentLeavePage: number = 1;
 
 
 
-getPaginatedLeaveData(): any[] {
-  const startIndex = (this.currentLeavePage - 1) * this.LeavePageperPage;
-  const endIndex = startIndex + this.LeavePageperPage;
-  return this.fillterLeaveData.slice(startIndex, endIndex);
-}
-
-previousLeavePage(): void {
-  if (this.currentLeavePage > 1) {
-    this.currentLeavePage--;
+  getPaginatedLeaveData(): any[] {
+    const startIndex = (this.currentLeavePage - 1) * this.LeavePageperPage;
+    const endIndex = startIndex + this.LeavePageperPage;
+    return this.fillterLeaveData.slice(startIndex, endIndex);
   }
-}
 
-getPageNumbersLeave(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterLeaveData.length / this.LeavePageperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageLeave(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLeave()) {
-    this.currentLeavePage = pageNumber;
+  previousLeavePage(): void {
+    if (this.currentLeavePage > 1) {
+      this.currentLeavePage--;
+    }
   }
-}
 
-
-nextPageLeave(): void {
-  const totalPages = Math.ceil(
-    this.fillterLeaveData.length / this.LeavePageperPage
-  );
-  if (this.currentLeavePage < totalPages) {
-    this.currentLeavePage++;
-  }
-}
-
-
-getTotalPagesLeave(): number {
-  return Math.ceil(
-    this.fillterLeaveData.length / this.LeavePageperPage
-  );
-}
-// pagination for view  leave end
-
-// sort data in leave table start
-// sortTDate: 'asc' | 'desc' = 'asc';
-sortByToDateLeave(): void {
-  this.sortTDate =
-    this.sortTDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterLeaveData.sort((a: any, b: any) => {
-    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.toDate).getTime() - new Date(b.toDate).getTime())
+  getPageNumbersLeave(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterLeaveData.length / this.LeavePageperPage
     );
-  });
-}
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  changePageLeave(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLeave()) {
+      this.currentLeavePage = pageNumber;
+    }
+  }
 
 
-
-// sortFDate: 'asc' | 'desc' = 'asc';
-sortByFromDateLeave(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterLeaveData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime())
+  nextPageLeave(): void {
+    const totalPages = Math.ceil(
+      this.fillterLeaveData.length / this.LeavePageperPage
     );
-  });
-}
+    if (this.currentLeavePage < totalPages) {
+      this.currentLeavePage++;
+    }
+  }
 
-// sortBy: 'asc' | 'desc' = 'asc';
 
-sortByWhomeLeave(): void {
-  // Toggle the sort order
-  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+  getTotalPagesLeave(): number {
+    return Math.ceil(
+      this.fillterLeaveData.length / this.LeavePageperPage
+    );
+  }
+  // pagination for view  leave end
 
-  // Sort the positions array based on the approvedBy property
-  this.fillterLeaveData.sort((a: any, b: any) => {
-    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
-    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+  // sort data in leave table start
+  // sortTDate: 'asc' | 'desc' = 'asc';
+  sortByToDateLeave(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
 
-    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
-    return orderFactor * approvedByA.localeCompare(approvedByB);
-  });
-}
+    this.fillterLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDate).getTime() - new Date(b.toDate).getTime())
+      );
+    });
+  }
 
- // sort data in leave table end
+
+
+  // sortFDate: 'asc' | 'desc' = 'asc';
+  sortByFromDateLeave(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime())
+      );
+    });
+  }
+
+  // sortBy: 'asc' | 'desc' = 'asc';
+
+  sortByWhomeLeave(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the approvedBy property
+    this.fillterLeaveData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+
+  // sort data in leave table end
 
 
   //  view leave table function end
 
 
 
-    //  view wfh table function start
+  //  view wfh table function start
 
-    // search for  wfh table start
- searchWfh: string = '';
-    
- FilterWfh() {
-   this.fillterWfhData = this.wfhData.filter((item: { firstname: string; lastname: string; }) =>
-   item.firstname.toLowerCase().includes(this.searchWfh.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchWfh.toLowerCase()) 
+  // search for  wfh table start
+  searchWfh: string = '';
+
+  FilterWfh() {
+    this.fillterWfhData = this.wfhData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchWfh.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchWfh.toLowerCase())
     );
- }
+  }
 
   // search for wfh table end
 
-   // pagination for view  wfh start
-WfhPageperPage: number = 10;
-currentWfhPage: number = 1;
+  // pagination for view  wfh start
+  WfhPageperPage: number = 10;
+  currentWfhPage: number = 1;
 
 
 
-getPaginatedWfhData(): any[] {
-  const startIndex = (this.currentWfhPage - 1) * this.WfhPageperPage;
-  const endIndex = startIndex + this.WfhPageperPage;
-  return this.fillterWfhData.slice(startIndex, endIndex);
-}
-
-previousWfhPage(): void {
-  if (this.currentWfhPage > 1) {
-    this.currentWfhPage--;
+  getPaginatedWfhData(): any[] {
+    const startIndex = (this.currentWfhPage - 1) * this.WfhPageperPage;
+    const endIndex = startIndex + this.WfhPageperPage;
+    return this.fillterWfhData.slice(startIndex, endIndex);
   }
-}
 
-getPageNumbersWfh(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterWfhData.length / this.WfhPageperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageWfh(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesWfh()) {
-    this.currentWfhPage = pageNumber;
+  previousWfhPage(): void {
+    if (this.currentWfhPage > 1) {
+      this.currentWfhPage--;
+    }
   }
-}
 
-
-nextPageWfh(): void {
-  const totalPages = Math.ceil(
-    this.fillterWfhData.length / this.WfhPageperPage
-  );
-  if (this.currentWfhPage < totalPages) {
-    this.currentWfhPage++;
-  }
-}
-
-
-getTotalPagesWfh(): number {
-  return Math.ceil(
-    this.fillterWfhData.length / this.WfhPageperPage
-  );
-}
-// pagination for view  wfh end
-
-// sort data in wfh table start
-// sortTDate: 'asc' | 'desc' = 'asc';
-sortByToDateWfh(): void {
-  this.sortTDate =
-    this.sortTDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterWfhData.sort((a: any, b: any) => {
-    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+  getPageNumbersWfh(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterWfhData.length / this.WfhPageperPage
     );
-  });
-}
-
-
-
-// sortFDate: 'asc' | 'desc' = 'asc';
-sortByFromDateWfh(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterWfhData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.fromdateWfh).getTime() - new Date(b.fromdateWfh).getTime())
-    );
-  });
-}
-
-// sortBy: 'asc' | 'desc' = 'asc';
-
-sortByWhomeWfh(): void {
-  // Toggle the sort order
-  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
-
-  // Sort the positions array based on the approvedBy property
-  this.fillterWfhData.sort((a: any, b: any) => {
-    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
-    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
-
-    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
-    return orderFactor * approvedByA.localeCompare(approvedByB);
-  });
-}
-
- // sort data in wfh table end
-
-      //  view wfh table function end
-
-
-      //  view All Att table function start
-
-    // search for  view All att table start
- searchAllatt: string = '';
- selectedMonth: string = '';
- 
- 
-
- FilterAllatt() {
-   if(this.searchAllatt){
-   this.fillterAllattData = this.AllAttData.filter((item: { firstname: string; lastname: string;}) =>
-
-     item.firstname.toLowerCase().includes(this.searchAllatt.toLowerCase()) ||
-     item.lastname.toLowerCase().includes(this.searchAllatt.toLowerCase()) 
-   )}else if(this.selectedMonth){
-    this.fillterAllattData = this.AllAttData.filter((item: { checkDate: string;}) =>
-   item.checkDate.toLowerCase().includes(this.selectedMonth.toLowerCase()) 
-   )};
-
- }
-
- onSearchAtt() {
-  // Clear the date input field when searching in the name input field
-  if (this.searchAllatt.trim() !== '') {
-    this.selectedMonth = '';
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-  this.viewAllattendance();
 
-  this.FilterAllatt();
-}
+  changePageWfh(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesWfh()) {
+      this.currentWfhPage = pageNumber;
+    }
+  }
 
- onSearchMonth() {
-   // Clear the date input field when searching in the name input field
-   if (this.selectedMonth !== '') {
-     this.searchAllatt = '';
+
+  nextPageWfh(): void {
+    const totalPages = Math.ceil(
+      this.fillterWfhData.length / this.WfhPageperPage
+    );
+    if (this.currentWfhPage < totalPages) {
+      this.currentWfhPage++;
+    }
+  }
+
+
+  getTotalPagesWfh(): number {
+    return Math.ceil(
+      this.fillterWfhData.length / this.WfhPageperPage
+    );
+  }
+  // pagination for view  wfh end
+
+  // sort data in wfh table start
+  // sortTDate: 'asc' | 'desc' = 'asc';
+  sortByToDateWfh(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterWfhData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+      );
+    });
+  }
+
+
+
+  // sortFDate: 'asc' | 'desc' = 'asc';
+  sortByFromDateWfh(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterWfhData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.fromdateWfh).getTime() - new Date(b.fromdateWfh).getTime())
+      );
+    });
+  }
+
+  // sortBy: 'asc' | 'desc' = 'asc';
+
+  sortByWhomeWfh(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the approvedBy property
+    this.fillterWfhData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+
+  // sort data in wfh table end
+
+  //  view wfh table function end
+
+
+  //  view All Att table function start
+
+  // search for  view All att table start
+  searchAllatt: string = '';
+  selectedMonth: string = '';
+
+
+
+  FilterAllatt() {
+    if (this.searchAllatt) {
+      this.fillterAllattData = this.AllAttData.filter((item: { firstname: string; lastname: string; }) =>
+
+        item.firstname.toLowerCase().includes(this.searchAllatt.toLowerCase()) ||
+        item.lastname.toLowerCase().includes(this.searchAllatt.toLowerCase())
+      )
+    } else if (this.selectedMonth) {
+      this.fillterAllattData = this.AllAttData.filter((item: { checkDate: string; }) =>
+        item.checkDate.toLowerCase().includes(this.selectedMonth.toLowerCase())
+      )
+    };
+
+  }
+
+  onSearchAtt() {
+    // Clear the date input field when searching in the name input field
+    if (this.searchAllatt.trim() !== '') {
+      this.selectedMonth = '';
     }
     this.viewAllattendance();
- 
-console.log("selected month ", this.selectedMonth)
-  this.FilterAllatt();
-}
 
-viewAllTodayAttendance(){
-  const todayDate = new Date();
-  const year = todayDate.getFullYear();
+    this.FilterAllatt();
+  }
+
+  onSearchMonth() {
+    // Clear the date input field when searching in the name input field
+    if (this.selectedMonth !== '') {
+      this.searchAllatt = '';
+    }
+    this.viewAllattendance();
+
+    console.log("selected month ", this.selectedMonth)
+    this.FilterAllatt();
+  }
+
+  viewAllTodayAttendance() {
+    const todayDate = new Date();
+    const year = todayDate.getFullYear();
     const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
     const day = todayDate.getDate().toString().padStart(2, '0');
-  this.selectedMonth = `${year}-${month}-${day}`;
-  console.log("today all att", this.selectedMonth)
- return this.selectedMonth;
-}
+    this.selectedMonth = `${year}-${month}-${day}`;
+    console.log("today all att", this.selectedMonth)
+    return this.selectedMonth;
+  }
 
- 
+
   // filterAllattData() {
   //   this.fillterAllattData = this.AllAttData.filter((item: { checkDate: string | number | Date; }) => {
   //     const itemMonth = new Date(item.checkDate).toLocaleString('default', { month: 'long' });
@@ -2617,366 +2650,366 @@ viewAllTodayAttendance(){
   // }
   // search for all att table end
 
-   // pagination for view  all att start
-   AllattperPage: number = 15;
-currentAllattPage: number = 1;
+  // pagination for view  all att start
+  AllattperPage: number = 15;
+  currentAllattPage: number = 1;
 
 
 
-getPaginatedAllattData(): any[] {
-  const startIndex = (this.currentAllattPage - 1) * this.AllattperPage;
-  const endIndex = startIndex + this.AllattperPage;
-  return this.fillterAllattData.slice(startIndex, endIndex);
-}
-
-previousAllattPage(): void {
-  if (this.currentAllattPage > 1) {
-    this.currentAllattPage--;
+  getPaginatedAllattData(): any[] {
+    const startIndex = (this.currentAllattPage - 1) * this.AllattperPage;
+    const endIndex = startIndex + this.AllattperPage;
+    return this.fillterAllattData.slice(startIndex, endIndex);
   }
-}
+
+  previousAllattPage(): void {
+    if (this.currentAllattPage > 1) {
+      this.currentAllattPage--;
+    }
+  }
 
 
-getPageNumbersAllatt(): number[] {
-  const totalPages = this.getTotalPagesAllatt();
-  const maxPagesToShow = 3; // Adjust as needed
+  getPageNumbersAllatt(): number[] {
+    const totalPages = this.getTotalPagesAllatt();
+    const maxPagesToShow = 3; // Adjust as needed
 
-  let startPage: number;
-  let endPage: number;
+    let startPage: number;
+    let endPage: number;
 
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentAllattPage <= halfMaxPagesToShow + 1) {
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
       startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentAllattPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
       endPage = totalPages;
     } else {
-      startPage = this.currentAllattPage - halfMaxPagesToShow;
-      endPage = this.currentAllattPage + halfMaxPagesToShow;
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentAllattPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentAllattPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentAllattPage - halfMaxPagesToShow;
+        endPage = this.currentAllattPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  }
+
+
+  changePageAllatt(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllatt()) {
+      this.currentAllattPage = pageNumber;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
-
-changePageAllatt(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllatt()) {
-    this.currentAllattPage = pageNumber;
-  }
-}
-
-
-nextPageAllatt(): void {
-  const totalPages = Math.ceil(
-    this.fillterAllattData.length / this.AllattperPage
-  );
-  if (this.currentAllattPage < totalPages) {
-    this.currentAllattPage++;
-  }
-}
-
-
-getTotalPagesAllatt(): number {
-  return Math.ceil(
-    this.fillterAllattData.length / this.AllattperPage
-  );
-}
-// pagination for view  all att end
-
-// sort data in all att table start
-// sortTDate: 'asc' | 'desc' = 'asc';
-sortByToDateAllatt(): void {
-  this.sortTDate =
-    this.sortTDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterAllattData.sort((a: any, b: any) => {
-    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+  nextPageAllatt(): void {
+    const totalPages = Math.ceil(
+      this.fillterAllattData.length / this.AllattperPage
     );
-  });
-}
+    if (this.currentAllattPage < totalPages) {
+      this.currentAllattPage++;
+    }
+  }
 
 
-
-// sortFDate: 'asc' | 'desc' = 'asc';
-sortByFromDateAllatt(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterAllattData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+  getTotalPagesAllatt(): number {
+    return Math.ceil(
+      this.fillterAllattData.length / this.AllattperPage
     );
-  });
-}
+  }
+  // pagination for view  all att end
 
-// sortBy: 'asc' | 'desc' = 'asc';
+  // sort data in all att table start
+  // sortTDate: 'asc' | 'desc' = 'asc';
+  sortByToDateAllatt(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
 
-sortByWhomeAllatt(): void {
-  // Toggle the sort order
-  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+    this.fillterAllattData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+      );
+    });
+  }
 
-  // Sort the positions array based on the approvedBy property
-  this.fillterAllattData.sort((a: any, b: any) => {
-    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
-    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
 
-    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
-    return orderFactor * approvedByA.localeCompare(approvedByB);
-  });
-}
 
- // sort data in all att table end
+  // sortFDate: 'asc' | 'desc' = 'asc';
+  sortByFromDateAllatt(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-      //  view All att table function end
+    this.fillterAllattData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
+  }
 
-// upload leave policy satrt
-selectedFileLeavePolicy: any;
-onFileSelectedLeavePolicy(event: any): void {
-  const fileInput = event.target;
-  if (fileInput.files.length > 0) {
-    const selectedFile = fileInput.files[0];
-    this.dashboardService.uploadPdf(selectedFile)
-    if (this.isPDFFile(selectedFile)) {
-      this.selectedFileLeavePolicy = selectedFile.name;
+  // sortBy: 'asc' | 'desc' = 'asc';
+
+  sortByWhomeAllatt(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the approvedBy property
+    this.fillterAllattData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+
+  // sort data in all att table end
+
+  //  view All att table function end
+
+  // upload leave policy satrt
+  selectedFileLeavePolicy: any;
+  onFileSelectedLeavePolicy(event: any): void {
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      this.dashboardService.uploadPdf(selectedFile)
+      if (this.isPDFFile(selectedFile)) {
+        this.selectedFileLeavePolicy = selectedFile.name;
+      } else {
+        this.selectedFileLeavePolicy = 'Invalid file type. Please select a PDF file.';
+        // Optionally, you can reset the file input value to clear the selection
+        fileInput.value = '';
+        console.log("upload file input", this.selectedFileLeavePolicy);
+        console.log("upload file input")
+      }
     } else {
-      this.selectedFileLeavePolicy = 'Invalid file type. Please select a PDF file.';
-      // Optionally, you can reset the file input value to clear the selection
-      fileInput.value = '';
-      console.log("upload file input", this.selectedFileLeavePolicy);
-      console.log("upload file input")
+      this.selectedFileLeavePolicy = 'No file selected';
     }
-  } else {
-    this.selectedFileLeavePolicy = 'No file selected';
   }
-}
 
 
-// upload leave policy end
+  // upload leave policy end
 
-      // add resume start
-      selectedFileName: any;
-   
-      isPDFFile(file: File): boolean {
-        // Check if the file has a PDF MIME type
-        return file.type === 'application/pdf';
+  // add resume start
+  selectedFileName: any;
+
+  isPDFFile(file: File): boolean {
+    // Check if the file has a PDF MIME type
+    return file.type === 'application/pdf';
+  }
+
+  onFileSelected(event: any): void {
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      if (this.isPDFFile(selectedFile)) {
+        this.selectedFileName = selectedFile.name;
+      } else {
+        this.selectedFileName = 'Invalid file type. Please select a PDF file.';
+        // Optionally, you can reset the file input value to clear the selection
+        fileInput.value = '';
       }
-
-      onFileSelected(event: any): void {
-        const fileInput = event.target;
-        if (fileInput.files.length > 0) {
-          const selectedFile = fileInput.files[0];
-          if (this.isPDFFile(selectedFile)) {
-            this.selectedFileName = selectedFile.name;
-          } else {
-            this.selectedFileName = 'Invalid file type. Please select a PDF file.';
-            // Optionally, you can reset the file input value to clear the selection
-            fileInput.value = '';
-          }
-        } else {
-          this.selectedFileName = 'No file selected';
-        }
-      }
-       // add resume end
-      
-
-       // add poition start
-       position: {
-        id?: any;
-        positionName: string;
-        numberOfPositions: number;
-        dateOfOpening: Date;
-        candidate_Type: string;
-        experienceMin: string;
-        experienceMax: string;
-        experienceUnit: string;
-        annualPacAgeMin: string;
-        annualPacAgeMax: string;
-        currency: string;
-        modeOfWork: string;
-        jobLocation: string;
-        jobDescription: string;
-      } = {
-        positionName: '',
-        numberOfPositions: 1,
-        dateOfOpening: new Date(),
-        candidate_Type: '',
-        experienceMin: '',
-        experienceMax: '',
-        experienceUnit: '',
-        annualPacAgeMin: '',
-        annualPacAgeMax: '',
-        currency: '',
-        modeOfWork: '',
-        jobLocation: '',
-        jobDescription: '',
-      };
-     
-
-      onRecruitmentAddPosition(): void {
-        if (
-          this.position.experienceMax > this.position.experienceMin &&
-          this.position.annualPacAgeMax > this.position.annualPacAgeMin
-        ) {
-          this.addPositionRecruitment();
-        } else {
-          Swal.fire(
-            'Error',
-            'Form is not valid. Please fill in all required fields.',
-            'error'
-          );
-        }
-      }
-
-      addPositionRecruitment(){
-        this.testService.addPosition(this.position).subscribe(
-          (response) => {
-            console.log('addPositionRecruitment success', response);
-            Swal.fire({
-              title: 'Success!',
-              text: 'Position Added Successfully.',
-              icon: 'success',
-              showConfirmButton: false,
-              timer: 3000,
-            }).then(() => {
-              this.loginService.showTable('viewPosition');
-              // this.clearFormPosition();
-            });
-            this.getPositionRecruitment();
-            this.viewPositionName();
-          },
-          (error) => {
-            console.error('addPositionRecruitment error', error);
-            if (error.status == 400) {
-              Swal.fire({
-                title: 'Error!',
-                text: 'Position Already Added!.',
-                icon: 'error',
-                showConfirmButton: false,
-                timer: 3000,
-              });
-            }
-          }
-        );
-      }
+    } else {
+      this.selectedFileName = 'No file selected';
+    }
+  }
+  // add resume end
 
 
-       positionsDataById: any;
-
-       incrementPositions(): void {
-        console.log(
-          'this.position.numberOfPositions',
-          this.position.numberOfPositions
-        );
-        this.position.numberOfPositions++;
-        this.positionsDataById.numberOfPositions++;
-        // this.positionsDataById.numberOfPositions++;
-      }
-
-      decrementPositions(): void {
-        console.log(
-          'this.position.numberOfPositions',
-          this.position.numberOfPositions
-        );
-    
-        if (
-          this.position.numberOfPositions > 1 ||
-          this.positionsDataById.numberOfPositions > 1
-        ) {
-          // this.positionsDataById.numberOfPositions--;
-          this.position.numberOfPositions--;
-          this.positionsDataById.numberOfPositions--;
-        }
-      }
-
-      // add poition end
-
-      // view position start
-      itemsPerPage: number = 10;
-      sortOrder: 'asc' | 'desc' = 'asc';
-      sortOrderOpeningDate: 'asc' | 'desc' = 'asc';
-      sortOrderPositionSalary: 'asc' | 'desc' = 'asc';
-      positionsData: any;
-      filteredPositionsData: any[] | any;
+  // add poition start
+  position: {
+    id?: any;
+    positionName: string;
+    numberOfPositions: number;
+    dateOfOpening: Date;
+    candidate_Type: string;
+    experienceMin: string;
+    experienceMax: string;
+    experienceUnit: string;
+    annualPacAgeMin: string;
+    annualPacAgeMax: string;
+    currency: string;
+    modeOfWork: string;
+    jobLocation: string;
+    jobDescription: string;
+  } = {
+      positionName: '',
+      numberOfPositions: 1,
+      dateOfOpening: new Date(),
+      candidate_Type: '',
+      experienceMin: '',
+      experienceMax: '',
+      experienceUnit: '',
+      annualPacAgeMin: '',
+      annualPacAgeMax: '',
+      currency: '',
+      modeOfWork: '',
+      jobLocation: '',
+      jobDescription: '',
+    };
 
 
-      filterPositionsData(): void {
-        const searchTermLowerCase = this.searchTerm.trim().toLowerCase();
-    
-        if (!searchTermLowerCase) {
-          this.filteredPositionsData = this.positionsData;
-        } else {
-          this.filteredPositionsData = this.positionsData.filter(
-            (position: any) => {
-              return (
-                position.type.toLowerCase().includes(searchTermLowerCase) ||
-                position.numberOfPositions
-                  .toString()
-                  .includes(searchTermLowerCase) ||
-                position.openingDate.includes(searchTermLowerCase) ||
-                (position.budgetMin + '-' + position.budgetMax).includes(
-                  searchTermLowerCase
-                )
-              );
-            }
-          );
-        }
-      }
+  onRecruitmentAddPosition(): void {
+    if (
+      this.position.experienceMax > this.position.experienceMin &&
+      this.position.annualPacAgeMax > this.position.annualPacAgeMin
+    ) {
+      this.addPositionRecruitment();
+    } else {
+      Swal.fire(
+        'Error',
+        'Form is not valid. Please fill in all required fields.',
+        'error'
+      );
+    }
+  }
 
-      sortPositionsByNumberOfPosts(): void {
-        // Toggle the sort order
-        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
-    
-        // Sort the positions array based on the number of posts
-        this.positionsData.sort((a: any, b: any) => {
-          const orderFactor = this.sortOrder === 'asc' ? 1 : -1;
-          return orderFactor * (a.numberOfPositions - b.numberOfPositions);
+  addPositionRecruitment() {
+    this.testService.addPosition(this.position).subscribe(
+      (response) => {
+        console.log('addPositionRecruitment success', response);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Position Added Successfully.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+        }).then(() => {
+          this.loginService.showTable('viewPosition');
+          // this.clearFormPosition();
         });
+        this.getPositionRecruitment();
+        this.viewPositionName();
+      },
+      (error) => {
+        console.error('addPositionRecruitment error', error);
+        if (error.status == 400) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Position Already Added!.',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       }
+    );
+  }
 
-      
 
-      sortPositionsByOpeningDate(): void {
-        this.sortOrderOpeningDate =
-          this.sortOrderOpeningDate === 'asc' ? 'desc' : 'asc';
-    
-        this.positionsData.sort((a: any, b: any) => {
-          const orderFactor = this.sortOrderOpeningDate === 'asc' ? 1 : -1;
+  positionsDataById: any;
+
+  incrementPositions(): void {
+    console.log(
+      'this.position.numberOfPositions',
+      this.position.numberOfPositions
+    );
+    this.position.numberOfPositions++;
+    this.positionsDataById.numberOfPositions++;
+    // this.positionsDataById.numberOfPositions++;
+  }
+
+  decrementPositions(): void {
+    console.log(
+      'this.position.numberOfPositions',
+      this.position.numberOfPositions
+    );
+
+    if (
+      this.position.numberOfPositions > 1 ||
+      this.positionsDataById.numberOfPositions > 1
+    ) {
+      // this.positionsDataById.numberOfPositions--;
+      this.position.numberOfPositions--;
+      this.positionsDataById.numberOfPositions--;
+    }
+  }
+
+  // add poition end
+
+  // view position start
+  itemsPerPage: number = 10;
+  sortOrder: 'asc' | 'desc' = 'asc';
+  sortOrderOpeningDate: 'asc' | 'desc' = 'asc';
+  sortOrderPositionSalary: 'asc' | 'desc' = 'asc';
+  positionsData: any;
+  filteredPositionsData: any[] | any;
+
+
+  filterPositionsData(): void {
+    const searchTermLowerCase = this.searchTerm.trim().toLowerCase();
+
+    if (!searchTermLowerCase) {
+      this.filteredPositionsData = this.positionsData;
+    } else {
+      this.filteredPositionsData = this.positionsData.filter(
+        (position: any) => {
           return (
-            orderFactor *
-            (new Date(a.openingDate).getTime() - new Date(b.openingDate).getTime())
+            position.type.toLowerCase().includes(searchTermLowerCase) ||
+            position.numberOfPositions
+              .toString()
+              .includes(searchTermLowerCase) ||
+            position.openingDate.includes(searchTermLowerCase) ||
+            (position.budgetMin + '-' + position.budgetMax).includes(
+              searchTermLowerCase
+            )
           );
-        });
-      }
-    
-      sortPositionsBySalary(): void {
-        this.sortOrderPositionSalary = this.sortOrderPositionSalary === 'asc' ? 'desc' : 'asc';
-    
-        this.positionsData.sort((a: any, b: any) => {
-          const orderFactor = this.sortOrderPositionSalary === 'asc' ? 1 : -1;
-          return orderFactor * (a.budgetMin - b.budgetMin);
-        });
-      }
-    
+        }
+      );
+    }
+  }
+
+  sortPositionsByNumberOfPosts(): void {
+    // Toggle the sort order
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the number of posts
+    this.positionsData.sort((a: any, b: any) => {
+      const orderFactor = this.sortOrder === 'asc' ? 1 : -1;
+      return orderFactor * (a.numberOfPositions - b.numberOfPositions);
+    });
+  }
 
 
 
-      getTotalPages(): number {
-        return Math.ceil(this.filteredPositionsData.length / this.itemsPerPage);
-      }
-changePage(pageNumber: number): void {
+  sortPositionsByOpeningDate(): void {
+    this.sortOrderOpeningDate =
+      this.sortOrderOpeningDate === 'asc' ? 'desc' : 'asc';
+
+    this.positionsData.sort((a: any, b: any) => {
+      const orderFactor = this.sortOrderOpeningDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.openingDate).getTime() - new Date(b.openingDate).getTime())
+      );
+    });
+  }
+
+  sortPositionsBySalary(): void {
+    this.sortOrderPositionSalary = this.sortOrderPositionSalary === 'asc' ? 'desc' : 'asc';
+
+    this.positionsData.sort((a: any, b: any) => {
+      const orderFactor = this.sortOrderPositionSalary === 'asc' ? 1 : -1;
+      return orderFactor * (a.budgetMin - b.budgetMin);
+    });
+  }
+
+
+
+
+  getTotalPages(): number {
+    return Math.ceil(this.filteredPositionsData.length / this.itemsPerPage);
+  }
+  changePage(pageNumber: number): void {
     if (pageNumber >= 1 && pageNumber <= this.getTotalPages()) {
       this.currentPage = pageNumber;
     }
@@ -3005,58 +3038,374 @@ changePage(pageNumber: number): void {
   }
 
 
-     
-      getPositionRecruitment(){
-        this.testService.viewPosition().subscribe(
-          (response: any) => {
-            // this.positionsData = response;
-            this.positionsData = response;
-            console.log('===>', response.openingDate);
-    
-            this.filteredPositionsData = this.positionsData;
-            console.log('getPositionRecruitment success = = >', response);
-          },
-          (error) => {
-            console.error('getPositionRecruitment error', error);
-          }
-        );
-      }
 
-      getPositionById(id: any){
-        this.testService.viewPositionById(id).subscribe(
-          (response) => {
-            this.positionsDataById = response;
-            console.log(this.positionsDataById);
-            this.loginService.showTable('positionDetails');
-            console.log('getPositionByIdRecruitment success', response);
-          },
-          (error) => {
-            console.error('getPositionByIdRecruitment error', error);
-          }
-        );
-      }
+  getPositionRecruitment() {
+    this.testService.viewPosition().subscribe(
+      (response: any) => {
+        // this.positionsData = response;
+        this.positionsData = response;
+        console.log('===>', response.openingDate);
 
-      updatePositionRecruitment(positionByData: any){
-        this.testService.updatePosition(positionByData).subscribe(
+        this.filteredPositionsData = this.positionsData;
+        console.log('getPositionRecruitment success = = >', response);
+      },
+      (error) => {
+        console.error('getPositionRecruitment error', error);
+      }
+    );
+  }
+
+  getPositionById(id: any) {
+    this.testService.viewPositionById(id).subscribe(
+      (response) => {
+        this.positionsDataById = response;
+        console.log(this.positionsDataById);
+        this.loginService.showTable('positionDetails');
+        console.log('getPositionByIdRecruitment success', response);
+      },
+      (error) => {
+        console.error('getPositionByIdRecruitment error', error);
+      }
+    );
+  }
+
+  updatePositionRecruitment(positionByData: any) {
+    this.testService.updatePosition(positionByData).subscribe(
+      (response) => {
+        // this.positionsDataById = response;
+        Swal.fire({
+          title: 'Success!',
+          text: 'Position Updated Successfully.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+        }).then(() => {
+          this.loginService.showTable('viewPosition');
+          // this.clearFormPosition();
+          this.viewPositionName();
+        });
+        this.getPositionRecruitment();
+        console.log(this.positionsDataById);
+        console.log('putPositionByIdRecruitment success', response);
+      },
+      (error) => {
+        console.error('putPositionByIdRecruitment error', error);
+        Swal.fire({
+          title: 'Error!',
+          text: error.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    );
+  }
+
+
+  deletePositionByIdRecruitment(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to delete this position!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.testService.deletePositionById(id).subscribe(
           (response) => {
-            // this.positionsDataById = response;
+            console.log('deletePositionByIdRecruitment success', response);
+            this.getPositionRecruitment();
+            // this.loginService.showTable('getAllPosition');
+            // Swal.fire('Deleted!', 'Position has been deleted.', 'success');
             Swal.fire({
-              title: 'Success!',
-              text: 'Position Updated Successfully.',
+              title: 'Deleted!',
+              text: 'Position has been deleted.',
               icon: 'success',
               showConfirmButton: false,
               timer: 3000,
             }).then(() => {
               this.loginService.showTable('viewPosition');
-              // this.clearFormPosition();
               this.viewPositionName();
             });
-            this.getPositionRecruitment();
-            console.log(this.positionsDataById);
-            console.log('putPositionByIdRecruitment success', response);
           },
           (error) => {
-            console.error('putPositionByIdRecruitment error', error);
+            console.error('deletePositionByIdRecruitment error', error);
+            Swal.fire('Error', error.error, 'error');
+          }
+        )
+      }
+      else if (result.dismiss === Swal.DismissReason.cancel) {
+        console.log('Deletion canceled');
+      }
+    })
+  }
+  // view position end
+
+
+
+  // leave rules start
+  leaveRules = [
+    { label: 'Sick Leave Carryforward', name: 'sickLeaveCarryforward', value_y: 'yes', value_n: 'no' },
+    { label: 'Sick Leave Encashment', name: 'sickLeaveEncashment', value_y: 'yes', value_n: 'no' },
+    { label: 'Sick Leave Expire', name: 'sickLeaveExpire', value_y: 'yes', value_n: 'no' },
+    { label: 'Casual Leave Carryforward', name: 'casualLeaveCarryforward', value_y: 'yes', value_n: 'no' },
+    { label: 'Casual Leave Encashment', name: 'casualLeaveEncashment', value_y: 'yes', value_n: 'no' },
+    { label: 'Casual Leave Expire', name: 'casualLeaveExpire', value_y: 'yes', value_n: 'no' },
+    { label: 'All Expired', name: 'allExpired', value_y: 'yes', value_n: 'no' },
+    // Add other leave rules as needed
+  ];
+  // leave rules end
+
+  // attendance rule start
+  // shiftTimes = [{ checkInTime: '', checkOutTime: '', checkInGraceTime: '', checkOutGraceTime: '', halfDay: '', absentCount:'', present: '', overtime:'' }];
+
+  // addRow() {
+  //   this.shiftTimes.push({ checkInTime: '', checkOutTime: '', checkInGraceTime: '', checkOutGraceTime: '', halfDay: '', absentCount:'', present: '', overtime:''  });
+  // }
+
+  // removeRow(index: number) {
+  //   this.shiftTimes.splice(index, 1);
+  // }
+  // attendance rule end
+
+  // add interview start
+  interview: {
+    id: any;
+    // isOptionsVisible: any;
+    nameOfInterviewee: string;
+    emailOfInterviewee: string;
+    resumeOfInterviewee: string;
+    phoneNumberOfInterviewee: string;
+    countryCodeOfInterviewee: string;
+    interviewer: string;
+    interviewerEmailId: string;
+    positionName: string;
+    dateOfInterview: string;
+    timeOfInterview: string;
+    status: string;
+    offerLetterStatus: string;
+    referral: string;
+    subject: string;
+    modeOfInterview: string;
+    addressOrLink: string;
+
+  } = {
+      id: '',
+      nameOfInterviewee: '',
+      emailOfInterviewee: '',
+      resumeOfInterviewee: '',
+      phoneNumberOfInterviewee: '',
+      countryCodeOfInterviewee: '',
+      interviewer: '',
+      interviewerEmailId: '',
+      positionName: '',
+      dateOfInterview: '',
+      timeOfInterview: '',
+      status: '',
+      offerLetterStatus: '',
+      referral: '',
+      subject: '',
+      modeOfInterview: 'online',
+      addressOrLink: '',
+    };
+  countries: any[] = [];
+  selectedCountry: string = 'IN';
+  positionNameInterview: any;
+
+  numberCode(): void {
+    this.countries = this.countryCode.countryCode();
+  }
+
+  viewPositionName() {
+    this.testService.viewPositionName().subscribe(
+      (response) => {
+        console.log('Position Name =>', response);
+        this.positionNameInterview = response;
+      }
+    );
+  }
+
+  addInterviewRecruitment() {
+    this.testService.addInterview(this.interview, this.selectedFileName).subscribe(
+      (response: any) => {
+        console.log('addPositionRecruitment success', response);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Interview Added Successfully.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+        }).then(() => {
+          this.loginService.showTable('viewInterview');
+          // this.clearFormInterview();
+          // this.addResumeInterview(response.id);
+        });
+        // this.getAllInterview();
+      },
+      (error) => {
+        console.error('addPositionRecruitment error', error);
+      }
+    );
+  }
+  // add interview end
+
+  // view interview start
+  itemsPerPageInterview: number = 10;
+  searchTermInterview: string = '';
+  interviewData: any = {};
+  filteredPositionsDataInterview: any[] | any;
+
+  sortInterviewByOpenDate: 'asc' | 'desc' = 'asc';
+  sortOrderInterviewStatus: 'asc' | 'desc' = 'asc';
+  sortOrderInterviewApplicants: 'asc' | 'desc' = 'asc';
+
+  candidateData: any = {};
+  filteredPositionsDataCandidate: any[] | any;
+  searchTermCandidate: string = '';
+
+  filterPositionsDataInterview(): void {
+    const searchTermLowerCase = this.searchTermInterview.trim().toLowerCase();
+
+    if (!searchTermLowerCase) {
+      this.filteredPositionsDataInterview = this.interviewData;
+    } else {
+      this.filteredPositionsDataInterview = this.interviewData.filter(
+        (position: any) => {
+          return (
+            position.type.toLowerCase().includes(searchTermLowerCase) ||
+            position.openingDate.toString().includes(searchTermLowerCase) ||
+            position.applicantsNumber.toString().includes(searchTermLowerCase)
+          );
+        }
+      );
+    }
+  }
+
+  getPaginatedDataInterview(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPageInterview;
+    const endIndex = startIndex + this.itemsPerPageInterview;
+    return this.filteredPositionsDataInterview.slice(startIndex, endIndex);
+  }
+
+  nextPageInterview(): void {
+    const totalPages = Math.ceil(
+      this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
+    );
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+    }
+  }
+  getPageNumbersInterview(): number[] {
+    const totalPages = Math.ceil(
+      this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  getTotalPagesInterview(): number {
+    return Math.ceil(
+      this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
+    );
+  }
+
+  sortInterviewByOpeningDate(): void {
+    // Toggle the sort order
+    this.sortInterviewByOpenDate =
+      this.sortInterviewByOpenDate === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the opening date
+    this.interviewData.sort((a: any, b: any) => {
+      const orderFactor = this.sortInterviewByOpenDate === 'asc' ? 1 : -1;
+
+      // Convert openingDate to Date objects for proper comparison
+      const dateA = new Date(a.openingDate).getTime();
+      const dateB = new Date(b.openingDate).getTime();
+
+      // Compare dates in ascending or descending order
+      return orderFactor * (dateA - dateB);
+    });
+  }
+
+
+  sortInterviewStatus(): void {
+    // Toggle the sort order
+    this.sortOrderInterviewStatus =
+      this.sortOrderInterviewStatus === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the number of posts
+    this.interviewData.sort((a: any, b: any) => {
+      const orderFactor = this.sortOrderInterviewStatus === 'asc' ? 1 : -1;
+      return orderFactor * (a.status - b.status);
+    });
+  }
+  sortInterviewApplicants(): void {
+    // Toggle the sort order
+    this.sortOrderInterviewApplicants =
+      this.sortOrderInterviewApplicants === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the number of posts
+    this.interviewData.sort((a: any, b: any) => {
+      const orderFactor = this.sortOrderInterviewApplicants === 'asc' ? 1 : -1;
+      return orderFactor * (a.applicantsNumber - b.applicantsNumber);
+    });
+  }
+
+  changePageInterview(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesInterview()) {
+      this.currentPage = pageNumber;
+    }
+  }
+
+
+  // get all interview start
+  getAllInterview() {
+    this.testService.viewPosition().subscribe(
+      (response: any) => {
+        console.log('Interview Data =>', response);
+        this.interviewData = response.filter(
+          (res: any) => res.applicantsNumber > 0
+        );
+        this.filteredPositionsDataInterview = this.interviewData;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  // get all interview end
+
+  // update postion status start
+  putStatusPosition(positionId: any, positionStatus: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to update the position status?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("??????", result.isConfirmed)
+        this.testService.updatePositionstatus(positionId, positionStatus).subscribe(
+          (response) => {
+            console.log('Status updated successfully:', response);
+            Swal.fire({
+              title: 'Success!',
+              text: 'Status updated successfully!',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+            }).then(() => {
+              this.loginService.showTable('viewInterview');
+            });
+            this.getAllInterview();
+          },
+          (error) => {
+            console.log('Error updating status:', error);
+            // Swal.fire('Error!', error.error, 'error');
             Swal.fire({
               title: 'Error!',
               text: error.error,
@@ -3067,618 +3416,302 @@ changePage(pageNumber: number): void {
           }
         );
       }
-      
+      this.getAllInterview();
+    })
 
-      deletePositionByIdRecruitment(id: any){
-        Swal.fire({
-          title: 'Are you sure?',
-          text: 'Are you sure you want to delete this position!',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Yes, delete it!',
-          cancelButtonText: 'No, cancel!',
-          reverseButtons: true,
-        }).then((result) =>{
-          if (result.isConfirmed){
-            this.testService.deletePositionById(id).subscribe(
-              (response) => {
-                console.log('deletePositionByIdRecruitment success', response);
-                this.getPositionRecruitment();
-                // this.loginService.showTable('getAllPosition');
-                // Swal.fire('Deleted!', 'Position has been deleted.', 'success');
-                Swal.fire({
-                  title: 'Deleted!',
-                  text: 'Position has been deleted.',
-                  icon: 'success',
-                  showConfirmButton: false,
-                  timer: 3000,
-                }).then(() => {
-                  this.loginService.showTable('viewPosition');
-                  this.viewPositionName();
-                });
-              },
-              (error) => {
-                console.error('deletePositionByIdRecruitment error', error);
-                Swal.fire('Error', error.error, 'error');
-              }
-            )
-          }
-          else if (result.dismiss === Swal.DismissReason.cancel) {
-            console.log('Deletion canceled');
-          }
-        })
-      }
-      // view position end
-
-
-
-// leave rules start
-leaveRules = [
-  { label: 'Sick Leave Carryforward', name: 'sickLeaveCarryforward', value_y: 'yes', value_n: 'no' },
-  { label: 'Sick Leave Encashment', name: 'sickLeaveEncashment', value_y: 'yes', value_n: 'no' },
-  { label: 'Sick Leave Expire', name: 'sickLeaveExpire', value_y: 'yes', value_n: 'no' },
-  { label: 'Casual Leave Carryforward', name: 'casualLeaveCarryforward', value_y: 'yes', value_n: 'no' },
-  { label: 'Casual Leave Encashment', name: 'casualLeaveEncashment', value_y: 'yes', value_n: 'no' },
-  { label: 'Casual Leave Expire', name: 'casualLeaveExpire', value_y: 'yes', value_n: 'no' },
-  { label: 'All Expired', name: 'allExpired', value_y: 'yes', value_n: 'no' },
-  // Add other leave rules as needed
-];
-// leave rules end
-
-// attendance rule start
-// shiftTimes = [{ checkInTime: '', checkOutTime: '', checkInGraceTime: '', checkOutGraceTime: '', halfDay: '', absentCount:'', present: '', overtime:'' }];
-
-// addRow() {
-//   this.shiftTimes.push({ checkInTime: '', checkOutTime: '', checkInGraceTime: '', checkOutGraceTime: '', halfDay: '', absentCount:'', present: '', overtime:''  });
-// }
-
-// removeRow(index: number) {
-//   this.shiftTimes.splice(index, 1);
-// }
-// attendance rule end
-
-// add interview start
-interview: {
-  id: any;
-  // isOptionsVisible: any;
-  nameOfInterviewee: string;
-  emailOfInterviewee: string;
-  resumeOfInterviewee: string;
-  phoneNumberOfInterviewee: string;
-  countryCodeOfInterviewee: string;
-  interviewer: string;
-  interviewerEmailId: string;
-  positionName: string;
-  dateOfInterview: string;
-  timeOfInterview: string;
-  status: string;
-  offerLetterStatus: string;
-  referral: string;
-  subject: string;
-  modeOfInterview: string;
-  addressOrLink: string;
-  
-} = {
-  id: '',
-  nameOfInterviewee: '',
-  emailOfInterviewee: '',
-  resumeOfInterviewee: '',
-  phoneNumberOfInterviewee: '',
-  countryCodeOfInterviewee: '',
-  interviewer: '',
-  interviewerEmailId: '',
-  positionName: '',
-  dateOfInterview: '',
-  timeOfInterview: '',
-  status: '',
-  offerLetterStatus: '',
-  referral: '',
-  subject: '',
-  modeOfInterview: 'online',
-  addressOrLink: '',
-};
-countries: any[] = [];
- selectedCountry: string = 'IN';
- positionNameInterview: any;
-
- numberCode(): void {
-  this.countries = this.countryCode.countryCode();
-}
-
-viewPositionName(){
-  this.testService.viewPositionName().subscribe(
-    (response) => {
-      console.log('Position Name =>', response);
-      this.positionNameInterview = response;
-    }
-  );
-}
-
-addInterviewRecruitment(){
-  this.testService.addInterview(this.interview, this.selectedFileName).subscribe(
-    (response: any) => {
-      console.log('addPositionRecruitment success', response);
-      Swal.fire({
-        title: 'Success!',
-        text: 'Interview Added Successfully.',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000,
-      }).then(() => {
-        this.loginService.showTable('viewInterview');
-        // this.clearFormInterview();
-        // this.addResumeInterview(response.id);
-      });
-      // this.getAllInterview();
-    },
-    (error) => {
-      console.error('addPositionRecruitment error', error);
-    }
-  );
-}
-// add interview end
-
-// view interview start
-itemsPerPageInterview: number = 10;
-searchTermInterview: string = '';
-interviewData: any = {};
-filteredPositionsDataInterview: any[] | any;
-
-sortInterviewByOpenDate: 'asc' | 'desc' = 'asc';
-sortOrderInterviewStatus: 'asc' | 'desc' = 'asc';
-sortOrderInterviewApplicants: 'asc' | 'desc' = 'asc';
-
-candidateData: any = {};
-filteredPositionsDataCandidate: any[] | any;
-searchTermCandidate: string = '';
-
-filterPositionsDataInterview(): void {
-  const searchTermLowerCase = this.searchTermInterview.trim().toLowerCase();
-
-  if (!searchTermLowerCase) {
-    this.filteredPositionsDataInterview = this.interviewData;
-  } else {
-    this.filteredPositionsDataInterview = this.interviewData.filter(
-      (position: any) => {
-        return (
-          position.type.toLowerCase().includes(searchTermLowerCase) ||
-          position.openingDate.toString().includes(searchTermLowerCase) ||
-          position.applicantsNumber.toString().includes(searchTermLowerCase)
-        );
-      }
-    );
   }
-}
+  // update postion status end
 
-getPaginatedDataInterview(): any[] {
-  const startIndex = (this.currentPage - 1) * this.itemsPerPageInterview;
-  const endIndex = startIndex + this.itemsPerPageInterview;
-  return this.filteredPositionsDataInterview.slice(startIndex, endIndex);
-}
+  // get candidate position start
+  filterPositionsDataCandidate(): void {
+    const searchTermLowerCase = this.searchTermCandidate.trim().toLowerCase();
 
-nextPageInterview(): void {
-  const totalPages = Math.ceil(
-    this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
-  );
-  if (this.currentPage < totalPages) {
-    this.currentPage++;
-  }
-}
-getPageNumbersInterview(): number[] {
-  const totalPages = Math.ceil(
-    this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-getTotalPagesInterview(): number {
-  return Math.ceil(
-    this.filteredPositionsDataInterview.length / this.itemsPerPageInterview
-  );
-}
-
-sortInterviewByOpeningDate(): void {
-  // Toggle the sort order
-  this.sortInterviewByOpenDate =
-    this.sortInterviewByOpenDate === 'asc' ? 'desc' : 'asc';
-
-  // Sort the positions array based on the opening date
-  this.interviewData.sort((a: any, b: any) => {
-    const orderFactor = this.sortInterviewByOpenDate === 'asc' ? 1 : -1;
-
-    // Convert openingDate to Date objects for proper comparison
-    const dateA = new Date(a.openingDate).getTime();
-    const dateB = new Date(b.openingDate).getTime();
-
-    // Compare dates in ascending or descending order
-    return orderFactor * (dateA - dateB);
-  });
-}
-
-
-sortInterviewStatus(): void {
-  // Toggle the sort order
-  this.sortOrderInterviewStatus =
-  this.sortOrderInterviewStatus === 'asc' ? 'desc' : 'asc';
-
-  // Sort the positions array based on the number of posts
-  this.interviewData.sort((a: any, b: any) => {
-    const orderFactor = this.sortOrderInterviewStatus === 'asc' ? 1 : -1;
-    return orderFactor * (a.status - b.status);
-  });
-}
-sortInterviewApplicants(): void {
-  // Toggle the sort order
-  this.sortOrderInterviewApplicants =
-    this.sortOrderInterviewApplicants === 'asc' ? 'desc' : 'asc';
-
-  // Sort the positions array based on the number of posts
-  this.interviewData.sort((a: any, b: any) => {
-    const orderFactor = this.sortOrderInterviewApplicants === 'asc' ? 1 : -1;
-    return orderFactor * (a.applicantsNumber - b.applicantsNumber);
-  });
-}
-
-changePageInterview(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesInterview()) {
-    this.currentPage = pageNumber;
-  }
-}
-
-
-// get all interview start
-getAllInterview(){
-  this.testService.viewPosition().subscribe(
-    (response: any) => {
-      console.log('Interview Data =>', response);
-      this.interviewData = response.filter(
-        (res: any) => res.applicantsNumber > 0
-      );
-      this.filteredPositionsDataInterview = this.interviewData;
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
-}
-// get all interview end
-
-// update postion status start
-putStatusPosition(positionId: any, positionStatus: any){
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'Do you want to update the position status?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, update it!',
-  }).then((result) =>{
-    if (result.isConfirmed){
-console.log("??????", result.isConfirmed)
-      this.testService.updatePositionstatus(positionId, positionStatus).subscribe(
-        (response) => {
-          console.log('Status updated successfully:', response);
-          Swal.fire({
-            title: 'Success!',
-            text: 'Status updated successfully!',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 3000,
-          }).then(() => {
-            this.loginService.showTable('viewInterview');
-          });
-          this.getAllInterview();
-        },
-        (error) => {
-          console.log('Error updating status:', error);
-          // Swal.fire('Error!', error.error, 'error');
-          Swal.fire({
-            title: 'Error!',
-            text: error.error,
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 3000,
-          });
-        }
-        );
-    }
-    this.getAllInterview();
-  })
-
-}
-// update postion status end
-
-// get candidate position start
-filterPositionsDataCandidate(): void {
-  const searchTermLowerCase = this.searchTermCandidate.trim().toLowerCase();
-
-  if (!searchTermLowerCase) {
-    this.filteredPositionsDataCandidate = this.candidateData;
-  } else {
-    this.filteredPositionsDataCandidate = this.candidateData.filter(
-      (candidate: any) => {
-        return (
-          candidate.nameOfInterviewee
-            .toLowerCase()
-            .includes(searchTermLowerCase) ||
-          candidate.phoneNumberOfInterviewee
-            .toString()
-            .includes(searchTermLowerCase) ||
-          candidate.emailOfInterviewee
-            .toString()
-            .includes(searchTermLowerCase) ||
-          candidate.dateOfInterview.toString().includes(searchTermLowerCase)
-        );
-      }
-    );
-  }
-}
-
-
-
-getCandidateRecruitment(positionName: any){
-  console.log("position name", positionName)
-  this.testService.getCandidatePosition(positionName).subscribe(
-    (response) => {
-      console.log('Candidate Data =>', response);
-      this.candidateData = response;
+    if (!searchTermLowerCase) {
       this.filteredPositionsDataCandidate = this.candidateData;
-      this.loginService.showTable('candidateList');
-    },
-    (error) => {
-      console.error('Error fetching position recruitment data:', error);
+    } else {
+      this.filteredPositionsDataCandidate = this.candidateData.filter(
+        (candidate: any) => {
+          return (
+            candidate.nameOfInterviewee
+              .toLowerCase()
+              .includes(searchTermLowerCase) ||
+            candidate.phoneNumberOfInterviewee
+              .toString()
+              .includes(searchTermLowerCase) ||
+            candidate.emailOfInterviewee
+              .toString()
+              .includes(searchTermLowerCase) ||
+            candidate.dateOfInterview.toString().includes(searchTermLowerCase)
+          );
+        }
+      );
     }
-  );
-}
-
-// get candidate position end
-
-
-
-// view interview end
-
-// view candidate interview start
-itemsPerPageCandidate: number = 10;
-
-getPaginatedDataCandidate(): any[] {
-  const startIndex = (this.currentPage - 1) * this.itemsPerPageCandidate;
-  const endIndex = startIndex + this.itemsPerPageCandidate;
-  return this.filteredPositionsDataCandidate.slice(startIndex, endIndex);
-}
-nextPageCandidate(): void {
-  const totalPages = Math.ceil(
-    this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
-  );
-  if (this.currentPage < totalPages) {
-    this.currentPage++;
   }
-}
-getPageNumbersCandidate(): number[] {
-  const totalPages = Math.ceil(
-    this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
 
-changePageCandidate(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesCandidate()) {
-    this.currentPage = pageNumber;
-  }
-}
-getTotalPagesCandidate(): number {
-  return Math.ceil(
-    this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
-  );
-}
 
-// download candidate CV start
-getDownloadResume(id: any){
-  this.testService.downloadCandidateCV(id).subscribe(
-    (response: HttpResponse<Blob>) => {
-      if (response.body) {
-        const contentDisposition = response.headers.get(
-          'content-disposition'
-        );
-        const fileName = contentDisposition
-          ? contentDisposition.split('filename=')[1]
-          : 'Resume.pdf';
 
-        saveAs(response.body, fileName);
-      } else {
-        console.error('Response body is null.');
+  getCandidateRecruitment(positionName: any) {
+    console.log("position name", positionName)
+    this.testService.getCandidatePosition(positionName).subscribe(
+      (response) => {
+        console.log('Candidate Data =>', response);
+        this.candidateData = response;
+        this.filteredPositionsDataCandidate = this.candidateData;
+        this.loginService.showTable('candidateList');
+      },
+      (error) => {
+        console.error('Error fetching position recruitment data:', error);
       }
-    },
-    (error) => {
-      console.log(error);
+    );
+  }
+
+  // get candidate position end
+
+
+
+  // view interview end
+
+  // view candidate interview start
+  itemsPerPageCandidate: number = 10;
+
+  getPaginatedDataCandidate(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPageCandidate;
+    const endIndex = startIndex + this.itemsPerPageCandidate;
+    return this.filteredPositionsDataCandidate.slice(startIndex, endIndex);
+  }
+  nextPageCandidate(): void {
+    const totalPages = Math.ceil(
+      this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
+    );
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
     }
-  );
+  }
+  getPageNumbersCandidate(): number[] {
+    const totalPages = Math.ceil(
+      this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
 
-}
-// download candidate CV end
+  changePageCandidate(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesCandidate()) {
+      this.currentPage = pageNumber;
+    }
+  }
+  getTotalPagesCandidate(): number {
+    return Math.ceil(
+      this.filteredPositionsDataCandidate.length / this.itemsPerPageCandidate
+    );
+  }
 
-// send mail start
-updateInterviewStatus(id: any, data: any){
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'Do you want to update the Interview status?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, update it!',
-  }).then((result) =>{
-    if (result.isConfirmed) {
+  // download candidate CV start
+  getDownloadResume(id: any) {
+    this.testService.downloadCandidateCV(id).subscribe(
+      (response: HttpResponse<Blob>) => {
+        if (response.body) {
+          const contentDisposition = response.headers.get(
+            'content-disposition'
+          );
+          const fileName = contentDisposition
+            ? contentDisposition.split('filename=')[1]
+            : 'Resume.pdf';
 
-      this.testService.sendMail(id, data).subscribe(
-        (response) => {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Status updated successfully!',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 3000,
-          }).then(() => {
-            this.loginService.showTable('viewInterview');
-          });
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
+          saveAs(response.body, fileName);
+        } else {
+          console.error('Response body is null.');
         }
-      );
-    }
-  })
-}
-// send mail end
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+  // download candidate CV end
+
+  // send mail start
+  updateInterviewStatus(id: any, data: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to update the Interview status?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.testService.sendMail(id, data).subscribe(
+          (response) => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Status updated successfully!',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+            }).then(() => {
+              this.loginService.showTable('viewInterview');
+            });
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    })
+  }
+  // send mail end
 
 
-// update confermation status start
-updateConfirmationStatus(confirmationId: any, confirmationStatus: any){
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'Do you want to update the Interview status?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, update it!',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // If the user clicks 'Yes', perform the update
-      this.testService.updateConfirmationStatus(confirmationId, confirmationStatus).subscribe(
-        (response) => {
-          console.log('Status updated successfully:', response);
-          Swal.fire('Success!', 'Status updated successfully!', 'success');
-          Swal.fire({
-            title: 'Success!',
-            text: 'Status updated successfully!',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 3000,
-          }).then(() => {
-            this.loginService.showTable('viewInterview');
-          });
-          this.getAllInterview();
-        },
-        (error) => {
-          console.log('Error updating status:', error);
-          // Swal.fire('Error!', error.error, 'error');
-          Swal.fire({
-            title: 'Error!',
-            text: error.error,
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 3000,
-          });
-        }
-      );
-    }
-    this.getAllInterview();
-  });
-}
-// update confermation status end
+  // update confermation status start
+  updateConfirmationStatus(confirmationId: any, confirmationStatus: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to update the Interview status?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If the user clicks 'Yes', perform the update
+        this.testService.updateConfirmationStatus(confirmationId, confirmationStatus).subscribe(
+          (response) => {
+            console.log('Status updated successfully:', response);
+            Swal.fire('Success!', 'Status updated successfully!', 'success');
+            Swal.fire({
+              title: 'Success!',
+              text: 'Status updated successfully!',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+            }).then(() => {
+              this.loginService.showTable('viewInterview');
+            });
+            this.getAllInterview();
+          },
+          (error) => {
+            console.log('Error updating status:', error);
+            // Swal.fire('Error!', error.error, 'error');
+            Swal.fire({
+              title: 'Error!',
+              text: error.error,
+              icon: 'error',
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }
+        );
+      }
+      this.getAllInterview();
+    });
+  }
+  // update confermation status end
 
-toggleOptions(candidate: any): void {
-  candidate.isOptionsVisible = !candidate.isOptionsVisible;
-}
+  toggleOptions(candidate: any): void {
+    candidate.isOptionsVisible = !candidate.isOptionsVisible;
+  }
 
-// find candidate by id start
-getInterviewByIdRecruitment(id: any){
-  this.testService.findCandidateById(id).subscribe(
-    (response: any) => {
-      this.interview = response;
-      console.log(this.interview);
-      this.loginService.showTable('interviewScheduleUpdate');
-      console.log('getInterviewByIdRecruitment success', response);
-    },
-    (error) => {
-      console.error('getInterviewByIdRecruitment error', error);
-    }
-  );
-}
-// find candidate by id end
+  // find candidate by id start
+  getInterviewByIdRecruitment(id: any) {
+    this.testService.findCandidateById(id).subscribe(
+      (response: any) => {
+        this.interview = response;
+        console.log(this.interview);
+        this.loginService.showTable('interviewScheduleUpdate');
+        console.log('getInterviewByIdRecruitment success', response);
+      },
+      (error) => {
+        console.error('getInterviewByIdRecruitment error', error);
+      }
+    );
+  }
+  // find candidate by id end
 
-// delete candidate interview by id start
-deleteInterviewByIdRecruitment(id: any){
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'Are you sure you want to delete this interview!',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
-    reverseButtons: true,
-  }).then((result) => {
-    if (result.isConfirmed) {
-     
+  // delete candidate interview by id start
+  deleteInterviewByIdRecruitment(id: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to delete this interview!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-      this.testService.deleteCandidateInterviewById(id).subscribe(
-        (response) => {
-          console.log('deleteInterviewByIdRecruitment success', response);
-          this.getAllInterview();
 
-          // this.loginService.showTable('getAllPosition');
-          // Swal.fire('Deleted!', 'Position has been deleted.', 'success');
-          Swal.fire({
-            title: 'Deleted!',
-            text: 'Interview has been deleted.',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 3000,
-          }).then(() => {
-            this.loginService.showTable('viewInterview');
-            this.viewPositionName();
-          });
-        },
-        (error) => {
-          console.error('deleteInterivewByIdRecruitment error', error);
-          Swal.fire('Error', 'Unable to delete interview.', 'error');
-        }
-      );
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      console.log('Deletion canceled');
-    }
-  });
-}
-// delete candidate interview by id end
+        this.testService.deleteCandidateInterviewById(id).subscribe(
+          (response) => {
+            console.log('deleteInterviewByIdRecruitment success', response);
+            this.getAllInterview();
 
-// update interview start
-addInterviewUpdateRecruitment(id: any, interview: any, selectedFileName: any){
-  this.testService.updateInterviewById(id,interview,selectedFileName).subscribe(
-    (response) => {
-      // this.positionsDataById = response;
-      Swal.fire({
-        title: 'Success!',
-        text: 'Interview Updated Successfully.',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000,
-      }).then(() => {
-        this.loginService.showTable('allInterview');
-        // this.clearFormPosition();
-      });
-      // this.getPositionRecruitment();
-      // this.getInterviewRecruitment();
-      console.log(this.positionsDataById);
-      console.log('addInterviewUpdateRecruitment success', response);
-      // this.clearFormInterview();
-    },
-    (error) => {
-      console.error('addInterviewUpdateRecruitment error', error);
-      Swal.fire({
-        title: 'Error!',
-        text: error.error,
-        icon: 'error',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-    }
-  );
-}
-// update interview end
+            // this.loginService.showTable('getAllPosition');
+            // Swal.fire('Deleted!', 'Position has been deleted.', 'success');
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Interview has been deleted.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+            }).then(() => {
+              this.loginService.showTable('viewInterview');
+              this.viewPositionName();
+            });
+          },
+          (error) => {
+            console.error('deleteInterivewByIdRecruitment error', error);
+            Swal.fire('Error', 'Unable to delete interview.', 'error');
+          }
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        console.log('Deletion canceled');
+      }
+    });
+  }
+  // delete candidate interview by id end
 
-// view candidate interview end
+  // update interview start
+  addInterviewUpdateRecruitment(id: any, interview: any, selectedFileName: any) {
+    this.testService.updateInterviewById(id, interview, selectedFileName).subscribe(
+      (response) => {
+        // this.positionsDataById = response;
+        Swal.fire({
+          title: 'Success!',
+          text: 'Interview Updated Successfully.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+        }).then(() => {
+          this.loginService.showTable('allInterview');
+          // this.clearFormPosition();
+        });
+        // this.getPositionRecruitment();
+        // this.getInterviewRecruitment();
+        console.log(this.positionsDataById);
+        console.log('addInterviewUpdateRecruitment success', response);
+        // this.clearFormInterview();
+      },
+      (error) => {
+        console.error('addInterviewUpdateRecruitment error', error);
+        Swal.fire({
+          title: 'Error!',
+          text: error.error,
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    );
+  }
+  // update interview end
+
+  // view candidate interview end
 
   recruitmentForm!: NgForm;
   recruitmentInterviewForm!: NgForm;
@@ -3686,158 +3719,158 @@ addInterviewUpdateRecruitment(id: any, interview: any, selectedFileName: any){
   recruitmentGenerateOfferLetterForm!: NgForm;
   // shiftForm!: NgForm;
 
-// add shift time start
-shiftTime = {
-  checkInTime: '',
-  checkOutTime:'',
-  checkInGraceTime:'',
-  checkOutGraceTime:'',
+  // add shift time start
+  shiftTime = {
+    checkInTime: '',
+    checkOutTime: '',
+    checkInGraceTime: '',
+    checkOutGraceTime: '',
 
-  halfDayHrs: '00:00:00',
-  absentHrs: '00:00:00',
-  presentHrs: '00:00:00',
-  overTimeHrs: '00:00:00'
-};
-addShiftTime() {
-  
-  console.log('shift form', this.shiftTime);
-  this.testService.addShift(this.shiftTime).subscribe(
-    (response) => {
-      Swal.fire({
-        title: 'Success!',
-        text: 'Shift Time added Successfully.',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000,
-      }).then(() => {
-        this.loginService.showTable('viewShiftTime');
-          this.viewShiftTimeDetails();
-        // Any additional actions after success
-      });
+    halfDayHrs: '00:00:00',
+    absentHrs: '00:00:00',
+    presentHrs: '00:00:00',
+    overTimeHrs: '00:00:00'
+  };
+  addShiftTime() {
 
-      console.log('add shift time', response);
-    },
-    (error) => {
-      Swal.fire('Error', error.error, 'error');
-    }
-  );
-}
-// add shift time end
-
-// show shift time in time formate start
-formatTime(data: any, name: any) {
-  // Get the current value from ngModel
-  let inputValue: string = data.replace(/\D/g, '');
-
-  // Ensure the input value is not empty
-  if (inputValue.length > 0) {
-    // Pad the input value with leading zeros
-    inputValue = inputValue.padStart(6, '0');
-
-    // Insert colons to format the time
-    inputValue = inputValue.slice(0, 2) + ':' + inputValue.slice(2, 4) + ':' + inputValue.slice(4, 6);
-  }
-
-  // Update the ngModel with the formatted value
-  if(name == 'halfDayHrs'){
-
-    this.shiftTime.halfDayHrs = inputValue;
-  }
-  if(name == 'absentHrs'){
-
-    this.shiftTime.absentHrs = inputValue;
-  }
-  if(name == 'presentHrs'){
-
-    this.shiftTime.presentHrs = inputValue;
-  }
-  if(name == 'overTimeHrs'){
-
-    this.shiftTime.overTimeHrs = inputValue;
-  }
-}
-// show shift time in time formate end
-
-// search for  leave table start
-searchShift: string = '';
-fillterShiftData: any;
-    
-FilterShift() {
-  this.fillterShiftData = this.allShiftData.filter((item: { checkInTime: string; checkOutTime: string; }) =>
-  item.checkInTime.toLowerCase().includes(this.searchShift.toLowerCase()) ||
-  item.checkOutTime.toLowerCase().includes(this.searchShift.toLowerCase()) 
-   );
-}
-
- // search for leave table end
-
-// API for view shift time details start
-viewShiftTimeDetails(): void {
-  this.testService.viewShiftDetails().subscribe(
-    (response: any) => {
-
-      const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
-      this.allShiftData = reversedData; // Assign the fetched role data to AllRoleData
-      this.fillterShiftData = reversedData;
-      console.log("view all shift", response);
-      console.log("view all shift", this.allShiftData);
-      
-      // this.fillterAllRoleData = reversedData; 
-    },
-    (error: any) => {
-      console.error('Error fetching role data:', error);
-    }
-  );
-}
-
-// API for view shift time details end
-
-
-// API for update shift time start
-UpdateShiftTime(selectedItemData: any){
-  this.testService.updateShiftTime(selectedItemData).subscribe(
-    (response: any) => {
-      
-      console.log("updated shift time",response);
-      Swal.fire({
-        title: 'Updated!',
-        text: 'Shift Time has been updated.',
-        icon: 'success'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // location.reload();
+    console.log('shift form', this.shiftTime);
+    this.testService.addShift(this.shiftTime).subscribe(
+      (response) => {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Shift Time added Successfully.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+        }).then(() => {
           this.loginService.showTable('viewShiftTime');
           this.viewShiftTimeDetails();
+          // Any additional actions after success
+        });
 
-        }
-      });
-    },
-    error => {
-      Swal.fire('Error', error.error, 'error');  
-      
+        console.log('add shift time', response);
+      },
+      (error) => {
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+  // add shift time end
+
+  // show shift time in time formate start
+  formatTime(data: any, name: any) {
+    // Get the current value from ngModel
+    let inputValue: string = data.replace(/\D/g, '');
+
+    // Ensure the input value is not empty
+    if (inputValue.length > 0) {
+      // Pad the input value with leading zeros
+      inputValue = inputValue.padStart(6, '0');
+
+      // Insert colons to format the time
+      inputValue = inputValue.slice(0, 2) + ':' + inputValue.slice(2, 4) + ':' + inputValue.slice(4, 6);
     }
-  );
-}
-// API for update shift time end
 
-// for view update shift time start
-selectedItem: any;
-editShift(itemId: number) {
-  // Find the selected item by its id
-  this.selectedItem = this.fillterShiftData.find((item: { id: number; }) => item.id === itemId);
-console.log("shift id", itemId);
-console.log("shift select", this.selectedItem);
-  // Show the 'editShiftTime' content
-  this.loginService.showTable('editShiftTime');
-}
-// for view update shift time end
+    // Update the ngModel with the formatted value
+    if (name == 'halfDayHrs') {
 
-// for delete shift time start
+      this.shiftTime.halfDayHrs = inputValue;
+    }
+    if (name == 'absentHrs') {
 
-deleteShift(id: any): void {
- 
+      this.shiftTime.absentHrs = inputValue;
+    }
+    if (name == 'presentHrs') {
+
+      this.shiftTime.presentHrs = inputValue;
+    }
+    if (name == 'overTimeHrs') {
+
+      this.shiftTime.overTimeHrs = inputValue;
+    }
+  }
+  // show shift time in time formate end
+
+  // search for  leave table start
+  searchShift: string = '';
+  fillterShiftData: any;
+
+  FilterShift() {
+    this.fillterShiftData = this.allShiftData.filter((item: { checkInTime: string; checkOutTime: string; }) =>
+      item.checkInTime.toLowerCase().includes(this.searchShift.toLowerCase()) ||
+      item.checkOutTime.toLowerCase().includes(this.searchShift.toLowerCase())
+    );
+  }
+
+  // search for leave table end
+
+  // API for view shift time details start
+  viewShiftTimeDetails(): void {
+    this.testService.viewShiftDetails().subscribe(
+      (response: any) => {
+
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+        this.allShiftData = reversedData; // Assign the fetched role data to AllRoleData
+        this.fillterShiftData = reversedData;
+        console.log("view all shift", response);
+        console.log("view all shift", this.allShiftData);
+
+        // this.fillterAllRoleData = reversedData; 
+      },
+      (error: any) => {
+        console.error('Error fetching role data:', error);
+      }
+    );
+  }
+
+  // API for view shift time details end
+
+
+  // API for update shift time start
+  UpdateShiftTime(selectedItemData: any) {
+    this.testService.updateShiftTime(selectedItemData).subscribe(
+      (response: any) => {
+
+        console.log("updated shift time", response);
+        Swal.fire({
+          title: 'Updated!',
+          text: 'Shift Time has been updated.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // location.reload();
+            this.loginService.showTable('viewShiftTime');
+            this.viewShiftTimeDetails();
+
+          }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+
+      }
+    );
+  }
+  // API for update shift time end
+
+  // for view update shift time start
+  selectedItem: any;
+  editShift(itemId: number) {
+    // Find the selected item by its id
+    this.selectedItem = this.fillterShiftData.find((item: { id: number; }) => item.id === itemId);
+    console.log("shift id", itemId);
+    console.log("shift select", this.selectedItem);
+    // Show the 'editShiftTime' content
+    this.loginService.showTable('editShiftTime');
+  }
+  // for view update shift time end
+
+  // for delete shift time start
+
+  deleteShift(id: any): void {
+
     Swal.fire({
       title: 'Are you sure?',
       text: 'Are you sure you want to delete this Shift?',
@@ -3859,7 +3892,7 @@ deleteShift(id: any): void {
               if (result.isConfirmed) {
                 // location.reload();
                 this.loginService.showTable('viewShiftTime');
-          this.viewShiftTimeDetails();
+                this.viewShiftTimeDetails();
               }
             });
           },
@@ -3869,1607 +3902,1613 @@ deleteShift(id: any): void {
         );
       }
     });
- 
-}
-// for delete shift time end
 
-// notice period start
-noticePeriod: number = 1;
-
-incrementNoticePeriod(): void {
-  console.log(
-    'this.noticePeriod',
-    this.noticePeriod
-  );
-  this.noticePeriod++;
-  
-  
-}
-
-decrementNoticePeriod(): void {
-  console.log(
-    'this.noticePeriod',
-    this.noticePeriod
-  );
-
-  if (
-    this.noticePeriod > 1 
-  ) {
-    
-    this.noticePeriod--;
-    
   }
-}
-noticePeriodDays(noticePeriod: any){
-  console.log("notice period", noticePeriod);
-  this.testService.noticePeriod(noticePeriod).subscribe(
-    (response: any) => {
-      
-      console.log("notice period",response);
-      Swal.fire({
-        title: 'success!',
-        text: 'Notice Period added successfully.',
-        icon: 'success'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // location.reload();
-          // this.loginService.showTable('viewShiftTime');
-          // this.viewShiftTimeDetails();
+  // for delete shift time end
 
-        }
-      });
-    },
-    error => {
-      Swal.fire('Error', error.error, 'error');  
-      
-    }
-  );
-}
-// notice period end
+  // notice period start
+  noticePeriod: number = 1;
 
-// leave rule start
-leaveRule: any = {}; 
-addleaveRule() {
-  console.log("leave rule", this.leaveRule);
-  
-  this.testService.addLeaveRule(this.leaveRule).subscribe(
-    (response: any) => {
-      console.log("leave Rule", response);
-      Swal.fire({
-        title: 'Success!',
-        text: 'Leave Rule added successfully.',
-        icon: 'success'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Add any additional logic you want to perform after success
-        }
-      });
-    },
-    (error: any) => {
-      Swal.fire('Error', error.error, 'error');
-    }
-  );
-}
-// leave rule end
-
-// view today present start
-todayAttPerPage: number = 10;
-currentTodayAttPage: number = 1;
-
-searchTodayAtt: string = '';
-    
- FilterTodayAtt() {
-   this.fillterTodayattData = this.TodayAttData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchTodayAtt.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchTodayAtt.toLowerCase()) 
-   );
- }
-
- sortByFromDateTodayAtt(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterTodayattData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+  incrementNoticePeriod(): void {
+    console.log(
+      'this.noticePeriod',
+      this.noticePeriod
     );
-  });
-}
+    this.noticePeriod++;
 
-getPaginatedTodayattData(): any[] {
-  const startIndex = (this.currentTodayAttPage - 1) * this.todayAttPerPage;
-  const endIndex = startIndex + this.todayAttPerPage;
-  return this.fillterTodayattData.slice(startIndex, endIndex);
-}
 
-previousTodayattPage(): void {
-  if (this.currentTodayAttPage > 1) {
-    this.currentTodayAttPage--;
   }
-}
+
+  decrementNoticePeriod(): void {
+    console.log(
+      'this.noticePeriod',
+      this.noticePeriod
+    );
+
+    if (
+      this.noticePeriod > 1
+    ) {
+
+      this.noticePeriod--;
+
+    }
+  }
+  noticePeriodDays(noticePeriod: any) {
+    console.log("notice period", noticePeriod);
+    this.testService.noticePeriod(noticePeriod).subscribe(
+      (response: any) => {
+
+        console.log("notice period", response);
+        Swal.fire({
+          title: 'success!',
+          text: 'Notice Period added successfully.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // location.reload();
+            // this.loginService.showTable('viewShiftTime');
+            // this.viewShiftTimeDetails();
+
+          }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+
+      }
+    );
+  }
+  // notice period end
+
+  // leave rule start
+  leaveRule: any = {};
+  addleaveRule() {
+    console.log("leave rule", this.leaveRule);
+
+    this.testService.addLeaveRule(this.leaveRule).subscribe(
+      (response: any) => {
+        console.log("leave Rule", response);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Leave Rule added successfully.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Add any additional logic you want to perform after success
+          }
+        });
+      },
+      (error: any) => {
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+  // leave rule end
+
+  // view today present start
+  todayAttPerPage: number = 10;
+  currentTodayAttPage: number = 1;
+
+  searchTodayAtt: string = '';
+
+  FilterTodayAtt() {
+    this.fillterTodayattData = this.TodayAttData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchTodayAtt.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchTodayAtt.toLowerCase())
+    );
+  }
+
+  sortByFromDateTodayAtt(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterTodayattData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
+  }
+
+  getPaginatedTodayattData(): any[] {
+    const startIndex = (this.currentTodayAttPage - 1) * this.todayAttPerPage;
+    const endIndex = startIndex + this.todayAttPerPage;
+    return this.fillterTodayattData.slice(startIndex, endIndex);
+  }
+
+  previousTodayattPage(): void {
+    if (this.currentTodayAttPage > 1) {
+      this.currentTodayAttPage--;
+    }
+  }
 
 
-getPageNumbersTodayatt(): number[] {
-  const totalPages = this.getTotalPagesTodayatt();
-  const maxPagesToShow = 3; // Adjust as needed
+  getPageNumbersTodayatt(): number[] {
+    const totalPages = this.getTotalPagesTodayatt();
+    const maxPagesToShow = 3; // Adjust as needed
 
-  let startPage: number;
-  let endPage: number;
+    let startPage: number;
+    let endPage: number;
 
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentTodayAttPage <= halfMaxPagesToShow + 1) {
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
       startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentTodayAttPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
       endPage = totalPages;
     } else {
-      startPage = this.currentTodayAttPage - halfMaxPagesToShow;
-      endPage = this.currentTodayAttPage + halfMaxPagesToShow;
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentTodayAttPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentTodayAttPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentTodayAttPage - halfMaxPagesToShow;
+        endPage = this.currentTodayAttPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  }
+
+
+  changePageTodayatt(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayatt()) {
+      this.currentTodayAttPage = pageNumber;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
-
-changePageTodayatt(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayatt()) {
-    this.currentTodayAttPage = pageNumber;
+  nextPageTodayatt(): void {
+    const totalPages = Math.ceil(
+      this.fillterTodayattData.length / this.todayAttPerPage
+    );
+    if (this.currentTodayAttPage < totalPages) {
+      this.currentTodayAttPage++;
+    }
   }
-}
 
 
-nextPageTodayatt(): void {
-  const totalPages = Math.ceil(
-    this.fillterTodayattData.length / this.todayAttPerPage
-  );
-  if (this.currentTodayAttPage < totalPages) {
-    this.currentTodayAttPage++;
+  getTotalPagesTodayatt(): number {
+    return Math.ceil(
+      this.fillterTodayattData.length / this.todayAttPerPage
+    );
   }
-}
 
 
-getTotalPagesTodayatt(): number {
-  return Math.ceil(
-    this.fillterTodayattData.length / this.todayAttPerPage
-  );
-}
+  viewTodayPresent() {
+    // this.showAllAttTable = !this.showAllAttTable;
 
-
-viewTodayPresent() {
-  // this.showAllAttTable = !this.showAllAttTable;
-
-  // if (this.showAllAttTable && '#/viewTodayPresent' === window.location.hash) {
+    // if (this.showAllAttTable && '#/viewTodayPresent' === window.location.hash) {
     if ('/viewTodayPresent' === this.router.url) {
 
-    // Call the service method to fetch all attendance data
-    this.testService.getTodayPresent().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getTodayPresent().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.TodayAttData = reversedData;
-        this.fillterTodayattData = reversedData;
-        console.log("today present",response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
-    );
-  }
-}
-
-// view today present end
-
-// view today wfh start
-todayWfhPerPage: number = 10;
-currentTodayWfhPage: number = 1;
-
-searchTodayWfh: string = '';
-    
- FilterTodayWfh() {
-   this.fillterTodayWfhData = this.TodayWfhData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchTodayWfh.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchTodayWfh.toLowerCase()) 
-   );
- }
-
- sortByFromDateTodayWfh(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterTodayWfhData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-    );
-  });
-}
-
-getPaginatedTodayWfhData(): any[] {
-  const startIndex = (this.currentTodayWfhPage - 1) * this.todayWfhPerPage;
-  const endIndex = startIndex + this.todayWfhPerPage;
-  return this.fillterTodayWfhData.slice(startIndex, endIndex);
-}
-
-previousTodayWfhPage(): void {
-  if (this.currentTodayWfhPage > 1) {
-    this.currentTodayWfhPage--;
-  }
-}
-
-
-getPageNumbersTodayWfh(): number[] {
-  const totalPages = this.getTotalPagesTodayWfh();
-  const maxPagesToShow = 3; // Adjust as needed
-
-  let startPage: number;
-  let endPage: number;
-
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentTodayWfhPage <= halfMaxPagesToShow + 1) {
-      startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentTodayWfhPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
-      endPage = totalPages;
-    } else {
-      startPage = this.currentTodayWfhPage - halfMaxPagesToShow;
-      endPage = this.currentTodayWfhPage + halfMaxPagesToShow;
+          // Set the reversed array as the data source
+          this.TodayAttData = reversedData;
+          this.fillterTodayattData = reversedData;
+          console.log("today present", response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
+  // view today present end
 
+  // view today wfh start
+  todayWfhPerPage: number = 10;
+  currentTodayWfhPage: number = 1;
 
-changePageTodayWfh(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayWfh()) {
-    this.currentTodayWfhPage = pageNumber;
+  searchTodayWfh: string = '';
+
+  FilterTodayWfh() {
+    this.fillterTodayWfhData = this.TodayWfhData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchTodayWfh.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchTodayWfh.toLowerCase())
+    );
   }
-}
 
+  sortByFromDateTodayWfh(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-nextPageTodayWfh(): void {
-  const totalPages = Math.ceil(
-    this.fillterTodayWfhData.length / this.todayWfhPerPage
-  );
-  if (this.currentTodayWfhPage < totalPages) {
-    this.currentTodayWfhPage++;
+    this.fillterTodayWfhData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
   }
-}
+
+  getPaginatedTodayWfhData(): any[] {
+    const startIndex = (this.currentTodayWfhPage - 1) * this.todayWfhPerPage;
+    const endIndex = startIndex + this.todayWfhPerPage;
+    return this.fillterTodayWfhData.slice(startIndex, endIndex);
+  }
+
+  previousTodayWfhPage(): void {
+    if (this.currentTodayWfhPage > 1) {
+      this.currentTodayWfhPage--;
+    }
+  }
 
 
-getTotalPagesTodayWfh(): number {
-  return Math.ceil(
-    this.fillterTodayWfhData.length / this.todayWfhPerPage
-  );
-}
+  getPageNumbersTodayWfh(): number[] {
+    const totalPages = this.getTotalPagesTodayWfh();
+    const maxPagesToShow = 3; // Adjust as needed
+
+    let startPage: number;
+    let endPage: number;
+
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentTodayWfhPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentTodayWfhPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentTodayWfhPage - halfMaxPagesToShow;
+        endPage = this.currentTodayWfhPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  }
+
+
+  changePageTodayWfh(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayWfh()) {
+      this.currentTodayWfhPage = pageNumber;
+    }
+  }
+
+
+  nextPageTodayWfh(): void {
+    const totalPages = Math.ceil(
+      this.fillterTodayWfhData.length / this.todayWfhPerPage
+    );
+    if (this.currentTodayWfhPage < totalPages) {
+      this.currentTodayWfhPage++;
+    }
+  }
+
+
+  getTotalPagesTodayWfh(): number {
+    return Math.ceil(
+      this.fillterTodayWfhData.length / this.todayWfhPerPage
+    );
+  }
 
 
 
-viewTodayWfh() {
-  // this.showAllAttTable = !this.showAllAttTable;
+  viewTodayWfh() {
+    // this.showAllAttTable = !this.showAllAttTable;
 
-  // if (this.showAllAttTable && '#/viewTodayWfh' === window.location.hash) {
+    // if (this.showAllAttTable && '#/viewTodayWfh' === window.location.hash) {
 
     if ('/viewTodayWfh' === this.router.url) {
-    // Call the service method to fetch all attendance data
-    this.testService.getTodayWfh().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getTodayWfh().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.TodayWfhData = reversedData;
-        this.fillterTodayWfhData = reversedData;
-        console.log("today wfh",response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
+          // Set the reversed array as the data source
+          this.TodayWfhData = reversedData;
+          this.fillterTodayWfhData = reversedData;
+          console.log("today wfh", response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
+    }
+  }
+  // view today wfh end
+
+  // view today sick leave start
+  todaySickPerPage: number = 10;
+  currentTodaySickPage: number = 1;
+
+  searchTodaySick: string = '';
+
+  FilterTodaySick() {
+    this.fillterTodaySickLeaveData = this.TodaySickLeaveData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchTodaySick.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchTodaySick.toLowerCase())
     );
   }
-}
-// view today wfh end
 
-// view today sick leave start
-todaySickPerPage: number = 10;
-currentTodaySickPage: number = 1;
+  sortByFromDateTodaySick(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-searchTodaySick: string = '';
-    
- FilterTodaySick() {
-   this.fillterTodaySickLeaveData = this.TodaySickLeaveData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchTodaySick.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchTodaySick.toLowerCase()) 
-   );
- }
-
- sortByFromDateTodaySick(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterTodaySickLeaveData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-    );
-  });
-}
-
-getPaginatedTodaySickData(): any[] {
-  const startIndex = (this.currentTodaySickPage - 1) * this.todaySickPerPage;
-  const endIndex = startIndex + this.todaySickPerPage;
-  return this.fillterTodaySickLeaveData.slice(startIndex, endIndex);
-}
-
-previousTodaySickPage(): void {
-  if (this.currentTodaySickPage > 1) {
-    this.currentTodaySickPage--;
+    this.fillterTodaySickLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
   }
-}
 
+  getPaginatedTodaySickData(): any[] {
+    const startIndex = (this.currentTodaySickPage - 1) * this.todaySickPerPage;
+    const endIndex = startIndex + this.todaySickPerPage;
+    return this.fillterTodaySickLeaveData.slice(startIndex, endIndex);
+  }
 
-getPageNumbersTodaySick(): number[] {
-  const totalPages = this.getTotalPagesTodaySick();
-  const maxPagesToShow = 3; // Adjust as needed
-
-  let startPage: number;
-  let endPage: number;
-
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentTodaySickPage <= halfMaxPagesToShow + 1) {
-      startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentTodaySickPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
-      endPage = totalPages;
-    } else {
-      startPage = this.currentTodaySickPage - halfMaxPagesToShow;
-      endPage = this.currentTodaySickPage + halfMaxPagesToShow;
+  previousTodaySickPage(): void {
+    if (this.currentTodaySickPage > 1) {
+      this.currentTodaySickPage--;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
+  getPageNumbersTodaySick(): number[] {
+    const totalPages = this.getTotalPagesTodaySick();
+    const maxPagesToShow = 3; // Adjust as needed
 
-changePageTodaySick(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodaySick()) {
-    this.currentTodaySickPage = pageNumber;
+    let startPage: number;
+    let endPage: number;
+
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentTodaySickPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentTodaySickPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentTodaySickPage - halfMaxPagesToShow;
+        endPage = this.currentTodaySickPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   }
-}
 
 
-nextPageTodaySick(): void {
-  const totalPages = Math.ceil(
-    this.fillterTodaySickLeaveData.length / this.todaySickPerPage
-  );
-  if (this.currentTodaySickPage < totalPages) {
-    this.currentTodaySickPage++;
+  changePageTodaySick(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodaySick()) {
+      this.currentTodaySickPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesTodaySick(): number {
-  return Math.ceil(
-    this.fillterTodaySickLeaveData.length / this.todaySickPerPage
-  );
-}
+  nextPageTodaySick(): void {
+    const totalPages = Math.ceil(
+      this.fillterTodaySickLeaveData.length / this.todaySickPerPage
+    );
+    if (this.currentTodaySickPage < totalPages) {
+      this.currentTodaySickPage++;
+    }
+  }
 
-viewTodaySickLeave() {
-  // this.showAllAttTable = !this.showAllAttTable;
 
-  // if (this.showAllAttTable && '#/todaySickLeave' === window.location.hash) {
+  getTotalPagesTodaySick(): number {
+    return Math.ceil(
+      this.fillterTodaySickLeaveData.length / this.todaySickPerPage
+    );
+  }
+
+  viewTodaySickLeave() {
+    // this.showAllAttTable = !this.showAllAttTable;
+
+    // if (this.showAllAttTable && '#/todaySickLeave' === window.location.hash) {
     if ('/todaySickLeave' === this.router.url) {
 
-    // Call the service method to fetch all attendance data
-    this.testService.getTodaySick().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getTodaySick().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.TodaySickLeaveData = reversedData;
-        this.fillterTodaySickLeaveData = reversedData;
-        console.log("today sick leave",response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
+          // Set the reversed array as the data source
+          this.TodaySickLeaveData = reversedData;
+          this.fillterTodaySickLeaveData = reversedData;
+          console.log("today sick leave", response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
+    }
+  }
+  // view today sick leave end
+
+  // view today casual leave start
+  todayCasualPerPage: number = 10;
+  currentTodayCasualPage: number = 1;
+
+  searchTodayCasual: string = '';
+
+  FilterTodayCasual() {
+    this.fillterTodayCasualLeaveData = this.TodayCasualLeaveData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchTodayCasual.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchTodayCasual.toLowerCase())
     );
   }
-}
-// view today sick leave end
 
-// view today casual leave start
-todayCasualPerPage: number = 10;
-currentTodayCasualPage: number = 1;
+  sortByFromDateTodayCasual(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-searchTodayCasual: string = '';
-    
- FilterTodayCasual() {
-   this.fillterTodayCasualLeaveData = this.TodayCasualLeaveData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchTodayCasual.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchTodayCasual.toLowerCase()) 
-   );
- }
-
- sortByFromDateTodayCasual(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterTodayCasualLeaveData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-    );
-  });
-}
-
-getPaginatedTodayCasualData(): any[] {
-  const startIndex = (this.currentTodayCasualPage - 1) * this.todayCasualPerPage;
-  const endIndex = startIndex + this.todayCasualPerPage;
-  return this.fillterTodayCasualLeaveData.slice(startIndex, endIndex);
-}
-
-previousTodayCasualPage(): void {
-  if (this.currentTodayCasualPage > 1) {
-    this.currentTodayCasualPage--;
+    this.fillterTodayCasualLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
   }
-}
 
+  getPaginatedTodayCasualData(): any[] {
+    const startIndex = (this.currentTodayCasualPage - 1) * this.todayCasualPerPage;
+    const endIndex = startIndex + this.todayCasualPerPage;
+    return this.fillterTodayCasualLeaveData.slice(startIndex, endIndex);
+  }
 
-getPageNumbersTodayCasual(): number[] {
-  const totalPages = this.getTotalPagesTodayCasual();
-  const maxPagesToShow = 3; // Adjust as needed
-
-  let startPage: number;
-  let endPage: number;
-
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentTodayCasualPage <= halfMaxPagesToShow + 1) {
-      startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentTodayCasualPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
-      endPage = totalPages;
-    } else {
-      startPage = this.currentTodayCasualPage - halfMaxPagesToShow;
-      endPage = this.currentTodayCasualPage + halfMaxPagesToShow;
+  previousTodayCasualPage(): void {
+    if (this.currentTodayCasualPage > 1) {
+      this.currentTodayCasualPage--;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
+  getPageNumbersTodayCasual(): number[] {
+    const totalPages = this.getTotalPagesTodayCasual();
+    const maxPagesToShow = 3; // Adjust as needed
 
-changePageTodayCasual(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayCasual()) {
-    this.currentTodayCasualPage = pageNumber;
+    let startPage: number;
+    let endPage: number;
+
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentTodayCasualPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentTodayCasualPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentTodayCasualPage - halfMaxPagesToShow;
+        endPage = this.currentTodayCasualPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   }
-}
 
 
-nextPageTodayCasual(): void {
-  const totalPages = Math.ceil(
-    this.fillterTodayCasualLeaveData.length / this.todayCasualPerPage
-  );
-  if (this.currentTodayCasualPage < totalPages) {
-    this.currentTodayCasualPage++;
+  changePageTodayCasual(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayCasual()) {
+      this.currentTodayCasualPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesTodayCasual(): number {
-  return Math.ceil(
-    this.fillterTodayCasualLeaveData.length / this.todayCasualPerPage
-  );
-}
+  nextPageTodayCasual(): void {
+    const totalPages = Math.ceil(
+      this.fillterTodayCasualLeaveData.length / this.todayCasualPerPage
+    );
+    if (this.currentTodayCasualPage < totalPages) {
+      this.currentTodayCasualPage++;
+    }
+  }
 
-viewTodayCasualLeave() {
-  // this.showAllAttTable = !this.showAllAttTable;
 
-  // if (this.showAllAttTable && '#/todayCasualLeave' === window.location.hash) {
+  getTotalPagesTodayCasual(): number {
+    return Math.ceil(
+      this.fillterTodayCasualLeaveData.length / this.todayCasualPerPage
+    );
+  }
+
+  viewTodayCasualLeave() {
+    // this.showAllAttTable = !this.showAllAttTable;
+
+    // if (this.showAllAttTable && '#/todayCasualLeave' === window.location.hash) {
     if ('/todayCasualLeave' === this.router.url) {
 
-    // Call the service method to fetch all attendance data
-    this.testService.getTodayCasual().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getTodayCasual().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.TodayCasualLeaveData = reversedData;
-        this.fillterTodayCasualLeaveData = reversedData;
-        console.log("today Casual leave",response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
+          // Set the reversed array as the data source
+          this.TodayCasualLeaveData = reversedData;
+          this.fillterTodayCasualLeaveData = reversedData;
+          console.log("today Casual leave", response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
+    }
+  }
+  // view today casual leave end
+
+  // view today Absent leave start
+  todayAbsentPerPage: number = 10;
+  currentTodayAbsentPage: number = 1;
+
+  searchTodayAbsent: string = '';
+
+  FilterTodayAbsent() {
+    this.fillterTodayAbsentLeaveData = this.TodayAbsentLeaveData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchTodayAbsent.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchTodayAbsent.toLowerCase())
     );
   }
-}
-// view today casual leave end
 
-// view today Absent leave start
-todayAbsentPerPage: number = 10;
-currentTodayAbsentPage: number = 1;
+  sortByFromDateTodayAbsent(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-searchTodayAbsent: string = '';
-    
- FilterTodayAbsent() {
-   this.fillterTodayAbsentLeaveData = this.TodayAbsentLeaveData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchTodayAbsent.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchTodayAbsent.toLowerCase()) 
-   );
- }
-
- sortByFromDateTodayAbsent(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterTodayAbsentLeaveData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-    );
-  });
-}
-
-getPaginatedTodayAbsentData(): any[] {
-  const startIndex = (this.currentTodayAbsentPage - 1) * this.todayAbsentPerPage;
-  const endIndex = startIndex + this.todayAbsentPerPage;
-  return this.fillterTodayAbsentLeaveData.slice(startIndex, endIndex);
-}
-
-previousTodayAbsentPage(): void {
-  if (this.currentTodayAbsentPage > 1) {
-    this.currentTodayAbsentPage--;
+    this.fillterTodayAbsentLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
   }
-}
 
+  getPaginatedTodayAbsentData(): any[] {
+    const startIndex = (this.currentTodayAbsentPage - 1) * this.todayAbsentPerPage;
+    const endIndex = startIndex + this.todayAbsentPerPage;
+    return this.fillterTodayAbsentLeaveData.slice(startIndex, endIndex);
+  }
 
-getPageNumbersTodayAbsent(): number[] {
-  const totalPages = this.getTotalPagesTodayAbsent();
-  const maxPagesToShow = 3; // Adjust as needed
-
-  let startPage: number;
-  let endPage: number;
-
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentTodayAbsentPage <= halfMaxPagesToShow + 1) {
-      startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentTodayAbsentPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
-      endPage = totalPages;
-    } else {
-      startPage = this.currentTodayAbsentPage - halfMaxPagesToShow;
-      endPage = this.currentTodayAbsentPage + halfMaxPagesToShow;
+  previousTodayAbsentPage(): void {
+    if (this.currentTodayAbsentPage > 1) {
+      this.currentTodayAbsentPage--;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
+  getPageNumbersTodayAbsent(): number[] {
+    const totalPages = this.getTotalPagesTodayAbsent();
+    const maxPagesToShow = 3; // Adjust as needed
 
-changePageTodayAbsent(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayAbsent()) {
-    this.currentTodayAbsentPage = pageNumber;
+    let startPage: number;
+    let endPage: number;
+
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentTodayAbsentPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentTodayAbsentPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentTodayAbsentPage - halfMaxPagesToShow;
+        endPage = this.currentTodayAbsentPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   }
-}
 
 
-nextPageTodayAbsent(): void {
-  const totalPages = Math.ceil(
-    this.fillterTodayAbsentLeaveData.length / this.todayAbsentPerPage
-  );
-  if (this.currentTodayAbsentPage < totalPages) {
-    this.currentTodayAbsentPage++;
+  changePageTodayAbsent(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesTodayAbsent()) {
+      this.currentTodayAbsentPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesTodayAbsent(): number {
-  return Math.ceil(
-    this.fillterTodayAbsentLeaveData.length / this.todayAbsentPerPage
-  );
-}
+  nextPageTodayAbsent(): void {
+    const totalPages = Math.ceil(
+      this.fillterTodayAbsentLeaveData.length / this.todayAbsentPerPage
+    );
+    if (this.currentTodayAbsentPage < totalPages) {
+      this.currentTodayAbsentPage++;
+    }
+  }
 
-viewTodayAbsentLeave() {
-  // this.showAllAttTable = !this.showAllAttTable;
 
-  // if (this.showAllAttTable && '#/todayAbsentLeave' === window.location.hash) {
+  getTotalPagesTodayAbsent(): number {
+    return Math.ceil(
+      this.fillterTodayAbsentLeaveData.length / this.todayAbsentPerPage
+    );
+  }
+
+  viewTodayAbsentLeave() {
+    // this.showAllAttTable = !this.showAllAttTable;
+
+    // if (this.showAllAttTable && '#/todayAbsentLeave' === window.location.hash) {
     if ('/todayAbsentLeave' === this.router.url) {
 
-    // Call the service method to fetch all attendance data
-    this.testService.getTodayAbsent().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getTodayAbsent().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.TodayAbsentLeaveData = reversedData;
-        this.fillterTodayAbsentLeaveData = reversedData;
-        console.log("today Absent leave",response);
-        console.log("today Absent leave>>>>>",this.TodayAbsentLeaveData);
-        console.log("today Absent leave?????",this.fillterTodayAbsentLeaveData);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
+          // Set the reversed array as the data source
+          this.TodayAbsentLeaveData = reversedData;
+          this.fillterTodayAbsentLeaveData = reversedData;
+          console.log("today Absent leave", response);
+          console.log("today Absent leave>>>>>", this.TodayAbsentLeaveData);
+          console.log("today Absent leave?????", this.fillterTodayAbsentLeaveData);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
+    }
+  }
+  // view today absent leave end
+
+  // view Full Time employee start
+  FullTimeEmpPerPage: number = 10;
+  currentFullTimeEmpPage: number = 1;
+
+  searchFullTimeEmp: string = '';
+
+  FilterFullTimeEmp() {
+    this.fillterFullTimeEmpData = this.FullTimeEmpData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase())
     );
   }
-}
-// view today absent leave end
 
-// view Full Time employee start
-FullTimeEmpPerPage: number = 10;
-currentFullTimeEmpPage: number = 1;
+  sortByFromDateFullTimeEmp(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-searchFullTimeEmp: string = '';
-    
- FilterFullTimeEmp() {
-   this.fillterFullTimeEmpData = this.FullTimeEmpData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) 
-   );
- }
-
- sortByFromDateFullTimeEmp(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterFullTimeEmpData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-    );
-  });
-}
-
-getPaginatedFullTimeEmpData(): any[] {
-  const startIndex = (this.currentFullTimeEmpPage - 1) * this.FullTimeEmpPerPage;
-  const endIndex = startIndex + this.FullTimeEmpPerPage;
-  return this.fillterFullTimeEmpData.slice(startIndex, endIndex);
-}
-
-previousFullTimeEmpPage(): void {
-  if (this.currentFullTimeEmpPage > 1) {
-    this.currentFullTimeEmpPage--;
+    this.fillterFullTimeEmpData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
   }
-}
 
+  getPaginatedFullTimeEmpData(): any[] {
+    const startIndex = (this.currentFullTimeEmpPage - 1) * this.FullTimeEmpPerPage;
+    const endIndex = startIndex + this.FullTimeEmpPerPage;
+    return this.fillterFullTimeEmpData.slice(startIndex, endIndex);
+  }
 
-getPageNumbersFullTimeEmp(): number[] {
-  const totalPages = this.getTotalPagesFullTimeEmp();
-  const maxPagesToShow = 3; // Adjust as needed
-
-  let startPage: number;
-  let endPage: number;
-
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentFullTimeEmpPage <= halfMaxPagesToShow + 1) {
-      startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentFullTimeEmpPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
-      endPage = totalPages;
-    } else {
-      startPage = this.currentFullTimeEmpPage - halfMaxPagesToShow;
-      endPage = this.currentFullTimeEmpPage + halfMaxPagesToShow;
+  previousFullTimeEmpPage(): void {
+    if (this.currentFullTimeEmpPage > 1) {
+      this.currentFullTimeEmpPage--;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
+  getPageNumbersFullTimeEmp(): number[] {
+    const totalPages = this.getTotalPagesFullTimeEmp();
+    const maxPagesToShow = 3; // Adjust as needed
 
-changePageFullTimeEmp(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesFullTimeEmp()) {
-    this.currentFullTimeEmpPage = pageNumber;
+    let startPage: number;
+    let endPage: number;
+
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentFullTimeEmpPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentFullTimeEmpPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentFullTimeEmpPage - halfMaxPagesToShow;
+        endPage = this.currentFullTimeEmpPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   }
-}
 
 
-nextPageFullTimeEmp(): void {
-  const totalPages = Math.ceil(
-    this.fillterFullTimeEmpData.length / this.FullTimeEmpPerPage
-  );
-  if (this.currentFullTimeEmpPage < totalPages) {
-    this.currentFullTimeEmpPage++;
+  changePageFullTimeEmp(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesFullTimeEmp()) {
+      this.currentFullTimeEmpPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesFullTimeEmp(): number {
-  return Math.ceil(
-    this.fillterFullTimeEmpData.length / this.FullTimeEmpPerPage
-  );
-}
+  nextPageFullTimeEmp(): void {
+    const totalPages = Math.ceil(
+      this.fillterFullTimeEmpData.length / this.FullTimeEmpPerPage
+    );
+    if (this.currentFullTimeEmpPage < totalPages) {
+      this.currentFullTimeEmpPage++;
+    }
+  }
 
-viewFullTimeEmp() {
-  // this.showAllAttTable = !this.showAllAttTable;
 
-  // if (this.showAllAttTable && '#/FullTimeEmpLeave' === window.location.hash) {
+  getTotalPagesFullTimeEmp(): number {
+    return Math.ceil(
+      this.fillterFullTimeEmpData.length / this.FullTimeEmpPerPage
+    );
+  }
+
+  viewFullTimeEmp() {
+    // this.showAllAttTable = !this.showAllAttTable;
+
+    // if (this.showAllAttTable && '#/FullTimeEmpLeave' === window.location.hash) {
     if ('/fullTimeEmployee' === this.router.url) {
 
-    // Call the service method to fetch all attendance data
-    this.testService.getFullTimeEmp().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getFullTimeEmp().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.FullTimeEmpData = reversedData;
-        this.fillterFullTimeEmpData = reversedData;
-        console.log("full time emp",response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
+          // Set the reversed array as the data source
+          this.FullTimeEmpData = reversedData;
+          this.fillterFullTimeEmpData = reversedData;
+          console.log("full time emp", response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
+    }
+  }
+  // view Full Time employee end
+
+  // view part Time employee start
+  PartTimeEmpPerPage: number = 10;
+  currentPartTimeEmpPage: number = 1;
+
+  searchPartTimeEmp: string = '';
+
+  FilterPartTimeEmp() {
+    this.fillterPartTimeEmpData = this.PartTimeEmpData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchPartTimeEmp.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchPartTimeEmp.toLowerCase())
     );
   }
-}
-// view Full Time employee end
 
-// view part Time employee start
-PartTimeEmpPerPage: number = 10;
-currentPartTimeEmpPage: number = 1;
+  sortByFromDatePartTimeEmp(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-searchPartTimeEmp: string = '';
-    
- FilterPartTimeEmp() {
-   this.fillterPartTimeEmpData = this.PartTimeEmpData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchPartTimeEmp.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchPartTimeEmp.toLowerCase()) 
-   );
- }
-
- sortByFromDatePartTimeEmp(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterPartTimeEmpData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-    );
-  });
-}
-
-getPaginatedPartTimeEmpData(): any[] {
-  const startIndex = (this.currentPartTimeEmpPage - 1) * this.PartTimeEmpPerPage;
-  const endIndex = startIndex + this.PartTimeEmpPerPage;
-  return this.fillterPartTimeEmpData.slice(startIndex, endIndex);
-}
-
-previousPartTimeEmpPage(): void {
-  if (this.currentPartTimeEmpPage > 1) {
-    this.currentPartTimeEmpPage--;
+    this.fillterPartTimeEmpData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
   }
-}
 
+  getPaginatedPartTimeEmpData(): any[] {
+    const startIndex = (this.currentPartTimeEmpPage - 1) * this.PartTimeEmpPerPage;
+    const endIndex = startIndex + this.PartTimeEmpPerPage;
+    return this.fillterPartTimeEmpData.slice(startIndex, endIndex);
+  }
 
-getPageNumbersPartTimeEmp(): number[] {
-  const totalPages = this.getTotalPagesPartTimeEmp();
-  const maxPagesToShow = 3; // Adjust as needed
-
-  let startPage: number;
-  let endPage: number;
-
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentPartTimeEmpPage <= halfMaxPagesToShow + 1) {
-      startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentPartTimeEmpPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
-      endPage = totalPages;
-    } else {
-      startPage = this.currentPartTimeEmpPage - halfMaxPagesToShow;
-      endPage = this.currentPartTimeEmpPage + halfMaxPagesToShow;
+  previousPartTimeEmpPage(): void {
+    if (this.currentPartTimeEmpPage > 1) {
+      this.currentPartTimeEmpPage--;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
+  getPageNumbersPartTimeEmp(): number[] {
+    const totalPages = this.getTotalPagesPartTimeEmp();
+    const maxPagesToShow = 3; // Adjust as needed
 
-changePagePartTimeEmp(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPartTimeEmp()) {
-    this.currentPartTimeEmpPage = pageNumber;
+    let startPage: number;
+    let endPage: number;
+
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentPartTimeEmpPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentPartTimeEmpPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentPartTimeEmpPage - halfMaxPagesToShow;
+        endPage = this.currentPartTimeEmpPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   }
-}
 
 
-nextPagePartTimeEmp(): void {
-  const totalPages = Math.ceil(
-    this.fillterPartTimeEmpData.length / this.PartTimeEmpPerPage
-  );
-  if (this.currentPartTimeEmpPage < totalPages) {
-    this.currentPartTimeEmpPage++;
+  changePagePartTimeEmp(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPartTimeEmp()) {
+      this.currentPartTimeEmpPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesPartTimeEmp(): number {
-  return Math.ceil(
-    this.fillterPartTimeEmpData.length / this.PartTimeEmpPerPage
-  );
-}
+  nextPagePartTimeEmp(): void {
+    const totalPages = Math.ceil(
+      this.fillterPartTimeEmpData.length / this.PartTimeEmpPerPage
+    );
+    if (this.currentPartTimeEmpPage < totalPages) {
+      this.currentPartTimeEmpPage++;
+    }
+  }
 
-viewPartTimeEmp() {
-  // this.showAllAttTable = !this.showAllAttTable;
 
-  // if (this.showAllAttTable && '#/PartTimeEmpLeave' === window.location.hash) {
+  getTotalPagesPartTimeEmp(): number {
+    return Math.ceil(
+      this.fillterPartTimeEmpData.length / this.PartTimeEmpPerPage
+    );
+  }
+
+  viewPartTimeEmp() {
+    // this.showAllAttTable = !this.showAllAttTable;
+
+    // if (this.showAllAttTable && '#/PartTimeEmpLeave' === window.location.hash) {
     if ('/PartTimeEmp' === this.router.url) {
 
-    // Call the service method to fetch all attendance data
-    this.testService.getPartTimeEmp().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getPartTimeEmp().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.PartTimeEmpData = reversedData;
-        this.fillterPartTimeEmpData = reversedData;
-        console.log("part time emp",response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
+          // Set the reversed array as the data source
+          this.PartTimeEmpData = reversedData;
+          this.fillterPartTimeEmpData = reversedData;
+          console.log("part time emp", response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
+    }
+  }
+  // view part Time employee end
+
+  // view intern employee start
+  internEmpPerPage: number = 10;
+  currentinternEmpPage: number = 1;
+
+  searchinternEmp: string = '';
+
+  FilterinternEmp() {
+    this.fillterinternEmpData = this.internEmpData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchinternEmp.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchinternEmp.toLowerCase())
     );
   }
-}
-// view part Time employee end
 
-// view intern employee start
-internEmpPerPage: number = 10;
-currentinternEmpPage: number = 1;
+  sortByFromDateinternEmp(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
 
-searchinternEmp: string = '';
-    
- FilterinternEmp() {
-   this.fillterinternEmpData = this.internEmpData.filter((item: { firstname: string; lastname: string;}) =>
-   item.firstname.toLowerCase().includes(this.searchinternEmp.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchinternEmp.toLowerCase()) 
-   );
- }
-
- sortByFromDateinternEmp(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterinternEmpData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-    );
-  });
-}
-
-getPaginatedinternEmpData(): any[] {
-  const startIndex = (this.currentinternEmpPage - 1) * this.internEmpPerPage;
-  const endIndex = startIndex + this.internEmpPerPage;
-  return this.fillterinternEmpData.slice(startIndex, endIndex);
-}
-
-previousinternEmpPage(): void {
-  if (this.currentinternEmpPage > 1) {
-    this.currentinternEmpPage--;
+    this.fillterinternEmpData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
   }
-}
+
+  getPaginatedinternEmpData(): any[] {
+    const startIndex = (this.currentinternEmpPage - 1) * this.internEmpPerPage;
+    const endIndex = startIndex + this.internEmpPerPage;
+    return this.fillterinternEmpData.slice(startIndex, endIndex);
+  }
+
+  previousinternEmpPage(): void {
+    if (this.currentinternEmpPage > 1) {
+      this.currentinternEmpPage--;
+    }
+  }
 
 
-getPageNumbersinternEmp(): number[] {
-  const totalPages = this.getTotalPagesinternEmp();
-  const maxPagesToShow = 3; // Adjust as needed
+  getPageNumbersinternEmp(): number[] {
+    const totalPages = this.getTotalPagesinternEmp();
+    const maxPagesToShow = 3; // Adjust as needed
 
-  let startPage: number;
-  let endPage: number;
+    let startPage: number;
+    let endPage: number;
 
-  if (totalPages <= maxPagesToShow) {
-    // Show all pages if total pages are less than or equal to maxPagesToShow
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
-
-    if (this.currentinternEmpPage <= halfMaxPagesToShow + 1) {
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
       startPage = 1;
-      endPage = maxPagesToShow;
-    } else if (this.currentinternEmpPage + halfMaxPagesToShow >= totalPages) {
-      startPage = totalPages - maxPagesToShow + 1;
       endPage = totalPages;
     } else {
-      startPage = this.currentinternEmpPage - halfMaxPagesToShow;
-      endPage = this.currentinternEmpPage + halfMaxPagesToShow;
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentinternEmpPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentinternEmpPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentinternEmpPage - halfMaxPagesToShow;
+        endPage = this.currentinternEmpPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  }
+
+
+  changePageinternEmp(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesinternEmp()) {
+      this.currentinternEmpPage = pageNumber;
     }
   }
 
-  return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-}
 
-
-changePageinternEmp(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesinternEmp()) {
-    this.currentinternEmpPage = pageNumber;
+  nextPageinternEmp(): void {
+    const totalPages = Math.ceil(
+      this.fillterinternEmpData.length / this.internEmpPerPage
+    );
+    if (this.currentinternEmpPage < totalPages) {
+      this.currentinternEmpPage++;
+    }
   }
-}
 
 
-nextPageinternEmp(): void {
-  const totalPages = Math.ceil(
-    this.fillterinternEmpData.length / this.internEmpPerPage
-  );
-  if (this.currentinternEmpPage < totalPages) {
-    this.currentinternEmpPage++;
+  getTotalPagesinternEmp(): number {
+    return Math.ceil(
+      this.fillterinternEmpData.length / this.internEmpPerPage
+    );
   }
-}
 
+  viewinternEmp() {
+    // this.showAllAttTable = !this.showAllAttTable;
 
-getTotalPagesinternEmp(): number {
-  return Math.ceil(
-    this.fillterinternEmpData.length / this.internEmpPerPage
-  );
-}
-
-viewinternEmp() {
-  // this.showAllAttTable = !this.showAllAttTable;
-
-  // if (this.showAllAttTable && '#/internEmpLeave' === window.location.hash) {
+    // if (this.showAllAttTable && '#/internEmpLeave' === window.location.hash) {
     if ('/internEmp' === this.router.url) {
 
-    // Call the service method to fetch all attendance data
-    this.testService.getinternEmp().subscribe(
-      (response: any) => {
-        // Convert the response object to an array
-        const dataArray = Object.values(response);
-        // Reverse the received array
-        const reversedData = dataArray.reverse();
+      // Call the service method to fetch all attendance data
+      this.testService.getinternEmp().subscribe(
+        (response: any) => {
+          // Convert the response object to an array
+          const dataArray = Object.values(response);
+          // Reverse the received array
+          const reversedData = dataArray.reverse();
 
-        // Set the reversed array as the data source
-        this.internEmpData = reversedData;
-        this.fillterinternEmpData = reversedData;
-        console.log("intern emp",response);
-      },
-      error => {
-        Swal.fire('Error', error.error, 'error');  
-        // Hide the table if an error occurs
-        // this.showAllAttTable = false;
-      }
-    );
-  }
-}
-// view intern employee end
-
-
-      //  view  Att table function start
-
-    // search for  view  att table start
-    searchatt: string = '';
-    selectedMonthAtt: string = '';
-    
-    
-   
-    Filteratt() {
-      if(this.searchatt){
-      this.fillterattData = this.AttData.filter((item: { firstname: string; lastname: string;}) =>
-   
-        item.firstname.toLowerCase().includes(this.searchatt.toLowerCase()) ||
-        item.lastname.toLowerCase().includes(this.searchatt.toLowerCase()) 
-      )}else if(this.selectedMonthAtt){
-       this.fillterattData = this.AttData.filter((item: { checkDate: string;}) =>
-      item.checkDate.toLowerCase().includes(this.selectedMonthAtt.toLowerCase()) 
-      )};
-   
+          // Set the reversed array as the data source
+          this.internEmpData = reversedData;
+          this.fillterinternEmpData = reversedData;
+          console.log("intern emp", response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');
+          // Hide the table if an error occurs
+          // this.showAllAttTable = false;
+        }
+      );
     }
-   
-    onSearchAttUser() {
-     // Clear the date input field when searching in the name input field
-     if (this.searchatt.trim() !== '') {
-       this.selectedMonthAtt = '';
-     }
-     this.viewattendance();
-   
-     this.Filteratt();
-   }
-   
-    onSearchMonthUser() {
-      // Clear the date input field when searching in the name input field
-      if (this.selectedMonthAtt !== '') {
-        this.searchatt = '';
-       }
-       this.viewattendance();
-    
-   console.log("selected month ", this.selectedMonthAtt)
-     this.Filteratt();
-   }
+  }
+  // view intern employee end
 
-   viewTodayAttendance(){
+
+  //  view  Att table function start
+
+  // search for  view  att table start
+  searchatt: string = '';
+  selectedMonthAtt: string = '';
+
+
+
+  Filteratt() {
+    if (this.searchatt) {
+      this.fillterattData = this.AttData.filter((item: { firstname: string; lastname: string; }) =>
+
+        item.firstname.toLowerCase().includes(this.searchatt.toLowerCase()) ||
+        item.lastname.toLowerCase().includes(this.searchatt.toLowerCase())
+      )
+    } else if (this.selectedMonthAtt) {
+      this.fillterattData = this.AttData.filter((item: { checkDate: string; }) =>
+        item.checkDate.toLowerCase().includes(this.selectedMonthAtt.toLowerCase())
+      )
+    };
+
+  }
+
+  onSearchAttUser() {
+    // Clear the date input field when searching in the name input field
+    if (this.searchatt.trim() !== '') {
+      this.selectedMonthAtt = '';
+    }
+    this.viewattendance();
+
+    this.Filteratt();
+  }
+
+  onSearchMonthUser() {
+    // Clear the date input field when searching in the name input field
+    if (this.selectedMonthAtt !== '') {
+      this.searchatt = '';
+    }
+    this.viewattendance();
+
+    console.log("selected month ", this.selectedMonthAtt)
+    this.Filteratt();
+  }
+
+  viewTodayAttendance() {
     const todayDate = new Date();
     const year = todayDate.getFullYear();
-      const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-      const day = todayDate.getDate().toString().padStart(2, '0');
+    const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = todayDate.getDate().toString().padStart(2, '0');
     this.selectedMonthAtt = `${year}-${month}-${day}`;
     console.log("today all att", this.selectedMonthAtt)
-   return this.selectedMonthAtt;
+    return this.selectedMonthAtt;
   }
 
- // pagination for view   att start
- attperPage: number = 15;
- currentattPage: number = 1;
- 
- 
- 
- getPaginatedattData(): any[] {
-   const startIndex = (this.currentattPage - 1) * this.attperPage;
-   const endIndex = startIndex + this.attperPage;
-   return this.fillterattData.slice(startIndex, endIndex);
- }
- 
- previousattPage(): void {
-   if (this.currentattPage > 1) {
-     this.currentattPage--;
-   }
- }
- 
- 
- getPageNumbersatt(): number[] {
-   const totalPages = this.getTotalPagesatt();
-   const maxPagesToShow = 3; // Adjust as needed
- 
-   let startPage: number;
-   let endPage: number;
- 
-   if (totalPages <= maxPagesToShow) {
-     // Show all pages if total pages are less than or equal to maxPagesToShow
-     startPage = 1;
-     endPage = totalPages;
-   } else {
-     // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
-     const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
- 
-     if (this.currentattPage <= halfMaxPagesToShow + 1) {
-       startPage = 1;
-       endPage = maxPagesToShow;
-     } else if (this.currentattPage + halfMaxPagesToShow >= totalPages) {
-       startPage = totalPages - maxPagesToShow + 1;
-       endPage = totalPages;
-     } else {
-       startPage = this.currentattPage - halfMaxPagesToShow;
-       endPage = this.currentattPage + halfMaxPagesToShow;
-     }
-   }
- 
-   return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
- }
- 
- 
- changePageatt(pageNumber: number): void {
-   if (pageNumber >= 1 && pageNumber <= this.getTotalPagesatt()) {
-     this.currentattPage = pageNumber;
-   }
- }
- 
- 
- nextPageatt(): void {
-   const totalPages = Math.ceil(
-     this.fillterattData.length / this.attperPage
-   );
-   if (this.currentattPage < totalPages) {
-     this.currentattPage++;
-   }
- }
- 
- 
- getTotalPagesatt(): number {
-   return Math.ceil(
-     this.fillterattData.length / this.attperPage
-   );
- }
- // pagination for view   att end
- 
- // sort data in  att table start
- // sortTDate: 'asc' | 'desc' = 'asc';
- sortByToDateatt(): void {
-   this.sortTDate =
-     this.sortTDate === 'asc' ? 'desc' : 'asc';
- 
-   this.fillterattData.sort((a: any, b: any) => {
-     const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
-     return (
-       orderFactor *
-       (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
-     );
-   });
- }
- 
- 
- 
- // sortFDate: 'asc' | 'desc' = 'asc';
- sortByFromDateatt(): void {
-   this.sortFDate =
-     this.sortFDate === 'asc' ? 'desc' : 'asc';
- 
-   this.fillterattData.sort((a: any, b: any) => {
-     const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-     return (
-       orderFactor *
-       (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
-     );
-   });
- }
- 
- // sortBy: 'asc' | 'desc' = 'asc';
- 
- sortByWhomeatt(): void {
-   // Toggle the sort order
-   this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
- 
-   // Sort the positions array based on the approvedBy property
-   this.fillterattData.sort((a: any, b: any) => {
-     const approvedByA = a.approvedBy || ''; // Default to an empty string if null
-     const approvedByB = b.approvedBy || ''; // Default to an empty string if null
- 
-     const orderFactor = this.sortBy === 'asc' ? 1 : -1;
-     return orderFactor * approvedByA.localeCompare(approvedByB);
-   });
- }
- 
+  // pagination for view   att start
+  attperPage: number = 15;
+  currentattPage: number = 1;
+
+
+
+  getPaginatedattData(): any[] {
+    const startIndex = (this.currentattPage - 1) * this.attperPage;
+    const endIndex = startIndex + this.attperPage;
+    return this.fillterattData.slice(startIndex, endIndex);
+  }
+
+  previousattPage(): void {
+    if (this.currentattPage > 1) {
+      this.currentattPage--;
+    }
+  }
+
+
+  getPageNumbersatt(): number[] {
+    const totalPages = this.getTotalPagesatt();
+    const maxPagesToShow = 3; // Adjust as needed
+
+    let startPage: number;
+    let endPage: number;
+
+    if (totalPages <= maxPagesToShow) {
+      // Show all pages if total pages are less than or equal to maxPagesToShow
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // Calculate startPage and endPage based on currentAllattPage and maxPagesToShow
+      const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+
+      if (this.currentattPage <= halfMaxPagesToShow + 1) {
+        startPage = 1;
+        endPage = maxPagesToShow;
+      } else if (this.currentattPage + halfMaxPagesToShow >= totalPages) {
+        startPage = totalPages - maxPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = this.currentattPage - halfMaxPagesToShow;
+        endPage = this.currentattPage + halfMaxPagesToShow;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  }
+
+
+  changePageatt(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesatt()) {
+      this.currentattPage = pageNumber;
+    }
+  }
+
+
+  nextPageatt(): void {
+    const totalPages = Math.ceil(
+      this.fillterattData.length / this.attperPage
+    );
+    if (this.currentattPage < totalPages) {
+      this.currentattPage++;
+    }
+  }
+
+
+  getTotalPagesatt(): number {
+    return Math.ceil(
+      this.fillterattData.length / this.attperPage
+    );
+  }
+  // pagination for view   att end
+
+  // sort data in  att table start
+  // sortTDate: 'asc' | 'desc' = 'asc';
+  sortByToDateatt(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterattData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+      );
+    });
+  }
+
+
+
+  // sortFDate: 'asc' | 'desc' = 'asc';
+  sortByFromDateatt(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterattData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.checkDate).getTime() - new Date(b.checkDate).getTime())
+      );
+    });
+  }
+
+  // sortBy: 'asc' | 'desc' = 'asc';
+
+  sortByWhomeatt(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the approvedBy property
+    this.fillterattData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+
   // sort data in  att table end
- 
-       //  view  att table function end
+
+  //  view  att table function end
 
 
-         //  view all wfh table function start
+  //  view all wfh table function start
 
-    // search for all  wfh table start
-    searchAllWfh: string = '';
-    selectedMonthAllWFH: string = '';
-    
- FilterAllWfh() {
-  if(this.searchAllWfh){
-   this.fillterAllWfhData = this.AllwfhData.filter((item: { firstname: string; lastname: string; }) =>
-   item.firstname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) 
-    )}else if(this.selectedMonthAllWFH){
-      this.fillterAllWfhData = this.AllwfhData.filter((item: { fromdateWfh: string;}) =>
-      item.fromdateWfh.toLowerCase().includes(this.selectedMonthAllWFH.toLowerCase()) 
-     )};
- }
- onSearchAllWFH() {
-  // Clear the date input field when searching in the name input field
-  if (this.searchAllWfh.trim() !== '') {
-    this.selectedMonthAllWFH = '';
+  // search for all  wfh table start
+  searchAllWfh: string = '';
+  selectedMonthAllWFH: string = '';
+
+  FilterAllWfh() {
+    if (this.searchAllWfh) {
+      this.fillterAllWfhData = this.AllwfhData.filter((item: { firstname: string; lastname: string; }) =>
+        item.firstname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) ||
+        item.lastname.toLowerCase().includes(this.searchAllWfh.toLowerCase())
+      )
+    } else if (this.selectedMonthAllWFH) {
+      this.fillterAllWfhData = this.AllwfhData.filter((item: { fromdateWfh: string; }) =>
+        item.fromdateWfh.toLowerCase().includes(this.selectedMonthAllWFH.toLowerCase())
+      )
+    };
   }
-  this.toggleAllWfhTable();
+  onSearchAllWFH() {
+    // Clear the date input field when searching in the name input field
+    if (this.searchAllWfh.trim() !== '') {
+      this.selectedMonthAllWFH = '';
+    }
+    this.toggleAllWfhTable();
 
-  this.FilterAllWfh();
-}
-onSearchMonthAllWFH() {
-  // Clear the date input field when searching in the name input field
-  if (this.selectedMonthAllWFH !== '') {
-    this.searchAllWfh = '';
-   }
-   this.toggleAllWfhTable();
+    this.FilterAllWfh();
+  }
+  onSearchMonthAllWFH() {
+    // Clear the date input field when searching in the name input field
+    if (this.selectedMonthAllWFH !== '') {
+      this.searchAllWfh = '';
+    }
+    this.toggleAllWfhTable();
 
-console.log("selected month ", this.selectedMonthAllWFH)
- this.FilterAllWfh();
-}
-viewAllTodayAllWFH(){
-  const todayDate = new Date();
-  const year = todayDate.getFullYear();
+    console.log("selected month ", this.selectedMonthAllWFH)
+    this.FilterAllWfh();
+  }
+  viewAllTodayAllWFH() {
+    const todayDate = new Date();
+    const year = todayDate.getFullYear();
     const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
     const day = todayDate.getDate().toString().padStart(2, '0');
-  this.selectedMonthAllWFH = `${year}-${month}-${day}`;
-  console.log("today all  wfh", this.selectedMonthAllWFH)
- return this.selectedMonthAllWFH;
-}
+    this.selectedMonthAllWFH = `${year}-${month}-${day}`;
+    console.log("today all  wfh", this.selectedMonthAllWFH)
+    return this.selectedMonthAllWFH;
+  }
   // search for all wfh table end
 
-   // pagination for view all  wfh start
-   AllWfhPageperPage: number = 10;
-currentAllWfhPage: number = 1;
+  // pagination for view all  wfh start
+  AllWfhPageperPage: number = 10;
+  currentAllWfhPage: number = 1;
 
 
 
-getPaginatedAllWfhData(): any[] {
-  const startIndex = (this.currentAllWfhPage - 1) * this.AllWfhPageperPage;
-  const endIndex = startIndex + this.AllWfhPageperPage;
-  return this.fillterAllWfhData.slice(startIndex, endIndex);
-}
-
-previousAllWfhPage(): void {
-  if (this.currentAllWfhPage > 1) {
-    this.currentAllWfhPage--;
+  getPaginatedAllWfhData(): any[] {
+    const startIndex = (this.currentAllWfhPage - 1) * this.AllWfhPageperPage;
+    const endIndex = startIndex + this.AllWfhPageperPage;
+    return this.fillterAllWfhData.slice(startIndex, endIndex);
   }
-}
 
-getPageNumbersAllWfh(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterAllWfhData.length / this.AllWfhPageperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageAllWfh(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllWfh()) {
-    this.currentAllWfhPage = pageNumber;
+  previousAllWfhPage(): void {
+    if (this.currentAllWfhPage > 1) {
+      this.currentAllWfhPage--;
+    }
   }
-}
 
-
-nextPageAllWfh(): void {
-  const totalPages = Math.ceil(
-    this.fillterAllWfhData.length / this.AllWfhPageperPage
-  );
-  if (this.currentAllWfhPage < totalPages) {
-    this.currentAllWfhPage++;
-  }
-}
-
-
-getTotalPagesAllWfh(): number {
-  return Math.ceil(
-    this.fillterAllWfhData.length / this.AllWfhPageperPage
-  );
-}
-// pagination for view all  wfh end
-
-// sort data in all wfh table start
-// sortTDate: 'asc' | 'desc' = 'asc';
-sortByToDateAllWfh(): void {
-  this.sortTDate =
-    this.sortTDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterAllWfhData.sort((a: any, b: any) => {
-    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+  getPageNumbersAllWfh(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterAllWfhData.length / this.AllWfhPageperPage
     );
-  });
-}
-
-
-
-// sortFDate: 'asc' | 'desc' = 'asc';
-sortByFromDateAllWfh(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterAllWfhData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.fromdateWfh).getTime() - new Date(b.fromdateWfh).getTime())
-    );
-  });
-}
-
-// sortBy: 'asc' | 'desc' = 'asc';
-
-sortByWhomeAllWfh(): void {
-  // Toggle the sort order
-  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
-
-  // Sort the positions array based on the approvedBy property
-  this.fillterAllWfhData.sort((a: any, b: any) => {
-    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
-    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
-
-    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
-    return orderFactor * approvedByA.localeCompare(approvedByB);
-  });
-}
-
- // sort data in all wfh table end
-
-      //  view all wfh table function end
-
-
-       //  view all leave table function start
-
- // search for all leave table start
- searchAllLeave: string = '';
- selectedMonthAllLeave: string = '';
-    
- FilterAllLeave() {
-  if(this.searchAllLeave){
-   this.fillterAllLeaveData = this.leaveAllData.filter((item: { firstname: string; lastname: string; }) =>
-   item.firstname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) ||
-   item.lastname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) 
-    )}else if(this.selectedMonthAllLeave){
-      this.fillterAllLeaveData = this.leaveAllData.filter((item: { fromDate: string;}) =>
-      item.fromDate.toLowerCase().includes(this.selectedMonthAllLeave.toLowerCase()) 
-     )};
- }
- onSearchAllLeave() {
-  // Clear the date input field when searching in the name input field
-  if (this.searchAllLeave.trim() !== '') {
-    this.selectedMonthAllLeave = '';
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-  this.toggleAllLeaveTable();
 
-  this.FilterAllLeave();
-}
-onSearchMonthAllLeave() {
-  // Clear the date input field when searching in the name input field
-  if (this.selectedMonthAllLeave !== '') {
-    this.searchAllLeave = '';
-   }
-   this.toggleAllLeaveTable();
+  changePageAllWfh(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllWfh()) {
+      this.currentAllWfhPage = pageNumber;
+    }
+  }
 
-console.log("selected month ", this.selectedMonthAllLeave)
- this.FilterAllLeave();
-}
-viewTodayAllLeave(){
-  const todayDate = new Date();
-  const year = todayDate.getFullYear();
+
+  nextPageAllWfh(): void {
+    const totalPages = Math.ceil(
+      this.fillterAllWfhData.length / this.AllWfhPageperPage
+    );
+    if (this.currentAllWfhPage < totalPages) {
+      this.currentAllWfhPage++;
+    }
+  }
+
+
+  getTotalPagesAllWfh(): number {
+    return Math.ceil(
+      this.fillterAllWfhData.length / this.AllWfhPageperPage
+    );
+  }
+  // pagination for view all  wfh end
+
+  // sort data in all wfh table start
+  // sortTDate: 'asc' | 'desc' = 'asc';
+  sortByToDateAllWfh(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterAllWfhData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDateWfh).getTime() - new Date(b.toDateWfh).getTime())
+      );
+    });
+  }
+
+
+
+  // sortFDate: 'asc' | 'desc' = 'asc';
+  sortByFromDateAllWfh(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterAllWfhData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.fromdateWfh).getTime() - new Date(b.fromdateWfh).getTime())
+      );
+    });
+  }
+
+  // sortBy: 'asc' | 'desc' = 'asc';
+
+  sortByWhomeAllWfh(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the approvedBy property
+    this.fillterAllWfhData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+
+  // sort data in all wfh table end
+
+  //  view all wfh table function end
+
+
+  //  view all leave table function start
+
+  // search for all leave table start
+  searchAllLeave: string = '';
+  selectedMonthAllLeave: string = '';
+
+  FilterAllLeave() {
+    if (this.searchAllLeave) {
+      this.fillterAllLeaveData = this.leaveAllData.filter((item: { firstname: string; lastname: string; }) =>
+        item.firstname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) ||
+        item.lastname.toLowerCase().includes(this.searchAllLeave.toLowerCase())
+      )
+    } else if (this.selectedMonthAllLeave) {
+      this.fillterAllLeaveData = this.leaveAllData.filter((item: { fromDate: string; }) =>
+        item.fromDate.toLowerCase().includes(this.selectedMonthAllLeave.toLowerCase())
+      )
+    };
+  }
+  onSearchAllLeave() {
+    // Clear the date input field when searching in the name input field
+    if (this.searchAllLeave.trim() !== '') {
+      this.selectedMonthAllLeave = '';
+    }
+    this.toggleAllLeaveTable();
+
+    this.FilterAllLeave();
+  }
+  onSearchMonthAllLeave() {
+    // Clear the date input field when searching in the name input field
+    if (this.selectedMonthAllLeave !== '') {
+      this.searchAllLeave = '';
+    }
+    this.toggleAllLeaveTable();
+
+    console.log("selected month ", this.selectedMonthAllLeave)
+    this.FilterAllLeave();
+  }
+  viewTodayAllLeave() {
+    const todayDate = new Date();
+    const year = todayDate.getFullYear();
     const month = (todayDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
     const day = todayDate.getDate().toString().padStart(2, '0');
-  this.selectedMonthAllLeave = `${year}-${month}-${day}`;
-  console.log("today all  leave", this.selectedMonthAllLeave)
- return this.selectedMonthAllLeave;
-}
+    this.selectedMonthAllLeave = `${year}-${month}-${day}`;
+    console.log("today all  leave", this.selectedMonthAllLeave)
+    return this.selectedMonthAllLeave;
+  }
   // search for all leave table end
 
-   // pagination for view all  leave start
-AllLeavePageperPage: number = 10;
-currentAllLeavePage: number = 1;
+  // pagination for view all  leave start
+  AllLeavePageperPage: number = 10;
+  currentAllLeavePage: number = 1;
 
 
 
-getPaginatedAllLeaveData(): any[] {
-  const startIndex = (this.currentAllLeavePage - 1) * this.AllLeavePageperPage;
-  const endIndex = startIndex + this.AllLeavePageperPage;
-  return this.fillterAllLeaveData.slice(startIndex, endIndex);
-}
-
-previousAllLeavePage(): void {
-  if (this.currentAllLeavePage > 1) {
-    this.currentAllLeavePage--;
+  getPaginatedAllLeaveData(): any[] {
+    const startIndex = (this.currentAllLeavePage - 1) * this.AllLeavePageperPage;
+    const endIndex = startIndex + this.AllLeavePageperPage;
+    return this.fillterAllLeaveData.slice(startIndex, endIndex);
   }
-}
 
-getPageNumbersAllLeave(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterAllLeaveData.length / this.AllLeavePageperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageAllLeave(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllLeave()) {
-    this.currentAllLeavePage = pageNumber;
+  previousAllLeavePage(): void {
+    if (this.currentAllLeavePage > 1) {
+      this.currentAllLeavePage--;
+    }
   }
-}
 
-
-nextPageAllLeave(): void {
-  const totalPages = Math.ceil(
-    this.fillterAllLeaveData.length / this.AllLeavePageperPage
-  );
-  if (this.currentAllLeavePage < totalPages) {
-    this.currentAllLeavePage++;
-  }
-}
-
-
-getTotalPagesAllLeave(): number {
-  return Math.ceil(
-    this.fillterAllLeaveData.length / this.AllLeavePageperPage
-  );
-}
-// pagination for view all  leave end
-
-// sort data in all leave table start
-// sortTDate: 'asc' | 'desc' = 'asc';
-sortByToDateAllLeave(): void {
-  this.sortTDate =
-    this.sortTDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterAllLeaveData.sort((a: any, b: any) => {
-    const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.toDate).getTime() - new Date(b.toDate).getTime())
+  getPageNumbersAllLeave(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterAllLeaveData.length / this.AllLeavePageperPage
     );
-  });
-}
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  changePageAllLeave(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllLeave()) {
+      this.currentAllLeavePage = pageNumber;
+    }
+  }
 
 
-
-// sortFDate: 'asc' | 'desc' = 'asc';
-sortByFromDateAllLeave(): void {
-  this.sortFDate =
-    this.sortFDate === 'asc' ? 'desc' : 'asc';
-
-  this.fillterAllLeaveData.sort((a: any, b: any) => {
-    const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
-    return (
-      orderFactor *
-      (new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime())
+  nextPageAllLeave(): void {
+    const totalPages = Math.ceil(
+      this.fillterAllLeaveData.length / this.AllLeavePageperPage
     );
-  });
-}
+    if (this.currentAllLeavePage < totalPages) {
+      this.currentAllLeavePage++;
+    }
+  }
 
-// sortBy: 'asc' | 'desc' = 'asc';
 
-sortByWhomeAllLeave(): void {
-  // Toggle the sort order
-  this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+  getTotalPagesAllLeave(): number {
+    return Math.ceil(
+      this.fillterAllLeaveData.length / this.AllLeavePageperPage
+    );
+  }
+  // pagination for view all  leave end
 
-  // Sort the positions array based on the approvedBy property
-  this.fillterAllLeaveData.sort((a: any, b: any) => {
-    const approvedByA = a.approvedBy || ''; // Default to an empty string if null
-    const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+  // sort data in all leave table start
+  // sortTDate: 'asc' | 'desc' = 'asc';
+  sortByToDateAllLeave(): void {
+    this.sortTDate =
+      this.sortTDate === 'asc' ? 'desc' : 'asc';
 
-    const orderFactor = this.sortBy === 'asc' ? 1 : -1;
-    return orderFactor * approvedByA.localeCompare(approvedByB);
-  });
-}
+    this.fillterAllLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortTDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.toDate).getTime() - new Date(b.toDate).getTime())
+      );
+    });
+  }
 
- // sort data in all leave table end
+
+
+  // sortFDate: 'asc' | 'desc' = 'asc';
+  sortByFromDateAllLeave(): void {
+    this.sortFDate =
+      this.sortFDate === 'asc' ? 'desc' : 'asc';
+
+    this.fillterAllLeaveData.sort((a: any, b: any) => {
+      const orderFactor = this.sortFDate === 'asc' ? 1 : -1;
+      return (
+        orderFactor *
+        (new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime())
+      );
+    });
+  }
+
+  // sortBy: 'asc' | 'desc' = 'asc';
+
+  sortByWhomeAllLeave(): void {
+    // Toggle the sort order
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+
+    // Sort the positions array based on the approvedBy property
+    this.fillterAllLeaveData.sort((a: any, b: any) => {
+      const approvedByA = a.approvedBy || ''; // Default to an empty string if null
+      const approvedByB = b.approvedBy || ''; // Default to an empty string if null
+
+      const orderFactor = this.sortBy === 'asc' ? 1 : -1;
+      return orderFactor * approvedByA.localeCompare(approvedByB);
+    });
+  }
+
+  // sort data in all leave table end
 
 
   //  view all leave table function end
- 
-
-// API for download leave policy start
-
-LeavePolicyPdf() {
-
-  this.adminService.DownloadLeavePolicy().subscribe((response: HttpResponse<Blob>) => {
-    if (response.body) {
-      const contentDisposition = response.headers.get('content-disposition');
-      const fileName = contentDisposition
-        ? contentDisposition.split('filename=')[1]
-        : 'LeavePolicy.pdf'; 
-
-      saveAs(response.body, fileName); 
-    } else {
-      console.error('Response body is null.');
-    }
-  }, (error) => {
-    Swal.fire('Error', error.error, 'error');  
-    console.error(error);
-  });
- 
-}
 
 
-// API for download leave policy end
+  // API for download leave policy start
 
-// upload holiday satrt
-selectedFileHoliday: any;
-onFileSelectedHoliday(event: any): void {
-  const fileInput = event.target;
-  if (fileInput.files.length > 0) {
-    const selectedFile = fileInput.files[0];
-    this.testService.uploadHolidayPdf(selectedFile)
-    if (this.isPDFFile(selectedFile)) {
-      this.selectedFileHoliday = selectedFile.name;
-    } else {
-      this.selectedFileHoliday = 'Invalid file type. Please select a PDF file.';
-      // Optionally, you can reset the file input value to clear the selection
-      fileInput.value = '';
-      console.log("holiday upload file input", this.selectedFileHoliday);
-      console.log("holiday upload file input")
-    }
-  } else {
-    this.selectedFileHoliday = 'No file selected';
+  LeavePolicyPdf() {
+
+    this.adminService.DownloadLeavePolicy().subscribe((response: HttpResponse<Blob>) => {
+      if (response.body) {
+        const contentDisposition = response.headers.get('content-disposition');
+        const fileName = contentDisposition
+          ? contentDisposition.split('filename=')[1]
+          : 'LeavePolicy.pdf';
+
+        saveAs(response.body, fileName);
+      } else {
+        console.error('Response body is null.');
+      }
+    }, (error) => {
+      Swal.fire('Error', error.error, 'error');
+      console.error(error);
+    });
+
   }
-}
 
 
-// upload holiday end
+  // API for download leave policy end
 
-// In your component class
-isTableBodyVisible: boolean = false;
-isEditMode: boolean = false;
+  // upload holiday satrt
+  selectedFileHoliday: any;
+  onFileSelectedHoliday(event: any): void {
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      this.testService.uploadHolidayPdf(selectedFile)
+      if (this.isPDFFile(selectedFile)) {
+        this.selectedFileHoliday = selectedFile.name;
+      } else {
+        this.selectedFileHoliday = 'Invalid file type. Please select a PDF file.';
+        // Optionally, you can reset the file input value to clear the selection
+        fileInput.value = '';
+        console.log("holiday upload file input", this.selectedFileHoliday);
+        console.log("holiday upload file input")
+      }
+    } else {
+      this.selectedFileHoliday = 'No file selected';
+    }
+  }
 
-toggleTableBody() {
-  this.isTableBodyVisible = !this.isTableBodyVisible;
-  this.isEditMode = true; // Reset edit mode when showing the table body
-}
 
-cancelEdit() {
-  this.isEditMode = false;
-  this.isTableBodyVisible = false;
-}
+  // upload holiday end
+
+  // In your component class
+  isTableBodyVisible: boolean = false;
+  isEditMode: boolean = false;
+
+  toggleTableBody() {
+    this.isTableBodyVisible = !this.isTableBodyVisible;
+    this.isEditMode = true; // Reset edit mode when showing the table body
+  }
+
+  cancelEdit() {
+    this.isEditMode = false;
+    this.isTableBodyVisible = false;
+  }
 
 
 
@@ -5493,125 +5532,125 @@ cancelEdit() {
   // save holiday start
 
 
-saveHoliday() {
-  // Populate the 'date' property if not set already
-  if (!this.holiday.date) {
-    this.holiday.date = this.holiday.date;
-    this.holiday.day = this.holiday.day;
-    this.holiday.holiDayReason = this.holiday.holiDayReason
-  }
-
-  this.testService.saveHoliday(this.holiday).subscribe(
-    (response: any) => {
-      console.log("save holiday", response);
-      Swal.fire({
-        title: 'success!',
-        text: 'Holiday saved successfully.',
-        icon: 'success'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.loginService.showTable('addHoliday');
-          this.router.navigate(['/addHoliday']);
-          this.isEditMode = false;
-          this.isTableBodyVisible = false;
-          location.reload();
-          this.getHoliday();
-          // Handle confirmation if needed
-        }
-      });
-    },
-    error => {
-      Swal.fire('Error', error.error, 'error');
+  saveHoliday() {
+    // Populate the 'date' property if not set already
+    if (!this.holiday.date) {
+      this.holiday.date = this.holiday.date;
+      this.holiday.day = this.holiday.day;
+      this.holiday.holiDayReason = this.holiday.holiDayReason
     }
-  );
-}
 
-    // save holiday end
-
-    // get holiday start
-    getHoliday() {
-      
-        // if ('/todayCasualLeave' === this.router.url) {
-    
-        // Call the service method to fetch all attendance data
-        this.testService.getHoliday().subscribe(
-          (response: any) => {
-            // Convert the response object to an array
-            const dataArray = Object.values(response);
-            // Reverse the received array
-            const reversedData = dataArray.reverse();
-    
-            // Set the reversed array as the data source
-            this.getHolidayData = reversedData;
-            this.fillterGetHoliday = reversedData;
-            console.log("get holiday",response);
-          },
-          error => {
-            Swal.fire('Error', error.error, 'error');  
-            // Hide the table if an error occurs
-            // this.showAllAttTable = false;
+    this.testService.saveHoliday(this.holiday).subscribe(
+      (response: any) => {
+        console.log("save holiday", response);
+        Swal.fire({
+          title: 'success!',
+          text: 'Holiday saved successfully.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.loginService.showTable('addHoliday');
+            this.router.navigate(['/addHoliday']);
+            this.isEditMode = false;
+            this.isTableBodyVisible = false;
+            location.reload();
+            this.getHoliday();
+            // Handle confirmation if needed
           }
-        );
-      // }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+
+  // save holiday end
+
+  // get holiday start
+  getHoliday() {
+
+    // if ('/todayCasualLeave' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.getHoliday().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+        this.getHolidayData = reversedData;
+        this.fillterGetHoliday = reversedData;
+        console.log("get holiday", response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+    // }
+  }
+  // get holiday end
+
+  // pagination and search for holiday start
+
+  holidayPerPage: number = 10;
+  holidayCurrentPage: number = 1;
+
+  searchHoliday: string = '';
+
+
+  FilterHoliday() {
+    this.fillterGetHoliday = this.getHolidayData.filter((item: { holiDayReason: string }) =>
+      item.holiDayReason.toLowerCase().includes(this.searchHoliday.toLowerCase())
+    );
+  }
+
+  getPaginatedHolidayData(): any[] {
+    const startIndex = (this.holidayCurrentPage - 1) * this.holidayPerPage;
+    const endIndex = startIndex + this.holidayPerPage;
+    return this.fillterGetHoliday.slice(startIndex, endIndex);
+  }
+
+  previousHolidayPage(): void {
+    if (this.holidayCurrentPage > 1) {
+      this.holidayCurrentPage--;
     }
-    // get holiday end
-
-    // pagination and search for holiday start
-
-    holidayPerPage: number = 10;
-holidayCurrentPage: number = 1;
-
-searchHoliday: string = '';
-
-
-FilterHoliday() {
-  this.fillterGetHoliday = this.getHolidayData.filter((item: { holiDayReason: string }) =>
-    item.holiDayReason.toLowerCase().includes(this.searchHoliday.toLowerCase()) 
-  );
-}
-
-getPaginatedHolidayData(): any[] {
-  const startIndex = (this.holidayCurrentPage - 1) * this.holidayPerPage;
-  const endIndex = startIndex + this.holidayPerPage;
-  return this.fillterGetHoliday.slice(startIndex, endIndex);
-}
-
-previousHolidayPage(): void {
-  if (this.holidayCurrentPage > 1) {
-    this.holidayCurrentPage--;
   }
-}
 
-getPageNumbersHoliday(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterGetHoliday.length / this.holidayPerPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageHoliday(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesHoliday()) {
-    this.holidayCurrentPage = pageNumber;
+  getPageNumbersHoliday(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterGetHoliday.length / this.holidayPerPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-}
 
-
-nextPageHoliday(): void {
-  const totalPages = Math.ceil(
-    this.fillterGetHoliday.length / this.holidayPerPage
-  );
-  if (this.holidayCurrentPage < totalPages) {
-    this.holidayCurrentPage++;
+  changePageHoliday(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesHoliday()) {
+      this.holidayCurrentPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesHoliday(): number {
-  return Math.ceil(
-    this.fillterGetHoliday.length / this.holidayPerPage
-  );
-}
- // pagination and search for holiday end
+  nextPageHoliday(): void {
+    const totalPages = Math.ceil(
+      this.fillterGetHoliday.length / this.holidayPerPage
+    );
+    if (this.holidayCurrentPage < totalPages) {
+      this.holidayCurrentPage++;
+    }
+  }
+
+
+  getTotalPagesHoliday(): number {
+    return Math.ceil(
+      this.fillterGetHoliday.length / this.holidayPerPage
+    );
+  }
+  // pagination and search for holiday end
 
   // API for delete holiday start
   deleteHoliday(id: any): void {
@@ -5650,12 +5689,12 @@ getTotalPagesHoliday(): number {
   }
   // API for delete holiday end
 
-   // API for update holiday start
-  updateHoliday(item: any){
+  // API for update holiday start
+  updateHoliday(item: any) {
     this.testService.updateHoliday(item).subscribe(
       (response: any) => {
-        
-        console.log("updated holiday",response);
+
+        console.log("updated holiday", response);
         Swal.fire({
           title: 'Updated!',
           text: 'Holiday has been updated.',
@@ -5663,383 +5702,383 @@ getTotalPagesHoliday(): number {
         }).then((result) => {
           if (result.isConfirmed) {
             this.loginService.showTable('addHoliday');
-          this.router.navigate(['/addHoliday']);
-         
-          this.editModeIndex = -1;
-          this.getHoliday();
+            this.router.navigate(['/addHoliday']);
+
+            this.editModeIndex = -1;
+            this.getHoliday();
 
           }
         });
       },
       error => {
-        Swal.fire('Error', error.error, 'error');  
-        
+        Swal.fire('Error', error.error, 'error');
+
       }
     );
   }
-   // API for update holiday end
+  // API for update holiday end
 
-   editModeIndex: number = -1; // Initialize as -1, indicating no row is in edit mode initially
+  editModeIndex: number = -1; // Initialize as -1, indicating no row is in edit mode initially
 
-// Function to start editing a specific row
-startEdit(index: number) {
-  this.editModeIndex = index;
-}
-
-// Function to stop editing
-stopEdit() {
-  this.editModeIndex = -1;
-}
-
-
-
-
-// view not Checked In Users Count start
-viewNotCheckedInUsersCount(){
-  this.dashboardService.viewNotCheckedInUsersCount().subscribe(
-    (response: any) => {
-      const dataArray = Object.values(response);
-      // Reverse the received array
-      const reversedData = dataArray.reverse();
-
-      // Set the reversed array as the data source
-      this.getAbsentData = reversedData;
-      this.fillterGetAbsent = reversedData;
- 
-      console.log("view not Checked In Users Count", response);
- 
-    },
-    (error) => {
-      Swal.fire('Error', error.error, 'error'); 
-    }
-  );
-}
-// view not Checked In Users Count end
-
-// view not Checked In Users start
-absentPerPage: number = 10;
-absentCurrentPage: number = 1;
-
-searchAbsent: string = '';
-
-
-FilterAbsent() {
-  this.fillterGetAbsent = this.getAbsentData.filter((item: { firstname: string; lastname: string; }) =>
-    item.firstname.toLowerCase().includes(this.searchAbsent.toLowerCase()) ||
-    item.lastname.toLowerCase().includes(this.searchAbsent.toLowerCase()) 
-
-  );
-}
-
-getPaginatedAbsentData(): any[] {
-  const startIndex = (this.absentCurrentPage - 1) * this.absentPerPage;
-  const endIndex = startIndex + this.absentPerPage;
-  return this.fillterGetAbsent.slice(startIndex, endIndex);
-}
-
-previousAbsentPage(): void {
-  if (this.absentCurrentPage > 1) {
-    this.absentCurrentPage--;
+  // Function to start editing a specific row
+  startEdit(index: number) {
+    this.editModeIndex = index;
   }
-}
 
-getPageNumbersAbsent(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterGetAbsent.length / this.absentPerPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageAbsent(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAbsent()) {
-    this.absentCurrentPage = pageNumber;
+  // Function to stop editing
+  stopEdit() {
+    this.editModeIndex = -1;
   }
-}
-
-
-nextPageAbsent(): void {
-  const totalPages = Math.ceil(
-    this.fillterGetAbsent.length / this.absentPerPage
-  );
-  if (this.absentCurrentPage < totalPages) {
-    this.absentCurrentPage++;
-  }
-}
-
-
-getTotalPagesAbsent(): number {
-  return Math.ceil(
-    this.fillterGetAbsent.length / this.absentPerPage
-  );
-}
-// view not Checked In Users end
 
 
 
-// View present Last 7Days start
-Last7DaysPresentPerPage: number = 10;
-currentLast7DaysPresentPage: number = 1;
 
-searchLast7DaysPresent: string = '';
+  // view not Checked In Users Count start
+  viewNotCheckedInUsersCount() {
+    this.dashboardService.viewNotCheckedInUsersCount().subscribe(
+      (response: any) => {
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
 
- FilterLast7DaysPresent() {
-   this.fillterLast7DaysPresentData = this.presentLast7Days.filter((item: { name: string; }) =>
-   item.name.toLowerCase().includes(this.searchLast7DaysPresent.toLowerCase()) 
-  
-   );
- }
+        // Set the reversed array as the data source
+        this.getAbsentData = reversedData;
+        this.fillterGetAbsent = reversedData;
 
- 
+        console.log("view not Checked In Users Count", response);
 
-getPaginatedLast7DaysPresentData(): any[] {
-  const startIndex = (this.currentLast7DaysPresentPage - 1) * this.Last7DaysPresentPerPage;
-  const endIndex = startIndex + this.Last7DaysPresentPerPage;
-  return this.fillterLast7DaysPresentData.slice(startIndex, endIndex);
-}
-
-previousLast7DaysPresentPage(): void {
-  if (this.currentLast7DaysPresentPage > 1) {
-    this.currentLast7DaysPresentPage--;
-  }
-}
-
-
-getPageNumbersLast7DaysPresent(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-
-changePageLast7DaysPresent(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysPresent()) {
-    this.currentLast7DaysPresentPage = pageNumber;
-  }
-}
-
-
-nextPageLast7DaysPresent(): void {
-  const totalPages = Math.ceil(
-    this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
-  );
-  if (this.currentLast7DaysPresentPage < totalPages) {
-    this.currentLast7DaysPresentPage++;
-  }
-}
-
-
-getTotalPagesLast7DaysPresent(): number {
-  return Math.ceil(
-    this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
-  );
-}
-
-
-viewPresentUsersLast7Days() {
-  // Get the date from the URL
-  this.clickedDate = this.route.snapshot.paramMap.get('date');
-console.log("click date ????", this.clickedDate);
-  this.dashboardService.presentUsersLast7Days().subscribe(
-    (response: any) => {
-      // Filter the response based on the clicked date
-      const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
-console.log("date??>>>>>>>>>>", filteredData);
-console.log("response", response);
-      if (filteredData.length > 0) {
-      
-        this.presentLast7Days = filteredData[0].userData;
-        this.fillterLast7DaysPresentData = filteredData[0].userData;
-        console.log("hgjhgjhgjhgjh", this.presentLast7Days[0].name)
-        console.log("View present Last 7Days>>>>>>", this.presentLast7Days);
-      } else {
-        console.log("No data available for the selected date");
-        // Handle the case when no data is available for the selected date
+      },
+      (error) => {
+        Swal.fire('Error', error.error, 'error');
       }
-    },
-    (error) => {
-      // Handle the error
+    );
+  }
+  // view not Checked In Users Count end
+
+  // view not Checked In Users start
+  absentPerPage: number = 10;
+  absentCurrentPage: number = 1;
+
+  searchAbsent: string = '';
+
+
+  FilterAbsent() {
+    this.fillterGetAbsent = this.getAbsentData.filter((item: { firstname: string; lastname: string; }) =>
+      item.firstname.toLowerCase().includes(this.searchAbsent.toLowerCase()) ||
+      item.lastname.toLowerCase().includes(this.searchAbsent.toLowerCase())
+
+    );
+  }
+
+  getPaginatedAbsentData(): any[] {
+    const startIndex = (this.absentCurrentPage - 1) * this.absentPerPage;
+    const endIndex = startIndex + this.absentPerPage;
+    return this.fillterGetAbsent.slice(startIndex, endIndex);
+  }
+
+  previousAbsentPage(): void {
+    if (this.absentCurrentPage > 1) {
+      this.absentCurrentPage--;
     }
-  );
-}
-
-// View present Last 7Days end
-
-// View late arrival Last 7Days start
-Last7DaysLateArrivalPerPage: number = 10;
-currentLast7DaysLateArrivalPage: number = 1;
-
-searchLast7DaysLateArrival: string = '';
-
- FilterLast7DaysLateArrival() {
-   this.fillterLast7DaysLateArrivalData = this.totalCheckedInLate.filter((item: { name: string; }) =>
-   item.name.toLowerCase().includes(this.searchLast7DaysLateArrival.toLowerCase()) 
-  
-   );
- }
-
- 
-
-getPaginatedLast7DaysLateArrivalData(): any[] {
-  const startIndex = (this.currentLast7DaysLateArrivalPage - 1) * this.Last7DaysLateArrivalPerPage;
-  const endIndex = startIndex + this.Last7DaysLateArrivalPerPage;
-  return this.fillterLast7DaysLateArrivalData.slice(startIndex, endIndex);
-}
-
-previousLast7DaysLateArrivalPage(): void {
-  if (this.currentLast7DaysLateArrivalPage > 1) {
-    this.currentLast7DaysLateArrivalPage--;
   }
-}
 
-
-getPageNumbersLast7DaysLateArrival(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-
-changePageLast7DaysLateArrival(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysLateArrival()) {
-    this.currentLast7DaysLateArrivalPage = pageNumber;
+  getPageNumbersAbsent(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterGetAbsent.length / this.absentPerPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-}
 
-
-nextPageLast7DaysLateArrival(): void {
-  const totalPages = Math.ceil(
-    this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
-  );
-  if (this.currentLast7DaysLateArrivalPage < totalPages) {
-    this.currentLast7DaysLateArrivalPage++;
+  changePageAbsent(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAbsent()) {
+      this.absentCurrentPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesLast7DaysLateArrival(): number {
-  return Math.ceil(
-    this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
-  );
-}
+  nextPageAbsent(): void {
+    const totalPages = Math.ceil(
+      this.fillterGetAbsent.length / this.absentPerPage
+    );
+    if (this.absentCurrentPage < totalPages) {
+      this.absentCurrentPage++;
+    }
+  }
 
-viewLast7DaysLateArrival() {
-  // Get the date from the URL
-  this.clickedDate = this.route.snapshot.paramMap.get('date');
 
-  this.dashboardService.checkedInLate().subscribe(
-    (response: any) => {
-      // Filter the response based on the clicked date
-      const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
-console.log("date??>>>>>>>>>>", filteredData);
-console.log("response", response);
-      if (filteredData.length > 0) {
-        this.totalCheckedInLate = filteredData[0].userData;
-        this.fillterLast7DaysLateArrivalData = filteredData[0].userData;
-        console.log("late arrival", this.totalCheckedInLate[0].name)
-        console.log("View late arrival Last 7Days>>>>>>", this.totalCheckedInLate);
-      } else {
-        console.log("No data available for the selected date");
-        // Handle the case when no data is available for the selected date
+  getTotalPagesAbsent(): number {
+    return Math.ceil(
+      this.fillterGetAbsent.length / this.absentPerPage
+    );
+  }
+  // view not Checked In Users end
+
+
+
+  // View present Last 7Days start
+  Last7DaysPresentPerPage: number = 10;
+  currentLast7DaysPresentPage: number = 1;
+
+  searchLast7DaysPresent: string = '';
+
+  FilterLast7DaysPresent() {
+    this.fillterLast7DaysPresentData = this.presentLast7Days.filter((item: { name: string; }) =>
+      item.name.toLowerCase().includes(this.searchLast7DaysPresent.toLowerCase())
+
+    );
+  }
+
+
+
+  getPaginatedLast7DaysPresentData(): any[] {
+    const startIndex = (this.currentLast7DaysPresentPage - 1) * this.Last7DaysPresentPerPage;
+    const endIndex = startIndex + this.Last7DaysPresentPerPage;
+    return this.fillterLast7DaysPresentData.slice(startIndex, endIndex);
+  }
+
+  previousLast7DaysPresentPage(): void {
+    if (this.currentLast7DaysPresentPage > 1) {
+      this.currentLast7DaysPresentPage--;
+    }
+  }
+
+
+  getPageNumbersLast7DaysPresent(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+
+  changePageLast7DaysPresent(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysPresent()) {
+      this.currentLast7DaysPresentPage = pageNumber;
+    }
+  }
+
+
+  nextPageLast7DaysPresent(): void {
+    const totalPages = Math.ceil(
+      this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
+    );
+    if (this.currentLast7DaysPresentPage < totalPages) {
+      this.currentLast7DaysPresentPage++;
+    }
+  }
+
+
+  getTotalPagesLast7DaysPresent(): number {
+    return Math.ceil(
+      this.fillterLast7DaysPresentData.length / this.Last7DaysPresentPerPage
+    );
+  }
+
+
+  viewPresentUsersLast7Days() {
+    // Get the date from the URL
+    this.clickedDate = this.route.snapshot.paramMap.get('date');
+    console.log("click date ????", this.clickedDate);
+    this.dashboardService.presentUsersLast7Days().subscribe(
+      (response: any) => {
+        // Filter the response based on the clicked date
+        const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
+        console.log("date??>>>>>>>>>>", filteredData);
+        console.log("response", response);
+        if (filteredData.length > 0) {
+
+          this.presentLast7Days = filteredData[0].userData;
+          this.fillterLast7DaysPresentData = filteredData[0].userData;
+          console.log("hgjhgjhgjhgjh", this.presentLast7Days[0].name)
+          console.log("View present Last 7Days>>>>>>", this.presentLast7Days);
+        } else {
+          console.log("No data available for the selected date");
+          // Handle the case when no data is available for the selected date
+        }
+      },
+      (error) => {
+        // Handle the error
       }
-    },
-    (error) => {
-      // Handle the error
+    );
+  }
+
+  // View present Last 7Days end
+
+  // View late arrival Last 7Days start
+  Last7DaysLateArrivalPerPage: number = 10;
+  currentLast7DaysLateArrivalPage: number = 1;
+
+  searchLast7DaysLateArrival: string = '';
+
+  FilterLast7DaysLateArrival() {
+    this.fillterLast7DaysLateArrivalData = this.totalCheckedInLate.filter((item: { name: string; }) =>
+      item.name.toLowerCase().includes(this.searchLast7DaysLateArrival.toLowerCase())
+
+    );
+  }
+
+
+
+  getPaginatedLast7DaysLateArrivalData(): any[] {
+    const startIndex = (this.currentLast7DaysLateArrivalPage - 1) * this.Last7DaysLateArrivalPerPage;
+    const endIndex = startIndex + this.Last7DaysLateArrivalPerPage;
+    return this.fillterLast7DaysLateArrivalData.slice(startIndex, endIndex);
+  }
+
+  previousLast7DaysLateArrivalPage(): void {
+    if (this.currentLast7DaysLateArrivalPage > 1) {
+      this.currentLast7DaysLateArrivalPage--;
     }
-  );
-}
-// View late arrival Last 7Days end
-
-
-// View early departure Last 7Days start
-
-Last7DaysEarlyDeparturePerPage: number = 10;
-currentLast7DaysEarlyDeparturePage: number = 1;
-
-searchLast7DaysEarlyDeparture: string = '';
-
- FilterLast7DaysEarlyDeparture() {
-   this.fillterLast7DaysEarlyDepartureData = this.totalCheckOutEarly.filter((item: { name: string; }) =>
-   item.name.toLowerCase().includes(this.searchLast7DaysEarlyDeparture.toLowerCase()) 
-  
-   );
- }
-
- 
-
-getPaginatedLast7DaysEarlyDepartureData(): any[] {
-  const startIndex = (this.currentLast7DaysEarlyDeparturePage - 1) * this.Last7DaysEarlyDeparturePerPage;
-  const endIndex = startIndex + this.Last7DaysEarlyDeparturePerPage;
-  return this.fillterLast7DaysEarlyDepartureData.slice(startIndex, endIndex);
-}
-
-previousLast7DaysEarlyDeparturePage(): void {
-  if (this.currentLast7DaysEarlyDeparturePage > 1) {
-    this.currentLast7DaysEarlyDeparturePage--;
   }
-}
 
 
-getPageNumbersLast7DaysEarlyDeparture(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-
-changePageLast7DaysEarlyDeparture(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysEarlyDeparture()) {
-    this.currentLast7DaysEarlyDeparturePage = pageNumber;
+  getPageNumbersLast7DaysLateArrival(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
-}
 
 
-nextPageLast7DaysEarlyDeparture(): void {
-  const totalPages = Math.ceil(
-    this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
-  );
-  if (this.currentLast7DaysEarlyDeparturePage < totalPages) {
-    this.currentLast7DaysEarlyDeparturePage++;
+  changePageLast7DaysLateArrival(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysLateArrival()) {
+      this.currentLast7DaysLateArrivalPage = pageNumber;
+    }
   }
-}
 
 
-getTotalPagesLast7DaysEarlyDeparture(): number {
-  return Math.ceil(
-    this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
-  );
-}
+  nextPageLast7DaysLateArrival(): void {
+    const totalPages = Math.ceil(
+      this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
+    );
+    if (this.currentLast7DaysLateArrivalPage < totalPages) {
+      this.currentLast7DaysLateArrivalPage++;
+    }
+  }
 
-viewLast7DaysEarlyDeparture() {
-  // Get the date from the URL
-  this.clickedDate = this.route.snapshot.paramMap.get('date');
 
-  this.dashboardService.checkOutEarly().subscribe(
-    (response: any) => {
-      // Filter the response based on the clicked date
-      const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
-console.log("date??>>>>>>>>>>", filteredData);
-console.log("response", response);
-      if (filteredData.length > 0) {
-        this.totalCheckOutEarly = filteredData[0].userData;
-        this.fillterLast7DaysEarlyDepartureData = filteredData[0].userData;
-    
+  getTotalPagesLast7DaysLateArrival(): number {
+    return Math.ceil(
+      this.fillterLast7DaysLateArrivalData.length / this.Last7DaysLateArrivalPerPage
+    );
+  }
 
-        console.log("early departure", this.totalCheckOutEarly[0].name)
-        console.log("View early departure Last 7Days>>>>>>", this.totalCheckOutEarly);
-      } else {
-        console.log("No data available for the selected date");
-        // Handle the case when no data is available for the selected date
+  viewLast7DaysLateArrival() {
+    // Get the date from the URL
+    this.clickedDate = this.route.snapshot.paramMap.get('date');
+
+    this.dashboardService.checkedInLate().subscribe(
+      (response: any) => {
+        // Filter the response based on the clicked date
+        const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
+        console.log("date??>>>>>>>>>>", filteredData);
+        console.log("response", response);
+        if (filteredData.length > 0) {
+          this.totalCheckedInLate = filteredData[0].userData;
+          this.fillterLast7DaysLateArrivalData = filteredData[0].userData;
+          console.log("late arrival", this.totalCheckedInLate[0].name)
+          console.log("View late arrival Last 7Days>>>>>>", this.totalCheckedInLate);
+        } else {
+          console.log("No data available for the selected date");
+          // Handle the case when no data is available for the selected date
+        }
+      },
+      (error) => {
+        // Handle the error
       }
-    },
-    (error) => {
-      // Handle the error
+    );
+  }
+  // View late arrival Last 7Days end
+
+
+  // View early departure Last 7Days start
+
+  Last7DaysEarlyDeparturePerPage: number = 10;
+  currentLast7DaysEarlyDeparturePage: number = 1;
+
+  searchLast7DaysEarlyDeparture: string = '';
+
+  FilterLast7DaysEarlyDeparture() {
+    this.fillterLast7DaysEarlyDepartureData = this.totalCheckOutEarly.filter((item: { name: string; }) =>
+      item.name.toLowerCase().includes(this.searchLast7DaysEarlyDeparture.toLowerCase())
+
+    );
+  }
+
+
+
+  getPaginatedLast7DaysEarlyDepartureData(): any[] {
+    const startIndex = (this.currentLast7DaysEarlyDeparturePage - 1) * this.Last7DaysEarlyDeparturePerPage;
+    const endIndex = startIndex + this.Last7DaysEarlyDeparturePerPage;
+    return this.fillterLast7DaysEarlyDepartureData.slice(startIndex, endIndex);
+  }
+
+  previousLast7DaysEarlyDeparturePage(): void {
+    if (this.currentLast7DaysEarlyDeparturePage > 1) {
+      this.currentLast7DaysEarlyDeparturePage--;
     }
-  );
-}
-// View early departure Last 7Days end
+  }
+
+
+  getPageNumbersLast7DaysEarlyDeparture(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+
+  changePageLast7DaysEarlyDeparture(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesLast7DaysEarlyDeparture()) {
+      this.currentLast7DaysEarlyDeparturePage = pageNumber;
+    }
+  }
+
+
+  nextPageLast7DaysEarlyDeparture(): void {
+    const totalPages = Math.ceil(
+      this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
+    );
+    if (this.currentLast7DaysEarlyDeparturePage < totalPages) {
+      this.currentLast7DaysEarlyDeparturePage++;
+    }
+  }
+
+
+  getTotalPagesLast7DaysEarlyDeparture(): number {
+    return Math.ceil(
+      this.fillterLast7DaysEarlyDepartureData.length / this.Last7DaysEarlyDeparturePerPage
+    );
+  }
+
+  viewLast7DaysEarlyDeparture() {
+    // Get the date from the URL
+    this.clickedDate = this.route.snapshot.paramMap.get('date');
+
+    this.dashboardService.checkOutEarly().subscribe(
+      (response: any) => {
+        // Filter the response based on the clicked date
+        const filteredData = response.filter((data: { date: string | null; }) => data.date === this.clickedDate);
+        console.log("date??>>>>>>>>>>", filteredData);
+        console.log("response", response);
+        if (filteredData.length > 0) {
+          this.totalCheckOutEarly = filteredData[0].userData;
+          this.fillterLast7DaysEarlyDepartureData = filteredData[0].userData;
+
+
+          console.log("early departure", this.totalCheckOutEarly[0].name)
+          console.log("View early departure Last 7Days>>>>>>", this.totalCheckOutEarly);
+        } else {
+          console.log("No data available for the selected date");
+          // Handle the case when no data is available for the selected date
+        }
+      },
+      (error) => {
+        // Handle the error
+      }
+    );
+  }
+  // View early departure Last 7Days end
 
 
 }
