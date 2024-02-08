@@ -1,0 +1,124 @@
+.div_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vh-100 {
+  height: 100vh;
+}
+.vw-100 {
+  width: 100vw;
+}
+.fade-in-out {
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%{
+    opacity: 0;
+  }
+  50%{
+opacity: 1;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+/* 
+.table_div tr td {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+}
+.table_div tr td button{
+    width: 100%;
+    height: 100%;
+    font-size: 80px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    transition: all .3s ease;
+}
+.table_div tr td button:hover{
+    background-color: rgb(243, 243, 243);
+    color: black;
+}
+
+.border-r {
+  border-right: 1px solid white;
+}
+.border-b {
+  border-bottom: 1px solid white;
+}
+.border-t {
+  border-top: 1px solid white;
+}
+.border-l {
+  border-left: 1px solid white;
+} */
+
+.vs_img{
+  background-image: url('../../../assets/img/vs-img.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.input_css{
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.644);
+  border: 5px solid black;
+  border-radius: 10px;
+  color: white;
+  height: 40px;
+  text-align: center;
+}
+.red_input{
+      filter: drop-shadow(2px 2px 2px #ff1012);
+}
+.blue_input{
+    filter: drop-shadow(2px 2px 2px #2dafdb);
+}
+
+
+.bn632-hover {
+  width: 160px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.bn632-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  transform: scale(.95);
+}
+
+.bn632-hover:focus {
+  outline: none;
+}
+
+.bn632-hover.bn26 {
+  background-image: linear-gradient(
+    to right,
+    #ff1012,
+    #2dafdb,
+    #2dafdb,
+    #ff1012
+  );
+}

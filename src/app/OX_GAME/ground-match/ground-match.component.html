@@ -1,0 +1,135 @@
+<div class="bg-black d-flex">
+    <app-celebration *ngIf="celebration"></app-celebration>
+    <div class="col-4 col-md-4 col-xxl-4 div_center vh-100">
+        <img src="../../../assets/img/boy_red-removebg.png" alt="" width="40%">
+    </div>
+    <div class="col-4 col-md-4 col-xxl-4 div_center vh-100">
+        <table class="div_center table_div">
+            <tbody>
+                <tr>
+                    <td class="border-r border-b"><button (click)="makeMove(0, 0)"  [ngClass]="{'player-x': getCellValue(0, 0) === 'X', 'player-o': getCellValue(0, 0) === 'O'}">{{ getCellValue(0, 0) }}</button>
+                    </td>
+                    <td class="border-r border-b border-l"><button (click)="makeMove(0, 1)"  [ngClass]="{'player-x': getCellValue(0, 1) === 'X', 'player-o': getCellValue(0, 1) === 'O'}">{{ getCellValue(0, 1)
+                            }}</button></td>
+                    <td class="border-b border-l"><button (click)="makeMove(0, 2)"  [ngClass]="{'player-x': getCellValue(0, 2) === 'X', 'player-o': getCellValue(0, 2) === 'O'}">{{ getCellValue(0, 2) }}</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border-r border-b border-t"><button (click)="makeMove(1, 0)"  [ngClass]="{'player-x': getCellValue(1, 0) === 'X', 'player-o': getCellValue(1, 0) === 'O'}">{{ getCellValue(1, 0)
+                            }}</button></td>
+                    <td class="border-r border-b border-l border-t"><button (click)="makeMove(1, 1)"  [ngClass]="{'player-x': getCellValue(1, 1) === 'X', 'player-o': getCellValue(1, 1) === 'O'}">{{ getCellValue(1,
+                            1) }}</button></td>
+                    <td class="border-b border-l border-t"><button (click)="makeMove(1, 2)"  [ngClass]="{'player-x': getCellValue(1, 2) === 'X', 'player-o': getCellValue(1, 2) === 'O'}">{{ getCellValue(1, 2)
+                            }}</button></td>
+                </tr>
+                <tr>
+                    <td class="border-r border-t"><button (click)="makeMove(2, 0)"  [ngClass]="{'player-x': getCellValue(2, 0) === 'X', 'player-o': getCellValue(2, 0) === 'O'}">{{ getCellValue(2, 0) }}</button>
+                    </td>
+                    <td class="border-r border-t border-l"><button (click)="makeMove(2, 1)"  [ngClass]="{'player-x': getCellValue(2, 1) === 'X', 'player-o': getCellValue(2, 1) === 'O'}">{{ getCellValue(2, 1)
+                            }}</button></td>
+                    <td class="border-t border-l"><button (click)="makeMove(2, 2)"  [ngClass]="{'player-x': getCellValue(2, 2) === 'X', 'player-o': getCellValue(2, 2) === 'O'}">{{ getCellValue(2, 2) }}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4 col-md-4 col-xxl-4 div_center vh-100">
+        <div class="container noselect">
+            <div class="canvas">
+              <div class="tracker tr-1"></div>
+              <div class="tracker tr-2"></div>
+              <div class="tracker tr-3"></div>
+              <div class="tracker tr-4"></div>
+              <div class="tracker tr-5"></div>
+              <div class="tracker tr-6"></div>
+              <div class="tracker tr-7"></div>
+              <div class="tracker tr-8"></div>
+              <div class="tracker tr-9"></div>
+              <div class="tracker tr-10"></div>
+              <div class="tracker tr-11"></div>
+              <div class="tracker tr-12"></div>
+              <div class="tracker tr-13"></div>
+              <div class="tracker tr-14"></div>
+              <div class="tracker tr-15"></div>
+              <div class="tracker tr-16"></div>
+              <div class="tracker tr-17"></div>
+              <div class="tracker tr-18"></div>
+              <div class="tracker tr-19"></div>
+              <div class="tracker tr-20"></div>
+              <div class="tracker tr-21"></div>
+              <div class="tracker tr-22"></div>
+              <div class="tracker tr-23"></div>
+              <div class="tracker tr-24"></div>
+              <div class="tracker tr-25"></div>
+                <img src="../../../assets/img/boy_red-removebg.png" id="card" alt="" width="100%">
+            </div>
+          </div>
+    </div>
+</div>
+<!-- <div class="container noselect">
+    <div class="canvas">
+      <div class="tracker tr-1"></div>
+      <div class="tracker tr-2"></div>
+      <div class="tracker tr-3"></div>
+      <div class="tracker tr-4"></div>
+      <div class="tracker tr-5"></div>
+      <div class="tracker tr-6"></div>
+      <div class="tracker tr-7"></div>
+      <div class="tracker tr-8"></div>
+      <div class="tracker tr-9"></div>
+      <div class="tracker tr-10"></div>
+      <div class="tracker tr-11"></div>
+      <div class="tracker tr-12"></div>
+      <div class="tracker tr-13"></div>
+      <div class="tracker tr-14"></div>
+      <div class="tracker tr-15"></div>
+      <div class="tracker tr-16"></div>
+      <div class="tracker tr-17"></div>
+      <div class="tracker tr-18"></div>
+      <div class="tracker tr-19"></div>
+      <div class="tracker tr-20"></div>
+      <div class="tracker tr-21"></div>
+      <div class="tracker tr-22"></div>
+      <div class="tracker tr-23"></div>
+      <div class="tracker tr-24"></div>
+      <div class="tracker tr-25"></div>
+      <div id="card">
+      <p id="prompt">HOVER OVER :D</p>
+        <div class="title">look mom,<br>no JS</div>
+        <div class="subtitle">
+          mouse hover tracker
+        </div>
+        
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="container noselect">
+    <div class="canvas">
+      <div class="tracker tr-1"></div>
+      <div class="tracker tr-2"></div>
+      <div class="tracker tr-3"></div>
+      <div class="tracker tr-4"></div>
+      <div class="tracker tr-5"></div>
+      <div class="tracker tr-6"></div>
+      <div class="tracker tr-7"></div>
+      <div class="tracker tr-8"></div>
+      <div class="tracker tr-9"></div>
+      <div class="tracker tr-10"></div>
+      <div class="tracker tr-11"></div>
+      <div class="tracker tr-12"></div>
+      <div class="tracker tr-13"></div>
+      <div class="tracker tr-14"></div>
+      <div class="tracker tr-15"></div>
+      <div class="tracker tr-16"></div>
+      <div class="tracker tr-17"></div>
+      <div class="tracker tr-18"></div>
+      <div class="tracker tr-19"></div>
+      <div class="tracker tr-20"></div>
+      <div class="tracker tr-21"></div>
+      <div class="tracker tr-22"></div>
+      <div class="tracker tr-23"></div>
+      <div class="tracker tr-24"></div>
+      <div class="tracker tr-25"></div>
+        <img src="../../../assets/img/boy_red-removebg.png" id="card" alt="" width="100%">
+    </div>
+  </div> -->

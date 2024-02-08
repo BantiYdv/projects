@@ -1,0 +1,52 @@
+<ng-container class="container">
+  <app-celebration *ngIf="celebration"></app-celebration>
+  <div *ngIf="showOX" class="row">
+      <app-wellcome></app-wellcome>
+  </div>
+
+  <div class="col-12 col-md-12 col-xxl-12 div_center vh-100 vw-100 vs_img fade-in-out">
+    <div class="col-5 col-md-5 div_center flex-column">
+      <img src="../../../assets/img/boy_red-removebg.png" alt="" width="25%">
+      <input type="text" name="player1" [(ngModel)]="player1" placeholder="Player 1" class="input_css red_input">
+    </div>
+    <div class="col-1 col-md-2 d-flex justify-content-center align-content-end " style="margin-top: 350px;">
+      <a><button *ngIf="player1 && player2" class="bn632-hover bn26" (click)="savePlayers()">Save</button></a>
+      
+    </div>
+    <div class="col-5 col-md-5 div_center flex-column">
+      <!-- <img src="../../../../node_modules/primeng/resources/themes/soho-dark/theme.css" alt=""> -->
+      <!-- <img src="../../../../node_modules/primeng/resources/themes/nano/theme.css" alt=""> -->
+      <!-- <img src="../../../../node_modules/primeng/resources/components/toast/toast.css" alt=""> -->
+      <img src="../../../assets/img/boy_red-removebg.png" alt="" width="25%">
+      <input type="text" name="player2" [(ngModel)]="player2" placeholder="Player 2" class="input_css blue_input">
+
+    </div>
+  </div>
+  
+  
+
+  <!-- <div class="col-12 col-md-12 col-xxl-12 div_center vh-100 vw-100">
+    <table class="div_center table_div">
+                <tbody>
+                  <tr>
+                    <td class="border-r border-b"><button (click)="makeMove(0, 0)">{{ getCellValue(0, 0) }}</button></td>
+                    <td class="border-r border-b border-l"><button (click)="makeMove(0, 1)">{{ getCellValue(0, 1) }}</button></td>
+                    <td class="border-b border-l"><button (click)="makeMove(0, 2)">{{ getCellValue(0, 2) }}</button></td>
+                  </tr>
+                  <tr>
+                    <td class="border-r border-b border-t"><button (click)="makeMove(1, 0)">{{ getCellValue(1, 0) }}</button></td>
+                    <td class="border-r border-b border-l border-t"><button (click)="makeMove(1, 1)">{{ getCellValue(1, 1) }}</button></td>
+                    <td class="border-b border-l border-t"><button (click)="makeMove(1, 2)">{{ getCellValue(1, 2) }}</button></td>
+                  </tr>
+                  <tr>
+                    <td class="border-r border-t"><button (click)="makeMove(2, 0)">{{ getCellValue(2, 0) }}</button></td>
+                    <td class="border-r border-t border-l"><button (click)="makeMove(2, 1)">{{ getCellValue(2, 1) }}</button></td>
+                    <td class="border-t border-l"><button (click)="makeMove(2, 2)">{{ getCellValue(2, 2) }}</button></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div> -->
+  <!-- </div> -->
+</ng-container>
+
+<p-toast position="bottom-center"></p-toast>
