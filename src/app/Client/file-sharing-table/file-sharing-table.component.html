@@ -59,7 +59,7 @@
                             </div>
                         </td>
                         <td>
-                            <div class="img_dwonLoad_1" data-bs-toggle="modal" data-bs-target="#saveReviewData" (click)="sendId(item._id)"  >
+                            <div class="img_dwonLoad_1" data-bs-toggle="modal" data-bs-target="#saveReviewData" (click)="sendId(item._id,item.is_accpeted )"  >
                                 
                                 <img src="../../../assets/images/plus_add_img.svg" style="width: 40px; height: 40px;" alt="">
                                
@@ -73,7 +73,7 @@
         </table>
     </div>
 
-    <div class="modal-footer mb-2" style="width: 80%;">
+    <div class="modal-footer mb-2" style="width: 96.5%;">
         <div class="col-md-12" *ngIf="getTotalPagesFileSharingTable() > 1">
           <div class="table_footer mt-2">
             <button class="btn btn-secondary d-flex justify-content-center align-items-center"
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div class="modal-body m-4">
-                <form>
+                <form *ngIf="reviewAdd == undefined">
                     <div class="col-12 col-md-12 d-flex flex-wrap">
                       <div class="col-12 col-md-12 d-flex justify-content-center align-items-center gap-3">
                         <div class="accect_button" *ngIf="is_accepted != false">
@@ -144,6 +144,20 @@
                       </div>
                     </div>
                   </form>
+                  <form *ngIf="reviewAdd != undefined">
+                    <div class="col-12 col-md-12 d-flex flex-wrap" >
+                      <div class="col-12 col-md-12 d-flex flex-column justify-content-center align-items-center gap-3">
+                        <div class="accect_button" *ngIf="isAcc == true">
+                          <button>Accept</button>
+                        </div>
+                        <div class="decline_button" *ngIf="isAcc == false">
+                          <button>Decline</button>
+                        </div>
+                        <div *ngIf="isAcc == false">{{review_comment}}not</div>
+                      </div>
+                    </div>
+                  </form>
+
                   
 
             </div>

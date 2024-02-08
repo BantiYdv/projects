@@ -153,7 +153,7 @@
                         
                         <div class="profile_icon_img">
                             <i class="fa fa-upload" (click)="uploadFileInput.click()"> Upload</i>
-                            <input type="file" #uploadFileInput style="display: none" (change)="handleImgFile($event)">
+                            <input type="file" #uploadFileInput style="display: none" accept=".jpg,.png,.svg" (change)="handleImgFile($event)">
                         
                             <i class="fa fa-edit" *ngIf="!showEditForm" (click)="toggleEditForm(true)"> Edit</i>
                             <i class="fa fa-close" *ngIf="showEditForm" (click)="toggleEditForm(false)"> Close</i>

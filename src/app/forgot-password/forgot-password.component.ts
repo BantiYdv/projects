@@ -24,6 +24,8 @@ export class ForgotPasswordComponent {
     //   this.verifyOTP.email = params['email'] || '';
     // });
   }
+  nowSetPassword:boolean = true;
+  nowSetOTP:boolean = true;
   sendData: any = {
     email: '',
   };
@@ -133,6 +135,7 @@ export class ForgotPasswordComponent {
           text: r.message,
           confirmButtonText: 'OK',
         });
+        this.nowSetOTP = false;
         this.currentStep = 2;
         this.startTimer();
        
@@ -159,6 +162,7 @@ export class ForgotPasswordComponent {
           confirmButtonText: 'OK',
         }).then(() => {
           this.currentStep = 3;
+          this.nowSetPassword = false;
         });
       },
       (e) => {
@@ -183,7 +187,7 @@ export class ForgotPasswordComponent {
           // text: 'Your password has been saved successfully!',
           confirmButtonText: 'OK',
         }).then(() => {
-          this.router.navigate(['/log-in']);
+          this.router.navigate(['/user/log-in']);
         });
       },
       (e) => {

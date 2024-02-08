@@ -127,7 +127,6 @@ export class ClientComponent {
     };
     this.apiService.updateProfile(data).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',

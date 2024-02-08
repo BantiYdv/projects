@@ -4,15 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { ApiServiceService } from '../service/api-service.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-login-with-otp',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,TooltipModule],
   templateUrl: './login-with-otp.component.html',
   styleUrl: './login-with-otp.component.css',
 })
 export class LoginWithOTPComponent implements OnInit {
+  nowSetPassword:boolean = true;
   otpValue1: any;
   otpValue2: any;
   otpValue3: any;
@@ -160,6 +162,7 @@ export class LoginWithOTPComponent implements OnInit {
     );
   }
   sendOTPForForgetPassword() {
+    this.reSendData.email = this.verifyOTP.email;
     this.apiService.sendOTPForForgetPassword(this.reSendData).subscribe(
       (r:any) => {
         Swal.fire({
@@ -167,7 +170,9 @@ export class LoginWithOTPComponent implements OnInit {
           title: 'OTP Resent',
           text: r.message,
           confirmButtonText: 'OK',
-        });
+        }).then(()=> {
+          this.nowSetPassword = false;
+        })
         this.startTimer();
       },
       (e) => {

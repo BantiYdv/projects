@@ -93,6 +93,7 @@ getAllCreativeAssetsOfClient(){
       (r: any) => {
         this.creativeAssetsTable = r.data;
         this.assetsFolderClientData = r.data;
+
       },
       (e) => {
         console.error(e);

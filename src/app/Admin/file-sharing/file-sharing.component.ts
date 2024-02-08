@@ -52,7 +52,7 @@ export class FileSharingAdminComponent {
   project_id_data:any;
   filsharing_id_data:any;
   filsharing_name_data:any;
-  file_sharing:any;
+  file_sharing:any = 'a67508b1-6ad9-456b-b7c6-b18c37d8bdc8 (1).pdf';
   
 
   
@@ -107,7 +107,6 @@ export class FileSharingAdminComponent {
     formData.append('file_sharing', this.FileSharing.file_sharing);
     this.apiService.saveFileSharing(formData).subscribe(
       (r: any) => {
-        console.log(r);
         Swal.fire({
           icon: 'success',
           title: 'Successful',
@@ -205,7 +204,6 @@ this.is_viewed_by_client = viewed;
           // If confirmed, proceed with the deletion
           this.apiService.deleteFileSharing(fileshareing_id,is_deleted).subscribe(
             (r:any) => {
-              console.log(r)
               Swal.fire(
                 'Deleted!',
                 r.message,

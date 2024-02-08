@@ -6,6 +6,64 @@
     width: 100%;
    
 }
+.navbar_css {
+    box-shadow: 1px 0px 5px #000;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
+    background-color: yellow;
+  }
+  .header_menu img {
+    height: 95px;
+    padding: 10px;
+  }
+  .header_menu_profile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .header_menu_profile img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+  }
+  .loginBG{
+    background-image: url('../../assets/images/loginFormBg.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 84vh; */
+    padding: 50px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .avx_head_title{
+    font-size: 50px;
+    font-weight: bold;
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: yellow;
+    line-height: 50px;
+  }
+  .avx_head_sub_title{
+    font-size: 45px;
+    color: white;
+    font-weight: 500;
+    line-height: 42px;
+  }
+  .dot_bg_color{
+    color: yellow;
+    font-size: 30px;
+    padding: 0 5px 0 0;
+  }
+  .emailID_css{
+    color:#fff;
+    font-size: 20px;
+  }
 .AVX_login_logo {
     display: flex;
     justify-content: center;
@@ -14,21 +72,30 @@
     margin-bottom: 40px;
 }
 .AVX_login_input{
-    border: 1px solid #302E2E;
-    width: 30%;
-    margin-top: 20px;
+    margin-top: 10px;
     height: 55px;
-    display: flex;
-    align-items: center;
-    border-radius: 8px;
+}
+.verifyOTP{
+    border: none;
+    outline: none;
+    padding: 14px 30px;
+    border-radius: 5px;
+    background-color: #4DFF6B;
+    font-size: 20px;
+    font-weight: 600;
+    transition: all .3s ease;
+    /* width: 70px; */
 
+}
+.verifyOTP:hover{
+    transform: scale(.95);
+    filter: drop-shadow(0px 0px 10px #4DFF6B);
 }
 .AVX_login_otp_input{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
-    /* margin-top: 30px;   */
+    margin-top: 10px;
 }
 .AVX_login_logo img{
  width: 20%;
@@ -36,10 +103,16 @@
 .AVX_login_input input{
     border: none;
     outline: none;
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 20px;
     overflow: hidden;
-    /* border-radius: 10px; */
+    width: 100%;
+    color: #fff;
+    background-color: #6A6A6A;
+    border-radius: 5px;
+}
+.AVX_login_input input::placeholder{
+    color:#e0e0e0;
 }
 .AVX_login_input i{
     border: none;
@@ -49,13 +122,16 @@
 }
 .AVX_login_otp_input input{
     /* width: 7%; */
-    width: 70px;
-    height: 70px;
-    margin: 5px;
+    width: 60px;
+    /* height: 70px; */
+    /* margin: 5px; */
     height: 50px;
     font-size: 20px;
     text-align: center;
     outline: none;
+    border: none;
+    color: #fff;
+    background-color: #6A6A6A;
     border-radius: 5px;
 
 }
@@ -79,21 +155,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30%; 
+    /* width: 100%;  */
     margin-top: 30px;
+    /* margin-bottom: 30px; */
 }
 .AVX_button_css button{
     width: 100%;
     height: 50px;
     border-radius: 5px;
-    border: 1px solid #3B3A70;
+    border: none;
+    /* border: 1px solid #3B3A70; */
     background-color: yellow;
-    color: #3B3A70;
+    color: #000000;
     font-size: 20px;
     font-weight: bold;
+    transition: all .3s ease;
 }
-.AVX_button_css button:active{
+.AVX_button_css button:hover{
     transform: scale(.95);
+    filter: drop-shadow(0px 0px 5px yellow);
 }
 .time_icon i{
     color: black;
@@ -105,18 +185,24 @@
     cursor: pointer;
 }
 .resend_css{
-    color: black;
+    color: rgb(255, 0, 0);
     cursor: pointer;
+    /* width: 100%; */
+    text-align: end;
+    transition: all .3s ease;
 }
 .resend_css:active{
-    transform: scale(.9);
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    text-align: end;
+    transform: scale(.95);
 }
 .show_password{
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 30%;
-    margin-top: 10px;
+    /* width: 30%; */
+    margin-top: 0px;
 }
 .show_password input{
     height: 20px;
@@ -124,11 +210,15 @@
     margin: 10px;
 }
 .show_password label{
-    color: black;
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
+.cursorNoDrop{
+    cursor: no-drop;
+}
 .disabled{
-    color: rgb(134, 134, 134);
+    background-color: rgb(196, 196, 196) !important;
+    /* background-color: red !important; */
 }
 .error_message{
     display: flex;

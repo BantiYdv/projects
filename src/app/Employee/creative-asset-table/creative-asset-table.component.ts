@@ -37,7 +37,6 @@ if(this.id){
       (r: any) => {
         this.creativeAssetsTable = r.data;
         this.assetsFolderTableData = r.data
-        console.log('getProjectById =>', this.creativeAssetsTable);
       },
       (e) => {
         console.error(e);

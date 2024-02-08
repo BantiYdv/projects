@@ -148,7 +148,7 @@
                 </table>
             </div>
 
-            <div class="modal-footer mb-2" style="width: 80%;">
+            <div class="modal-footer mb-2" style="width: 96.5%;">
                 <div class="col-md-12" *ngIf="getTotalPagesHistoryProject() > 1">
                   <div class="table_footer mt-2">
                     <button class="btn btn-secondary d-flex justify-content-center align-items-center"
@@ -227,7 +227,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer mb-2" style="width: 80%;">
+            <div class="modal-footer mb-2" style="width: 96.5%;">
                 <div class="col-md-12" *ngIf="getTotalPagesHistoryTask() > 1">
                   <div class="table_footer mt-2">
                     <button class="btn btn-secondary d-flex justify-content-center align-items-center"
@@ -465,18 +465,22 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 d-flex flex-wrap">
-                            <div class="col-12 col-md-6">
+                            <div class="add_css_pro_code">
+                                <label>Project Type</label>
+                                <span>{{projectUpdate.project_type?.name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex flex-wrap">
                                 <div class="add_css_pro_code">
                                     <label>Starting Date</label>
                                     <span>{{projectUpdate.start_date | date:'dd/MM/yyyy'}}</span>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6">
+                        </div>
+                        <div class="col-12 col-md-6 d-flex flex-wrap">
                                 <div class="add_css_pro_code">
                                     <label>Deadline Date</label>
                                     <span>{{projectUpdate.deadline | date:'dd/MM/yyyy'}}</span>
                                 </div>
-                            </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="add_css_pro_code">
@@ -504,12 +508,6 @@
                             <div class="add_css_pro_code">
                                 <label>Short Name</label>
                                 <span>{{projectUpdate.short_name}}</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12">
-                            <div class="add_css_pro_code">
-                                <label>Project Type</label>
-                                <span>{{projectUpdate.project_type?.name}}</span>
                             </div>
                         </div>
                     </div>

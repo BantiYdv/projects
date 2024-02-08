@@ -20,6 +20,9 @@ interface TableData {
 })
 export class FileSharingTableComponent {
   is_accepted: boolean | any;
+
+  isAcc:string|any;
+  reviewAdd:string|any;
   review_comment: string | any;
   fileshareing_id: any;
 
@@ -45,6 +48,8 @@ export class FileSharingTableComponent {
       (r: any) => {
         this.FileSharingTableData = r.data;
         this.FileSharingTable = r.data;
+        // this.reviewAdd =
+        // console.warn(r.data[1].is_accpeted)
         // this.creativeAssetsTable = r.data;
       },
       (e) => {
@@ -52,8 +57,10 @@ export class FileSharingTableComponent {
       }
     );
   }
-  sendId(id: any) {
+  sendId(id: any,is_accepted:any) {
     this.fileshareing_id = id;
+    this.reviewAdd = is_accepted;
+    this.isAcc = is_accepted;
   }
 
   accept() {
@@ -80,12 +87,17 @@ export class FileSharingTableComponent {
             text: 'Your review has been saved successfully!',
           }).then((result) => {
             if (result) {
-              location.reload();
+              // location.reload();
+              // this.is_accepted = '';
+              this.review_comment = '';
+              this.isAcc='';
+              this.reviewAdd='';
+              this.getProjectById(this.id);
+              // this.is_accepted;
+              // review_comment: string | any;
             }
           });
 
-          this.is_accepted = '';
-          this.review_comment = '';
         },
         (e) => {
           Swal.fire({

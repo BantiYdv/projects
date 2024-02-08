@@ -165,7 +165,7 @@ export class BriefsComponent {
           }
         );
 
-         this.getTaskListOfActiveProject(this.projectsActive[0]._id)
+        //  this.getTaskListOfActiveProject(this.projectsActive[0]._id)
       },
       (e) => {
         console.error(e);
@@ -178,7 +178,7 @@ export class BriefsComponent {
     this.apiService.getFinisedProjects().subscribe(
       (r: any) => {
         this.projectsFinised = r.data;
-        console.log(r)
+        // log(r)
       },
       (e) => {
         console.error(e);
