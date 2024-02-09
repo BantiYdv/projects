@@ -259,7 +259,8 @@
 
                               <ng-template #permissionsList>
                                 <div *ngFor="let permission of selectedPermissions" class="selected-permission">
-                                  {{ formatOption(permission) }}
+                                  <!-- {{ formatOption(permission) }} -->
+                                  {{ transformPermission(permission) }}
 
                                   <span class="cross-icon" (click)="removePermission(permission)">
                                     <img src="/assets/image/icon/permissionRemove.svg" alt="" class="permissionRemove">
