@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -77,6 +77,7 @@ export class AdminComponent {
   sickLeavesPerMonth: any;
   casualLeavesPerMonth: any;
   permissions: any;
+  formGroup: any;
 
   
 
@@ -203,7 +204,7 @@ export class AdminComponent {
     this.totalWfhUser();
     this.remainingWfhUser();
   this.takenWfhUser();
-  this.birthdayUser();
+  // this.birthdayUser();
   this.getHoliday();
   this.TodayAndUpcomingHolidays();
   }
@@ -266,7 +267,7 @@ export class AdminComponent {
   // click on more button to go on employee panel div end
 
 
-
+ 
 
 
   //  start date will not select privious date from current date start
@@ -279,8 +280,28 @@ export class AdminComponent {
     day = day.length === 1 ? '0' + day : day;
     return `${year}-${month}-${day}`;
   }
-  //  start date will not select privious date from current date end
 
+  validateDate() {
+    const control = this.leaveForm.get('fromDate');
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    if (selectedDate < today) {
+      control.setErrors({ pastDate: true }); // Set the error if the date is before today's date
+    } else {
+      control.setErrors(null); // Clear the error if the date is valid
+    }
+  }
+  //  start date will not select privious date from current date end
+  validateDateWFH() {
+    const control = this.wfhForm.get('fromdateWfh');
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    if (selectedDate < today) {
+      control.setErrors({ pastDate: true }); // Set the error if the date is before today's date
+    } else {
+      control.setErrors(null); // Clear the error if the date is valid
+    }
+  }
 
   // end date automatic set according to no. of days and satart date start
   updateEndDate(): void {
@@ -572,7 +593,7 @@ export class AdminComponent {
   }
   // API for current image end
 
-  
+ 
 // show dashboard calendar start
 currentDate!: moment.Moment;
 calendarData: any[][] | undefined;
@@ -792,21 +813,21 @@ updateNumberOfDays() {
   // API for remaining wfh of user end
 
   // API for show birthday start
-  birthday: any;
-  birthdayUser() {
+  // birthday: any;
+  // birthdayUser() {
    
-      this.adminService.birthday().subscribe(
-        (response: any) => {
-         this.birthday = response
-          // console.log("birthday",response);
-        },
-        error => {
-          Swal.fire('Error', error.error, 'error');  
+  //     this.adminService.birthday().subscribe(
+  //       (response: any) => {
+  //        this.birthday = response
+  //         // console.log("birthday",response);
+  //       },
+  //       error => {
+  //         Swal.fire('Error', error.error, 'error');  
         
-        }
-      );
+  //       }
+  //     );
    
-  }
+  // }
   
   // API for show birthday end
   

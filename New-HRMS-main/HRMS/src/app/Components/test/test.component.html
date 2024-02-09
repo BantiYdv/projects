@@ -1143,7 +1143,7 @@
           </div>
 
           <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
-            <div class="card m-1 Report">
+            <div class="card m-1 Report" >
               <div class="card-content">
                 <div class="card-body">
                   <div class="media d-flex justify-content-between align-item-center">
@@ -1289,13 +1289,15 @@
                     <label for="startDate" class="col-form-label">Start Date:</label>
                     <input type="date" class="form-control" name="fromDate" id="fromDate" formControlName="fromDate"
                       [min]="getCurrentDate()" (change)="updateEndDate()">
+                 
+                      
                   </div>
 
                   <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
                     <div class="mb-3">
                       <label for="endDate" class="col-form-label">End Date:</label>
                       <input type="date" class="form-control" name="toDate" id="toDate" formControlName="toDate"
-                        [value]="calculateEndDate()" [readonly]="false">
+                      [min]="getCurrentDate()"  [value]="calculateEndDate()" [readonly]="false">
                     </div>
                   </ng-container>
 
@@ -1375,7 +1377,7 @@
             </div>
           </div>
         </div>
-        <table class="table table-sm" style="width: 100% !important;">
+        <table class="table table-sm" style="width: 100% !important;white-space: nowrap;">
           <thead style="background-color: #3330B1;">
             <tr>
               <th class="thName">S.No</th>
@@ -1460,7 +1462,7 @@
           <span class="allEmp">Attendance</span>
         </div>
         <div class="row">
-          <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentattPage === 1}" *ngIf="currentattPage === 1">
+          <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentattPage === 1}" *ngIf="currentattPage === 1">
             <div class="added_positions_list_right">
               <div class="added_positions_under_head">Show</div>
               <div>
@@ -1475,7 +1477,7 @@
               <div class="added_positions_under_head">Enteries</div>
             </div>
           </div>
-          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentattPage === 1, 'col-md-6': currentattPage >= 2}">
+          <!-- <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentattPage === 1, 'col-md-6': currentattPage >= 2}">
            
             
             <div class="">
@@ -1489,9 +1491,16 @@
             <div class="">
               <button class="button_added_position_list">Search</button>
             </div>
-          </div>
-          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-4': currentattPage === 1, 'col-md-6': currentattPage >= 2}">
+          </div> -->
+          <div class="d-flex justify-content-end align-items-center" [ngClass]="{'col-md-6': currentattPage === 1, 'col-md-12': currentattPage >= 2}">
+            <div class="">
+              <div class="search-container">
             <input type="month" placeholder="-- Month --" class="search_added_position_list" [(ngModel)]="selectedMonthAtt" (change)="onSearchMonthUser()">
+            </div>
+            </div>
+            <div class="">
+              <button class="button_added_position_list">Search</button>
+            </div>
           </div>
         </div>
         <!-- <table class="table table-sm" style="width: 100% !important;vertical-align: middle;">
@@ -4582,8 +4591,7 @@
           <td class="textNormal">{{ item.fromDate }}</td>
           <td class="textNormal">{{ item.toDate }}</td>
           <td class="textBold">{{ item.noOfDays }}</td>
-          <td class="textNormal">{{ item.leaveType }}</td>
-         
+          <td class="textNormal" [ngStyle]="{'color': item.leaveType === 'SICK' ? '#F97165' : (item.status === 'CASUAL' ? '#421CDD' : '#FFCE62')}">{{ item.leaveType }}</td>
         </tr>
       </tbody>
     </table>

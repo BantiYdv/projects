@@ -169,6 +169,9 @@ filteredOptions = this.permissionSet.filter(permission =>
 
 );
 
+// Define a function to retrieve permissions from local storage
+
+
 
 // for show side nav bar according to user login with permission end
 isHovered: boolean = false;

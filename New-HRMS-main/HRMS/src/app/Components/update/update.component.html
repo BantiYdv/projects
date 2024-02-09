@@ -1145,7 +1145,7 @@
             *ngIf="selectedAssets.length > 0">
             <div class="carousel-inner">
               <div class="carousel-item" *ngFor="let assetDetails of selectedAssets; let i = index"
-                [class.active]="i === 0" >
+                [class.active]="i === selectedIndex" >
                 <div class="content m-1 mt-3">
                   <div class="recruit_form_assets mb-3" style="background-color: #F5F5F5 !important;">
                     <div class="row justify-content-center">

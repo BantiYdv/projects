@@ -134,6 +134,7 @@ export class UpdateComponent {
    selectedCountryEmergencyNo: string = 'IN';
    shiftTime: any;
    selectedAssets: string[] = [];
+   
   //  assetDataList: { [key: string]: AssetData } = {};
  
    address: {
@@ -218,6 +219,8 @@ export class UpdateComponent {
   response: any;
   assetDetailsList: any = [];
   activeSlideIndex = 0;
+  selectedIndex : number = 0;
+
 
   validateDateOfBirth() {
     const currentDate = new Date();

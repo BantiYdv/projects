@@ -139,7 +139,7 @@ intern = '';
     this.absentShow();
     this.casualShow();
     this.sickShow();
-    this.birthdayUser();
+    // this.birthdayUser();
     this.workingHours();
     this.viewPresentUsersLast7Days();
     this.viewAllCheckOutEarly();
@@ -675,21 +675,21 @@ totalEmpCountShow(){
   
 
   // API for show birthday start
-  birthday: any;
-  birthdayUser() {
+  // birthday: any;
+  // birthdayUser() {
    
-      this.adminService.birthday().subscribe(
-        (response: any) => {
-         this.birthday = response
-          // console.log("birthday",response);
-        },
-        error => {
-          Swal.fire('Error', error.error, 'error');  
+  //     this.adminService.birthday().subscribe(
+  //       (response: any) => {
+  //        this.birthday = response
+  //         // console.log("birthday",response);
+  //       },
+  //       error => {
+  //         Swal.fire('Error', error.error, 'error');  
         
-        }
-      );
+  //       }
+  //     );
    
-  }
+  // }
   // API for show birthday end
 
   // total Working Hours start

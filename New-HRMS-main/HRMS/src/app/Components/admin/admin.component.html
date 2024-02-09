@@ -439,7 +439,7 @@
               <div class="container">
                 <div class="birthday">
                   <h5 class="text-center mb-4 mt-2 birthdayHeader">Birthdays</h5>
-                  <div class="card-body birthdayBody d-flex flex-column "
+                  <!-- <div class="card-body birthdayBody d-flex flex-column "
                     *ngFor="let dob of birthday, let i = index">
                     
                     <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
@@ -450,7 +450,7 @@
                         <div class="birthdesc">{{birthday[i].dob  | date: 'MMMM, dd' }}</div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
 
                   <!-- <div class="card-body birthdayBody d-flex flex-column align-items-center" >
@@ -623,7 +623,7 @@ data-bs-backdrop="false">
                               <div class="ol-lg-12 col-12 select-wrapper">
                                 <select class="form-control leaveInput" name="leaveType" id="leaveType"
                                   [(ngModel)]="selectedLeaveType" (change)="updateNumberOfDays()"
-                                  formControlName="leaveType">
+                                  formControlName="leaveType" required>
                                   <option value="" selected disabled>--select--</option>
                                   <option value="SICK">Sick Leave</option>
                                   <option value="CASUAL">Casual Leave</option>
@@ -640,7 +640,7 @@ data-bs-backdrop="false">
                               <label for="numberOfDays" class="col-form-label leaveType">Number of Days:</label>
                               <input type="number" class="form-control leaveInput" name="noOfDays" id="noOfDays"
                                 [readonly]="selectedLeaveType === 'HALFDAY'" formControlName="noOfDays" min="1"
-                                (change)="updateEndDate()">
+                                (change)="updateEndDate()" required>
 
                               <div
                                 *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched && leaveForm.get('leaveType').value !== 'HALFDAY'"
@@ -652,14 +652,18 @@ data-bs-backdrop="false">
                             <div class="mb-3">
                               <label for="startDate" class="col-form-label leaveType">Start Date:</label>
                               <input type="date" class="form-control leaveInput" name="fromDate" id="fromDate"
-                                formControlName="fromDate" [min]="getCurrentDate()" (change)="updateEndDate()">
+                                formControlName="fromDate" [min]="getCurrentDate()" (change)="updateEndDate()" (keyup)="validateDate()" required>
+                                <div *ngIf="leaveForm.get('fromDate').errors?.pastDate" class="text-danger">Date cannot be before today</div>
                             </div>
+                          
+                            
+                            
 
                             <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
                               <div class="mb-3">
                                 <label for="endDate" class="col-form-label leaveType">End Date:</label>
                                 <input type="date" class="form-control leaveInput" name="toDate" id="toDate"
-                                  formControlName="toDate" [value]="calculateEndDate()" [min]="leaveForm.get('fromDate').value" >
+                                  formControlName="toDate" [value]="calculateEndDate()" [min]="leaveForm.get('fromDate').value" required>
                               </div>
                             </ng-container>
 
@@ -667,7 +671,7 @@ data-bs-backdrop="false">
                               <div class="mb-3">
                                 <label for="reason" class="col-form-label leaveType">Reason:</label>
                                 <select class="form-control leaveInput" name="reason" id="reason"
-                                  formControlName="reason">
+                                  formControlName="reason" required>
                                   <option value="" selected disabled>--select--</option>
                                   <option value="SICK">Sick Leave</option>
                                   <option value="CASUAL">Casual Leave</option>
@@ -722,7 +726,7 @@ data-bs-backdrop="false">
                             <div class="mb-3">
                               <label for="noofday" class="col-form-label leaveType">No Of Days:</label>
                               <input type="number" class="form-control leaveInput" name="noofday" id="noofday"
-                                formControlName="noofday" min="1" (change)="updateWFHEndDate()">
+                                formControlName="noofday" min="1" (change)="updateWFHEndDate()" required>
 
                               <div *ngIf="wfhForm.controls.noofday.errors && wfhForm.controls.noofday.errors.min"
                                 class="text-danger">
@@ -732,13 +736,14 @@ data-bs-backdrop="false">
                             <div class="mb-3">
                               <label for="startDate" class="col-form-label leaveType">Start Date:</label>
                               <input type="date" class="form-control leaveInput" name="fromdateWfh" id="fromdateWfh"
-                                formControlName="fromdateWfh" [min]="getCurrentDate()" (change)="updateWFHEndDate()">
+                                formControlName="fromdateWfh" [min]="getCurrentDate()" (change)="updateWFHEndDate()" (keyup)="validateDateWFH()" required>
+                                <div *ngIf="wfhForm.get('fromdateWfh').errors?.pastDate" class="text-danger">Date cannot be before today</div>
                             </div>
 
                             <div class="mb-3">
                               <label for="endDate" class="col-form-label leaveType">End Date:</label>
                               <input type="date" class="form-control leaveInput" name="toDateWfh" id="toDateWfh"
-                                formControlName="toDateWfh" [value]="calculateWFHEndDate()" >
+                                formControlName="toDateWfh" [value]="calculateWFHEndDate()" required>
                             </div>
 
                             <div class="modal-footer">

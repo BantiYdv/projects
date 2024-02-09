@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  // public apiUrl = 'https://hrms.prilient.com/';
-  public apiUrl = 'http://192.168.1.30:9191/';
+  public apiUrl = 'https://hrms.prilient.com/';
+  // public apiUrl = 'http://192.168.1.30:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -113,7 +113,7 @@ export class ApiService {
   public totalWfhUser = `${this.apiUrl}gateway/hrms/totalWorkFromHomeOfUser`;
   public WfhTakenByUser = `${this.apiUrl}gateway/hrms/workFromHomeTakenByUser`;
   public remainingWfhUser = `${this.apiUrl}gateway/hrms/remainingWorkFromHome`;
-  public birthdays = `${this.apiUrl}gateway/hrms/birthdayTodayAndUpcomingBirthdays`;
+  // public birthdays = `${this.apiUrl}gateway/hrms/birthdayTodayAndUpcomingBirthdays`;
   public uploadHolidayPdfUrl = `${this.apiUrl}gateway/hrms/uploadHolidayPdf`;
   public workingHours = `${this.apiUrl}gateway/hrms/totalWorkingHoursForCurrentDate`;
   public checkOutEarly = `${this.apiUrl}gateway/hrms/usersCheckedOutEarlyLast7Days`;

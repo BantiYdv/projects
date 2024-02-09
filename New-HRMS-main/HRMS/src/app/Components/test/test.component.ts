@@ -19,6 +19,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CountryCodeService } from 'src/app/services/country-code.service';
 import { AdminService } from 'src/app/services/admin.service';
 
+interface LeaveData {
+  fromDate: string; // Assuming startDate is of type string, adjust as needed
+  // Add other properties if applicable
+}
+
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -304,6 +309,7 @@ export class TestComponent {
 
   }
 
+  
   selectedPermission: any;
   showDropdown = false;
 
@@ -1282,23 +1288,50 @@ export class TestComponent {
 
   // API for view leave start
 
+  // toggleAdminLeaveTable(): void {
+  //   this.showAdminLeaveTable = !this.showAdminLeaveTable;
+
+  //   if (this.showAdminLeaveTable) {
+
+
+  //     // Call the service method to fetch admin leave data
+  //     this.testService.getViewLeave().subscribe(
+  //       (response: any) => {
+  //         // Convert the response object to an array
+  //         const dataArray = Object.values(response);
+  //         // Reverse the received array
+  //         const reversedData = dataArray.reverse();
+
+  //         // Set the reversed array as the data source
+  //         this.leaveAdminData = reversedData;
+  //         this.fillterLeaveData = reversedData;
+  //       },
+  //       error => {
+  //         Swal.fire('Error', error.error, 'error');
+  //         // Hide the table if an error occurs
+  //         this.showAdminLeaveTable = false;
+  //       }
+  //     );
+  //   }
+  // }
   toggleAdminLeaveTable(): void {
     this.showAdminLeaveTable = !this.showAdminLeaveTable;
-
+  
     if (this.showAdminLeaveTable) {
-
-
       // Call the service method to fetch admin leave data
       this.testService.getViewLeave().subscribe(
         (response: any) => {
           // Convert the response object to an array
           const dataArray = Object.values(response);
-          // Reverse the received array
-          const reversedData = dataArray.reverse();
-
-          // Set the reversed array as the data source
-          this.leaveAdminData = reversedData;
-          this.fillterLeaveData = reversedData;
+          // Reverse the received array and assert its type to be an array of LeaveData
+          const reversedData = dataArray.reverse() as LeaveData[];
+  
+          // Sort the data by date in descending order (most recent date first)
+          const sortedData = reversedData.sort((a, b) => new Date(b.fromDate).getTime() - new Date(a.fromDate).getTime());
+  
+          // Set the sorted array as the data source
+          this.leaveAdminData = sortedData;
+          this.fillterLeaveData = sortedData;
         },
         error => {
           Swal.fire('Error', error.error, 'error');
@@ -1308,6 +1341,8 @@ export class TestComponent {
       );
     }
   }
+  
+  
   // API for view leave end
 
   // API for view Attendance start
@@ -4608,9 +4643,10 @@ export class TestComponent {
   searchFullTimeEmp: string = '';
 
   FilterFullTimeEmp() {
-    this.fillterFullTimeEmpData = this.FullTimeEmpData.filter((item: { firstname: string; lastname: string; }) =>
+    this.fillterFullTimeEmpData = this.FullTimeEmpData.filter((item: { firstname: string; lastname: string; designation:string; }) =>
       item.firstname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) ||
-      item.lastname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase())
+      item.lastname.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) ||
+      item.designation.toLowerCase().includes(this.searchFullTimeEmp.toLowerCase()) 
     );
   }
 
