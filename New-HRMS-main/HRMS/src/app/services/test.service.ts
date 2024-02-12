@@ -869,7 +869,7 @@ deleteHoliday(id: number): Observable<any> {
 }
 // delete Holiday end
 
-//Update Employee Attendance start
+//Update holiday start
 updateHoliday(holiday: any): Observable<any> {
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
@@ -881,7 +881,7 @@ updateHoliday(holiday: any): Observable<any> {
   const url = `${this.api.updateHoliday}/${holiday.id}`;
   return this.http.put(url, data, { headers });
 }
-//Update Employee Attendance end
+//Update holiday end
 
 //Delete shift time start
 
@@ -892,5 +892,63 @@ deleteShift(id: number): Observable<any> {
   return this.http.delete(url, { headers });
 }
 //Delete shift time end
+
+// add birthday start
+addBirthDay(birthday: any){
+  const url = `${this.api.addBirthDay}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  const data = {
+    name: birthday.name,
+    birthDayDate: birthday.birthDayDate,
+
+  };
+  return this.http.post(url, data, { headers });
+}
+// add birthday end
+
+// get birthday start
+
+getBirthday(){
+  const url = `${this.api.getAllBirthDay}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// get birthday end
+
+//Update birthday start
+updateBirthday(birthday: any): Observable<any> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+ const data = {
+  name: birthday.name,
+  birthDayDate: birthday.birthDayDate,
+ 
+ }
+  const url = `${this.api.updateBirthDay}/${birthday.id}`;
+  return this.http.put(url, data, { headers });
+}
+//Update birthday end
+
+// delete birthday start
+deleteBirthday(id: number): Observable<any> {
+  const url = `${this.api.birthDayDelete}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  return this.http.delete(url, { headers });
+}
+// delete birthday end
+
+// delete All birthday start
+deleteAllBirthDays(): Observable<any> {
+  const url = `${this.api.deleteAllBirthDays}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  return this.http.delete(url, { headers });
+}
+// delete All birthday end
 
 }

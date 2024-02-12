@@ -1029,4 +1029,17 @@ console.log("User Basic Info id", id);
 }
 // Leave taken Show To Admin end
 
+// for space between full time and part time start 
+formatJobType(jobType: string): string {
+  // Assuming jobType is 'parttime' or 'fulltime'
+  if (jobType === 'parttime') {
+    return 'Part Time';
+  } else if (jobType === 'fulltime') {
+    return 'Full Time';
+  } else {
+    return jobType; // return as is if not parttime or fulltime
+  }
+}
+// for space between full time and part time end 
+
 }

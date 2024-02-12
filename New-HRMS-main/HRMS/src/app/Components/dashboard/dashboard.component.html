@@ -1,7 +1,8 @@
-<div class="container-fluid">
+
+<div class="container-fluid" >
   <div class="row flex-nowrap">
 
-
+   
 
     <div class="col py-3">
       <div class="b-example-divider"></div>
@@ -49,12 +50,25 @@
                       <i class="cardIcon float-left"><img src="/assets/image/icon/workingHour.png" alt=""
                           class="cardIcon" style="margin-left: 0px !important;"></i>
                     </div>
-                    <div class="media-body">
+                    <!-- <div class="media-body">
                       <a [routerLink]="['/notCheckedInUser']"
                 (click)="loginService.showTable('notCheckedInUser')" style="text-decoration: none;">
                       <p class="cardIconNum">{{notCheckedIn || 0}}</p>
                       <span class="cardIconText">Absent</span>
                       </a>
+                    </div> -->
+                    <div class="media-body">
+                      <ng-container *ngIf="notCheckedIn !== 0">
+                        <a [routerLink]="['/notCheckedInUser']"
+                (click)="loginService.showTable('notCheckedInUser')" style="text-decoration: none;">
+                          <p class="cardIconNum">{{ notCheckedIn }}</p>
+                          <span class="cardIconText">Absent</span>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="notCheckedIn === 0">
+                        <p class="cardIconNum">{{ notCheckedIn }}</p>
+                        <span class="cardIconText">Absent</span>
+                      </ng-container>
                     </div>
                   </div>
                 </div>
@@ -70,12 +84,25 @@
                       <i class="cardIcon float-left"><img src="/assets/image/icon/present.png" alt="" class="cardIcon"
                           style="margin-left: 0px !important;"></i>
                     </div>
-                    <div class="media-body">
+                    <!-- <div class="media-body">
                       <a [routerLink]="['/viewTodayPresent']"
                 (click)="loginService.showTable('viewTodayPresent')" style="text-decoration: none;">
                       <p class="cardIconNum">{{presentCount || 0}}</p>
                       <span class="cardIconText">Present</span>
                       </a>
+                    </div> -->
+                    <div class="media-body">
+                      <ng-container *ngIf="presentCount !== 0">
+                        <a [routerLink]="['/viewTodayPresent']"
+                        (click)="loginService.showTable('viewTodayPresent')"  style="text-decoration: none;">
+                          <p class="cardIconNum">{{ presentCount }}</p>
+                          <span class="cardIconText">Present</span>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="presentCount === 0">
+                        <p class="cardIconNum">{{ presentCount }}</p>
+                        <span class="cardIconText">Present</span>
+                      </ng-container>
                     </div>
                   </div>
                 </div>
@@ -92,13 +119,26 @@
                       <i class="cardIcon float-left"><img src="/assets/image/icon/wfh.png" alt="" class="cardIcon"
                           style="margin-left: 0px !important;"></i>
                     </div>
-                    <div class="media-body">
+                    <!-- <div class="media-body">
                       <a [routerLink]="['/viewTodayWfh']"
                       (click)="loginService.showTable('viewTodayWfh')" style="text-decoration: none;">
                       <p class="cardIconNum">{{ wfhCount || 0 }}</p>
                       <span class="cardIconText">WFH</span>
                       </a>
+                    </div> -->
+                    <div class="media-body">
+                      <ng-container *ngIf="wfhCount !== 0">
+                        <a [routerLink]="['/viewTodayWfh']" (click)="loginService.showTable('viewTodayWfh')" style="text-decoration: none;">
+                          <p class="cardIconNum">{{ wfhCount }}</p>
+                          <span class="cardIconText">WFH</span>
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="wfhCount === 0">
+                        <p class="cardIconNum">{{ wfhCount }}</p>
+                        <span class="cardIconText">WFH</span>
+                      </ng-container>
                     </div>
+                    
                   </div>
                 </div>
               </div>
@@ -285,17 +325,18 @@
             <div class="justify-content-center align-item-center" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
               <div class="container">
                 <h5 class="text-center mb-4 mt-2 ActivitiesHeader">Birthdays</h5>
-                <!-- <div class="card-body d-flex flex-column m-2" *ngFor="let dob of birthday, let i = index">
+                <div class="card-body d-flex flex-column m-2" *ngFor="let dob of birthday, let i = index">
                   <div class="container">
                     <img src="/assets/image/icon/birthdayIcon.png" alt="" class="birthdayIcon">
                   </div>
                   <div class="d-flex flex-row">
                     <div class="ml-3">
-                      <div class="birthName">{{birthday[i].firstname + " " +birthday[i].lastname}}</div>
-                      <div class="birthdesc">{{birthday[i].dob | date: 'MMMM, dd'}}</div>
-                    </div>
+                      <div class="birthName">{{ birthday[i].name }}</div>
+                      <div class="birthdesc">{{ getFormattedBirthDate(birthday[i].birthDayDate) }}</div>
                   </div>
-                </div> -->
+                  
+                  </div>
+                </div>
                 <!-- <img src="/assets/image/icon/birthdaybottomVector.png" alt="" class="birthdaybottomVector"> -->
 
                 <!-- <div class="card-body d-flex flex-column align-items-center" style="margin-top: -6rem;">

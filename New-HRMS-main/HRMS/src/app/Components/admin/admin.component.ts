@@ -179,8 +179,10 @@ export class AdminComponent {
       leaveType: ['', Validators.required],
       noOfDays: ['', [Validators.required, Validators.min(1)]],
       fromDate: ['', Validators.required],
-      toDate: ['', Validators.required],
-      reason: [null, Validators.required], // Add the reason field with Validators.required
+      // toDate: ['', Validators.required],
+      // reason: [null, Validators.required], // Add the reason field with Validators.required
+      toDate: [''],
+      reason: [], 
     });
     this.wfhForm = this.formBuilder.group({
       noofday: ['', [Validators.required, Validators.min(1)]],
@@ -228,7 +230,8 @@ export class AdminComponent {
   }
 
 
-
+  
+  
   // refresh the form after close start
   closeForm() {
     this.leaveForm.reset(); // Reset the form and clear the input fields
@@ -323,6 +326,14 @@ export class AdminComponent {
       this.leaveForm.patchValue({ toDate: endDate.toISOString().split('T')[0] });
     }
     //for set end date when select halfday
+
+    if (this.leaveForm.get('toDate').value === '') {
+      const startDate = new Date(this.leaveForm.get('fromDate').value);
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + 1); // Default end date as next day of start date
+      this.leaveForm.get('toDate').setValue(endDate.toISOString().substring(0, 10)); // Set end date in ISO format (YYYY-MM-DD)
+    }
+    this.updateNumberOfDays();
   }
 
   
@@ -342,7 +353,27 @@ export class AdminComponent {
 
     return ''; // Return an empty string if either noOfDays or fromDate is not valid
   }
+  calculateNumberOfDays(): number {
+    const startDate = new Date(this.leaveForm.get('fromDate').value);
+    const endDate = new Date(this.leaveForm.get('toDate').value);
+    const timeDifference = endDate.getTime() - startDate.getTime();
+    const numberOfDays = timeDifference / (1000 * 3600 * 24);
+    return Math.round(numberOfDays) + 1; // Adding 1 to include both start and end dates
+  }
 
+  // updateEndDate(): void {
+  //   if (this.leaveForm.get('toDate').value === '') {
+  //     const startDate = new Date(this.leaveForm.get('fromDate').value);
+  //     const endDate = new Date(startDate);
+  //     endDate.setDate(startDate.getDate() + 1); // Default end date as next day of start date
+  //     this.leaveForm.get('toDate').setValue(endDate.toISOString().substring(0, 10)); // Set end date in ISO format (YYYY-MM-DD)
+  //   }
+  //   this.updateNumberOfDays();
+  // }
+
+  // updateNumberOfDays(): void {
+  //   this.leaveForm.get('noOfDays').setValue(this.calculateNumberOfDays());
+  // }
 
   formatDate(date: Date): string {
     const year = date.getFullYear();
@@ -645,6 +676,7 @@ updateNumberOfDays() {
     // You can set the default value for other leave types here if needed
     this.leaveForm.controls.noOfDays.setValue(null); // Set to null for other types
   }
+  this.leaveForm.get('noOfDays').setValue(this.calculateNumberOfDays());
 }
 // when select halday then number of days show 0.5 end
  // API for Apply Leave start

@@ -106,6 +106,9 @@ export class TestComponent {
   getHolidayData: any;
   fillterGetHoliday: any;
   getAbsentData: any;
+  getBirthdayData: any;
+  fillterGetBirthday: any;
+  birthday: any = {};
   fillterGetAbsent: any;
 
   viewNotCheckedIn: any;
@@ -348,6 +351,7 @@ export class TestComponent {
     // this.viewAllAttendance();
     // this.onSearchMonth();
     this.getHoliday();
+    this.getBirthday();
 
     // data show change routing without reload start
     this.router.events.pipe(
@@ -2254,7 +2258,8 @@ export class TestComponent {
     if (this.searchTeamLeave) {
       this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { firstname: string; lastname: string; }) =>
         item.firstname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) ||
-        item.lastname.toLowerCase().includes(this.searchTeamLeave.toLowerCase())
+        item.lastname.toLowerCase().includes(this.searchTeamLeave.toLowerCase()) ||
+        (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchTeamLeave.toLowerCase())
       )
     } else if (this.selectedMonthTeamLeave) {
       this.fillterTeamLeaveData = this.TeamLeaveData.filter((item: { fromDate: string; }) =>
@@ -2350,7 +2355,8 @@ export class TestComponent {
     if (this.searchTeamWfh) {
       this.fillterTeamWfhData = this.TeamWfhData.filter((item: { firstname: string; lastname: string; }) =>
         item.firstname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) ||
-        item.lastname.toLowerCase().includes(this.searchTeamWfh.toLowerCase())
+        item.lastname.toLowerCase().includes(this.searchTeamWfh.toLowerCase()) ||
+        (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchTeamWfh.toLowerCase())
       )
     } else if (this.selectedMonthTeamWFH) {
       this.fillterTeamWfhData = this.TeamWfhData.filter((item: { fromdateWfh: string; }) =>
@@ -2397,7 +2403,7 @@ export class TestComponent {
   FilterLeave() {
     this.fillterLeaveData = this.leaveAdminData.filter((item: { firstname: string; lastname: string; }) =>
       item.firstname.toLowerCase().includes(this.searchLeave.toLowerCase()) ||
-      item.lastname.toLowerCase().includes(this.searchLeave.toLowerCase())
+      item.lastname.toLowerCase().includes(this.searchLeave.toLowerCase()) 
     );
   }
 
@@ -2631,10 +2637,11 @@ export class TestComponent {
 
   FilterAllatt() {
     if (this.searchAllatt) {
-      this.fillterAllattData = this.AllAttData.filter((item: { firstname: string; lastname: string; }) =>
+      this.fillterAllattData = this.AllAttData.filter((item: { firstname: string; lastname: string;  }) =>
 
         item.firstname.toLowerCase().includes(this.searchAllatt.toLowerCase()) ||
-        item.lastname.toLowerCase().includes(this.searchAllatt.toLowerCase())
+        item.lastname.toLowerCase().includes(this.searchAllatt.toLowerCase()) ||
+        (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchAllatt.toLowerCase()) 
       )
     } else if (this.selectedMonth) {
       this.fillterAllattData = this.AllAttData.filter((item: { checkDate: string; }) =>
@@ -5194,7 +5201,8 @@ export class TestComponent {
     if (this.searchAllWfh) {
       this.fillterAllWfhData = this.AllwfhData.filter((item: { firstname: string; lastname: string; }) =>
         item.firstname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) ||
-        item.lastname.toLowerCase().includes(this.searchAllWfh.toLowerCase())
+        item.lastname.toLowerCase().includes(this.searchAllWfh.toLowerCase()) ||
+        (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchAllWfh.toLowerCase()) 
       )
     } else if (this.selectedMonthAllWFH) {
       this.fillterAllWfhData = this.AllwfhData.filter((item: { fromdateWfh: string; }) =>
@@ -5343,7 +5351,8 @@ export class TestComponent {
     if (this.searchAllLeave) {
       this.fillterAllLeaveData = this.leaveAllData.filter((item: { firstname: string; lastname: string; }) =>
         item.firstname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) ||
-        item.lastname.toLowerCase().includes(this.searchAllLeave.toLowerCase())
+        item.lastname.toLowerCase().includes(this.searchAllLeave.toLowerCase()) ||
+        (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchAllLeave.toLowerCase()) 
       )
     } else if (this.selectedMonthAllLeave) {
       this.fillterAllLeaveData = this.leaveAllData.filter((item: { fromDate: string; }) =>
@@ -5619,6 +5628,8 @@ export class TestComponent {
         // Set the reversed array as the data source
         this.getHolidayData = reversedData;
         this.fillterGetHoliday = reversedData;
+        this.getBirthdayData = reversedData;
+        this.fillterGetBirthday = reversedData;
         console.log("get holiday", response);
       },
       error => {
@@ -6116,5 +6127,281 @@ export class TestComponent {
   }
   // View early departure Last 7Days end
 
+
+
+  isBirthdayTableBodyVisible: boolean = false;
+  isBirthdayEditMode: boolean = false;
+
+  toggleBirthdayTableBody() {
+    this.isBirthdayTableBodyVisible = !this.isBirthdayTableBodyVisible;
+    this.isBirthdayEditMode = true; // Reset edit mode when showing the table body
+  }
+
+  cancelEditBirthday() {
+    this.isBirthdayEditMode = false;
+    this.isBirthdayTableBodyVisible = false;
+  }
+
+  editModeIndexBirthday: number = -1; // Initialize as -1, indicating no row is in edit mode initially
+
+  // Function to start editing a specific row
+  startEditBirthday(index: number) {
+    this.editModeIndexBirthday = index;
+  }
+
+  // Function to stop editing
+  stopEditBirthday() {
+    this.editModeIndexBirthday = -1;
+  }
+  // pagination and search for birthday start
+
+  birthdayPerPage: number = 10;
+  birthdayCurrentPage: number = 1;
+
+  searchBirthday: string = '';
+
+
+  FilterBirthday() {
+    this.fillterGetBirthday = this.getBirthdayData.filter((item: { holiDayReason: string }) =>
+      item.holiDayReason.toLowerCase().includes(this.searchBirthday.toLowerCase())
+    );
+  }
+
+  getPaginatedBirthdayData(): any[] {
+    const startIndex = (this.birthdayCurrentPage - 1) * this.birthdayPerPage;
+    const endIndex = startIndex + this.birthdayPerPage;
+    return this.fillterGetBirthday.slice(startIndex, endIndex);
+  }
+
+  previousBirthdayPage(): void {
+    if (this.birthdayCurrentPage > 1) {
+      this.birthdayCurrentPage--;
+    }
+  }
+
+  getPageNumbersBirthday(): number[] {
+    const totalPages = Math.ceil(
+      this.fillterGetBirthday.length / this.birthdayPerPage
+    );
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  changePageBirthday(pageNumber: number): void {
+    if (pageNumber >= 1 && pageNumber <= this.getTotalPagesBirthday()) {
+      this.birthdayCurrentPage = pageNumber;
+    }
+  }
+
+
+  nextPageBirthday(): void {
+    const totalPages = Math.ceil(
+      this.fillterGetBirthday.length / this.birthdayPerPage
+    );
+    if (this.birthdayCurrentPage < totalPages) {
+      this.birthdayCurrentPage++;
+    }
+  }
+
+
+  getTotalPagesBirthday(): number {
+    return Math.ceil(
+      this.fillterGetBirthday.length / this.birthdayPerPage
+    );
+  }
+  // pagination and search for Birthday end
+
+  // add birthday start
+
+
+  addBirthDay() {
+    const date = new Date(this.birthday.birthDayDate);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Months are zero-indexed, so add 1
+    const year = date.getFullYear();
+
+    // Format the date as dd-mm-yyyy
+    const formattedDate = `${this.padZero(day)}-${this.padZero(month)}-${year}`;
+
+    // Assign the formatted date back to your object
+    this.birthday.birthDayDate = formattedDate;
+
+    this.testService.addBirthDay(this.birthday).subscribe(
+      (response: any) => {
+        console.log("save birthday", response);
+        Swal.fire({
+          title: 'success!',
+          text: 'Birthday saved successfully.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.loginService.showTable('addBirthday');
+            this.router.navigate(['/addBirthday']);
+            this.isEditMode = false;
+            this.isTableBodyVisible = false;
+            location.reload();
+            this.getBirthday();
+            // Handle confirmation if needed
+          }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+      }
+    );
+  }
+
+  // add birthday end
+
+  // get birthday start
+  getBirthday() {
+
+    // if ('/todayCasualLeave' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.getBirthday().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+       
+        this.getBirthdayData = reversedData;
+        this.fillterGetBirthday = reversedData;
+        console.log("get birthday", response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+    // }
+  }
+  // get birthday end
+
+
+// API for update birthday start
+updateBirthday(item: any) {
+  this.testService.updateBirthday(item).subscribe(
+    (response: any) => {
+
+      console.log("updated birthday", response);
+      Swal.fire({
+        title: 'Updated!',
+        text: 'Bithday has been updated.',
+        icon: 'success'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.loginService.showTable('addBirthday');
+          this.router.navigate(['/addBirthday']);
+
+          this.editModeIndex = -1;
+          this.getBirthday();
+
+        }
+      });
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');
+
+    }
+  );
+}
+// API for update birthday end
+
+// API for delete birthday start
+deleteBirthday(id: any): void {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Are you sure you want to delete this Birthday?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.testService.deleteBirthday(id).subscribe(
+        (response) => {
+          console.log('birthday deleted successfully.');
+          console.log("delete birthday", response);
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Birthday has been deleted.',
+            icon: 'success'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.loginService.showTable('addBirthday');
+              this.router.navigate(['/addBirthday']);
+              this.getBirthday();
+            }
+          });
+        },
+        (error) => {
+          Swal.fire('Error', error.error, 'error');
+        }
+      );
+    }
+  });
+}
+// API for delete birthday end
+
+// API for delete All birthday start
+deleteAllBirthday(): void {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Are you sure you want to delete All Birthdays?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.testService.deleteAllBirthDays().subscribe(
+        (response) => {
+          console.log('All birthday deleted successfully.');
+          console.log("All delete birthday", response);
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'All Birthdays has been deleted.',
+            icon: 'success'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.loginService.showTable('addBirthday');
+              this.router.navigate(['/addBirthday']);
+              this.getBirthday();
+            }
+          });
+        },
+        (error) => {
+          Swal.fire('Error', error.error, 'error');
+        }
+      );
+    }
+  });
+}
+// API for delete All birthday end
+
+// dobError: boolean = false;
+// validateDateOfBirth() {
+//   const currentDate = new Date();
+//   const selectedDate = new Date(this.birthday.birthDayDate);
+//   const eighteenYearsAgo = new Date(
+//     currentDate.getFullYear() - 18,
+//     currentDate.getMonth(),
+//     currentDate.getDate()
+//   );
+
+//   this.dobError = selectedDate > eighteenYearsAgo;
+// }
+getMaxDate(): string {
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() + 0);
+  const maxDate = currentDate.toISOString().split('T')[0];
+  return maxDate;
+}
 
 }

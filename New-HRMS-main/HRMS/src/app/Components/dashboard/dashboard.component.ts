@@ -113,6 +113,8 @@ intern = '';
 
     });
     
+
+    
   }
 
 
@@ -139,7 +141,7 @@ intern = '';
     this.absentShow();
     this.casualShow();
     this.sickShow();
-    // this.birthdayUser();
+    this.birthdayUser();
     this.workingHours();
     this.viewPresentUsersLast7Days();
     this.viewAllCheckOutEarly();
@@ -148,6 +150,7 @@ intern = '';
   this.notCheckedInUsersCount();
 
     // this.createLineChart();
+  
   }
  
 
@@ -675,22 +678,31 @@ totalEmpCountShow(){
   
 
   // API for show birthday start
-  // birthday: any;
-  // birthdayUser() {
+  birthday: any;
+  birthdayUser() {
    
-  //     this.adminService.birthday().subscribe(
-  //       (response: any) => {
-  //        this.birthday = response
-  //         // console.log("birthday",response);
-  //       },
-  //       error => {
-  //         Swal.fire('Error', error.error, 'error');  
+      this.adminService.birthday().subscribe(
+        (response: any) => {
+         this.birthday = response
+          console.log("birthday",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
         
-  //       }
-  //     );
+        }
+      );
    
-  // }
+  }
   // API for show birthday end
+  getFormattedBirthDate(dateString: string): string {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const parts = dateString.split('-');
+    const monthIndex = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[0], 10);
+    const month = months[monthIndex];
+    return `${month}, ${day}`;
+}
+
 
   // total Working Hours start
 workingHours(){
