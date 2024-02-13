@@ -286,6 +286,42 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-12 d-flex justify-content-center">
+            <div class="card-body mt-2 d-flex flex-column justify-content-s(10)tart align-content-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex">
+                  <h2 class="mb-0">Reporting Team&nbsp;</h2>
+                  <div class="mt-2">({{rtTeamMember.length}})</div>
+                </div>
+                <div *ngIf="rtTeamMember.length > 14" class="viewRTMembersCss" data-bs-toggle="modal"
+                  data-bs-target="#viewAllRTMember">
+                  View All
+                </div>
+
+              </div>
+              <div class="col-12 col-md-12 col-xl-12 d-flex flex-wrap mb-3">
+                <div class="col-12 col-md-12 col-xl-12">
+                  <div class="not_data_img_div" *ngIf="rtTeamMember.length == 0">
+                    <p>No Data !!</p>
+                  </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-xl-6 d-flex flex-nowrap mt-3"
+                  *ngFor="let rt of rtTeamMember.slice(0,14)">
+                  <div class="col-2 col-md-2 col-xl-2 d-flex justify-content-center align-items-center"><img
+                      [src]="rt.profilePhotoUrl ? 'https://hrms.prilient.com' + rt.profilePhotoUrl : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'"
+                      class="rtTeamCssImg" alt="not found"></div>
+                  <div class="col-10 col-md-10 col-xl-10 d-flex flex-column justify-content-end align-items-start ps-2">
+                    <div class="rtTeamCssName">{{rt.firstname || "NAN"}} {{rt.lastname || "NAN"}}</div>
+                    <div class="rtTeamCssPost">{{rt.designation || "NAN"}}</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -293,7 +329,7 @@
       
       <div class="col-12 text-center mt-3" *ngIf="isDocumentsVisible">
         <!-- Documents content -->
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center" *ngIf="getDocumentsArrayProfile().length > 0">
             
             <div class="container px-4 py-0 text-center">
 
@@ -460,6 +496,9 @@
                   Download all</button>
               </div>
             </div>
+        </div>
+        <div class="not_data_img_div" *ngIf="getDocumentsArrayProfile().length == 0">
+          <p>No Data !!</p>
         </div>
     </div>
   
@@ -1329,13 +1368,47 @@
             </div>
           </div>
         </div>
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="card-body mt-2 d-flex flex-column justify-content-s(10)tart align-content-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex">
+                <h2 class="mb-0">Reporting Team&nbsp;</h2>
+                <div class="mt-2">({{rtTeamMember.length}})</div>
+              </div>
+              <div *ngIf="rtTeamMember.length > 14" class="viewRTMembersCss" data-bs-toggle="modal"
+                data-bs-target="#viewAllRTMember">
+                View All
+              </div>
+
+            </div>
+            <div class="col-12 col-md-12 col-xl-12 d-flex flex-wrap mb-3">
+              <div class="col-12 col-md-12 col-xl-12">
+                <div class="not_data_img_div" *ngIf="rtTeamMember.length == 0">
+                  <p>No Data !!</p>
+                </div>
+
+              </div>
+              <div class="col-12 col-md-6 col-xl-6 d-flex flex-nowrap mt-3"
+                *ngFor="let rt of rtTeamMember.slice(0,14)">
+                <div class="col-2 col-md-2 col-xl-2 d-flex justify-content-center align-items-center"><img
+                    [src]="rt.profilePhotoUrl ? 'https://hrms.prilient.com' + rt.profilePhotoUrl : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'"
+                    class="rtTeamCssImg" alt="not found"></div>
+                <div class="col-10 col-md-10 col-xl-10 d-flex flex-column justify-content-end align-items-start ps-2">
+                  <div class="rtTeamCssName">{{rt.firstname || "NAN"}} {{rt.lastname || "NAN"}}</div>
+                  <div class="rtTeamCssPost">{{rt.designation || "NAN"}}</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
 
 
       <div class="col-12 text-center mt-3" *ngIf="isDocumentsVisible">
         <!-- Documents content -->
       
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center" *ngIf="getDocumentsArray().length > 0">
           
             <div class="container px-4 py-0 text-center">
 
@@ -1510,6 +1583,9 @@
                 
               </div>
             </div>
+        </div>
+        <div class="not_data_img_div" *ngIf="getDocumentsArray().length == 0">
+          <p>No Data !!</p>
         </div>
     </div>
     </div>
@@ -1904,11 +1980,47 @@
 
 
 </div>
-<!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+
+
+<!-- <div class="modal fade" id="viewAllRTMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+  <div class="modal fade" id="viewAllRTMember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+          <div class="col-11 col-md-11 col-xl-11 d-flex justify-content-center align-items-center">
+            <div class="fs-5">Reporting Team</div>
+          </div>
+          <div class="col-1 col-md-1 col-xl-1">
+            <!-- <div class="fs-5">Reporting Team</div> -->
+            <div class="float-end"><button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button></div>
+          </div>
         </div>
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+
+      <div class="modal-body">
+        <div class="col-12 col-md-12 col-xl-12 d-flex flex-wrap mb-3">
+
+          <div class="col-12 col-md-4 col-xl-4 d-flex flex-nowrap mt-3" *ngFor="let rt of rtTeamMember">
+            <div class="col-2 col-md-2 col-xl-2 d-flex justify-content-center align-items-center"><img
+                [src]="rt.profilePhotoUrl ? 'https://hrms.prilient.com' + rt.profilePhotoUrl : 'https://img.freepik.com/premium-vector/business-global-economy_24877-41082.jpg?size=626&ext=jpg&ga=GA1.1.3377681.1681707924&semt=ais'"
+                class="rtTeamCssImg" alt="not found"></div>
+            <div class="col-10 col-md-10 col-xl-10 d-flex flex-column justify-content-end align-items-start ps-2">
+              <div class="rtTeamCssName">{{rt.firstname || "NAN"}} {{rt.lastname|| "NAN"}}</div>
+              <div class="rtTeamCssPost">{{rt.designation || "NAN"}}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-</div> -->
+  </div>
+</div>
 
 <!-- profile Add end -->

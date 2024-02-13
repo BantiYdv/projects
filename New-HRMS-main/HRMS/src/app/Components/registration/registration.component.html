@@ -1141,7 +1141,7 @@
               </div> -->
               <div class="col-lg-5 col-12 d-flex justify-content-center" style="height: 40px !important;">
                 <ng-container *ngIf="!isEditMode; else editModeTemplate">
-                  <mat-select class="recruit_input mat-mdc-select-trigger" [(ngModel)]="selectedAssets" name="selectedAssets" multiple>
+                  <mat-select class="recruit_input mat-mdc-select-trigger" [(ngModel)]="selectedAssets" name="selectedAssets" multiple (selectionChange)="onAssetSelectionChange()">
                     <mat-option *ngFor="let option of assetOptions" [value]="option">
                       {{ option }}
                     </mat-option>
@@ -1164,13 +1164,13 @@
           <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel"
             *ngIf="selectedAssets.length > 0">
             <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let assetDetails of user.assetDetailsList.slice(0, selectedAssets.length); let i = index"
+              <div class="carousel-item" *ngFor="let assetDetails of selectedAssets.slice(0, selectedAssets.length); let i = index"
                 [class.active]="i === 0">
                 <div class="content m-1 mt-3">
                   <div class="recruit_form_assets mb-3" style="background-color: #F5F5F5 !important;">
                     <div class="row justify-content-center">
                       <div class="col-lg-12">
-                        <h2 class="add_position text-center mt-2">{{ selectedAssets[i] }}</h2>
+                        <h2 class="add_position text-center mt-2">{{ user.assetDetailsList[i].assetName }}</h2>
 
                         <div class="row col-lg-12 my-1">
                           <div class="col-lg-6">
@@ -1179,7 +1179,7 @@
                             </div>
                             <div class="col-lg-12">
                               <input type="text" class="recruit_input assets_input bg-white m-0"
-                                placeholder="Brand / Model" [(ngModel)]="assetDetails.laptopModelInfo" name="laptopModelInfo"
+                                placeholder="Brand / Model" [(ngModel)]="user.assetDetailsList[i].laptopModelInfo" name="laptopModelInfo"
                                 required>
                             </div>
                           </div>
@@ -1189,7 +1189,7 @@
                             </div>
                             <div class="col-lg-12">
                               <input type="text" class="recruit_input assets_input bg-white m-0"
-                              [(ngModel)]="assetDetails.identification" name="identification"
+                              [(ngModel)]="user.assetDetailsList[i].identification" name="identification"
                                 placeholder="Identification Serial No." required>
                             </div>
                           </div>
@@ -1202,7 +1202,7 @@
                             </div>
                             <div class="col-lg-12">
                               <input type="text" class="recruit_input assets_input bg-white m-0"
-                                placeholder="Brand / Model" [(ngModel)]="assetDetails.configuration" name="configuration"
+                                placeholder="Brand / Model" [(ngModel)]="user.assetDetailsList[i].configuration" name="configuration"
                                 required>
                             </div>
                           </div>
@@ -1241,14 +1241,14 @@
                               <div class="position_no_input_icon">
                                 <input type="radio" name="UseHistory_{{selectedAssets[i]}}"
                                   class="recruit_input_radio bg-white candidate_Type" value="new"
-                                  id="new_{{selectedAssets[i]}}" [(ngModel)]="assetDetails.useHistory"
+                                  id="new_{{selectedAssets[i]}}" [(ngModel)]="user.assetDetailsList[i].useHistory"
                                   required><label for="new_{{selectedAssets[i]}}"
                                   class="recruit_label assets_lable candidate_Type">New</label>
                               </div>
                               <div class="position_no_input_icon">
                                 <input type="radio" name="UseHistory_{{selectedAssets[i]}}"
                                   class="recruit_input_radio bg-white candidate_Type" value="used"
-                                  id="used_{{selectedAssets[i]}}" [(ngModel)]="assetDetails.useHistory"
+                                  id="used_{{selectedAssets[i]}}" [(ngModel)]="user.assetDetailsList[i].useHistory"
                                   required><label for="used_{{selectedAssets[i]}}"
                                   class="recruit_label assets_lable candidate_Type">Used</label>
                               </div>
@@ -1256,7 +1256,7 @@
                                 <input type="radio" name="UseHistory_{{selectedAssets[i]}}"
                                   class="recruit_input_radio bg-white candidate_Type" value="refurbished"
                                   id="refurbished_{{selectedAssets[i]}}"
-                                  [(ngModel)]="assetDetails.useHistory" required><label
+                                  [(ngModel)]="user.assetDetailsList[i].useHistory" required><label
                                   for="refurbished_{{selectedAssets[i]}}"
                                   class="recruit_label assets_lable candidate_Type">Refurbished</label>
                               </div>
@@ -1270,7 +1270,7 @@
                           </div>
                           <div class="col-lg-11">
                             <textarea class="recruit_textarea assets_input bg-white" placeholder="Write here ..."
-                              rows="5" [(ngModel)]="assetDetails.description" name="description" required></textarea>
+                              rows="5" [(ngModel)]="user.assetDetailsList[i].description" name="description" required></textarea>
                           </div>
                         </div>
                       </div>

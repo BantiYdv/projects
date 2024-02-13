@@ -58,6 +58,8 @@ export class AdminComponent {
   public skills: string = '';
   public emergencyContact: string = '';
   getHolidayData: any;
+  getBirthdayData: any;
+
   // fillterGetHoliday: any;
   // for profile modal end
 
@@ -206,8 +208,9 @@ export class AdminComponent {
     this.totalWfhUser();
     this.remainingWfhUser();
   this.takenWfhUser();
-  // this.birthdayUser();
+  this.birthdayUser();
   this.getHoliday();
+  this.getAllBirthdays();
   this.TodayAndUpcomingHolidays();
   }
 
@@ -710,7 +713,7 @@ updateNumberOfDays() {
 
   onWFHSubmit() {
 
-
+console.log("wfh form", this.wfhForm);
     // Call the service method to apply for WFH
     this.testService.applyWfh(this.wfhForm.value).subscribe(
       () => {
@@ -845,22 +848,30 @@ updateNumberOfDays() {
   // API for remaining wfh of user end
 
   // API for show birthday start
-  // birthday: any;
-  // birthdayUser() {
+  birthday: any;
+  birthdayUser() {
    
-  //     this.adminService.birthday().subscribe(
-  //       (response: any) => {
-  //        this.birthday = response
-  //         // console.log("birthday",response);
-  //       },
-  //       error => {
-  //         Swal.fire('Error', error.error, 'error');  
+      this.adminService.birthday().subscribe(
+        (response: any) => {
+         this.birthday = response
+          console.log("birthday admin",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
         
-  //       }
-  //     );
+        }
+      );
    
-  // }
+  }
   
+  getFormattedBirthDate(dateString: string): string {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const parts = dateString.split('-');
+    const monthIndex = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[0], 10);
+    const month = months[monthIndex];
+    return `${month}, ${day}`;
+}
   // API for show birthday end
   
 
@@ -897,6 +908,48 @@ updateNumberOfDays() {
       
     }
 // get holiday end
+
+// view more birthdays start
+getDayFromDateBirthday(date: string): string {
+  const parts = date.split('-');
+  return parts[0];
+}
+
+getAllBirthdays() {
+      
+  this.testService.getBirthday().subscribe(
+    (response: any) => {
+
+      this.getBirthdayData = response;
+      console.log("view more birthdays", this.getBirthdayData);
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');  
+    
+    }
+  );
+
+}
+
+// view more birthdays end
+
+// show day name in view more birthday start
+getDate(date: any){
+  const today = new Date();
+  const currentYear = today.getFullYear();
+ 
+
+  const dobString = date;
+  const dob = new Date(`${dobString.slice(3, 5)}-${dobString.slice(0, 2)}-${currentYear}`);
+
+  // Get the day name
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dayName = dayNames[dob.getDay()];
+
+  return dayName;
+}
+// show day name in view more birthday end
+
 
     // get month name and date start
     getMonthName(date: string): string {

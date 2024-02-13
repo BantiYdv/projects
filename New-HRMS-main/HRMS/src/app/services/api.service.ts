@@ -135,7 +135,11 @@ export class ApiService {
   public updateBirthDay = `${this.apiUrl}gateway/hrms/updateBirthDay`;
   public birthDayDelete = `${this.apiUrl}gateway/hrms/birthDayDeleteBy`;
   public deleteAllBirthDays = `${this.apiUrl}gateway/hrms/deleteAllBirthDays`;
-
+  public updateMyLeave = `${this.apiUrl}gateway/hrms/updateMyLeave`;
+  public updateMyWFH = `${this.apiUrl}gateway/hrms/updateMyWorkFromHome`;
+  public getLeavePolicy = `${this.apiUrl}gateway/hrms/getLeavePolicy`;
+  public deActiveAndActiveUser = `${this.apiUrl}gateway/hrms/deActiveAndActiveUser`;
+  public showUserDataToTeamLead = `${this.apiUrl}gateway/hrms/showUserDataToTeamLead`;
 
   constructor(private http: HttpClient) { }
 

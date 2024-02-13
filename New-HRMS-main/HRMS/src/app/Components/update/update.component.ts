@@ -582,8 +582,8 @@ console.log("shift time response", response);
             this.user = response;
             this.username = response.username
             this.registerId = response.id
-            this.user.assetName = response.assetName.split(', ').filter(Boolean);
-
+            // this.user.assetName = response.assetName.split(', ').filter(Boolean);
+            this.user.assetDetailsList = response.assetDetailsList;
             this.user.startDateOfProbation = new Date(this.user.startDateOfProbation).toISOString().slice(0, 10);
             this.user.endDateOfProbation = new Date(this.user.endDateOfProbation).toISOString().slice(0, 10);
 
@@ -593,6 +593,18 @@ console.log("shift time response", response);
             console.log("id for update", this.registerId);
             console.log("username for update", this.username);
             console.log("updated user", this.user);
+            
+            const newAssetNames = response.assetDetailsList.map(
+              (asset: { assetName: any }) => asset.assetName
+            );
+            this.assetOptions = [...this.assetOptions, ...newAssetNames.filter((name: any) => !this.assetOptions.includes(name))];
+            this.selectedAssets = response.assetDetailsList.map(
+              (asset: { assetName: any }) => asset.assetName
+            );
+            this.user = response;
+            
+  
+            console.warn(this.assetOptions);
           },
           (error) => {
 
@@ -758,6 +770,44 @@ console.log("docs id>>>>>", this.registerId);
     }
   }
 
+
+  
+
+  onAssetSelectionChange() {
+    // Create a copy of the assetDetailsList to avoid modification while iterating
+    const assetDetailsCopy = [...this.user.assetDetailsList];
+  
+    // Check each existing item in assetDetailsList
+    for (const existingAsset of assetDetailsCopy) {
+      const existingIndex = this.selectedAssets.indexOf(existingAsset.assetName);
+  
+      // If the existing asset is not selected anymore, remove it from assetDetailsList
+      if (existingIndex === -1) {
+        const removeIndex = this.user.assetDetailsList.findIndex((asset: { assetName: any; }) => asset.assetName === existingAsset.assetName);
+        if (removeIndex !== -1) {
+          this.user.assetDetailsList.splice(removeIndex, 1);
+        }
+      }
+    }
+  
+    // Add new items if selected
+    for (const selectedAsset of this.selectedAssets) {
+      const existingIndex = this.user.assetDetailsList.findIndex((asset: { assetName: string; }) => asset.assetName === selectedAsset);
+  
+      if (existingIndex === -1) {
+        // If not found, add a new object
+        this.user.assetDetailsList.push({
+          assetName: selectedAsset,
+          laptopModelInfo: '',
+          identification: '',
+          configuration: '',
+          useHistory: '',
+          description: '',
+        });
+      }
+    }
+  }
+
   syncProbationStartDate() {
     this.user.startDateOfProbation = this.user.dateofjoining;
   }
@@ -776,7 +826,7 @@ console.log("docs id>>>>>", this.registerId);
       this.assetOptions.push(this.editedValue);
 
       // Reset the input field and exit edit mode
-      this.selectedAssets = this.editedValue.split(', ').map((option: string) => option.trim());
+      // this.selectedAssets = this.editedValue.split(', ').map((option: string) => option.trim());
       this.isEditMode = false;
     }
   }

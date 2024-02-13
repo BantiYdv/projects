@@ -72,10 +72,10 @@ export class RegistrationComponent {
   //   this.assetDetailsList[assetType] = assetData;
   //   console.log('Saved data for', this.assetDetailsList);
   // }
-  saveAssetData( AssetData: any) {
-    this.assetDetailsList.push(AssetData);
-    console.log('Saved data for', this.assetDetailsList);
-  }
+  // saveAssetData( AssetData: any) {
+  //   this.assetDetailsList.push(AssetData);
+  //   console.log('Saved data for', this.assetDetailsList);
+  // }
 
 //   add more assets start
   isEditMode = false;
@@ -91,7 +91,7 @@ export class RegistrationComponent {
       this.assetOptions.push(this.editedValue);
 
       // Reset the input field and exit edit mode
-      this.selectedAssets = this.editedValue.split(', ').map((option: string) => option.trim());
+      // this.selectedAssets = this.editedValue.split(', ').map((option: string) => option.trim());
       this.isEditMode = false;
     }
   }
@@ -376,7 +376,7 @@ getAssetData(): AssetData {
     // });
     this.assetOptions.forEach(option => {
       this.user.assetDetailsList.push({
-        assetName: option,
+        assetName: '',
         laptopModelInfo: '',
         identification: '',
         configuration: '',
@@ -385,6 +385,41 @@ getAssetData(): AssetData {
       });
     });
     
+  }
+
+  onAssetSelectionChange() {
+    // Create a copy of the assetDetailsList to avoid modification while iterating
+    const assetDetailsCopy = [...this.user.assetDetailsList];
+  
+    // Check each existing item in assetDetailsList
+    for (const existingAsset of assetDetailsCopy) {
+      const existingIndex = this.selectedAssets.indexOf(existingAsset.assetName);
+  
+      // If the existing asset is not selected anymore, remove it from assetDetailsList
+      if (existingIndex === -1) {
+        const removeIndex = this.user.assetDetailsList.findIndex((asset: { assetName: any; }) => asset.assetName === existingAsset.assetName);
+        if (removeIndex !== -1) {
+          this.user.assetDetailsList.splice(removeIndex, 1);
+        }
+      }
+    }
+  
+    // Add new items if selected
+    for (const selectedAsset of this.selectedAssets) {
+      const existingIndex = this.user.assetDetailsList.findIndex((asset: { assetName: string; }) => asset.assetName === selectedAsset);
+  
+      if (existingIndex === -1) {
+        // If not found, add a new object
+        this.user.assetDetailsList.push({
+          assetName: selectedAsset,
+          laptopModelInfo: '',
+          identification: '',
+          configuration: '',
+          useHistory: '',
+          description: '',
+        });
+      }
+    }
   }
 
   syncProbationStartDate() {

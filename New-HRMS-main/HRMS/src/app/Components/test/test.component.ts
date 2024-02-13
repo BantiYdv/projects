@@ -285,8 +285,9 @@ export class TestComponent {
       leaveType: ['', Validators.required],
       noOfDays: ['', [Validators.required, Validators.min(1)]],
       fromDate: ['', Validators.required],
-      toDate: ['', Validators.required],
-      reason: [null, Validators.required], // Add the reason field with Validators.required
+      toDate: [''],
+      leaveReason: [],
+      reason: [], 
     });
     this.wfhForm = this.formBuilder.group({
       noofday: ['', [Validators.required, Validators.min(1)]],
@@ -322,6 +323,7 @@ export class TestComponent {
 
 
   ngOnInit() {
+    this.getLeavePolicy();
     this.viewRole();
     this.openEmployee();
     this.teamleave();
@@ -796,6 +798,15 @@ export class TestComponent {
         const dataArray = Object.values(response);
         // Reverse the received array
         const reversedData = dataArray.reverse();
+        reversedData.forEach((role: any) => {
+          if (role.permissions) {
+            role.permissions = role.permissions.filter(
+              (permission: { permissionName: string }) =>
+                permission.permissionName !== 'ALL_ACCESS'
+            );
+          }
+        });
+
         this.AllRoleData = reversedData; // Assign the fetched role data to AllRoleData
         console.log("view role", response);
         console.log("role all", this.AllRoleData);
@@ -1163,6 +1174,16 @@ export class TestComponent {
     day = day.length === 1 ? '0' + day : day;
     return `${year}-${month}-${day}`;
   }
+  validateDate() {
+    const control = this.leaveForm.get('fromDate');
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    if (selectedDate < today) {
+      control.setErrors({ pastDate: true }); // Set the error if the date is before today's date
+    } else {
+      control.setErrors(null); // Clear the error if the date is valid
+    }
+  }
   //  start date will not select privious date from current date end
 
 
@@ -1186,8 +1207,22 @@ export class TestComponent {
       this.leaveForm.patchValue({ toDate: endDate.toISOString().split('T')[0] });
     }
     //for set end date when select halfday
+    if (this.leaveForm.get('toDate').value === '') {
+      const startDate = new Date(this.leaveForm.get('fromDate').value);
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + 1); // Default end date as next day of start date
+      this.leaveForm.get('toDate').setValue(endDate.toISOString().substring(0, 10)); // Set end date in ISO format (YYYY-MM-DD)
+    }
+    this.updateNumberOfDays();
   }
 
+  calculateNumberOfDays(): number {
+    const startDate = new Date(this.leaveForm.get('fromDate').value);
+    const endDate = new Date(this.leaveForm.get('toDate').value);
+    const timeDifference = endDate.getTime() - startDate.getTime();
+    const numberOfDays = timeDifference / (1000 * 3600 * 24);
+    return Math.round(numberOfDays) + 1; // Adding 1 to include both start and end dates
+  }
   // when select halday then number of days show 0.5 start
   selectedLeaveType: string = '';
   updateNumberOfDays() {
@@ -1197,6 +1232,7 @@ export class TestComponent {
       // You can set the default value for other leave types here if needed
       this.leaveForm.controls.noOfDays.setValue(null); // Set to null for other types
     }
+    this.leaveForm.get('noOfDays').setValue(this.calculateNumberOfDays());
   }
   // when select halday then number of days show 0.5 end
 
@@ -1261,6 +1297,16 @@ export class TestComponent {
     return ''; // Return an empty string if either noOfDays or fromDate is not valid
   }
 
+  validateDateWFH() {
+    const control = this.wfhForm.get('fromdateWfh');
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    if (selectedDate < today) {
+      control.setErrors({ pastDate: true }); // Set the error if the date is before today's date
+    } else {
+      control.setErrors(null); // Clear the error if the date is valid
+    }
+  }
   // WFH logic end
 
   // API for Apply Leave start
@@ -1349,6 +1395,51 @@ export class TestComponent {
   
   // API for view leave end
 
+
+  // API for update leave start
+  closeUpdateLeave(){
+    // this.leaveForm.reset();
+    this.router.navigate(['/viewLeave']);
+        this.showAdminLeaveTable = false;
+        this.toggleAdminLeaveTable();
+        this.loginService.showTable('viewLeave')
+  }
+
+  updateLeaveId: any = {}; 
+  viewUpdateLeave(item: any){
+this.updateLeaveId = item
+console.log("update leave data", this.updateLeaveId);
+  }
+
+
+  updateLeave(item: any) {
+    this.testService.updateLeave(item).subscribe(
+      (response: any) => {
+  
+        console.log("updated leave", response);
+        Swal.fire({
+          title: 'Updated!',
+          text: 'Leave has been updated.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/viewLeave']);
+        this.showAdminLeaveTable = false;
+        this.toggleAdminLeaveTable();
+        this.loginService.showTable('viewLeave')
+  
+          }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+  
+      }
+    );
+  }
+
+  // API for update leave end
+
   // API for view Attendance start
 
   viewattendance() {
@@ -1432,6 +1523,7 @@ export class TestComponent {
           // Set the reversed array as the data source
           this.wfhData = reversedData;
           this.fillterWfhData = reversedData;
+          console.log("wfh data", response)
         },
         error => {
           Swal.fire('Error', error.error, 'error');
@@ -1443,6 +1535,50 @@ export class TestComponent {
   }
   // API for view WFH end
 
+  // API for update wfh start
+
+  closeUpdateWfh(){
+    // this.leaveForm.reset();
+    this.router.navigate(['/viewWfh']);
+        this.showWfhTable = false;
+        this.toggleWfhTable();
+        this.loginService.showTable('viewWfh')
+  }
+
+  updateWfhId: any = {}; 
+
+  viewUpdateWFH(item: any){
+this.updateWfhId = item
+console.log("update wfh data", this.updateWfhId);
+  }
+
+  updateWfh(item: any) {
+    this.testService.updateWFH(item).subscribe(
+      (response: any) => {
+  
+        console.log("updated wfh", response);
+        Swal.fire({
+          title: 'Updated!',
+          text: 'WFH has been updated.',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/viewWfh']);
+        this.showWfhTable = false;
+        this.toggleWfhTable();
+        this.loginService.showTable('viewWfh')
+  
+          }
+        });
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+  
+      }
+    );
+  }
+
+  // API for update wfh end
 
   // API for view All Attendance start
   viewAllattendance() {
@@ -1826,6 +1962,7 @@ export class TestComponent {
 
   //   // this.loginService.showTable('addPermission');
   // }
+  
 
   openAddPermission(item: any) {
     this.permissionId = item.id
@@ -5495,23 +5632,38 @@ export class TestComponent {
   // API for download leave policy start
 
   LeavePolicyPdf() {
-
-    this.adminService.DownloadLeavePolicy().subscribe((response: HttpResponse<Blob>) => {
-      if (response.body) {
-        const contentDisposition = response.headers.get('content-disposition');
-        const fileName = contentDisposition
-          ? contentDisposition.split('filename=')[1]
-          : 'LeavePolicy.pdf';
-
-        saveAs(response.body, fileName);
-      } else {
-        console.error('Response body is null.');
+    Swal.fire({
+      title: 'Confirm Download',
+      text: 'Are you sure you want to download the Leave Policy PDF?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, download it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminService.DownloadLeavePolicy().subscribe(
+          (response: HttpResponse<Blob>) => {
+            if (response.body) {
+              console.warn('response = response =', response);
+              const contentDisposition = response.headers.get(
+                'content-disposition'
+              );
+              const fileName = contentDisposition
+                ? contentDisposition.split('filename=')[1]
+                : 'LeavePolicy.pdf';
+              saveAs(response.body, fileName);
+            } else {
+              console.error('Response body is null.');
+            }
+          },
+          (error) => {
+            Swal.fire('Error', error.error, 'error');
+            console.error(error);
+          }
+        );
       }
-    }, (error) => {
-      Swal.fire('Error', error.error, 'error');
-      console.error(error);
     });
-
   }
 
 
@@ -5628,8 +5780,7 @@ export class TestComponent {
         // Set the reversed array as the data source
         this.getHolidayData = reversedData;
         this.fillterGetHoliday = reversedData;
-        this.getBirthdayData = reversedData;
-        this.fillterGetBirthday = reversedData;
+
         console.log("get holiday", response);
       },
       error => {
@@ -6162,8 +6313,8 @@ export class TestComponent {
 
 
   FilterBirthday() {
-    this.fillterGetBirthday = this.getBirthdayData.filter((item: { holiDayReason: string }) =>
-      item.holiDayReason.toLowerCase().includes(this.searchBirthday.toLowerCase())
+    this.fillterGetBirthday = this.getBirthdayData.filter((item: { name: string }) =>
+      item.name.toLowerCase().includes(this.searchBirthday.toLowerCase())
     );
   }
 
@@ -6210,6 +6361,11 @@ export class TestComponent {
   }
   // pagination and search for Birthday end
 
+
+
+
+
+
   // add birthday start
 
 
@@ -6236,9 +6392,9 @@ export class TestComponent {
           if (result.isConfirmed) {
             this.loginService.showTable('addBirthday');
             this.router.navigate(['/addBirthday']);
-            this.isEditMode = false;
-            this.isTableBodyVisible = false;
-            location.reload();
+            this.isBirthdayEditMode = false;
+            this.isBirthdayTableBodyVisible = false;
+            // location.reload();
             this.getBirthday();
             // Handle confirmation if needed
           }
@@ -6297,7 +6453,7 @@ updateBirthday(item: any) {
           this.loginService.showTable('addBirthday');
           this.router.navigate(['/addBirthday']);
 
-          this.editModeIndex = -1;
+          this.editModeIndexBirthday = -1;
           this.getBirthday();
 
         }
@@ -6403,5 +6559,82 @@ getMaxDate(): string {
   const maxDate = currentDate.toISOString().split('T')[0];
   return maxDate;
 }
+
+// show name if already upload policy pdf start
+getLeavePolicy() {
+  this.testService.getLeavePolicy(1).subscribe(
+    (r: any) => {
+      console.warn('r', r.pdf);
+      this.selectedFileLeavePolicy = r.pdf;
+    },
+    (e: any) => {
+      console.error(e);
+    }
+  );
+}
+// show name if already upload policy pdf end
+
+
+// show reports card according to permission start
+
+checkReports(checkPermission: any): boolean {
+  // const data = ['DOWNLOAD_LEAVES_REPORTS', 'DOWNLOAD_WORKFROMHOME_REPORTS', 'DOWNLOAD_EMPLOYEE_REPORTS', 'DOWNLOAD_ATTENDANCE_REPORTS'];
+  // const data = ['DOWNLOAD_LEAVES_REPORTS'];
+  const data = [];
+  for (let i = 0; i < 15; i++) {
+    const permissions = localStorage.getItem(`permissions${i}`);
+    if (permissions) {
+      // console.warn('permissions = permissions = data',data)
+      data.push(permissions);
+    }
+  }
+  const check = data.includes(checkPermission);
+  return check;
+}
+// show reports card according to permission end
+
+
+  // API for actvie profile start
+
+  activeProfile(id: any, activate: boolean) {
+    const action = activate ? 'deactivate' : 'activate';
+    
+    Swal.fire({
+      title: `Are you sure?`,
+      text: `Are you sure you want to ${action} this Employee?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: `Yes, ${action} it!`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const apiMethod = activate
+          ? this.testService.deActiveAndActiveUser(id,activate)
+          : this.testService.deActiveAndActiveUser(id,activate);
+  
+        apiMethod.subscribe(
+          (r:any) => {
+            console.log(`Employee ${action}d successfully.`, r);
+            Swal.fire({
+              title: `${action.charAt(0).toUpperCase() + action.slice(1)}ed!`, // Capitalize the action
+              text: `Employee has been ${action}d.`,
+              icon: 'success',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.openEmployee();
+              }
+            });
+          },
+          (error:any) => {
+            Swal.fire('Error', error.error, 'error');
+          }
+        );
+      }
+    });
+  }
+  
+  // API for actvie profile end
+
 
 }

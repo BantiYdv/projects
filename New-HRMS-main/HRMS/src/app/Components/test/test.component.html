@@ -559,14 +559,14 @@
         </div>
 
         <div class="not_data_img_div" *ngIf="filteredEmployeeData.length == 0">
-          <p>Not Data !!</p>
+          <p>No Data !!</p>
         </div>
 
         <div class="row mt-3">
           <div class="m-0"
             [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-3' : 'col-12 col-sm-3 col-md-6 col-lg-4 col-xl-3 mb-3'"
             *ngFor="let item of getPaginatedEmpData(); let i = index">
-            <div class="employee">
+            <div class="employee" [ngClass]="item.userActive ? '':'bg-danger-subtle'">
               <div class="icon">
                 <i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
                 <mat-menu #menu="matMenu" xPosition="before">
@@ -574,6 +574,8 @@
                   [queryParams]="{ id: item.id }">View Profile</button>
                   <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit Profile</button>
                   <button mat-menu-item (click)="deleteEmployee(item.id)">Delete Profile</button>
+                  <button mat-menu-item (click)="activeProfile(item.id, item.userActive)" *ngIf="item.userActive == false">Activate</button>
+                  <button mat-menu-item (click)="activeProfile(item.id, item.userActive)" *ngIf="item.userActive == true">Deactivate</button>'
 
                 </mat-menu>
               </div>
@@ -680,7 +682,7 @@
 
 
             <div class="not_data_img_div" *ngIf="filteredEmployeeData.length == 0">
-              <p>Not Data !!</p>
+              <p>No Data !!</p>
             </div>
 
             <div class="row mt-3">
@@ -846,7 +848,7 @@
       </table>
       
       <div class="not_data_img_div" *ngIf="getPaginatedTeamLeaveData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
 
     </div>
@@ -969,7 +971,7 @@
       </table>
 
       <div class="not_data_img_div" *ngIf="getPaginatedTeamWfhData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
       
     </div>
@@ -1124,7 +1126,7 @@
       
       <div class="row">
         
-          <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+        <div *ngIf="checkReports('DOWNLOAD_LEAVES_REPORTS')" class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
             <div class="card m-1 Report">
               <div class="card-content">
                 <div class="card-body" >
@@ -1143,7 +1145,7 @@
             </div>
           </div>
 
-          <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+          <div class="mt-2" *ngIf="checkReports('DOWNLOAD_WORKFROMHOME_REPORTS')" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
             <div class="card m-1 Report" >
               <div class="card-content">
                 <div class="card-body">
@@ -1164,7 +1166,7 @@
 
           
 
-          <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+          <div class="mt-2" *ngIf="checkReports('DOWNLOAD_EMPLOYEE_REPORTS')" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
             <div class="card m-1 Report">
               <div class="card-content">
                 <div class="card-body">
@@ -1183,7 +1185,7 @@
             </div>
           </div>
 
-          <div class="mt-2" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+          <div class="mt-2" *ngIf="checkReports('DOWNLOAD_ATTENDANCE_REPORTS')" [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
             <div class="card m-1 Report">
               <div class="card-content">
                 <div class="card-body">
@@ -1245,8 +1247,8 @@
 
 
   <!-- Apply Leave start -->
-  <div *ngSwitchCase="'applyLeave'">
-    <!-- <div *ngIf="isHashEqualTo('/test/applyLeave')"> -->
+  <!-- <div *ngSwitchCase="'applyLeave'">
+   
     <div class="content m-2">
       <div class="container applyLeave">
         <div class="row justify-content-center">
@@ -1333,7 +1335,7 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 
 
   <!-- Apply Leave end -->
@@ -1396,6 +1398,7 @@
                 To Date</th>
               <th class="thName">No Of Days</th>
               <th class="thName">Leave Type</th>
+              <th class="thName">Leave Reason</th>
               <th class="thName">Status</th>
               <th class="thName" (click)="sortByWhome()">
                 <i class="fa fa-arrow-up" [ngStyle]="{'color': sortBy === 'asc' ? '#000' : '#ccc'}"></i>
@@ -1403,6 +1406,7 @@
                       &nbsp; 
                 By Whom</th>
               <th class="thName">Team Lead</th>
+              <th class="thName">Action</th>
             </tr>
           </thead>
           <tbody class="tdData">
@@ -1414,14 +1418,19 @@
               <td class="textNormal">{{ item.toDate }}</td>
               <td class="textBold">{{ item.noOfDays }}</td>
               <td class="textNormal">{{ item.leaveType }} <span *ngIf="item.reason">({{ item.reason }})</span></td>
+              <td class="textNormal">{{ item.leaveReason }} </td>
               <td class="textNormal" [ngStyle]="{'color': item.approval === 'Approved' ? '#129B4B' : (item.approval === 'Rejected' ? '#DD1717' : 'rgb(255 154 0)')}">{{ item.approval }}</td>
               <td class="textNormal">{{ item.approvedBy }}</td>
               <td class="textBold">{{ item.teamlead }}</td>
+              <td class="textBold"> <button type="button" class="btn" data-bs-toggle="modal"
+                data-bs-target="#updateLeave" (click)="viewUpdateLeave(item)"><img
+                  src="/assets/image/icon/editPermission.svg" alt="" >
+                </button></td>
             </tr>
           </tbody>
         </table>
         <div class="not_data_img_div" *ngIf="getPaginatedLeaveData().length == 0">
-          <p>Not Data !!</p>
+          <p>No Data !!</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -1451,6 +1460,154 @@
   </div>
 
   <!-- view leave end -->
+
+  <!-- view modal for update leave start -->
+  <div class="modal fade" id="updateLeave" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="content ">
+          <div class="container ">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <h1 class="text-center leaveHeader">Update Leave</h1>
+                <div class="row justify-content-center">
+                  <!-- <div class="col-md-6">
+          <p><img src="assets/Quitting a job-bro.svg" alt="Image" class="img-fluid"></p>
+        </div> -->
+                  <!-- <div class="col-md-6"> -->
+
+                  <form [formGroup]="leaveForm" *ngIf="leaveForm">
+                    <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="leaveType" class="col-form-label leaveType">Leave Type:</label>
+                      <div class="col-lg-12 col-12 select-wrapper">
+                        <select class="form-control leaveInput" name="leaveType" id="leaveType"
+                          [(ngModel)]="updateLeaveId.leaveType" (change)="updateNumberOfDays()"
+                          formControlName="leaveType" >
+                          <option value="" selected disabled>--select--</option>
+                          <option value="SICK">Sick Leave</option>
+                          <option value="CASUAL">Casual Leave</option>
+                          <option value="HALFDAY">Half Day</option>
+                          <option value="OTHERS">Others</option>
+                        </select>
+                        <!-- <img src="/assets/image/applyLeave.png" alt=""> -->
+                        <div class="custom-arrow" style="right: 5px;"></div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                      <label for="numberOfDays" class="col-form-label leaveType">Number of Days:</label>
+                      <input type="number" class="form-control leaveInput" name="noOfDays" id="noOfDays"
+                        [readonly]="selectedLeaveType === 'HALFDAY'" formControlName="noOfDays" min="1" [(ngModel)]="updateLeaveId.noOfDays">
+                    
+                      <div *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched && leaveForm.get('leaveType').value !== 'HALFDAY'"
+                        class="text-danger">
+                        Number of days must be a positive number.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                      <input type="date" class="form-control leaveInput" name="fromDate" id="fromDate" formControlName="fromDate"
+                        [min]="getCurrentDate()" (change)="updateEndDate()" (keyup)="validateDate()" [(ngModel)]="updateLeaveId.fromDate">
+                      <div *ngIf="leaveForm.get('fromDate').errors?.pastDate" class="text-danger">Date cannot be before today</div>
+                    </div>
+                    
+                    <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                      <div class="col-md-6 mb-3">
+                        <label for="endDate" class="col-form-label leaveType">End Date:</label>
+                        <input type="date" class="form-control leaveInput" name="toDate" id="toDate" formControlName="toDate"
+                          [min]="leaveForm.get('fromDate').value" (change)="updateNumberOfDays()" [(ngModel)]="updateLeaveId.toDate">
+                      </div>
+                    </ng-container>
+                  </div> -->
+                  <div class="row">
+                    <!-- If leave type is HALFDAY, display the start date input in a full-width column -->
+                    <ng-container *ngIf="leaveForm.get('leaveType').value === 'HALFDAY'">
+                      <div class="col-md-12 mb-3">
+                        <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                        <input type="date" class="form-control leaveInput" name="fromDate" id="fromDate" formControlName="fromDate"
+                          [min]="getCurrentDate()" (change)="updateEndDate()" (keyup)="validateDate()" [(ngModel)]="updateLeaveId.fromDate">
+                        <div *ngIf="leaveForm.get('fromDate').errors?.pastDate" class="text-danger">Date cannot be before today</div>
+                      </div>
+                    </ng-container>
+                    
+                    <!-- If leave type is not HALFDAY, display the start date and end date inputs in separate columns -->
+                    <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                      <div class="col-md-6 mb-3">
+                        <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                        <input type="date" class="form-control leaveInput" name="fromDate" id="fromDate" formControlName="fromDate"
+                          [min]="getCurrentDate()" (change)="updateEndDate()" (keyup)="validateDate()" [(ngModel)]="updateLeaveId.fromDate">
+                        <div *ngIf="leaveForm.get('fromDate').errors?.pastDate" class="text-danger">Date cannot be before today</div>
+                      </div>
+                      
+                      <div class="col-md-6 mb-3">
+                        <label for="endDate" class="col-form-label leaveType">End Date:</label>
+                        <input type="date" class="form-control leaveInput" name="toDate" id="toDate" formControlName="toDate"
+                          [min]="leaveForm.get('fromDate').value" (change)="updateNumberOfDays()" [(ngModel)]="updateLeaveId.toDate">
+                      </div>
+                    </ng-container>
+                  </div>
+                  
+
+                    <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                      <div class="mb-3">
+                        <label for="leaveReason" class="col-form-label leaveType">Reason:</label>
+                        <textarea type="text" class="form-control leaveInput" name="leaveReason" id="leaveReason" formControlName="leaveReason" [(ngModel)]="updateLeaveId.leaveReason"></textarea>
+                      </div>
+                      <div *ngIf="leaveForm.controls.leaveReason.errors && leaveForm.controls.leaveReason.errors.required"
+                      class="text-danger">
+                      Reason is required.</div>
+                    </ng-container>
+                    
+
+
+
+                    <ng-container *ngIf="leaveForm.get('leaveType').value == 'HALFDAY'">
+                      <div class="mb-3">
+                        <label for="reason" class="col-form-label leaveType">Reason:</label>
+                        <select class="form-control leaveInput" name="reason" id="reason"
+                          formControlName="reason" [(ngModel)]="updateLeaveId.reason">
+                          <option value="" selected disabled>--select--</option>
+                          <option value="SICK">Sick Leave</option>
+                          <option value="CASUAL">Casual Leave</option>
+                        </select>
+                      </div>
+                      <div *ngIf="leaveForm.controls.reason.errors && leaveForm.controls.reason.errors.required"
+                        class="text-danger">
+                        Reason is required.</div>
+                    </ng-container>
+                    <!-- <div>Form Valid: {{ leaveForm.valid }}</div> -->
+
+                    <div class="modal-footer">
+                      <div class="mb-3 col-md-12 d-flex justify-content-between">
+                        <button type="submit" class="btn m-1 submitLeave"
+                          [disabled]="leaveForm.get('leaveType').value === 'HALFDAY' ? false : leaveForm.invalid"
+                          (click)="updateLeave(updateLeaveId)" data-bs-dismiss="modal" aria-label="Close">Update</button>
+                         
+
+                        <button type="button" class="btn m-1 cancelLeave" data-bs-dismiss="modal" (click)="closeUpdateLeave()">Close</button>
+
+                      </div>
+                    </div>
+                  </form>
+                  <!-- </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- view modal for update leave end -->
 
 
   <!-- view attendance start -->
@@ -1597,7 +1754,7 @@
           </div>
         </div>
         <div class="not_data_img_div" *ngIf="getPaginatedattData().length == 0">
-          <p>Not Data !!</p>
+          <p>No Data !!</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -1630,8 +1787,8 @@
 
   <!-- Apply WFH start -->
 
-  <div *ngSwitchCase="'applyWfh'">
-    <!-- <div *ngIf="isHashEqualTo('/test/applyWfh')"> -->
+  <!-- <div *ngSwitchCase="'applyWfh'">
+   
     <div class="content m-2">
       <div class="container applyLeave">
         <div class="row justify-content-center">
@@ -1678,7 +1835,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Apply WFH end -->
 
@@ -1722,7 +1879,7 @@
             </div>
           </div>
         </div>
-        <table class="table table-sm" style="width: 100% !important;">
+        <table class="table table-sm" style="width: 100% !important; white-space: nowrap;">
           <thead style="background-color: #3330B1;">
             <tr>
               <th class="thName">S.No</th>
@@ -1746,9 +1903,10 @@
                     &nbsp;
               By Whom</th>
             <th class="thName">Team Lead</th>
+            <th class="thName">Action</th>
             </tr>
           </thead>
-          <tbody class="tdData">
+          <tbody class="tdData ">
             <tr *ngFor="let item of getPaginatedWfhData(); let i = index">
               <td class="textNormal">{{ i + 1 }}</td>
             <td class="textNormal">{{ item.firstname+' '+item.lastname }}</td>
@@ -1759,11 +1917,17 @@
             <td class="textNormal" [ngStyle]="{'color': item.approval === 'Approved' ? '#129B4B' : (item.approval === 'Rejected' ? '#DD1717' : 'rgb(255 154 0)')}">{{ item.approval }}</td>
             <td class="textNormal">{{ item.approvedBy }}</td>
             <td class="textBold">{{ item.teamlead }}</td>
+            <td class="textBold">
+              <button type="button" class="btn" data-bs-toggle="modal"
+                data-bs-target="#updateWFH" (click)="viewUpdateWFH(item)"><img
+                  src="/assets/image/icon/editPermission.svg" alt="" >
+                </button>
+            </td>
             </tr>
           </tbody>
         </table>
         <div class="not_data_img_div" *ngIf="getPaginatedWfhData().length == 0">
-          <p>Not Data !!</p>
+          <p>No Data !!</p>
         </div>
         
       </div>
@@ -1794,6 +1958,63 @@
   </div>
 
   <!-- view WFH end -->
+
+  <!-- update wfh start -->
+  <div class="modal fade" id="updateWFH" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="content m-2">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <h1 class="text-center leaveHeader">Update WFH</h1>
+                <div class="row justify-content-center">
+
+                  <form [formGroup]="wfhForm" *ngIf="wfhForm">
+                    <div class="mb-3">
+                      <label for="noofday" class="col-form-label leaveType">No Of Days:</label>
+                      <input type="number" class="form-control leaveInput" name="noofday" id="noofday"
+                        formControlName="noofday" min="1" (change)="updateWFHEndDate()" required [(ngModel)]="updateWfhId.noofday">
+                      <div *ngIf="wfhForm.controls.noofday.errors && wfhForm.controls.noofday.errors.min"
+                        class="text-danger">
+                        Number of days cannot be negative.</div>
+
+                    </div>
+                    <div class="mb-3">
+                      <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                      <input type="date" class="form-control leaveInput" name="fromdateWfh" id="fromdateWfh"
+                        formControlName="fromdateWfh" [min]="getCurrentDate()" (change)="updateWFHEndDate()" (keyup)="validateDateWFH()" required [(ngModel)]="updateWfhId.fromdateWfh">
+                        <div *ngIf="wfhForm.get('fromdateWfh').errors?.pastDate" class="text-danger">Date cannot be before today</div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="endDate" class="col-form-label leaveType">End Date:</label>
+                      <input type="date" class="form-control leaveInput" name="toDateWfh" id="toDateWfh"
+                        formControlName="toDateWfh" [value]="calculateWFHEndDate()" required [(ngModel)]="updateWfhId.toDateWfh">
+                    </div>
+
+                    <div class="modal-footer">
+                      <div class="mb-3 col-md-12 d-flex justify-content-between">
+                        <button type="submit" class="btn submitLeave m-1" [disabled]="wfhForm.invalid"
+                          (click)="updateWfh(updateWfhId)">Update</button>
+                        <button type="button" class="btn cancelLeave m-1" data-bs-dismiss="modal" (click)="closeUpdateWfh()">Close</button>
+
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- update wfh end -->
 
   <!-- view All attendance start -->
   <div *ngSwitchCase="'viewAllAtt'">
@@ -1881,7 +2102,7 @@
         </table>
 
         <div class="not_data_img_div" *ngIf="getPaginatedAllattData().length == 0">
-          <p>Not Data !!</p>
+          <p>No Data !!</p>
         </div>
 
       </div>
@@ -2002,7 +2223,7 @@
           </tbody>
         </table>
         <div class="not_data_img_div" *ngIf="getPaginatedAllWfhData().length == 0">
-          <p>Not Data !!</p>
+          <p>No Data !!</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -2122,7 +2343,7 @@
           </tbody>
         </table>
         <div class="not_data_img_div" *ngIf="getPaginatedAllLeaveData().length == 0">
-          <p>Not Data !!</p>
+          <p>No Data !!</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -2280,7 +2501,7 @@
 
             <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
               <!-- <button class="recruitment_button" type="submit" (click)="uploadLeavePolicy()">Upload</button> -->
-              <button class="recruitment_button" type="submit" (click)="LeavePolicyPdf()">View File</button>
+              <button class="recruitment_button" type="submit" (click)="LeavePolicyPdf()">Download File</button>
             </div>
           </form>
         </div>
@@ -2747,7 +2968,7 @@
         </tbody>
       </table>
       <div class="not_data_img_div" *ngIf="fillterShiftData.length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
     </div>
     <div class="modal-footer">
@@ -3100,7 +3321,7 @@
             <!-- <div *ngIf="getPaginatedData().length == 0"> noo!!</div> -->
             <!-- <div class="not_data_img_div" *ngIf="getPaginatedData().length == 0">
               
-              <p>Not Data !!</p>
+              <p>No Data !!</p>
             </div> -->
             <div class="row" *ngIf="getPaginatedData().length != 0">
               <div class="recruit_table">
@@ -3154,7 +3375,7 @@
             </div>
             <div class="not_data_img_div" *ngIf="getPaginatedData().length == 0">
               
-              <p>Not Data !!</p>
+              <p>No Data !!</p>
             </div>
           </div>
           <div class="col-md-12" *ngIf="getTotalPages() > 1">
@@ -3692,7 +3913,7 @@
               </div>
             </div>
             <div class="not_data_img_div" *ngIf="getPaginatedDataInterview().length == 0">
-              <p>Not Data !!</p>
+              <p>No Data !!</p>
             </div>
             <div class="row" *ngIf="getPaginatedDataInterview().length != 0">
               <div class="recruit_table">
@@ -3839,7 +4060,7 @@
               </div>
               <div class="not_data_img_div" *ngIf="getPaginatedDataCandidate().length == 0">
                 <!-- <img src="../../../assets/image/not_data.svg" alt=""> -->
-                <p>Not Data !!</p>
+                <p>No Data !!</p>
               </div>
               <div class="row" *ngIf="getPaginatedDataCandidate().length != 0">
                 <div class="recruit_table">
@@ -4191,7 +4412,7 @@
       </table>
 
       <div class="not_data_img_div" *ngIf="getPaginatedTodayattData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
 
     </div>
@@ -4287,7 +4508,7 @@
         </tbody>
       </table>
       <div class="not_data_img_div" *ngIf="getPaginatedTodayWfhData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
     </div>
     <div class="modal-footer">
@@ -4391,7 +4612,7 @@
     </table>
     
     <div class="not_data_img_div" *ngIf="getPaginatedTodaySickData().length == 0">
-      <p>Not Data !!</p>
+      <p>No Data !!</p>
     </div>
 
   </div>
@@ -4495,7 +4716,7 @@
     </table>
     
     <div class="not_data_img_div" *ngIf="getPaginatedTodayCasualData().length == 0">
-      <p>Not Data !!</p>
+      <p>No Data !!</p>
     </div>
 
   </div>
@@ -4598,7 +4819,7 @@
     </table>
     
     <div class="not_data_img_div" *ngIf="getPaginatedTodayAbsentData().length == 0">
-      <p>Not Data !!</p>
+      <p>No Data !!</p>
     </div>
 
   </div>
@@ -4689,7 +4910,7 @@
       </table>
       
       <div class="not_data_img_div" *ngIf="getPaginatedFullTimeEmpData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
   
     </div>
@@ -4781,7 +5002,7 @@
       </table>
       
       <div class="not_data_img_div" *ngIf="getPaginatedPartTimeEmpData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
   
     </div>
@@ -4873,7 +5094,7 @@
       </table>
       
       <div class="not_data_img_div" *ngIf="getPaginatedinternEmpData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
   
     </div>
@@ -5048,7 +5269,7 @@
                 </div>
                 <button type="button" class="btn Approve mt-2" *ngIf="!isEditMode" (click)="toggleTableBody()">+ Add</button>
                 <div class="not_data_img_div" *ngIf="getPaginatedHolidayData().length == 0">
-                  <p>Not Data !!</p>
+                  <p>No Data !!</p>
                 </div>
               </div>
 
@@ -5182,7 +5403,7 @@
       </table>
 
       <div class="not_data_img_div" *ngIf="getPaginatedLast7DaysPresentData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
 
     </div>
@@ -5277,7 +5498,7 @@
       </table>
 
       <div class="not_data_img_div" *ngIf="getPaginatedLast7DaysLateArrivalData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
 
     </div>
@@ -5372,7 +5593,7 @@
       </table>
 
       <div class="not_data_img_div" *ngIf="getPaginatedLast7DaysEarlyDepartureData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
 
     </div>
@@ -5465,7 +5686,7 @@
       </table>
 
       <div class="not_data_img_div" *ngIf="getPaginatedAbsentData().length == 0">
-        <p>Not Data !!</p>
+        <p>No Data !!</p>
       </div>
 
     </div>
@@ -5558,38 +5779,38 @@
                 
                   <div class="table_body" *ngFor="let item of getPaginatedBirthdayData(); let i = index">
                     <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}</div>
-                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex !== i">
+                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndexBirthday !== i">
                       {{ item.name }}
                     </div>
-                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex === i">
+                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndexBirthday === i">
                       <input  type="name" name="name" class="holidayReason" [(ngModel)]="item.name" >
                     </div>
                   
-                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex !== i">
+                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndexBirthday !== i">
                       {{ item.birthDayDate }}
                     </div>
-                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndex === i">
+                    <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; " *ngIf="editModeIndexBirthday === i">
                     <input  type="date" name="birthDayDate" class="holidayReason" [(ngModel)]="item.birthDayDate" >
                     </div>
                   
                     <div class="table_body_topics mt-2" style="width: 30%;">
-                      <button *ngIf="editModeIndex !== i" type="button" class="btn" (click)="startEdit(i)">
+                      <button *ngIf="editModeIndexBirthday !== i" type="button" class="btn" (click)="startEditBirthday(i)">
                         <img src="/assets/image/EditHolidayIcon.svg" alt="" class="EditHolidayIcon"> 
                       </button>
-                      <button *ngIf="editModeIndex !== i" type="button" class="btn" (click)="deleteBirthday(item.id)">
+                      <button *ngIf="editModeIndexBirthday !== i" type="button" class="btn" (click)="deleteBirthday(item.id)">
                         <img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon">
                       </button>
-                      <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Approve" (click)="updateBirthday(item)">
+                      <button *ngIf="editModeIndexBirthday === i" type="button" class="btn m-1 Approve" (click)="updateBirthday(item)">
                         Update
                       </button>
-                      <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Reject" (click)="stopEdit()">
+                      <button *ngIf="editModeIndexBirthday === i" type="button" class="btn m-1 Reject" (click)="stopEditBirthday()">
                         Cancel
                       </button>
                     </div>
                   </div>
                   
   
-                  <div class="table_body" *ngIf="isTableBodyVisible">
+                  <div class="table_body" *ngIf="isBirthdayTableBodyVisible">
                     <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{getPaginatedBirthdayData().length+1}} </div>
                     <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD;">
                       <input type="name" name="name" class="holidayReason"  [(ngModel)]="birthday.name" >
@@ -5607,20 +5828,20 @@
 
                     <div class="table_body_topics mt-2" style="width: 30%;">
       
-                      <button *ngIf="isEditMode" type="button" class="btn m-1 Approve" (click)="addBirthDay()">Save</button>
-                      <button *ngIf="isEditMode" type="button" class="btn m-1 Reject" (click)="cancelEdit()">Cancel</button>
+                      <button *ngIf="isBirthdayEditMode" type="button" class="btn m-1 Approve" (click)="addBirthDay()">Save</button>
+                      <button *ngIf="isBirthdayEditMode" type="button" class="btn m-1 Reject" (click)="cancelEditBirthday()">Cancel</button>
                       
                      
-                      <button *ngIf="!isEditMode" type="button" class="btn" ><img src="/assets/image/EditHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
-                      <button *ngIf="!isEditMode" type="button" class="btn" ><img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
+                      <button *ngIf="!isBirthdayEditMode" type="button" class="btn" ><img src="/assets/image/EditHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
+                      <button *ngIf="!isBirthdayEditMode" type="button" class="btn" ><img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon"></button>
                     </div>
                   </div>
                   <div class="d-flex flex-wrap mt-2">
-                    <button type="button" class="btn Approve m-1" *ngIf="!isEditMode" (click)="toggleTableBody()">+ Add</button>
-                    <button type="button" class="btn Reject m-1" *ngIf="!isEditMode" (click)="deleteAllBirthday()">Delete All</button>
+                    <button type="button" class="btn Approve m-1" *ngIf="!isBirthdayEditMode" (click)="toggleBirthdayTableBody()">+ Add</button>
+                    <button type="button" class="btn Reject m-1" *ngIf="!isBirthdayEditMode" (click)="deleteAllBirthday()">Delete All</button>
                   </div>
                   <div class="not_data_img_div" *ngIf="getPaginatedBirthdayData().length == 0">
-                    <p>Not Data !!</p>
+                    <p>No Data !!</p>
                   </div>
                 </div>
   

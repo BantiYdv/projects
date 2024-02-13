@@ -378,45 +378,6 @@
 
 
 
-                  <!-- <div class="card-body holidayBody mt-4">
-                    <div class="container">
-                      <span class="weekName">WED</span><br>
-                      <span class="dateName">14</span><br>
-                      <p class="yearName">JANUARY</p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                    </div>
-                    <div class="birth" style="color: #47C17A;">MAKAR SANKRANTI</div>
-                    <div class="desc">INDIAN FESTIVAL OF KITES</div>
-                  </div>
-
-                  <div class="card-body holidayBody mt-4">
-                    <div class="container">
-                      <span class="weekName">SAT</span><br>
-                      <span class="dateName">24</span><br>
-                      <p class="yearName">JANUARY</p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                    </div>
-                    <div class="birth" style="color: #F97165;">FREE KI CHUTTI</div>
-                    <div class="desc">SALARY KISI KI NHI KATEGI</div>
-                  </div>
-
-                  <div class="card-body holidayBody mt-4">
-                    <div class="container">
-                      <span class="weekName">MON</span><br>
-                      <span class="dateName">26</span><br>
-                      <p class="yearName">JANUARY</p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                      <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
-                    </div>
-                    <div class="birth" style="color: #A036CF;">EK OR CHUTTI</div>
-                    <div class="desc">SALARY KISI KI NHI KATEGI</div>
-                  </div> -->
-
                   <div class="headerH">
                     <div class="left-sectionHoliday">
                       <img src="/assets/image/holidayVector3.png" alt="" class="holidayVector3">
@@ -439,61 +400,30 @@
               <div class="container">
                 <div class="birthday">
                   <h5 class="text-center mb-4 mt-2 birthdayHeader">Birthdays</h5>
-                  <!-- <div class="card-body birthdayBody d-flex flex-column "
+                  <div class="card-body birthdayBody d-flex flex-column "
                     *ngFor="let dob of birthday, let i = index">
                     
                     <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
                     
                     <div class="d-flex flex-row">
                       <div class="ml-3">
-                        <div class="birthName">{{birthday[i].firstname + " " +birthday[i].lastname}}</div>
-                        <div class="birthdesc">{{birthday[i].dob  | date: 'MMMM, dd' }}</div>
+                        <div class="birthName">{{birthday[i].name}}</div>
+                        <div class="birthdesc">{{ getFormattedBirthDate(birthday[i].birthDayDate) }}</div>
                       </div>
                     </div>
-                  </div> -->
-
-
-                  <!-- <div class="card-body birthdayBody d-flex flex-column align-items-center" >
-                  
-                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
-                  
-                  <div class="d-flex flex-row">
-                    <div class="ml-3">
-                      <div class="birthName">Sunita Kumari</div>
-                      <div class="birthdesc">JANUARY, 22</div>
-                    </div>
                   </div>
-                </div>
-                
 
-                <div class="card-body birthdayBody d-flex flex-column align-items-center" >
-                 
-                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
-                  
-                  <div class="d-flex flex-row">
-                    <div class="ml-3">
-                      <div class="birthName">Kavita Kumari</div>
-                      <div class="birthdesc">JANUARY, 23</div>
-                    </div>
-                  </div>
-                </div>
-               
 
-                <div class="card-body birthdayBody d-flex flex-column align-items-center" >
-                 
-                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
-                  
-                  <div class="d-flex flex-row">
-                    <div class="ml-3">
-                      <div class="birthName">Anju Kumari</div>
-                      <div class="birthdesc">JANUARY, 28</div>
-                    </div>
-                  </div>
-                </div> -->
+
                   <div class="headerb">
                     <div class="left-sectionBirthday">
                       <img src="/assets/image/birthdayVector3.png" alt="" class="birthdayVector3">
                       <img src="/assets/image/birthdayVector4.png" alt="" class="birthdayVector4">
+                    </div>
+                    <div class="right-sectionHoliday">
+                      <button class="btn ViewMore" data-bs-toggle="modal"
+                      data-bs-target="#viewMoreBirthday">View More &nbsp; <img src="/assets/image/holidayViewMore.png" alt=""
+                          class="holidayViewMore"></button>
                     </div>
                   </div>
                 </div>
@@ -598,6 +528,60 @@ data-bs-backdrop="false">
 </div>
 <!-- view holidays end -->
 
+<!-- view birthdays start -->
+<div class="modal fade" id="viewMoreBirthday" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-bs-backdrop="false">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <div class="content m-1 mt-2">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="d-flex">
+            <h1 class="headHoliday m-2">Birthdays</h1>  
+            <div class="mt-4">
+              <img src="/assets/image/HolidayPre.png" alt="" class="HolidayPre" (click)="holidayPre()"> 
+             <span class="yearHoliday">{{currentYear}}</span> 
+              <img src="/assets/image/HolidayNext.png" alt="" class="HolidayNext" (click)="holidayNext()">
+            </div>
+            </div>
+          </div>
+          
+              <div class="row justify-content-start  mt-3">
+
+                <div class="col-md-6" *ngFor="let birthday of getBirthdayData, let i = index">
+                  <div class="d-flex justify-content-start ">
+                    <div class="monthDateHoliday">
+                      <span class="monthHoliday" [style.backgroundColor]="getMonthColor(getMonthName(birthday.birthDayDate))">{{ getMonthName(birthday.birthDayDate) }}</span>
+                      <span class="dateHoliday">{{ getDayFromDateBirthday(birthday.birthDayDate) }}</span>
+                    </div>
+                    <div class="mt-2"> 
+                      <span class="descHoliday">{{birthday.name}}</span><br>
+                      <span class="dayHoliday">{{getDate(birthday.birthDayDate)}}</span>
+                    </div>
+                  </div>
+                </div>
+                
+               
+                </div>
+
+              
+      
+      <div class="mb-3 col-12 d-flex justify-content-center mt-3">
+        <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal">Close</button>
+        
+
+      </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- view birthdays end -->
+
         <!-- apply leave start -->
 
         <div class="modal fade" id="applyLeaveModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -661,6 +645,16 @@ data-bs-backdrop="false">
                                   [min]="leaveForm.get('fromDate').value" (change)="updateNumberOfDays()">
                               </div>
                             </ng-container>
+
+                            <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                              <div class="mb-3">
+                                <label for="leaveReason" class="col-form-label leaveType">Reason:</label>
+                                <input type="text" class="form-control leaveInput" name="leaveReason" id="leaveReason" formControlName="leaveReason">
+                              </div>
+                              <!-- <div *ngIf="leaveForm.controls.leaveReason.errors && leaveForm.controls.leaveReason.errors.required"
+                              class="text-danger">
+                              Reason is required.</div> -->
+                            </ng-container>
                             
 
 
@@ -679,7 +673,7 @@ data-bs-backdrop="false">
                                 class="text-danger">
                                 Reason is required.</div>
                             </ng-container>
-                            <div>Form Valid: {{ leaveForm.valid }}</div>
+                            <!-- <div>Form Valid: {{ leaveForm.valid }}</div> -->
 
                             <div class="modal-footer">
                               <div class="mb-3 col-md-12 d-flex justify-content-between">

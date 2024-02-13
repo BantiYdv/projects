@@ -800,7 +800,8 @@ margin-bottom: 16px;
   display: flex;
   /* width: 190px; */
   /* height: 50px; */
-  padding: 5px 13px;
+  /* padding: 5px 13px; */
+  margin: 10px 10px 0px 0px;
   flex-direction: column;
   justify-content: end;
   align-items: flex-end;
@@ -811,9 +812,9 @@ margin-bottom: 16px;
 }
 
 
-.icon:hover {
+.icon:active {
   color: #421CDD;
-  transform: scale(1.2);
+  transform: scale(.9);
 }
 
 
@@ -2066,3 +2067,98 @@ background: #FFF;
 text-align: center;
 }
 
+
+/* update leave start */
+.modal {
+  --bs-modal-zindex: 1000 !important;
+  background-color: #78787867;
+  
+}
+
+.leaveHeader{
+  color: #3430B3;
+font-family: Poppins;
+font-size: 30px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.leaveType{
+  color: #000;
+font-family: Poppins;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-transform: capitalize;
+}
+.leaveInput{
+  display: flex;
+padding: 14px 30px 14px 19px;
+align-items: center;
+border-radius: 10px;
+border: 1px solid #CDCDCD;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  right: 13%; 
+  transform: translateY(-50%);
+  width: 18px; 
+  height: 18px; 
+  background: url("/assets/image/applyLeave.png") center
+    center no-repeat;
+  background-color: #fff;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.submitLeave{
+  display: flex;
+/* width: 258px; */
+padding: 19px 54px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 10px;
+background: #401DDE;
+color: #FFF;
+
+text-align: center;
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+height: 20px;
+}
+
+.cancelLeave{
+  display: flex;
+/* width: 256px; */
+height: 20px;
+padding: 19px 54px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 10px;
+background: #EF556A;
+color: #FFF;
+
+text-align: center;
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+}
+
+/* update leave end */

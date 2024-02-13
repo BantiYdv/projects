@@ -951,4 +951,69 @@ deleteAllBirthDays(): Observable<any> {
 }
 // delete All birthday end
 
+//Update my leave start
+updateLeave(leave: any): Observable<any> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+ const data = {
+  leaveType: leave.leaveType,
+  fromDate: leave.fromDate,
+  toDate: leave.toDate,
+  noOfDays: leave.noOfDays,
+  reason: leave.reason,
+ 
+ }
+  const url = `${this.api.updateMyLeave}/${leave.id}`;
+  return this.http.put(url, data, { headers });
+}
+//Update my leave end
+
+//Update my wfh start
+updateWFH(wfh: any): Observable<any> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+ const data = {
+  fromdateWfh: wfh.fromdateWfh,
+  toDateWfh: wfh.toDateWfh,
+  noofday: wfh.noofday
+ 
+ }
+  const url = `${this.api.updateMyWFH}/${wfh.id}`;
+  return this.http.put(url, data, { headers });
+}
+//Update my wfh end
+
+
+// for view leavePolicy start
+getLeavePolicy(id: number){
+  const url = `${this.api.getLeavePolicy}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  return this.http.get(url, { headers });
+}
+// for view leavePolicy end
+
+// for active profile start
+
+
+deActiveAndActiveUser(id: any, activate: boolean) {
+  const url = `${this.api.deActiveAndActiveUser}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders()
+    .set('Authorization', `${token}`)  // No need to add extra spaces
+    .set('Content-Type','application/json');
+  return this.http.put(url, { activate }, { headers }); // Include HTTP method as PUT
+}
+// for active profile end
+
+
+// for show team members start
+showUserDataToTeamLead(){
+  const url = `${this.api.showUserDataToTeamLead}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.get(url, { headers });
+}
+// for show team members end
+
 }
