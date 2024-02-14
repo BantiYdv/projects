@@ -122,6 +122,7 @@ this.getUserPhoto();
   }
 
   ngOnInit() {
+    this.showTeamData();
     this.showUserDataToTeamLead();
     this.viewProfile();
     this.fetchProfileDetails();
@@ -1043,7 +1044,7 @@ formatJobType(jobType: string): string {
 }
 // for space between full time and part time end 
 
-rtTeamMember:any;
+rtTeamMember: [] | any;
 showUserDataToTeamLead(){
   this.testService.showUserDataToTeamLead().subscribe(
     (r:any) => {
@@ -1054,9 +1055,31 @@ showUserDataToTeamLead(){
     },
     (e:any) => {
       console.error('showUserDataToTeamLead',e);
+      this.rtTeamMember = []
       // alert(e);
     }
   )
+}
+
+rtTeamMemberByID : [] | any;
+showTeamData(){
+this.route.queryParams.subscribe(i => {
+  const id = i['id'];
+
+  this.testService.showTeamData(id).subscribe(
+    (r:any) => {
+      console.warn('showTeamData',r);
+      this.rtTeamMemberByID = r.filter((a: { userActive: boolean; }) => a.userActive == true);
+      // this.rtTeamMember = r;
+      // alert(r);
+    },
+    (e:any) => {
+      console.warn('showTeamData',e);
+      this.rtTeamMemberByID = []
+      // alert(e);
+    }
+  )
+})
 }
 
 }

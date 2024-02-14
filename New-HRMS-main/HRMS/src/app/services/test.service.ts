@@ -1016,4 +1016,13 @@ showUserDataToTeamLead(){
 }
 // for show team members end
 
+// for show team members start
+showTeamData(id:any){
+  const url = `${this.api.showTeamData}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.get(url, { headers });
+}
+// for show team members end
+
 }

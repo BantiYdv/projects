@@ -855,11 +855,12 @@ font-weight: 500;
 line-height: normal;
 letter-spacing: 0.3px;
 display: inline-flex;
-/* padding: 0px 19px 0px 10px; */
+padding: 8px;
 align-items: center;
 border-radius: 5px;
 background: #421CDD;
 margin-right: 11px;
+border: none;
 }
 
 
@@ -872,7 +873,7 @@ margin-right: 11px;
 }
 #pieChart{
     width: 100%;
-height: 200px;
+/* height: 200px; */
 flex-shrink: 0;
 border-radius: 7px;
 border: 2px solid #CDCDCD;
@@ -887,18 +888,10 @@ flex-shrink: 0;
 margin-top: -43px;
 }
 
-/* .legendLabel{
-    color: #000;
 
-text-align: right;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-} */
 #LeaveChart{
     width: 100%;
-height: 181px;
+/* height: 181px; */
 flex-shrink: 0;
 border-radius: 7px;
 border: 2px solid #CDCDCD;
@@ -907,12 +900,7 @@ background: #FFF;
 }
 .EmpInfoVector{
     width: 1px;
-height: 91.5px;
-flex-shrink: 0;
-stroke-width: 1px;
-stroke: #000;
-margin-left: 16rem;
-margin-top: -10rem;
+
 }
 
 
@@ -1033,12 +1021,12 @@ stroke: #E5E5E5;
     display: flex;
     justify-content: space-around;
     background-color: #f8f9fa;
-    padding: 10px;
+
   }
 
   .day {
     text-align: center;
-    padding: 10px;
+  
   }
 
   .day.other-month {
@@ -1061,9 +1049,10 @@ line-height: normal;
   }
   .ActivityVector{
     width: 25px;
-height: 300px;
+
 flex-shrink: 0;
 margin-top: 28px;
+margin-bottom: 28px;
   }
 
   .BirthdayVector{
@@ -1075,6 +1064,7 @@ margin-left: 4rem;
 
   }
 .birth{
+    height: 30px;
     margin-top: -4rem;
     margin-left: 6rem;
     color: #1F3BF2;
@@ -1185,7 +1175,7 @@ height: 10px;
 transform: rotate(0deg);
 flex-shrink: 0;
 fill: #421CDD;
-margin-right: 1rem !important;
+/* margin-right: 1rem !important; */
 }
 
 .caliconNext{
@@ -1208,32 +1198,43 @@ margin-top: 1rem;
 .day{
     color: #000;
 text-align: center;
-font-size: 10px;
+font-size: 12px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
 text-transform: uppercase;
-/* width: 35px; */
-height: 32px;
-    margin-left: 7px;
+width: 32px;
+height: 43px;
+
 }
 
 .today {
     font-size: 16px;
     border-radius: 50%; 
-    background-color:rgba(66, 28, 221, 0.10); /* Grey background color for today's date */
+    /* background-color:rgba(66, 28, 221, 0.10);  */
     margin: 0;
     line-height: inherit;
+    width: 21px;
+height: 21px;
   }
 
 
+ /* .attendanceChart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 345px;
+} */
  .attendanceChart {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     width: 100% !important;
-    height: 321px !important;
+    height: 345px !important;
 }
 
 
@@ -1242,3 +1243,691 @@ height: 32px;
 
 
 
+
+
+/* calendar for dashboard start */
+.calendar {
+    /* width: 100%;
+    max-width: 400px; */
+
+    margin: 10px auto;
+    /* overflow: hidden; */
+
+    /* display: flex; */
+/* width: 370px; */
+height: 460px;
+/* padding: 15px 50px 72px 50px; */
+/* flex-direction: column;
+align-items: center; */
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+position: relative;
+/* effect */
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+}
+
+
+
+.week-names {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f9fa;
+    padding: 10px 55px 10px 46px;
+}
+.week-names .day{
+    color: #A94037;
+}
+
+
+
+.day.other-month {
+    color: #ccc;
+    
+}
+
+.week {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 55px 10px 46px;
+}
+
+
+
+
+.ActivitiesHeader {
+    position: relative;
+    background: #A94037;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ActivitiesHeader::before,
+.ActivitiesHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px; /* Adjust the width of the image */
+    height: 50px; /* Adjust the height of the image */
+    background-size: cover;
+}
+
+.ActivitiesHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+/* top: -27px; */
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/calendarVector1.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
+}
+
+.ActivitiesHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/calendarVector2.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
+}
+
+
+
+
+
+.dateName {
+    color: #2F37A4;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.yearName {
+    color: #000;
+    font-size: 7px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+}
+
+.caliconPre,
+.caliconNext {
+    width: 9px;
+    height: 15px;
+    transform: rotate(0deg);
+    flex-shrink: 0;
+    fill: #421CDD;
+}
+
+.monthYear {
+    margin: 0 10px;
+    color: #000;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+}
+
+
+.day {
+    
+height: 32px;
+margin-left: 7px;
+color: #000;
+text-align: center;
+font-family: Poppins;
+font-size: 10px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+}
+
+.today {
+   
+    color: #9C3229;
+
+text-align: center;
+font-family: Poppins;
+font-size: 22.118px;
+font-style: normal;
+font-weight: 700;
+line-height: inherit;
+text-transform: uppercase;
+}
+
+.calendarVector3{
+    width: 48.273px;
+    height: 88.273px;
+    position: absolute;
+    left: 0.682px;
+    bottom: 6.727px;
+    stroke-width: 2.386px;
+    stroke: #A94037;
+    z-index: 1;
+}
+.calendarVector4{
+    width: 50.955px;
+    height: 128.955px;
+    position: absolute;
+    left: 0px;
+    bottom: -66px;
+    stroke-width: 30.227px;
+    stroke: #EAA29B;
+}
+
+
+.left-section {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 76px;
+    left: 0;
+}
+
+.calendarVector3,
+.calendarVector4 {
+    width: 50px; /* Set your desired width */
+    height: auto;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Adjust margin as needed */
+    position: absolute;
+    /* margin-top: 43px; */
+    bottom: 37px;
+}
+
+/* calendar for dashboard end */
+
+
+/* Holiday for dashboard start */
+
+
+.Holiday{
+    margin: 0 auto;
+/* width: 370px; */
+height: 460px;
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+position: relative;
+}
+
+.holidayHeader {
+    position: relative;
+    background: #1D874A;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.holidayHeader::before,
+.holidayHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px; /* Adjust the width of the image */
+    height: 50px; /* Adjust the height of the image */
+    background-size: cover;
+}
+
+.holidayHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+/* top: -27px; */
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/holidayVector1.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
+}
+
+.holidayHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/holidayVector2.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
+}
+
+.left-sectionHoliday{
+position: absolute;
+bottom: 76px;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+.right-sectionHoliday{
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Adjust margin as needed */
+    position: absolute;
+    /* margin-top: 186px; */
+    bottom: 23px;
+    top: 365px;
+}
+.headerH {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+}
+
+.weekName{
+    color: #000;
+text-align: right;
+font-size: 10px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+}
+
+.dateName{
+    color: #2F37A4;
+font-size: 16px;
+font-style: normal;
+font-weight: 800;
+line-height: revert;
+}
+
+.yearName{
+    color: #000;
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.BirthdayVector{
+    width: 1px;
+height: 46px;
+flex-shrink: 0;
+margin-top: -5rem;
+margin-left: 4rem;
+
+  }
+
+  .birth{
+    margin-top: -4rem;
+    margin-left: 6rem;
+    color: #1F3BF2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    
+}
+
+.desc{
+    color: #343A40;
+font-size: 7px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-left: 6rem;
+}
+
+.holidayBody{
+    padding: 14px 23px 16px 46px;
+}
+
+.holidayVector3{
+    z-index: 1;
+    width: 35px;
+height: 116px;
+position: absolute;
+left: 0px;
+bottom: -14px;
+stroke-width: 3px;
+stroke: #1D874A;
+}
+.holidayVector4{
+    width: 31px;
+    height: 150px;
+    position: absolute;
+    left: -1px;
+    bottom: -72px;
+    stroke-width: 38px;
+    stroke: #92EEB9;
+}
+
+.ViewMore{
+    display: flex;
+/* width: 227.651px; */
+/* padding: 14px 30px; */
+justify-content: center;
+align-items: center;
+border-radius: 8px;
+border: 1px solid #421CDD;
+color: #421CDD;
+text-align: center;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+margin-top: 70px;
+}
+.holidayViewMore{
+    width: 20px;
+height: 20px;
+flex-shrink: 0;
+}
+/* Holiday for dashboard end */
+
+/* birthday for dashboard start */
+.birthday{
+    margin: 0 auto;
+/* width: 370px; */
+height: 460px;
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+position: relative;
+}
+
+.birthdayHeader{
+    position: relative;
+    background: #D418AB;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.birthdayHeader::before,
+.birthdayHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px; /* Adjust the width of the image */
+    height: 50px; /* Adjust the height of the image */
+    background-size: cover;
+}
+
+.birthdayHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+/* top: -27px; */
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/birthdayVector1.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
+}
+
+.birthdayHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/birthdayVector2.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
+}
+
+.birthdayIcon{
+    width: 44px;
+height: 44px;
+flex-shrink: 0;
+margin-left: -18px;
+}
+
+
+.birthName{
+    color: #000;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin-top: -52px;
+margin-left: 61px;
+}
+
+.birthdesc{
+    color: #2F37A4;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-left: 60px;
+}
+
+.birthdayCake{
+    display: flex;
+width: 251px;
+height: 60px;
+align-items: center;
+gap: 15px;
+}
+
+.birthdayBody{
+    padding: 2px 0px 7px 64px;
+}
+.headerb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+}
+
+.left-sectionBirthday{
+    position: absolute;
+    bottom: 34px;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.birthdayVector3{
+    z-index: 1;
+    width: 39px;
+    height: 116px;
+    position: absolute;
+    right: 0px;
+    bottom: 21px;
+    stroke-width: 3px;
+    stroke: #D418AB;
+}
+.birthdayVector4{
+    width: 60px;
+height: 116px;
+position: absolute;
+right: 0px;
+bottom: -35px;
+stroke-width: 38px;
+stroke: #FF99E9;
+}
+
+/* view more holiday start */
+.modal {
+    --bs-modal-zindex: 1000 !important;
+    background-color: #78787867;
+    
+  }
+
+.headHoliday{
+    color: #3430B3;
+
+font-family: Poppins;
+font-size: 30px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+  .monthDateHoliday{
+    display: flex;
+    padding: 6px 22px;
+    /* align-items: center; */
+    /* gap: 25px; */
+    flex-direction: column;
+    width: 115px;
+}
+  .monthHoliday{
+color: #FFF;
+
+text-align: center;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+
+/* display: flex; */
+padding: 6px 22px;
+justify-content: center;
+align-items: center;
+gap: 25px;
+border-radius: 5px 5px 0px 0px;
+background: #9747FF;
+  }
+  .dateHoliday{
+    /* width: 43px; */
+/* height: 39px; */
+color: #343A40;
+
+text-align: center;
+font-family: Poppins;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-transform: capitalize;
+
+/* display: flex; */
+padding: 0px 21px;
+justify-content: center;
+align-items: center;
+gap: 25px;
+border-radius: 0px 0px 5px 5px;
+border: 1px solid #9747FF;
+  }
+
+  .descHoliday{
+    color: #401DDE;
+
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+  }
+  .dayHoliday{
+    /* width: 60px;
+height: 14px; */
+flex-shrink: 0;
+color: #343A40;
+
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+text-transform: capitalize;
+  }
+  
+  .closeRole{
+    display: flex;
+    width: 150px;
+    height: 44px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 60px;
+    border: 2px solid #D92651;
+
+    color: #D92651;
+font-size: 17px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.HolidayPre{
+    width: 21px;
+height: 21px;
+/* position: absolute; */
+left: 0px;
+top: 1px;
+stroke-width: 3px;
+stroke: #DADADA;
+}
+.HolidayNext{
+    width: 21px;
+height: 21px;
+/* transform: rotate(-93.342deg);
+position: absolute; */
+right: -1.149px;
+top: 0px;
+stroke-width: 3px;
+stroke: #DADADA;
+
+}
+
+.yearHoliday{
+    color: #3430B3;
+
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+  /* view more holiday end */

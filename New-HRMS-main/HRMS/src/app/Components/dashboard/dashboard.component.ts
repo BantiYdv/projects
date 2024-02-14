@@ -79,6 +79,9 @@ intern = '';
   showoldPassword: boolean = false;
   showconfirmPassword: boolean = false;
 
+  getHolidayData: any;
+  getBirthdayData: any;
+
   toggleoldPasswordVisibility(field: string) {
     if (field === 'oldPassword') {
       this.showoldPassword = !this.showoldPassword;
@@ -148,7 +151,8 @@ intern = '';
     this.viewAllCheckedInLate();
    this.TodayAndUpcomingHolidays();
   this.notCheckedInUsersCount();
-
+this.getHoliday();
+this.getAllBirthdays();
     // this.createLineChart();
   
   }
@@ -945,5 +949,121 @@ notCheckedInUsersCount(){
 
 
 
+
+
+// view holiday start
+holidaysData: any;
+public currentYear: number = new Date().getFullYear();
+
+holidayPre() {
+  this.currentYear--;
+}
+
+holidayNext() {
+  this.currentYear++;
+}
+
+    // get holiday start
+    getHoliday() {
+    
+      this.testService.getHoliday().subscribe(
+        (response: any) => {
+      // const dataArray = Object.values(response);
+         
+      //     const reversedData = dataArray.reverse();
+      //     this.getHolidayData = reversedData;
+          this.getHolidayData = response;
+          // this.fillterGetHoliday = reversedData;
+          // console.log("get holiday",response);
+        },
+        error => {
+          Swal.fire('Error', error.error, 'error');  
+        
+        }
+      );
+    
+  }
+// get holiday end
+
+// view more birthdays start
+getDayFromDateBirthday(date: string): string {
+const parts = date.split('-');
+return parts[0];
+}
+
+getAllBirthdays() {
+    
+this.testService.getBirthday().subscribe(
+  (response: any) => {
+
+    this.getBirthdayData = response;
+    console.log("view more birthdays", this.getBirthdayData);
+  },
+  error => {
+    Swal.fire('Error', error.error, 'error');  
+  
+  }
+);
+
+}
+
+// view more birthdays end
+
+// show day name in view more birthday start
+getDate(date: any){
+const today = new Date();
+const currentYear = today.getFullYear();
+
+
+const dobString = date;
+const dob = new Date(`${dobString.slice(3, 5)}-${dobString.slice(0, 2)}-${currentYear}`);
+
+// Get the day name
+const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const dayName = dayNames[dob.getDay()];
+
+return dayName;
+}
+// show day name in view more birthday end
+
+
+  // get month name and date start
+  getMonthName(date: string): string {
+    const monthNames = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+  
+    const parts = date.split('-');
+    const monthIndex = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript Date object
+  
+    return monthNames[monthIndex];
+  }
+  getDayFromDate(date: string): string {
+    const parts = date.split('-');
+    return parts[2];
+  }
+    // get month name and date start
+    getMonthColor(month: string): string {
+      const monthColorMap: { [key: string]: string } = {
+        'Jan': 'green',
+        'Feb': 'purple',
+        'Mar': 'blue',
+        'Apr': 'red',
+        'May': 'black',
+        'Jun': 'green',
+        'Jul': 'red',
+        'Aug': 'purple',
+        'Sep': 'red',
+        'Oct': 'black',
+        'Nov': 'blue',
+        'Dec': 'purple'
+      };
+    
+      return monthColorMap[month] || 'gray'; // Default color for unknown months
+    }
+    
+    
+  
+// view holiday end
 }
 

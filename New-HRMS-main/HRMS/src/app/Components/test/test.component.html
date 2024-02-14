@@ -575,7 +575,7 @@
                   <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit Profile</button>
                   <button mat-menu-item (click)="deleteEmployee(item.id)">Delete Profile</button>
                   <button mat-menu-item (click)="activeProfile(item.id, item.userActive)" *ngIf="item.userActive == false">Activate</button>
-                  <button mat-menu-item (click)="activeProfile(item.id, item.userActive)" *ngIf="item.userActive == true">Deactivate</button>'
+                  <button mat-menu-item (click)="activeProfile(item.id, item.userActive)" *ngIf="item.userActive == true">Deactivate</button>
 
                 </mat-menu>
               </div>
