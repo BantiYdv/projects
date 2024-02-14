@@ -222,36 +222,80 @@
               </a>
             </li>
 
-
-            <li class="nav-item text-center">
-              <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
-                <label class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
-                  <!-- <span class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Assign Rules</span> -->
-                  
-                </label>
-                <div class="collapse" id="dashboard-rule">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#position" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
+                 
+                </div>
+                  <span class="image-namenew">Position</span>
+                </a>
+                <div class="collapse" id="position">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
                     <li>
-                      <!-- Use a label to trigger file input -->
-                      <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">
-                      <label for="pdfFileInput">
-                        <span class="image-name" id="pdfFile">Upload Pdf</span>
-                      </label></a>
-                      <!-- Visually hidden file input -->
-                      <input type="file" id="pdfFileInput" style="position: absolute; clip: rect(0, 0, 0, 0);" (change)="onFileChange($event)">
+                      <a href="#" class="dropdown-item rounded-2 role"
+                        [routerLink]="['/addPosition']" (click)="loginService.showTable('addPosition')">Add Position</a>
                     </li>
                     <li>
-                      <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white" routerLink="/test"
-                        [routerLink]="['/shifttime']" (click)="loginService.showTable('shifttime')">Attendance Ruls</a>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/viewPosition']" (click)="loginService.showTable('viewPosition')">View Position</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+            </li>
+ 
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle sideBarName" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
+                </div>
+                <span class="image-namenew">Assign Rules</span>
+                </a>
+               
+                <div class="collapse" id="dashboard-rule">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Roledrop" >
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                        [routerLink]="['/leavePolicy']" (click)="loginService.showTable('leavePolicy')">Leave policy</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/noticePeriod']" (click)="loginService.showTable('noticePeriod')">Notice Period</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/attendanceRule']" (click)="loginService.showTable('attendanceRule')">Attendance</a>
                     </li>
                   </ul>
                 </div>
-              </div>
-              <span class="image-namenew">Assign Rules</span>
+              
             </li>
             
-            
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#interview" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
+                 
+                </div>
+                  <span class="image-namenew">Interview</span>
+                </a>
+                <div class="collapse" id="interview">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                        [routerLink]="['/addInterview']" (click)="loginService.showTable('addInterview')">Add Interview</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/viewInterview']" (click)="loginService.showTable('viewInterview')">View Interview</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+            </li>
             <!-- <li class="nav-item text-center">
               <label class="nav-link px-0 align-middle" for="pdfFileInput">
                 <div class="image-container">
