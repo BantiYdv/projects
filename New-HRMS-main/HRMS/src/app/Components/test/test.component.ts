@@ -127,6 +127,7 @@ export class TestComponent {
     "ALL_WFH_EMPLOYEES",
     "VIEW_ALL_LEAVE",
     "ADD_HOLIDAY",
+    "ADD_BIRTHDAY",
     "CREATE_ROLE",
     // "DOWNLOAD_REPORTS",
     "DOWNLOAD_EMPLOYEE_REPORTS",
@@ -159,6 +160,7 @@ export class TestComponent {
     "ALL_WFH_EMPLOYEES": "All Employees WFH",
     "VIEW_ALL_LEAVE": "All Employees Leave",
     "ADD_HOLIDAY": "Add Holiday",
+    "ADD_BIRTHDAY": "Add Birthday",
     "CREATE_ROLE": "Create Role",
     // "DOWNLOAD_REPORTS":"Download Reports",
     "DOWNLOAD_EMPLOYEE_REPORTS": "Download Employee Reports",
@@ -1989,6 +1991,7 @@ console.log("update wfh data", this.updateWfhId);
       "ALL_WFH_EMPLOYEES",
       "VIEW_ALL_LEAVE",
       "ADD_HOLIDAY",
+      "ADD_BIRTHDAY",
       "CREATE_ROLE",
       // "DOWNLOAD_REPORTS",
       "DOWNLOAD_EMPLOYEE_REPORTS",
@@ -2053,6 +2056,7 @@ console.log("update wfh data", this.updateWfhId);
       (this.selectedPermissions.includes('ALL_WFH_EMPLOYEES') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('VIEW_ALL_LEAVE') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('ADD_HOLIDAY') && option === 'NO_ACCESS') ||
+      (this.selectedPermissions.includes('ADD_BIRTHDAY') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('CREATE_ROLE') && option === 'NO_ACCESS') ||
       // (this.selectedPermissions.includes('DOWNLOAD_REPORTS') && option === 'NO_ACCESS') ||
       (this.selectedPermissions.includes('DOWNLOAD_EMPLOYEE_REPORTS') && option === 'NO_ACCESS') ||
