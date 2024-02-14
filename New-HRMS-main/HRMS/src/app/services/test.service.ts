@@ -1025,4 +1025,27 @@ showTeamData(id:any){
 }
 // for show team members end
 
+// add payroll start
+addPayroll(payroll: any){
+
+  const url = `${this.api.addPayroll}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.post(url, payroll, { headers });
+}
+// add payroll end
+
+// view all payroll start
+
+viewPayroll(){
+  const url = `${this.api.viewPayroll}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// view all payroll end
+
 }

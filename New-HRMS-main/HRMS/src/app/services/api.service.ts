@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.17:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.5:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -141,6 +141,13 @@ export class ApiService {
   public deActiveAndActiveUser = `${this.apiUrl}gateway/hrms/deActiveAndActiveUser`;
   public showUserDataToTeamLead = `${this.apiUrl}gateway/hrms/showUserDataToTeamLead`;
   public showTeamData = `${this.apiUrl}gateway/hrms/showTeamData`;
+
+
+
+  public addPayroll = `${this.apiUrl}gateway/onboard/calculateSalary`;
+  public viewPayroll = `${this.apiUrl}gateway/onboard/`;
+
+  
 
   constructor(private http: HttpClient) { }
 

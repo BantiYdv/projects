@@ -2162,3 +2162,17 @@ text-transform: capitalize;
 }
 
 /* update leave end */
+
+
+
+.payroll_labelEarning{
+  font-size: 23px;
+  font-weight: 600;
+  color: #129b4b;
+}
+
+.payroll_labelDeduction{
+  font-size: 23px;
+  font-weight: 600;
+  color:red;
+}

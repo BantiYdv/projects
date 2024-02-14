@@ -110,7 +110,8 @@ export class TestComponent {
   fillterGetBirthday: any;
   birthday: any = {};
   fillterGetAbsent: any;
-
+  getPayrollData: any;
+  fillterGetPayroll: any;
   viewNotCheckedIn: any;
   // change password validation start
   showNewPassword: boolean = false;
@@ -372,7 +373,7 @@ export class TestComponent {
     this.viewLast7DaysLateArrival();
     this.viewLast7DaysEarlyDeparture();
     this.viewNotCheckedInUsersCount();
-
+this.viewPayroll();
     
   }
 
@@ -6640,5 +6641,151 @@ checkReports(checkPermission: any): boolean {
   
   // API for actvie profile end
 
+  // add payroll start
+  payroll= {
+    employeeName: '',
+    emailId: '',
+    netSalary: '',
+    totalDays: '',
+    totalLeaves: '',
+    unpaidLeaves: '',
+    paidLeaves: '',
+    payableDays: '',
+    basicSalary: '',
+    providentFund: '',
+    hra: '',
+    tds: '',
+    medicalAllowance: '',
+    leaveDeduction: '',
+    other: '',
+    addOther: '',
+    dearnessAllowance: '',
+    save: '',
+    conveyanceAllowance: '',
+    performanceIncentives: '',
+  };
 
+  addPayroll(){
+    this.testService.addPayroll(this.payroll).subscribe(
+      (response) => {
+        console.log('addPayroll success', response);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Payroll Added Successfully.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+        }).then(() => {
+          this.loginService.showTable('viewPayroll');
+          // this.clearFormPosition();
+        });
+        // this.getPositionRecruitment();
+        // this.viewPositionName();
+      },
+      (error) => {
+        console.error('addPayroll error', error);
+        if (error.status == 400) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Payroll Already Added!.',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      }
+    );
+  }
+// add payroll end
+
+// view payroll start
+ // pagination and search for view payroll start
+
+ payrollPerPage: number = 10;
+payrollCurrentPage: number = 1;
+searchPayroll: string = '';
+  searchPayrollEmail: string = '';
+  searchPayrolldesignation: string = '';
+ 
+
+
+ FilterPayroll() {
+   this.fillterGetPayroll = this.getPayrollData.filter((item: { name: string }) =>
+     item.name.toLowerCase().includes(this.searchPayroll.toLowerCase())
+   );
+ }
+
+ getPaginatedPayrollData(): any[] {
+   const startIndex = (this.payrollCurrentPage - 1) * this.payrollPerPage;
+   const endIndex = startIndex + this.payrollPerPage;
+   return this.fillterGetPayroll.slice(startIndex, endIndex);
+ }
+
+ previousPayrollPage(): void {
+   if (this.payrollCurrentPage > 1) {
+     this.payrollCurrentPage--;
+   }
+ }
+
+ getPageNumbersPayroll(): number[] {
+   const totalPages = Math.ceil(
+     this.fillterGetPayroll.length / this.payrollPerPage
+   );
+   return Array.from({ length: totalPages }, (_, index) => index + 1);
+ }
+
+ changePagePayroll(pageNumber: number): void {
+   if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPayroll()) {
+     this.payrollCurrentPage = pageNumber;
+   }
+ }
+
+
+ nextPagePayroll(): void {
+   const totalPages = Math.ceil(
+     this.fillterGetPayroll.length / this.payrollPerPage
+   );
+   if (this.payrollCurrentPage < totalPages) {
+     this.payrollCurrentPage++;
+   }
+ }
+
+
+ getTotalPagesPayroll(): number {
+   return Math.ceil(
+     this.fillterGetPayroll.length / this.payrollPerPage
+   );
+ }
+ // pagination and search for view payroll end
+
+
+   viewPayroll() {
+
+    // if ('/todayCasualLeave' === this.router.url) {
+
+    // Call the service method to fetch all attendance data
+    this.testService.viewPayroll().subscribe(
+      (response: any) => {
+        // Convert the response object to an array
+        const dataArray = Object.values(response);
+        // Reverse the received array
+        const reversedData = dataArray.reverse();
+
+        // Set the reversed array as the data source
+       
+        this.getPayrollData = reversedData;
+        this.fillterGetPayroll = reversedData;
+        console.log("get payroll", response);
+      },
+      error => {
+        Swal.fire('Error', error.error, 'error');
+        // Hide the table if an error occurs
+        // this.showAllAttTable = false;
+      }
+    );
+    // }
+  }
+
+
+// view payroll end
 }
