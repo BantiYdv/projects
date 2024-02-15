@@ -74,27 +74,10 @@ export class ApiService {
   public partTime = `${this.apiUrl}gateway/hrms/part-time-count`;
   public internTime = `${this.apiUrl}gateway/hrms/intern-time-count`;
   public updateEmpAtt = `${this.apiUrl}gateway/hrms/update-employee-attendance`;
-  public addPosition = `${this.apiUrl}gateway/onboard/addPosition`;
-  public viewPosition = `${this.apiUrl}gateway/onboard/getAllPositions`;
-  public viewPositionById = `${this.apiUrl}gateway/onboard/getPositionById`;
-  public updatePositionById = `${this.apiUrl}gateway/onboard/updatePositionById`;
-  public deletePositionById = `${this.apiUrl}gateway/onboard/deletePositionById`;
-  public addInterview = `${this.apiUrl}gateway/onboard/addInterview`;
-  public PositionName = `${this.apiUrl}gateway/onboard/PositionName`;
-  public updatePositionStatus = `${this.apiUrl}gateway/onboard/update`;
-  public getCandidateInterview = `${this.apiUrl}gateway/onboard/getCandidate?positionName=`;
-  public downloadCandidateCV = `${this.apiUrl}gateway/onboard/downloadResume`;
-  public sendMail = `${this.apiUrl}gateway/onboard/send-confirmation-mail`;
-  public updateConfirmationStatus = `${this.apiUrl}gateway/onboard/updateConfirmationStatus`;
-  public findCandidate = `${this.apiUrl}gateway/onboard/findCandidateBy`;
-  public deleteCandidateInterview = `${this.apiUrl}gateway/onboard/deleteInterview`;
-  public updateInterview = `${this.apiUrl}gateway/onboard/updateInterview`;
   public addShiftTime = `${this.apiUrl}gateway/hrms/saveShiftTime`;
   public viewShiftTime = `${this.apiUrl}gateway/hrms/findAllShifts`;
   public viewAllShiftTimeDetails = `${this.apiUrl}gateway/hrms/findAllShiftDetails`;
   public updateShiftTime = `${this.apiUrl}gateway/hrms/updateShiftTime`;
-  public noticePeriod = `${this.apiUrl}gateway/onboard/addNoOfDays`;
-  public addLeaveRule = `${this.apiUrl}gateway/onboard/addLeaveRule`;
   public viewTodayPresent = `${this.apiUrl}gateway/hrms/findUsersCheckedInToday`;
   // public viewTodayWfh = `${this.apiUrl}gateway/hrms/WorkFromHomeUserToday`;
   public viewTodayWfh = `${this.apiUrl}gateway/hrms/UserOnWorkFromHomeToday`;
@@ -144,8 +127,27 @@ export class ApiService {
 
 
 
-  public addPayroll = `${this.apiUrl}gateway/onboard/calculateSalary`;
-  public viewPayroll = `${this.apiUrl}gateway/onboard/`;
+
+  public addPosition = `${this.apiUrl}gateway/onboard/addPosition`;
+  public viewPosition = `${this.apiUrl}gateway/onboard/getAllPositions`;
+  public viewPositionById = `${this.apiUrl}gateway/onboard/getPositionById`;
+  public updatePositionById = `${this.apiUrl}gateway/onboard/updatePositionById`;
+  public deletePositionById = `${this.apiUrl}gateway/onboard/deletePositionById`;
+  public addInterview = `${this.apiUrl}gateway/onboard/addInterview`;
+  public PositionName = `${this.apiUrl}gateway/onboard/PositionName`;
+  public updatePositionStatus = `${this.apiUrl}gateway/onboard/update`;
+  public getCandidateInterview = `${this.apiUrl}gateway/onboard/getCandidate?positionName=`;
+  public downloadCandidateCV = `${this.apiUrl}gateway/onboard/downloadResume`;
+  public sendMail = `${this.apiUrl}gateway/onboard/send-confirmation-mail`;
+  public updateConfirmationStatus = `${this.apiUrl}gateway/onboard/updateConfirmationStatus`;
+  public findCandidate = `${this.apiUrl}gateway/onboard/findCandidateBy`;
+  public deleteCandidateInterview = `${this.apiUrl}gateway/onboard/deleteInterview`;
+  public updateInterview = `${this.apiUrl}gateway/onboard/updateInterview`;
+  public noticePeriod = `${this.apiUrl}gateway/onboard/addNoOfDays`;
+  public addLeaveRule = `${this.apiUrl}gateway/onboard/addLeaveRule`;
+  public addPayroll = `${this.apiUrl}gateway/onboard/addPayroll`;
+  public viewPayroll = `${this.apiUrl}gateway/onboard/getAllPayroll`;
+  public downloadSalaryPayroll = `${this.apiUrl}gateway/onboard/salarySheetList/excel`;
 
   
 

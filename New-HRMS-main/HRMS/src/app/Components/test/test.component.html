@@ -6141,8 +6141,9 @@
             </div>
           </div>
           <div class="d-flex justify-content-end mb-3" [ngClass]="{'col-md-4': payrollCurrentPage === 1, 'col-md-12': payrollCurrentPage >= 2}">
-            <button class="recruitment_button m-1" type="button">Export Sheet</button>
-            <button class="recruitment_button m-1" type="button"  [routerLink]="['/addPayroll']" (click)="loginService.showTable('addPayroll')">Add Payroll</button>
+            <button class="recruitment_button m-1" type="button" (click)="excelSalarySheet()">Export Sheet</button>
+            <button class="recruitment_button m-1" type="button" [routerLink]="['/addPayroll']"
+            (click)="loginService.showTable('addPayroll')">Add Payroll</button>
           </div>
         </div>
 
@@ -6222,13 +6223,13 @@
                 <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">
                   {{i + 1}} </div>
                 <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
-                  item.name }}</div>
+                  item.employeeName }}</div>
                 <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
-                  item.name }}</div>
+                  item.emailId }}</div>
                 <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
                   item.name }}</div>
                 <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; ">{{
-                  item.name }}</div>
+                  item.netSalary }}</div>
                 <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; ">{{
                   item.name }}</div>
 

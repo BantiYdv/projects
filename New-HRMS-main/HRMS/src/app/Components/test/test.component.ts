@@ -6666,6 +6666,7 @@ checkReports(checkPermission: any): boolean {
   };
 
   addPayroll(){
+    console.log("payroll add form", this.payroll);
     this.testService.addPayroll(this.payroll).subscribe(
       (response) => {
         console.log('addPayroll success', response);
@@ -6788,4 +6789,35 @@ searchPayroll: string = '';
 
 
 // view payroll end
+
+
+ // API for download Salary Sheet in excel start
+
+
+ excelSalarySheet() {
+  const token = localStorage.getItem('jwtToken');
+
+
+  // Create the request headers with the token
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+
+  this.testService.downloadSalaryPayrollExcel(headers).subscribe((response: HttpResponse<Blob>) => {
+    // Check if the response body is not null
+    if (response.body) {
+      const contentDisposition = response.headers.get('content-disposition');
+      const fileName = contentDisposition
+        ? contentDisposition.split('filename=')[1]
+        : 'salarysheet.xlsx'; // Use the filename from content-disposition header or a default name
+
+      saveAs(response.body, fileName); // Use the 'file-saver' library to save the file
+    } else {
+
+    }
+  }, (error) => {
+    // Handle any errors that occurred during the API call
+
+  });
+}
+// API for download Salary Sheet in excel end
+
 }

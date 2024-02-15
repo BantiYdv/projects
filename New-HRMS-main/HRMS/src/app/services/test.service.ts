@@ -1027,7 +1027,6 @@ showTeamData(id:any){
 
 // add payroll start
 addPayroll(payroll: any){
-
   const url = `${this.api.addPayroll}`;
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
@@ -1037,7 +1036,6 @@ addPayroll(payroll: any){
 // add payroll end
 
 // view all payroll start
-
 viewPayroll(){
   const url = `${this.api.viewPayroll}`;
   const token = localStorage.getItem('jwtToken');
@@ -1047,5 +1045,15 @@ viewPayroll(){
 
 }
 // view all payroll end
+
+// download salary sheet in excel start
+downloadSalaryPayrollExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>> {
+  return this.http.get(this.api.downloadSalaryPayroll, {
+    headers,
+    responseType: 'blob',
+    observe: 'response' // To access the full response with headers
+  });
+}
+// download salary sheet in excel end
 
 }
