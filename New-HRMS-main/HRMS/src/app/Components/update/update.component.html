@@ -1323,6 +1323,7 @@
           </div>
 
           <div class="row col-lg-12 d-flex justify-content-center my-3">
+            <button class="recruitment_button mx-3" type="button" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">View Employee</button>
             <button class="recruitment_button mx-3" type="button" (click)="prevStep()">Previous</button>
             <button class="recruitment_button mx-3" type="button" (click)="updateEmployeeData()">Update</button>
           </div>

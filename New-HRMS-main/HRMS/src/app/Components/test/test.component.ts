@@ -374,6 +374,8 @@ export class TestComponent {
     this.viewLast7DaysEarlyDeparture();
     this.viewNotCheckedInUsersCount();
 this.viewPayroll();
+this.employeeNmaes();
+this.emailIds();
     
   }
 
@@ -2342,6 +2344,61 @@ console.log("update wfh data", this.updateWfhId);
   }
   //API for getting designation end
 
+  //API for getting employee name start
+  employeeNames: any[] = []; // Define employeeNames as an array to store multiple employee names
+
+  employeeNmaes() {
+    this.testService.getEmployeeList().subscribe(
+      (response: any) => { // Assuming the response is an array
+        this.employeeNames = response.map((employee: { firstname: any; lastname: any; }) => ({ firstname: employee.firstname, lastname: employee.lastname }));
+        console.log("search employeeNames", this.employeeNames);
+      },
+      (error) => {
+        // Handle error
+      }
+    );
+  }
+  
+  filterEmployees(name: string): any[] {
+    if (!name) {
+      return this.employeeNames;
+    }
+    const filterValue = name.toLowerCase();
+    return this.employeeNames.filter(employee => {
+      const fullname = `${employee.firstname} ${employee.lastname}`;
+      return fullname.toLowerCase().includes(filterValue);
+    });
+  }
+
+  //API for getting employee name end
+
+  //API for getting email id  start
+  emailId: any[] = []; // Define employeeNames as an array to store multiple employee names
+
+  emailIds() {
+    this.testService.getEmployeeList().subscribe(
+      (response: any) => { // Assuming the response is an array
+        this.emailId = response.map((email: { emailid: any}) => ({ emailid: email.emailid}));
+        console.log("search emailId", this.emailId);
+      },
+      (error) => {
+        // Handle error
+      }
+    );
+  }
+  
+  filterEmail(email: string): any[] {
+    if (!email) {
+      return this.emailId;
+    }
+    const filterValue = email.toLowerCase();
+    return this.emailId.filter(email => {
+      const fullemail = `${email.emailid} `;
+      return fullemail.toLowerCase().includes(filterValue);
+    });
+  }
+
+  //API for getting email id end
 
   // sort data in team leave table start
   sortTDate: 'asc' | 'desc' = 'asc';
@@ -2409,6 +2466,7 @@ console.log("update wfh data", this.updateWfhId);
       )
     };
   }
+  
   onSearchTeamLeave() {
     // Clear the date input field when searching in the name input field
     if (this.searchTeamLeave.trim() !== '') {

@@ -1154,8 +1154,8 @@
               </div>
               
               <div class="col-lg-3 col-12 justify-content-center d-flex mt-3 mt-sm-2">
-                <button *ngIf="!isEditMode" class="button_added_position_list" (click)="enterEditMode()">Add More</button>
-                <button *ngIf="isEditMode" class="button_added_position_list" (click)="saveDetails()">Save</button>
+                <button *ngIf="!isEditMode" class="button_added_position_list clickEffect" (click)="enterEditMode()">Add More</button>
+                <button *ngIf="isEditMode" class="button_added_position_list clickEffect" (click)="saveDetails()">Save</button>
               </div>
               
             </div>
@@ -1294,7 +1294,7 @@
           </div>
          
           <div class="row col-lg-12 d-flex justify-content-center my-3">
-            <button class="recruitment_button" type="button" (click)="validateFields()">Next</button>
+            <button class="recruitment_button clickEffect" type="button" (click)="validateFields()">Next</button>
           </div>
           <!-- <button (click)="assetDataListqw()">console</button> -->
         </div>
@@ -1562,9 +1562,9 @@
           </div>
 
           <div class="row col-lg-12 d-flex justify-content-center my-3">
-            <button class="recruitment_button mx-3" type="button" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">View Employee</button>
-            <button class="recruitment_button mx-3" type="button" (click)="prevStep()">Previous</button>
-            <button class="recruitment_button mx-3" type="button" (click)="nextStep()">Next</button>
+            <button class="recruitment_button mx-3 clickEffect" type="button" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">View Employee</button>
+            <button class="recruitment_button mx-3 clickEffect" type="button" (click)="prevStep()">Previous</button>
+            <button class="recruitment_button mx-3 clickEffect" type="button" (click)="nextStep()">Next</button>
           </div>
         </div>
         
@@ -1662,8 +1662,8 @@
           </div>
 
           <div class="row col-lg-12 d-flex justify-content-center my-3">
-            <button class="recruitment_button mx-3" type="button" (click)="prevStep()">Previous</button>
-            <button class="recruitment_button mx-3" type="button" (click)="submitForm()">Upload Documents</button>
+            <button class="recruitment_button mx-3 clickEffect" type="button" (click)="prevStep()">Previous</button>
+            <button class="recruitment_button mx-3 clickEffect" type="button" (click)="submitForm()">Upload Documents</button>
           </div>
         </div>
         <div *ngIf="currentStep === 5">
@@ -1680,8 +1680,8 @@
           </div>
 
           <div class="row col-lg-12 d-flex justify-content-center">
-            <button class="recruitment_button mx-3" type="button" (click)="prevStep()">Previous</button>
-            <button class="recruitment_button mx-3" type="button" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">View Employee</button>
+            <button class="recruitment_button mx-3 clickEffect" type="button" (click)="prevStep()">Previous</button>
+            <button class="recruitment_button mx-3 clickEffect" type="button" [routerLink]="['/employee']" (click)="loginService.showTable('employee')">View Employee</button>
           </div>
         </div>
       </div>

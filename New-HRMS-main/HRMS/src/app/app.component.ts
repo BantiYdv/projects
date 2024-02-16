@@ -150,15 +150,14 @@ permissionSet = [
   { name: 'ADMIN_LEAVES', router: '/test/', function: '', imgName: "Admin Leave", src: 'https://cdn-icons-png.flaticon.com/128/5590/5590545.png'},
   { name: 'ADMIN_WFH', router: '/test/', function: '', imgName: "Admin WFH", src: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRGwlYfdcbTYW72vNkR7gkq8iXUmDEtd0bl_ohNaZZA7RMq92QE'},
   { name: 'VIEW_ALL_LEAVE', router: '/viewAllLeave', function: 'viewAllLeave', imgName: "All Leaves", src: '/assets/image/icon/Team WFH.png', hover:""},
+  { name: 'ADD_INTERVIEW', router: '/addInterview', function: 'addInterview', imgName: "Add Interview", src: '/assets/image/icon/interview.png', hover:"hoverInterview"},
   { name: 'ADD_HOLIDAY', router: '/addHoliday', function: 'addHoliday', imgName: "Add Holiday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
-  { name: 'ADD_BIRTHDAY', router: '/addBirthday', function: 'addBirthday', imgName: "Add Birthday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
+  { name: 'ADD_BIRTHDAY', router: '/addBirthday', function: 'addBirthday', imgName: "Add Birthday", src: '/assets/image/icon/addBirthday.png', hover:"hoverBirthday"},
   // { name: 'ADD_BIRTHDAY', router: '/addBirthday', function: 'addBirthday', imgName: "Add Birthday", src: '/assets/image/icon/addHoliday.png', hover:"hoverCal"},
   { name: 'CREATE_ROLE', router: '/createRole', function: 'createRole', imgName: "Create Role", src: '/assets/image/icon/Role.png', hover:"hoverRole"},
+  { name: 'ADD_POSITION', router: '/addPosition', function: 'addPosition', imgName: "Add Position", src: '/assets/image/icon/position.png', hover:"hoverPosition"},
   { name: 'DOWNLOAD_EMPLOYEE_REPORTS' || 'DOWNLOAD_WORKFROMHOME_REPORTS' || 'DOWNLOAD_LEAVES_REPORTS' || 'DOWNLOAD_ATTENDANCE_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
-  // { name: 'DOWNLOAD_EMPLOYEE_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
-  // { name: 'DOWNLOAD_WORKFROMHOME_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
-  // { name: 'DOWNLOAD_LEAVES_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
-  // { name: 'DOWNLOAD_ATTENDANCE_REPORTS', router: '/reports', function: 'reports', imgName: "Download Reports", src: '/assets/image/icon/Reports.png', hover:"hoverReport"},
+
   { name: 'UPLOAD_LEAVE_POLICY', router: '/leavePolicy', function: 'leavePolicy', imgName: "Upload Leave Policy", src: '/assets/image/icon/leave policy.png', hover:"hoverLeavePolicy"},
 ]
 

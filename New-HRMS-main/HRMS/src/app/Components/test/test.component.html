@@ -75,9 +75,9 @@
 
 
                 <div class="mb-3 col-11 d-flex justify-content-end">
-                  <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal"
+                  <button type="button" class="btn m-1 closeRole clickEffect" data-bs-dismiss="modal"
                     (click)="closeForm()">Close</button>
-                  <button type="submit" class="btn m-1 submitRole" (click)="createRole()">Submit</button>
+                  <button type="submit" class="btn m-1 submitRole clickEffect" (click)="createRole()">Submit</button>
 
                 </div>
 
@@ -169,9 +169,9 @@
                   </ul>
                 </div>
                 <div class="table_body_topics Rolebutton mt-2" style="width: 30%;">
-                  <button type="button" class="btn m-1 deleteRole" (click)="deleteRole(item.id)"><img
+                  <button type="button" class="btn m-1 deleteRole clickEffect" (click)="deleteRole(item.id)"><img
                       src="/assets/image/icon/deleteRole.svg" alt="" class="RoleHover">Delete Role</button>
-                  <button type="button" class="btn m-1 editPermission" data-bs-toggle="modal"
+                  <button type="button" class="btn m-1 editPermission clickEffect" data-bs-toggle="modal"
                     data-bs-target="#exampleModal" (click)="openAddPermission(item)"><img
                       src="/assets/image/icon/editPermission.svg" alt="" class="PermissionHover">Edit
                     Permissions</button>
@@ -185,7 +185,7 @@
 
         <div class="col-md-12" *ngIf="getTotalPagesRole() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -195,7 +195,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageRole()"
               [disabled]="currentPage == getTotalPagesRole()">
               Next <i class="fa fa-angle-right"></i>
@@ -278,8 +278,8 @@
 
 
                       <div class="mb-3 col-12 d-flex justify-content-end">
-                        <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn m-1 submitRole" data-bs-dismiss="modal"
+                        <button type="button" class="btn m-1 closeRole clickEffect" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn m-1 submitRole clickEffect" data-bs-dismiss="modal"
                           (click)="AddPermission(permissionId)">Update</button>
 
                       </div>
@@ -520,9 +520,9 @@
           </div>
           <div class="d-flex justify-content-end mb-3"
             [ngClass]="{'col-md-4': currentemployeePage === 1, 'col-md-12': currentemployeePage >= 2}">
-            <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list"
+            <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list clickEffect"
               (click)="listView()">
-            <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list"
+            <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list clickEffect"
               (click)="gridView()">
           </div>
         </div>
@@ -599,7 +599,7 @@
 
         <div class="col-md-12" *ngIf="getTotalPagesEmp() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousEmpPage()" [disabled]="currentemployeePage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -610,7 +610,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageEmp()"
               [disabled]="currentemployeePage == getTotalPagesEmp()">
               Next <i class="fa fa-angle-right"></i>
@@ -651,9 +651,9 @@
               </div>
               <div class="d-flex justify-content-end mb-3"
                 [ngClass]="{'col-md-4': currentemployeePage === 1, 'col-md-12': currentemployeePage >= 2}">
-                <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list"
+                <img [src]="isGridView ? '/assets/image/list.png' : '/assets/image/listActive.png'" alt="" class="list clickEffect"
                   (click)="listView()">
-                <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list"
+                <img [src]="isGridView ? '/assets/image/gridActive.png' : '/assets/image/grid.png'" alt="" class="list clickEffect"
                   (click)="gridView()">
               </div>
             </div>
@@ -730,7 +730,7 @@
 
             <div class="col-md-12" *ngIf="getTotalPagesEmp() > 1">
               <div class="table_footer mt-2">
-                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                   style="background-color:#421cdd;" (click)="previousEmpPage()" [disabled]="currentemployeePage == 1">
                   <i class="fa fa-angle-left"></i> Previous
                 </button>
@@ -741,7 +741,7 @@
                     {{ pageNumber }}
                   </div>
                 </div>
-                <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+                <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                   style="background-color:#421cdd;" (click)="nextPageEmp()"
                   [disabled]="currentemployeePage == getTotalPagesEmp()">
                   Next <i class="fa fa-angle-right"></i>
@@ -861,10 +861,10 @@
                 {{ item.approval }}</td>
               <td class="textNormal">{{ item.approvedBy }}</td>
               <td class="textBold">{{ item.teamlead }}</td>
-              <td class="textBold">{{ item.Approved }}<button class="btn Approve"
+              <td class="textBold">{{ item.Approved }}<button class="btn Approve clickEffect"
                   (click)="approveLeave(item.id)">Approve</button>
               </td>
-              <td class="textBold">{{ item.Rejected }}<button class="btn Reject"
+              <td class="textBold">{{ item.Rejected }}<button class="btn Reject clickEffect"
                   (click)="rejectLeave(item.id)">Reject</button>
               </td>
             </tr>
@@ -879,7 +879,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesTeamLeave() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousTeamLeavePage()"
               [disabled]="currentTeamLeavePage == 1">
               <i class="fa fa-angle-left"></i> Previous
@@ -891,7 +891,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageTeamLeave()"
               [disabled]="currentTeamLeavePage == getTotalPagesTeamLeave()">
               Next <i class="fa fa-angle-right"></i>
@@ -998,10 +998,10 @@
               {{ item.approval }}</td>
             <td class="textNormal">{{ item.approvedBy }}</td>
             <td class="textBold">{{ item.teamlead }}</td>
-            <td class="textBold">{{ item.Approved }}<button class="btn Approve"
+            <td class="textBold">{{ item.Approved }}<button class="btn Approve clickEffect"
                 (click)="ApproveWfh(item.id)">Approve</button>
             </td>
-            <td class="textBold">{{ item.Rejected }}<button class="btn Reject"
+            <td class="textBold">{{ item.Rejected }}<button class="btn Reject clickEffect"
                 (click)="RejectWfh(item.id)">Reject</button></td>
           </tr>
         </tbody>
@@ -1015,7 +1015,7 @@
     <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesTeamWfh() > 1">
         <div class="table_footer mt-2">
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="previousTeamWfhPage()" [disabled]="currentTeamWfhPage == 1">
             <i class="fa fa-angle-left"></i> Previous
           </button>
@@ -1026,7 +1026,7 @@
               {{ pageNumber }}
             </div>
           </div>
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="nextPageTeamWfh()"
             [disabled]="currentTeamWfhPage == getTotalPagesTeamWfh()">
             Next <i class="fa fa-angle-right"></i>
@@ -1177,7 +1177,7 @@
                   <div class="media-body align-self-center">
                     <span class="cardIconTextReport">Employee Leaves</span>
                   </div>
-                  <button class="btn ReportDownload align-self-center"
+                  <button class="btn ReportDownload align-self-center clickEffect"
                     (click)="getAllEmployeesLeave()">Download</button>
                 </div>
               </div>
@@ -1198,7 +1198,7 @@
                   <div class="media-body align-self-center">
                     <span class="cardIconTextReport">Employee WFH</span>
                   </div>
-                  <button class="btn ReportDownload align-self-center" (click)="getAllEmployeesWfh()">Download</button>
+                  <button class="btn ReportDownload align-self-center clickEffect" (click)="getAllEmployeesWfh()">Download</button>
                 </div>
               </div>
             </div>
@@ -1220,7 +1220,7 @@
                   <div class="media-body align-self-center">
                     <span class="cardIconTextReport">All Employee List</span>
                   </div>
-                  <button class="btn ReportDownload align-self-center" (click)="getAllEmployees()">Download</button>
+                  <button class="btn ReportDownload align-self-center clickEffect" (click)="getAllEmployees()">Download</button>
                 </div>
               </div>
             </div>
@@ -1240,7 +1240,7 @@
                   <div class="media-body align-self-center">
                     <span class="cardIconTextReport">Employee Attendance</span>
                   </div>
-                  <button class="btn ReportDownload align-self-center" (click)="getAllEmployeesAtt()">Download</button>
+                  <button class="btn ReportDownload align-self-center clickEffect" (click)="getAllEmployeesAtt()">Download</button>
                 </div>
               </div>
             </div>
@@ -1259,7 +1259,7 @@
                   <div class="media-body align-self-center">
                     <span class="cardIconTextReport">Salary Sheet</span>
                   </div>
-                  <button class="btn ReportDownload align-self-center">Download</button>
+                  <button class="btn ReportDownload align-self-center clickEffect">Download</button>
                 </div>
               </div>
             </div>
@@ -1278,7 +1278,7 @@
                   <div class="media-body align-self-center">
                     <span class="cardIconTextReport">Recruitment</span>
                   </div>
-                  <button class="btn ReportDownload align-self-center">Download</button>
+                  <button class="btn ReportDownload align-self-center clickEffect">Download</button>
                 </div>
               </div>
             </div>
@@ -1488,7 +1488,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesLeave() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousLeavePage()" [disabled]="currentLeavePage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -1498,7 +1498,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageLeave()"
               [disabled]="currentLeavePage == getTotalPagesLeave()">
               Next <i class="fa fa-angle-right"></i>
@@ -1831,7 +1831,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesatt() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousattPage()" [disabled]="currentattPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -1841,7 +1841,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageatt()"
               [disabled]="currentattPage == getTotalPagesatt()">
               Next <i class="fa fa-angle-right"></i>
@@ -2011,7 +2011,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesWfh() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousWfhPage()" [disabled]="currentWfhPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -2021,7 +2021,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageWfh()"
               [disabled]="currentWfhPage == getTotalPagesWfh()">
               Next <i class="fa fa-angle-right"></i>
@@ -2199,7 +2199,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesAllatt() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousAllattPage()" [disabled]="currentAllattPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -2210,7 +2210,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageAllatt()"
               [disabled]="currentAllattPage == getTotalPagesAllatt()">
               Next <i class="fa fa-angle-right"></i>
@@ -2329,7 +2329,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesAllWfh() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousAllWfhPage()" [disabled]="currentAllWfhPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -2340,7 +2340,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageAllWfh()"
               [disabled]="currentAllWfhPage == getTotalPagesAllWfh()">
               Next <i class="fa fa-angle-right"></i>
@@ -2461,7 +2461,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesAllLeave() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousAllLeavePage()" [disabled]="currentAllLeavePage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -2472,7 +2472,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageAllLeave()"
               [disabled]="currentAllLeavePage == getTotalPagesAllLeave()">
               Next <i class="fa fa-angle-right"></i>
@@ -2614,7 +2614,7 @@
 
               <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
                 <!-- <button class="recruitment_button" type="submit" (click)="uploadLeavePolicy()">Upload</button> -->
-                <button class="recruitment_button" type="submit" (click)="LeavePolicyPdf()">Download File</button>
+                <button class="recruitment_button clickEffect" type="submit" (click)="LeavePolicyPdf()">Download File</button>
               </div>
             </form>
           </div>
@@ -2656,8 +2656,8 @@
               </div>
 
               <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center gap-4">
-                <button class="recruitment_button_cancel" type="button">Cancel</button>
-                <button class="recruitment_button" type="submit" (click)="noticePeriodDays(noticePeriod)">Save</button>
+                <button class="recruitment_button_cancel clickEffect" type="button">Cancel</button>
+                <button class="recruitment_button clickEffect" type="submit" (click)="noticePeriodDays(noticePeriod)">Save</button>
               </div>
             </form>
           </div>
@@ -3005,8 +3005,8 @@
               </div>
 
               <div class="col-lg-12 col-12 d-flex justify-content-center align-items-center">
-                <button class="recruitment_button m-1" type="submit" (click)="addShiftTime()">Save</button>
-                <button class="recruitment_button m-1" type="submit"
+                <button class="recruitment_button m-1 clickEffect" type="submit" (click)="addShiftTime()">Save</button>
+                <button class="recruitment_button m-1 clickEffect" type="submit"
                   (click)="loginService.showTable('viewShiftTime')">View Shift</button>
               </div>
             </form>
@@ -3094,7 +3094,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+        <button type="button" class="btn btn-secondary clickEffect" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
       </div>
     </div>
   </div>
@@ -3394,7 +3394,7 @@
 
               <div class="row mb-2">
                 <div class="col-md-3 d-flex justify-content-center offset-sm-2 offset-md-9">
-                  <button class="recruitment_button" type="submit">Submit</button>
+                  <button class="recruitment_button clickEffect" type="submit">Submit</button>
                 </div>
               </div>
 
@@ -3499,7 +3499,7 @@
                       {{position.currency}}
                     </div>
                     <img src="../../../assets/image/broder_right_recruitment.svg" alt="">
-                    <div class="table_body_topics" style="width: 20%;"><button class="btn btn-success"
+                    <div class="table_body_topics" style="width: 20%;"><button class="btn btn-success clickEffect"
                         (click)="getPositionById(position.id)">View
                         Details</button> </div>
 
@@ -3515,7 +3515,7 @@
           <div class="col-md-12" *ngIf="getTotalPages() > 1">
             <div class="table_footer mt-2">
 
-              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                 style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
                 <i class="fa fa-angle-left"></i> Previous
               </button>
@@ -3528,7 +3528,7 @@
               </div>
 
 
-              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                 style="background-color:#421cdd;" (click)="nextPage()" [disabled]="currentPage == getTotalPages()">
                 Next <i class="fa fa-angle-right"></i>
               </button>
@@ -3988,7 +3988,7 @@
               </div>
               <div class="row mb-2">
                 <div class="col-md-4 d-flex justify-content-center offset-sm-2 offset-md-8">
-                  <button class="recruitment_button" type="submit">Schedule</button>
+                  <button class="recruitment_button clickEffect" type="submit">Schedule</button>
                 </div>
               </div>
 
@@ -4117,7 +4117,7 @@
           <div class="col-md-12" *ngIf="getTotalPagesInterview() > 1">
             <div class="table_footer mt-2">
               <!-- Update Previous button -->
-              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                 style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
                 <i class="fa fa-angle-left"></i> Previous
               </button>
@@ -4132,7 +4132,7 @@
 
 
               <!-- Update Next button -->
-              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                 style="background-color:#421cdd;" (click)="nextPageInterview()"
                 [disabled]="currentPage == getTotalPagesInterview()">
                 Next <i class="fa fa-angle-right"></i>
@@ -4297,7 +4297,7 @@
           </div>
           <div class="col-md-12" *ngIf="getTotalPagesCandidate() > 1">
             <div class="table_footer mt-2">
-              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                 style="background-color:#421cdd;" (click)="previousPage()" [disabled]="currentPage == 1">
                 <i class="fa fa-angle-left"></i> Previous
               </button>
@@ -4308,7 +4308,7 @@
                   {{ pageNumber }}
                 </div>
               </div>
-              <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+              <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                 style="background-color:#421cdd;" (click)="nextPageCandidate()"
                 [disabled]="currentPage == getTotalPagesCandidate()">
                 Next <i class="fa fa-angle-right"></i>
@@ -4557,7 +4557,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesTodayatt() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousTodayattPage()" [disabled]="currentTodayAttPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -4568,7 +4568,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageTodayatt()"
               [disabled]="currentTodayAttPage == getTotalPagesTodayatt()">
               Next <i class="fa fa-angle-right"></i>
@@ -4655,7 +4655,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesTodayWfh() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousTodayWfhPage()" [disabled]="currentTodayWfhPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -4666,7 +4666,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageTodayWfh()"
               [disabled]="currentTodayWfhPage == getTotalPagesTodayWfh()">
               Next <i class="fa fa-angle-right"></i>
@@ -4765,7 +4765,7 @@
     <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesTodaySick() > 1">
         <div class="table_footer mt-2">
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="previousTodaySickPage()" [disabled]="currentTodaySickPage == 1">
             <i class="fa fa-angle-left"></i> Previous
           </button>
@@ -4776,7 +4776,7 @@
               {{ pageNumber }}
             </div>
           </div>
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="nextPageTodaySick()"
             [disabled]="currentTodaySickPage == getTotalPagesTodaySick()">
             Next <i class="fa fa-angle-right"></i>
@@ -4874,7 +4874,7 @@
     <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesTodayCasual() > 1">
         <div class="table_footer mt-2">
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="previousTodayCasualPage()"
             [disabled]="currentTodayCasualPage == 1">
             <i class="fa fa-angle-left"></i> Previous
@@ -4886,7 +4886,7 @@
               {{ pageNumber }}
             </div>
           </div>
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="nextPageTodayCasual()"
             [disabled]="currentTodayCasualPage == getTotalPagesTodayCasual()">
             Next <i class="fa fa-angle-right"></i>
@@ -4985,7 +4985,7 @@
     <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesTodayAbsent() > 1">
         <div class="table_footer mt-2">
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="previousTodayAbsentPage()"
             [disabled]="currentTodayAbsentPage == 1">
             <i class="fa fa-angle-left"></i> Previous
@@ -4997,7 +4997,7 @@
               {{ pageNumber }}
             </div>
           </div>
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="nextPageTodayAbsent()"
             [disabled]="currentTodayAbsentPage == getTotalPagesTodayAbsent()">
             Next <i class="fa fa-angle-right"></i>
@@ -5080,7 +5080,7 @@
     <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesFullTimeEmp() > 1">
         <div class="table_footer mt-2">
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="previousFullTimeEmpPage()"
             [disabled]="currentFullTimeEmpPage == 1">
             <i class="fa fa-angle-left"></i> Previous
@@ -5092,7 +5092,7 @@
               {{ pageNumber }}
             </div>
           </div>
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="nextPageFullTimeEmp()"
             [disabled]="currentFullTimeEmpPage == getTotalPagesFullTimeEmp()">
             Next <i class="fa fa-angle-right"></i>
@@ -5176,7 +5176,7 @@
     <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesPartTimeEmp() > 1">
         <div class="table_footer mt-2">
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="previousPartTimeEmpPage()"
             [disabled]="currentPartTimeEmpPage == 1">
             <i class="fa fa-angle-left"></i> Previous
@@ -5188,7 +5188,7 @@
               {{ pageNumber }}
             </div>
           </div>
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="nextPagePartTimeEmp()"
             [disabled]="currentPartTimeEmpPage == getTotalPagesPartTimeEmp()">
             Next <i class="fa fa-angle-right"></i>
@@ -5272,7 +5272,7 @@
     <div class="modal-footer">
       <div class="col-md-12" *ngIf="getTotalPagesinternEmp() > 1">
         <div class="table_footer mt-2">
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="previousinternEmpPage()" [disabled]="currentinternEmpPage == 1">
             <i class="fa fa-angle-left"></i> Previous
           </button>
@@ -5283,7 +5283,7 @@
               {{ pageNumber }}
             </div>
           </div>
-          <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
             style="background-color:#421cdd;" (click)="nextPageinternEmp()"
             [disabled]="currentinternEmpPage == getTotalPagesinternEmp()">
             Next <i class="fa fa-angle-right"></i>
@@ -5423,11 +5423,11 @@
                   <button *ngIf="editModeIndex !== i" type="button" class="btn" (click)="deleteHoliday(item.id)">
                     <img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon">
                   </button>
-                  <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Approve"
+                  <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Approve clickEffect"
                     (click)="updateHoliday(item)">
                     Update
                   </button>
-                  <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Reject" (click)="stopEdit()">
+                  <button *ngIf="editModeIndex === i" type="button" class="btn m-1 Reject clickEffect" (click)="stopEdit()">
                     Cancel
                   </button>
                 </div>
@@ -5451,8 +5451,8 @@
 
                 <div class="table_body_topics mt-2" style="width: 20%;">
 
-                  <button *ngIf="isEditMode" type="button" class="btn m-1 Approve" (click)="saveHoliday()">Save</button>
-                  <button *ngIf="isEditMode" type="button" class="btn m-1 Reject" (click)="cancelEdit()">Cancel</button>
+                  <button *ngIf="isEditMode" type="button" class="btn m-1 Approve clickEffect" (click)="saveHoliday()">Save</button>
+                  <button *ngIf="isEditMode" type="button" class="btn m-1 Reject clickEffect" (click)="cancelEdit()">Cancel</button>
 
 
                   <button *ngIf="!isEditMode" type="button" class="btn"><img src="/assets/image/EditHolidayIcon.svg"
@@ -5461,7 +5461,7 @@
                       alt="" class="EditHolidayIcon"></button>
                 </div>
               </div>
-              <button type="button" class="btn Approve mt-2" *ngIf="!isEditMode" (click)="toggleTableBody()">+
+              <button type="button" class="btn Approve mt-2 clickEffect" *ngIf="!isEditMode" (click)="toggleTableBody()">+
                 Add</button>
               <div class="not_data_img_div" *ngIf="getPaginatedHolidayData().length == 0">
                 <p>No Data !!</p>
@@ -5475,7 +5475,7 @@
 
         <div class="col-md-12" *ngIf="getTotalPagesHoliday() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousHolidayPage()" [disabled]="holidayCurrentPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -5486,7 +5486,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageHoliday()"
               [disabled]="holidayCurrentPage == getTotalPagesHoliday()">
               Next <i class="fa fa-angle-right"></i>
@@ -5608,7 +5608,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesLast7DaysPresent() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousLast7DaysPresentPage()"
               [disabled]="currentLast7DaysPresentPage == 1">
               <i class="fa fa-angle-left"></i> Previous
@@ -5620,7 +5620,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageLast7DaysPresent()"
               [disabled]="currentLast7DaysPresentPage == getTotalPagesLast7DaysPresent()">
               Next <i class="fa fa-angle-right"></i>
@@ -5708,7 +5708,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesLast7DaysLateArrival() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousLast7DaysLateArrivalPage()"
               [disabled]="currentLast7DaysLateArrivalPage == 1">
               <i class="fa fa-angle-left"></i> Previous
@@ -5720,7 +5720,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageLast7DaysLateArrival()"
               [disabled]="currentLast7DaysLateArrivalPage == getTotalPagesLast7DaysLateArrival()">
               Next <i class="fa fa-angle-right"></i>
@@ -5807,7 +5807,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesLast7DaysEarlyDeparture() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousLast7DaysEarlyDeparturePage()"
               [disabled]="currentLast7DaysEarlyDeparturePage == 1">
               <i class="fa fa-angle-left"></i> Previous
@@ -5819,7 +5819,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageLast7DaysEarlyDeparture()"
               [disabled]="currentLast7DaysEarlyDeparturePage == getTotalPagesLast7DaysEarlyDeparture()">
               Next <i class="fa fa-angle-right"></i>
@@ -5904,7 +5904,7 @@
       <div class="modal-footer">
         <div class="col-md-12" *ngIf="getTotalPagesAbsent() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousAbsentPage()" [disabled]="absentCurrentPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -5915,7 +5915,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageAbsent()"
               [disabled]="absentCurrentPage == getTotalPagesAbsent()">
               Next <i class="fa fa-angle-right"></i>
@@ -6023,11 +6023,11 @@
                     (click)="deleteBirthday(item.id)">
                     <img src="/assets/image/deleteHolidayIcon.svg" alt="" class="EditHolidayIcon">
                   </button>
-                  <button *ngIf="editModeIndexBirthday === i" type="button" class="btn m-1 Approve"
+                  <button *ngIf="editModeIndexBirthday === i" type="button" class="btn m-1 Approve clickEffect"
                     (click)="updateBirthday(item)">
                     Update
                   </button>
-                  <button *ngIf="editModeIndexBirthday === i" type="button" class="btn m-1 Reject"
+                  <button *ngIf="editModeIndexBirthday === i" type="button" class="btn m-1 Reject clickEffect"
                     (click)="stopEditBirthday()">
                     Cancel
                   </button>
@@ -6056,9 +6056,9 @@
 
                 <div class="table_body_topics mt-2" style="width: 30%;">
 
-                  <button *ngIf="isBirthdayEditMode" type="button" class="btn m-1 Approve"
+                  <button *ngIf="isBirthdayEditMode" type="button" class="btn m-1 Approve clickEffect"
                     (click)="addBirthDay()">Save</button>
-                  <button *ngIf="isBirthdayEditMode" type="button" class="btn m-1 Reject"
+                  <button *ngIf="isBirthdayEditMode" type="button" class="btn m-1 Reject clickEffect"
                     (click)="cancelEditBirthday()">Cancel</button>
 
 
@@ -6069,9 +6069,9 @@
                 </div>
               </div>
               <div class="d-flex flex-wrap mt-2">
-                <button type="button" class="btn Approve m-1" *ngIf="!isBirthdayEditMode"
+                <button type="button" class="btn Approve m-1 clickEffect" *ngIf="!isBirthdayEditMode"
                   (click)="toggleBirthdayTableBody()">+ Add</button>
-                <button type="button" class="btn Reject m-1" *ngIf="!isBirthdayEditMode"
+                <button type="button" class="btn Reject m-1 clickEffect" *ngIf="!isBirthdayEditMode"
                   (click)="deleteAllBirthday()">Delete All</button>
               </div>
               <div class="not_data_img_div" *ngIf="getPaginatedBirthdayData().length == 0">
@@ -6086,7 +6086,7 @@
 
         <div class="col-md-12" *ngIf="getTotalPagesBirthday() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousBirthdayPage()" [disabled]="birthdayCurrentPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -6097,7 +6097,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPageBirthday()"
               [disabled]="birthdayCurrentPage == getTotalPagesBirthday()">
               Next <i class="fa fa-angle-right"></i>
@@ -6141,9 +6141,8 @@
             </div>
           </div>
           <div class="d-flex justify-content-end mb-3" [ngClass]="{'col-md-4': payrollCurrentPage === 1, 'col-md-12': payrollCurrentPage >= 2}">
-            <button class="recruitment_button m-1" type="button" (click)="excelSalarySheet()">Export Sheet</button>
-            <button class="recruitment_button m-1" type="button" [routerLink]="['/addPayroll']"
-            (click)="loginService.showTable('addPayroll')">Add Payroll</button>
+            <button class="recruitment_button m-1 clickEffect" type="button" (click)="excelSalarySheet()">Export Sheet</button>
+            <button class="recruitment_button m-1 clickEffect" type="button" (click)="loginService.showTable('viewShiftTime')">Add Payroll</button>
           </div>
         </div>
 
@@ -6193,22 +6192,22 @@
                 &nbsp;Employee Name
               </div>
               <div class="table_head_topics my-2"
-                style="width: 20%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
+                style="width: 30%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
 
                 &nbsp; Email Id
               </div>
-              <div class="table_head_topics my-2"
+              <!-- <div class="table_head_topics my-2"
                 style="width: 20%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
 
                 &nbsp; Designation
-              </div>
+              </div> -->
               <div class="table_head_topics my-2"
-                style="width: 10%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
+                style="width: 15%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
 
                 &nbsp; Salary
               </div>
               <div class="table_head_topics my-2"
-                style="width: 10%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
+                style="width: 15%;border-right: 2px solid #ADADAD; color: #FFFFFF; height: 100%;">
 
                 &nbsp; Payslip
               </div>
@@ -6224,14 +6223,15 @@
                   {{i + 1}} </div>
                 <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
                   item.employeeName }}</div>
-                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
+                <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
                   item.emailId }}</div>
-                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
-                  item.name }}</div>
-                <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; ">{{
+                <!-- <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
+                  item.designation }}</div> -->
+                <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; ">{{
                   item.netSalary }}</div>
-                <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; ">{{
-                  item.name }}</div>
+                <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; ">{{
+                  item.name }} <button class="btn Approve clickEffect"
+                  (click)="approveLeave(item.id)">Generate Slip</button></div>
 
 
 
@@ -6257,7 +6257,7 @@
 
         <div class="col-md-12" *ngIf="getTotalPagesPayroll() > 1">
           <div class="table_footer mt-2">
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="previousPayrollPage()" [disabled]="payrollCurrentPage == 1">
               <i class="fa fa-angle-left"></i> Previous
             </button>
@@ -6268,7 +6268,7 @@
                 {{ pageNumber }}
               </div>
             </div>
-            <button class="btn btn-secondary d-flex justify-content-center align-items-center"
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
               style="background-color:#421cdd;" (click)="nextPagePayroll()"
               [disabled]="payrollCurrentPage == getTotalPagesPayroll()">
               Next <i class="fa fa-angle-right"></i>
@@ -6300,8 +6300,14 @@
                 </div>
                 <div class="col-lg-12">
                   <input type="text" class="recruit_input m-0" name="employeeName" id="employeeName"
-                    [(ngModel)]="payroll.employeeName" placeholder="Enter first name" required>
+                    [(ngModel)]="payroll.employeeName" placeholder="Enter first name" required [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let employee of filterEmployees(payroll.employeeName)" [value]="employee.firstname+' '+employee.lastname">
+                      {{ employee.firstname }} {{ employee.lastname }}
+                    </mat-option>
+                  </mat-autocomplete>
                 </div>
+                
               </div>
               <div class="col-lg-6">
                 <div class="col-lg-12 d-flex align-items-center">
@@ -6310,7 +6316,12 @@
                 </div>
                 <div class="col-lg-12">
                   <input type="text" class="recruit_input m-0" name="emailId" id="emailId" placeholder="Enter email"
-                    [(ngModel)]="payroll.emailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    [(ngModel)]="payroll.emailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required [matAutocomplete]="email">
+                    <mat-autocomplete #email="matAutocomplete">
+                      <mat-option *ngFor="let email of filterEmail(payroll.emailId)" [value]="email.emailid">
+                        {{ email.emailid }} 
+                      </mat-option>
+                    </mat-autocomplete>
                 </div>
               </div>
             </div>
@@ -6539,7 +6550,7 @@
               </div>
             </div>
             <div class="row col-lg-12 d-flex justify-content-center my-3">
-              <button class="recruitment_button" type="button" (click)="addPayroll()">Save</button>
+              <button class="recruitment_button clickEffect" type="button" (click)="addPayroll()">Save</button>
             </div>
           </div>
         </div>

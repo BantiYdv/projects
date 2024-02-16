@@ -463,6 +463,9 @@ letter-spacing: 0.4px;
 #hoverReport:hover{
   content: url('/assets/image/icon/hoverReport.png');
 }
+#hoverPosition:hover{
+  content: url('/assets/image/icon/hoverPosition.png');
+}
 #hoverAssignRule:hover{
   content: url('/assets/image/icon/hoverAsignRule.png');
 }
@@ -472,8 +475,14 @@ letter-spacing: 0.4px;
 #hoverAttendance:hover{
   content: url('/assets/image/icon/hoverAttendance.png');
 }
+#hoverInterview:hover{
+  content: url('/assets/image/icon/hoverInterview.png');
+}
 #hoverCal:hover{
   content: url('/assets/image/icon/hoverAddholiday.png');
+}
+#hoverBirthday:hover{
+  content: url('/assets/image/icon/hoverBirthday.png');
 }
 #hoverLeavePolicy:hover{
   content: url('/assets/image/icon/hoverleave.png');
