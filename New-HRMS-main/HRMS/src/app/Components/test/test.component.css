@@ -1407,6 +1407,9 @@ background: #FFF;
   align-items: start;
 }
 .icon_position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   background-color: #000;
   border-radius: 10rem;
@@ -2176,4 +2179,45 @@ text-transform: capitalize;
   font-size: 23px;
   font-weight: 600;
   color:red;
+}
+
+
+.timeInputCss{
+  outline: none;
+  border:none;
+vertical-align: middle;
+text-align: center;
+
+  width: 40px;
+}
+/* / Hide the default spinner icons for number input / */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* / Hide the default spinner icons for number input in Firefox / */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.saveCssOfferLetter{
+  background-color: #421CDD;
+  color: #fff;
+}
+.sendCssOfferLetter{
+  background-color: #7919EF;
+  color: #fff;
+}
+.reGanCssOfferLetter{
+  background-color: #129B4B;
+  color: #fff;
+}
+.deleteCssOfferLetter{
+  background-color: #D92651;
+  color: #fff;
+}
+.document-data::-webkit-scrollbar {
+  display: none;
 }

@@ -2961,9 +2961,13 @@
                     </div>
                     <div class="col-lg-7 col-12">
                       <!-- <input type="number" class="recruit_input" name="halfDay" id="halfDay" [(ngModel)]="shiftTime.halfDay"> -->
-                      <input type="text" class="recruit_input" name="halfDayHrs" id="halfDayHrs"
-                        [(ngModel)]="shiftTime.halfDayHrs" (keyup)="formatTime(shiftTime.halfDayHrs, 'halfDayHrs')">
-
+                      <!-- <input type="text" class="recruit_input" name="halfDayHrs" id="halfDayHrs"
+                        [(ngModel)]="shiftTime.halfDayHrs" (keyup)="formatTime(shiftTime.halfDayHrs, 'halfDayHrs')"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', halfDayHr, halfDayMin)" #halfDayHr [(ngModel)]="halfDayTimeHr" name="halfDayTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, halfDayHr, halfDayMin, halfDaySec)" #halfDayMin [(ngModel)]="halfDayTimeMin" name="halfDayTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, halfDayMin, halfDaySec, halfDayHr)" #halfDaySec [(ngModel)]="halfDayTimeSec" name="halfDayTimeSec">
+                        </div>
                     </div>
                   </div>
                   <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
@@ -2972,9 +2976,13 @@
                     </div>
                     <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                       <!-- <input type="number" class="recruit_input" name="absentCount" id="absentCount" [(ngModel)]="shiftTime.absentCount"> -->
-                      <input type="text" class="recruit_input" name="absentHrs" id="absentHrs"
-                        [(ngModel)]="shiftTime.absentHrs" (keyup)="formatTime(shiftTime.absentHrs, 'absentHrs')">
-
+                      <!-- <input type="text" class="recruit_input" name="absentHrs" id="absentHrs"
+                        [(ngModel)]="shiftTime.absentHrs" (keyup)="formatTime(shiftTime.absentHrs, 'absentHrs')"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', absentHr, absentMin)" #absentHr [(ngModel)]="absentTimeHr" name="absentTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, absentHr, absentMin, absentSec)" #absentMin [(ngModel)]="absentTimeMin" name="absentTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, absentMin, absentSec, absentHr)" #absentSec [(ngModel)]="absentTimeSec" name="absentTimeSec">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -2985,9 +2993,13 @@
                     </div>
                     <div class="col-lg-7 col-12">
                       <!-- <input type="number" class="recruit_input" name="present" id="present" [(ngModel)]="shiftTime.present"> -->
-                      <input type="text" class="recruit_input" name="presentHrs" id="presentHrs"
-                        [(ngModel)]="shiftTime.presentHrs" (keyup)="formatTime(shiftTime.presentHrs, 'presentHrs')">
-
+                      <!-- <input type="text" class="recruit_input" name="presentHrs" id="presentHrs"
+                        [(ngModel)]="shiftTime.presentHrs" (keyup)="formatTime(shiftTime.presentHrs, 'presentHrs')"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', presentHr, presentMin)" #presentHr [(ngModel)]="presentTimeHr" name="presentTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, presentHr, presentMin, presentSec)" #presentMin [(ngModel)]="presentTimeMin" name="presentTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, presentMin, presentSec, presentHr)" #presentSec [(ngModel)]="presentTimeSec" name="presentTimeSec">
+                        </div>
                     </div>
                   </div>
                   <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
@@ -2996,9 +3008,13 @@
                     </div>
                     <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
                       <!-- <input type="number" class="recruit_input" name="overtime" id="overtime" [(ngModel)]="shiftTime.overtime"> -->
-                      <input type="text" class="recruit_input" name="overTimeHrs" id="overTimeHrs"
-                        [(ngModel)]="shiftTime.overTimeHrs" (keyup)="formatTime(shiftTime.overTimeHrs, 'overTimeHrs')">
-
+                      <!-- <input type="text" class="recruit_input" name="overTimeHrs" id="overTimeHrs"
+                        [(ngModel)]="shiftTime.overTimeHrs" (keyup)="formatTime(shiftTime.overTimeHrs, 'overTimeHrs')"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', overTimeHr, overTimeMin)" #overTimeHr [(ngModel)]="overTimeTimeHr" name="overTimeTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, overTimeHr, overTimeMin, overTimeSec)" #overTimeMin [(ngModel)]="overTimeTimeMin" name="overTimeTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, overTimeMin, overTimeSec, overTimeHr)" #overTimeSec [(ngModel)]="overTimeTimeSec" name="overTimeTimeSec">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -3167,8 +3183,13 @@
                       <label class="recruit_label">Half Day </label>
                     </div>
                     <div class="col-lg-7 col-12">
-                      <input type="time" class="recruit_input" name="halfDay" id="halfDay"
-                        [(ngModel)]="selectedItem.shiftDetails.halfDay">
+                      <!-- <input type="time" class="recruit_input" name="halfDay" id="halfDay"
+                        [(ngModel)]="selectedItem.shiftDetails.halfDay"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', halfDayHr, halfDayMin)" #halfDayHr [(ngModel)]="halfDayTimeHr" name="halfDayTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, halfDayHr, halfDayMin, halfDaySec)" #halfDayMin [(ngModel)]="halfDayTimeMin" name="halfDayTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, halfDayMin, halfDaySec, halfDayHr)" #halfDaySec [(ngModel)]="halfDayTimeSec" name="halfDayTimeSec">
+                        </div>
                     </div>
                   </div>
                   <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
@@ -3176,9 +3197,13 @@
                       <label class="recruit_label">Absent Count </label>
                     </div>
                     <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
-                      <input type="time" class="recruit_input" name="absentCount" id="absentCount"
-                        [(ngModel)]="selectedItem.shiftDetails.absentCount">
-
+                      <!-- <input type="time" class="recruit_input" name="absentCount" id="absentCount"
+                        [(ngModel)]="selectedItem.shiftDetails.absentCount"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', absentHr, absentMin)" #absentHr [(ngModel)]="absentTimeHr" name="absentTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, absentHr, absentMin, absentSec)" #absentMin [(ngModel)]="absentTimeMin" name="absentTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, absentMin, absentSec, absentHr)" #absentSec [(ngModel)]="absentTimeSec" name="absentTimeSec">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -3188,8 +3213,13 @@
                       <label class="recruit_label">Present </label>
                     </div>
                     <div class="col-lg-7 col-12">
-                      <input type="time" class="recruit_input" name="present" id="present"
-                        [(ngModel)]="selectedItem.shiftDetails.present">
+                      <!-- <input type="time" class="recruit_input" name="present" id="present"
+                        [(ngModel)]="selectedItem.shiftDetails.present"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', presentHr, presentMin)" #presentHr [(ngModel)]="presentTimeHr" name="presentTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, presentHr, presentMin, presentSec)" #presentMin [(ngModel)]="presentTimeMin" name="presentTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, presentMin, presentSec, presentHr)" #presentSec [(ngModel)]="presentTimeSec" name="presentTimeSec">
+                        </div>
                     </div>
                   </div>
                   <div class="col-lg-5 col-md-6 col-12 d-flex flex-wrap">
@@ -3197,9 +3227,13 @@
                       <label class="recruit_label">Over Time </label>
                     </div>
                     <div class="col-lg-7 col-12 d-flex justify-content-center align-items-center">
-                      <input type="time" class="recruit_input" name="overtime" id="overtime"
-                        [(ngModel)]="selectedItem.shiftDetails.overtime">
-
+                      <!-- <input type="time" class="recruit_input" name="overtime" id="overtime"
+                        [(ngModel)]="selectedItem.shiftDetails.overtime"> -->
+                        <div class="recruit_input d-flex justify-content-center align-items-center">
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="24" autocomplete="off" (keyup)="move($event, '', overTimeHr, overTimeMin)" #overTimeHr [(ngModel)]="overTimeTimeHr" name="overTimeTimeHr">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, overTimeHr, overTimeMin, overTimeSec)" #overTimeMin [(ngModel)]="overTimeTimeMin" name="overTimeTimeMin">:
+                          <input type="number" class="timeInputCss" placeholder="00" maxlength="2" min="00" max="60" autocomplete="off" (keyup)="move($event, overTimeMin, overTimeSec, overTimeHr)" #overTimeSec [(ngModel)]="overTimeTimeSec" name="overTimeTimeSec">
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -6142,25 +6176,25 @@
           </div>
           <div class="d-flex justify-content-end mb-3" [ngClass]="{'col-md-4': payrollCurrentPage === 1, 'col-md-12': payrollCurrentPage >= 2}">
             <button class="recruitment_button m-1 clickEffect" type="button" (click)="excelSalarySheet()">Export Sheet</button>
-            <button class="recruitment_button m-1 clickEffect" type="button" (click)="loginService.showTable('viewShiftTime')">Add Payroll</button>
+            <button class="recruitment_button m-1 clickEffect" type="button" (click)="loginService.showTable('addPayroll')">Add Payroll</button>
           </div>
         </div>
 
-        <div class="row mt-2">
+        <div class="row mt-2 d-flex justify-content-end">
           <div class="m-0"
             [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
-            <input [(ngModel)]="searchPayroll" (input)="applyFilter()" placeholder="Employee Name"
+            <input [(ngModel)]="searchPayroll" (input)="FilterPayroll()" placeholder="Employee Name"
               class="form-control searchEmp">
           </div>
           <div class="m-0"
             [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
-            <input [(ngModel)]="searchPayrollEmail" (input)="applyFilterEmail()" placeholder="Email ID"
+            <input [(ngModel)]="searchPayrollEmail" (input)="applyFilterPayroll()" placeholder="Email ID"
               class="form-control searchEmp">
           </div>
-          <div class="m-0"
+          <!-- <div class="m-0"
             [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
 
-            <input [(ngModel)]="searchPayrolldesignation" (input)="applyFilterDesignation()" placeholder="-- Designation --"
+            <input [(ngModel)]="searchPayrolldesignation" (input)="applyFilterPayrollDesignation()" placeholder="-- Designation --"
               class="form-control searchEmp" [matAutocomplete]="auto">
 
             <mat-autocomplete #auto="matAutocomplete">
@@ -6168,7 +6202,7 @@
                 {{ designation }}
               </mat-option>
             </mat-autocomplete>
-          </div>
+          </div> -->
 
 
 
@@ -6231,7 +6265,7 @@
                   item.netSalary }}</div>
                 <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; ">{{
                   item.name }} <button class="btn Approve clickEffect"
-                  (click)="approveLeave(item.id)">Generate Slip</button></div>
+                  (click)="generateSalarySlip()">Generate Slip</button></div>
 
 
 
@@ -6239,9 +6273,9 @@
                 <div class="table_body_topics mt-2" style="width: 10%;">
 
                   <button type="button" class="btn"><img src="/assets/image/EditHolidayIcon.svg" alt=""
-                      class="EditHolidayIcon"></button>
+                      class="EditHolidayIcon" (click)="viewUpdateSalary(item)"></button>
                   <button type="button" class="btn"><img src="/assets/image/deleteHolidayIcon.svg" alt=""
-                      class="EditHolidayIcon"></button>
+                      class="EditHolidayIcon" (click)="deleteAddedSalary(item.id)"></button>
                 </div>
               </div>
 
@@ -6343,8 +6377,8 @@
                   </label>
                 </div>
                 <div class="col-lg-12">
-                  <input type="text" class="recruit_input m-0" name="totalDays" id="totalDays" placeholder="Total days"
-                    [(ngModel)]="payroll.totalDays" required>
+                  <input type="text" class="recruit_input m-0" name="workingDaysInMonth" id="workingDaysInMonth" placeholder="Total days"
+                    [(ngModel)]="payroll.workingDaysInMonth" required>
                 </div>
               </div>
             </div>
@@ -6550,7 +6584,8 @@
               </div>
             </div>
             <div class="row col-lg-12 d-flex justify-content-center my-3">
-              <button class="recruitment_button clickEffect" type="button" (click)="addPayroll()">Save</button>
+              <button class="recruitment_button clickEffect m-1" type="button" (click)="addPayroll()">Save</button>
+              <button type="button" class="recruitment_button clickEffect m-1" (click)="closeupdateSalary()">Close</button>
             </div>
           </div>
         </div>
@@ -6559,5 +6594,586 @@
   </div>
 
   <!-- add payroll end -->
+
+    <!-- update payroll start -->
+
+    <div *ngSwitchCase="'updatePayroll'">
+      <div class="content m-1 mt-4">
+        <div class="recruit_form mb-5 ">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+              <h1 class="text-center add_position">Update Salary</h1>
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Employee Name <span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="employeeName" id="employeeName"
+                      [(ngModel)]="viewSalaryUpdate.employeeName" placeholder="Enter first name" required [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let employee of filterEmployees(payroll.employeeName)" [value]="employee.firstname+' '+employee.lastname">
+                        {{ employee.firstname }} {{ employee.lastname }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </div>
+                  
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Email ID
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="emailId" id="emailId" placeholder="Enter email"
+                      [(ngModel)]="viewSalaryUpdate.emailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required [matAutocomplete]="email">
+                      <mat-autocomplete #email="matAutocomplete">
+                        <mat-option *ngFor="let email of filterEmail(payroll.emailId)" [value]="email.emailid">
+                          {{ email.emailid }} 
+                        </mat-option>
+                      </mat-autocomplete>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Net salary per month<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Net Salary is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="netSalary" id="netSalary"
+                      [(ngModel)]="viewSalaryUpdate.netSalary" placeholder="Enter first name" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Total days
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="workingDaysInMonth" id="workingDaysInMonth" placeholder="Total days"
+                      [(ngModel)]="viewSalaryUpdate.workingDaysInMonth" required>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Total Leaves<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="totalLeaves" id="totalLeaves"
+                      [(ngModel)]="viewSalaryUpdate.totalLeaves" placeholder="Total leaves" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Unpaid Leaves
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="unpaidLeaves" id="unpaidLeaves"
+                      placeholder="Unpaid leaves" [(ngModel)]="viewSalaryUpdate.unpaidLeaves" required>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Paid Leaves<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="paidLeaves" id="paidLeaves"
+                      [(ngModel)]="viewSalaryUpdate.paidLeaves" placeholder="Paid leaves" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Payable days
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="payableDays" id="payableDays"
+                      placeholder="Payable days" [(ngModel)]="viewSalaryUpdate.payableDays" required>
+                  </div>
+                </div>
+              </div>
+  
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3 mt-4">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="payroll_labelEarning">Earning</label>
+                  </div>
+  
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="payroll_labelDeduction">Deduction
+                    </label>
+                  </div>
+  
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Basic (%)<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="basicSalary" id="basicSalary"
+                      [(ngModel)]="viewSalaryUpdate.basicSalary" placeholder="Basic salary" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">PF
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="providentFund" id="providentFund" placeholder="PF"
+                      [(ngModel)]="viewSalaryUpdate.providentFund" required>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">HRA (%)<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="hra" id="hra" [(ngModel)]="viewSalaryUpdate.hra"
+                      placeholder="HRA" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">TDS
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="tds" id="tds" placeholder="TDS"
+                      [(ngModel)]="viewSalaryUpdate.tds" required>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Medical Allowance<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="medicalAllowance" id="medicalAllowance"
+                      [(ngModel)]="viewSalaryUpdate.medicalAllowance" placeholder="Medical allowance" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Leave deduction
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="leaveDeduction" id="leaveDeduction"
+                      placeholder="Leave deduction" [(ngModel)]="viewSalaryUpdate.leaveDeduction" required>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Other<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="other" id="other" [(ngModel)]="viewSalaryUpdate.other"
+                      placeholder="Other" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Add other
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="addOther" id="addOther" placeholder="Add other"
+                      [(ngModel)]="viewSalaryUpdate.addOther" required>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">DA (%)<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="dearnessAllowance" id="dearnessAllowance"
+                      [(ngModel)]="viewSalaryUpdate.dearnessAllowance" placeholder="Dearness Allowance" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Save
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="save" id="save" placeholder="Save"
+                      [(ngModel)]="viewSalaryUpdate.save" required>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row col-lg-12 ms-lg-2 ms-sm-1 my-3">
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Convayance<span class="text-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Employee Name is required.">*</span></label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="conveyanceAllowance" id="conveyanceAllowance"
+                      [(ngModel)]="viewSalaryUpdate.conveyanceAllowance" placeholder="Convayance" required>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 d-flex align-items-center">
+                    <label class="recruit_label">Performance incentives
+                    </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="text" class="recruit_input m-0" name="performanceIncentives" id="performanceIncentives"
+                      placeholder="Performance incentives" [(ngModel)]="viewSalaryUpdate.performanceIncentives" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row col-lg-12 d-flex justify-content-center my-3">
+                <button class="recruitment_button clickEffect m-1" type="button" (click)="updateSalary(viewSalaryUpdate)">Update</button>
+                <button type="button" class="recruitment_button clickEffect m-1" (click)="closeupdateSalary()">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- update payroll end -->
+
+  <!-- previewOfferLetter start -->
+<div *ngSwitchCase="'previewOfferLetter'">
+  <div class="content m-1 mt-4">
+    <div class="recruit_form mb-5 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12 d-flex flex-column justify-content-center align-items-center">
+        <h2 class="mt-3">Offer Letter Preview</h2>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <img src="../../../assets/image/offerLetterpreview.svg" class="w-100" alt="">
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-around align-items-center my-3">
+          <button class="btn saveCssOfferLetter"><img src="../../../assets/image/save_icon_offerLetter.svg" alt=""> Save</button>
+          <button class="btn sendCssOfferLetter"><img src="../../../assets/image/send_icon_offerLetter.svg" alt=""> Send</button>
+          <button class="btn reGanCssOfferLetter"><img src="../../../assets/image/regen_icon_offerLetter.svg" alt=""> Regenrate</button>
+          <button class="btn deleteCssOfferLetter"><img src="../../../assets/image/delet_icon_offerLetter.svg" alt=""> Delete</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- previewOfferLetter end -->
+
+<!-- add offer letter start -->
+
+<div *ngSwitchCase="'offerLetter'">
+  <div class="content m-1 mt-4">
+    <div class="recruit_form mb-5 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+          <form (ngSubmit)="generateOfferLetter()" #offerLetterForm="ngForm">
+            <h1 class="text-center add_position">Generate Offer Letter</h1>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Upload Offer Letter Format :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <div class="recruit_input d-flex">
+
+                  <div id="file-name">{{ offerLetter.file || "No file selected" }}</div>
+                  <button id="select-file-btn" type="button" (click)="fileInput.click()">Select File</button>
+                  <input #fileInput type="file" id="file-input" (change)="onFileSelectedOfferLetter($event)"
+                    style="display: none;" />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Candidate Name :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex gap-4">
+                <input type="text" class="recruit_input col-12"
+                  placeholder="Name" [(ngModel)]="offerLetter.name"
+                  name="name" required>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Job Position :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <input type="text" class="recruit_input col-12"
+                  placeholder="Position" [(ngModel)]="offerLetter.positionName"
+                  name="positionName" required>
+              </div>
+            </div>
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Company Name :</label>
+
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap">
+                <input type="text" class="recruit_input col-12"
+                  placeholder="Company Name" [(ngModel)]="offerLetter.companyName"
+                  name="companyName" required>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Joining Date :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap gap-2">
+                <input type="date" class="recruit_input" placeholder="__/__/20__" [(ngModel)]="offerLetter.joiningDate"
+                  name="joiningDate" required>
+              </div>
+            </div>
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Salary Per Month :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex flex-wrap gap-2">
+                <input type="text" class="recruit_input col-12"
+                placeholder="Salary" [(ngModel)]="offerLetter.salaryPerMonth"
+                name="salaryPerMonth" required>
+              </div>
+            </div>
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Confirmation Duration :</label>
+              </div>
+              <div class="col-lg-8 col-12 d-flex">
+                <div class="col-12 col-md-6 col-xl-6 d-flex gap-3">
+                <div class="col-lg-10 ">
+                  <input type="number" class="recruit_input" placeholder="Numbers" min="1" onmousewheel="return false"
+                    onwheel="return false" [(ngModel)]="offerLetter.confirmationDuration1" name="confirmationDuration1" required>
+                </div>
+                <div class="col-lg-2 position_no_icon">
+                  <button class="icon_position" type="button" (click)="incrementOfferLetterConfirmationDuration1()">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                  <button class="icon_position" type="button" (click)="decrementOfferLetterConfirmationDuration1()">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl-6 select-wrapper">
+                <!-- <div class="col-lg-5 col-12 select-wrapper"> -->
+                  <select class="recruit_input_select" [(ngModel)]="offerLetter.confirmationDuration2" name="confirmationDuration2"
+                    required>
+                    <option value="" disabled>-- Select --</option>
+                    <option value="year">Year</option>
+                    <option value="month">Month</option>
+                    <option value="day">Day</option>
+                  </select>
+                  <div class="custom-arrow" style="right: 5px;"></div>
+                <!-- </div> -->
+              </div>
+              </div>
+            </div>
+            <div class="col-lg-12 col-12 d-flex flex-wrap">
+              <div class="col-lg-4 col-12 d-flex align-items-center">
+                <label class="recruit_label">Required Documents :</label>
+              </div>
+              <div class="col-lg-8 col-12">
+                <div class="d-flex">                
+                <input type="text" class="recruit_input w-100" 
+                placeholder="Documents" [(ngModel)]="newDocument.documentName" name="newDocument">
+                  <!-- <button type="button" (click)="addDocument()">Add</button> -->
+                  <div class="position_no_icon">
+                    <button class="icon_position" type="button" (click)="addDocument()">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+                  <div *ngFor="let document of offerLetter.selectedDocuments" class="d-flex justify-content-start align-items-center gap-2 overflow-y-hidden document-data mt-2">
+                    <div class="fs-5 text-black ms-2">
+                      {{ document.documentName}}
+                    </div>
+  
+                    <div class="position_no_icon pe-2">
+                      <button type="button" class="close icon_position" aria-label="Close" (click)="removeDocument(document)">
+                        <i class="fa fa-close"></i>
+                      </button>
+                      <!-- <button class="icon_position" type="button" (click)="addDocument()">
+                        <i class="fa fa-plus"></i>
+                      </button> -->
+                    </div>
+                  </div>
+                  
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-3 d-flex justify-content-center offset-sm-2 offset-md-9">
+                <button class="recruitment_button" type="submit" [disabled]="offerLetterForm.invalid">Submit</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add offer letter end -->
+
+
+<!-- performance start -->
+<div *ngSwitchCase="'performance'">
+
+
+    <div class="container text-center">
+      <div class="col-md-12 d-flex justify-content-start mt-4">
+        <span class="allEmp">Performance</span>
+      </div>
+      <div class="row ">
+        <div class="d-flex justify-content-start" [ngClass]="{'col-md-8': currentemployeePage === 1}"
+          *ngIf="currentemployeePage === 1">
+
+          <div class="added_positions_list_right">
+            <div class="added_positions_under_head">Show</div>
+            <div>
+              <select class="added_positions_under_head_select" [(ngModel)]="employeeperPage">
+                <option value="8">8</option>
+                <option value="16">16</option>
+                <option value="24">24</option>
+                <option value="32">32</option>
+                <option value="40">40</option>
+              </select>
+            </div>
+            <div class="added_positions_under_head">Enteries</div>
+          </div>
+        </div>
+      
+      </div>
+
+      <div class="row mt-2">
+        <div class="m-0"
+          [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+          <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Employee Name"
+            class="form-control searchEmp">
+        </div>
+        <div class="m-0"
+          [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+          <input [(ngModel)]="searchEmail" (input)="applyFilterEmail()" placeholder="Email ID"
+            class="form-control searchEmp">
+        </div>
+        <div class="m-0"
+          [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+        
+          <input [(ngModel)]="searchdesignation" (input)="applyFilterDesignation()" placeholder="-- Designation --"
+            class="form-control searchEmp" [matAutocomplete]="auto">
+          
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let designation of designation" [value]="designation">
+              {{ designation }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+
+
+        <div class="m-0"
+          [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-2' : 'col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 mb-2'">
+          <button class="button_added_position_list searchEmpButton">Search</button>
+        </div>
+      </div>
+
+      <div class="not_data_img_div" *ngIf="filteredEmployeeData.length == 0">
+        <p>No Data !!</p>
+      </div>
+
+      <div class="row mt-3">
+        <div class="m-0"
+          [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-3' : 'col-12 col-sm-3 col-md-6 col-lg-4 col-xl-3 mb-3'"
+          *ngFor="let item of getPaginatedEmpData(); let i = index">
+          <div class="employee" >
+            <div class="icon">
+              <i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item [routerLink]="['/profile', 'viewProfile']"
+                  (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">View
+                  Profile</button>
+                <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit Profile</button>
+                <button mat-menu-item (click)="deleteEmployee(item.id)">Delete Profile</button>
+                <button mat-menu-item (click)="activeProfile(item.id, item.userActive)"
+                  *ngIf="item.userActive == false">Activate</button>
+                <button mat-menu-item (click)="activeProfile(item.id, item.userActive)"
+                  *ngIf="item.userActive == true">Deactivate</button>
+
+              </mat-menu>
+            </div>
+            <div [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
+              [queryParams]="{ id: item.id }">
+              <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%;" />
+            </div>
+            <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
+            <p class="titleGrid">{{item.designation }}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-12" *ngIf="getTotalPagesEmp() > 1">
+        <div class="table_footer mt-2">
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+            style="background-color:#421cdd;" (click)="previousEmpPage()" [disabled]="currentemployeePage == 1">
+            <i class="fa fa-angle-left"></i> Previous
+          </button>
+          <div class="recruitment_list_number">
+            <div *ngFor="let pageNumber of getPageNumbersEmp()"
+              [class.active_num]="pageNumber === currentemployeePage" class="recruitment_list_number_value"
+              (click)="changePageEmp(pageNumber)">
+              {{ pageNumber }}
+            </div>
+          </div>
+          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+            style="background-color:#421cdd;" (click)="nextPageEmp()"
+            [disabled]="currentemployeePage == getTotalPagesEmp()">
+            Next <i class="fa fa-angle-right"></i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+<!-- performance end -->
 
 </div>

@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class ApiService {
 
-  public apiUrl = 'https://hrms.prilient.com/';
-  // public apiUrl = 'http://192.168.1.5:9191/';
+  // public apiUrl = 'https://hrms.prilient.com/';
+  public apiUrl = 'http://192.168.1.5:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -148,6 +148,11 @@ export class ApiService {
   public addPayroll = `${this.apiUrl}gateway/onboard/addPayroll`;
   public viewPayroll = `${this.apiUrl}gateway/onboard/getAllPayroll`;
   public downloadSalaryPayroll = `${this.apiUrl}gateway/onboard/salarySheetList/excel`;
+  public generateSalarySlip = `${this.apiUrl}gateway/onboard/generateSalarySlip`;
+  public updateSalary = `${this.apiUrl}gateway/onboard/updateSalarySlip`;
+  public deleteAddedSalary = `${this.apiUrl}gateway/onboard/deleteAddedSalary`;
+  public generateOfferLetter = `${this.apiUrl}gateway/onboard/generate-offer-letter`;
+  public addPromotion = `${this.apiUrl}gateway/onboard/addPromotion`;
 
   
 

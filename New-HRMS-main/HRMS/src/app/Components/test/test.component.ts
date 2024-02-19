@@ -271,6 +271,19 @@ export class TestComponent {
 
   // role and permission list search end
 
+  offerLetter = {
+    file: '',
+    name: '',
+    positionName: '',
+    companyName: '',
+    joiningDate: '',
+    salaryPerMonth: '',
+    timeDurationOfConfirmation: '',
+    confirmationDuration1: 1,
+    confirmationDuration2: '',
+    selectedDocuments: [] as { documentName: string }[],
+  };
+
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public loginService: LoginService, public dashboardService: DashboardService, public testService: TestService, public RegisterAndUpdate: RegisterAndUpdateService, private route: ActivatedRoute, private countryCode: CountryCodeService, public adminService: AdminService) {
     //for change password start
     this.passwordForm = this.formBuilder.group({
@@ -322,6 +335,342 @@ export class TestComponent {
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
+  }
+
+
+  onFileSelectedOfferLetter(event: any): void {
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      const selectedFile = fileInput.files[0];
+      if (this.isPDFFile(selectedFile)) {
+        this.offerLetter.file = selectedFile.name;
+      } else {
+        this.offerLetter.file = 'Invalid file type. Please select a PDF file.';
+        // Optionally, you can reset the file input value to clear the selection
+        fileInput.value = '';
+      }
+    } else {
+      this.offerLetter.file = 'No file selected';
+    }
+  }
+
+  incrementOfferLetterConfirmationDuration1(): void {
+    this.offerLetter.confirmationDuration1++;
+  }
+
+  decrementOfferLetterConfirmationDuration1(): void {
+    if (this.offerLetter.confirmationDuration1 > 1) {
+      this.offerLetter.confirmationDuration1--;
+    }
+  }
+  offerLetterSave() {
+    console.warn('this.offerLetter', this.offerLetter);
+
+    Swal.fire({
+      title: 'Success!',
+      text: 'Offer Letter saved successfully.',
+      icon: 'success',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'OK',
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        // After the user clicks OK on the success message, navigate to the preview page
+        this.loginService.showTable('previewOfferLetter');
+        this.router.navigate(['/previewOfferLetter']);
+      }
+    });
+  }
+
+  halfDayTimeHr: any = '00';
+  halfDayTimeMin: any = '00';
+  halfDayTimeSec: any = '00';
+
+  absentTimeHr: any = '00';
+  absentTimeMin: any = '00';
+  absentTimeSec: any = '00';
+
+  presentTimeHr: any = '00';
+  presentTimeMin: any = '00';
+  presentTimeSec: any = '00';
+
+  overTimeTimeHr: any = '00';
+  overTimeTimeMin: any = '00';
+  overTimeTimeSec: any = '00';
+  removeValues(){
+    this.halfDayTimeHr= '00';
+    this.halfDayTimeMin= '00';
+    this.halfDayTimeSec= '00';
+  
+    this.absentTimeHr= '00';
+    this.absentTimeMin= '00';
+    this.absentTimeSec= '00';
+  
+    this.presentTimeHr= '00';
+    this.presentTimeMin= '00';
+    this.presentTimeSec= '00';
+  
+    this.overTimeTimeHr= '00';
+    this.overTimeTimeMin= '00';
+    this.overTimeTimeSec= '00';
+  }
+  changedInFormat(value:boolean) {
+    if (this.overTimeTimeHr > 23) {
+      this.overTimeTimeHr = 23;
+    }
+    if (this.overTimeTimeMin > 59) {
+      this.overTimeTimeMin = 59;
+    }
+    if (this.overTimeTimeSec > 59) {
+      this.overTimeTimeSec = 59;
+    }
+
+    if (this.presentTimeHr > 23) {
+      this.presentTimeHr = 23;
+    }
+    if (this.presentTimeMin > 59) {
+      this.presentTimeMin = 59;
+    }
+    if (this.presentTimeSec > 59) {
+      this.presentTimeSec = 59;
+    }
+
+    if (this.absentTimeHr > 23) {
+      this.absentTimeHr = 23;
+    }
+    if (this.absentTimeMin > 59) {
+      this.absentTimeMin = 59;
+    }
+    if (this.absentTimeSec > 59) {
+      this.absentTimeSec = 59;
+    }
+
+    if (this.halfDayTimeHr > 23) {
+      this.halfDayTimeHr = 23;
+    }
+    if (this.halfDayTimeMin > 59) {
+      this.halfDayTimeMin = 59;
+    }
+    if (this.halfDayTimeSec > 59) {
+      this.halfDayTimeSec = 59;
+    }
+
+    if(value == true){
+      this.shiftTime.halfDayHrs =
+      this.halfDayTimeHr +
+      ':' +
+      this.halfDayTimeMin +
+      ':' +
+      this.halfDayTimeSec;
+    this.shiftTime.absentHrs =
+      this.absentTimeHr + ':' + this.absentTimeMin + ':' + this.absentTimeSec;
+    this.shiftTime.presentHrs =
+      this.presentTimeHr +
+      ':' +
+      this.presentTimeMin +
+      ':' +
+      this.presentTimeSec;
+    this.shiftTime.overTimeHrs =
+      this.overTimeTimeHr +
+      ':' +
+      this.overTimeTimeMin +
+      ':' +
+      this.overTimeTimeSec;
+    }
+    else{
+this.selectedItem.halfDayHrs =
+      this.halfDayTimeHr +
+      ':' +
+      this.halfDayTimeMin +
+      ':' +
+      this.halfDayTimeSec;
+    this.selectedItem.absentHrs =
+      this.absentTimeHr + ':' + this.absentTimeMin + ':' + this.absentTimeSec;
+    this.selectedItem.presentHrs =
+      this.presentTimeHr +
+      ':' +
+      this.presentTimeMin +
+      ':' +
+      this.presentTimeSec;
+    this.selectedItem.overTimeHrs =
+      this.overTimeTimeHr +
+      ':' +
+      this.overTimeTimeMin +
+      ':' +
+      this.overTimeTimeSec;
+    }
+   
+  }
+  move(e: any, p: any, c: any, n: any) {
+    console.log("🚀  move  e:", e)
+    if (e.key == 'ArrowRight') {
+      n.focus();
+    }
+    if (e.key == 'ArrowLeft') {
+      p.focus();
+    }
+
+    // console.log('c', c.name);
+    c.value = c.value.replace(/[^0-9]/g, '');
+
+    const maxLength = 2;
+
+    if (
+      (c.name === 'halfDayTimeHr' ||
+        c.name === 'absentTimeHr' ||
+        c.name === 'presentTimeHr' ||
+        c.name === 'overTimeTimeHr') &&
+      c.value >= 23
+    ) {
+      c.value = 23;
+      n.focus();
+    }
+
+    if (
+      (c.name == 'halfDayTimeMin' ||
+        c.name == 'halfDayTimeSec' ||
+        c.name == 'absentTimeMin' ||
+        c.name == 'absentTimeSec' ||
+        c.name == 'presentTimeMin' ||
+        c.name == 'presentTimeSec' ||
+        c.name == 'overTimeTimeMin' ||
+        c.name == 'overTimeTimeSec') &&
+      c.value >= 60
+    ) {
+      if (c.value > 59) {
+        n.focus();
+      }
+      c.value = 59;
+    }
+    if (c.value.length > maxLength) {
+      if (c.value.length >= maxLength + 1) {
+        c.value = c.value.slice(1, maxLength + 1);
+        n.focus();
+      }
+      // else if(c.value.length >= maxLength){
+      //   c.value = c.value.slice(0, maxLength);
+      //   n.focus();
+      // }
+      if (n !== '') {
+        n.focus();
+      }
+    }
+
+    if (e.key === 'Backspace' && c.value === '') {
+      if (p !== '') {
+        p.focus();
+      }
+    }
+  }
+  // absentTimeHr: any = '00';
+  // absentTimeMin: any = '00';
+  // absentTimeSec: any = '00';
+
+  // moveabsent(e: any, p: any, c: any, n: any) {
+  //   console.log('c', c.name);
+  //   c.value = c.value.replace(/[^0-9]/g, '');
+
+  //   const maxLength = 2;
+
+  //   if (
+  //     c.name == 'absentTimeHr' &&
+  //     c.value >= 24
+  //   ) {
+  //     c.value = 24;
+  //   }
+  //   if (c.value.length >= maxLength) {
+  //     if (c.value.length >= 3) {
+  //       c.value = c.value.slice(1, maxLength + 1);
+  //     }
+  //     if (n !== '') {
+  //       n.focus();
+  //     }
+  //   }
+
+  //   if (e.key === 'Backspace' && c.value === '') {
+  //     if (p !== '') {
+  //       p.focus();
+  //     }
+  //   }
+  // }
+  // presentTimeHr: any = '00';
+  // presentTimeMin: any = '00';
+  // presentTimeSec: any = '00';
+
+  // movepresent(e: any, p: any, c: any, n: any) {
+  //   console.log('c', c.name);
+  //   c.value = c.value.replace(/[^0-9]/g, '');
+
+  //   const maxLength = 2;
+
+  //   if (
+  //     c.name == 'presentTimeHr' &&
+  //     c.value >= 24
+  //   ) {
+  //     c.value = 24;
+  //   }
+  //   if (c.value.length >= maxLength) {
+  //     if (c.value.length >= 3) {
+  //       c.value = c.value.slice(1, maxLength + 1);
+  //     }
+  //     if (n !== '') {
+  //       n.focus();
+  //     }
+  //   }
+
+  //   if (e.key === 'Backspace' && c.value === '') {
+  //     if (p !== '') {
+  //       p.focus();
+  //     }
+  //   }
+  // }
+  // overTimeTimeHr: any = '00';
+  // overTimeTimeMin: any = '00';
+  // overTimeTimeSec: any = '00';
+
+  // moveoverTime(e: any, p: any, c: any, n: any) {
+  //   console.log('c', c.name);
+  //   c.value = c.value.replace(/[^0-9]/g, '');
+
+  //   const maxLength = 2;
+
+  //   if (
+  //     c.name == 'overTimeTimeHr' &&
+  //     c.value >= 24
+  //   ) {
+  //     c.value = 24;
+  //   }
+  //   if (c.value.length >= maxLength) {
+  //     if (c.value.length >= 3) {
+  //       c.value = c.value.slice(1, maxLength + 1);
+  //     }
+  //     if (n !== '') {
+  //       n.focus();
+  //     }
+  //   }
+
+  //   if (e.key === 'Backspace' && c.value === '') {
+  //     if (p !== '') {
+  //       p.focus();
+  //     }
+  //   }
+  // }
+
+  // Inside your component class
+  newDocument: { documentName: string } = { documentName: '' };
+
+  addDocument() {
+    if (this.newDocument.documentName.trim() !== '') {
+      this.offerLetter.selectedDocuments.push({ documentName: this.newDocument.documentName });
+      this.newDocument.documentName = ''; // Reset the input field
+    }
+  }
+  
+  
+  removeDocument(document: any) {
+    const index = this.offerLetter.selectedDocuments.indexOf(document);
+    if (index !== -1) {
+      this.offerLetter.selectedDocuments.splice(index, 1);
+    }
   }
 
 
@@ -420,7 +769,7 @@ this.emailIds();
     // this.isModalOpen = true;
 
     // if (this.showAllAdminTable && '#/employee' === window.location.hash) {
-    if ('/employee' === this.router.url || '/reports' === this.router.url) {
+    if ('/employee' === this.router.url || '/reports' === this.router.url || '/performance' === this.router.url) {
 
 
       // Call the service method to fetch the list of employees
@@ -512,6 +861,9 @@ this.emailIds();
         this.toggleAllLeaveTable();
         break;
       case 'reports':
+        this.openEmployee();
+        break;
+      case 'performance':
         this.openEmployee();
         break;
       default:
@@ -6704,7 +7056,7 @@ checkReports(checkPermission: any): boolean {
     employeeName: '',
     emailId: '',
     netSalary: '',
-    totalDays: '',
+    workingDaysInMonth: '',
     totalLeaves: '',
     unpaidLeaves: '',
     paidLeaves: '',
@@ -6739,7 +7091,7 @@ checkReports(checkPermission: any): boolean {
           // this.clearFormPosition();
         });
         // this.getPositionRecruitment();
-        // this.viewPositionName();
+        this.viewPayroll();
       },
       (error) => {
         console.error('addPayroll error', error);
@@ -6769,10 +7121,24 @@ searchPayroll: string = '';
 
 
  FilterPayroll() {
-   this.fillterGetPayroll = this.getPayrollData.filter((item: { name: string }) =>
-     item.name.toLowerCase().includes(this.searchPayroll.toLowerCase())
+   this.fillterGetPayroll = this.getPayrollData.filter((payroll: { employeeName: string }) =>
+     payroll.employeeName.toLowerCase().includes(this.searchPayroll.toLowerCase())
    );
  }
+
+ applyFilterPayroll() {
+  this.fillterGetPayroll = this.getPayrollData.filter((payroll: { emailId: string; }) =>
+
+    payroll.emailId.toLowerCase().includes(this.searchPayrollEmail.toLowerCase())
+  );
+}
+
+applyFilterPayrollDesignation() {
+  this.fillterGetPayroll = this.getPayrollData.filter((payroll: { designation: string; }) =>
+    payroll.designation.toLowerCase().includes(this.searchPayrolldesignation.toLowerCase())
+  );
+  console.log("filter payroll designation", this.fillterGetPayroll)
+}
 
  getPaginatedPayrollData(): any[] {
    const startIndex = (this.payrollCurrentPage - 1) * this.payrollPerPage;
@@ -6847,6 +7213,100 @@ searchPayroll: string = '';
 
 
 // view payroll end
+viewSalaryUpdate: any;
+viewUpdateSalary(item: any){
+  this.viewSalaryUpdate = item;
+  this.loginService.showTable('updatePayroll');
+
+}
+
+  // update salary start
+  updateSalary(viewSalaryUpdate: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to update the Salary?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("??????", result.isConfirmed)
+        this.testService.updateSalary(viewSalaryUpdate).subscribe(
+          (response) => {
+            console.log('salary updated successfully:', response);
+            Swal.fire({
+              title: 'Success!',
+              text: 'Salary updated successfully!',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+            }).then(() => {
+              this.loginService.showTable('viewPayroll');
+            });
+            this.viewPayroll();
+          },
+          (error) => {
+            console.log('Error updating status:', error);
+            // Swal.fire('Error!', error.error, 'error');
+            Swal.fire({
+              title: 'Error!',
+              text: error.error,
+              icon: 'error',
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }
+        );
+      }
+      this.viewPayroll();
+    })
+
+  }
+  // update salary end
+
+  // API for delete salary start
+  deleteAddedSalary(id: any): void {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Are you sure you want to delete this Salary?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.testService.deleteAddedSalary(id).subscribe(
+        (response) => {
+          console.log('Salary deleted successfully.');
+          console.log("delete Salary", response);
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Salary has been deleted.',
+            icon: 'success'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.loginService.showTable('viewPayroll');
+              this.router.navigate(['/viewPayroll']);
+              this.viewPayroll();
+            }
+          });
+        },
+        (error) => {
+          Swal.fire('Error', error.error, 'error');
+        }
+      );
+    }
+  });
+}
+// API for delete salary end
+closeupdateSalary(){
+  this.loginService.showTable('viewPayroll');
+  this.router.navigate(['/viewPayroll']);
+  this.viewPayroll();
+}
 
 
  // API for download Salary Sheet in excel start
@@ -6877,5 +7337,74 @@ searchPayroll: string = '';
   });
 }
 // API for download Salary Sheet in excel end
+
+  // API for generate Salary Slip start
+
+  generateSalarySlip() {
+    Swal.fire({
+      title: 'Confirm Download',
+      text: 'Are you sure you want to Generate Salary Slip?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, generate it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.testService.generateSalarySlip().subscribe(
+          (response: HttpResponse<Blob>) => {
+            if (response.body) {
+              console.warn('response = response =', response);
+              const contentDisposition = response.headers.get(
+                'content-disposition'
+              );
+              const fileName = contentDisposition
+                ? contentDisposition.split('filename=')[1]
+                : 'SalarySlip.pdf';
+              saveAs(response.body, fileName);
+            } else {
+              console.error('Response body is null.');
+            }
+          },
+          (error) => {
+            Swal.fire('Error', error.error, 'error');
+            console.error(error);
+          }
+        );
+      }
+    });
+  }
+
+
+  // API for generate Salary Slip end
+
+// API for generateOfferLetter start
+generateOfferLetter() {
+  this.offerLetter.timeDurationOfConfirmation = this.offerLetter.confirmationDuration1 + ' ' + this.offerLetter.confirmationDuration2;
+  
+  console.warn('this.offerLetter', this.offerLetter);
+  
+  this.testService.generateOfferLetter(this.offerLetter).subscribe(
+    (response: any) => {
+      console.log('response', response);
+      // Show success message
+      Swal.fire({
+        icon: 'success',
+        title: 'Offer Letter Generated!',
+        text: 'Your offer letter has been successfully generated.',
+      });
+    },
+    (error: any) => {
+      console.error('error', error);
+      // Show error message
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: error.error,
+      });
+    }
+  );
+}
+// API for generateOfferLetter end
 
 }

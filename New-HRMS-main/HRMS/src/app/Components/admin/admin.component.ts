@@ -148,7 +148,7 @@ export class AdminComponent {
   showoldPassword: boolean = false;
   showconfirmPassword: boolean = false;
 
-  
+  checkButton:boolean | undefined;
 // change password validation end
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, public loginService: LoginService, private sanitizer: DomSanitizer, public dashboardService: DashboardService, public adminService: AdminService, public RegisterAndUpdate: RegisterAndUpdateService, public testService: TestService, public profileService: ProfileService) {
@@ -171,9 +171,15 @@ export class AdminComponent {
 
   checkedIn: boolean = false;
   checkedOut: boolean = false;
+  ratingMonth:any;
 
   ngOnInit() {
    
+    this.ratingMonth = new Date().toISOString().split('T')[0].slice(0,-3);
+    this.startInterval();
+    this.getAtt();
+
+
     this.getRemainingLeaves();
     this.getUserPhoto();              // for show employee photo when view by specific id
    
@@ -426,7 +432,105 @@ export class AdminComponent {
   }
 
   // WFH logic end
+  performanceNote:string = 'pills-probation';
+  timer: any;
+  getAtt() {
+    this.testService.getAttendance().subscribe(
+      (r: any) => {
+        // console.warn('r getAttendance', r);
+        const data = r;
+        // Assuming your data is stored in a variable called 'data'
+        const todayDate = new Date().toISOString().split('T')[0]; // Get today's date in "yyyy-mm-dd" format
 
+        const filteredData = data.filter(
+          (entry: { checkDate: string | null; checkout: string | null; }) => entry.checkDate === todayDate && entry.checkout == null
+        );
+        // console.log('filteredData-=-filteredData',filteredData[0]);
+        if(filteredData.length == 1){
+          this.timer = filteredData[0];
+          this.calculateTimeDifference();
+        }
+        else {
+          this.timer = 'not check-in';
+        }
+      },
+      (e: any) => {
+        console.error('e getAttendance', e);
+      }
+    );
+  }
+
+  
+// checkDate
+// checkin
+ 
+  // timeDifference: { hours: number; minutes: number; seconds: number; } | undefined;
+
+  // calculateTimeDifference(): string {
+  //   if (this.timer.checkDate && this.timer.checkin) {
+  //     const userDateTime = new Date(`${this.timer.checkDate}T${this.timer.checkin}`);
+  //     const currentDateTime = new Date();
+  
+  //     const timeDifference = currentDateTime.getTime() - userDateTime.getTime();
+  
+  //     const hours = Math.floor(timeDifference / (1000  60  60));
+  //     const minutes = Math.floor((timeDifference % (1000  60  60)) / (1000 * 60));
+  //     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+  
+  //     const formattedTime = this.formatTime(hours) + ':' + this.formatTime(minutes) + ':' + this.formatTime(seconds);
+  
+  //     return formattedTime;
+  //   } else {
+  //     // Handle the case where either userCheckDate or userCheckinTime is not provided
+  //     console.error('Please provide both check date and check-in time.');
+  //     return ''; // Or you can handle the error as needed
+  //   }
+  // }
+  
+  // formatTime(value: number): string {
+  //   return value < 10 ? '0' + value : value.toString();
+  // }
+  private intervalId: any;
+  calculateTimeDifference(): string | null {
+    if (!this.timer.checkDate || !this.timer.checkin) {
+      this.checkButton = true; 
+      // console.error('Please provide both check date and check-in time.');
+      return null;
+    }
+
+    this.checkButton = false;
+    const userDateTime = new Date(`${this.timer.checkDate}T${this.timer.checkin}`);
+    const currentDateTime = new Date();
+
+    const timeDifference = currentDateTime.getTime() - userDateTime.getTime();
+
+    const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    return `${this.formatTime(hours)}:${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
+  }
+
+  formatTime(value: number): string {
+    return value < 10 ? '0' + value : value.toString();
+  }
+
+  startInterval(): void {
+    this.intervalId = setInterval(() => {
+      const result = this.getAtt();
+      if (result === null) {
+        clearInterval(this.intervalId);
+      }
+      // Process result if needed
+    }, 1000);
+  }
+
+  stopInterval(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
 
   //API for show leave remaining start
   getRemainingLeaves() {
@@ -492,6 +596,8 @@ export class AdminComponent {
       () => {
         
         Swal.fire('Checked-In!', 'You are Checked-in successfully!', 'success');
+        this.getAtt();
+        this.checkButton = false;
         // this.viewattendance();
       },
       (error: any) => {
@@ -529,6 +635,8 @@ export class AdminComponent {
       () => {
         
         Swal.fire('Checked-Out!', 'You are Checked-out successfully!', 'success');
+        this.getAtt();
+        this.checkButton = true;
         // this.viewattendance();
       },
       (error: any) => {

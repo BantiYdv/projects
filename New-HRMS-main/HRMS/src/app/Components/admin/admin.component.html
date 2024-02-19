@@ -10,17 +10,29 @@
                 }}</span>
             </h2>
           </div>
-          <div class="col-md-6 d-flex justify-content-end">
+          <!-- <div class="col-md-6 d-flex justify-content-end">
             <div>
-              <!-- <button type="submit" class="btn checkIn" (click)="checkin()">Check-In</button> -->
-              <!-- In your component template file (e.g., app.component.html) -->
-              <!-- <button *ngIf="!isCheckedOut " type="submit" class="btn checkIn" (click)="checkin()">Check-In</button>
-              <button *ngIf="isCheckedOut" type="submit" class="btn checkOut" (click)="checkout()">Check-Out</button> -->
+             
               <button type="submit" class="btn btn-success m-1" (click)="checkin()">Check-In</button>
               <button type="submit" class="btn btn-danger m-1" (click)="checkout()">Check-Out</button>
               <br>
-              <!-- <span class="mt-2 timer"><img src="/assets/image/icon/checkInClock.svg" alt=""
-                  class="checkInClock">{{startTime}}</span> -->
+             
+            </div>
+          </div> -->
+          <div class="col-md-6 d-flex justify-content-end">
+            <div class="d-flex flex-column">
+           
+              <button type="submit" *ngIf="checkButton" class="btn btn-success m-1"
+                (click)="checkin()">Check-In</button>
+              <button type="submit" *ngIf="!checkButton" class="btn btn-danger m-1"
+                (click)="checkout()">Check-Out</button>
+              <div class="ps-2">
+                <i class="far fa-clock"></i>
+                {{calculateTimeDifference() || '00:00:00'}}
+              </div>
+             
+              <br>
+              
             </div>
           </div>
         </div>
@@ -176,36 +188,36 @@
           <div class="col-md-12 d-flex flex-wrap">
             <div class="mt-4" id="LeaveChart"
               [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-12' : 'col-12  col-md-12 col-lg-12 col-xl-12'">
-              <div class="performance">
+              <div class="performance rounded-bottom-0">
                 <div class="d-flex justify-content-start">
                   <h3 class="leaveTitle">Performance</h3>
                 </div>
                 <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
-                  <li class="nav-item" role="presentation">
+                  <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-probation'">
                     <button class="nav-link active" id="pills-probation-tab" data-bs-toggle="pill"
                       data-bs-target="#pills-probation" type="button" role="tab" aria-controls="pills-probation"
                       aria-selected="true">Probation</button>
                   </li>
-                  <li class="nav-item" role="presentation">
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
                     <button class="nav-link" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review"
                       type="button" role="tab" aria-controls="pills-review" aria-selected="false">Review</button>
                   </li>
-                  <li class="nav-item" role="presentation">
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
                     <button class="nav-link" id="pills-appraisal-tab" data-bs-toggle="pill"
                       data-bs-target="#pills-appraisal" type="button" role="tab" aria-controls="pills-appraisal"
                       aria-selected="false">Appraisal</button>
                   </li>
-                  <li class="nav-item" role="presentation">
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
                     <button class="nav-link" id="pills-promotion-tab" data-bs-toggle="pill"
                       data-bs-target="#pills-promotion" type="button" role="tab" aria-controls="pills-promotion"
                       aria-selected="false">Promotion</button>
                   </li>
-                  <li class="nav-item" role="presentation">
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
                     <button class="nav-link" id="pills-demotion-tab" data-bs-toggle="pill"
                       data-bs-target="#pills-demotion" type="button" role="tab" aria-controls="pills-demotion"
                       aria-selected="false">Demotion</button>
                   </li>
-                  <li class="nav-item" role="presentation">
+                  <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-pip'">
                     <button class="nav-link" id="pills-pip-tab" data-bs-toggle="pill" data-bs-target="#pills-pip"
                       type="button" role="tab" aria-controls="pills-pip" aria-selected="false">PIP</button>
                   </li>
@@ -213,7 +225,7 @@
                 <div class="tab-content" id="pills-tabContent">
                   <div class="tab-pane fade show active" id="pills-probation" role="tabpanel"
                     aria-labelledby="pills-probation-tab">
-                    <div class="d-flex justify-content-center flex-wrap" style="border-bottom: 1px solid #A9A8AD;" >
+                    <div class="d-flex justify-content-center flex-wrap" style="border-bottom: 1px solid #A9A8AD; gap:10px;" >
                       <span class="status">Status</span>
 
                       <span class="probationStatus 
@@ -230,10 +242,10 @@
                       </span>
 
                     </div>
-                    <p class="statusP mt-4" *ngIf="profileDetails.probationStatus !== 'Completed'"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet
+                    <!-- <p class="statusP mt-4" *ngIf="profileDetails.probationStatus !== 'Completed'"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet
                       consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
                       quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
-                      aspernatur tempore nihil qui enim adipisci error?</p>
+                      aspernatur tempore nihil qui enim adipisci error?</p> -->
                   </div>
 
                   <!-- <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
@@ -243,8 +255,68 @@
                   </div> -->
                   <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
 
-                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
-                      <h4>Not yet!</h4>
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <input type="month" class="inputForMonth" [(ngModel)]="ratingMonth" name="ratingMonth">
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center align-items-center col-12 col-md-12 col-xl-12">
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="disciplineCss boxForTitle">Discipline</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 3" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 3"></i>
+                              <!-- <img *ngIf="i >= 3" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="timingCss boxForTitle">Timing</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 2" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 2"></i>
+                              <!-- <img *ngIf="i >= 2" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="taskCss boxForTitle">Task</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 4" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 4"></i>
+                              <!-- <img *ngIf="i >= 4" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="overallCss boxForTitle">Overall</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 1" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 1"></i>
+                              <!-- <img *ngIf="i >= 1" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
 
 
@@ -285,29 +357,149 @@
 
                   <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
                     <!-- Content for Appraisal tab -->
-                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
-                      <h4>Not yet!</h4>
+                    <!-- <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                      <h4 class="appraisal"><img src="/assets/image/appraisalicon.png" alt=""> Appraisal</h4>
+                    </div> -->
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                          src="/assets/image/appraisalicon.png" alt="">&nbsp;Appraisal</div>
                     </div>
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                      <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-item-center">
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Current Salary</h4>
+                     
+
+                        <h4 class="appraisalStatus"><img src="/assets/image/RupeeIcon.png" alt=""> XXXXXX</h4>
+                      </div>
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Appraisal Salary</h4>
+                     
+
+                        <h4 class="appraisalStatus"><img src="/assets/image/RupeeIcon.png" alt=""> XXXXXX</h4>
+                      </div>
+
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Date</h4>
+                     
+
+                        <h4 class="appraisalStatus">XX-XX-XXXX</h4>
+                      </div>
+
+                      </div>
+                      
+                  </div>
+                
                   </div>
                   <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
                     <!-- Content for Promotion tab -->
-                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
-                      <h4>Not yet!</h4>
+                    <!-- <div class="d-flex justify-content-center" >
+                      <h4 class="appraisal"><img src="/assets/image/appraisalicon.png" alt=""> Promotion</h4>
+                    </div> -->
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                          src="/assets/image/appraisalicon.png" alt="">&nbsp;Permotion</div>
                     </div>
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                      <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-item-center">
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Current Designation</h4>
+                     
+
+                        <h4 class="appraisalStatus"> Developer</h4>
+                      </div>
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Promoted To</h4>
+                     
+
+                        <h4 class="appraisalStatus"> Sr Developer</h4>
+                      </div>
+
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Date</h4>
+                     
+
+                        <h4 class="appraisalStatus">XX-XX-XXXX</h4>
+                      </div>
+
+                      </div>
+                      
+                  </div>
                   </div>
                   <div class="tab-pane fade" id="pills-demotion" role="tabpanel" aria-labelledby="pills-demotion-tab">
-                    <!-- Content for Demotion tab -->
-                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
-                      <h4>Not yet!</h4>
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                          src="/assets/image/appraisalicon.png" alt="">&nbsp;Demotion</div>
                     </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <div class="col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+                        <div
+                          class="col-12 col-md-12 col-xl-9 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                          <div class="col-12 col-md-12 col-xl-4 d-flex flex-column">
+                            <div class="labelCssForDemotion mt-2">Current Designation</div>
+                            <div class=" mt-2 boxForDemotion boxColor8C6A13">Graphic Designer</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-4  d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">Demoted To</div>
+                            <div class=" mt-2 boxForDemotion boxColor8C6A13">Ui/Ux designer</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-4 d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">Date</div>
+                            <div class=" mt-2 boxForDemotion boxColor8C6A13">Xxxx</div>
+                          </div>
+                        </div>
+                      </div>
                   </div>
                   <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
                     <!-- Content for PIP tab -->
-                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
-                      <h4>Not yet!</h4>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                      <div class="col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-md-12 col-xl-9 d-flex flex-wrap justify-content-center align-items-center">
+                          <div class="col-12 col-md-12 col-xl-6 d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">Start Date</div>
+                            <div class=" mt-2 boxForDemotion boxColorDD1717">19/02/2024</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-6 d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">End Date</div>
+                            <div class=" mt-2 boxForDemotion boxColorDD1717">09/03/2024</div>
+                          </div>
+                        </div>
+                      </div>
+
+
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div [ngSwitch]="performanceNote">
+              <div *ngIf="profileDetails.probationStatus !== 'Completed'">
+                <div *ngSwitchCase="'pills-probation'" class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+                  <p class="statusP"><span
+                    class="statusPara">Note: </span> Probation ipsum dolor sit, amet
+                  consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+                  quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+                  aspernatur tempore nihil qui enim adipisci error?</p>
+                </div>
+              </div>
+              <div *ngSwitchCase="'pills-pip'" class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+                <p class="statusP"><span
+                  class="statusPara">Note: </span> PIP ipsum dolor sit, amet
+                consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+                quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+                aspernatur tempore nihil qui enim adipisci error?</p>
+              </div>
+              <div *ngSwitchDefault>
               </div>
             </div>
           </div>

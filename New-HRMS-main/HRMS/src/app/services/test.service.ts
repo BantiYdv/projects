@@ -647,16 +647,17 @@ viewShiftDetails(){
 updateShiftTime(shiftTime: any){
   const token = localStorage.getItem('jwtToken');
   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  console.warn('shiftTime ==> ',shiftTime)
  const data = {
   checkInTime: shiftTime.checkInTime,
   checkOutTime: shiftTime.checkOutTime,
   shiftDetails: {
     checkInGraceTime: shiftTime.shiftDetails.checkInGraceTime,
     checkOutGraceTime: shiftTime.shiftDetails.checkOutGraceTime,
-    halfDay: shiftTime.shiftDetails.halfDay,
-    absentCount: shiftTime.shiftDetails.absentCount,
-    present: shiftTime.shiftDetails.present,
-    overtime: shiftTime.shiftDetails.overtime
+    halfDayHrs: shiftTime.halfDayHrs,
+    absentHrs: shiftTime.absentHrs,
+    presentHrs: shiftTime.presentHrs,
+    overTimeHrs: shiftTime.overTimeHrs
   }
  }
   const url = `${this.api.updateShiftTime}/${shiftTime.id}`;
@@ -1055,5 +1056,52 @@ downloadSalaryPayrollExcel(headers: HttpHeaders): Observable<HttpResponse<Blob>>
   });
 }
 // download salary sheet in excel end
+
+// download leave policy pdf start
+
+generateSalarySlip(): Observable<HttpResponse<Blob>> {
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  const url = `${this.api.generateSalarySlip}`;
+  return this.http.get(url, {
+    headers,
+    observe: 'response', // This ensures you get the full HTTP response
+    responseType: 'blob', // This tells Angular to expect a binary response
+  });
+}
+// download leave policy pdf end
+
+// update salary start
+updateSalary(viewSalaryUpdate: any){
+
+  const url = `${this.api.updateSalary}/${viewSalaryUpdate.id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+ 
+  return this.http.put(url,viewSalaryUpdate,  { headers });
+}
+// update salary end
+
+// delete birthday start
+deleteAddedSalary(id: number): Observable<any> {
+  const url = `${this.api.deleteAddedSalary}/${id}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  return this.http.delete(url, { headers });
+}
+// delete birthday end
+
+
+// for generateOfferLetter start
+generateOfferLetter(data:any){
+  const url = `${this.api.generateOfferLetter}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.post(url,data ,{ headers });
+}
+// for generateOfferLetter end
+
+
+
 
 }

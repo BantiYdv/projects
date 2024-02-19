@@ -1,3 +1,73 @@
+.inputForMonth {
+    outline: none;
+    border: none;
+    font-size: 22px;
+  }
+  .inputDivCss {
+    border-bottom: 1.5px solid #a9a8ad;
+    padding: 10px 0px 20px 0px;
+  }
+  .disciplineCss {
+    border: 1.5px solid #8c6a13;
+    color: #8c6a13;
+    background-color: #ffe5a2;
+  }
+  .timingCss {
+    border: 1.5px solid #146d38;
+    color: #146d38;
+    background-color: #a4f2c4;
+  }
+  .taskCss {
+    border: 1.5px solid #274699;
+    color: #274699;
+    background-color: #c6d4fa;
+  }
+  .overallCss {
+    border: 1.5px solid #cc2d5c;
+    color: #cc2d5c;
+    background-color: #ffd5d1;
+  }
+  .boxForTitle {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 40px;
+  }
+  .starCss {
+      width: 75%;
+    border: 1px solid #e47d43;
+    border-radius: 5px;
+    padding: 0px 5px 0px 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .labelCssForDemotion{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  .boxColor8C6A13{
+      border:1.5px solid #8C6A13;
+      color: #8C6A13;
+  }
+  .boxColorDD1717{
+      border:1.5px solid #DD1717;
+      color: #DD1717;
+  }
+  .boxForDemotion{
+      /* border:1.5px solid #8C6A13;
+      color: #8C6A13; */
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      height: 40px;
+      border-radius: 5px;
+  }
+
 .ms-1 {
     margin-left: 1.25rem !important;
     font-size: 15px;
@@ -1106,7 +1176,7 @@ text-transform: capitalize;
     background: #401DDE;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.02);
     color: #FFF;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     text-align: center;
     font-family: Poppins;
     font-size: 20px;
@@ -2113,3 +2183,37 @@ font-weight: 500;
 line-height: normal;
 }
   /* view more holiday end */
+
+
+  .appraisal{
+   
+    font-weight: 600;
+
+  }
+  .appraisalText{
+    color: #0C0E0F;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    text-align: start;
+  }
+
+  .appraisalStatus{
+    border: 1px solid #146D38;
+    background: #A4F2C4;
+    color: #146D38;
+    width: 90%;
+    height: 40px;
+    padding: 8px;
+    margin-top: -10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .noteCss{
+    padding: 20px 20px 20px 20px !important;
+    background-color: #F1EDFF !important;
+    box-shadow: 0px 10px 15.7px 0px rgba(0, 0, 0, 0.14) !important;
+}
