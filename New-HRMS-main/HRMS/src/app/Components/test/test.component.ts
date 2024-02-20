@@ -675,6 +675,7 @@ this.selectedItem.halfDayHrs =
 
 
   ngOnInit() {
+    this.ratingMonth = new Date().toISOString().split('T')[0].slice(0,-3);
     this.getLeavePolicy();
     this.viewRole();
     this.openEmployee();
@@ -7424,5 +7425,49 @@ addPerformance(item: any){
   console.log("item performance", this.addPerformanceUpdate);
   this.loginService.showTable('addPerformance');
 }
+
+// add appraisal start
+appraisal= {
+  employeeName: '',
+  username: '',
+  appraisalDate:'',
+employeeRating:"5",
+currentSalary:'',
+hike:"5000"
+};
+
+addAppraisal(){
+  console.log("appraisal add form", this.appraisal);
+  this.testService.addAppraisal(this.appraisal).subscribe(
+    (response) => {
+      console.log('appraisal success', response);
+      Swal.fire({
+        title: 'Success!',
+        text: 'Appraisal Added Successfully.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+      }).then(() => {
+        this.loginService.showTable('performance');
+        // this.clearFormPosition();
+      });
+      // this.getPositionRecruitment();
+      this.openEmployee();
+    },
+    (error) => {
+      console.error('appraisal error', error);
+      if (error.status == 400) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Appraisal Already Added!.',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+    }
+  );
+}
+// add appraisal end
 
 }

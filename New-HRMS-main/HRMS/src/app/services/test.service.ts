@@ -1102,6 +1102,13 @@ generateOfferLetter(data:any){
 // for generateOfferLetter end
 
 
-
+// add appraisal start
+addAppraisal(appraisal: any){
+  const url = `${this.api.addAppraisal}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.post(url,appraisal ,{ headers });
+}
+// add appraisal end
 
 }

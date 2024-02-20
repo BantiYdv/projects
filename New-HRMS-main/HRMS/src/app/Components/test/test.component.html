@@ -7413,7 +7413,7 @@
 
           <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
            
-            <div class="d-flex justify-content-center align-items-center inputDivCss">
+            <!-- <div class="d-flex justify-content-center align-items-center inputDivCss">
               <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
                   src="/assets/image/appraisalicon.png" alt="">&nbsp;Appraisal</div>
             </div>
@@ -7421,21 +7421,54 @@
               <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
                 <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
                   <h4 class="appraisalText">Appraisal Salary</h4>
-                  <input type="number" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                  <input type="number" name="currentSalary" id="currentSalary"
+                  [(ngModel)]="appraisal.currentSalary" class="form-control appraisalStatus" placeholder="XXXXXX" />
                 </div>
             
                 <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
                   <h4 class="appraisalText">Date</h4>
-                  <input type="date" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                  <input type="date" name="appraisalDate" id="appraisalDate"
+                  [(ngModel)]="appraisal.appraisalDate" class="form-control appraisalStatus" placeholder="XXXXXX" />
                 </div>
             
                 <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
               
-                  <button type="button" class="btn btn-primary appraisalStatus" style="margin-top:35px;">Save</button>
+                  <button type="button" class="btn btn-primary appraisalStatus" style="margin-top:35px;" (click)="addAppraisal()">Save</button>
                 </div>
               </div>
+            </div> -->
+            <div class="justify-content-center align-item-center"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4'">
+
+              <div class="calendar">
+                <h5 class="mb-4 mt-2 ActivitiesHeader"><img
+                  src="/assets/image/appraisalicon.png" alt=""> </h5>
+
+
+                <!-- <div class="week-names">
+                  <div *ngFor="let weekName of weekNames" class="day">{{ weekName }}</div>
+                </div>
+
+                <div *ngFor="let week of calendarData" class="week">
+                  <div *ngFor="let day of week" class="day" [class.other-month]="!day.isCurrentMonth"
+                    [class.today]="isToday(day.date)">
+                    {{ day.date.format('D') }}
+                  </div>
+                </div>
+                <div class="header">
+                  <div class="left-section">
+                    <img src="/assets/image/calendarVector3.png" alt="" class="calendarVector3">
+                    <img src="/assets/image/calendarVector4.png" alt="" class="calendarVector4">
+                  </div>
+                  <div class="right-section">
+                    <img src="/assets/image/calendarPre.png" alt="" class="caliconPre" (click)="goToPrevMonth()">
+                    <h2 class="monthYear">{{ currentDate.format('MMMM YYYY') }}</h2>
+                    <img src="/assets/image/calendarNext.png" alt="" class="caliconNext" (click)="goToNextMonth()">
+                  </div>
+                </div> -->
+
+              </div>
             </div>
-            
         
           </div>
           <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
