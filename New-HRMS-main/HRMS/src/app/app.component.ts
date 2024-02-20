@@ -165,10 +165,25 @@ permissionSet = [
 // for show side nav bar according to user login with permission start
 userPermissions = this.loginService.getPermission(); // Example user permissions
 
-filteredOptions = this.permissionSet.filter(permission =>
-  this.userPermissions.includes(permission.name)
+// filteredOptions = this.permissionSet.filter(permission =>
+//   this.userPermissions.includes(permission.name)
 
-);
+// );
+filteredOptions = this.permissionSet.filter(permission => {
+  if ((this.userPermissions.includes('DOWNLOAD_EMPLOYEE_REPORTS') || this.userPermissions.includes('DOWNLOAD_WORKFROMHOME_REPORTS') || this.userPermissions.includes('DOWNLOAD_LEAVES_REPORTS') || this.userPermissions.includes('DOWNLOAD_ATTENDANCE_REPORTS')) && (permission.name == 'DOWNLOAD_EMPLOYEE_REPORTS' || permission.name == 'DOWNLOAD_WORKFROMHOME_REPORTS' || permission.name == 'DOWNLOAD_LEAVES_REPORTS' || permission.name == 'DOWNLOAD_ATTENDANCE_REPORTS')) {
+    // console.warn(1);
+    return true;
+  } else if(this.userPermissions.includes(permission.name)) {
+    // this.userPermissions.includes(permission.name);
+    // console.warn(12);
+
+    return true;
+  }
+  else{
+    // console.warn(123);
+    return false;
+  }
+});
 
 // Define a function to retrieve permissions from local storage
 

@@ -517,7 +517,8 @@ export class AdminComponent {
 
   startInterval(): void {
     this.intervalId = setInterval(() => {
-      const result = this.getAtt();
+      // const result = this.getAtt();
+      const result = this.calculateTimeDifference();
       if (result === null) {
         clearInterval(this.intervalId);
       }
@@ -602,7 +603,8 @@ export class AdminComponent {
       },
       (error: any) => {
        
-        Swal.fire('Error', error.error, 'error');
+        Swal.fire('Error', error.error.message, 'error');
+        // console.log("error", error.error.message);
       }
     );
   }

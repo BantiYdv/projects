@@ -1040,8 +1040,8 @@
   <!-- view team wfh end -->
 
   <!-- change password start-->
-  <div *ngSwitchCase="'changePassword'">
-    <!-- <div *ngIf="isHashEqualTo('/test/changePassword')"> -->
+  <!-- <div *ngSwitchCase="'changePassword'">
+   
     <div class="content m-1 mt-4">
       <div class="container applyLeave">
         <div class="row justify-content-center">
@@ -1119,8 +1119,6 @@
                   </div>
                 </form>
 
-                <!-- </div> -->
-
                 <div class="mb-3 col-md-12 d-flex justify-content-between">
                   <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="changePassword()"
                     [disabled]="passwordForm.invalid || passwordForm.pending">Submit</button>
@@ -1135,8 +1133,106 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <div *ngSwitchCase="'changePassword'">
+ 
+    <div class="content m-1 mt-2">
+      <div class="changePassword">
+        <img src="/assets/image/loginVector1.png" alt="" class="ms-5 d-none d-md-block" style="width: 10%;">
+        <div class="row justify-content-center">
+          <div class="mb-5 col-md-12 d-flex flex-wrap flex-md-row flex-column-reverse align-items-center justify-content-center">
+      
+              
+              <div class="col-md-6 mt-2">
+                <h1 class="text-center">Change Password</h1>
+                <form *ngIf="passwordForm" [formGroup]="passwordForm" class="d-flex flex-column justify-content-center align-items-center">
+                  <div class="mb-3 col-12 col-md-10 col-xl-10">
+                    <label for="oldPassword" class="col-form-label">Old Password:</label>
 
+                    <div class="input-group">
+                      <input type="{{ showoldPassword ? 'text' : 'password' }}" class="form-control focusCss" name="oldPassword"
+                        id="oldPassword" formControlName="oldPassword" [(ngModel)]="passwordForm.oldPassword">
+                      <button class="eyeButtonCss" type="button"
+                        (click)="toggleoldPasswordVisibility('oldPassword')">
+                        <i class="fa-solid fa-eye{{ showoldPassword ? '' : '-slash' }}"></i>
+                      </button>
+                    </div>
+                    <div
+                      *ngIf="passwordForm.get('oldPassword')?.invalid && (passwordForm.get('oldPassword')?.dirty || passwordForm.get('oldPassword')?.touched)">
+                      <div *ngIf="passwordForm.get('oldPassword')?.errors?.['required']" class="text-danger">Old
+                        Password is
+                        required.</div>
+                    </div>
+                  </div>
+                  <div class="mb-3 col-12 col-md-10 col-xl-10">
+                    <label for="newPassword" class="col-form-label">New Password:</label>
+
+                    <div class="input-group">
+                      <input type="{{ showNewPassword ? 'text' : 'password' }}" class="form-control focusCss" name="newPassword"
+                        id="newPassword" formControlName="newPassword" [(ngModel)]="passwordForm.newPassword">
+                      <button class="eyeButtonCss" type="button"
+                        (click)="togglenewPasswordVisibility('newPassword')">
+                        <i class="fa-solid fa-eye{{ showNewPassword ? '' : '-slash' }}"></i>
+                      </button>
+                    </div>
+                    <div
+                      *ngIf="passwordForm.get('newPassword')?.invalid && (passwordForm.get('newPassword')?.touched || passwordForm.get('newPassword')?.touched)">
+                      <div *ngIf="passwordForm.get('newPassword')?.errors?.['required']" class="text-danger">New
+                        Password is required.</div>
+                      <div *ngIf="passwordForm.get('newPassword')?.errors?.['minlength']" class="text-danger">New
+                        Password
+                        should be at least 8 characters long.</div>
+                      <div *ngIf="passwordForm.get('newPassword')?.errors?.['pattern']" class="text-danger">New password
+                        must contain at least one uppercase letter, one lowercase letter, one digit, one special
+                        character (!#$%^&) and least 8 characters long.</div>
+                    </div>
+                  </div>
+                  <div class="mb-3 col-12 col-md-10 col-xl-10">
+                    <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+
+                    <div class="input-group">
+                      <input type="{{ showconfirmPassword ? 'text' : 'password' }}" class="form-control focusCss"
+                        name="confirmPassword" id="confirmPassword" formControlName="confirmPassword"
+                        [(ngModel)]="passwordForm.confirmPassword">
+                      <button class="eyeButtonCss" type="button"
+                        (click)="toggleoldCnfPasswordVisibility('confirmPassword')">
+                        <i class="fa-solid fa-eye{{ showconfirmPassword ? '' : '-slash' }}"></i>
+                      </button>
+                    </div>
+                    <div
+                      *ngIf="passwordForm.get('confirmPassword')?.invalid && (passwordForm.get('confirmPassword')?.dirty || passwordForm.get('confirmPassword')?.touched)">
+                      <div *ngIf="passwordForm.get('confirmPassword')?.errors?.['required']" class="text-danger">Confirm
+                        Password is required.</div>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="passwordForm.get('confirmPassword')?.value !== passwordForm.get('newPassword')?.value && passwordForm.get('confirmPassword')?.dirty"
+                    class="text-danger">
+                    Passwords do not match.
+                  </div>
+                </form>
+
+
+                <div class="mb-3 col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+                  <div class="col-12 col-md-10 col-xl-10 d-flex flex-wrap">
+                    <button type="submit" class="btn btn-secondary flex-fill m-1" (click)="changePassword()"
+                      [disabled]="passwordForm.invalid || passwordForm.pending" style="background-color: #401DDE !important; border: none !important;">Submit</button>
+                    <button type="button" class="btn btn-secondary flex-fill m-1" (click)="closeForm()" style="background-color: #EF556A !important; border: none !important;">Close</button>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="col-md-6 mt-2">
+                <p><img src="/assets/Secure login-rafiki.svg" alt="Image" class="img-fluid"></p>
+              </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- change password end -->
 
   <!-- reports modal start -->
@@ -7122,25 +7218,10 @@
         <div class="m-0"
           [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-3 col-md-6 col-lg-6 col-xl-3 mb-3' : 'col-12 col-sm-3 col-md-6 col-lg-4 col-xl-3 mb-3'"
           *ngFor="let item of getPaginatedEmpData(); let i = index">
-          <div class="employee" >
-            <div class="icon">
-              <i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
-              <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item [routerLink]="['/profile', 'viewProfile']"
-                  (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">View
-                  Profile</button>
-                <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit Profile</button>
-                <button mat-menu-item (click)="deleteEmployee(item.id)">Delete Profile</button>
-                <button mat-menu-item (click)="activeProfile(item.id, item.userActive)"
-                  *ngIf="item.userActive == false">Activate</button>
-                <button mat-menu-item (click)="activeProfile(item.id, item.userActive)"
-                  *ngIf="item.userActive == true">Deactivate</button>
-
-              </mat-menu>
-            </div>
-            <div [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
-              [queryParams]="{ id: item.id }">
-              <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%;" />
+          <div class="employee" (click)="addPerformance(item)">
+          <!-- <button (click)="addPerformance(item)">data</button> -->
+            <div>
+              <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%; margin-top:25px;" />
             </div>
             <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
             <p class="titleGrid">{{item.designation }}</p>
@@ -7175,5 +7256,313 @@
     </div>
 
 <!-- performance end -->
+
+<!-- add performance start -->
+<div *ngSwitchCase="'addPerformance'">
+  <div class="col-md-12 d-flex flex-wrap">
+    <div class="mt-4" id="LeaveChart"
+    [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-12' : 'col-12  col-md-12 col-lg-12 col-xl-12'">
+    <div class="performance rounded-bottom-0">
+      <div class="d-flex justify-content-center align-items-center flex-column">
+        <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%;" />
+        <div class="col-12 col-md-12 col-xl-9 d-flex flex-wrap justify-content-center align-items-center">
+          <div class="col-12 col-md-12 col-xl-6 d-flex justify-content-center align-items-center flex-column">
+            <div class="labelCssForDemotion  mt-2">Name</div>
+            <div class=" mt-2 boxForaddPerformance boxColoraddPerformance">{{ addPerformanceUpdate?.firstname + ' ' + addPerformanceUpdate?.lastname }}</div>
+          </div>
+          <div class="col-12 col-md-12 col-xl-6 d-flex justify-content-center align-items-center flex-column">
+            <div class="labelCssForDemotion  mt-2">Email Id</div>
+            <div class=" mt-2 boxForaddPerformance boxColoraddPerformance">{{ addPerformanceUpdate?.emailid}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  <div class="col-md-12 d-flex flex-wrap">
+    <div class="mt-4" id="LeaveChart"
+      [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-12' : 'col-12  col-md-12 col-lg-12 col-xl-12'">
+      <div class="performance rounded-bottom-0">
+        <div class="d-flex justify-content-start">
+          <h3 class="leaveTitle">Performance</h3>
+        </div>
+        <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-probation'">
+            <button class="nav-link active" id="pills-probation-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-probation" type="button" role="tab" aria-controls="pills-probation"
+              aria-selected="true">Probation</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review"
+              type="button" role="tab" aria-controls="pills-review" aria-selected="false">Review</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-appraisal-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-appraisal" type="button" role="tab" aria-controls="pills-appraisal"
+              aria-selected="false">Appraisal</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-promotion-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-promotion" type="button" role="tab" aria-controls="pills-promotion"
+              aria-selected="false">Promotion</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-demotion-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-demotion" type="button" role="tab" aria-controls="pills-demotion"
+              aria-selected="false">Demotion</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-pip'">
+            <button class="nav-link" id="pills-pip-tab" data-bs-toggle="pill" data-bs-target="#pills-pip"
+              type="button" role="tab" aria-controls="pills-pip" aria-selected="false">PIP</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-probation" role="tabpanel"
+            aria-labelledby="pills-probation-tab">
+            <div class="d-flex justify-content-center flex-wrap" style="border-bottom: 1px solid #A9A8AD; gap:10px;" >
+              <span class="status">Status</span>
+
+              <span class="probationStatus 
+              {{profileDetails?.probationStatus === 'Completed' ? 'completed-status' : 
+              profileDetails?.probationStatus === 'Not Completed' ? 'not-completed-status' : 
+              profileDetails?.probationStatus === 'On Going' ? 'ongoing-status' : ''}}">
+
+                {{profileDetails?.probationStatus}}
+
+                <img src="{{profileDetails?.probationStatus === 'Completed' ? '/assets/image/icon/Completed.svg' : 
+              profileDetails?.probationStatus === 'Not Completed' ? '/assets/image/icon/NotCompleted.svg' : 
+              profileDetails?.probationStatus === 'On Going' ? '/assets/image/icon/Ongoing.svg' : ''}}"
+                  alt="Status Icon">
+              </span>
+
+            </div>
+           
+          </div>
+
+         
+          <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+
+            <div class="d-flex justify-content-center align-items-center inputDivCss">
+              <input type="month" class="inputForMonth" [(ngModel)]="ratingMonth" name="ratingMonth">
+            </div>
+            <div class="d-flex flex-wrap justify-content-center align-items-center col-12 col-md-12 col-xl-12">
+              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                  <div class="disciplineCss boxForTitle">Discipline</div>
+                </div>
+                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                  <div class="boxForTitle starCss">
+                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                      <img *ngIf="i < 3" src="/assets/image/starIcon.png" alt="Star">
+                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 3"></i>
+                   
+                    </ng-container>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                  <div class="timingCss boxForTitle">Timing</div>
+                </div>
+                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                  <div class="boxForTitle starCss">
+                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                      <img *ngIf="i < 2" src="/assets/image/starIcon.png" alt="Star">
+                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 2"></i>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                  <div class="taskCss boxForTitle">Task</div>
+                </div>
+                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                  <div class="boxForTitle starCss">
+                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                      <img *ngIf="i < 4" src="/assets/image/starIcon.png" alt="Star">
+                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 4"></i>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                  <div class="overallCss boxForTitle">Overall</div>
+                </div>
+                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                  <div class="boxForTitle starCss">
+                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                      <img *ngIf="i < 1" src="/assets/image/starIcon.png" alt="Star">
+                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 1"></i>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+            
+                <button type="button" class="btn btn-primary appraisalStatus" style="margin-top:35px;">Save</button>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
+           
+            <div class="d-flex justify-content-center align-items-center inputDivCss">
+              <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                  src="/assets/image/appraisalicon.png" alt="">&nbsp;Appraisal</div>
+            </div>
+            <div class="col-12 d-flex justify-content-center mt-4">
+              <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
+                <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                  <h4 class="appraisalText">Appraisal Salary</h4>
+                  <input type="number" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                </div>
+            
+                <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                  <h4 class="appraisalText">Date</h4>
+                  <input type="date" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                </div>
+            
+                <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+              
+                  <button type="button" class="btn btn-primary appraisalStatus" style="margin-top:35px;">Save</button>
+                </div>
+              </div>
+            </div>
+            
+        
+          </div>
+          <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
+           
+            <div class="d-flex justify-content-center align-items-center inputDivCss">
+              <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                  src="/assets/image/appraisalicon.png" alt="">&nbsp;Promotion</div>
+            </div>
+            <div class="col-12 d-flex justify-content-center mt-4">
+              <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-item-center">
+              <!-- <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                <h4 class="appraisalText">Current Designation</h4>
+             
+
+                <h4 class="appraisalStatus"> Developer</h4>
+              </div> -->
+
+              <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                <h4 class="appraisalText">Promoted To</h4>
+             
+                <input type="text" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                <!-- <h4 class="appraisalStatus"> Sr Developer</h4> -->
+              </div>
+
+
+              <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                <h4 class="appraisalText">Date</h4>
+             
+                <input type="date" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                <!-- <h4 class="appraisalStatus">XX-XX-XXXX</h4> -->
+              </div>
+
+              <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+              
+                <button type="button" class="btn btn-primary appraisalStatus" style="margin-top:35px;">Save</button>
+              </div>
+
+              </div>
+              
+          </div>
+          </div>
+          <div class="tab-pane fade" id="pills-demotion" role="tabpanel" aria-labelledby="pills-demotion-tab">
+            <div class="d-flex justify-content-center align-items-center inputDivCss">
+              <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                  src="/assets/image/appraisalicon.png" alt="">&nbsp;Demotion</div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+                <div
+                  class="col-12 col-md-12 col-xl-9 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                  <!-- <div class="col-12 col-md-12 col-xl-4 d-flex flex-column">
+                    <div class="labelCssForDemotion mt-2">Current Designation</div>
+                    <div class=" mt-2 boxForDemotion boxColor8C6A13">Graphic Designer</div>
+                  </div> -->
+                  <div class="col-12 col-md-12 col-xl-4  d-flex flex-column">
+                    <div class="labelCssForDemotion  mt-2">Demoted To</div>
+                    <input type="text" class="form-control mt-2 boxForDemotion boxColor8C6A13" placeholder="XXXXXX" />
+                    <!-- <div class=" mt-2 boxForDemotion boxColor8C6A13">Ui/Ux designer</div> -->
+                  </div>
+                  <div class="col-12 col-md-12 col-xl-4 d-flex flex-column">
+                    <div class="labelCssForDemotion  mt-2">Date</div>
+                    <input type="date" class="form-control mt-2 boxForDemotion boxColor8C6A13" placeholder="XXXXXX" />
+                    <!-- <div class=" mt-2 boxForDemotion boxColor8C6A13">Xxxx</div> -->
+                  </div>
+                  <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+              
+                    <button type="button" class="btn boxForDemotion boxColor8C6A13" style="margin-top:35px;">Save</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
+
+          <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
+           
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <div class="col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+                <div class="col-12 col-md-12 col-xl-9 d-flex flex-wrap justify-content-center align-items-center">
+                  <div class="col-12 col-md-12 col-xl-4  d-flex flex-column">
+                    <div class="labelCssForDemotion  mt-2">Start Date</div>
+                    <input type="date" class="form-control mt-2 boxForDemotion boxColorDD1717" placeholder="XXXXXX" />
+                    <!-- <div class=" mt-2 boxForDemotion boxColorDD1717">19/02/2024</div> -->
+                  </div>
+                  <div class="col-12 col-md-12 col-xl-4  d-flex flex-column">
+                    <div class="labelCssForDemotion  mt-2">End Date</div>
+                    <input type="date" class="form-control mt-2 boxForDemotion boxColorDD1717" placeholder="XXXXXX" />
+                    <!-- <div class=" mt-2 boxForDemotion boxColorDD1717">09/03/2024</div> -->
+                  </div>
+                  <div class="col-12 col-md-12 col-xl-4 d-flex flex-column">
+              
+                    <button type="button" class="btn boxForDemotion boxColorDD1717" style="margin-top:35px;">Save</button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+    
+      </div>
+    </div>
+    <div [ngSwitch]="performanceNote">
+      <div *ngIf="profileDetails?.probationStatus !== 'Completed'">
+        <div *ngSwitchCase="'pills-probation'" class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+          <p class="statusP"><span
+            class="statusPara">Note: </span> Probation ipsum dolor sit, amet
+          consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+          quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+          aspernatur tempore nihil qui enim adipisci error?</p>
+        </div>
+      </div>
+      <div *ngSwitchCase="'pills-pip'" class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+        <p class="statusP"><span
+          class="statusPara">Note: </span> PIP ipsum dolor sit, amet
+        consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+        quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+        aspernatur tempore nihil qui enim adipisci error?</p>
+      </div>
+      <div *ngSwitchDefault>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- add performance end -->
 
 </div>

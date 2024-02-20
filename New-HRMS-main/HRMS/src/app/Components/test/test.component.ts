@@ -2700,6 +2700,7 @@ console.log("update wfh data", this.updateWfhId);
   employeeNames: any[] = []; // Define employeeNames as an array to store multiple employee names
 
   employeeNmaes() {
+    if ('/viewPayroll' === this.router.url ){
     this.testService.getEmployeeList().subscribe(
       (response: any) => { // Assuming the response is an array
         this.employeeNames = response.map((employee: { firstname: any; lastname: any; }) => ({ firstname: employee.firstname, lastname: employee.lastname }));
@@ -2709,6 +2710,7 @@ console.log("update wfh data", this.updateWfhId);
         // Handle error
       }
     );
+    }
   }
   
   filterEmployees(name: string): any[] {
@@ -2728,6 +2730,7 @@ console.log("update wfh data", this.updateWfhId);
   emailId: any[] = []; // Define employeeNames as an array to store multiple employee names
 
   emailIds() {
+    if ('/viewPayroll' === this.router.url ){
     this.testService.getEmployeeList().subscribe(
       (response: any) => { // Assuming the response is an array
         this.emailId = response.map((email: { emailid: any}) => ({ emailid: email.emailid}));
@@ -2737,6 +2740,7 @@ console.log("update wfh data", this.updateWfhId);
         // Handle error
       }
     );
+    }
   }
   
   filterEmail(email: string): any[] {
@@ -3375,8 +3379,8 @@ console.log("update wfh data", this.updateWfhId);
     const fileInput = event.target;
     if (fileInput.files.length > 0) {
       const selectedFile = fileInput.files[0];
-      this.dashboardService.uploadPdf(selectedFile)
       if (this.isPDFFile(selectedFile)) {
+        this.dashboardService.uploadPdf(selectedFile)
         this.selectedFileLeavePolicy = selectedFile.name;
       } else {
         this.selectedFileLeavePolicy = 'Invalid file type. Please select a PDF file.';
@@ -6064,9 +6068,13 @@ console.log("update wfh data", this.updateWfhId);
               const contentDisposition = response.headers.get(
                 'content-disposition'
               );
-              const fileName = contentDisposition
-                ? contentDisposition.split('filename=')[1]
-                : 'LeavePolicy.pdf';
+              // const fileName = contentDisposition
+              //   ? contentDisposition.split('filename=')[1]
+              //   : 'LeavePolicy.pdf';
+               // const fileName = contentDisposition
+               const fileName = this.selectedFileLeavePolicy
+               ? this.selectedFileLeavePolicy
+               : 'LeavePolicy.pdf';
               saveAs(response.body, fileName);
             } else {
               console.error('Response body is null.');
@@ -6996,7 +7004,7 @@ checkReports(checkPermission: any): boolean {
   // const data = ['DOWNLOAD_LEAVES_REPORTS', 'DOWNLOAD_WORKFROMHOME_REPORTS', 'DOWNLOAD_EMPLOYEE_REPORTS', 'DOWNLOAD_ATTENDANCE_REPORTS'];
   // const data = ['DOWNLOAD_LEAVES_REPORTS'];
   const data = [];
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 16; i++) {
     const permissions = localStorage.getItem(`permissions${i}`);
     if (permissions) {
       // console.warn('permissions = permissions = data',data)
@@ -7406,5 +7414,15 @@ generateOfferLetter() {
   );
 }
 // API for generateOfferLetter end
+performanceNote:string = 'pills-probation';
+ratingMonth:any;
+
+
+addPerformanceUpdate: any;
+addPerformance(item: any){
+  this.addPerformanceUpdate = item;
+  console.log("item performance", this.addPerformanceUpdate);
+  this.loginService.showTable('addPerformance');
+}
 
 }

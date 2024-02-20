@@ -111,6 +111,123 @@ export class LoginComponent {
   //API for change Password end
 
   isChangePasswordModalOpen = false;
+  // onSubmit() {
+  //   if (
+  //     this.login.username.trim() == '' ||
+  //     this.login.username == null
+  //   ) {
+  //     this.snack.open('Username is required !!', '', {
+  //       duration: 3000,
+  //     });
+  //     return;
+  //   }
+  //   if (
+  //     this.login.password.trim() == '' ||
+  //     this.login.password == null
+  //   ) {
+  //     this.snack.open('Pasword is required !!', '', {
+  //       duration: 3000,
+  //     });
+  //     return;
+  //   }
+
+  //   if (this.login.username && this.login.password) {
+  //     this.loginService.signin(this.login.username, this.login.password).subscribe(
+  //       (response: any) => {
+         
+  //         const token = response.jwtToken;
+  //         localStorage.setItem("jwtToken", token);
+  //         const role = response.registration.role;
+  //         localStorage.setItem("role", role.name);
+  //         const userLoggedIn = response.registration.userLoggedIn; // Correct property access
+  //       // localStorage.setItem("isUserLogin", userLoggedIn.toString()); // Store as a string
+  //       console.log("is user login", userLoggedIn);
+
+  //         localStorage.setItem("permissionLength", role.permissions.length);
+  //         for (let i = 0; i < role.permissions.length; i++) {
+  //           localStorage.setItem("permissions"+ `${i}`, role.permissions[i].permissionName);
+  //         }
+  //        console.log("login response", response);
+
+        
+  //             // Redirect based on user role
+
+  //             if (!userLoggedIn && role.name != 'SUPERADMIN') {
+               
+  //               this.isChangePasswordModalOpen = true;
+  //             } else {
+  //               Swal.fire({
+  //                 icon: 'success',
+  //                 title: 'Successfully Login',
+  //                 text: 'You have successfully logged in!',
+  //                 showConfirmButton: false,
+  //                 timer: 1000 // Display for 1 second
+  //               }).then(() => {
+
+  //                 // Redirect based on user role
+  //                 this.redirectBasedOnRole(role.name);
+  //               })
+  //             }
+  //             // this.redirectBasedOnRole(role.name);
+              
+
+           
+
+  //       },
+
+  //     //   if (userLoggedIn) { // Display success message only if user is logged in
+  //     //     Swal.fire({
+  //     //       icon: 'success',
+  //     //       title: 'Successfully Login',
+  //     //       text: 'You have successfully logged in!',
+  //     //       showConfirmButton: false,
+  //     //       timer: 1000 // Display for 1 second
+  //     //     }).then(() => {
+  //     //       // Redirect based on user role
+  //     //       console.log("role", role.name);
+  //     //       if (!userLoggedIn) {
+  //     //         this.isChangePasswordModalOpen = true;
+              
+  //     //       } else {
+  //     //         // Redirect based on user role
+  //     //         this.redirectBasedOnRole(role.name);
+  //     //       }
+  //     //     });
+  //     //   } 
+  //     //   else {
+  //     //     if (!userLoggedIn) {
+  //     //       this.isChangePasswordModalOpen = true;
+  //     //     }
+  //     //   }
+  //     // },
+  //       (error: any) => {
+  //         if (error.status === 400) {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Internal Server Error',
+  //             text: 'Oops! Something went wrong on the server. Please try again later.',
+  //           });
+  //         } else if (error.status === 500) {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Failed to Login',
+  //             text: 'Invalid Username or Password. Please try again.',
+  //           });
+  //         } else {
+  //           Swal.fire({
+  //             icon: 'error',
+  //             title: 'Error',
+  //             text: 'An error occurred. Please try again.',
+  //           });
+  //         }
+  //       }
+  //     );
+
+  //   } else {
+  //     alert('Fields are empty');
+  //   }
+    
+  // }
   onSubmit() {
     if (
       this.login.username.trim() == '' ||
@@ -134,14 +251,28 @@ export class LoginComponent {
     if (this.login.username && this.login.password) {
       this.loginService.signin(this.login.username, this.login.password).subscribe(
         (response: any) => {
-         
           const token = response.jwtToken;
           localStorage.setItem("jwtToken", token);
           const role = response.registration.role;
+          this.redirectBasedOnRole(role.name);
           localStorage.setItem("role", role.name);
           const userLoggedIn = response.registration.userLoggedIn; // Correct property access
-        // localStorage.setItem("isUserLogin", userLoggedIn.toString()); // Store as a string
+       
         console.log("is user login", userLoggedIn);
+
+        
+        if (!userLoggedIn && role.name != 'SUPERADMIN') {
+               
+          this.isChangePasswordModalOpen = true;
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully Login',
+            text: 'You have successfully logged in!',
+            showConfirmButton: false,
+            timer: 1000 // Display for 1 second
+          })
+        }
 
           localStorage.setItem("permissionLength", role.permissions.length);
           for (let i = 0; i < role.permissions.length; i++) {
@@ -149,57 +280,10 @@ export class LoginComponent {
           }
          console.log("login response", response);
 
-        
-              // Redirect based on user role
-
-              if (!userLoggedIn && role.name != 'SUPERADMIN') {
-               
-                this.isChangePasswordModalOpen = true;
-              } else {
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Successfully Login',
-                  text: 'You have successfully logged in!',
-                  showConfirmButton: false,
-                  timer: 1000 // Display for 1 second
-                }).then(() => {
-
-                  // Redirect based on user role
-                  this.redirectBasedOnRole(role.name);
-                })
-              }
-              // this.redirectBasedOnRole(role.name);
-              
-
-           
 
         },
 
-      //   if (userLoggedIn) { // Display success message only if user is logged in
-      //     Swal.fire({
-      //       icon: 'success',
-      //       title: 'Successfully Login',
-      //       text: 'You have successfully logged in!',
-      //       showConfirmButton: false,
-      //       timer: 1000 // Display for 1 second
-      //     }).then(() => {
-      //       // Redirect based on user role
-      //       console.log("role", role.name);
-      //       if (!userLoggedIn) {
-      //         this.isChangePasswordModalOpen = true;
-              
-      //       } else {
-      //         // Redirect based on user role
-      //         this.redirectBasedOnRole(role.name);
-      //       }
-      //     });
-      //   } 
-      //   else {
-      //     if (!userLoggedIn) {
-      //       this.isChangePasswordModalOpen = true;
-      //     }
-      //   }
-      // },
+   
         (error: any) => {
           if (error.status === 400) {
             Swal.fire({
