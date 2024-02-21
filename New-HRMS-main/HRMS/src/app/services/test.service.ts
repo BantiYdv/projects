@@ -1111,4 +1111,49 @@ addAppraisal(appraisal: any){
 }
 // add appraisal end
 
+// for save rating start
+saveRating(data:any){
+  const url = `${this.api.saveRating}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.post(url,data ,{ headers });
+}
+// for save rating end
+
+// for save Probation start
+saveProbation(data:any){
+  const url = `${this.api.saveProbation}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.post(url,data ,{ headers });
+}
+// for save Probation end
+
+// for save save Promotion start
+savePromotion(data:any){
+  const url = `${this.api.savePromotion}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.post(url,data ,{ headers });
+}
+// for save save Promotion end
+
+// for save save Demotion start
+saveDemotion(data:any){
+  const url = `${this.api.saveDemotion}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.post(url,data ,{ headers });
+}
+// for save save Demotion end
+
+// for save save PIP start
+savePIP(data:any){
+  const url = `${this.api.savePIP}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`).set('Content-Type','application/json');
+  return this.http.post(url,data ,{ headers });
+}
+// for save save PIP end
+
 }

@@ -2490,6 +2490,63 @@ text-transform: capitalize;
   border-bottom: 1.5px solid #a9a8ad;
   padding: 10px 0px 20px 0px;
 }
+.colorCss1 {
+  border: 1.5px solid #8c6a13;
+  color: #8c6a13;
+  background-color: #ffe5a2;
+}
+.colorCss2 {
+  border: 1.5px solid #146d38;
+  color: #146d38;
+  background-color: #a4f2c4;
+}
+.colorCss3 {
+  border: 1.5px solid #274699;
+  color: #274699;
+  background-color: #c6d4fa;
+}
+.colorCss4 {
+  border: 1.5px solid #cc2d5c;
+  color: #cc2d5c;
+  background-color: #ffd5d1;
+}
+.colorCss5 {
+  border: 1.5px solid #cc2d2d;
+  color: #cc2d2d;
+  background-color: #ffd1d1;
+}
+.colorCss6 {
+  border: 1.5px solid #ccc92d;
+  color: #ccc92d;
+  background-color: #fffcd1;
+}
+.colorCss7 {
+  border: 1.5px solid #2dccbf;
+  color: #2dccbf;
+  background-color: #d1fdff;
+}
+.colorCss8 {
+  border: 1.5px solid #9f2dcc;
+  color: #9f2dcc;
+  background-color: #f6d1ff;
+}
+.colorCss9 {
+  border: 1.5px solid #cc822d;
+  color: #cc822d;
+  background-color: #fff0d1;
+}
+.boxForTitle {
+  overflow: hidden;
+  font-size: 18px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 75%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 0px 0px 5px;
+
+}
 .disciplineCss {
   border: 1.5px solid #8c6a13;
   color: #8c6a13;
@@ -2600,28 +2657,19 @@ outline: none !important;
 
 
 .calendar {
-  /* width: 100%;
-  max-width: 400px; */
-
+ 
   margin: 0 auto;
-  /* overflow: hidden; */
 
-  /* display: flex; */
-/* width: 370px; */
-height: 460px;
-/* padding: 15px 50px 72px 50px; */
-/* flex-direction: column;
-align-items: center; */
 gap: 47px;
 border-radius: 10px;
 background: #FFF;
 position: relative;
-/* effect */
+
 box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
 }
 .ActivitiesHeader {
   position: relative;
-  background: #A94037;
+  background: #3330B1;
   color: #FFF;
   text-align: center;
   font-family: Poppins;
@@ -2648,21 +2696,71 @@ box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
 
 .ActivitiesHeader::before {
     width: 44px;
-height: 23px;
+height: 35px;
 position: absolute;
 /* top: -27px; */
     top: 0;
     right: 0;
     border-top-right-radius: 10px;
-    background-image: url('/assets/image/calendarVector1.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
+    background-image: url('/assets/image/performanceVector2.png'); /* Replace 'path/to/top_right_image.jpg' with the actual path to your top right image */
 }
 
 .ActivitiesHeader::after {
     width: 44px;
-    height: 23px;
+    height: 35px;
     position: absolute;
     bottom: 0;
     left: 0;
     border-bottom-left-radius: 10px;
-    background-image: url('/assets/image/calendarVector2.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
+    background-image: url('/assets/image/performanceVector1.png'); /* Replace 'path/to/bottom_left_image.jpg' with the actual path to your bottom left image */
 }
+
+.performanceVector3{
+width: 35px;
+}
+.performanceUserImg{
+  width: 50px;
+height: 50px;
+flex-shrink: 0;
+border-radius: 50%;
+margin-top: -10px;
+cursor: pointer;
+}
+
+.performanceUserName{
+  color: #000;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+padding-left: 20px;
+}
+
+.performanceUserEmail{
+  color: #000;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+padding-left: 20px;
+}
+
+.performance_button {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  outline: none;
+  color: #2f37a4;
+  border: 1px solid #2f37a4;
+  background-color: #cccccc00;
+  border-radius: 10rem;
+  height: 3rem;
+  width: 10rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+}
+.performance_button:hover {
+  background-color: #2f37a4;
+  color: #fff;
+  font-weight: 600;
+}
+

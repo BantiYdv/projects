@@ -153,6 +153,11 @@ export class ApiService {
   public deleteAddedSalary = `${this.apiUrl}gateway/onboard/deleteAddedSalary`;
   public generateOfferLetter = `${this.apiUrl}gateway/onboard/generate-offer-letter`;
   public addAppraisal = `${this.apiUrl}gateway/onboard/addAppraisal`;
+  public saveRating = `${this.apiUrl}gateway/onboard/saveRating`;
+  public saveProbation = `${this.apiUrl}gateway/onboard/saveProbation`;
+  public savePromotion = `${this.apiUrl}gateway/onboard/savePromotion`;
+  public saveDemotion = `${this.apiUrl}gateway/onboard/saveDemotion`;
+  public savePIP = `${this.apiUrl}gateway/onboard/savePIP`;
 
   
 

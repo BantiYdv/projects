@@ -673,6 +673,41 @@ this.selectedItem.halfDayHrs =
     }
   }
 
+  // add star rating start
+  saveDataRating = { selectedRatingResponsiveness: 0, selectedRatingWorkHabits: 0, selectedRatingPunctuality: 0, selectedRatingAttendance: 0, selectedRatingAbilityToLearn: 0, selectedRatingTeamWork: 0, selectedRatingPerformance: 0, selectedRatingDedication: 0, selectedRatingAccuracyOfWork: 0 };
+
+  opinion: string = '';
+  stars: number[] = [0, 1, 2, 3, 4];
+  rateStar(index: number, name:any) {
+    if('SRR' == name){
+      this.saveDataRating.selectedRatingResponsiveness = index + 1;
+    }
+    if('SRWH' == name){
+      this.saveDataRating.selectedRatingWorkHabits = index + 1;
+    }
+    if('SRPT' == name){
+      this.saveDataRating.selectedRatingPunctuality = index + 1;
+    }
+    if('SRA' == name){
+      this.saveDataRating.selectedRatingAttendance = index + 1;
+    }
+    if('SRATL' == name){
+      this.saveDataRating.selectedRatingAbilityToLearn = index + 1;
+    }
+    if('SRTW' == name){
+      this.saveDataRating.selectedRatingTeamWork = index + 1;
+    }
+    if('SRPF' == name){
+      this.saveDataRating.selectedRatingPerformance = index + 1;
+    }
+    if('SRD' == name){
+      this.saveDataRating.selectedRatingDedication = index + 1;
+    }
+    if('SRAOW' == name){
+      this.saveDataRating.selectedRatingAccuracyOfWork = index + 1;
+    }
+  }
+// add start rating end
 
   ngOnInit() {
     this.ratingMonth = new Date().toISOString().split('T')[0].slice(0,-3);
@@ -7422,6 +7457,8 @@ ratingMonth:any;
 addPerformanceUpdate: any;
 addPerformance(item: any){
   this.addPerformanceUpdate = item;
+  this.appraisal.employeeName = item.firstname + ' ' + item.lastname;
+  this.appraisal.username = item.emailid;
   console.log("item performance", this.addPerformanceUpdate);
   this.loginService.showTable('addPerformance');
 }
@@ -7433,7 +7470,7 @@ appraisal= {
   appraisalDate:'',
 employeeRating:"5",
 currentSalary:'',
-hike:"5000"
+hike:''
 };
 
 addAppraisal(){
@@ -7469,5 +7506,118 @@ addAppraisal(){
   );
 }
 // add appraisal end
+
+
+
+saveRating(data: any) {
+  console.warn('data',data);
+  this.testService.saveRating(data).subscribe(
+    (r: any) => {
+      console.log('r',r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Rating saved successfully!',
+      });
+    },
+    (e: any) => {
+      console.error('e',e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the rating. Please try again.',
+      });
+    }
+  );
+}
+
+saveProbation(data: any) {
+  console.warn('data',data);
+  this.testService.saveProbation(data).subscribe(
+    (r: any) => {
+      console.log('r',r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Probation saved successfully!',
+      });
+    },
+    (e: any) => {
+      console.error('e',e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the probation. Please try again.',
+      });
+    }
+  );
+}
+
+savePromotion(data: any) {
+  console.warn('data',data);
+  this.testService.savePromotion(data).subscribe(
+    (r: any) => {
+      console.log('r',r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Promotion saved successfully!',
+      });
+    },
+    (e: any) => {
+      console.error('e',e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the promotion. Please try again.',
+      });
+    }
+  );
+}
+
+saveDemotion(data: any) {
+  console.warn('data',data);
+  this.testService.saveDemotion(data).subscribe(
+    (r: any) => {
+      console.log('r',r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Demotion saved successfully!',
+      });
+    },
+    (e: any) => {
+      console.error('e',e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the demotion. Please try again.',
+      });
+    }
+  );
+}
+
+savePIP(data: any) {
+  console.warn('data',data);
+  this.testService.savePIP(data).subscribe(
+    (r: any) => {
+      console.log('r',r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'PIP saved successfully!',
+      });
+    },
+    (e: any) => {
+      console.error('e',e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the PIP. Please try again.',
+      });
+    }
+  );
+}
+
 
 }
