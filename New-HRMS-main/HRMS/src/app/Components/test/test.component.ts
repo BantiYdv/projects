@@ -112,6 +112,16 @@ export class TestComponent {
   fillterGetAbsent: any;
   getPayrollData: any;
   fillterGetPayroll: any;
+  getAppraisalData: any;
+  fillterAppraisal: any;
+  getProbationData: any;
+  fillterProbation: any;
+  getPromotionData: any;
+  fillterPromotion: any;
+  getDemotionData: any;
+  fillterDemotion: any;
+  getPIPData: any;
+  fillterPIP: any;
   viewNotCheckedIn: any;
   // change password validation start
   showNewPassword: boolean = false;
@@ -761,6 +771,12 @@ this.selectedItem.halfDayHrs =
 this.viewPayroll();
 this.employeeNmaes();
 this.emailIds();
+this.viewAppraisal();
+this.viewPromotion();
+this.viewDemotion();
+this.viewPIP();
+// this.viewProbation();
+// this.getAllProbationData(this.item);
     
   }
 
@@ -902,6 +918,9 @@ this.emailIds();
       case 'performance':
         this.openEmployee();
         break;
+      // case 'viewPerformance':
+      //   this.openEmployee();
+      //   break;
       default:
         // Handle any other routes or add additional logic as needed
         break;
@@ -7620,4 +7639,419 @@ savePIP(data: any) {
 }
 
 
+// pagination and search for view appraisal start
+AppraisalperPage: number = 5;
+currentAppraisalPage: number = 1;
+
+searchAppraisal: string = '';
+
+
+FilterAppraisal() {
+  this.fillterAppraisal = this.getAppraisalData.filter((item: { employeeName: string }) =>
+    item.employeeName.toLowerCase().includes(this.searchAppraisal.toLowerCase())
+  );
+}
+
+getPaginatedAppraisalData(): any[] {
+  const startIndex = (this.currentAppraisalPage - 1) * this.AppraisalperPage;
+  const endIndex = startIndex + this.AppraisalperPage;
+  return this.fillterAppraisal.slice(startIndex, endIndex);
+}
+
+previousAppraisalPage(): void {
+  if (this.currentAppraisalPage > 1) {
+    this.currentAppraisalPage--;
+  }
+}
+
+getPageNumbersAppraisal(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterAppraisal.length / this.AppraisalperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageAppraisal(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAppraisal()) {
+    this.currentAppraisalPage = pageNumber;
+  }
+}
+
+
+nextPageAppraisal(): void {
+  const totalPages = Math.ceil(
+    this.fillterAppraisal.length / this.AppraisalperPage
+  );
+  if (this.currentAppraisalPage < totalPages) {
+    this.currentAppraisalPage++;
+  }
+}
+
+
+getTotalPagesAppraisal(): number {
+  return Math.ceil(
+    this.fillterAppraisal.length / this.AppraisalperPage
+  );
+}
+// pagination and search for view appraisal end
+
+// view appraisal list start
+viewAppraisal() {
+
+  this.testService.viewAppraisal().subscribe(
+    (response: any) => {
+
+      const dataArray = Object.values(response);
+
+      const reversedData = dataArray.reverse();
+
+    
+     
+      this.getAppraisalData = reversedData;
+      this.fillterAppraisal = reversedData;
+      console.log("view appraisal", response);
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');
+     
+    }
+  );
+
+}
+// view appraisal list end
+
+// // pagination and search for view probation start
+// ProbationperPage: number = 5;
+// currentProbationPage: number = 1;
+
+// searchProbation: string = '';
+
+
+// FilterProbation() {
+//   this.fillterProbation = this.getProbationData.filter((item: { employeeName: string }) =>
+//     item.employeeName.toLowerCase().includes(this.searchAppraisal.toLowerCase())
+//   );
+// }
+
+// getPaginatedProbationData(): any[] {
+//   const startIndex = (this.currentProbationPage - 1) * this.ProbationperPage;
+//   const endIndex = startIndex + this.ProbationperPage;
+//   return this.fillterProbation.slice(startIndex, endIndex);
+// }
+
+// previousProbationPage(): void {
+//   if (this.currentProbationPage > 1) {
+//     this.currentProbationPage--;
+//   }
+// }
+
+// getPageNumbersProbation(): number[] {
+//   const totalPages = Math.ceil(
+//     this.fillterProbation.length / this.ProbationperPage
+//   );
+//   return Array.from({ length: totalPages }, (_, index) => index + 1);
+// }
+
+// changePageProbation(pageNumber: number): void {
+//   if (pageNumber >= 1 && pageNumber <= this.getTotalPagesProbation()) {
+//     this.currentProbationPage = pageNumber;
+//   }
+// }
+
+
+// nextPageProbation(): void {
+//   const totalPages = Math.ceil(
+//     this.fillterProbation.length / this.ProbationperPage
+//   );
+//   if (this.currentProbationPage < totalPages) {
+//     this.currentProbationPage++;
+//   }
+// }
+
+
+// getTotalPagesProbation(): number {
+//   return Math.ceil(
+//     this.fillterProbation.length / this.ProbationperPage
+//   );
+// }
+// // pagination and search for view probation end
+
+// // view probation list start
+// viewProbation() {
+
+//   // if ('/todayCasualLeave' === this.router.url) {
+
+//   // Call the service method to fetch all attendance data
+//   this.testService.viewProbation().subscribe(
+//     (response: any) => {
+//       // Convert the response object to an array
+//       const dataArray = Object.values(response);
+//       // Reverse the received array
+//       const reversedData = dataArray.reverse();
+
+//       // Set the reversed array as the data source
+     
+//       this.getProbationData = reversedData;
+//       this.fillterProbation= reversedData;
+//       console.log("view probation", response);
+//     },
+//     error => {
+//       Swal.fire('Error', error.error, 'error');
+//       // Hide the table if an error occurs
+//       // this.showAllAttTable = false;
+//     }
+//   );
+//   // }
+// }
+// // view probation list end
+
+// viewProbationData: any;
+// getAllProbationData(item: any){
+//   this.viewProbationData = item;
+  
+//   console.log("item probation", this.viewProbationData);
+//   this.loginService.showTable('viewPerformance');
+// }
+
+
+// pagination and search for view promotion start
+PromotionperPage: number = 5;
+currentPromotionPage: number = 1;
+
+searchPromotion: string = '';
+
+
+FilterPromotion() {
+  this.fillterPromotion = this.getPromotionData.filter((item: { employeeName: string }) =>
+    item.employeeName.toLowerCase().includes(this.searchPromotion.toLowerCase())
+  );
+}
+
+getPaginatedPromotionData(): any[] {
+  const startIndex = (this.currentPromotionPage - 1) * this.PromotionperPage;
+  const endIndex = startIndex + this.PromotionperPage;
+  return this.fillterPromotion.slice(startIndex, endIndex);
+}
+
+previousPromotionPage(): void {
+  if (this.currentPromotionPage > 1) {
+    this.currentPromotionPage--;
+  }
+}
+
+getPageNumbersPromotion(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterPromotion.length / this.PromotionperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePagePromotion(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPromotion()) {
+    this.currentPromotionPage = pageNumber;
+  }
+}
+
+
+nextPagePromotion(): void {
+  const totalPages = Math.ceil(
+    this.fillterPromotion.length / this.PromotionperPage
+  );
+  if (this.currentPromotionPage < totalPages) {
+    this.currentPromotionPage++;
+  }
+}
+
+
+getTotalPagesPromotion(): number {
+  return Math.ceil(
+    this.fillterPromotion.length / this.PromotionperPage
+  );
+}
+// pagination and search for view Promotion end
+
+// view Promotion list start
+viewPromotion() {
+
+  this.testService.viewPromotion().subscribe(
+    (response: any) => {
+
+      const dataArray = Object.values(response);
+
+      const reversedData = dataArray.reverse();
+
+    
+     
+      this.getPromotionData = reversedData;
+      this.fillterPromotion = reversedData;
+      console.log("view Promotion", response);
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');
+     
+    }
+  );
+
+}
+// view Promotion list end
+
+// pagination and search for view demotion start
+DemotionperPage: number = 5;
+currentDemotionPage: number = 1;
+
+searchDemotion: string = '';
+
+
+FilterDemotion() {
+  this.fillterDemotion = this.getDemotionData.filter((item: { employeeName: string }) =>
+    item.employeeName.toLowerCase().includes(this.searchDemotion.toLowerCase())
+  );
+}
+
+getPaginatedDemotionData(): any[] {
+  const startIndex = (this.currentDemotionPage - 1) * this.DemotionperPage;
+  const endIndex = startIndex + this.DemotionperPage;
+  return this.fillterDemotion.slice(startIndex, endIndex);
+}
+
+previousDemotionPage(): void {
+  if (this.currentDemotionPage > 1) {
+    this.currentDemotionPage--;
+  }
+}
+
+getPageNumbersDemotion(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterDemotion.length / this.DemotionperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageDemotion(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesDemotion()) {
+    this.currentDemotionPage = pageNumber;
+  }
+}
+
+
+nextPageDemotion(): void {
+  const totalPages = Math.ceil(
+    this.fillterDemotion.length / this.DemotionperPage
+  );
+  if (this.currentDemotionPage < totalPages) {
+    this.currentDemotionPage++;
+  }
+}
+
+
+getTotalPagesDemotion(): number {
+  return Math.ceil(
+    this.fillterDemotion.length / this.DemotionperPage
+  );
+}
+// pagination and search for view demotion end
+
+// view demotion list start
+viewDemotion() {
+
+  this.testService.viewDemotion().subscribe(
+    (response: any) => {
+
+      const dataArray = Object.values(response);
+
+      const reversedData = dataArray.reverse();
+
+    
+     
+      this.getDemotionData = reversedData;
+      this.fillterDemotion = reversedData;
+      console.log("view demotion", response);
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');
+     
+    }
+  );
+
+}
+// view demotion list end
+
+// pagination and search for view pip start
+PIPPage: number = 5;
+currentPIPPage: number = 1;
+
+searchPIP: string = '';
+
+
+FilterPIP() {
+  this.fillterPIP = this.getPIPData.filter((item: { employeeName: string }) =>
+    item.employeeName.toLowerCase().includes(this.searchPIP.toLowerCase())
+  );
+}
+
+getPaginatedPIPData(): any[] {
+  const startIndex = (this.currentPIPPage - 1) * this.PIPPage;
+  const endIndex = startIndex + this.PIPPage;
+  return this.fillterPIP.slice(startIndex, endIndex);
+}
+
+previousPIPPage(): void {
+  if (this.currentPIPPage > 1) {
+    this.currentPIPPage--;
+  }
+}
+
+getPageNumbersPIP(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterPIP.length / this.PIPPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePagePIP(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPIP()) {
+    this.currentPIPPage = pageNumber;
+  }
+}
+
+
+nextPagePIP(): void {
+  const totalPages = Math.ceil(
+    this.fillterPIP.length / this.PIPPage
+  );
+  if (this.currentPIPPage < totalPages) {
+    this.currentPIPPage++;
+  }
+}
+
+
+getTotalPagesPIP(): number {
+  return Math.ceil(
+    this.fillterPIP.length / this.PIPPage
+  );
+}
+// pagination and search for view pip end
+
+// view pip list start
+viewPIP() {
+
+  this.testService.viewPIP().subscribe(
+    (response: any) => {
+
+      const dataArray = Object.values(response);
+
+      const reversedData = dataArray.reverse();
+
+      this.getPIPData = reversedData;
+      this.fillterPIP = reversedData;
+      console.log("view PIP", response);
+    },
+    error => {
+      Swal.fire('Error', error.error, 'error');
+     
+    }
+  );
+
+}
+// view piip list end
 }

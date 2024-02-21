@@ -697,7 +697,7 @@
 
             <div class="row mt-3">
               <div class="col-md-12 my-2 " *ngFor="let item of getPaginatedEmpData(); let i = index">
-                <div class="employeeList">
+                <div class="employeeList" [ngClass]="item.userActive ? '':'bg-danger-subtle'">
                   <div class="col-md-1 m-1" [routerLink]="['/profile', 'viewProfile']"
                     (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">
                     <img [src]="imageUrl || imageUser(item.firstname , item.lastname)" alt="" class="empList"
@@ -717,10 +717,13 @@
                         <button mat-menu-item [routerLink]="['/profile', 'viewProfile']"
                           (click)="loginService.showTable('viewProfile')" [queryParams]="{ id: item.id }">View
                           Profile</button>
-                        <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit
-                          Profile</button>
+                        <button mat-menu-item [routerLink]="['/update']" [queryParams]="{ id: item.id }">Edit Profile</button>
                         <button mat-menu-item (click)="deleteEmployee(item.id)">Delete Profile</button>
-
+                        <button mat-menu-item (click)="activeProfile(item.id, item.userActive)"
+                          *ngIf="item.userActive == false">Activate</button>
+                        <button mat-menu-item (click)="activeProfile(item.id, item.userActive)"
+                          *ngIf="item.userActive == true">Deactivate</button>
+      
                       </mat-menu>
                     </div>
                   </div>
@@ -7829,5 +7832,867 @@
 </div>
 </div>
 <!-- add performance end -->
+
+<!-- view performance start -->
+<div *ngSwitchCase="'viewPerformance'">
+  
+  <div class="col-md-12 d-flex flex-wrap">
+    <div class="mt-4" id="LeaveChart"
+      [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-12' : 'col-12  col-md-12 col-lg-12 col-xl-12'">
+      <div class="performance">
+        <div class="d-flex justify-content-start">
+          <h3 class="leaveTitle">Performance</h3>
+        </div>
+        <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-probation'">
+            <button class="nav-link active" id="pills-probation-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-probation" type="button" role="tab" aria-controls="pills-probation"
+              aria-selected="true">Probation</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review"
+              type="button" role="tab" aria-controls="pills-review" aria-selected="false">Review</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-appraisal-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-appraisal" type="button" role="tab" aria-controls="pills-appraisal"
+              aria-selected="false">Appraisal</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-promotion-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-promotion" type="button" role="tab" aria-controls="pills-promotion"
+              aria-selected="false">Promotion</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+            <button class="nav-link" id="pills-demotion-tab" data-bs-toggle="pill"
+              data-bs-target="#pills-demotion" type="button" role="tab" aria-controls="pills-demotion"
+              aria-selected="false">Demotion</button>
+          </li>
+          <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-pip'">
+            <button class="nav-link" id="pills-pip-tab" data-bs-toggle="pill" data-bs-target="#pills-pip"
+              type="button" role="tab" aria-controls="pills-pip" aria-selected="false">PIP</button>
+          </li>
+        </ul>
+     </div>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-probation" role="tabpanel"
+            aria-labelledby="pills-probation-tab">
+           
+            <div class="justify-content-center align-item-center"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
+
+                  <div class="col-12 d-flex flex-column justify-content-center ">
+<!--                  
+                    <div class="container">
+                      
+                      <div class="row">
+                        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentProbationPage === 1}"
+                          *ngIf="currentProbationPage === 1">
+                          <div class="added_positions_list_right">
+                            <div class="added_positions_under_head">Show</div>
+                            <div>
+                              <select class="added_positions_under_head_select" [(ngModel)]="ProbationperPage">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                              </select>
+                            </div>
+                            <div class="added_positions_under_head">Enteries</div>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-center"
+                          [ngClass]="{'col-md-6': currentProbationPage === 1, 'col-md-12': currentProbationPage >= 2}">
+                          <div class="">
+                            <div class="search-container ">
+                              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                                alt="">
+                              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchProbation"
+                                (keyup)="FilterProbation()">
+                            </div>
+                          </div>
+                          <div class="">
+                            <button class="button_added_position_list">Search</button>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <div class="row">
+              
+              
+                        <div class="recruit_table">
+                          <div class="table_head">
+                            <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+                              S.No</div>
+                            <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Name
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Email Id
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Appraisal Salary
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 15%;">
+              
+                              &nbsp; Appraisal Date
+                            </div>
+              
+                          </div>
+                          
+                          <div class="my-1">
+                            <div class="table_body" *ngFor="let item of getPaginatedProbationData(); let i = index">
+                              <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                              </div>
+                              <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
+                                item.employeeName }}</div>
+                              <div class="table_body_topics my-2"
+                                style="width: 30%;border-right: 2px solid #ADADAD; ">
+                                {{ item.username }}
+                              </div>
+                              <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; ">{{
+                                item.appraisalSalary }}</div>
+                                 <div class="table_body_topics my-2" style="width: 15%; ">{{
+                                  item.appraisalDate }}</div>
+              
+              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <div class="not_data_img_div" *ngIf="getPaginatedProbationData().length == 0">
+                        <p>No Data !!</p>
+                      </div>
+
+                      <div class="col-md-12" *ngIf="getTotalPagesProbation() > 1">
+                        <div class="table_footer mt-2">
+                          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                            style="background-color:#421cdd;" (click)="previousProbationPage()" [disabled]="currentProbationPage == 1">
+                            <i class="fa fa-angle-left"></i> Previous
+                          </button>
+                          <div class="recruitment_list_number">
+                            <div *ngFor="let pageNumber of getPageNumbersProbation()" [class.active_num]="pageNumber === currentProbationPage"
+                              class="recruitment_list_number_value" (click)="changePageProbation(pageNumber)">
+                              {{ pageNumber }}
+                            </div>
+                          </div>
+                          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                            style="background-color:#421cdd;" (click)="nextPageProbation()"
+                            [disabled]="currentProbationPage == getTotalPagesProbation()">
+                            Next <i class="fa fa-angle-right"></i>
+                          </button>
+              
+                        </div>
+                      </div>
+              
+                    </div> -->
+              
+
+            </div>
+  
+      
+        </div>
+          </div>
+
+         
+          <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+            <div class="justify-content-center align-item-center"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
+
+            <div class="calendar">
+              <h5 class="mb-4 mt-2 ActivitiesHeader"><img
+                src="/assets/image/performanceVector3.png" alt="" class="performanceVector3"> </h5>
+                  <div class="col-12 d-flex flex-column justify-content-center mt-4">
+                  
+                 
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <input type="month" class="inputForMonth" [(ngModel)]="ratingMonth" name="ratingMonth">
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <div class="d-flex flex-wrap justify-content-start align-items-center col-12 col-md-11 col-xl-11 mb-3">
+          
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss1 boxForTitle" title="Accuracy of work">Accuracy of work</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingAccuracyOfWork" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRAOW')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingAccuracyOfWork" (click)="rateStar(i,'SRAOW')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss2 boxForTitle">Dedication</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingDedication" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRD')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingDedication" (click)="rateStar(i,'SRD')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss3 boxForTitle">Performance</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingPerformance" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRPF')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingPerformance" (click)="rateStar(i,'SRPF')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss4 boxForTitle">Team Work</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingTeamWork" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRTW')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingTeamWork" (click)="rateStar(i,'SRTW')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss5 boxForTitle">Ability to Learn</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingAbilityToLearn" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRATL')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingAbilityToLearn" (click)="rateStar(i,'SRATL')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                       
+                       
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss6 boxForTitle">Attendance</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingAttendance" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRA')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingAttendance" (click)="rateStar(i,'SRA')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                       
+                       
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss7 boxForTitle">Punctuality</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingPunctuality" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRPT')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingPunctuality" (click)="rateStar(i,'SRPT')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss8 boxForTitle">Work Habits</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingWorkHabits" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRWH')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingWorkHabits" (click)="rateStar(i,'SRWH')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap float-start">
+                          <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                            <div class="colorCss9 boxForTitle">Responsiveness</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                            <div class="boxForTitle starCss">
+                              <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                                <img *ngIf="i < saveDataRating.selectedRatingResponsiveness" src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRR')"  style="--i: 0;">
+                                <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingResponsiveness" (click)="rateStar(i,'SRR')"  style="--i: 0;color: #A9A8AD;"></i>
+                             
+                              </ng-container>
+          
+                            </div>
+                          </div>
+                        </div>
+        
+                        <div class="col-12 col-md-12 col-xl-12 mt-3 d-flex justify-content-center">
+                    
+                          <button type="button" class="recruitment_button clickEffect" style="margin-top:35px;" (click)="saveRating(saveDataRating)">Save</button>
+                        </div>
+          
+                      </div>
+                    </div>
+
+            </div>
+          </div>
+      
+        </div>
+          
+
+          </div>
+
+
+
+          <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
+          
+            <div class="justify-content-center align-item-center"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
+
+                    <div class="col-12 d-flex flex-column justify-content-center ">
+                   
+                      <div class="container">
+                        
+                        <div class="row">
+                          <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentAppraisalPage === 1}"
+                            *ngIf="currentAppraisalPage === 1">
+                            <div class="added_positions_list_right">
+                              <div class="added_positions_under_head">Show</div>
+                              <div>
+                                <select class="added_positions_under_head_select" [(ngModel)]="AppraisalperPage">
+                                  <option value="5">5</option>
+                                  <option value="10">10</option>
+                                  <option value="15">15</option>
+                                  <option value="20">20</option>
+                                  <option value="25">25</option>
+                                </select>
+                              </div>
+                              <div class="added_positions_under_head">Enteries</div>
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-end align-items-center"
+                            [ngClass]="{'col-md-6': currentAppraisalPage === 1, 'col-md-12': currentAppraisalPage >= 2}">
+                            <div class="">
+                              <div class="search-container ">
+                                <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                                  alt="">
+                                <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchAppraisal"
+                                  (keyup)="FilterAppraisal()">
+                              </div>
+                            </div>
+                            <div class="">
+                              <button class="button_added_position_list">Search</button>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="row">
+                
+                
+                          <div class="recruit_table">
+                            <div class="table_head">
+                              <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+                                S.No</div>
+                              <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
+                
+                                &nbsp; Name
+                              </div>
+                              <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
+                
+                                &nbsp; Email Id
+                              </div>
+                              <div class="table_head_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; height: 100%;">
+                
+                                &nbsp; Appraisal Salary
+                              </div>
+                              <div class="table_head_topics my-2" style="width: 15%;">
+                
+                                &nbsp; Appraisal Date
+                              </div>
+                
+                            </div>
+                            
+                            <div class="my-1">
+                              <div class="table_body" *ngFor="let item of getPaginatedAppraisalData(); let i = index">
+                                <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                                </div>
+                                <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
+                                  item.employeeName }}</div>
+                                <div class="table_body_topics my-2"
+                                  style="width: 30%;border-right: 2px solid #ADADAD; ">
+                                  {{ item.username }}
+                                </div>
+                                <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; ">{{
+                                  item.appraisalSalary }}</div>
+                                   <div class="table_body_topics my-2" style="width: 15%; ">{{
+                                    item.appraisalDate }}</div>
+                
+                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="not_data_img_div" *ngIf="getPaginatedAppraisalData().length == 0">
+                          <p>No Data !!</p>
+                        </div>
+
+                        <div class="col-md-12" *ngIf="getTotalPagesAppraisal() > 1">
+                          <div class="table_footer mt-2">
+                            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                              style="background-color:#421cdd;" (click)="previousAppraisalPage()" [disabled]="currentAppraisalPage == 1">
+                              <i class="fa fa-angle-left"></i> Previous
+                            </button>
+                            <div class="recruitment_list_number">
+                              <div *ngFor="let pageNumber of getPageNumbersAppraisal()" [class.active_num]="pageNumber === currentAppraisalPage"
+                                class="recruitment_list_number_value" (click)="changePageAppraisal(pageNumber)">
+                                {{ pageNumber }}
+                              </div>
+                            </div>
+                            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                              style="background-color:#421cdd;" (click)="nextPageAppraisal()"
+                              [disabled]="currentAppraisalPage == getTotalPagesAppraisal()">
+                              Next <i class="fa fa-angle-right"></i>
+                            </button>
+                
+                          </div>
+                        </div>
+                
+                      </div>
+                
+
+              </div>
+    
+        
+          </div>
+          </div>
+          <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
+           
+         
+            <div class="justify-content-center align-item-center"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
+
+                    <div class="col-12 d-flex flex-column justify-content-center ">
+                   
+                      <div class="container">
+                        
+                        <div class="row">
+                          <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPromotionPage === 1}"
+                            *ngIf="currentPromotionPage === 1">
+                            <div class="added_positions_list_right">
+                              <div class="added_positions_under_head">Show</div>
+                              <div>
+                                <select class="added_positions_under_head_select" [(ngModel)]="PromotionperPage">
+                                  <option value="5">5</option>
+                                  <option value="10">10</option>
+                                  <option value="15">15</option>
+                                  <option value="20">20</option>
+                                  <option value="25">25</option>
+                                </select>
+                              </div>
+                              <div class="added_positions_under_head">Enteries</div>
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-end align-items-center"
+                            [ngClass]="{'col-md-6': currentPromotionPage === 1, 'col-md-12': currentPromotionPage >= 2}">
+                            <div class="">
+                              <div class="search-container ">
+                                <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                                  alt="">
+                                <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchPromotion"
+                                  (keyup)="FilterPromotion()">
+                              </div>
+                            </div>
+                            <div class="">
+                              <button class="button_added_position_list">Search</button>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="row">
+                
+                
+                          <div class="recruit_table">
+                            <div class="table_head">
+                              <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+                                S.No</div>
+                              <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; height: 100%;">
+                
+                                &nbsp; Name
+                              </div>
+                              <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
+                
+                                &nbsp; Email Id
+                              </div>
+                              <div class="table_head_topics my-2" style="width: 25%;border-right: 2px solid #ADADAD; height: 100%;">
+                
+                                &nbsp; Promoted Position
+                              </div>
+                              <div class="table_head_topics my-2" style="width: 15%;">
+                
+                                &nbsp; Promoted Date
+                              </div>
+                
+                            </div>
+                            
+                            <div class="my-1">
+                              <div class="table_body" *ngFor="let item of getPaginatedPromotionData(); let i = index">
+                                <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                                </div>
+                                <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
+                                  item.employeeName }}</div>
+                                <div class="table_body_topics my-2"
+                                  style="width: 30%;border-right: 2px solid #ADADAD; ">
+                                  {{ item.emailId }}
+                                </div>
+                                <div class="table_body_topics my-2" style="width: 25%;border-right: 2px solid #ADADAD; ">{{
+                                  item.promotedPositionName }}</div>
+                                   <div class="table_body_topics my-2" style="width: 15%; ">{{
+                                    item.date }}</div>
+                
+                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="not_data_img_div" *ngIf="getPaginatedPromotionData().length == 0">
+                          <p>No Data !!</p>
+                        </div>
+
+                        <div class="col-md-12" *ngIf="getTotalPagesPromotion() > 1">
+                          <div class="table_footer mt-2">
+                            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                              style="background-color:#421cdd;" (click)="previousPromotionPage()" [disabled]="currentPromotionPage == 1">
+                              <i class="fa fa-angle-left"></i> Previous
+                            </button>
+                            <div class="recruitment_list_number">
+                              <div *ngFor="let pageNumber of getPageNumbersPromotion()" [class.active_num]="pageNumber === currentPromotionPage"
+                                class="recruitment_list_number_value" (click)="changePagePromotion(pageNumber)">
+                                {{ pageNumber }}
+                              </div>
+                            </div>
+                            <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                              style="background-color:#421cdd;" (click)="nextPagePromotion()"
+                              [disabled]="currentPromotionPage == getTotalPagesPromotion()">
+                              Next <i class="fa fa-angle-right"></i>
+                            </button>
+                
+                          </div>
+                        </div>
+                
+                      </div>
+                
+
+              </div>
+    
+        
+          </div>
+          </div>
+          <div class="tab-pane fade" id="pills-demotion" role="tabpanel" aria-labelledby="pills-demotion-tab">
+            <div class="justify-content-center align-item-center"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
+
+                  <div class="col-12 d-flex flex-column justify-content-center ">
+                 
+                    <div class="container">
+                      
+                      <div class="row">
+                        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentDemotionPage === 1}"
+                          *ngIf="currentDemotionPage === 1">
+                          <div class="added_positions_list_right">
+                            <div class="added_positions_under_head">Show</div>
+                            <div>
+                              <select class="added_positions_under_head_select" [(ngModel)]="DemotionperPage">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                              </select>
+                            </div>
+                            <div class="added_positions_under_head">Enteries</div>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-center"
+                          [ngClass]="{'col-md-6': currentDemotionPage === 1, 'col-md-12': currentDemotionPage >= 2}">
+                          <div class="">
+                            <div class="search-container ">
+                              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                                alt="">
+                              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchDemotion"
+                                (keyup)="FilterDemotion()">
+                            </div>
+                          </div>
+                          <div class="">
+                            <button class="button_added_position_list">Search</button>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <div class="row">
+              
+              
+                        <div class="recruit_table">
+                          <div class="table_head">
+                            <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+                              S.No</div>
+                            <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Name
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Email Id
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 25%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Demoted Position
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Demoted Date
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 15%; height: 100%;">
+              
+                              &nbsp;  Reason
+                            </div>
+              
+                          </div>
+                          
+                          <div class="my-1">
+                            <div class="table_body" *ngFor="let item of getPaginatedDemotionData(); let i = index">
+                              <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                              </div>
+                              <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
+                                item.employeeName }}</div>
+                              <div class="table_body_topics my-2"
+                                style="width: 30%;border-right: 2px solid #ADADAD; ">
+                                {{ item.username }}
+                              </div>
+                              <div class="table_body_topics my-2" style="width: 25%;border-right: 2px solid #ADADAD; ">{{
+                                item.demotedPosition }}</div>
+                                 <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD;">{{
+                                  item.demotionDate }}</div>
+                                 <div class="table_body_topics my-2" style="width: 15%; ">{{
+                                  item.reason }}</div>
+              
+              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <div class="not_data_img_div" *ngIf="getPaginatedDemotionData().length == 0">
+                        <p>No Data !!</p>
+                      </div>
+
+                      <div class="col-md-12" *ngIf="getTotalPagesDemotion() > 1">
+                        <div class="table_footer mt-2">
+                          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                            style="background-color:#421cdd;" (click)="previousDemotionPage()" [disabled]="currentDemotionPage == 1">
+                            <i class="fa fa-angle-left"></i> Previous
+                          </button>
+                          <div class="recruitment_list_number">
+                            <div *ngFor="let pageNumber of getPageNumbersDemotion()" [class.active_num]="pageNumber === currentDemotionPage"
+                              class="recruitment_list_number_value" (click)="changePageDemotion(pageNumber)">
+                              {{ pageNumber }}
+                            </div>
+                          </div>
+                          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                            style="background-color:#421cdd;" (click)="nextPageDemotion()"
+                            [disabled]="currentDemotionPage == getTotalPagesDemotion()">
+                            Next <i class="fa fa-angle-right"></i>
+                          </button>
+              
+                        </div>
+                      </div>
+              
+                    </div>
+              
+
+            </div>
+  
+      
+        </div>
+          </div>
+
+          <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
+            <div class="justify-content-center align-item-center"
+            [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
+
+                  <div class="col-12 d-flex flex-column justify-content-center ">
+                 
+                    <div class="container">
+                      
+                      <div class="row">
+                        <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPIPPage === 1}"
+                          *ngIf="currentPIPPage === 1">
+                          <div class="added_positions_list_right">
+                            <div class="added_positions_under_head">Show</div>
+                            <div>
+                              <select class="added_positions_under_head_select" [(ngModel)]="PIPPage">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                              </select>
+                            </div>
+                            <div class="added_positions_under_head">Enteries</div>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-center"
+                          [ngClass]="{'col-md-6': currentPIPPage === 1, 'col-md-12': currentPIPPage >= 2}">
+                          <div class="">
+                            <div class="search-container ">
+                              <img src="../../../assets/image/search_icon_recruitment.svg" class="search_icon_added_position_list"
+                                alt="">
+                              <input type="text" name="" id="" class="search_added_position_list" [(ngModel)]="searchPIP"
+                                (keyup)="FilterPIP()">
+                            </div>
+                          </div>
+                          <div class="">
+                            <button class="button_added_position_list">Search</button>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <div class="row">
+              
+              
+                        <div class="recruit_table">
+                          <div class="table_head">
+                            <div class="table_head_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD; height: 100%;">
+                              S.No</div>
+                            <div class="table_head_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Name
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Email Id
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 25%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Demoted Position
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; height: 100%;">
+              
+                              &nbsp; Demoted Date
+                            </div>
+                            <div class="table_head_topics my-2" style="width: 15%; height: 100%;">
+              
+                              &nbsp;  Reason
+                            </div>
+              
+                          </div>
+                          
+                          <div class="my-1">
+                            <div class="table_body" *ngFor="let item of getPaginatedPIPData(); let i = index">
+                              <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i + 1 }}
+                              </div>
+                              <div class="table_body_topics my-2" style="width: 20%;border-right: 2px solid #ADADAD; ">{{
+                                item.employeeName }}</div>
+                              <div class="table_body_topics my-2"
+                                style="width: 30%;border-right: 2px solid #ADADAD; ">
+                                {{ item.employeeEmailId }}
+                              </div>
+                              <div class="table_body_topics my-2" style="width: 25%;border-right: 2px solid #ADADAD; ">{{
+                                item.demotedPosition }}</div>
+                                 <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD;">{{
+                                  item.demotionDate }}</div>
+                                 <div class="table_body_topics my-2" style="width: 15%; ">{{
+                                  item.reason }}</div>
+              
+              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <div class="not_data_img_div" *ngIf="getPaginatedPIPData().length == 0">
+                        <p>No Data !!</p>
+                      </div>
+
+                      <div class="col-md-12" *ngIf="getTotalPagesPIP() > 1">
+                        <div class="table_footer mt-2">
+                          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                            style="background-color:#421cdd;" (click)="previousPIPPage()" [disabled]="currentPIPPage == 1">
+                            <i class="fa fa-angle-left"></i> Previous
+                          </button>
+                          <div class="recruitment_list_number">
+                            <div *ngFor="let pageNumber of getPageNumbersPIP()" [class.active_num]="pageNumber === currentPIPPage"
+                              class="recruitment_list_number_value" (click)="changePagePIP(pageNumber)">
+                              {{ pageNumber }}
+                            </div>
+                          </div>
+                          <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
+                            style="background-color:#421cdd;" (click)="nextPagePIP()"
+                            [disabled]="currentPIPPage == getTotalPagesPIP()">
+                            Next <i class="fa fa-angle-right"></i>
+                          </button>
+              
+                        </div>
+                      </div>
+              
+                    </div>
+              
+
+            </div>
+  
+      
+        </div>
+           
+          </div>
+    
+      </div>
+    <!-- </div> -->
+    
+  </div>
+</div>
+</div>
+<!-- view performance end -->
 
 </div>

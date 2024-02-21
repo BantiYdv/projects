@@ -348,7 +348,7 @@
               </a>
             </li>
 
-            <li class="nav-item text-center">
+            <!-- <li class="nav-item text-center">
               <a class="nav-link px-0 align-middle" [routerLink]="['/performance']" (click)="loginService.showTable('performance')">
                 <div class="image-container">
                   <img class="sidebarPageLogo" src="/assets/image/icon/addBirthday.png" alt="" id="hoverBirthday">
@@ -356,6 +356,28 @@
                 </div>
                 <span class="image-namenew">Performance</span>
               </a>
+            </li> -->
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#performance" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/interview.png" alt="" id="hoverInterview">
+                 
+                </div>
+                  <span class="image-namenew">Performance</span>
+                </a>
+                <div class="collapse" id="performance">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/performance']" (click)="loginService.showTable('performance')">Add Performance</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/viewPerformance']" (click)="loginService.showTable('viewPerformance')">View Performance</a>
+                    </li>
+                   
+                  </ul>
+                </div>
             </li>
 
           </ul>
@@ -546,7 +568,7 @@
             <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/performance']"
               (click)="loginService.showTable('performance')">
               <div class="image-container">
-                <img class="sidebarPageLogo" src="/assets/image/icon/addBirthday.png" alt="" id="hoverBirthday">
+                <img class="sidebarPageLogo" src="/assets/image/icon/interview.png" alt="" id="hoverInterview">
 
               </div>
             </a>
@@ -765,12 +787,31 @@
             </a>
           </li>
 
-          <li class="nav-item text-center sideBarName">
+          <!-- <li class="nav-item text-center sideBarName">
             <a class="nav-link px-0 align-middle" [routerLink]="['/performance']" (click)="loginService.showTable('performance')">
-             <!-- <div class="image-container"> -->
+             
                 <span class="image-namenew">Performance</span>
-              <!-- </div> -->
+              
             </a>
+          </li> -->
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#performance" aria-expanded="false">
+                <span class="image-namenew">Performance</span>
+              </a>
+              <div class="collapse" id="performance">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                    [routerLink]="['/performance']" (click)="loginService.showTable('performance')">Add Performance</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/viewPerformance']" (click)="loginService.showTable('viewPerformance')">View Performance</a>
+                  </li>
+                 
+                </ul>
+              </div>
           </li>
 
         </ul>

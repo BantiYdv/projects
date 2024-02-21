@@ -158,6 +158,11 @@ export class ApiService {
   public savePromotion = `${this.apiUrl}gateway/onboard/savePromotion`;
   public saveDemotion = `${this.apiUrl}gateway/onboard/saveDemotion`;
   public savePIP = `${this.apiUrl}gateway/onboard/savePIP`;
+  public appraisalList = `${this.apiUrl}gateway/onboard/listAppraisal`;
+  public promotionList = `${this.apiUrl}gateway/onboard/listPromotion`;
+  public demotionList = `${this.apiUrl}gateway/onboard/listDemotion`;
+  public getAllPIP = `${this.apiUrl}gateway/onboard/getAllPIP`;
+  // public probationList = `${this.apiUrl}gateway/onboard/listProbation`;
 
   
 

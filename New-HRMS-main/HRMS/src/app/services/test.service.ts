@@ -1156,4 +1156,59 @@ savePIP(data:any){
 }
 // for save save PIP end
 
+// view all appraisal list start
+viewAppraisal(){
+  const url = `${this.api.appraisalList}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// view all appraisal list end
+
+// view all promotion list start
+viewPromotion(){
+  const url = `${this.api.promotionList}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// view all promotion list end
+
+// view all demotion list start
+viewDemotion(){
+  const url = `${this.api.demotionList}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// view all demotion list end
+
+// view all pip list start
+viewPIP(){
+  const url = `${this.api.getAllPIP}`;
+  const token = localStorage.getItem('jwtToken');
+  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+  return this.http.get(url, { headers });
+
+}
+// view all pip list end
+
+// view all probation list start
+// viewProbation(){
+//   const url = `${this.api.probationList}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+//   return this.http.get(url, { headers });
+
+// }
+// view all probation list end
+
 }
