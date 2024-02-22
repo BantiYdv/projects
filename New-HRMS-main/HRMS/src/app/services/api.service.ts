@@ -162,6 +162,7 @@ export class ApiService {
   public promotionList = `${this.apiUrl}gateway/onboard/listPromotion`;
   public demotionList = `${this.apiUrl}gateway/onboard/listDemotion`;
   public getAllPIP = `${this.apiUrl}gateway/onboard/getAllPIP`;
+  // public getAllReviews = `${this.apiUrl}gateway/hrms/getAllReviews`;
   // public probationList = `${this.apiUrl}gateway/onboard/listProbation`;
 
   

@@ -122,6 +122,10 @@ export class TestComponent {
   fillterDemotion: any;
   getPIPData: any;
   fillterPIP: any;
+  getReviewAllData: any;
+  fillterReviewAll: any;
+  getAllPrbationData: any;
+  fillterAllPrbation: any;
   viewNotCheckedIn: any;
   // change password validation start
   showNewPassword: boolean = false;
@@ -721,6 +725,14 @@ this.selectedItem.halfDayHrs =
 
   ngOnInit() {
     this.ratingMonth = new Date().toISOString().split('T')[0].slice(0,-3);
+    const currentDate = new Date();
+currentDate.setMonth(currentDate.getMonth() - 1);
+
+this.reviewMonth = currentDate
+  .toISOString()
+  .split('T')[0]
+  .slice(0, -3);
+
     this.getLeavePolicy();
     this.viewRole();
     this.openEmployee();
@@ -775,6 +787,9 @@ this.viewAppraisal();
 this.viewPromotion();
 this.viewDemotion();
 this.viewPIP();
+this.viewAllReviews();
+this.viewAllProbation();
+// this.viewAllReview();
 // this.viewProbation();
 // this.getAllProbationData(this.item);
     
@@ -821,7 +836,7 @@ this.viewPIP();
     // this.isModalOpen = true;
 
     // if (this.showAllAdminTable && '#/employee' === window.location.hash) {
-    if ('/employee' === this.router.url || '/reports' === this.router.url || '/performance' === this.router.url) {
+    if ('/employee' === this.router.url || '/reports' === this.router.url || '/performance' === this.router.url || '/viewPerformance' === this.router.url) {
 
 
       // Call the service method to fetch the list of employees
@@ -918,9 +933,9 @@ this.viewPIP();
       case 'performance':
         this.openEmployee();
         break;
-      // case 'viewPerformance':
-      //   this.openEmployee();
-      //   break;
+      case 'viewPerformance':
+        this.openEmployee();
+        break;
       default:
         // Handle any other routes or add additional logic as needed
         break;
@@ -8053,5 +8068,205 @@ viewPIP() {
   );
 
 }
-// view piip list end
+// view pip list end
+
+
+
+
+// view Review list start
+viewAllEmployeeReview: any[] = [];
+reviewMonth: any;
+viewAllReviews(){
+  if ('/viewPerformance' === this.router.url ){
+    this.testService.getEmployeeList().subscribe(
+      (response: any) => { // Assuming the response is an array
+        
+      const dataArray = Object.values(response);
+
+      const reversedData = dataArray.reverse();
+
+      this.getReviewAllData = reversedData;
+      this.fillterReviewAll = reversedData;
+        this.viewAllEmployeeReview = response;
+      
+        console.log("view All Employee Review", this.viewAllEmployeeReview);
+      },
+      (error) => {
+        // Handle error
+      }
+    );
+    }
+}
+
+
+
+getOverallReviewForFebruary(reviews: any[]) {
+  // Assuming you want to filter reviews for the month of February
+  const februaryReviews = reviews.filter(review => review.monthAndYear === this.reviewMonth);
+
+  // Assuming you want to display overallReview for the first review in February
+  if (februaryReviews.length > 0) {
+    return parseInt(februaryReviews[0].overallReview);
+  } else {
+    return 0; // Display N/A if no review for February
+  }
+}
+
+// view Review list end
+// pagination and search for view review start
+
+ReviewAllperPage: number = 5;
+currentReviewAllPage: number = 1;
+
+searchReviewAll: string = '';
+
+
+FilterReviewAll() {
+  this.fillterReviewAll = this.getReviewAllData.filter((item: { firstname: string; lastname: string; }) =>
+    item.firstname.toLowerCase().includes(this.searchReviewAll.toLowerCase()) ||
+    item.lastname.toLowerCase().includes(this.searchReviewAll.toLowerCase()) ||
+    (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchReviewAll.toLowerCase())
+  );
+}
+
+getPaginatedReviewAllData(): any[] {
+  const startIndex = (this.currentReviewAllPage - 1) * this.ReviewAllperPage;
+  const endIndex = startIndex + this.ReviewAllperPage;
+  return this.fillterReviewAll.slice(startIndex, endIndex);
+}
+
+previousReviewAllPage(): void {
+  if (this.currentReviewAllPage > 1) {
+    this.currentReviewAllPage--;
+  }
+}
+
+getPageNumbersReviewAll(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterReviewAll.length / this.ReviewAllperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageReviewAll(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesReviewAll()) {
+    this.currentReviewAllPage = pageNumber;
+  }
+}
+
+
+nextPageReviewAll(): void {
+  const totalPages = Math.ceil(
+    this.fillterReviewAll.length / this.ReviewAllperPage
+  );
+  if (this.currentReviewAllPage < totalPages) {
+    this.currentReviewAllPage++;
+  }
+}
+
+
+getTotalPagesReviewAll(): number {
+  return Math.ceil(
+    this.fillterReviewAll.length / this.ReviewAllperPage
+  );
+}
+// pagination and search for view review end
+
+
+viewAllProbation(){
+  if ('/viewPerformance' === this.router.url ){
+    this.testService.getEmployeeList().subscribe(
+      (response: any) => { // Assuming the response is an array
+        
+      const dataArray = Object.values(response);
+
+      const reversedData = dataArray.reverse();
+
+      this.getAllPrbationData = reversedData;
+      this.fillterAllPrbation = reversedData;
+        
+      
+        console.log("view All Employee probation", this.getAllPrbationData);
+      },
+      (error) => {
+        // Handle error
+      }
+    );
+    }
+}
+
+// pagination and search for view probation start
+AllPrbationperPage: number = 5;
+currentAllPrbationPage: number = 1;
+
+searchAllPrbation: string = '';
+
+
+FilterAllPrbation() {
+  this.fillterAllPrbation = this.getAllPrbationData.filter((item: { firstname: string; lastname: string  }) =>
+    item.firstname.toLowerCase().includes(this.searchAllPrbation.toLowerCase()) ||
+    item.lastname.toLowerCase().includes(this.searchAllPrbation.toLowerCase()) ||
+    (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchAllPrbation.toLowerCase())
+  );
+}
+
+getPaginatedAllPrbation(): any[] {
+  const startIndex = (this.currentAllPrbationPage - 1) * this.AllPrbationperPage;
+  const endIndex = startIndex + this.AllPrbationperPage;
+  return this.fillterAllPrbation.slice(startIndex, endIndex);
+}
+
+previousAllPrbationPage(): void {
+  if (this.currentAllPrbationPage > 1) {
+    this.currentAllPrbationPage--;
+  }
+}
+
+getPageNumbersAllPrbation(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterAllPrbation.length / this.AllPrbationperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePageAllPrbation(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllPrbation()) {
+    this.currentAllPrbationPage = pageNumber;
+  }
+}
+
+
+nextPageAllPrbation(): void {
+  const totalPages = Math.ceil(
+    this.fillterAllPrbation.length / this.AllPrbationperPage
+  );
+  if (this.currentAllPrbationPage < totalPages) {
+    this.currentAllPrbationPage++;
+  }
+}
+
+
+getTotalPagesAllPrbation(): number {
+  return Math.ceil(
+    this.fillterAllPrbation.length / this.AllPrbationperPage
+  );
+}
+// pagination and search for view probation end
+
+viewPerformanceUpdate: any;
+viewPerformance(item: any){
+  this.viewPerformanceUpdate = item;
+  // this.appraisal.employeeName = item.firstname + ' ' + item.lastname;
+  // this.appraisal.username = item.emailid;
+  console.log("view performance", this.viewPerformanceUpdate);
+  this.loginService.showTable('viewEmployeePerformance');
+}
+
+getOverallReviewForEmployee(reviews: any[]) {
+  // Assuming you want to filter reviews for the month of February
+  const februaryReviews = reviews.filter(review => review.monthAndYear === this.reviewMonth);
+
+console.log("review emp", februaryReviews);
+}
+
 }

@@ -1200,6 +1200,17 @@ viewPIP(){
 }
 // view all pip list end
 
+// view all Review list start
+// viewAllReview(){
+//   const url = `${this.api.getAllReviews}`;
+//   const token = localStorage.getItem('jwtToken');
+//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
+  
+//   return this.http.get(url, { headers });
+
+// }
+// view all Review list end
+
 // view all probation list start
 // viewProbation(){
 //   const url = `${this.api.probationList}`;
