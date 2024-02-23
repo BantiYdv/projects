@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class ApiService {
 
   // public apiUrl = 'https://hrms.prilient.com/';
-  public apiUrl = 'http://192.168.1.5:9191/';
+  public apiUrl = 'http://192.168.1.18:9191/';
   
 
   public login = `${this.apiUrl}gateway/login`;
@@ -153,19 +153,27 @@ export class ApiService {
   public deleteAddedSalary = `${this.apiUrl}gateway/onboard/deleteAddedSalary`;
   public generateOfferLetter = `${this.apiUrl}gateway/onboard/generate-offer-letter`;
   public addAppraisal = `${this.apiUrl}gateway/onboard/addAppraisal`;
-  public saveRating = `${this.apiUrl}gateway/onboard/saveRating`;
-  public saveProbation = `${this.apiUrl}gateway/onboard/saveProbation`;
-  public savePromotion = `${this.apiUrl}gateway/onboard/savePromotion`;
-  public saveDemotion = `${this.apiUrl}gateway/onboard/saveDemotion`;
-  public savePIP = `${this.apiUrl}gateway/onboard/savePIP`;
+  // public saveRating = `${this.apiUrl}gateway/onboard/saveRating`;
+  // public saveProbation = `${this.apiUrl}gateway/onboard/saveProbation`;
+  // public savePromotion = `${this.apiUrl}gateway/onboard/savePromotion`;
+  // public saveDemotion = `${this.apiUrl}gateway/onboard/saveDemotion`;
+  // public savePIP = `${this.apiUrl}gateway/onboard/savePIP`;
   public appraisalList = `${this.apiUrl}gateway/onboard/listAppraisal`;
   public promotionList = `${this.apiUrl}gateway/onboard/listPromotion`;
   public demotionList = `${this.apiUrl}gateway/onboard/listDemotion`;
   public getAllPIP = `${this.apiUrl}gateway/onboard/getAllPIP`;
+  public getEmployeeAppraisal = `${this.apiUrl}gateway/onboard/getAppraisalBy`;
+  public getEmployeePromotion = `${this.apiUrl}gateway/onboard/getPromotionBy`;
+  public getEmployeeDemotion = `${this.apiUrl}gateway/onboard/getDemotionBy`;
+  public getEmployeePIP = `${this.apiUrl}gateway/onboard/getPIPBy`;
   // public getAllReviews = `${this.apiUrl}gateway/hrms/getAllReviews`;
   // public probationList = `${this.apiUrl}gateway/onboard/listProbation`;
 
-  
+  public saveProbation = `${this.apiUrl}gateway/hrms`;
+  public saveRating = `${this.apiUrl}gateway/hrms/saveReviews`;
+  public savePromotion = `${this.apiUrl}gateway/onboard/addPromotion`;
+  public saveDemotion = `${this.apiUrl}gateway/onboard/addDemotion`;
+  public savePIP = `${this.apiUrl}gateway/onboard/addPIP`;
 
   constructor(private http: HttpClient) { }
 

@@ -2598,8 +2598,8 @@ font-weight: bold;
     color: #DD1717;
 }
 .boxForDemotion{
-    /* border:1.5px solid #8C6A13;
-    color: #8C6A13; */
+  margin-top: -10px;
+  text-align: center;
     font-size: 18px;
     display: flex;
     justify-content: center;

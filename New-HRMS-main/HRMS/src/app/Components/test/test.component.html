@@ -589,7 +589,7 @@
               </div>
               <div [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
                 [queryParams]="{ id: item.id }">
-                <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1" style="border-radius: 50%;" />
+                <img [src]="generateDefaultImageUser(item.firstname, item.lastname)" alt="" class="emp1" style="border-radius: 50%;" />
               </div>
               <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
               <p class="titleGrid">{{item.designation }}</p>
@@ -7305,14 +7305,14 @@
               <i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
               <mat-menu #menu="matMenu" xPosition="before">
                 <button mat-menu-item (click)="addPerformance(item)">Add Performance</button>
-                <button mat-menu-item (click)="viewPerformance(item)">View Performance</button>
+                <button mat-menu-item (click)="viewEmployeeAppraisal(item)">View Performance</button>
                 
 
               </mat-menu>
             </div>
             <!-- <button (click)="addPerformance(item)">data</button> -->
             <div>
-              <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="emp1"
+              <img [src]="generateDefaultImageUser(item.firstname, item.lastname)" alt="" class="emp1"
                 style="border-radius: 50%; margin-top:25px;" />
             </div>
             <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
@@ -7396,61 +7396,78 @@
               <div class="calendar">
                 <h5 class="mb-4 mt-2 ActivitiesHeader"><img src="/assets/image/performanceVector3.png" alt=""
                     class="performanceVector3"> </h5>
-                <div class="col-12 d-flex flex-column justify-content-center mt-4">
-                  <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-wrap">
-                      <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="performanceUserImg"
-                        style="border-radius: 50%;" />
-                      <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-column">
-                        <span class="performanceUserName">{{ addPerformanceUpdate?.firstname + ' ' +
-                          addPerformanceUpdate?.lastname }}</span>
-                        <p class="performanceUserEmail">{{addPerformanceUpdate?.emailid }}</p>
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-column justify-content-center mt-4">
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
+                    <div
+                      class="d-flex flex-nowrap col-12 col-md-9 col-xl-9 justify-content-center justify-content-lg-start">
+                      <div class="d-flex flex-wrap">
+                        <img [src]="generateDefaultImageUser(probationData.firstname,probationData.lastname)" alt=""
+                          class="performanceUserImg" style="border-radius: 50%;" />
+                      </div>
+                      <div class="d-flex flex-column">
+                        <span
+                          class="performanceUserName">{{probationData.firstname}}&nbsp;{{probationData.lastname}}</span>
+                        <p class="performanceUserEmail">{{probationData.emailid }}</p>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3 mb-3">
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Start Date</h4>
 
-                      <h4 class="form-control appraisalStatus"> {{addPerformanceUpdate?.startDateOfProbation}}</h4>
+                      <h4 class="form-control appraisalStatus"> {{probationData.startDateOfProbation}}</h4>
                     </div>
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
 
                       <h4 class="appraisalText">End Date</h4>
 
-                      <h4 class="form-control appraisalStatus"> {{addPerformanceUpdate?.endDateOfProbation}}</h4>
+                      <h4 class="form-control appraisalStatus"> {{probationData.endDateOfProbation}}</h4>
                     </div>
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
 
                       <h4 class="appraisalText">Status</h4>
 
-                      <h4 class="form-control appraisalStatus"> {{addPerformanceUpdate?.probationStatus}}</h4>
+                      <select class="form-control appraisalStatus" style="margin-bottom: 16px;"
+                        [(ngModel)]="saveDataProbation.probationStatus" name="probationStatus">
+                        <option value="Completed">Completed</option>
+                        <option value="Not Completed">Not Completed</option>
+                      </select>
                     </div>
 
                   </div>
                   <div
-                    class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3 mb-3">
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mb-2">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Extendable date</h4>
 
-                      <input type="date" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                      <input type="date" class="form-control appraisalStatus mb-3"
+                        [min]="probationData.endDateOfProbation"
+                        (change)="updateTotalDaysOfProbation(probationData.endDateOfProbation,saveDataProbation.endDateOfProbation)"
+                        placeholder="XXXXXX" [(ngModel)]="saveDataProbation.endDateOfProbation"
+                        name="endDateOfProbation" />
                     </div>
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
 
                       <h4 class="appraisalText">Extend Reason</h4>
 
-                      <input type="text" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                      <input type="text" class="form-control appraisalStatus mb-3" placeholder="XXXXXX"
+                        [(ngModel)]="saveDataProbation.extensionReason" name="extensionReason" />
                     </div>
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
 
                       <h4 class="appraisalText">Number of dyas</h4>
 
-                      <input type="number" class="form-control appraisalStatus" placeholder="XXXXXX" />
+
+                      <input type="tel" class="form-control appraisalStatus mb-3" min="0"
+                        (keyup)="updateEndDateOfProbation(probationData.endDateOfProbation,saveDataProbation.totalDaysOfProbation)"
+                        placeholder="XXXXXX" [(ngModel)]="saveDataProbation.totalDaysOfProbation"
+                        name="totalDaysOfProbation" />
                     </div>
 
                   </div>
@@ -7458,7 +7475,8 @@
                 </div>
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
 
-                  <button class="performance_button clickEffect" type="submit">Save</button>
+                  <button class="performance_button clickEffect" type="submit"
+                    (click)="saveProbation(saveDataProbation)">Save</button>
                 </div>
 
               </div>
@@ -7466,6 +7484,7 @@
             </div>
           </div>
 
+          
 
           <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
             <div class="justify-content-center align-item-center"
@@ -7475,22 +7494,27 @@
                 <h5 class="mb-4 mt-2 ActivitiesHeader"><img src="/assets/image/performanceVector3.png" alt=""
                     class="performanceVector3"> </h5>
                 <div class="col-12 d-flex flex-column justify-content-center mt-4">
-                  <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-wrap">
-                      <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="performanceUserImg"
-                        style="border-radius: 50%;" />
-                      <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-column">
-                        <span class="performanceUserName">{{ addPerformanceUpdate?.firstname + ' ' +
-                          addPerformanceUpdate?.lastname }}</span>
-                        <p class="performanceUserEmail">{{addPerformanceUpdate?.emailid }}</p>
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
+                    <div class="d-flex flex-nowrap col-12 col-md-9 col-xl-9 justify-content-between">
+                      <div class="d-flex flex-nowrap">
+                        <div class="d-flex flex-wrap">
+                          <img [src]="generateDefaultImageUser(probationData.firstname,probationData.lastname)" alt=""
+                            class="performanceUserImg" style="border-radius: 50%;" />
+                        </div>
+                        <div class="d-flex flex-column">
+                          <span
+                            class="performanceUserName">{{probationData.firstname}}&nbsp;{{probationData.lastname}}</span>
+                          <p class="performanceUserEmail">{{probationData.emailid }}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <input type="month" class="inputForMonth" [(ngModel)]="saveDataRating.monthAndYear"
+                          name="monthAndYear">
                       </div>
                     </div>
                   </div>
-
-                  <div class="d-flex justify-content-center align-items-center inputDivCss">
-                    <input type="month" class="inputForMonth" [(ngModel)]="ratingMonth" name="ratingMonth">
-                  </div>
-                  <div class="d-flex justify-content-center align-items-center">
+                  <div class="d-flex justify-content-center align-items-center mt-3">
                     <div
                       class="d-flex flex-wrap justify-content-start align-items-center col-12 col-md-11 col-xl-11 mb-3">
 
@@ -7501,10 +7525,9 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingAccuracyOfWork"
-                                src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRAOW')"
-                                style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingAccuracyOfWork"
+                              <img *ngIf="i < saveDataRating.accuracyOfWork" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRAOW')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.accuracyOfWork"
                                 (click)="rateStar(i,'SRAOW')" style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
@@ -7520,10 +7543,10 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingDedication" src="/assets/image/starIcon.png"
-                                alt="Star" (click)="rateStar(i,'SRD')" style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingDedication"
-                                (click)="rateStar(i,'SRD')" style="--i: 0;color: #A9A8AD;"></i>
+                              <img *ngIf="i < saveDataRating.dedication" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRD')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.dedication" (click)="rateStar(i,'SRD')"
+                                style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
 
@@ -7539,10 +7562,10 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingPerformance" src="/assets/image/starIcon.png"
-                                alt="Star" (click)="rateStar(i,'SRPF')" style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingPerformance"
-                                (click)="rateStar(i,'SRPF')" style="--i: 0;color: #A9A8AD;"></i>
+                              <img *ngIf="i < saveDataRating.performance" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRPF')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.performance" (click)="rateStar(i,'SRPF')"
+                                style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
 
@@ -7558,10 +7581,10 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingTeamWork" src="/assets/image/starIcon.png"
-                                alt="Star" (click)="rateStar(i,'SRTW')" style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingTeamWork"
-                                (click)="rateStar(i,'SRTW')" style="--i: 0;color: #A9A8AD;"></i>
+                              <img *ngIf="i < saveDataRating.teamWork" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRTW')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.teamWork" (click)="rateStar(i,'SRTW')"
+                                style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
 
@@ -7577,10 +7600,9 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingAbilityToLearn"
-                                src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRATL')"
-                                style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingAbilityToLearn"
+                              <img *ngIf="i < saveDataRating.abilityToLearn" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRATL')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.abilityToLearn"
                                 (click)="rateStar(i,'SRATL')" style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
@@ -7597,10 +7619,10 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingAttendance" src="/assets/image/starIcon.png"
-                                alt="Star" (click)="rateStar(i,'SRA')" style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingAttendance"
-                                (click)="rateStar(i,'SRA')" style="--i: 0;color: #A9A8AD;"></i>
+                              <img *ngIf="i < saveDataRating.attendance" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRA')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.attendance" (click)="rateStar(i,'SRA')"
+                                style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
 
@@ -7616,10 +7638,10 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingPunctuality" src="/assets/image/starIcon.png"
-                                alt="Star" (click)="rateStar(i,'SRPT')" style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingPunctuality"
-                                (click)="rateStar(i,'SRPT')" style="--i: 0;color: #A9A8AD;"></i>
+                              <img *ngIf="i < saveDataRating.punctuality" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRPT')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.punctuality" (click)="rateStar(i,'SRPT')"
+                                style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
 
@@ -7635,10 +7657,10 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingWorkHabits" src="/assets/image/starIcon.png"
-                                alt="Star" (click)="rateStar(i,'SRWH')" style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingWorkHabits"
-                                (click)="rateStar(i,'SRWH')" style="--i: 0;color: #A9A8AD;"></i>
+                              <img *ngIf="i < saveDataRating.workHabits" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRWH')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.workHabits" (click)="rateStar(i,'SRWH')"
+                                style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
 
@@ -7654,9 +7676,9 @@
                         <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                           <div class="boxForTitle starCss">
                             <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                              <img *ngIf="i < saveDataRating.selectedRatingResponsiveness"
-                                src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRR')" style="--i: 0;">
-                              <i class="fa fa-star" *ngIf="i >= saveDataRating.selectedRatingResponsiveness"
+                              <img *ngIf="i < saveDataRating.responsiveness" src="/assets/image/starIcon.png" alt="Star"
+                                (click)="rateStarRemove(i,'SRR')" style="--i: 0;">
+                              <i class="fa fa-star" *ngIf="i >= saveDataRating.responsiveness"
                                 (click)="rateStar(i,'SRR')" style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
@@ -7668,6 +7690,7 @@
                       <div class="col-12 col-md-12 col-xl-12 mt-3 d-flex justify-content-center">
 
                         <button type="button" class="recruitment_button clickEffect" style="margin-top:35px;"
+                          [disabled]="saveDataRating.monthAndYear == ''"
                           (click)="saveRating(saveDataRating)">Save</button>
                       </div>
 
@@ -7678,74 +7701,8 @@
               </div>
 
             </div>
-            <!-- <div class="d-flex justify-content-center align-items-center inputDivCss">
-              <input type="month" class="inputForMonth" [(ngModel)]="ratingMonth" name="ratingMonth">
-            </div>
-            <div class="d-flex flex-wrap justify-content-center align-items-center col-12 col-md-12 col-xl-12">
-              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                  <div class="disciplineCss boxForTitle">Discipline</div>
-                </div>
-                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                  <div class="boxForTitle starCss">
-                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                      <img *ngIf="i < 3" src="/assets/image/starIcon.png" alt="Star">
-                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 3"></i>
-                   
-                    </ng-container>
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                  <div class="timingCss boxForTitle">Timing</div>
-                </div>
-                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                  <div class="boxForTitle starCss">
-                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                      <img *ngIf="i < 2" src="/assets/image/starIcon.png" alt="Star">
-                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 2"></i>
-                    </ng-container>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                  <div class="taskCss boxForTitle">Task</div>
-                </div>
-                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                  <div class="boxForTitle starCss">
-                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                      <img *ngIf="i < 4" src="/assets/image/starIcon.png" alt="Star">
-                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 4"></i>
-                    </ng-container>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                  <div class="overallCss boxForTitle">Overall</div>
-                </div>
-                <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                  <div class="boxForTitle starCss">
-                    <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                      <img *ngIf="i < 1" src="/assets/image/starIcon.png" alt="Star">
-                      <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 1"></i>
-                    </ng-container>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-            
-                <button class="recruitment_button clickEffect" type="submit" style="margin-top:35px;">Save</button>
-              </div>
-
-            </div> -->
 
           </div>
-
-
 
           <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
 
@@ -7756,47 +7713,52 @@
                 <h5 class="mb-4 mt-2 ActivitiesHeader"><img src="/assets/image/performanceVector3.png" alt=""
                     class="performanceVector3"> </h5>
                 <div class="col-12 d-flex flex-column justify-content-center mt-4">
-                  <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-wrap">
-                      <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="performanceUserImg"
-                        style="border-radius: 50%;" />
-                      <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-column">
-                        <span class="performanceUserName">{{ addPerformanceUpdate?.firstname + ' ' +
-                          addPerformanceUpdate?.lastname }}</span>
-                        <p class="performanceUserEmail">{{addPerformanceUpdate?.emailid }}</p>
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
+                    <div
+                      class="d-flex flex-nowrap col-12 col-md-9 col-xl-9 justify-content-center justify-content-lg-start">
+                      <div class="d-flex flex-wrap">
+                        <img [src]="generateDefaultImageUser(probationData.firstname,probationData.lastname)" alt=""
+                          class="performanceUserImg" style="border-radius: 50%;" />
+                      </div>
+                      <div class="d-flex flex-column">
+                        <span
+                          class="performanceUserName">{{probationData.firstname}}&nbsp;{{probationData.lastname}}</span>
+                        <p class="performanceUserEmail">{{probationData.emailid }}</p>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3 mb-4">
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Appraisal Salary</h4>
-                      <input type="number" name="currentSalary" id="currentSalary" [(ngModel)]="appraisal.hike"
-                        class="form-control appraisalStatus" placeholder="XXXXXX" />
+                      <input type="number" name="currentSalary" id="currentSalary" [(ngModel)]="saveDataAppraisal.hike"
+                        class="form-control appraisalStatus mb-3" placeholder="XXXXXX" />
                     </div>
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Date</h4>
-                      <input type="date" name="appraisalDate" id="appraisalDate" [(ngModel)]="appraisal.appraisalDate"
-                        class="form-control appraisalStatus" placeholder="XXXXXX" />
+                      <input type="date" name="appraisalDate" id="appraisalDate"
+                        [(ngModel)]="saveDataAppraisal.appraisalDate" class="form-control appraisalStatus  mb-3"
+                        placeholder="XXXXXX" />
                     </div>
-
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-
-                      <button class="recruitment_button clickEffect" type="submit" style="margin-top:35px;"
-                        (click)="addAppraisal()">Save</button>
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                     </div>
                   </div>
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
 
-
+                    <button class="performance_button clickEffect" type="submit"
+                      (click)="addAppraisal(saveDataAppraisal)">Save</button>
+                  </div>
                 </div>
               </div>
 
             </div>
           </div>
+
+          
           <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
-
-
             <div class="justify-content-center align-item-center"
               [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
 
@@ -7804,47 +7766,49 @@
                 <h5 class="mb-4 mt-2 ActivitiesHeader"><img src="/assets/image/performanceVector3.png" alt=""
                     class="performanceVector3"> </h5>
                 <div class="col-12 d-flex flex-column justify-content-center mt-4">
-                  <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-wrap">
-                      <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="performanceUserImg"
-                        style="border-radius: 50%;" />
-                      <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-column">
-                        <span class="performanceUserName">{{ addPerformanceUpdate?.firstname + ' ' +
-                          addPerformanceUpdate?.lastname }}</span>
-                        <p class="performanceUserEmail">{{addPerformanceUpdate?.emailid }}</p>
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
+                    <div
+                      class="d-flex flex-nowrap col-12 col-md-9 col-xl-9 justify-content-center justify-content-lg-start">
+                      <div class="d-flex flex-wrap">
+                        <img [src]="generateDefaultImageUser(probationData.firstname,probationData.lastname)" alt=""
+                          class="performanceUserImg" style="border-radius: 50%;" />
+                      </div>
+                      <div class="d-flex flex-column">
+                        <span
+                          class="performanceUserName">{{probationData.firstname}}&nbsp;{{probationData.lastname}}</span>
+                        <p class="performanceUserEmail">{{probationData.emailid }}</p>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3 mb-4">
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Promoted To</h4>
-
-                      <input type="text" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                      <input type="text" id="currentSalary" [(ngModel)]="saveDataPromotion.promotedPositionName"
+                        name="promotedPositionName" class="form-control appraisalStatus mb-3" placeholder="XXXXXX" />
                     </div>
-
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Date</h4>
-
-                      <input type="date" class="form-control appraisalStatus" placeholder="XXXXXX" />
+                      <input type="date" id="appraisalDate" [(ngModel)]="saveDataPromotion.date" name="date"
+                        class="form-control appraisalStatus  mb-3" placeholder="XXXXXX" />
                     </div>
-
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-
-                      <button class="recruitment_button clickEffect" type="submit"
-                        style="margin-top:35px;">Save</button>
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                     </div>
                   </div>
-
-
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
+                    <button class="performance_button clickEffect" type="submit"
+                      (click)="savePromotion(saveDataPromotion)">Save</button>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
+
           <div class="tab-pane fade" id="pills-demotion" role="tabpanel" aria-labelledby="pills-demotion-tab">
 
+
             <div class="justify-content-center align-item-center"
               [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
 
@@ -7852,46 +7816,54 @@
                 <h5 class="mb-4 mt-2 ActivitiesHeader"><img src="/assets/image/performanceVector3.png" alt=""
                     class="performanceVector3"> </h5>
                 <div class="col-12 d-flex flex-column justify-content-center mt-4">
-                  <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-wrap">
-                      <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="performanceUserImg"
-                        style="border-radius: 50%;" />
-                      <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-column">
-                        <span class="performanceUserName">{{ addPerformanceUpdate?.firstname + ' ' +
-                          addPerformanceUpdate?.lastname }}</span>
-                        <p class="performanceUserEmail">{{addPerformanceUpdate?.emailid }}</p>
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
+                    <div
+                      class="d-flex flex-nowrap col-12 col-md-9 col-xl-9 justify-content-center justify-content-lg-start">
+                      <div class="d-flex flex-wrap">
+                        <img [src]="generateDefaultImageUser(probationData.firstname,probationData.lastname)" alt=""
+                          class="performanceUserImg" style="border-radius: 50%;" />
+                      </div>
+                      <div class="d-flex flex-column">
+                        <span
+                          class="performanceUserName">{{probationData.firstname}}&nbsp;{{probationData.lastname}}</span>
+                        <p class="performanceUserEmail">{{probationData.emailid }}</p>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3 mb-4">
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-                      <div class="labelCssForDemotion  mt-2">Demoted To</div>
-                      <input type="text" class="form-control mt-2 boxForDemotion boxColor8C6A13" placeholder="XXXXXX" />
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">Demoted To</h4>
+                      <input type="text" id="currentSalary" [(ngModel)]="saveDataDemotion.demotedPosition"
+                        name="demotedPosition" class="form-control boxForDemotion boxColor8C6A13 mb-3"
+                        placeholder="XXXXXX" />
                     </div>
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-
-                      <div class="labelCssForDemotion  mt-2">Date</div>
-                      <input type="date" class="form-control mt-2 boxForDemotion boxColor8C6A13" placeholder="XXXXXX" />
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">Reason</h4>
+                      <input type="text" id="appraisalDate" [(ngModel)]="saveDataDemotion.reason" name="reason"
+                        class="form-control boxForDemotion boxColor8C6A13  mb-3" placeholder="XXXXXX" />
                     </div>
-
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-
-                      <button class="recruitment_button clickEffect" type="submit"
-                        style="margin-top:35px;">Save</button>
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">Date</h4>
+                      <input type="date" id="appraisalDate" [(ngModel)]="saveDataDemotion.demotionDate"
+                        name="demotionDate" class="form-control boxForDemotion boxColor8C6A13  mb-3"
+                        placeholder="XXXXXX" />
                     </div>
                   </div>
-
-
+                  <div class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
+                    <button class="performance_button clickEffect" type="submit"
+                      (click)="saveDemotion(saveDataDemotion)">Save</button>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
 
-          <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
+          
 
+          <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
             <div class="justify-content-center align-item-center"
               [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
 
@@ -7899,50 +7871,78 @@
                 <h5 class="mb-4 mt-2 ActivitiesHeader"><img src="/assets/image/performanceVector3.png" alt=""
                     class="performanceVector3"> </h5>
                 <div class="col-12 d-flex flex-column justify-content-center mt-4">
-                  <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-wrap">
-                      <img [src]="imageUrl || generateDefaultImageUser()" alt="" class="performanceUserImg"
-                        style="border-radius: 50%;" />
-                      <div class="col-12 col-lg-9 col-md-9 col-sm-9 d-flex flex-column">
-                        <span class="performanceUserName">{{ addPerformanceUpdate?.firstname + ' ' +
-                          addPerformanceUpdate?.lastname }}</span>
-                        <p class="performanceUserEmail">{{addPerformanceUpdate?.emailid }}</p>
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
+                    <div
+                      class="d-flex flex-nowrap col-12 col-md-9 col-xl-9 justify-content-center justify-content-lg-start">
+                      <div class="d-flex flex-wrap">
+                        <img [src]="generateDefaultImageUser(probationData.firstname,probationData.lastname)" alt=""
+                          class="performanceUserImg" style="border-radius: 50%;" />
+                      </div>
+                      <div class="d-flex flex-column">
+                        <span
+                          class="performanceUserName">{{probationData.firstname}}&nbsp;{{probationData.lastname}}</span>
+                        <p class="performanceUserEmail">{{probationData.emailid }}</p>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3 mb-4">
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-                      <div class="labelCssForDemotion  mt-2">Start Date</div>
-                      <input type="date" class="form-control mt-2 boxForDemotion boxColorDD1717" placeholder="XXXXXX" />
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">Start Date</h4>
+                      <input type="date" id="currentSalary" [(ngModel)]="saveDataPIP.startDate" name="startDate"
+                        class="form-control boxForDemotion boxColorDD1717 mb-3" placeholder="XXXXXX" />
                     </div>
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-
-                      <div class="labelCssForDemotion  mt-2">End Date</div>
-                      <input type="date" class="form-control mt-2 boxForDemotion boxColorDD1717" placeholder="XXXXXX" />
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">End Date</h4>
+                      <input type="date" id="appraisalDate" [(ngModel)]="saveDataPIP.endDate" name="endDate"
+                        class="form-control boxForDemotion boxColorDD1717  mb-3" placeholder="XXXXXX" />
                     </div>
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">Terminate</h4>
+                        <select class="form-control boxForDemotion boxColorDD1717  mb-3" [(ngModel)]="saveDataPIP.terminate" name="terminate">
 
-                    <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
-
-                      <button class="recruitment_button clickEffect" type="submit"
-                        style="margin-top:35px;">Save</button>
+                          <option value="" disabled>--Select--</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
                     </div>
                   </div>
+                  <div
+                    class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">Reason</h4>
+                      <input type="text" id="currentSalary" [(ngModel)]="saveDataPIP.reason" name="reason"
+                        class="form-control boxForDemotion boxColorDD1717 mb-3" placeholder="XXXXXX" />
+                    </div>
 
-
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                      <h4 class="appraisalText">Status</h4>
+                      <select class="form-control boxForDemotion boxColorDD1717  mb-3" [(ngModel)]="saveDataPIP.status" name="status">
+                        <option value="" disabled>--Select--</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Not Completed">Not Completed</option>
+                        <option value="Terminated">Terminated</option>
+                      </select>
+                    </div>
+                    <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
+                    <button class="performance_button clickEffect" type="submit"
+                      (click)="savePIP(saveDataPIP)">Save</button>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
 
         </div>
-        <!-- </div> -->
         <div [ngSwitch]="performanceNote">
-          <div *ngIf="addPerformanceUpdate?.probationStatus !== 'Completed'">
+          <div *ngIf="probationData.probationStatus !== 'Completed'">
             <div *ngSwitchCase="'pills-probation'"
-              class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+              class="performance noteCss rounded-bottom-3 d-flex justify-content-center align-items-center">
               <p class="statusP"><span class="statusPara">Note: </span> Probation ipsum dolor sit, amet
                 consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
                 quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
@@ -7950,7 +7950,7 @@
             </div>
           </div>
           <div *ngSwitchCase="'pills-pip'"
-            class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+            class="performance noteCss rounded-bottom-3 d-flex justify-content-center align-items-center">
             <p class="statusP"><span class="statusPara">Note: </span> PIP ipsum dolor sit, amet
               consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
               quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
@@ -7959,8 +7959,10 @@
           <div *ngSwitchDefault>
           </div>
         </div>
+        
       </div>
     </div>
+   
   </div>
   <!-- add performance end -->
 
@@ -8011,10 +8013,10 @@
 
             <div class="col-12 d-flex flex-column justify-content-center ">
 
-              <div class="container">
+              <div class="">
 
                 <div class="row">
-                  <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentAllPrbationPage === 1}"
+                  <div class="d-flex justify-content-start mt-2" [ngClass]="{'col-md-6': currentAllPrbationPage === 1}"
                     *ngIf="currentAllPrbationPage === 1">
                     <div class="added_positions_list_right">
                       <div class="added_positions_under_head">Show</div>
@@ -8030,7 +8032,7 @@
                       <div class="added_positions_under_head">Enteries</div>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-end align-items-center"
+                  <div class="d-flex justify-content-end align-items-center mt-2"
                     [ngClass]="{'col-md-6': currentAllPrbationPage === 1, 'col-md-12': currentAllPrbationPage >= 2}">
                     <div class="">
                       <div class="search-container ">
@@ -8143,10 +8145,10 @@
 
               <div class="col-12 d-flex flex-column justify-content-center ">
 
-                <div class="container">
+                <div class="">
 
                   <div class="row">
-                    <div class="d-flex justify-content-start" [ngClass]="{'col-md-4': currentReviewAllPage === 1}"
+                    <div class="d-flex justify-content-start mt-2" [ngClass]="{'col-md-4': currentReviewAllPage === 1}"
                       *ngIf="currentReviewAllPage === 1">
                       <div class="added_positions_list_right">
                         <div class="added_positions_under_head">Show</div>
@@ -8162,7 +8164,7 @@
                         <div class="added_positions_under_head">Enteries</div>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-end align-items-center"
+                    <div class="d-flex justify-content-end align-items-center mt-2"
                       [ngClass]="{'col-md-4': currentReviewAllPage === 1, 'col-md-6': currentReviewAllPage >= 2}">
                       <div class="">
                         <div class="search-container ">
@@ -8291,10 +8293,10 @@
 
               <div class="col-12 d-flex flex-column justify-content-center ">
 
-                <div class="container">
+                <div class="">
 
                   <div class="row">
-                    <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentAppraisalPage === 1}"
+                    <div class="d-flex justify-content-start mt-2" [ngClass]="{'col-md-6': currentAppraisalPage === 1}"
                       *ngIf="currentAppraisalPage === 1">
                       <div class="added_positions_list_right">
                         <div class="added_positions_under_head">Show</div>
@@ -8310,7 +8312,7 @@
                         <div class="added_positions_under_head">Enteries</div>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-end align-items-center"
+                    <div class="d-flex justify-content-end align-items-center mt-2"
                       [ngClass]="{'col-md-6': currentAppraisalPage === 1, 'col-md-12': currentAppraisalPage >= 2}">
                       <div class="">
                         <div class="search-container ">
@@ -8420,10 +8422,10 @@
 
               <div class="col-12 d-flex flex-column justify-content-center ">
 
-                <div class="container">
+                <div class="">
 
                   <div class="row">
-                    <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPromotionPage === 1}"
+                    <div class="d-flex justify-content-start mt-2" [ngClass]="{'col-md-6': currentPromotionPage === 1}"
                       *ngIf="currentPromotionPage === 1">
                       <div class="added_positions_list_right">
                         <div class="added_positions_under_head">Show</div>
@@ -8439,7 +8441,7 @@
                         <div class="added_positions_under_head">Enteries</div>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-end align-items-center"
+                    <div class="d-flex justify-content-end align-items-center mt-2"
                       [ngClass]="{'col-md-6': currentPromotionPage === 1, 'col-md-12': currentPromotionPage >= 2}">
                       <div class="">
                         <div class="search-container ">
@@ -8547,10 +8549,10 @@
 
               <div class="col-12 d-flex flex-column justify-content-center ">
 
-                <div class="container">
+                <div class="">
 
                   <div class="row">
-                    <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentDemotionPage === 1}"
+                    <div class="d-flex justify-content-start mt-2" [ngClass]="{'col-md-6': currentDemotionPage === 1}"
                       *ngIf="currentDemotionPage === 1">
                       <div class="added_positions_list_right">
                         <div class="added_positions_under_head">Show</div>
@@ -8566,7 +8568,7 @@
                         <div class="added_positions_under_head">Enteries</div>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-end align-items-center"
+                    <div class="d-flex justify-content-end align-items-center mt-2"
                       [ngClass]="{'col-md-6': currentDemotionPage === 1, 'col-md-12': currentDemotionPage >= 2}">
                       <div class="">
                         <div class="search-container ">
@@ -8682,10 +8684,10 @@
 
               <div class="col-12 d-flex flex-column justify-content-center ">
 
-                <div class="container">
+                <div class="">
 
                   <div class="row">
-                    <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPIPPage === 1}"
+                    <div class="d-flex justify-content-start mt-2" [ngClass]="{'col-md-6': currentPIPPage === 1}"
                       *ngIf="currentPIPPage === 1">
                       <div class="added_positions_list_right">
                         <div class="added_positions_under_head">Show</div>
@@ -8701,7 +8703,7 @@
                         <div class="added_positions_under_head">Enteries</div>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-end align-items-center"
+                    <div class="d-flex justify-content-end align-items-center mt-2"
                       [ngClass]="{'col-md-6': currentPIPPage === 1, 'col-md-12': currentPIPPage >= 2}">
                       <div class="">
                         <div class="search-container ">
@@ -8945,13 +8947,13 @@
                           1 }}
                         </div>
                         <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
-                          viewPerformanceUpdate.firstname + ' ' +
-                          viewPerformanceUpdate.lastname }}</div>
+                          viewProbationData.firstname + ' ' +
+                          viewProbationData.lastname }}</div>
                         <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">
-                          {{ viewPerformanceUpdate.emailid }}
+                          {{ viewProbationData.emailid }}
                         </div>
                         <div class="table_body_topics my-2" style="width: 15%;">
-                          {{ viewPerformanceUpdate.probationStatus }}
+                          {{ viewProbationData.probationStatus }}
                           </div>
                         <!-- <div class="table_body_topics my-2" style="width: 15%; ">{{
                         item.appraisalDate }}</div> -->
@@ -8962,7 +8964,7 @@
                   </div>
                 </div>
 
-                <div class="not_data_img_div" *ngIf="viewPerformanceUpdate.length == 0">
+                <div class="not_data_img_div" *ngIf="viewProbationData.length == 0">
                   <p>No Data !!</p>
                 </div>
 
@@ -9039,9 +9041,9 @@
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
                           <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < viewPerformanceUpdate.reviews[0].accuracyOfWork" src="/assets/image/starIcon.png" alt="Star"
+                            <img *ngIf="i < viewProbationData.reviews[0].accuracyOfWork" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRAOW')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= viewPerformanceUpdate.reviews[0].accuracyOfWork"
+                            <i class="fa fa-star" *ngIf="i >= viewProbationData.reviews[0].accuracyOfWork"
                               (click)="rateStar(i,'SRAOW')" style="--i: 0;color: #A9A8AD;"></i>
 
                           </ng-container>
@@ -9056,13 +9058,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRD')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRD')"
                               style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9075,13 +9077,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRPF')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRPF')"
                               style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9094,13 +9096,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRTW')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRTW')"
                               style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9113,13 +9115,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRATL')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)"
                               (click)="rateStar(i,'SRATL')" style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9132,13 +9134,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRA')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRA')"
                               style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9151,13 +9153,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRPT')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRPT')"
                               style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9170,13 +9172,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRWH')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRWH')"
                               style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9189,13 +9191,13 @@
                       </div>
                       <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
                         <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
                             <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
                               (click)="rateStar(i,'SRR')" style="--i: 0;">
                             <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)"
                               (click)="rateStar(i,'SRR')" style="--i: 0;color: #A9A8AD;"></i>
 
-                          </ng-container>
+                          </ng-container> -->
 
                         </div>
                       </div>
@@ -9221,7 +9223,7 @@
 
                 <div class="container">
 
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentAppraisalPage === 1}"
                       *ngIf="currentAppraisalPage === 1">
                       <div class="added_positions_list_right">
@@ -9252,7 +9254,7 @@
                         <button class="button_added_position_list">Search</button>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row">
 
@@ -9285,19 +9287,19 @@
                       </div>
 
                       <div class="my-1">
-                        <div class="table_body" *ngFor="let item of getPaginatedAppraisalData(); let i = index">
-                          <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i +
+                        <div class="table_body" >
+                          <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ 
                             1 }}
                           </div>
                           <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
-                            item.employeeName }}</div>
+                            viewEmployeeAppraisalData.employeeName }}</div>
                           <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">
-                            {{ item.username }}
+                            {{ viewEmployeeAppraisalData.username }}
                           </div>
                           <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; ">{{
-                            item.appraisalSalary }}</div>
+                            viewEmployeeAppraisalData.appraisalSalary }}</div>
                           <div class="table_body_topics my-2" style="width: 15%; ">{{
-                            item.appraisalDate }}</div>
+                            viewEmployeeAppraisalData.appraisalDate }}</div>
 
 
                         </div>
@@ -9305,11 +9307,11 @@
                     </div>
                   </div>
 
-                  <div class="not_data_img_div" *ngIf="getPaginatedAppraisalData().length == 0">
+                  <div class="not_data_img_div" *ngIf="viewEmployeeAppraisalData.length == 0">
                     <p>No Data !!</p>
                   </div>
 
-                  <div class="col-md-12" *ngIf="getTotalPagesAppraisal() > 1">
+                  <!-- <div class="col-md-12" *ngIf="getTotalPagesAppraisal() > 1">
                     <div class="table_footer mt-2">
                       <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
                         style="background-color:#421cdd;" (click)="previousAppraisalPage()"
@@ -9330,7 +9332,7 @@
                       </button>
 
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
 
@@ -9350,13 +9352,13 @@
 
                 <div class="container">
 
-                  <div class="row">
-                    <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPromotionPage === 1}"
-                      *ngIf="currentPromotionPage === 1">
+                  <!-- <div class="row">
+                    <div class="d-flex justify-content-start" [ngClass]="{'col-md-6': currentPromotionEmployeePage === 1}"
+                      *ngIf="currentPromotionEmployeePage === 1">
                       <div class="added_positions_list_right">
                         <div class="added_positions_under_head">Show</div>
                         <div>
-                          <select class="added_positions_under_head_select" [(ngModel)]="PromotionperPage">
+                          <select class="added_positions_under_head_select" [(ngModel)]="PromotionEmployeeperPage">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
@@ -9368,20 +9370,20 @@
                       </div>
                     </div>
                     <div class="d-flex justify-content-end align-items-center"
-                      [ngClass]="{'col-md-6': currentPromotionPage === 1, 'col-md-12': currentPromotionPage >= 2}">
+                      [ngClass]="{'col-md-6': currentPromotionEmployeePage === 1, 'col-md-12': currentPromotionEmployeePage >= 2}">
                       <div class="">
                         <div class="search-container ">
                           <img src="../../../assets/image/search_icon_recruitment.svg"
                             class="search_icon_added_position_list" alt="">
                           <input type="text" name="" id="" class="search_added_position_list"
-                            [(ngModel)]="searchPromotion" (keyup)="FilterPromotion()">
+                            [(ngModel)]="searchPromotionEmployee" (keyup)="FilterPromotion()">
                         </div>
                       </div>
                       <div class="">
                         <button class="button_added_position_list">Search</button>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row">
 
@@ -9414,7 +9416,7 @@
                       </div>
 
                       <div class="my-1">
-                        <div class="table_body" *ngFor="let item of getPaginatedPromotionData(); let i = index">
+                        <div class="table_body"  *ngFor="let item of viewEmployeePromotionData; let i = index">
                           <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i +
                             1 }}
                           </div>
@@ -9434,32 +9436,32 @@
                     </div>
                   </div>
 
-                  <div class="not_data_img_div" *ngIf="getPaginatedPromotionData().length == 0">
+                  <div class="not_data_img_div" *ngIf="viewEmployeePromotionData.length == 0">
                     <p>No Data !!</p>
                   </div>
 
-                  <div class="col-md-12" *ngIf="getTotalPagesPromotion() > 1">
+                  <!-- <div class="col-md-12" *ngIf="getTotalPagesPromotionEmployee() > 1">
                     <div class="table_footer mt-2">
                       <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
-                        style="background-color:#421cdd;" (click)="previousPromotionPage()"
-                        [disabled]="currentPromotionPage == 1">
+                        style="background-color:#421cdd;" (click)="previousPromotionEmployeePage()"
+                        [disabled]="currentPromotionEmployeePage == 1">
                         <i class="fa fa-angle-left"></i> Previous
                       </button>
                       <div class="recruitment_list_number">
-                        <div *ngFor="let pageNumber of getPageNumbersPromotion()"
-                          [class.active_num]="pageNumber === currentPromotionPage" class="recruitment_list_number_value"
-                          (click)="changePagePromotion(pageNumber)">
+                        <div *ngFor="let pageNumber of getPageNumbersPromotionEmployee()"
+                          [class.active_num]="pageNumber === currentPromotionEmployeePage" class="recruitment_list_number_value"
+                          (click)="changePagePromotionEmployee(pageNumber)">
                           {{ pageNumber }}
                         </div>
                       </div>
                       <button class="btn btn-secondary d-flex justify-content-center align-items-center clickEffect"
-                        style="background-color:#421cdd;" (click)="nextPagePromotion()"
-                        [disabled]="currentPromotionPage == getTotalPagesPromotion()">
+                        style="background-color:#421cdd;" (click)="nextPagePromotionEmployee()"
+                        [disabled]="currentPromotionEmployeePage == getTotalPagesPromotionEmployee()">
                         Next <i class="fa fa-angle-right"></i>
                       </button>
 
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router, NavigationEnd, ParamMap, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ParamMap, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { filter } from 'rxjs/operators';    //for navbar don't show in login page
 import { LoginService } from 'src/app/services/login.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -688,39 +688,7 @@ this.selectedItem.halfDayHrs =
   }
 
   // add star rating start
-  saveDataRating = { selectedRatingResponsiveness: 0, selectedRatingWorkHabits: 0, selectedRatingPunctuality: 0, selectedRatingAttendance: 0, selectedRatingAbilityToLearn: 0, selectedRatingTeamWork: 0, selectedRatingPerformance: 0, selectedRatingDedication: 0, selectedRatingAccuracyOfWork: 0 };
-
-  opinion: string = '';
-  stars: number[] = [0, 1, 2, 3, 4];
-  rateStar(index: number, name:any) {
-    if('SRR' == name){
-      this.saveDataRating.selectedRatingResponsiveness = index + 1;
-    }
-    if('SRWH' == name){
-      this.saveDataRating.selectedRatingWorkHabits = index + 1;
-    }
-    if('SRPT' == name){
-      this.saveDataRating.selectedRatingPunctuality = index + 1;
-    }
-    if('SRA' == name){
-      this.saveDataRating.selectedRatingAttendance = index + 1;
-    }
-    if('SRATL' == name){
-      this.saveDataRating.selectedRatingAbilityToLearn = index + 1;
-    }
-    if('SRTW' == name){
-      this.saveDataRating.selectedRatingTeamWork = index + 1;
-    }
-    if('SRPF' == name){
-      this.saveDataRating.selectedRatingPerformance = index + 1;
-    }
-    if('SRD' == name){
-      this.saveDataRating.selectedRatingDedication = index + 1;
-    }
-    if('SRAOW' == name){
-      this.saveDataRating.selectedRatingAccuracyOfWork = index + 1;
-    }
-  }
+  
 // add start rating end
 
   ngOnInit() {
@@ -772,6 +740,7 @@ this.reviewMonth = currentDate
       // Call the method to load data on route change
       this.loadData();
     });
+    this.loadData();
     // data show change routing without reload end
 
 
@@ -789,6 +758,7 @@ this.viewDemotion();
 this.viewPIP();
 this.viewAllReviews();
 this.viewAllProbation();
+this.viewEmoloyeePerformanceData()
 // this.viewAllReview();
 // this.viewProbation();
 // this.getAllProbationData(this.item);
@@ -803,11 +773,11 @@ this.viewAllProbation();
   lastname: string = ''; // Replace with user's last name
 
 
-  generateDefaultImageUser(): string {
+  generateDefaultImageUser(firstname: any, lastname: any): string {
     // console.log("f name", this.EmployeeData.firstname);
     // console.log("l name", this.EmployeeData.lastname)
-    if (this.EmployeeData.firstname && this.EmployeeData.lastname) {
-      const initials = this.EmployeeData.firstname.charAt(0) + this.EmployeeData.lastname.charAt(0);
+    if (firstname && lastname) {
+      const initials = firstname.charAt(0) + lastname.charAt(0);
       return `https://via.placeholder.com/150/8790bf/FFFFFF/?text=${initials}`;
     } else {
       return 'https://via.placeholder.com/150/8790bf/FFFFFF/?text=User';
@@ -879,8 +849,19 @@ this.viewAllProbation();
   // close team wfh list end
 
   // check routing for reload page start
+  // checkRouteAndLoadData(): void {
+  //   const currentRoute = this.router.url;
+  //   if (currentRoute.includes(currentRoute.substring(1))) {
+  //     this.loginService.showTable(currentRoute.substring(1));
+  //   }
+  // }
   checkRouteAndLoadData(): void {
-    const currentRoute = this.router.url;
+    const currentRoute = this.router.url.split('?')[0];
+    console.log(
+      '🚀  checkRouteAndLoadData  currentRoute:',
+      currentRoute.substring(1)
+    );
+
     if (currentRoute.includes(currentRoute.substring(1))) {
       this.loginService.showTable(currentRoute.substring(1));
     }
@@ -890,7 +871,10 @@ this.viewAllProbation();
   // data show change routing without reload start
   loadData(): void {
     // Get the current route
-    const currentRoute = this.route.snapshot.url[0].path;
+    // const currentRoute = this.route.snapshot.url[0].path;
+    
+    const currentRoute = this.router.url.split('/')[1].split('?')[0];
+    console.log('🚀  loadData  currentRoute:', currentRoute)
 
     // Your logic to load data based on the route
     switch (currentRoute) {
@@ -935,6 +919,12 @@ this.viewAllProbation();
         break;
       case 'viewPerformance':
         this.openEmployee();
+        break;
+        case 'addPerformance':
+        this.viewPerformanceData();
+        break;
+        case 'viewEmployeePerformance':
+        this.viewEmoloyeePerformanceData();
         break;
       default:
         // Handle any other routes or add additional logic as needed
@@ -7485,173 +7475,7 @@ generateOfferLetter() {
 }
 // API for generateOfferLetter end
 performanceNote:string = 'pills-probation';
-ratingMonth:any;
 
-
-addPerformanceUpdate: any;
-addPerformance(item: any){
-  this.addPerformanceUpdate = item;
-  this.appraisal.employeeName = item.firstname + ' ' + item.lastname;
-  this.appraisal.username = item.emailid;
-  console.log("item performance", this.addPerformanceUpdate);
-  this.loginService.showTable('addPerformance');
-}
-
-// add appraisal start
-appraisal= {
-  employeeName: '',
-  username: '',
-  appraisalDate:'',
-employeeRating:"5",
-currentSalary:'',
-hike:''
-};
-
-addAppraisal(){
-  console.log("appraisal add form", this.appraisal);
-  this.testService.addAppraisal(this.appraisal).subscribe(
-    (response) => {
-      console.log('appraisal success', response);
-      Swal.fire({
-        title: 'Success!',
-        text: 'Appraisal Added Successfully.',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000,
-      }).then(() => {
-        this.loginService.showTable('performance');
-        // this.clearFormPosition();
-      });
-      // this.getPositionRecruitment();
-      this.openEmployee();
-    },
-    (error) => {
-      console.error('appraisal error', error);
-      if (error.status == 400) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Appraisal Already Added!.',
-          icon: 'error',
-          showConfirmButton: false,
-          timer: 3000,
-        });
-      }
-    }
-  );
-}
-// add appraisal end
-
-
-
-saveRating(data: any) {
-  console.warn('data',data);
-  this.testService.saveRating(data).subscribe(
-    (r: any) => {
-      console.log('r',r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Rating saved successfully!',
-      });
-    },
-    (e: any) => {
-      console.error('e',e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the rating. Please try again.',
-      });
-    }
-  );
-}
-
-saveProbation(data: any) {
-  console.warn('data',data);
-  this.testService.saveProbation(data).subscribe(
-    (r: any) => {
-      console.log('r',r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Probation saved successfully!',
-      });
-    },
-    (e: any) => {
-      console.error('e',e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the probation. Please try again.',
-      });
-    }
-  );
-}
-
-savePromotion(data: any) {
-  console.warn('data',data);
-  this.testService.savePromotion(data).subscribe(
-    (r: any) => {
-      console.log('r',r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Promotion saved successfully!',
-      });
-    },
-    (e: any) => {
-      console.error('e',e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the promotion. Please try again.',
-      });
-    }
-  );
-}
-
-saveDemotion(data: any) {
-  console.warn('data',data);
-  this.testService.saveDemotion(data).subscribe(
-    (r: any) => {
-      console.log('r',r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Demotion saved successfully!',
-      });
-    },
-    (e: any) => {
-      console.error('e',e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the demotion. Please try again.',
-      });
-    }
-  );
-}
-
-savePIP(data: any) {
-  console.warn('data',data);
-  this.testService.savePIP(data).subscribe(
-    (r: any) => {
-      console.log('r',r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'PIP saved successfully!',
-      });
-    },
-    (e: any) => {
-      console.error('e',e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the PIP. Please try again.',
-      });
-    }
-  );
-}
 
 
 // pagination and search for view appraisal start
@@ -8267,6 +8091,623 @@ getOverallReviewForEmployee(reviews: any[]) {
   const februaryReviews = reviews.filter(review => review.monthAndYear === this.reviewMonth);
 
 console.log("review emp", februaryReviews);
+}
+
+
+
+// view employee appraisal start
+viewEmployeeAppraisal(item: any) {
+  const navigationExtras: NavigationExtras = {
+    queryParams: { id: item.id },
+  };
+  this.router.navigate(['/viewEmployeePerformance'], navigationExtras);
+  this.loginService.showTable('viewEmployeePerformance');
+}
+// view employee appraisal end
+viewProbationData: any;
+viewEmployeeAppraisalData: any;
+viewEmployeePromotionData: any;
+fillterAllPromotionEmployee: any;
+viewEmployeeDemotionData: any;
+viewEmployeePIPData: any;
+viewEmployeeRating: any;
+username: any;
+viewEmoloyeePerformanceData() {
+  this.route.queryParams.subscribe((params) => {
+    const id = params['id'];
+    this.RegisterAndUpdate.fetchData(id).subscribe(
+      (r: any) => {
+        console.log('🚀  🚀  🚀  viewEmoloyeePerformanceData  r:', r);
+
+        this.viewProbationData = r;
+
+        // this.saveDataProbation.id = r.id;
+
+        this.viewEmployeeRating.reviews = r.reviews;
+console.log("hgjhgjyyi????", this.viewEmployeeRating);
+        this.viewEmployeeAppraisalData.employeeName = r.firstname + ' ' + r.lastname;
+        this.viewEmployeeAppraisalData.username = r.emailid;
+
+        this.viewEmployeePromotionData.employeeName = r.firstname + ' ' + r.lastname;
+        this.viewEmployeePromotionData.emailId = r.emailid;
+
+
+        // this.saveDataDemotion.employeeName = r.firstname + ' ' + r.lastname;
+        // this.saveDataDemotion.currentPosition = r.designation;
+        // this.saveDataDemotion.username = r.username;
+        
+        // this.saveDataPIP.employeeName = r.firstname + ' ' + r.lastname;
+        // this.saveDataPIP.employeeEmailId = r.emailid;
+        // this.saveDataPIP.designation = r.designation;
+        // this.saveDataPIP.designation = r.designation;
+      },
+      (e: any) => {
+        console.error('🚀  viewPerformanceData  e:', e);
+        console.error('e', e);
+      }
+    );
+    this.testService.viewEmployeeAppraisal('satyam.kakra@prilient.com').subscribe(
+      (r:any) => {
+        console.warn('viewEmployeeAppraisalData',r);
+        this.viewEmployeeAppraisalData = r.data;
+        console.log("view Employee Appraisal Data", this.viewEmployeeAppraisalData)
+        // this.rtTeamMember = r;
+        // alert(r);
+      },
+      (e:any) => {
+        console.warn('viewEmployeeAppraisalData',e);
+        this.viewEmployeeAppraisalData = []
+        // alert(e);
+      }
+    )
+    this.testService.viewEmployeePromotion(id).subscribe(
+      (r:any) => {
+        console.warn('viewEmployeePromotionData',r);
+        this.viewEmployeePromotionData = r.data;
+        console.log("view Employee Promotion Data", this.viewEmployeePromotionData)
+        // const dataArray = Object.values(r.data);
+
+        // const reversedData = dataArray.reverse();
+  
+        // this.viewEmployeePromotionData = r.data;
+        // this.fillterAllPromotionEmployee = r.data;
+        console.log("view Employee Promotion Data", this.viewEmployeePromotionData)
+      },
+      (e:any) => {
+        console.error('viewEmployeePromotionData',e);
+        this.viewEmployeePromotionData = []
+        // alert(e);
+      }
+    )
+    this.testService.viewEmployeeDemotion(id).subscribe(
+      (r:any) => {
+        console.warn('viewEmployeeDemotionData',r);
+        this.viewEmployeeDemotionData = r;
+        console.log("view Employee demotion Data", this.viewEmployeeDemotionData)
+        // this.rtTeamMember = r;
+        // alert(r);
+      },
+      (e:any) => {
+        console.warn('viewEmployeeDemotionData',e);
+        this.viewEmployeeDemotionData = []
+        // alert(e);
+      }
+    )
+    this.testService.viewEmployeePIP(id).subscribe(
+      (r:any) => {
+        console.warn('viewEmployeePIPData',r);
+        this.viewEmployeePIPData = r;
+        console.log("view Employee PIP Data", this.viewEmployeePIPData)
+        // this.rtTeamMember = r;
+        // alert(r);
+      },
+      (e:any) => {
+        console.warn('viewEmployeePIPData',e);
+        this.viewEmployeePIPData = []
+        // alert(e);
+      }
+    )
+  });
+}
+
+// pagination and search for view employee promotion start
+PromotionEmployeeperPage: number = 5;
+currentPromotionEmployeePage: number = 1;
+
+searchPromotionEmployee: string = '';
+
+
+FilterPromotionEmployee() {
+  this.fillterAllPromotionEmployee = this.viewEmployeePromotionData.filter((item: { employeeName: string }) =>
+    item.employeeName.toLowerCase().includes(this.searchPromotionEmployee.toLowerCase())
+  );
+}
+
+getPaginatedPromotionEmployeeData(): any[] {
+  const startIndex = (this.currentPromotionEmployeePage - 1) * this.PromotionEmployeeperPage;
+  const endIndex = startIndex + this.PromotionEmployeeperPage;
+  return this.fillterAllPromotionEmployee.slice(startIndex, endIndex);
+}
+
+previousPromotionEmployeePage(): void {
+  if (this.currentPromotionEmployeePage > 1) {
+    this.currentPromotionEmployeePage--;
+  }
+}
+
+getPageNumbersPromotionEmployee(): number[] {
+  const totalPages = Math.ceil(
+    this.fillterAllPromotionEmployee.length / this.PromotionEmployeeperPage
+  );
+  return Array.from({ length: totalPages }, (_, index) => index + 1);
+}
+
+changePagePromotionEmployee(pageNumber: number): void {
+  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPromotionEmployee()) {
+    this.currentPromotionEmployeePage = pageNumber;
+  }
+}
+
+
+nextPagePromotionEmployee(): void {
+  const totalPages = Math.ceil(
+    this.fillterAllPromotionEmployee.length / this.PromotionEmployeeperPage
+  );
+  if (this.currentPromotionEmployeePage < totalPages) {
+    this.currentPromotionEmployeePage++;
+  }
+}
+
+
+getTotalPagesPromotionEmployee(): number {
+  return Math.ceil(
+    this.fillterAllPromotionEmployee.length / this.PromotionEmployeeperPage
+  );
+}
+// pagination and search for view employee Promotion end
+
+
+
+
+ratingMonth: any;
+
+probationData: any;
+addPerformance(item: any) {
+  const navigationExtras: NavigationExtras = {
+    queryParams: { id: item.id },
+  };
+  this.router.navigate(['/addPerformance'], navigationExtras);
+  this.loginService.showTable('addPerformance');
+}
+viewPerformanceData() {
+  this.route.queryParams.subscribe((params) => {
+    const id = params['id'];
+    this.RegisterAndUpdate.fetchData(id).subscribe(
+      (r: any) => {
+        console.log('🚀  🚀  🚀  viewPerformanceData  r:', r);
+        // console.log('r',r);
+        this.probationData.firstname = r.firstname || 'nan';
+        this.probationData.lastname = r.lastname || 'nan';
+        this.probationData.emailid = r.emailid || 'nan';
+
+        this.saveDataProbation.id = r.id;
+        this.saveDataProbation.probationStatus = r.probationStatus;
+
+        this.saveDataRating.username = r.username;
+
+        this.saveDataAppraisal.employeeName = r.firstname + ' ' + r.lastname;
+        this.saveDataAppraisal.username = r.emailid;
+
+        this.saveDataPromotion.employeeName = r.firstname + ' ' + r.lastname;
+        this.saveDataPromotion.emailId = r.emailid;
+        // this.saveDataPromotion.designation = r.designation;
+
+        this.saveDataDemotion.employeeName = r.firstname + ' ' + r.lastname;
+        // this.saveDataDemotion.currentPosition = r.designation;
+        this.saveDataDemotion.username = r.username;
+        
+        this.saveDataPIP.employeeName = r.firstname + ' ' + r.lastname;
+        this.saveDataPIP.employeeEmailId = r.emailid;
+        this.saveDataPIP.designation = r.designation;
+        this.saveDataPIP.designation = r.designation;
+      },
+      (e: any) => {
+        console.error('🚀  viewPerformanceData  e:', e);
+        console.error('e', e);
+      }
+    );
+  });
+}
+
+// add appraisal start
+saveDataAppraisal = {
+  employeeName: '',
+  username: '',
+  appraisalDate: '',
+  employeeRating: '5',
+  currentSalary: '',
+  hike: '',
+};
+
+addAppraisal(data: any) {
+  console.log('appraisal add form', data);
+  this.testService.addAppraisal(data).subscribe(
+    (response) => {
+      console.log('appraisal success', response);
+      Swal.fire({
+        title: 'Success!',
+        text: 'Appraisal Added Successfully.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      // this.loginService.showTable('performance');
+      this.saveDataAppraisal = {
+        employeeName: '',
+        username: '',
+        appraisalDate: '',
+        employeeRating: '5',
+        currentSalary: '',
+        hike: '',
+      };
+      this.viewPerformanceData();
+      // });
+      // this.getPositionRecruitment();
+      // this.openEmployee();
+    },
+    (error) => {
+      console.error('appraisal error', error);
+      // if (error.status == 400) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Appraisal Already Added!.',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+    // }
+  );
+}
+// add appraisal end
+// add star rating start
+saveDataRating = {
+  username: '',
+  monthAndYear: '',
+  performance: 0,
+  accuracyOfWork: 0,
+  dedication: 0,
+  teamWork: 0,
+  abilityToLearn: 0,
+  attendance: 0,
+  punctuality: 0,
+  workHabits: 0,
+  responsiveness: 0,
+};
+opinion: string = '';
+stars: number[] = [0, 1, 2, 3, 4];
+rateStar(index: number, name: any) {
+  // console.warn('index Add',index);
+  if ('SRR' == name) {
+    this.saveDataRating.responsiveness = index + 1;
+  }
+  if ('SRWH' == name) {
+    this.saveDataRating.workHabits = index + 1;
+  }
+  if ('SRPT' == name) {
+    this.saveDataRating.punctuality = index + 1;
+  }
+  if ('SRA' == name) {
+    this.saveDataRating.attendance = index + 1;
+  }
+  if ('SRATL' == name) {
+    this.saveDataRating.abilityToLearn = index + 1;
+  }
+  if ('SRTW' == name) {
+    this.saveDataRating.teamWork = index + 1;
+  }
+  if ('SRPF' == name) {
+    this.saveDataRating.performance = index + 1;
+  }
+  if ('SRD' == name) {
+    this.saveDataRating.dedication = index + 1;
+  }
+  if ('SRAOW' == name) {
+    this.saveDataRating.accuracyOfWork = index + 1;
+  }
+}
+rateStarRemove(index: number, name: any) {
+  // console.warn('index Remove',index);
+  if ('SRR' == name) {
+    this.saveDataRating.responsiveness = index;
+  }
+  if ('SRWH' == name) {
+    this.saveDataRating.workHabits = index;
+  }
+  if ('SRPT' == name) {
+    this.saveDataRating.punctuality = index;
+  }
+  if ('SRA' == name) {
+    this.saveDataRating.attendance = index;
+  }
+  if ('SRATL' == name) {
+    this.saveDataRating.abilityToLearn = index;
+  }
+  if ('SRTW' == name) {
+    this.saveDataRating.teamWork = index;
+  }
+  if ('SRPF' == name) {
+    this.saveDataRating.performance = index;
+  }
+  if ('SRD' == name) {
+    this.saveDataRating.dedication = index;
+  }
+  if ('SRAOW' == name) {
+    this.saveDataRating.accuracyOfWork = index;
+  }
+}
+// add start rating end
+
+// saveDataRating : any;
+saveRating(data: any) {
+  console.warn('data', data);
+  this.testService.saveRating(data).subscribe(
+    (r: any) => {
+      console.log('r', r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Rating saved successfully!',
+      });
+      this.saveDataRating = {
+        username: '',
+        monthAndYear: '',
+        performance: 0,
+        accuracyOfWork: 0,
+        dedication: 0,
+        teamWork: 0,
+        abilityToLearn: 0,
+        attendance: 0,
+        punctuality: 0,
+        workHabits: 0,
+        responsiveness: 0,
+      };
+      this.viewPerformanceData();
+    },
+    (e: any) => {
+      console.error('e', e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the rating. Please try again.',
+      });
+    }
+  );
+}
+
+// saveDataProbation
+saveDataProbation = {
+  id: '',
+  probationStatus: '',
+  endDateOfProbation: '',
+  extensionReason: '',
+  totalDaysOfProbation: 0,
+};
+
+updateTotalDaysOfProbation(dateString1: string, dateString2: string): void {
+  this.updateProbationStatus();
+  const date1 = new Date(dateString1);
+  const date2 = new Date(dateString2);
+  if (isNaN(date1.getTime()) || isNaN(date2.getTime())) {
+    console.error('Invalid date strings provided');
+    return;
+  }
+  const timeDifference = date2.getTime() - date1.getTime();
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  this.saveDataProbation.totalDaysOfProbation = daysDifference;
+}
+doFormatInput(data: any) {
+  if (data != '') {
+    this.saveDataProbation.totalDaysOfProbation = parseInt(
+      data
+        .toString()
+        .split('')
+        .map((char: string) => char.replace(/[^0-9]/g, ''))
+        .join('')
+    );
+    console.warn(
+      '🚀🚀🚀🚀',
+      parseInt(
+        data
+          .toString()
+          .split('')
+          .map((char: string) => char.replace(/[^0-9]/g, ''))
+          .join('')
+      )
+    );
+  } else {
+    this.saveDataProbation.totalDaysOfProbation = 0;
+  }
+}
+updateEndDateOfProbation(dateString1: string, daysToAdd: number): void {
+  this.updateProbationStatus();
+  this.doFormatInput(daysToAdd);
+  // console.log("🚀  updateEndDateOfProbation  daysToAdd:", daysToAdd)
+
+  const date1 = new Date(dateString1);
+  if (isNaN(date1.getTime())) {
+    console.error('Invalid date string provided');
+    return;
+  }
+  const date2 = new Date(date1.getTime() + daysToAdd * 24 * 60 * 60 * 1000);
+  this.saveDataProbation.endDateOfProbation = date2
+    .toISOString()
+    .split('T')[0];
+}
+
+updateProbationStatus(): void {
+  const todayDate = new Date().toISOString().split('T')[0]; // Current date
+
+  if (
+    this.probationData.startDateOfProbation &&
+    this.saveDataProbation.endDateOfProbation &&
+    this.saveDataProbation.endDateOfProbation >= todayDate
+  ) {
+    this.saveDataProbation.probationStatus = 'Not Completed';
+  } else if (
+    this.saveDataProbation.endDateOfProbation &&
+    this.saveDataProbation.endDateOfProbation < todayDate
+  ) {
+    this.saveDataProbation.probationStatus = 'Completed';
+  }
+}
+
+saveProbation(data: any) {
+  console.warn('data', data);
+  this.testService.saveProbation(data).subscribe(
+    (r: any) => {
+      console.log('r', r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Probation saved successfully!',
+      });
+      this.saveDataProbation = {
+        id: '',
+        probationStatus: '',
+        endDateOfProbation: '',
+        extensionReason: '',
+        totalDaysOfProbation: 0,
+      };
+      this.viewPerformanceData();
+    },
+    (e: any) => {
+      console.error('e', e);
+      Swal.fire({
+        icon: 'error',
+        title: e.error,
+        text: e.text,
+      });
+    }
+  );
+}
+
+saveDataPromotion = {
+  employeeName : '',
+  emailId : '',
+  date : '',
+  // designation : '',
+  promotedPositionName : '',
+};
+savePromotion(data: any) {
+  console.warn('data', data);
+  this.testService.savePromotion(data).subscribe(
+    (r: any) => {
+      console.log('r', r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Promotion saved successfully!',
+      });
+      this. saveDataPromotion = {
+        employeeName : '',
+        emailId : '',
+        date : '',
+        promotedPositionName : '',
+      };
+      this.viewPerformanceData();
+    },
+    (e: any) => {
+      console.error('e', e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the promotion. Please try again.',
+      });
+    }
+  );
+}
+saveDataDemotion = {
+  employeeName : '',
+  username : '',
+  demotionDate : '',
+  // currentPosition : '',
+  demotedPosition : '',
+  reason : '',
+};
+saveDemotion(data: any) {
+  console.warn('data', data);
+  this.testService.saveDemotion(data).subscribe(
+    (r: any) => {
+      console.log('r', r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'Demotion saved successfully!',
+      });
+      this. saveDataDemotion = {
+        employeeName : '',
+        username : '',
+        demotionDate : '',
+        demotedPosition : '',
+        reason : '',
+      };
+      this.viewPerformanceData();
+    },
+    (e: any) => {
+      console.error('e', e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: e.error,
+      });
+    }
+  );
+}
+
+saveDataPIP = {
+  employeeName : '',
+  employeeEmailId : '',
+  designation : '',
+  
+  startDate: '',
+  endDate: '',
+
+  status: '',
+  terminate: '',
+  reason: ''
+};
+savePIP(data: any) {
+  console.warn('data', data);
+  this.testService.savePIP(data).subscribe(
+    (r: any) => {
+      console.log('r', r);
+      Swal.fire({
+        icon: 'success',
+        title: 'Save Successful',
+        text: 'PIP saved successfully!',
+      });
+      this.saveDataPIP = {
+        employeeName : '',
+        employeeEmailId : '',
+        designation : '',
+        startDate: '',
+        endDate: '',
+        status: '',
+        terminate: '',
+        reason: ''
+      };
+      this.viewPerformanceData();
+    },
+    (e: any) => {
+      console.error('e', e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Save Failed',
+        text: 'There was an error while saving the PIP. Please try again.',
+      });
+    }
+  );
 }
 
 }
