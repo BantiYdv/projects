@@ -1,0 +1,179 @@
+
+
+<!-- <img decoding="async" class="wave" src="https://i.stack.imgur.com/WhXKT.png"> -->
+<div class="container-fluid">
+  <img src="/assets/image/loginVector1.png" alt="" class="d-none d-lg-block">
+  <div class="row align-items-center" style="position: relative;">
+    <img src="/assets/image/homeVector3.png" class="vector4 d-none d-lg-block" alt="">
+    <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+      <div class="login-content ">
+        <div class="loginHeading">
+          <h1 class="display-3 text-center  pt-2 mb-0">
+           <span class="text" style="font-weight: 700;">Login Here!</span> <br>
+          </h1>
+          <p class="lead text-center mb-lg-8 mb-4">
+            Let's start, if you are registered.
+          </p>
+        </div>
+        <form (ngSubmit)="onSubmit()">
+          
+          <div class="form-outline ">
+            <label for="username" class="username">Username:</label>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input [(ngModel)]="login.username" name="username" id="username" type="text" class="inputfield" matInput required>
+              <mat-icon matPrefix>account_circle</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="form-outline mt-1">
+            <label for="password" class="password">Password:</label>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enter your password</mat-label>
+              <input [(ngModel)]="login.password" name="password" id="password" required type="password" matInput type="{{ showPassword ? 'text' : 'password' }}">
+              <mat-icon matPrefix>lock</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6">
+              <div class="form-outline">
+                <div class="mb-0">
+                  <div class="custom-control custom-checkbox small">
+                    <input class="form-check-input m-1" style="border: 1px solid black;" type="checkbox" value="" id="customCheck" (change)="togglePasswordVisibility($event)">
+                    <label class="form-check-label m-1" for="customCheck">Show Password</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6" style="text-align: right;">
+              <a class="forget m-1" (click)="forgetpassword()">Forgot Password?</a>
+            </div>
+          </div>
+          <img src="/assets/image/loginVector2.png" alt="" class="vector2 d-none d-lg-block">
+          <div class="text-center text-lg-start mt-2 pt-0">
+            <button type="submit" mat-raised-button  class="btn-lg login clickEffect" >Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 d-none d-none d-md-block" style="height: 550px; overflow: hidden; margin-top: -3rem;">
+      <div class="animated-image loginleft2 m-3">
+        <img src="/assets/image/loginleft2.png" width="80%">
+      </div>
+      <div class="animated-image loginMiddle2 m-3">
+        <img src="/assets/image/loginMiddle2.png" width="80%">
+      </div>
+      <div class="animated-image loginRight2 m-3">
+        <img src="/assets/image/loginRight2.png" width="80%">
+      </div>
+    </div>
+  </div>
+  <img src="/assets/image/loginVector3.png" alt="" class="vector3 d-none d-lg-block">
+</div>
+
+
+
+
+
+
+
+
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button> -->
+
+<!-- Modal -->
+<div *ngIf="isChangePasswordModalOpen">
+<div _ngcontent-ng-c1887990581="" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" class="modal fade show" style="display: block; background-color: rgba(0, 0, 0, 0.342);" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Change Password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex align-items-center justify-content-center">
+        
+                    <form *ngIf="passwordForm" [formGroup]="passwordForm">
+                      <div class="mb-3">
+                        <label for="oldPassword" class="col-form-label">Old Password:</label>
+                       
+                        <div class="input-group">
+                          <input type="{{ showoldPassword ? 'text' : 'password' }}" class="form-control field"  name="oldPassword"
+                            id="oldPassword" formControlName="oldPassword" [(ngModel)]="passwordForm.oldPassword">
+                          <button class="btn-outline-secondary btnPass" type="button"
+                            (click)="toggleoldPasswordVisibility('oldPassword')">
+                            <i class="fa-solid fa-eye{{ showoldPassword ? '' : '-slash' }}"></i>
+                          </button>
+                        </div>
+                        <div
+                          *ngIf="passwordForm.get('oldPassword')?.invalid && (passwordForm.get('oldPassword')?.dirty || passwordForm.get('oldPassword')?.touched)">
+                          <div *ngIf="passwordForm.get('oldPassword')?.errors?.['required']" class="text-danger">Old
+                            Password is
+                            required.</div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="newPassword" class="col-form-label">New Password:</label>
+                       
+                        <div class="input-group">
+                          <input type="{{ showNewPassword ? 'text' : 'password' }}" class="form-control field" name="newPassword"
+                            id="newPassword" formControlName="newPassword" [(ngModel)]="passwordForm.newPassword">
+                          <button class="btn-outline-secondary btnPass" type="button"
+                            (click)="togglenewPasswordVisibility('newPassword')">
+                            <i class="fa-solid fa-eye{{ showNewPassword ? '' : '-slash' }}"></i>
+                          </button>
+                        </div>
+                        <div
+                          *ngIf="passwordForm.get('newPassword')?.invalid && (passwordForm.get('newPassword')?.touched || passwordForm.get('newPassword')?.touched)">
+                          <div *ngIf="passwordForm.get('newPassword')?.errors?.['required']" class="text-danger">New
+                            Password is required.</div>
+                          <div *ngIf="passwordForm.get('newPassword')?.errors?.['minlength']" class="text-danger">New
+                            Password
+                            should be at least 8 characters long.</div>
+                          <div *ngIf="passwordForm.get('newPassword')?.errors?.['pattern']" class="text-danger">New password
+                            must contain at least one uppercase letter, one lowercase letter, one digit, one special
+                            character (!#$%^&) and least 8 characters long.</div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="confirmPassword" class="col-form-label">Confirm Password:</label>
+                        
+                        <div class="input-group">
+                          <input type="{{ showconfirmPassword ? 'text' : 'password' }}" class="form-control field"
+                            name="confirmPassword" id="confirmPassword" formControlName="confirmPassword"
+                            [(ngModel)]="passwordForm.confirmPassword">
+                          <button class="btn-outline-secondary btnPass" type="button"
+                            (click)="toggleoldCnfPasswordVisibility('confirmPassword')">
+                            <i class="fa-solid fa-eye{{ showconfirmPassword ? '' : '-slash' }}"></i>
+                          </button>
+                        </div>
+                        <div
+                          *ngIf="passwordForm.get('confirmPassword')?.invalid && (passwordForm.get('confirmPassword')?.dirty || passwordForm.get('confirmPassword')?.touched)">
+                          <div *ngIf="passwordForm.get('confirmPassword')?.errors?.['required']" class="text-danger">Confirm
+                            Password is required.</div>
+                        </div>
+                      </div>
+                      <div
+                        *ngIf="passwordForm.get('confirmPassword')?.value !== passwordForm.get('newPassword')?.value && passwordForm.get('confirmPassword')?.dirty"
+                        class="text-danger">
+                        Passwords do not match.
+                      </div>
+                    </form>
+    
+                    <!-- </div> -->
+    
+                    
+                    
+                    
+                  </div>
+                  <div class="mx-5">
+                    <button type="submit" class="btn btn-secondary" (click)="changePassword()"
+                      [disabled]="passwordForm.invalid || passwordForm.pending">Submit</button>
+                  </div>
+              
+          
+     
+    </div>
+  </div>
+</div>
+</div>

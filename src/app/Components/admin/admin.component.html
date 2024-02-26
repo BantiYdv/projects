@@ -1,0 +1,1010 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col py-3">
+      <div class="b-example-divider"></div>
+      <div class="container px-2 py-5" id="hanging-icons">
+        <div class="row">
+          <div class="col-md-6 d-flex justify-content-start">
+            <h2 class="hello">Hello<br>
+              <span id="firstname" class="empName">{{ profileDetails?.firstname + " " + profileDetails?.lastname
+                }}</span>
+            </h2>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <div class="d-flex flex-column">
+           
+              <button type="submit" *ngIf="checkButton" class="btn btn-success m-1"
+                (click)="checkin()">Check-In</button>
+              <button type="submit" *ngIf="!checkButton" class="btn btn-danger m-1"
+                (click)="checkout()">Check-Out</button>
+              <div class="ps-2">
+                <i class="far fa-clock"></i>
+                {{calculateTimeDifference() || '00:00:00'}}
+              </div>
+             
+              <br>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 d-flex flex-wrap">
+            <div class="mt-4" id="LeaveChart"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-6' : 'col-12  col-md-12 col-lg-6 col-xl-6'">
+              <div class="LeaveChart">
+                <div class="d-flex justify-content-start bottomLine">
+                  <h3 class="leaveTitle">Leave</h3>
+                  <img src="/assets/image/leaveVector1.png" alt="" class="leaveVector1">
+                </div>
+                <div class="d-flex" style="justify-content: space-evenly; ">
+                  <!-- <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="totalLeave" [style.--c]="'#F97165'" [style.--b]="'10px'"> {{
+                      totalLeave }}</div>
+                    <br><span class="leaveName">Total Leaves</span>
+                  </div> -->
+                  <!-- <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="100" [style.--c]="'#F97165'" [style.--b]="'10px'"> {{ totalLeave }}</div>
+                    <br><span class="leaveName">Total Leaves</span>
+                  </div>
+                  
+                  <div>
+
+                    <div class="pie animate no-round leaveChart" [style.--p]="takenLeave" [style.--c]="'#421CDD'" [style.--b]="'10px'"> {{
+                      takenLeave }}</div>
+                    <br><span class="leaveName">Leave Taken</span>
+                  </div>
+
+                  <div>
+
+                    <div class="pie animate no-round leaveChart" [style.--p]="remainingLeave" [style.--c]="'#188EE4'" [style.--b]="'10px'">{{
+                      remainingLeave }}</div>
+                    <br><span class="leaveName">Remaining Leave</span>
+                  </div> -->
+
+                  <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="100" [style.--c]="'#47C17A'"
+                      [style.--b]="'10px'"> {{ totalLeave }}</div>
+                    <br><span class="leaveName">Total Leaves</span>
+                  </div>
+
+                  <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="(takenLeave / totalLeave) * 100"
+                      [style.--c]="'#401DDE'" [style.--b]="'10px'"> {{ takenLeave }}</div>
+                    <br><span class="leaveName">Leave Taken</span>
+                  </div>
+
+                  <div>
+                    <div class="pie animate no-round leaveChart" [style.--p]="(remainingLeave / totalLeave) * 100"
+                      [style.--c]="'#F97166'" [style.--b]="'10px'">{{ remainingLeave }}</div>
+                    <br><span class="leaveName">Remaining Leave</span>
+                  </div>
+
+                </div>
+                <div class="d-flex justify-content-center align-item-center mt-3">
+                  <button class="btn leaveApply m-2" data-bs-toggle="modal" data-bs-target="#applyLeaveModal">Apply
+                    Leave</button>
+                  <button class="btn leaveView m-2" [routerLink]="['/viewLeave']"
+                    (click)="loginService.showTable('viewLeave')">View Leave</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4" id="LeaveChart"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-6' : 'col-12  col-md-12 col-lg-6 col-xl-6'">
+              <div class="LeaveChart">
+                <div class="d-flex justify-content-start bottomLine">
+                  <h3 class="leaveTitle">WFH</h3>
+                  <img src="/assets/image/leaveVector1.png" alt="" class="leaveVector1">
+                </div>
+
+
+
+                <!-- <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -24px; position: relative;">
+                  <span class="wfhName">Total WFH</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="20"
+                    aria-valuemin="0" aria-valuemax="100" style="position: relative;">
+                    <div class="progress-bar" style="width: {{totalWfh}}%;"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{totalWfh}}</span>
+                </div>
+
+
+
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
+                  <span class="wfhName">WFH Taken</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <div class="progress-bar wfhTaken" style="width: {{takenWfh}}%"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{takenWfh}}</span>
+                </div>
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
+                  <span class="wfhName">Remaining WFH</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <div class="progress-bar remainingWfh" style="width: {{remainingWfh}}%"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{remainingWfh}}</span>
+                </div> -->
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -24px; position: relative;">
+                  <span class="wfhName">Total WFH</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" [attr.aria-valuenow]="totalWfh"
+                    aria-valuemin="0" aria-valuemax="100" style="position: relative;">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{totalWfh}}</span>
+                </div>
+
+
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
+                  <span class="wfhName">WFH Taken</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" [attr.aria-valuenow]="takenWfh"
+                    aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar wfhTaken" [style.width.%]="(takenWfh / totalWfh) * 100"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{takenWfh}}</span>
+                </div>
+
+                <div style="border: 1px solid #CACACA; padding: 10px; margin-top: -28px; position: relative;">
+                  <span class="wfhName">Remaining WFH</span>
+                  <div class="progress" role="progressbar" aria-label="Total Leaves" [attr.aria-valuenow]="remainingWfh"
+                    aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar remainingWfh" [style.width.%]="(remainingWfh / totalWfh) * 100"></div>
+                  </div>
+                  <span class="progress-label"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">{{remainingWfh}}</span>
+                </div>
+
+
+
+
+                <div class="d-flex justify-content-center align-item-center">
+                  <button class="btn leaveApply m-2" data-bs-toggle="modal" data-bs-target="#applyWfhModal">Apply
+                    WFH</button>
+                  <button class="btn leaveView m-2" [routerLink]="['/viewWfh']"
+                    (click)="loginService.showTable('viewWfh')">View WFH</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 d-flex flex-wrap">
+            <div class="mt-4" id="LeaveChart"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12  col-md-12 col-lg-12 col-xl-12' : 'col-12  col-md-12 col-lg-12 col-xl-12'">
+              <div class="performance rounded-bottom-0">
+                <div class="d-flex justify-content-start">
+                  <h3 class="leaveTitle">Performance</h3>
+                </div>
+                <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+                  <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-probation'">
+                    <button class="nav-link active" id="pills-probation-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-probation" type="button" role="tab" aria-controls="pills-probation"
+                      aria-selected="true">Probation</button>
+                  </li>
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+                    <button class="nav-link" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review"
+                      type="button" role="tab" aria-controls="pills-review" aria-selected="false">Review</button>
+                  </li>
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+                    <button class="nav-link" id="pills-appraisal-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-appraisal" type="button" role="tab" aria-controls="pills-appraisal"
+                      aria-selected="false">Appraisal</button>
+                  </li>
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+                    <button class="nav-link" id="pills-promotion-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-promotion" type="button" role="tab" aria-controls="pills-promotion"
+                      aria-selected="false">Promotion</button>
+                  </li>
+                  <li class="nav-item" role="presentation" (click)="performanceNote = ''">
+                    <button class="nav-link" id="pills-demotion-tab" data-bs-toggle="pill"
+                      data-bs-target="#pills-demotion" type="button" role="tab" aria-controls="pills-demotion"
+                      aria-selected="false">Demotion</button>
+                  </li>
+                  <li class="nav-item" role="presentation" (click)="performanceNote = 'pills-pip'">
+                    <button class="nav-link" id="pills-pip-tab" data-bs-toggle="pill" data-bs-target="#pills-pip"
+                      type="button" role="tab" aria-controls="pills-pip" aria-selected="false">PIP</button>
+                  </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-pane fade show active" id="pills-probation" role="tabpanel"
+                    aria-labelledby="pills-probation-tab">
+                    <div class="d-flex justify-content-center flex-wrap" style="border-bottom: 1px solid #A9A8AD; gap:10px;" >
+                      <span class="status">Status</span>
+
+                      <span class="probationStatus 
+                      {{profileDetails.probationStatus === 'Completed' ? 'completed-status' : 
+                      profileDetails.probationStatus === 'Not Completed' ? 'not-completed-status' : 
+                      profileDetails.probationStatus === 'On Going' ? 'ongoing-status' : ''}}">
+
+                        {{profileDetails.probationStatus}}
+
+                        <img src="{{profileDetails.probationStatus === 'Completed' ? '/assets/image/icon/Completed.svg' : 
+                      profileDetails.probationStatus === 'Not Completed' ? '/assets/image/icon/NotCompleted.svg' : 
+                      profileDetails.probationStatus === 'On Going' ? '/assets/image/icon/Ongoing.svg' : ''}}"
+                          alt="Status Icon">
+                      </span>
+
+                    </div>
+                    <!-- <p class="statusP mt-4" *ngIf="profileDetails.probationStatus !== 'Completed'"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet
+                      consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+                      quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+                      aspernatur tempore nihil qui enim adipisci error?</p> -->
+                  </div>
+
+                  <!-- <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                    <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                     
+                      </div>
+                  </div> -->
+                  <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <input type="month" class="inputForMonth" [(ngModel)]="ratingMonth" name="ratingMonth">
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center align-items-center col-12 col-md-12 col-xl-12">
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="disciplineCss boxForTitle">Discipline</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 3" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 3"></i>
+                              <!-- <img *ngIf="i >= 3" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="timingCss boxForTitle">Timing</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 2" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 2"></i>
+                              <!-- <img *ngIf="i >= 2" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="taskCss boxForTitle">Task</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 4" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 4"></i>
+                              <!-- <img *ngIf="i >= 4" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
+                        <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
+                          <div class="overallCss boxForTitle">Overall</div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
+                          <div class="boxForTitle starCss">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
+                              <img *ngIf="i < 1" src="/assets/image/starIcon.png" alt="Star">
+                              <i class="fa fa-star" style="color: #A9A8AD;" *ngIf="i >= 1"></i>
+                              <!-- <img *ngIf="i >= 1" src="../../../assets/image/starIcon2.png" alt="Star"> -->
+                            </ng-container>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <!-- <div class="d-flex flex-wrap justify-content-around mt-3">
+                      <div class="text-left mb-4 discipline">
+                        <p>Discipline</p>
+                      </div>
+                      <div class="text-right mb-4 disciplineRating">
+                       
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                    
+                      <div class="text-left mb-4">
+                        <p>Timing</p>
+                      </div>
+                      <div class="text-right mb-4">
+                        
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                    </div>
+                    
+                  
+                    <div class="d-flex flex-wrap justify-content-around mt-3">
+                      <div class="text-center mb-4">
+                        <p>Task</p>
+                   
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                      <div class="text-center mb-4">
+                        <p>Overall</p>
+                     
+                        <span class="star-rating" data-rating="num"></span>
+                      </div>
+                    </div> -->
+                  </div>
+
+
+
+                  <div class="tab-pane fade" id="pills-appraisal" role="tabpanel" aria-labelledby="pills-appraisal-tab">
+                    <!-- Content for Appraisal tab -->
+                    <!-- <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                      <h4 class="appraisal"><img src="/assets/image/appraisalicon.png" alt=""> Appraisal</h4>
+                    </div> -->
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                          src="/assets/image/appraisalicon.png" alt="">&nbsp;Appraisal</div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                      <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-item-center">
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Current Salary</h4>
+                     
+
+                        <h4 class="appraisalStatus"><img src="/assets/image/RupeeIcon.png" alt=""> XXXXXX</h4>
+                      </div>
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Appraisal Salary</h4>
+                     
+
+                        <h4 class="appraisalStatus"><img src="/assets/image/RupeeIcon.png" alt=""> XXXXXX</h4>
+                      </div>
+
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Date</h4>
+                     
+
+                        <h4 class="appraisalStatus">XX-XX-XXXX</h4>
+                      </div>
+
+                      </div>
+                      
+                  </div>
+                
+                  </div>
+                  <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
+                    <!-- Content for Promotion tab -->
+                    <!-- <div class="d-flex justify-content-center" >
+                      <h4 class="appraisal"><img src="/assets/image/appraisalicon.png" alt=""> Promotion</h4>
+                    </div> -->
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                          src="/assets/image/appraisalicon.png" alt="">&nbsp;Promotion</div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                      <div class="col-9 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-item-center">
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Current Designation</h4>
+                     
+
+                        <h4 class="appraisalStatus"> Developer</h4>
+                      </div>
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Promoted To</h4>
+                     
+
+                        <h4 class="appraisalStatus"> Sr Developer</h4>
+                      </div>
+
+
+                      <div class="col-12 col-lg-3 col-md-12 col-sm-12 d-flex flex-column">
+
+                        <h4 class="appraisalText">Date</h4>
+                     
+
+                        <h4 class="appraisalStatus">XX-XX-XXXX</h4>
+                      </div>
+
+                      </div>
+                      
+                  </div>
+                  </div>
+                  <div class="tab-pane fade" id="pills-demotion" role="tabpanel" aria-labelledby="pills-demotion-tab">
+                    <div class="d-flex justify-content-center align-items-center inputDivCss">
+                      <div class="fw-bold d-flex justify-content-center align-items-center inputForMonth"><img
+                          src="/assets/image/appraisalicon.png" alt="">&nbsp;Demotion</div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <div class="col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+                        <div
+                          class="col-12 col-md-12 col-xl-9 d-flex flex-wrap justify-content-center align-items-center mt-3">
+                          <div class="col-12 col-md-12 col-xl-4 d-flex flex-column">
+                            <div class="labelCssForDemotion mt-2">Current Designation</div>
+                            <div class=" mt-2 boxForDemotion boxColor8C6A13">Graphic Designer</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-4  d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">Demoted To</div>
+                            <div class=" mt-2 boxForDemotion boxColor8C6A13">Ui/Ux designer</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-4 d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">Date</div>
+                            <div class=" mt-2 boxForDemotion boxColor8C6A13">Xxxx</div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
+                    <!-- Content for PIP tab -->
+                    <!-- <div class="d-flex justify-content-center" style="border-bottom: 1px solid #A9A8AD;">
+                      <h4>Not yet!</h4>
+                    </div> -->
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                      <div class="col-12 col-md-12 col-xl-12 d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-md-12 col-xl-9 d-flex flex-wrap justify-content-center align-items-center">
+                          <div class="col-12 col-md-12 col-xl-6 d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">Start Date</div>
+                            <div class=" mt-2 boxForDemotion boxColorDD1717">19/02/2024</div>
+                          </div>
+                          <div class="col-12 col-md-12 col-xl-6 d-flex flex-column">
+                            <div class="labelCssForDemotion  mt-2">End Date</div>
+                            <div class=" mt-2 boxForDemotion boxColorDD1717">09/03/2024</div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+            </div>
+            <div [ngSwitch]="performanceNote">
+              <div *ngIf="profileDetails.probationStatus !== 'Completed'">
+                <div *ngSwitchCase="'pills-probation'" class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+                  <p class="statusP"><span
+                    class="statusPara">Note: </span> Probation ipsum dolor sit, amet
+                  consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+                  quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+                  aspernatur tempore nihil qui enim adipisci error?</p>
+                </div>
+              </div>
+              <div *ngSwitchCase="'pills-pip'" class="performance noteCss rounded-bottom-3 rounded-top-0 d-flex justify-content-center align-items-center">
+                <p class="statusP"><span
+                  class="statusPara">Note: </span> PIP ipsum dolor sit, amet
+                consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+                quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+                aspernatur tempore nihil qui enim adipisci error?</p>
+              </div>
+              <div *ngSwitchDefault>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div>
+          <i *ngFor="let star of stars; let i = index" 
+             class="fa star" 
+             [ngClass]="{'fa-star': i < selectedRating, 'fa-star-o': i >= selectedRating}" 
+             (click)="rateStar(i)" 
+             style="--i: 0;">
+          </i>
+        </div> -->
+        <div class="container mt-5">
+          <div class="row d-flex flex-wrap">
+            <div class="justify-content-center align-item-center"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4'">
+
+              <div class="calendar">
+                <h5 class="mb-4 mt-2 ActivitiesHeader">Calendar </h5>
+
+
+                <div class="week-names">
+                  <div *ngFor="let weekName of weekNames" class="day">{{ weekName }}</div>
+                </div>
+
+                <div *ngFor="let week of calendarData" class="week">
+                  <div *ngFor="let day of week" class="day" [class.other-month]="!day.isCurrentMonth"
+                    [class.today]="isToday(day.date)">
+                    {{ day.date.format('D') }}
+                  </div>
+                </div>
+                <div class="header">
+                  <div class="left-section">
+                    <img src="/assets/image/calendarVector3.png" alt="" class="calendarVector3">
+                    <img src="/assets/image/calendarVector4.png" alt="" class="calendarVector4">
+                  </div>
+                  <div class="right-section">
+                    <img src="/assets/image/calendarPre.png" alt="" class="caliconPre" (click)="goToPrevMonth()">
+                    <h2 class="monthYear">{{ currentDate.format('MMMM YYYY') }}</h2>
+                    <img src="/assets/image/calendarNext.png" alt="" class="caliconNext" (click)="goToNextMonth()">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="justify-content-center align-item-center"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+              <!-- <div class="container"> -->
+                <!-- <div class="card"> -->
+                <div class="Holiday">
+                  <h5 class="text-center mb-4 mt-2 holidayHeader">Holidays </h5>
+                  <div class="card-body holidayBody" *ngFor="let upcomingHoliday of UpcomingHolidays, let i = index">
+                    <div class="container">
+                      <span class="weekName">{{ getShortDayName(upcomingHoliday.day) }}</span><br>
+                      <span class="dateName">{{ upcomingHoliday.date.split('-')[2] }}</span><br>
+                      <p class="yearName">{{ getMonthNameHoliday(upcomingHoliday.date) }}</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <img src="/assets/image/icon/birthdayVector.png" alt="" class="BirthdayVector">
+                    </div>
+                    <div class="birth">{{ upcomingHoliday.holiDayReason }}</div>
+                    <!-- <div class="desc">SABHI KA JANA COMPULSURY HAI</div> -->
+                  </div>
+                  
+
+
+
+
+                  <div class="headerH">
+                    <div class="left-sectionHoliday">
+                      <img src="/assets/image/holidayVector3.png" alt="" class="holidayVector3">
+                      <img src="/assets/image/holidayVector4.png" alt="" class="holidayVector4">
+                    </div>
+                    <div class="right-sectionHoliday">
+                      <button class="btn ViewMore" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">View More &nbsp; <img src="/assets/image/holidayViewMore.png" alt=""
+                          class="holidayViewMore"></button>
+                    </div>
+                  </div>
+
+                </div>
+              <!-- </div> -->
+            </div>
+
+
+            <div class="justify-content-center align-item-center"
+              [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6' : 'col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4'">
+              <!-- <div class="container"> -->
+                <div class="birthday">
+                  <h5 class="text-center mb-4 mt-2 birthdayHeader">Birthdays</h5>
+                  <div class="card-body birthdayBody d-flex flex-column "
+                    *ngFor="let dob of birthday, let i = index">
+                    
+                    <img src="/assets/image/birthdayCake.png" alt="" class="birthdayCake">
+                    
+                    <div class="d-flex flex-row">
+                      <div class="ml-3">
+                        <div class="birthName">{{birthday[i].name}}</div>
+                        <div class="birthdesc">{{ getFormattedBirthDate(birthday[i].birthDayDate) }}</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="headerb">
+                    <div class="left-sectionBirthday">
+                      <img src="/assets/image/birthdayVector3.png" alt="" class="birthdayVector3">
+                      <img src="/assets/image/birthdayVector4.png" alt="" class="birthdayVector4">
+                    </div>
+                    <div class="right-sectionHoliday">
+                      <button class="btn ViewMore" data-bs-toggle="modal"
+                      data-bs-target="#viewMoreBirthday">View More &nbsp; <img src="/assets/image/holidayViewMore.png" alt=""
+                          class="holidayViewMore"></button>
+                    </div>
+                  </div>
+                </div>
+              <!-- </div> -->
+
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <!-- <div class="container mt-5">
+          <div class="row d-flex flex-wrap" style="border-radius: 7px; border: 1px solid #CDCDCD;">
+            <div class="announcement">
+              <div class="d-flex justify-content-start">
+                <img src="/assets/image/annoucementVector1.png" alt="" class="annoucementVector1">
+                <h3 class="announcHeading">Announcement</h3>
+              </div>
+              <img src="/assets/image/annoucementVector2.png" alt="" class="annoucementVector2">
+
+              <div class="announcementSection mb-4">
+                <div class="left-announcementSection">
+                  <img src="/assets/image/annoucementImg.png" alt="" class="annoucementImg">
+                </div>
+                <div class="right-announcementSection">
+                  <h3 class="announcementName">Prilient</h3>
+                  <span class="announcementDesignation">(Frontend Developer)</span>
+                </div>
+              </div>
+              <img src="/assets/image/annoucementVector3.png" alt="" class="annoucementVector3">
+            </div>
+            <p class="statusP mt-4"><span class="statusPara">Note: </span> Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit. Et officiis saepe, ut itaque porro voluptatibus corrupti ducimus
+              quia! Adipisci itaque, nam earum nulla iste, ipsam officia et rem dolor dolores maxime? Nulla, sit
+              aspernatur tempore nihil qui enim adipisci error?</p>
+          </div>
+        </div> -->
+
+<!-- view holidays start -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-bs-backdrop="false">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <div class="content m-1 mt-2">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="d-flex">
+            <h1 class="headHoliday m-2">Holidays</h1>  
+            <div class="mt-4">
+              <img src="/assets/image/HolidayPre.png" alt="" class="HolidayPre" (click)="holidayPre()"> 
+             <span class="yearHoliday">{{currentYear}}</span> 
+              <img src="/assets/image/HolidayNext.png" alt="" class="HolidayNext" (click)="holidayNext()">
+            </div>
+            </div>
+          </div>
+          
+              <div class="row justify-content-start  mt-3">
+
+                <div class="col-md-6" *ngFor="let holiday of getHolidayData, let i = index">
+                  <div class="d-flex justify-content-start ">
+                    <div class="monthDateHoliday">
+                      <span class="monthHoliday" [style.backgroundColor]="getMonthColor(getMonthName(holiday.date))">{{ getMonthName(holiday.date) }}</span>
+                      <span class="dateHoliday">{{ getDayFromDate(holiday.date) }}</span>
+                    </div>
+                    <div class="mt-2"> 
+                      <span class="descHoliday">{{holiday.holiDayReason}}</span><br>
+                      <span class="dayHoliday">{{holiday.day}}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- <div class="col-md-6">
+                  <div class="d-flex justify-content-start">
+                    <div class="monthDateHoliday">
+                      <span class="monthHoliday" style="background: #D2A32D !important;">Jan</span>
+                      <span class="dateHoliday" style="border: 1px solid #D2A32D !important;">26</span>
+                    </div>
+                    <div class="m-0"> 
+                      <span class="descHoliday">New year holiday in lieu of 1st January 2023 (Sunday)</span><br>
+                      <span class="dayHoliday">Monday</span>
+                    </div>
+                  </div>
+                </div> -->
+                </div>
+
+              
+      
+      <div class="mb-3 col-12 d-flex justify-content-center mt-3">
+        <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal">Close</button>
+        
+
+      </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- view holidays end -->
+
+<!-- view birthdays start -->
+<div class="modal fade" id="viewMoreBirthday" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-bs-backdrop="false">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <div class="content m-1 mt-2">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="d-flex">
+            <h1 class="headHoliday m-2">Birthdays</h1>  
+            <div class="mt-4">
+              <img src="/assets/image/HolidayPre.png" alt="" class="HolidayPre" (click)="holidayPre()"> 
+             <span class="yearHoliday">{{currentYear}}</span> 
+              <img src="/assets/image/HolidayNext.png" alt="" class="HolidayNext" (click)="holidayNext()">
+            </div>
+            </div>
+          </div>
+          
+              <div class="row justify-content-start  mt-3">
+
+                <div class="col-md-6" *ngFor="let birthday of getBirthdayData, let i = index">
+                  <div class="d-flex justify-content-start ">
+                    <div class="monthDateHoliday">
+                      <span class="monthHoliday" [style.backgroundColor]="getMonthColor(getMonthName(birthday.birthDayDate))">{{ getMonthName(birthday.birthDayDate) }}</span>
+                      <span class="dateHoliday">{{ getDayFromDateBirthday(birthday.birthDayDate) }}</span>
+                    </div>
+                    <div class="mt-2"> 
+                      <span class="descHoliday">{{birthday.name}}</span><br>
+                      <span class="dayHoliday">{{getDate(birthday.birthDayDate)}}</span>
+                    </div>
+                  </div>
+                </div>
+                
+               
+                </div>
+
+              
+      
+      <div class="mb-3 col-12 d-flex justify-content-center mt-3">
+        <button type="button" class="btn m-1 closeRole" data-bs-dismiss="modal">Close</button>
+        
+
+      </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- view birthdays end -->
+
+        <!-- apply leave start -->
+
+        <div class="modal fade" id="applyLeaveModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true" data-bs-backdrop="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+              <div class="modal-body">
+                <div class="content m-2">
+                  <div class="container applyLeave">
+                    <div class="row justify-content-center">
+                      <div class="col-md-10">
+                        <h1 class="text-center leaveHeader">Apply Leave</h1>
+                        <div class="row justify-content-center">
+                          <!-- <div class="col-md-6">
+                  <p><img src="assets/Quitting a job-bro.svg" alt="Image" class="img-fluid"></p>
+                </div> -->
+                          <!-- <div class="col-md-6"> -->
+
+                          <form [formGroup]="leaveForm" *ngIf="leaveForm">
+                            <div class="mb-3">
+                              <label for="leaveType" class="col-form-label leaveType">Leave Type:</label>
+                              <div class="ol-lg-12 col-12 select-wrapper">
+                                <select class="form-control leaveInput" name="leaveType" id="leaveType"
+                                  [(ngModel)]="selectedLeaveType" (change)="updateNumberOfDays()"
+                                  formControlName="leaveType" >
+                                  <option value="" selected disabled>--select--</option>
+                                  <option value="SICK">Sick Leave</option>
+                                  <option value="CASUAL">Casual Leave</option>
+                                  <option value="HALFDAY">Half Day</option>
+                                  <option value="OTHERS">Others</option>
+                                </select>
+                                <!-- <img src="/assets/image/applyLeave.png" alt=""> -->
+                                <div class="custom-arrow" style="right: 5px;"></div>
+                              </div>
+                            </div>
+
+
+                            <div class="mb-3">
+                              <label for="numberOfDays" class="col-form-label leaveType">Number of Days:</label>
+                              <input type="number" class="form-control leaveInput" name="noOfDays" id="noOfDays"
+                                [readonly]="selectedLeaveType === 'HALFDAY'" formControlName="noOfDays" min="1">
+                            
+                              <div *ngIf="leaveForm.controls.noOfDays.invalid && leaveForm.controls.noOfDays.touched && leaveForm.get('leaveType').value !== 'HALFDAY'"
+                                class="text-danger">
+                                Number of days must be a positive number.
+                              </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                              <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                              <input type="date" class="form-control leaveInput" name="fromDate" id="fromDate" formControlName="fromDate"
+                                [min]="getCurrentDate()" (change)="updateEndDate()" (keyup)="validateDate()">
+                              <div *ngIf="leaveForm.get('fromDate').errors?.pastDate" class="text-danger">Date cannot be before today</div>
+                            </div>
+                            
+                            <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                              <div class="mb-3">
+                                <label for="endDate" class="col-form-label leaveType">End Date:</label>
+                                <input type="date" class="form-control leaveInput" name="toDate" id="toDate" formControlName="toDate"
+                                  [min]="leaveForm.get('fromDate').value" (change)="updateNumberOfDays()">
+                              </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="leaveForm.get('leaveType').value !== 'HALFDAY'">
+                              <div class="mb-3">
+                                <label for="leaveReason" class="col-form-label leaveType">Reason:</label>
+                                <input type="text" class="form-control leaveInput" name="leaveReason" id="leaveReason" formControlName="leaveReason">
+                              </div>
+                              <!-- <div *ngIf="leaveForm.controls.leaveReason.errors && leaveForm.controls.leaveReason.errors.required"
+                              class="text-danger">
+                              Reason is required.</div> -->
+                            </ng-container>
+                            
+
+
+
+                            <ng-container *ngIf="leaveForm.get('leaveType').value == 'HALFDAY'">
+                              <div class="mb-3">
+                                <label for="reason" class="col-form-label leaveType">Reason:</label>
+                                <select class="form-control leaveInput" name="reason" id="reason"
+                                  formControlName="reason" >
+                                  <option value="" selected disabled>--select--</option>
+                                  <option value="SICK">Sick Leave</option>
+                                  <option value="CASUAL">Casual Leave</option>
+                                </select>
+                              </div>
+                              <div *ngIf="leaveForm.controls.reason.errors && leaveForm.controls.reason.errors.required"
+                                class="text-danger">
+                                Reason is required.</div>
+                            </ng-container>
+                            <!-- <div>Form Valid: {{ leaveForm.valid }}</div> -->
+
+                            <div class="modal-footer">
+                              <div class="mb-3 col-md-12 d-flex justify-content-between">
+                                <button type="submit" class="btn m-1 submitLeave"
+                                  [disabled]="leaveForm.get('leaveType').value === 'HALFDAY' ? false : leaveForm.invalid"
+                                  (click)="onSubmit()" data-bs-dismiss="modal" aria-label="Close">Submit</button>
+                                 
+
+                                <button type="button" class="btn m-1 cancelLeave" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+
+                              </div>
+                            </div>
+                          </form>
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- apply leave end -->
+
+        <!-- apply wfh start -->
+
+        <div class="modal fade" id="applyWfhModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          data-bs-backdrop="false">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+              <div class="modal-body">
+                <div class="content m-2">
+                  <div class="container applyLeave">
+                    <div class="row justify-content-center">
+                      <div class="col-md-10">
+                        <h1 class="text-center leaveHeader">Apply WFH</h1>
+                        <div class="row justify-content-center">
+                          <!-- <div class="col-md-6">
+                  <p><img src="/assets/Task-bro.svg" alt="Image" class="img-fluid"></p>
+                </div> -->
+                          <!-- <div class="col-md-6"> -->
+                          <form [formGroup]="wfhForm" *ngIf="wfhForm">
+                            <div class="mb-3">
+                              <label for="noofday" class="col-form-label leaveType">No Of Days:</label>
+                              <input type="number" class="form-control leaveInput" name="noofday" id="noofday"
+                                formControlName="noofday" min="1" (change)="updateWFHEndDate()" required>
+
+                              <div *ngIf="wfhForm.controls.noofday.errors && wfhForm.controls.noofday.errors.min"
+                                class="text-danger">
+                                Number of days cannot be negative.</div>
+
+                            </div>
+                            <div class="mb-3">
+                              <label for="startDate" class="col-form-label leaveType">Start Date:</label>
+                              <input type="date" class="form-control leaveInput" name="fromdateWfh" id="fromdateWfh"
+                                formControlName="fromdateWfh" [min]="getCurrentDate()" (change)="updateWFHEndDate()" (keyup)="validateDateWFH()" required>
+                                <div *ngIf="wfhForm.get('fromdateWfh').errors?.pastDate" class="text-danger">Date cannot be before today</div>
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="endDate" class="col-form-label leaveType">End Date:</label>
+                              <input type="date" class="form-control leaveInput" name="toDateWfh" id="toDateWfh"
+                                formControlName="toDateWfh" [value]="calculateWFHEndDate()" required>
+                            </div>
+
+                            <div class="modal-footer">
+                              <div class="mb-3 col-md-12 d-flex justify-content-between">
+                                <button type="submit" class="btn submitLeave m-1" [disabled]="wfhForm.invalid"
+                                  (click)="onWFHSubmit()">Submit</button>
+                                <button type="button" class="btn cancelLeave m-1" data-bs-dismiss="modal">Close</button>
+
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- apply wfh end -->
+
+
+
+        <!-- <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div class="col d-flex align-items-start mt-3">
+            <div class="cardAdmin">
+              <img class="CardImg img-fluid" src="/assets/Group 12.svg" alt="">
+              <h3 class="fs-2 text-body-emphasis">Leave</h3>
+              <p class="Para">Total Leaves = <span id="totalleaves">{{ profileDetails?.totalleaves }}</span></p>
+              <p class="Para">Sick Leave = <span id="sickLeavesPerMonth">{{ profileDetails?.sickLeavesPerMonth }}</span>
+                <br> Casual Leave = <span id="casualLeavesPerMonth">{{ profileDetails?.casualLeavesPerMonth }}</span>
+              </p>
+            
+              <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12"
+                [routerLink]="['/applyLeave']" (click)="loginService.showTable('applyLeave')">Apply
+                Leave</button>
+           
+              <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12" data-bs-toggle="modal"
+                [routerLink]="['/viewLeave']" (click)="loginService.showTable('viewLeave')">View Leave</button>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start mt-3">
+            <div class="cardAdmin">
+              <img class="CardImg img-fluid" src="/assets/Confirmed attendance-bro 1.svg" alt="">
+              <h3 class="fs-2 text-body-emphasis">Attendance</h3>
+              <p class="Para mb-4">Easily record and manage attendance data in real-time.</p>
+              <button type="submit" class="btn btn-primary view-leave-btn Apply m-1 col-12 mt-4"
+                [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">View Attendance</button>
+             
+
+              <div class="d-flex justify-content-between m-2">
+                <button type="submit" class="btn btn-success " (click)="checkin()">Check-In</button>
+                <button type="submit" class="btn btn-danger" (click)="checkout()">Check-Out</button>
+              </div>
+
+
+
+            </div>
+          </div>
+          <div class="col d-flex align-items-start mt-3">
+            <div class="cardAdmin">
+              <img class="CardImg img-fluid" src="/assets/Group 14 (1).svg" alt="">
+              <h3 class="fs-2 text-body-emphasis">WFH</h3>
+              <p class="Para">Total WFH = <span id="totalwfh">{{ profileDetails?.totalwfh }}</span></p>
+              
+              <div class="mt-5">
+                <button type="submit" class="btn btn-primary apply-leave-btn Apply m-1 col-12 mt-3"
+                  [routerLink]="['/applyWfh']" (click)="loginService.showTable('applyWfh')">Apply WFH</button>
+               
+                <button type="submit" class="btn btn-primary view-leave-btn ViewLeave m-1 col-12"
+                  [routerLink]="['/viewWfh']" (click)="loginService.showTable('viewWfh')">View WFH</button>
+
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

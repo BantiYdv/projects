@@ -1,0 +1,17 @@
+<svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="22" height="17" fill="#696969"/>
+<g id="Role/Create Role">
+<g clip-path="url(#clip0_3_12)">
+<rect x="-1160" y="-383" width="1440" height="900" fill="#F7F7F7"/>
+<path id="Rectangle 22" d="M-605.5 -146C-605.5 -151.247 -601.247 -155.5 -596 -155.5H89C94.2467 -155.5 98.5 -151.247 98.5 -146V280C98.5 285.247 94.2467 289.5 89 289.5H-596C-601.247 289.5 -605.5 285.247 -605.5 280V-146Z" fill="white" stroke="#CDCDCD"/>
+<rect id="Rectangle 11" x="-396.5" y="-21.5" width="443" height="57" rx="9.5" fill="white" stroke="#808080"/>
+<path id="Polygon 3" d="M13.3389 15.0883C12.138 16.5833 9.86202 16.5833 8.66113 15.0883L1.06255 5.62875C-0.514531 3.66542 0.883116 0.75 3.40141 0.75L18.5986 0.749999C21.1169 0.749999 22.5145 3.66542 20.9375 5.62874L13.3389 15.0883Z" fill="#343A40"/>
+</g>
+<rect x="-1159.5" y="-382.5" width="1439" height="899" stroke="black"/>
+</g>
+<defs>
+<clipPath id="clip0_3_12">
+<rect x="-1160" y="-383" width="1440" height="900" fill="white"/>
+</clipPath>
+</defs>
+</svg>

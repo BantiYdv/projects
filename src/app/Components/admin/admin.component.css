@@ -1,0 +1,1534 @@
+.inputForMonth {
+    outline: none;
+    border: none;
+    font-size: 22px;
+  }
+  .inputDivCss {
+    border-bottom: 1.5px solid #a9a8ad;
+    padding: 10px 0px 20px 0px;
+  }
+  .disciplineCss {
+    border: 1.5px solid #8c6a13;
+    color: #8c6a13;
+    background-color: #ffe5a2;
+  }
+  .timingCss {
+    border: 1.5px solid #146d38;
+    color: #146d38;
+    background-color: #a4f2c4;
+  }
+  .taskCss {
+    border: 1.5px solid #274699;
+    color: #274699;
+    background-color: #c6d4fa;
+  }
+  .overallCss {
+    border: 1.5px solid #cc2d5c;
+    color: #cc2d5c;
+    background-color: #ffd5d1;
+  }
+  .boxForTitle {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 40px;
+  }
+  .starCss {
+      width: 75%;
+    border: 1px solid #e47d43;
+    border-radius: 5px;
+    padding: 0px 5px 0px 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .labelCssForDemotion{
+  font-size: 18px;
+  font-weight: bold;
+  }
+  .boxColor8C6A13{
+      border:1.5px solid #8C6A13;
+      color: #8C6A13;
+  }
+  .boxColorDD1717{
+      border:1.5px solid #DD1717;
+      color: #DD1717;
+  }
+  .boxForDemotion{
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      height: 40px;
+      border-radius: 5px;
+  }
+
+.ms-1 {
+    margin-left: 1.25rem !important;
+    font-size: 15px;
+}
+
+li {
+    padding: 8px;
+}
+
+
+li a {
+    cursor: pointer;
+}
+
+
+/* for modal open start*/
+.modal {
+    background-color: #797a7a;
+}
+#exampleModalFullscreenXxlLabel {
+    margin-left: 26rem;
+}
+
+/* for modal open end */
+
+.table-bordered {
+    border: 1px solid #000;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #000;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+
+#registeration {
+    width: 100%;
+}
+
+.form-control {
+    border: var(--bs-border-width) solid #797a7a;
+}
+
+
+
+
+/* design part start */
+.align-items-start {
+    width: 291px;
+    height: 450px;
+    flex-shrink: 0;
+    border-radius: 21px;
+    border: 1px solid #ABABAB;
+    background: #FFF;
+    margin: auto;
+}
+
+.CardImg {
+    width: 207.707px;
+    height: 210.036px;
+    flex-shrink: 0;
+    margin-left: 3rem;
+}
+
+h3,
+.text-body-emphasis {
+    color: #000;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1.2px;
+    text-decoration-line: underline;
+    text-align: center;
+}
+
+.Para {
+    color: #263238;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.btn-primary.apply-leave-btn:hover,
+.btn-primary.view-leave-btn:hover {
+    box-shadow: 4px 4px 18px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+#sideBar {
+    width: 13%;
+    background-color: #3f51b5;
+}
+
+/* side bar design */
+#menu {
+    margin-left: 1rem;
+}
+
+.sidebarLogo {
+    width: 40px;
+    height: 39px;
+    flex-shrink: 0;
+}
+
+#sidebarMenu {
+    display: flex;
+    width: 332px;
+    padding: 7px 10px 7px 30px;
+    align-items: center;
+    gap: 68px;
+}
+
+.nav-link {
+    display: flex;
+}
+
+.sidebarPageLogo {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-left: 0rem;
+}
+
+
+
+
+/* show if user is not log in start */
+.pt-4 {
+    padding-top: 6rem !important;
+}
+
+/* side bar icon hover start */
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-name {
+    position: absolute;
+    width: max-content;
+    top: 98%;
+    transform: translateX(-58%);
+    border-radius: 10%;
+    color: rgb(255, 255, 255);
+    font-family: "poppins";
+    padding: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease;
+}
+
+.image-container:hover .image-name {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* side bar icon hover end */
+
+
+/* new design */
+.hello {
+    color: #343A40;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.empName {
+    color: #61676E;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.checkIn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: #3ABE71;
+    color: #FFF;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+    height: fit-content;
+    margin-bottom: 8px;
+}
+
+.checkOut {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: #EF556A;
+    color: #FFF;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+    height: fit-content;
+    margin-bottom: 8px;
+}
+
+.checkInClock {
+    width: 20px;
+    height: 20px;
+}
+
+.timer {
+    color: #343A40;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.LeaveChart {
+
+    display: flex;
+    padding: 38px 19px 30px 19px;
+    flex-direction: column;
+    gap: 34px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+    margin: 10px;
+}
+
+.leaveName {
+    color: #0C0E0F;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 15.042px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+
+@property --p {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+.pie {
+    --p: 20;
+    --b: 22px;
+    --c: darkred;
+    --w: 90px;
+
+    width: var(--w);
+    aspect-ratio: 1;
+    position: relative;
+    display: inline-grid;
+    margin: 5px;
+    place-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.pie:before,
+.pie:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.pie:before {
+    inset: 0;
+    background: radial-gradient(farthest-side, var(--c) 98%, #ad1c1c00) top/var(--b) var(--b) no-repeat,
+        conic-gradient(var(--c) calc(var(--p) * 1%), #E5E5E5 0);
+    -webkit-mask: radial-gradient(farthest-side,
+            #0000 calc(99% - var(--b)),
+            #000 calc(100% - var(--b)));
+    mask: radial-gradient(farthest-side,
+            #0000 calc(99% - var(--b)),
+            #000 calc(100% - var(--b)));
+}
+
+.pie:after {
+    inset: calc(50% - var(--b) / 2);
+    background: var(--c);
+    transform: rotate(calc(var(--p) * 3.6deg)) translateY(calc(50% - var(--w) / 2));
+}
+
+.animate {
+    animation: p 1s 0.5s both;
+}
+
+.no-round:before {
+    background-size: 0 0, auto;
+}
+
+.no-round:after {
+    content: none;
+}
+
+@keyframes p {
+    from {
+        --p: 0;
+    }
+}
+
+.leaveTitle {
+    color: #343A40;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none;
+    margin-top: -25px;
+}
+
+.bottomLine {
+    border-bottom: solid 4px #F3F3F3;
+    position: relative;
+}
+.leaveVector1{
+    width: 53px;
+    height: 83px;
+    position: absolute;
+    right: -20px;
+    top: -38px;
+    stroke-width: 45.54px;
+    stroke: #F6F6FF;
+
+  }
+
+.leaveApply {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: #421CDD;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.leaveView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #421CDD;
+    color: #421CDD;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.wfhName {
+    color: #0C0E0F;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.progress {
+    height: 5px !important;
+
+}
+
+.progress-bar {
+    background-color: #3ABE71 !important;
+}
+
+.wfhTaken {
+    background-color: #FFCE62 !important;
+}
+
+.remainingWfh {
+    background-color: #F97166 !important;
+}
+
+.performance {
+
+    display: flex;
+    padding: 38px 19px 30px 19px;
+    flex-direction: column;
+    gap: 34px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+}
+
+.nav-pills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #C9CBA7;
+    background: #F9FCED;
+    margin-top: -39px;
+}
+
+.nav-link {
+    display: flex;
+    justify-content: center;
+    color: #808547;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+
+
+.nav-item {
+    border-right: 1px solid #C9CBA7;
+    padding: inherit;
+}
+
+
+.nav-item:last-child {
+    border-right: none;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #FFF !important;
+    background-color: #421CDD !important;
+    border-radius: 0px;
+}
+
+.status {
+    display: flex;
+    padding: 10px 98.5px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    border-radius: 20px 20px 0px 0px;
+    background: #401DDE;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.02);
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.probationStatus {
+    display: flex;
+    justify-content: center;
+    width: 262px;
+    padding: 14px 36px;
+    align-items: center;
+    gap: 11px;
+    border-radius: 20px 20px 0px 0px;
+    background: #D4F3E1;
+
+    color: #1C8649;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+
+.completed-status {
+    background: #D4F3E1;
+    color: #1C8649;
+}
+
+.not-completed-status {
+    background: #FFD5D1;
+    color: #A94037;
+}
+
+.ongoing-status {
+    background: #FFE5A2;
+    color: #767219;
+}
+
+.statusPara {
+    color: #DD1717;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.statusP {
+    color: #343A40;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    text-align: justify;
+}
+
+
+.star-rating::before {
+    content: "\2605";
+    color: gold;
+}
+
+/* Add the appropriate styles for half stars or empty stars if needed */
+.star-rating[data-rating*=".5"]::before {
+    content: "\2605\00BD";
+}
+
+.star-rating[data-rating="0"]::before {
+    content: "\2606";
+    color: #ccc;
+}
+
+
+.discipline {
+    display: flex;
+    width: 179.479px;
+    padding: 11.633px 10.802px;
+    align-items: center;
+    gap: 9.14px;
+    flex-shrink: 0;
+    border: 1px solid #8C6A13;
+    background: #FFE5A2;
+    color: #8C6A13;
+
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.disciplineRating {
+    display: flex;
+    height: 48.465px;
+    align-items: flex-start;
+    border-radius: 6.207px;
+    border: 1.862px solid #E47D43;
+}
+
+
+
+
+/* calendar for dashboard start */
+.calendar {
+    margin: 0 auto;
+height: 460px;
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+position: relative;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+}
+
+
+
+.week-names {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f9fa;
+    padding: 10px 55px 10px 46px;
+}
+.week-names .day{
+    color: #A94037;
+}
+
+
+
+.day.other-month {
+    color: #ccc;
+    
+}
+
+.week {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 55px 10px 46px;
+}
+
+
+
+
+.ActivitiesHeader {
+    position: relative;
+    background: #A94037;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ActivitiesHeader::before,
+.ActivitiesHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+
+.ActivitiesHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/calendarVector1.png');
+}
+
+.ActivitiesHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/calendarVector2.png');
+}
+
+
+
+
+
+.dateName {
+    color: #2F37A4;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.yearName {
+    color: #000;
+    font-size: 7px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caliconPre,
+.caliconNext {
+    width: 9px;
+    height: 15px;
+    transform: rotate(0deg);
+    flex-shrink: 0;
+    fill: #421CDD;
+}
+
+.monthYear {
+    margin: 0 10px;
+    color: #000;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+}
+
+
+.day {
+    
+height: 32px;
+margin-left: 7px;
+color: #000;
+text-align: center;
+font-family: Poppins;
+font-size: 10px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: uppercase;
+}
+
+.today {
+   
+    color: #9C3229;
+
+text-align: center;
+font-family: Poppins;
+font-size: 22.118px;
+font-style: normal;
+font-weight: 700;
+line-height: inherit;
+text-transform: uppercase;
+}
+
+.calendarVector3{
+    width: 48.273px;
+    height: 88.273px;
+    position: absolute;
+    left: 0.682px;
+    bottom: 6.727px;
+    stroke-width: 2.386px;
+    stroke: #A94037;
+    z-index: 1;
+}
+.calendarVector4{
+    width: 50.955px;
+    height: 128.955px;
+    position: absolute;
+    left: 0px;
+    bottom: -66px;
+    stroke-width: 30.227px;
+    stroke: #EAA29B;
+}
+
+
+.left-section {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 76px;
+    left: 0;
+}
+
+.calendarVector3,
+.calendarVector4 {
+    width: 50px; 
+    height: auto;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; 
+    position: absolute;
+    bottom: 37px;
+}
+
+/* calendar for dashboard end */
+
+
+/* Holiday for dashboard start */
+.Holiday{
+    margin: 0 auto;
+height: 460px;
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+position: relative;
+}
+
+.holidayHeader {
+    position: relative;
+    background: #1D874A;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.holidayHeader::before,
+.holidayHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+
+.holidayHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/holidayVector1.png');
+}
+
+.holidayHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/holidayVector2.png');
+}
+
+.left-sectionHoliday{
+position: absolute;
+bottom: 76px;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+.right-sectionHoliday{
+    display: flex;
+    align-items: center;
+    margin-left: 10px; 
+    position: absolute;
+    bottom: 23px;
+}
+.headerH {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weekName{
+    color: #000;
+text-align: right;
+font-size: 10px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+}
+
+.dateName{
+    color: #2F37A4;
+font-size: 16px;
+font-style: normal;
+font-weight: 800;
+line-height: revert;
+}
+
+.yearName{
+    color: #000;
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.BirthdayVector{
+    width: 1px;
+height: 46px;
+flex-shrink: 0;
+margin-top: -5rem;
+margin-left: 4rem;
+
+  }
+
+  .birth{
+    margin-top: -4rem;
+    margin-left: 6rem;
+    color: #1F3BF2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    
+}
+
+.desc{
+    color: #343A40;
+font-size: 7px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+margin-left: 6rem;
+}
+
+.holidayBody{
+    padding: 14px 23px 16px 46px;
+}
+
+.holidayVector3{
+    z-index: 1;
+    width: 35px;
+height: 116px;
+position: absolute;
+left: 0px;
+bottom: -14px;
+stroke-width: 3px;
+stroke: #1D874A;
+}
+.holidayVector4{
+    width: 31px;
+    height: 150px;
+    position: absolute;
+    left: -1px;
+    bottom: -72px;
+    stroke-width: 38px;
+    stroke: #92EEB9;
+}
+
+.ViewMore{
+    display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 8px;
+border: 1px solid #421CDD;
+color: #421CDD;
+text-align: center;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+margin-top: 70px;
+}
+.holidayViewMore{
+    width: 20px;
+height: 20px;
+flex-shrink: 0;
+}
+/* Holiday for dashboard end */
+
+/* birthday for dashboard start */
+.birthday{
+    margin: 0 auto;
+height: 460px;
+gap: 47px;
+border-radius: 10px;
+background: #FFF;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+position: relative;
+}
+
+.birthdayHeader{
+    position: relative;
+    background: #D418AB;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 55px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.birthdayHeader::before,
+.birthdayHeader::after {
+    content: "";
+    position: absolute;
+    width: 50px; 
+    height: 50px;
+    background-size: cover;
+}
+
+.birthdayHeader::before {
+    width: 44px;
+height: 23px;
+position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 10px;
+    background-image: url('/assets/image/birthdayVector1.png');
+}
+
+.birthdayHeader::after {
+    width: 44px;
+    height: 23px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    background-image: url('/assets/image/birthdayVector2.png');
+}
+
+.birthdayIcon{
+    width: 44px;
+height: 44px;
+flex-shrink: 0;
+margin-left: -18px;
+}
+
+
+.birthName{
+    color: #000;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin-top: -52px;
+margin-left: 61px;
+}
+
+.birthdesc{
+    color: #2F37A4;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-left: 60px;
+}
+
+.birthdayCake{
+    display: flex;
+width: 251px;
+height: 60px;
+align-items: center;
+gap: 15px;
+}
+
+.birthdayBody{
+    padding: 2px 0px 7px 64px;
+}
+.headerb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-sectionBirthday{
+    position: absolute;
+    bottom: 34px;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.birthdayVector3{
+    z-index: 1;
+    width: 39px;
+    height: 116px;
+    position: absolute;
+    right: 0px;
+    bottom: 21px;
+    stroke-width: 3px;
+    stroke: #D418AB;
+}
+.birthdayVector4{
+    width: 60px;
+height: 116px;
+position: absolute;
+right: 0px;
+bottom: -35px;
+stroke-width: 38px;
+stroke: #FF99E9;
+}
+/* birthday for dashboard end */
+
+
+/* announcement for dashboard start */
+
+.announcement{
+    display: flex;
+padding: 38px 0px 0px 45px;
+flex-direction: column;
+align-items: flex-start;
+gap: 51px;
+flex-shrink: 0;
+background: #421CDD;
+box-shadow: 0px 4px 15.7px 0px rgba(0, 0, 0, 0.14);
+position: relative;
+}
+.announcHeading{
+    color: #FFF;
+text-align: center;
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-decoration: none;
+margin-bottom: -30px;
+}
+
+.annoucementVector2{
+    width: 600x;
+height: 4px;
+flex-shrink: 0;
+border-radius: 5px;
+background: #F3F3F3;
+}
+
+.annoucementImg{
+    width: 120px;
+height: 100.541px;
+border-radius: 8.108px;
+}
+
+.announcementSection {
+    display: flex;
+    align-items: center;
+}
+
+.left-announcementSection {
+    flex-shrink: 0; 
+    margin-right: 10px; 
+}
+
+.annoucementImg {
+    width: 100px; 
+    height: auto;
+}
+
+.right-announcementSection {
+    text-align: left;
+}
+
+.right-announcementSection .announcementName {
+    margin: 0;
+    font-size: 18px;
+}
+
+.right-announcementSection .announcementDesignation {
+    font-size: 14px;
+}
+
+
+.announcementName{
+    color: #F1FF9D;
+font-family: Poppins;
+font-size: 25px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+text-decoration: none;
+}
+
+.announcementDesignation{
+    color: #FFF;
+font-family: Poppins;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.annoucementVector1{
+    width: 70px;
+height: 45.2px;
+position: absolute;
+left: 1px;
+top: 1px;
+}
+
+.annoucementVector3{
+    width: 159.233px;
+    height: 209.998px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0.577px;
+    top: 61px;
+}
+/* announcement for dashboard end */
+
+
+/* apply leave start */
+.modal {
+    --bs-modal-zindex: 1000 !important;
+    background-color: #78787867;
+    
+  }
+
+  .leaveHeader{
+    color: #3430B3;
+font-family: Poppins;
+font-size: 30px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+  }
+
+  .leaveType{
+    color: #000;
+font-family: Poppins;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-transform: capitalize;
+  }
+  .leaveInput{
+    display: flex;
+padding: 14px 30px 14px 19px;
+align-items: center;
+border-radius: 10px;
+border: 1px solid #CDCDCD;
+  }
+
+  .select-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-arrow {
+    position: absolute;
+    top: 50%;
+    right: 13%; 
+    transform: translateY(-50%);
+    width: 18px; 
+    height: 18px; 
+    background: url("/assets/image/applyLeave.png") center
+      center no-repeat;
+    background-color: #fff;
+    background-size: contain;
+    pointer-events: none;
+  }
+
+  .submitLeave{
+    display: flex;
+padding: 19px 54px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 10px;
+background: #401DDE;
+color: #FFF;
+
+text-align: center;
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+height: 20px;
+  }
+
+  .cancelLeave{
+    display: flex;
+height: 20px;
+padding: 19px 54px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 10px;
+background: #EF556A;
+color: #FFF;
+
+text-align: center;
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+  }
+
+  /* apply leave end */
+  
+
+  /* view more holiday start */
+  .headHoliday{
+    color: #3430B3;
+
+font-family: Poppins;
+font-size: 30px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+  .monthDateHoliday{
+    display: flex;
+    padding: 6px 22px;
+    flex-direction: column;
+    width: 115px;
+}
+  .monthHoliday{
+color: #FFF;
+
+text-align: center;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+padding: 6px 22px;
+justify-content: center;
+align-items: center;
+gap: 25px;
+border-radius: 5px 5px 0px 0px;
+background: #9747FF;
+  }
+  .dateHoliday{
+color: #343A40;
+
+text-align: center;
+font-family: Poppins;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-transform: capitalize;
+padding: 0px 21px;
+justify-content: center;
+align-items: center;
+gap: 25px;
+border-radius: 0px 0px 5px 5px;
+border: 1px solid #9747FF;
+  }
+
+  .descHoliday{
+    color: #401DDE;
+
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+  }
+  .dayHoliday{
+flex-shrink: 0;
+color: #343A40;
+
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
+text-transform: capitalize;
+  }
+  
+  .closeRole{
+    display: flex;
+    width: 150px;
+    height: 44px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 60px;
+    border: 2px solid #D92651;
+
+    color: #D92651;
+font-size: 17px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.HolidayPre{
+    width: 21px;
+height: 21px;
+left: 0px;
+top: 1px;
+stroke-width: 3px;
+stroke: #DADADA;
+}
+.HolidayNext{
+    width: 21px;
+height: 21px;
+right: -1.149px;
+top: 0px;
+stroke-width: 3px;
+stroke: #DADADA;
+
+}
+
+.yearHoliday{
+    color: #3430B3;
+
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+  /* view more holiday end */
+
+
+  .appraisal{
+   
+    font-weight: 600;
+
+  }
+  .appraisalText{
+    color: #0C0E0F;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    text-align: start;
+  }
+
+  .appraisalStatus{
+    border: 1px solid #146D38;
+    background: #A4F2C4;
+    color: #146D38;
+    width: 90%;
+    height: 40px;
+    padding: 8px;
+    margin-top: -10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .noteCss{
+    padding: 20px 20px 20px 20px !important;
+    background-color: #F1EDFF !important;
+    box-shadow: 0px 10px 15.7px 0px rgba(0, 0, 0, 0.14) !important;
+}

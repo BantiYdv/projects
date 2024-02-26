@@ -1,0 +1,99 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+html, body { 
+    
+    height: 100%;
+    font-family: 'Poppins', sans-serif !important;
+    
+}
+body { margin: 0; font-family: 'Poppins', sans-serif !important; background-color: #F7F7F7 !important; }
+
+.text-center{
+    text-align: center;
+}
+
+.mt{
+    margin-top: 20px;
+}
+
+
+/* for  holiday calendar start  */
+td.fc-day.fc-day.fc-day-today.fc-daygrid-day {
+    background-color: #afb0b9;
+}
+button.fc-next-button.fc-button.fc-button-primary{
+    background-color: blue;
+}
+button.fc-prev-button.fc-button.fc-button-primary{
+    background-color: blue;
+}
+button.fc-today-button.fc-button.fc-button-primary{
+    background-color: blue;
+}
+button.fc-dayGridMonth-button.fc-button.fc-button-primary{
+    background-color: blue;
+}
+button.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active{
+    background-color: blue;
+}
+button.fc-timeGridWeek-button.fc-button.fc-button-primary{
+    background-color: blue;
+}
+button.fc-timeGridDay-button.fc-button.fc-button-primary{
+    background-color: blue;
+}
+button.fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active{
+    background-color: blue;
+}
+button.fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active{
+    background-color: blue;
+}
+
+
+
+
+.fc .fc-more-popover .fc-popover-body {
+    min-width: 140px;
+    padding: 0px;
+}
+.fc-h-event {
+    background-color: white;
+    border: 1px solid white;
+    display: block;
+}
+.fc-h-event .fc-event-main {
+    color: blue;
+}
+.fc .fc-daygrid-event {
+    margin-top: -2px;
+    z-index: 6;
+}
+/* for  holiday calendar end  */
+
+@media (max-width: 425px){
+
+    .fc .fc-toolbar {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}
+
+.not_data_img_div {
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+    padding: 20px;
+  }
+  .clickEffect{
+    cursor: pointer !important;
+    transition: all .3s ease !important;
+  }
+  .clickEffect:active{
+    transform: scale(.9) !important;
+  }

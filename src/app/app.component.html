@@ -1,0 +1,1080 @@
+<!-- <ng-container *ngIf="!isLoginPage()">        -->
+<!--navbar don't show in only login page -->
+<!-- <app-nav-bar></app-nav-bar>
+  </ng-container>
+
+<router-outlet></router-outlet> -->
+
+<ng-container > 
+  <mat-toolbar color="primary" class="position">
+    <ng-container *ngIf="!loginService.isLoggedIn() ">
+      <span class="m-3"><a class="color" mat-icon-button routerLink="/"><img src="/assets/image/logo.png" alt=""><img src="/assets/image/HRMS.png" alt=""></a></span>
+
+      <span class="example-spacer"></span>
+
+    </ng-container>
+
+
+
+
+    <!-- Navbar items for super admin role when logged in -->
+    <ng-container *ngIf="loginService.isLoggedIn()">
+
+      <!-- toggle button for mobile screen start -->
+      <button class="navbar-toggler p-0 border-0 d-block d-sm-none" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sideBar" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <!-- toggle button for mobile screen end -->
+      
+
+      <span><a class="color" mat-icon-button (click)="redirectTOHome()"><img src="/assets/image/logo.png" alt=""><img src="/assets/image/HRMS.png" alt=""></a></span>
+      <span class="example-spacer"></span>
+      <!-- <form role="search" class="d-md-none d-none d-lg-block">
+        <input class="form-control" id="border" type="search" placeholder="Search here..." aria-label="Search">
+      </form> -->
+      <a class="color" mat-icon-button [matMenuTriggerFor]="notification">
+        <i class="fa-solid fa-bell"></i>
+        <br>
+        <span class="d-md-block d-none d-lg-block upperNavText">Notifications</span> </a>
+        <mat-menu #notification="matMenu" class="dropdown-menu">
+          <ul class="dropdown-menu position-static d-grid rounded-3 w-auto" data-bs-theme="light" style="text-align: center;height: auto;">
+            <li><a class="dropdown-item rounded-2 " >notification1</a></li>
+            <li><a class="dropdown-item rounded-2" >notification2</a></li>
+                
+          </ul>
+        </mat-menu>
+
+      <a *ngIf="!(isProfilePage() || isRegisterationPage())" class="color" mat-icon-button [matMenuTriggerFor]="menu">
+        <i class="fa-regular fa-circle-user"></i>
+        <!-- <img src="/assets/🦆 icon _profile circle_.png" alt=""> -->
+        <br><span class="d-md-block d-none d-lg-block upperNavText">My Account</span></a>
+      <mat-menu #menu="matMenu" class="dropdown-menu">
+        <ul class="dropdown-menu position-static d-grid rounded-3 w-auto" data-bs-theme="light" style="text-align: center;height: auto;">
+          <li><a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']"
+              (click)="loginService.showTable('Profile')">View Profile</a></li>
+          <li><a class="dropdown-item rounded-2" [routerLink]="['/changePassword']"
+              (click)="loginService.showTable('changePassword')">Update Password</a></li>
+              <li><a class="dropdown-item rounded-2" (click)="signOut()" >Logout</a></li>
+        </ul>
+      </mat-menu>
+      <!-- <div class="profile-header-img">
+        <a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']" (click)="loginService.showTable('Profile')">
+          <img [src]="imageUrl || defaultImageURL" alt="" class="profile-img" (error)="handleImageError($event)"/>
+  </a>
+      </div> -->
+      <!-- <div class="profile-header-img">
+        <a class="dropdown-item rounded-2 " [routerLink]="['/profile', 'Profile']" (click)="loginService.showTable('Profile')">
+          <img [src]="imageUrl || generateDefaultImage()" alt="" class="profile-img" (error)="handleImageError($event)" />
+        </a>
+      </div> -->
+
+      <!-- <a class="color" (click)="signOut()" mat-icon-button><i class="fa-solid fa-right-from-bracket"></i><br><span
+          class="d-md-block d-none d-lg-block">Logout</span></a> -->
+
+    </ng-container>
+
+
+    <!-- Navbar items for when not logged in -->
+
+    <ng-container *ngIf="!loginService.isLoggedIn()">
+
+      <a class="color m-4" mat-icon-button [matMenuTriggerFor]="menu">
+       
+        <img src="/assets/image/homedot.png" alt="">
+      </a>
+      <mat-menu #menu="matMenu" class="dropdown-menu">
+        <ul class="dropdown-menu position-static d-grid p-2 rounded-3 mx-0 w-auto" data-bs-theme="light" style="text-align: center;height: auto; gap: 0.5rem;">
+          <li class="p-0"><a class="dropdown-item rounded-2 " [routerLink]="['/', '']"
+              (click)="loginService.showTable('')">About Us</a></li>
+        
+          <!-- <li class="p-0"><a class="dropdown-item rounded-2" [routerLink]="['/faq']"
+              >FAQs</a></li> -->
+        </ul>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar>
+
+  <div class="row col-12" *ngIf="!isHomePage() && !isLoginPage() &&  loginService.getRole === 'SUPERADMIN'">
+
+
+    <!-- for mobile screen start -->
+    <div class="col-12 d-sm-none">
+      <div class="offcanvas offcanvas-start" id="sideBar" style="max-height: 100vh; overflow-y: auto; width: 100%;max-width: 280px;">
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <div class="offcanvas-header">
+            <h3 class="offcanvas-title m-0" style="color: white;" id="offcanvasNavbarDarkLabel">HRMS</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+          
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
+            <li class="nav-item text-center">
+              <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Home.png" alt="" id="hoverImage">
+                </div>
+                <span class="image-namenew">Home</span>
+                
+              </a>
+            </li>
+            <!-- <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+                aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Role.png" alt="" id="hoverRole">
+                                   <div class="collapse" id="dashboard-role">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                          routerLink="/test" [routerLink]="['/createRole']"
+                          (click)="loginService.showTable('createRole')">Create Role</a></li>
+                      <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                          routerLink="/test" [routerLink]="['/viewRole']"
+                          (click)="loginService.showTable('viewRole')">View Role</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <span class="image-namenew">Role</span>
+              </a>
+            </li> -->
+
+            <li class="nav-item text-center ">
+              <a class="nav-link px-0 align-middle sideBarName" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+              aria-expanded="false">
+                             <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Role.png" alt="" id="hoverRole">
+                </div>
+                <span class="image-namenew">Role</span>
+                  </a>
+                    <div class="collapse" id="dashboard-role">
+                      <ul class="dropdown-menu rounded-4 border-0 shadow Roledrop" >
+                        <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/createRole']"
+                          (click)="loginService.showTable('createRole')">Create Role</a></li>
+                        <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/viewRole']"
+                          (click)="loginService.showTable('viewRole')">View Role</a></li>
+                      </ul>
+                    </div>
+                
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" routerLink="/registration">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
+
+
+                </div>
+                <span class="image-namenew">Registration</span>
+              </a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
+                (click)="loginService.showTable('employee')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
+
+                </div>
+                <span class="image-namenew">All Employees</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/viewAllAtt']"
+                (click)="loginService.showTable('viewAllAtt')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/attendance.png" alt="" id="hoverAttendance">
+
+                </div>
+                <span class="image-namenew">All Attendance</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
+                (click)="loginService.showTable('teamleave')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Team leave.png" alt="" id="hoverTeamLeave">
+
+                </div>
+                <span class="image-namenew">Team Leave</span>
+              </a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
+                (click)="loginService.showTable('teamwfh')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Team WFH.png" alt="" id="hoverTeamWfh">
+
+                </div>
+                <span class="image-namenew">Team WFH</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
+                (click)="loginService.showTable('reports')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Reports.png" alt="" id="hoverReport">
+
+                </div>
+                <span class="image-namenew">Reports</span>
+
+              </a>
+            </li>
+
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#position" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/position.png" alt="" id="hoverPosition">
+                 
+                </div>
+                  <span class="image-namenew">Position</span>
+                </a>
+                <div class="collapse" id="position">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                        [routerLink]="['/addPosition']" (click)="loginService.showTable('addPosition')">Add Position</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/viewPosition']" (click)="loginService.showTable('viewPosition')">View Position</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+            </li>
+ 
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#payroll" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/payroll.png" alt="" id="hoverPayroll">
+                 
+                </div>
+                  <span class="image-namenew">Payroll</span>
+                </a>
+               
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle sideBarName" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
+                </div>
+                <span class="image-namenew">Assign Rules</span>
+                </a>
+               
+                <div class="collapse" id="dashboard-rule">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Roledrop" >
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                        [routerLink]="['/leavePolicy']" (click)="loginService.showTable('leavePolicy')">Leave policy</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/noticePeriod']" (click)="loginService.showTable('noticePeriod')">Notice Period</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/attendanceRule']" (click)="loginService.showTable('attendanceRule')">Attendance</a>
+                    </li>
+                  </ul>
+                </div>
+              
+            </li>
+            
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#interview" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/interview.png" alt="" id="hoverInterview">
+                 
+                </div>
+                  <span class="image-namenew">Interview</span>
+                </a>
+                <div class="collapse" id="interview">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                        [routerLink]="['/addInterview']" (click)="loginService.showTable('addInterview')">Add Interview</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/viewInterview']" (click)="loginService.showTable('viewInterview')">View Interview</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+            </li>
+            <!-- <li class="nav-item text-center">
+              <label class="nav-link px-0 align-middle" for="pdfFileInput">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/upload.png" alt="">
+                  <span class="image-name" id="pdfFile">Upload Pdf</span>
+                </div>
+              </label>
+              <input type="file" id="pdfFileInput" style="display: none" (change)="onFileChange($event)">
+            </li> -->
+
+
+ 
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/addHoliday.png" alt="" id="hoverCal">
+
+                </div>
+                <span class="image-namenew">Add Holiday</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/addBirthday']" (click)="loginService.showTable('addBirthday')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/addBirthday.png" alt="" id="hoverBirthday">
+
+                </div>
+                <span class="image-namenew">Add Birthday</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/offerLetter']" (click)="loginService.showTable('offerLetter')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/addBirthday.png" alt="" id="hoverBirthday">
+
+                </div>
+                <span class="image-namenew">Offer Letter</span>
+              </a>
+            </li>
+
+            <!-- <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/performance']" (click)="loginService.showTable('performance')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/addBirthday.png" alt="" id="hoverBirthday">
+
+                </div>
+                <span class="image-namenew">Performance</span>
+              </a>
+            </li> -->
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#performance" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/interview.png" alt="" id="hoverInterview">
+                 
+                </div>
+                  <span class="image-namenew">Performance</span>
+                </a>
+                <div class="collapse" id="performance">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/performance']" (click)="loginService.showTable('performance')">Add Performance</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/viewPerformance']" (click)="loginService.showTable('viewPerformance')">View Performance</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+            </li>
+            <li class="nav-item text-center sideBarName">
+              <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#announcement" aria-expanded="false">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/addAnnouncement.png" alt="" id="hoverAnnouncement">
+                 
+                </div>
+                  <span class="image-namenew">Announcement</span>
+                </a>
+                <div class="collapse" id="announcement">
+                  <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role"
+                        [routerLink]="['/addAnnouncement']" (click)="loginService.showTable('addAnnouncement')">Add Announcement</a>
+                    </li>
+                    <li>
+                      <a href="#" class="dropdown-item rounded-2 role" 
+                        [routerLink]="['/viewAnnouncement']" (click)="loginService.showTable('viewAnnouncement')">View Announcement</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- for mobile screen end -->
+    
+ <!-- Toggle button for showing/hiding the sidebar -->
+ <!-- <button class="btn " (click)="toggleSidebar()"><i class="fa-solid fa-greater-than"></i></button> -->
+
+    <!-- <div class="col-3 col-md-3 col-xl-2 px-sm-2 px-0 d-none d-sm-block" id="sideBar"> -->
+      <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block " id="sideBar" [ngClass]="{'expanded': isSidebarExpanded, 'hovered': isNameSidebarVisible}"
+      (mouseenter)="toggleSidebar(true)" >
+      <!-- <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"> -->
+      <div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
+       
+
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu" [ngClass]="{'collapsed': !isSidebarExpanded}">
+          <li class="nav-item text-center">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Home.png" alt="" id="hoverImage">
+                <!-- <br> -->
+              </div>
+              <!-- <span class="image-namenew">Home</span> -->
+              <!-- <span class="image-name" *ngIf="isSidebarExpanded">Home</span> -->
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link align-middle px-0" >
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Role.png" alt="" id="hoverRole">
+                <!-- <br> -->
+                <!-- <span
+                  class="image-name btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Role</span> -->
+                <!-- <div class="collapse" id="dashboard-role">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/createRole']"
+                        (click)="loginService.showTable('createRole')">Create Role</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/viewRole']"
+                        (click)="loginService.showTable('viewRole')">View Role</a></li>
+                  </ul>
+                </div> -->
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/registration">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg">
+
+                <!-- <br> -->
+                <!-- <span class="image-name">Registration</span> -->
+              </div>
+              <!-- <span class="image-name" *ngIf="isSidebarExpanded">Registration</span> -->
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
+              (click)="loginService.showTable('employee')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/All Employees.png" alt="" id="hoverEmp">
+                <!-- <br> -->
+                <!-- <span class="image-name">All Employees</span> -->
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/viewAllAtt']"
+              (click)="loginService.showTable('viewAllAtt')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/attendance.png" alt="" id="hoverAttendance">
+                <!-- <br> -->
+                <!-- <span class="image-name">All Employees</span> -->
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
+              (click)="loginService.showTable('teamleave')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Team leave.png" alt="" id="hoverTeamLeave">
+                <!-- <br> -->
+                <!-- <span class="image-name">Team Leave</span> -->
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
+              (click)="loginService.showTable('teamwfh')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Team WFH.png" alt="" id="hoverTeamWfh">
+                <!-- <br> -->
+                <!-- <span class="image-name">Team WFH</span> -->
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
+              (click)="loginService.showTable('reports')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Reports.png" alt="" id="hoverReport">
+                <!-- <br> -->
+                <!-- <span class="image-name">Reports</span> -->
+              </div>
+
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" >
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/image/icon/position.png" alt="" id="hoverPosition">
+             
+            </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/viewPayroll']"
+            (click)="loginService.showTable('viewPayroll')">
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/image/icon/payroll.png" alt="" id="hoverPayroll">
+             
+            </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" >
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/image/icon/Assign Rule.png" alt="" id="hoverAssignRule">
+             
+            </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" >
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/image/icon/interview.png" alt="" id="hoverInterview">
+             
+            </div>
+            </a>
+          </li>
+          
+          
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/addHoliday']"
+              (click)="loginService.showTable('addHoliday')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/addHoliday.png" alt="" id="hoverCal">
+                <!-- <br> -->
+                <!-- <span class="image-name">View Holiday</span> -->
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/addBirthday']"
+              (click)="loginService.showTable('addBirthday')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/addBirthday.png" alt="" id="hoverBirthday">
+                <!-- <br> -->
+                <!-- <span class="image-name">View Holiday</span> -->
+              </div>
+            </a>
+          </li>
+
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/offerLetter']"
+              (click)="loginService.showTable('offerLetter')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/addBirthday.png" alt="" id="hoverBirthday">
+
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/performance']"
+              (click)="loginService.showTable('performance')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/interview.png" alt="" id="hoverInterview">
+
+              </div>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" >
+            <div class="image-container">
+              <img class="sidebarPageLogo" src="/assets/image/icon/addAnnouncement.png" alt="" id="hoverAnnouncement">
+             
+            </div>
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+       
+      </div>
+    </div>
+
+    <!-- sidebar name show in toggle strat -->
+    <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block bg-dark"  *ngIf="isNameSidebarVisible" (mouseleave)="toggleSidebar(false)">
+      <div class="d-flex flex-column text-white min-vh-100 ">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu" >
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+          
+                <span class="image-namenew">Home</span>
+           
+            </a>
+          </li>
+          <!-- <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+              aria-expanded="false">
+              
+                <span class="image-namenew">Role</span>
+                
+                <div class="collapse" id="dashboard-role">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/createRole']"
+                        (click)="loginService.showTable('createRole')">Create Role</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white"
+                        routerLink="/test" [routerLink]="['/viewRole']"
+                        (click)="loginService.showTable('viewRole')">View Role</a></li>
+                  </ul>
+                </div>
+            </a>
+          </li> -->
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-role"
+              aria-expanded="false">
+              
+                <span class="image-namenew">Role</span>
+              </a>
+                  <div class="collapse" id="dashboard-role">
+                    <ul class="dropdown-menu rounded-4 border-0 shadow Roledrop" >
+                      <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/createRole']"
+                        (click)="loginService.showTable('createRole')">Create Role</a></li>
+                      <li><a class="dropdown-item rounded-2 role" href="#"routerLink="/test" [routerLink]="['/viewRole']"
+                        (click)="loginService.showTable('viewRole')">View Role</a></li>
+                    </ul>
+                  </div>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" routerLink="/registration">
+              <!-- <div class="image-container"> -->
+                <!-- <img class="sidebarPageLogo" src="/assets/image/icon/Registration.png" alt="" id="hoverreg"> -->
+                <span class="image-namenew">Registration</span>
+                <!-- <br> -->
+                <!-- <span class="image-name">Registration</span> -->
+              <!-- </div> -->
+              <!-- <span class="image-name" *ngIf="isSidebarExpanded">Registration</span> -->
+            </a>
+          </li>
+          
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/employee']"
+              (click)="loginService.showTable('employee')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">All Employees</span>
+              
+              <!-- </div> -->
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/viewAllAtt']"
+              (click)="loginService.showTable('viewAllAtt')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">All Attendance</span>
+              
+              <!-- </div> -->
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/teamleave']"
+              (click)="loginService.showTable('teamleave')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">Team Leave</span>
+              <!-- </div> -->
+            </a>
+          </li>
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/teamwfh']"
+              (click)="loginService.showTable('teamwfh')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">Team WFH</span>
+              <!-- </div> -->
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/reports']"
+              (click)="loginService.showTable('reports')">
+              <!-- <div class="image-container"> -->
+                <span class="image-namenew">Reports</span>
+              <!-- </div> -->
+
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#position" aria-expanded="false">
+                <span class="image-namenew">Position</span>
+              </a>
+              <div class="collapse" id="position">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/addPosition']" (click)="loginService.showTable('addPosition')">Add Position</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/viewPosition']" (click)="loginService.showTable('viewPosition')">View Position</a>
+                  </li>
+                 
+                </ul>
+              </div>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/viewPayroll']" (click)="loginService.showTable('viewPayroll')">
+             <!-- <div class="image-container"> -->
+                <span class="image-namenew">Payroll</span>
+              <!-- </div> -->
+            </a>
+          </li>
+
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#dashboard-rule" aria-expanded="false">
+                <span class="image-namenew">Assign Rule</span>
+              </a>
+              <div class="collapse" id="dashboard-rule">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/leavePolicy']" (click)="loginService.showTable('leavePolicy')">Leave policy</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/noticePeriod']" (click)="loginService.showTable('noticePeriod')">Notice Period</a>
+                  </li>
+                  <!-- <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/leaveRules']" (click)="loginService.showTable('leaveRules')">Leave Rules</a>
+                  </li> -->
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/attendanceRule']" (click)="loginService.showTable('attendanceRule')">Attendance</a>
+                  </li>
+                </ul>
+              </div>
+          </li>
+          
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#interview" aria-expanded="false">
+                <span class="image-namenew">Interview</span>
+              </a>
+              <div class="collapse" id="interview">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/addInterview']" (click)="loginService.showTable('addInterview')">Add Interview</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/viewInterview']" (click)="loginService.showTable('viewInterview')">View Interview</a>
+                  </li>
+                 
+                </ul>
+              </div>
+          </li>
+          
+
+
+        
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
+             <!-- <div class="image-container"> -->
+                <span class="image-namenew">Add Holiday</span>
+              <!-- </div> -->
+            </a>
+          </li>
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/addBirthday']" (click)="loginService.showTable('addBirthday')">
+             <!-- <div class="image-container"> -->
+                <span class="image-namenew">Add Birthday</span>
+              <!-- </div> -->
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/offerLetter']" (click)="loginService.showTable('offerLetter')">
+             <!-- <div class="image-container"> -->
+                <span class="image-namenew">Offer Letter</span>
+              <!-- </div> -->
+            </a>
+          </li>
+
+          <!-- <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/performance']" (click)="loginService.showTable('performance')">
+             
+                <span class="image-namenew">Performance</span>
+              
+            </a>
+          </li> -->
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#performance" aria-expanded="false">
+                <span class="image-namenew">Performance</span>
+              </a>
+              <div class="collapse" id="performance">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                    [routerLink]="['/performance']" (click)="loginService.showTable('performance')">Add Performance</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/viewPerformance']" (click)="loginService.showTable('viewPerformance')">View Performance</a>
+                  </li>
+                 
+                </ul>
+              </div>
+          </li>
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" data-bs-toggle="collapse" data-bs-target="#announcement" aria-expanded="false">
+                <span class="image-namenew">Announcement</span>
+              </a>
+              <div class="collapse" id="announcement">
+                <ul class="dropdown-menu rounded-4 border-0 shadow Ruledrop">
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role"
+                      [routerLink]="['/addAnnouncement']" (click)="loginService.showTable('addAnnouncement')">Add Announcement</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item rounded-2 role" 
+                      [routerLink]="['/viewAnnouncement']" (click)="loginService.showTable('viewAnnouncement')">View Announcement</a>
+                  </li>
+                 
+                </ul>
+              </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+<!-- sidebar name show in toggle end -->
+
+    <!-- <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-12 col-md-9 col-xl-11'"  id="dashboard"> -->
+      <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-lg-7 col-xl-9' : 'col-12 col-md-9 col-lg-10 col-xl-11'"  id="dashboard">
+
+      <router-outlet></router-outlet>
+    </div>
+    <!-- <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
+      <router-outlet></router-outlet>
+    </div> -->
+
+  </div>
+
+
+
+  <div class="row col-12" *ngIf="!isHomePage() && !isLoginPage() && loginService.getRole !== 'SUPERADMIN'">
+
+    <!-- for mobile screen start -->
+    <div class="col-12 d-sm-none">
+      <div class="offcanvas offcanvas-start" id="sideBar" style="max-height: 100vh; overflow-y: auto;">
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <div class="offcanvas-header">
+            <h3 class="offcanvas-title m-0" style="color: white;" id="offcanvasNavbarDarkLabel">HRMS</h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
+            <li class="nav-item text-center">
+              <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/Group 27.svg" alt="" id="hoverImage">
+
+                </div>
+                  <span class="image-namenew">Home</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center" *ngFor="let option of filteredOptions">
+              <a class="nav-link align-middle px-0" [routerLink]="[option.router]" (click)="loginService.showTable(option.function)">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="{{option.src}}" alt="" />
+                  </div>
+                  <span class="image-namenew">{{option.imgName}}</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/attendance.png" alt="" id="hoverAttendance">
+
+                </div>
+                  <span class="image-namenew">View Attendance</span>
+              </a>
+            </li>
+
+            <li class="nav-item text-center">
+              <a class="nav-link align-middle px-0" (click)="LeavePolicyPdf()">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/leave policy.png" alt="" id="hoverLeavePolicy">
+
+                </div>
+                  <span class="image-namenew">Download Leave Policy</span>
+              </a>
+            </li>
+
+           
+ 
+            <!-- <li class="nav-item text-center">
+              <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
+                <div class="image-container">
+                  <img class="sidebarPageLogo" src="/assets/image/icon/addholiday.png" alt="" id="hoverCal">
+
+                </div>
+                  <span class="image-namenew">Add Holiday</span>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- for mobile screen end -->
+
+    <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block" id="sideBar" [ngClass]="{'expanded': isSidebarExpanded, 'hovered': isNameSidebarVisible}"
+    (mouseenter)="toggleSidebar(true)" >
+      <div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu" [ngClass]="{'collapsed': !isSidebarExpanded}">
+          <li class="nav-item text-center">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/Home.png" alt="" id="hoverImage">
+                <!-- <br>
+                <span class="image-name">Home</span> -->
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center" *ngFor="let option of filteredOptions">
+            <a class="nav-link px-0 align-middle" [routerLink]="[option.router]">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="{{option.src}}" alt="" 
+                  (click)="loginService.showTable(option.function)" id="{{option.hover}}"/>
+                <!-- <br>
+                <span class="image-name">{{option.imgName}}</span> -->
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/attendance.png" alt="" id="hoverAttendance">
+
+              </div>
+                <!-- <span class="image-namenew">View Attendance</span> -->
+            </a>
+          </li>
+         
+
+          <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" (click)="LeavePolicyPdf()">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/leave policy.png" alt="" id="hoverLeavePolicy">
+                <!-- <br>
+                <span class="image-name">Download Leave Policy</span> -->
+              </div>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item text-center">
+            <a class="nav-link px-0 align-middle" routerLink="/test" [routerLink]="['/calendar']"
+              (click)="loginService.showTable('calendar')">
+              <div class="image-container">
+                <img class="sidebarPageLogo" src="/assets/image/icon/addHoliday.png" alt="" id="hoverCal">
+               
+              </div>
+            </a>
+          </li> -->
+
+          
+        </ul>
+        <hr>
+      </div>
+    </div>
+
+
+    <!-- sidebar name show in toggle strat -->
+    <div class="col-3 col-md-3 col-xl-2 px-0 d-none d-sm-block bg-dark"  *ngIf="isNameSidebarVisible" (mouseleave)="toggleSidebar(false)">
+      <div class="d-flex flex-column text-white min-vh-100 ">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu" >
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link align-middle px-0" (click)="redirectTOHome()">
+          
+                <span class="image-namenew">Home</span>
+           
+            </a>
+          </li>
+          
+          <li class="nav-item text-center sideBarName" *ngFor="let option of filteredOptions">
+            <a class="nav-link px-0 align-middle" [routerLink]="[option.router]" (click)="loginService.showTable(option.function)" >
+              
+                <span class="image-namenew">{{option.imgName}}</span> 
+             
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/viewAtt']" (click)="loginService.showTable('viewAtt')">
+      
+                <span class="image-namenew">View Attendance</span>
+          
+            </a>
+          </li>
+
+          <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" (click)="LeavePolicyPdf()">
+             
+                <span class="image-namenew">Leave Policy</span> 
+              
+            </a>
+          </li>
+
+          <!-- <li class="nav-item text-center sideBarName">
+            <a class="nav-link px-0 align-middle" [routerLink]="['/addHoliday']" (click)="loginService.showTable('addHoliday')">
+      
+                <span class="image-namenew">Add Holiday</span>
+          
+            </a>
+          </li> -->
+
+        </ul>
+      </div>
+    </div>
+<!-- sidebar name show in toggle end -->
+
+    <!-- <div class="col-12 col-md-9 col-xl-10 ms-2" id="dashboard">
+      <router-outlet></router-outlet>
+    </div> -->
+    <!-- <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-xl-9' : 'col-9 col-md-9 col-xl-11'"  id="dashboard"> -->
+      <div class="ms-2 " [ngClass]="isNameSidebarVisible ? 'col-6 col-md-6 col-lg-7 col-xl-9' : 'col-12 col-md-9 col-lg-10 col-xl-11'"  id="dashboard">
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+
+  
+</ng-container>
+
+
+<app-login *ngIf="isLoginPage()"></app-login>
+<app-home *ngIf="isHomePage()"></app-home>
+<app-not-found *ngIf="notFound()"></app-not-found>
