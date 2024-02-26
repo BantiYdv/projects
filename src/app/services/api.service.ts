@@ -1,19 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-
   // public apiUrl = 'https://hrms.prilient.com/';
-<<<<<<< HEAD
   public apiUrl = 'http://192.168.1.10:9191/';
-=======
-  public apiUrl = 'http://192.168.1.18:9191/';
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-  
 
   public login = `${this.apiUrl}gateway/login`;
   public forgetPassword = `${this.apiUrl}gateway/hrms/forgot-password`;
@@ -129,9 +122,6 @@ export class ApiService {
   public showUserDataToTeamLead = `${this.apiUrl}gateway/hrms/showUserDataToTeamLead`;
   public showTeamData = `${this.apiUrl}gateway/hrms/showTeamData`;
 
-
-
-
   public addPosition = `${this.apiUrl}gateway/onboard/addPosition`;
   public viewPosition = `${this.apiUrl}gateway/onboard/getAllPositions`;
   public viewPositionById = `${this.apiUrl}gateway/onboard/getPositionById`;
@@ -166,25 +156,24 @@ export class ApiService {
   public promotionList = `${this.apiUrl}gateway/onboard/listPromotion`;
   public demotionList = `${this.apiUrl}gateway/onboard/listDemotion`;
   public getAllPIP = `${this.apiUrl}gateway/onboard/getAllPIP`;
-  public getEmployeeAppraisal = `${this.apiUrl}gateway/onboard/getAppraisalBy`;
-  public getEmployeePromotion = `${this.apiUrl}gateway/onboard/getPromotionBy`;
-  public getEmployeeDemotion = `${this.apiUrl}gateway/onboard/getDemotionBy`;
-  public getEmployeePIP = `${this.apiUrl}gateway/onboard/getPIPBy`;
+  // public getEmployeeAppraisal = `${this.apiUrl}gateway/onboard/getAppraisalBy`;
+  // public getEmployeePromotion = `${this.apiUrl}gateway/onboard/getPromotionBy`;
+  // public getEmployeeDemotion = `${this.apiUrl}gateway/onboard/getDemotionBy`;
+  // public getEmployeePIP = `${this.apiUrl}gateway/onboard/getPIPBy`;
   // public getAllReviews = `${this.apiUrl}gateway/hrms/getAllReviews`;
   // public probationList = `${this.apiUrl}gateway/onboard/listProbation`;
 
-  public saveProbation = `${this.apiUrl}gateway/hrms`;
-  public saveRating = `${this.apiUrl}gateway/hrms/saveReviews`;
-  public savePromotion = `${this.apiUrl}gateway/onboard/addPromotion`;
-  public saveDemotion = `${this.apiUrl}gateway/onboard/addDemotion`;
-  public savePIP = `${this.apiUrl}gateway/onboard/addPIP`;
+  // public saveProbation = `${this.apiUrl}gateway/hrms`;
+  // public saveRating = `${this.apiUrl}gateway/hrms/saveReviews`;
+  // public savePromotion = `${this.apiUrl}gateway/onboard/addPromotion`;
+  // public saveDemotion = `${this.apiUrl}gateway/onboard/addDemotion`;
+  // public savePIP = `${this.apiUrl}gateway/onboard/addPIP`;
 
   public saveProbation = `${this.apiUrl}gateway/hrms`;
   public saveRating = `${this.apiUrl}gateway/hrms/saveReviews`;
   public savePromotion = `${this.apiUrl}gateway/onboard/addPromotion`;
   public saveDemotion = `${this.apiUrl}gateway/onboard/addDemotion`;
   public savePIP = `${this.apiUrl}gateway/onboard/addPIP`;
-
 
   public getEmployeeAppraisal = `${this.apiUrl}gateway/onboard/getAppraisalBy`;
   // public getEmployeePromotion = `${this.apiUrl}gateway/onboard/getPromotionBy`;
@@ -195,15 +184,13 @@ export class ApiService {
   public getEmployeePromotion = `${this.apiUrl}gateway/onboard/getPromotionByUsername`;
   public getEmployeeDemotion = `${this.apiUrl}gateway/onboard/getDemotionByUsername`;
 
-
   public addAnnouncement = `${this.apiUrl}gateway/onboard/addAnnouncement`;
   public viewAllAnnouncement = `${this.apiUrl}gateway/onboard/getAllAnnouncement`;
   public updateAnnouncement = `${this.apiUrl}gateway/onboard/updateAnnouncement`;
   public deleteAnnouncement = `${this.apiUrl}gateway/onboard/deleteAnnouncement`;
   public getAnnouncementForToday = `${this.apiUrl}gateway/onboard/getAnnouncementForToday`;
-  
-  constructor(private http: HttpClient) { }
 
+  constructor(private http: HttpClient) {}
 }
 
 // Angular CLI: 16.0.1

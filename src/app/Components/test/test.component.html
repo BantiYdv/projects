@@ -589,12 +589,8 @@
               </div>
               <div [routerLink]="['/profile', 'viewProfile']" (click)="loginService.showTable('viewProfile')"
                 [queryParams]="{ id: item.id }">
-<<<<<<< HEAD
                 <img [src]="generateDefaultImageUser(item.firstname,item.lastname)" alt="" class="emp1"
                   style="border-radius: 50%;" />
-=======
-                <img [src]="generateDefaultImageUser(item.firstname, item.lastname)" alt="" class="emp1" style="border-radius: 50%;" />
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
               </div>
               <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
               <p class="titleGrid">{{item.designation }}</p>
@@ -7310,23 +7306,13 @@
               <i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
               <mat-menu #menu="matMenu" xPosition="before">
                 <button mat-menu-item (click)="addPerformance(item)">Add Performance</button>
-<<<<<<< HEAD
                 <button mat-menu-item (click)="viewPerformance(item)">View Performance</button>
-
-=======
-                <button mat-menu-item (click)="viewEmployeeAppraisal(item)">View Performance</button>
-                
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
 
               </mat-menu>
             </div>
             <!-- <button (click)="addPerformance(item)">data</button> -->
             <div>
-<<<<<<< HEAD
               <img [src]="generateDefaultImageUser(item.firstname,item.lastname)" alt="" class="emp1"
-=======
-              <img [src]="generateDefaultImageUser(item.firstname, item.lastname)" alt="" class="emp1"
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                 style="border-radius: 50%; margin-top:25px;" />
             </div>
             <span class="nameGrid">{{ item.firstname + ' ' + item.lastname }}</span>
@@ -7510,11 +7496,8 @@
                 <div class="col-12 d-flex flex-column justify-content-center mt-4">
                   <div
                     class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap justify-content-center align-items-center">
-<<<<<<< HEAD
                     <div class="d-flex flex-wrap col-12 col-md-9 col-xl-9 justify-content-sm-between justify-content-center">
-=======
-                    <div class="d-flex flex-nowrap col-12 col-md-9 col-xl-9 justify-content-between">
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
+
                       <div class="d-flex flex-nowrap">
                         <div class="d-flex flex-wrap">
                           <img [src]="generateDefaultImageUser(probationData.firstname,probationData.lastname)" alt=""
@@ -7775,10 +7758,6 @@
             </div>
           </div>
 
-<<<<<<< HEAD
-=======
-          
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
           <div class="tab-pane fade" id="pills-promotion" role="tabpanel" aria-labelledby="pills-promotion-tab">
             <div class="justify-content-center align-item-center"
               [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
@@ -7873,12 +7852,8 @@
                         placeholder="XXXXXX" />
                     </div>
                   </div>
-<<<<<<< HEAD
                   <div
                     class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
-=======
-                  <div class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                     <button class="performance_button clickEffect" type="submit"
                       (click)="saveDemotion(saveDataDemotion)">Save</button>
                   </div>
@@ -7887,11 +7862,7 @@
             </div>
           </div>
 
-<<<<<<< HEAD
-=======
-          
 
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
           <div class="tab-pane fade" id="pills-pip" role="tabpanel" aria-labelledby="pills-pip-tab">
             <div class="justify-content-center align-item-center"
               [ngClass]="this.dashboardService.isNameSidebarVisible ? 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'">
@@ -7930,7 +7901,6 @@
                     </div>
                     <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Terminate</h4>
-<<<<<<< HEAD
                       <select class="form-control boxForDemotion boxColorDD1717  mb-3"
                         [(ngModel)]="saveDataPIP.terminate" name="terminate">
 
@@ -7938,14 +7908,6 @@
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                       </select>
-=======
-                        <select class="form-control boxForDemotion boxColorDD1717  mb-3" [(ngModel)]="saveDataPIP.terminate" name="terminate">
-
-                          <option value="" disabled>--Select--</option>
-                          <option value="Yes">Yes</option>
-                          <option value="No">No</option>
-                        </select>
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                     </div>
                   </div>
                   <div
@@ -7958,12 +7920,8 @@
 
                     <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                       <h4 class="appraisalText">Status</h4>
-<<<<<<< HEAD
                       <select class="form-control boxForDemotion boxColorDD1717  mb-3" [(ngModel)]="saveDataPIP.status"
                         name="status">
-=======
-                      <select class="form-control boxForDemotion boxColorDD1717  mb-3" [(ngModel)]="saveDataPIP.status" name="status">
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                         <option value="" disabled>--Select--</option>
                         <option value="Completed">Completed</option>
                         <option value="Not Completed">Not Completed</option>
@@ -7973,12 +7931,8 @@
                     <div class="col-11 col-lg-3 col-md-11 col-sm-11 d-flex flex-column">
                     </div>
                   </div>
-<<<<<<< HEAD
                   <div
                     class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
-=======
-                  <div class="col-12 col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center mb-3">
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                     <button class="performance_button clickEffect" type="submit"
                       (click)="savePIP(saveDataPIP)">Save</button>
                   </div>
@@ -8008,11 +7962,6 @@
           <div *ngSwitchDefault>
           </div>
         </div>
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
       </div>
     </div>
    
@@ -8992,26 +8941,10 @@
 
                       </div>
 
-<<<<<<< HEAD
                       <div class="my-1">
                         <div class="table_body">
                           <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">
                             {{ 1 }}
-=======
-                    <div class="my-1">
-                      <div class="table_body">
-                        <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ 
-                          1 }}
-                        </div>
-                        <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
-                          viewProbationData.firstname + ' ' +
-                          viewProbationData.lastname }}</div>
-                        <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">
-                          {{ viewProbationData.emailid }}
-                        </div>
-                        <div class="table_body_topics my-2" style="width: 15%;">
-                          {{ viewProbationData.probationStatus }}
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                           </div>
                           <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">
                             {{ viewProbationData.startDateOfProbation}}</div>
@@ -9026,15 +8959,9 @@
                     </div>
                   </div>
 
-<<<<<<< HEAD
                   <!-- <div class="not_data_img_div" *ngIf="viewProbationData.length == 0">
                     <p>No Data !!</p>
                   </div> -->
-=======
-                <div class="not_data_img_div" *ngIf="viewProbationData.length == 0">
-                  <p>No Data !!</p>
-                </div>
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
 
                   <!-- <div class="col-md-12" *ngIf="getTotalPagesAllPrbation() > 1">
                   <div class="table_footer mt-2">
@@ -9103,7 +9030,6 @@
                     <div
                       class="d-flex flex-wrap justify-content-start align-items-center col-12 col-md-11 col-xl-11 mb-3">
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss1 boxForTitle" title="Accuracy of work">Accuracy of work</div>
@@ -9116,27 +9042,12 @@
                                 style="--i: 0;">
                               <i class="fa fa-star" *ngIf="i >= viewEmployeeRating.reviews[0].accuracyOfWork"
                                 (click)="rateStar(i,'SRAOW')" style="--i: 0;color: #A9A8AD;"></i>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss1 boxForTitle" title="Accuracy of work">Accuracy of work</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < viewProbationData.reviews[0].accuracyOfWork" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRAOW')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= viewProbationData.reviews[0].accuracyOfWork"
-                              (click)="rateStar(i,'SRAOW')" style="--i: 0;color: #A9A8AD;"></i>
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                             </ng-container>
 
                           </div>
                         </div>
                       </div>
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss2 boxForTitle">Dedication</div>
@@ -9148,29 +9059,12 @@
                                 src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRD')" style="--i: 0;">
                               <i class="fa fa-star" *ngIf="i >= viewEmployeeRating.reviews[0].dedication"
                                 (click)="rateStar(i,'SRD')" style="--i: 0;color: #A9A8AD;"></i>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss2 boxForTitle">Dedication</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRD')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRD')"
-                              style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                             </ng-container>
                           </div>
                         </div>
                       </div>
 
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss3 boxForTitle">Performance</div>
@@ -9183,29 +9077,12 @@
                                 style="--i: 0;">
                               <i class="fa fa-star" *ngIf="i >= viewEmployeeRating.reviews[0].performance"
                                 (click)="rateStar(i,'SRPF')" style="--i: 0;color: #A9A8AD;"></i>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss3 boxForTitle">Performance</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRPF')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRPF')"
-                              style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                             </ng-container>
                           </div>
                         </div>
                       </div>
 
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss4 boxForTitle">Team Work</div>
@@ -9220,28 +9097,11 @@
                                 (click)="rateStar(i,'SRTW')" style="--i: 0;color: #A9A8AD;"></i>
 
                             </ng-container>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss4 boxForTitle">Team Work</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRTW')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRTW')"
-                              style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                           </div>
                         </div>
                       </div>
 
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss5 boxForTitle">Ability to Learn</div>
@@ -9254,29 +9114,12 @@
                                 style="--i: 0;">
                               <i class="fa fa-star" *ngIf="i >= viewEmployeeRating.reviews[0].abilityToLearn"
                                 (click)="rateStar(i,'SRATL')" style="--i: 0;color: #A9A8AD;"></i>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss5 boxForTitle">Ability to Learn</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRATL')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)"
-                              (click)="rateStar(i,'SRATL')" style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                             </ng-container>
                           </div>
                         </div>
                       </div>
 
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss6 boxForTitle">Attendance</div>
@@ -9288,29 +9131,12 @@
                                 src="/assets/image/starIcon.png" alt="Star" (click)="rateStar(i,'SRA')" style="--i: 0;">
                               <i class="fa fa-star" *ngIf="i >= viewEmployeeRating.reviews[0].attendance"
                                 (click)="rateStar(i,'SRA')" style="--i: 0;color: #A9A8AD;"></i>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss6 boxForTitle">Attendance</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRA')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRA')"
-                              style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                             </ng-container>
                           </div>
                         </div>
                       </div>
 
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss7 boxForTitle">Punctuality</div>
@@ -9323,29 +9149,12 @@
                                 style="--i: 0;">
                               <i class="fa fa-star" *ngIf="i >= viewEmployeeRating.reviews[0].punctuality"
                                 (click)="rateStar(i,'SRPT')" style="--i: 0;color: #A9A8AD;"></i>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss7 boxForTitle">Punctuality</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRPT')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRPT')"
-                              style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                             </ng-container>
                           </div>
                         </div>
                       </div>
 
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss8 boxForTitle">Work Habits</div>
@@ -9358,29 +9167,12 @@
                                 style="--i: 0;">
                               <i class="fa fa-star" *ngIf="i >= viewEmployeeRating.reviews[0].workHabits"
                                 (click)="rateStar(i,'SRWH')" style="--i: 0;color: #A9A8AD;"></i>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss8 boxForTitle">Work Habits</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRWH')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)" (click)="rateStar(i,'SRWH')"
-                              style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
-
                             </ng-container>
                           </div>
                         </div>
                       </div>
 
 
-<<<<<<< HEAD
                       <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap float-start">
                         <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
                           <div class="colorCss9 boxForTitle">Responsiveness</div>
@@ -9394,22 +9186,6 @@
                                 (click)="rateStar(i,'SRR')" style="--i: 0;color: #A9A8AD;"></i>
                             </ng-container>
                           </div>
-=======
-                    <div class="col-12 col-md-12 col-xl-6 d-flex flex-wrap float-start">
-                      <div class="col-12 col-md-12 col-xl-5 d-flex justify-content-center align-items-center mt-3">
-                        <div class="colorCss9 boxForTitle">Responsiveness</div>
-                      </div>
-                      <div class="col-12 col-md-12 col-xl-7 mt-3 d-flex justify-content-center">
-                        <div class="boxForTitle starCss">
-                          <!-- <ng-container *ngFor="let _ of [1,2,3,4,5]; let i = index">
-                            <img *ngIf="i < getOverallReviewForFebruary(item.reviews)" src="/assets/image/starIcon.png" alt="Star"
-                              (click)="rateStar(i,'SRR')" style="--i: 0;">
-                            <i class="fa fa-star" *ngIf="i >= getOverallReviewForFebruary(item.reviews)"
-                              (click)="rateStar(i,'SRR')" style="--i: 0;color: #A9A8AD;"></i>
-
-                          </ng-container> -->
-
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                         </div>
                       </div>
 
@@ -9497,7 +9273,6 @@
                       </div>
 
                       <div class="my-1">
-<<<<<<< HEAD
                         <div class="table_body" *ngFor="let item of viewEmployeeAppraisalData; let i = index">
                           <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i +
                             1 }}
@@ -9511,21 +9286,7 @@
                             item.appraisalSalary || '-'  }}</div>
                           <div class="table_body_topics my-2" style="width: 15%; ">{{
                             item.appraisalDate || '-'  }}</div>
-=======
-                        <div class="table_body" >
-                          <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ 
-                            1 }}
-                          </div>
-                          <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">{{
-                            viewEmployeeAppraisalData.employeeName }}</div>
-                          <div class="table_body_topics my-2" style="width: 30%;border-right: 2px solid #ADADAD; ">
-                            {{ viewEmployeeAppraisalData.username }}
-                          </div>
-                          <div class="table_body_topics my-2" style="width: 15%;border-right: 2px solid #ADADAD; ">{{
-                            viewEmployeeAppraisalData.appraisalSalary }}</div>
-                          <div class="table_body_topics my-2" style="width: 15%; ">{{
-                            viewEmployeeAppraisalData.appraisalDate }}</div>
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
+
 
 
                         </div>
@@ -9533,13 +9294,10 @@
                     </div>
                   </div>
 
-<<<<<<< HEAD
                   <!-- <div class="not_data_img_div" *ngIf="getPaginatedAppraisalData().length == 0">
-=======
-                  <div class="not_data_img_div" *ngIf="viewEmployeeAppraisalData.length == 0">
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
+
                     <p>No Data !!</p>
-                  </div>
+                  </div> -->
 
                   <!-- <div class="col-md-12" *ngIf="getTotalPagesAppraisal() > 1">
                     <div class="table_footer mt-2">
@@ -9646,11 +9404,8 @@
                       </div>
 
                       <div class="my-1">
-<<<<<<< HEAD
                         <div class="table_body" *ngFor="let item of viewEmployeePromotionData; let i = index">
-=======
-                        <div class="table_body"  *ngFor="let item of viewEmployeePromotionData; let i = index">
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
+
                           <div class="table_body_topics my-2" style="width: 10%;border-right: 2px solid #ADADAD;">{{ i +
                             1 }}
                           </div>
@@ -9670,13 +9425,9 @@
                     </div>
                   </div>
 
-<<<<<<< HEAD
                   <!-- <div class="not_data_img_div" *ngIf="getPaginatedPromotionData().length == 0">
-=======
-                  <div class="not_data_img_div" *ngIf="viewEmployeePromotionData.length == 0">
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
                     <p>No Data !!</p>
-                  </div>
+                  </div> -->
 
                   <!-- <div class="col-md-12" *ngIf="getTotalPagesPromotionEmployee() > 1">
                     <div class="table_footer mt-2">

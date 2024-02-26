@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-<<<<<<< HEAD
 import {
   Router,
   NavigationEnd,
@@ -8,10 +7,6 @@ import {
   NavigationExtras,
 } from '@angular/router';
 import { filter } from 'rxjs/operators'; //for navbar don't show in login page
-=======
-import { Router, NavigationEnd, ParamMap, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { filter } from 'rxjs/operators';    //for navbar don't show in login page
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
 import { LoginService } from 'src/app/services/login.service';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver';
@@ -718,13 +713,6 @@ export class TestComponent {
     }
   }
 
-<<<<<<< HEAD
-=======
-  // add star rating start
-  
-// add start rating end
-
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
   ngOnInit() {
     this.viewAllAnnouncement();
 this.getAnnouncementForToday();
@@ -768,22 +756,12 @@ this.getAnnouncementForToday();
     this.getBirthday();
 
     // data show change routing without reload start
-<<<<<<< HEAD
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         // Call the method to load data on route change
         this.loadData();
       });
-=======
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      // Call the method to load data on route change
-      this.loadData();
-    });
-    this.loadData();
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
     // data show change routing without reload end
     this.loadData();
     this.checkRouteAndLoadData();
@@ -791,7 +769,6 @@ this.getAnnouncementForToday();
     this.viewLast7DaysLateArrival();
     this.viewLast7DaysEarlyDeparture();
     this.viewNotCheckedInUsersCount();
-<<<<<<< HEAD
     this.viewPayroll();
     this.employeeNmaes();
     this.emailIds();
@@ -804,31 +781,12 @@ this.getAnnouncementForToday();
     // this.viewAllReview();
     // this.viewProbation();
     // this.getAllProbationData(this.item);
-=======
-this.viewPayroll();
-this.employeeNmaes();
-this.emailIds();
-this.viewAppraisal();
-this.viewPromotion();
-this.viewDemotion();
-this.viewPIP();
-this.viewAllReviews();
-this.viewAllProbation();
-this.viewEmoloyeePerformanceData()
-// this.viewAllReview();
-// this.viewProbation();
-// this.getAllProbationData(this.item);
-    
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
+
   }
 
   firstname: string = ''; // Replace with user's first name
   lastname: string = ''; // Replace with user's last name
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
   generateDefaultImageUser(firstname: any, lastname: any): string {
     // console.log("f name", this.EmployeeData.firstname);
     // console.log("l name", this.EmployeeData.lastname)
@@ -913,14 +871,7 @@ this.viewEmoloyeePerformanceData()
   // }
   checkRouteAndLoadData(): void {
     const currentRoute = this.router.url.split('?')[0];
-<<<<<<< HEAD
-=======
-    console.log(
-      '🚀  checkRouteAndLoadData  currentRoute:',
-      currentRoute.substring(1)
-    );
 
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
     if (currentRoute.includes(currentRoute.substring(1))) {
       this.loginService.showTable(currentRoute.substring(1));
     }
@@ -930,14 +881,8 @@ this.viewEmoloyeePerformanceData()
   // data show change routing without reload start
   loadData(): void {
     // Get the current route
-<<<<<<< HEAD
     const currentRoute = this.router.url.split('/')[1].split('?')[0];
-=======
-    // const currentRoute = this.route.snapshot.url[0].path;
-    
-    const currentRoute = this.router.url.split('/')[1].split('?')[0];
-    console.log('🚀  loadData  currentRoute:', currentRoute)
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
+
 
     // Your logic to load data based on the route
     switch (currentRoute) {
@@ -986,14 +931,7 @@ this.viewEmoloyeePerformanceData()
       case 'viewPerformance':
         this.openEmployee();
         break;
-<<<<<<< HEAD
       case 'viewEmployeePerformance':
-=======
-        case 'addPerformance':
-        this.viewPerformanceData();
-        break;
-        case 'viewEmployeePerformance':
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
         this.viewEmoloyeePerformanceData();
         break;
       default:
@@ -7503,14 +7441,8 @@ this.viewEmoloyeePerformanceData()
     if (this.currentAppraisalPage > 1) {
       this.currentAppraisalPage--;
     }
-<<<<<<< HEAD
   }
-=======
-  );
-}
-// API for generateOfferLetter end
-performanceNote:string = 'pills-probation';
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
+
 
   getPageNumbersAppraisal(): number[] {
     const totalPages = Math.ceil(
@@ -7519,7 +7451,6 @@ performanceNote:string = 'pills-probation';
     return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
 
-<<<<<<< HEAD
   changePageAppraisal(pageNumber: number): void {
     if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAppraisal()) {
       this.currentAppraisalPage = pageNumber;
@@ -8287,31 +8218,6 @@ username: any;
       }
       // }
     );
-=======
-
-// pagination and search for view appraisal start
-AppraisalperPage: number = 5;
-currentAppraisalPage: number = 1;
-
-searchAppraisal: string = '';
-
-
-FilterAppraisal() {
-  this.fillterAppraisal = this.getAppraisalData.filter((item: { employeeName: string }) =>
-    item.employeeName.toLowerCase().includes(this.searchAppraisal.toLowerCase())
-  );
-}
-
-getPaginatedAppraisalData(): any[] {
-  const startIndex = (this.currentAppraisalPage - 1) * this.AppraisalperPage;
-  const endIndex = startIndex + this.AppraisalperPage;
-  return this.fillterAppraisal.slice(startIndex, endIndex);
-}
-
-previousAppraisalPage(): void {
-  if (this.currentAppraisalPage > 1) {
-    this.currentAppraisalPage--;
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
   }
   // add appraisal end
   // add star rating start
@@ -8873,795 +8779,5 @@ editAnnouncement(itemId: number) {
 
 // view today present end
 
-<<<<<<< HEAD
-//Announcement code end
-=======
 
-getOverallReviewForFebruary(reviews: any[]) {
-  // Assuming you want to filter reviews for the month of February
-  const februaryReviews = reviews.filter(review => review.monthAndYear === this.reviewMonth);
-
-  // Assuming you want to display overallReview for the first review in February
-  if (februaryReviews.length > 0) {
-    return parseInt(februaryReviews[0].overallReview);
-  } else {
-    return 0; // Display N/A if no review for February
-  }
-}
-
-// view Review list end
-// pagination and search for view review start
-
-ReviewAllperPage: number = 5;
-currentReviewAllPage: number = 1;
-
-searchReviewAll: string = '';
-
-
-FilterReviewAll() {
-  this.fillterReviewAll = this.getReviewAllData.filter((item: { firstname: string; lastname: string; }) =>
-    item.firstname.toLowerCase().includes(this.searchReviewAll.toLowerCase()) ||
-    item.lastname.toLowerCase().includes(this.searchReviewAll.toLowerCase()) ||
-    (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchReviewAll.toLowerCase())
-  );
-}
-
-getPaginatedReviewAllData(): any[] {
-  const startIndex = (this.currentReviewAllPage - 1) * this.ReviewAllperPage;
-  const endIndex = startIndex + this.ReviewAllperPage;
-  return this.fillterReviewAll.slice(startIndex, endIndex);
-}
-
-previousReviewAllPage(): void {
-  if (this.currentReviewAllPage > 1) {
-    this.currentReviewAllPage--;
-  }
-}
-
-getPageNumbersReviewAll(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterReviewAll.length / this.ReviewAllperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageReviewAll(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesReviewAll()) {
-    this.currentReviewAllPage = pageNumber;
-  }
-}
-
-
-nextPageReviewAll(): void {
-  const totalPages = Math.ceil(
-    this.fillterReviewAll.length / this.ReviewAllperPage
-  );
-  if (this.currentReviewAllPage < totalPages) {
-    this.currentReviewAllPage++;
-  }
-}
-
-
-getTotalPagesReviewAll(): number {
-  return Math.ceil(
-    this.fillterReviewAll.length / this.ReviewAllperPage
-  );
-}
-// pagination and search for view review end
-
-
-viewAllProbation(){
-  if ('/viewPerformance' === this.router.url ){
-    this.testService.getEmployeeList().subscribe(
-      (response: any) => { // Assuming the response is an array
-        
-      const dataArray = Object.values(response);
-
-      const reversedData = dataArray.reverse();
-
-      this.getAllPrbationData = reversedData;
-      this.fillterAllPrbation = reversedData;
-        
-      
-        console.log("view All Employee probation", this.getAllPrbationData);
-      },
-      (error) => {
-        // Handle error
-      }
-    );
-    }
-}
-
-// pagination and search for view probation start
-AllPrbationperPage: number = 5;
-currentAllPrbationPage: number = 1;
-
-searchAllPrbation: string = '';
-
-
-FilterAllPrbation() {
-  this.fillterAllPrbation = this.getAllPrbationData.filter((item: { firstname: string; lastname: string  }) =>
-    item.firstname.toLowerCase().includes(this.searchAllPrbation.toLowerCase()) ||
-    item.lastname.toLowerCase().includes(this.searchAllPrbation.toLowerCase()) ||
-    (item.firstname+' '+item.lastname).toLowerCase().includes(this.searchAllPrbation.toLowerCase())
-  );
-}
-
-getPaginatedAllPrbation(): any[] {
-  const startIndex = (this.currentAllPrbationPage - 1) * this.AllPrbationperPage;
-  const endIndex = startIndex + this.AllPrbationperPage;
-  return this.fillterAllPrbation.slice(startIndex, endIndex);
-}
-
-previousAllPrbationPage(): void {
-  if (this.currentAllPrbationPage > 1) {
-    this.currentAllPrbationPage--;
-  }
-}
-
-getPageNumbersAllPrbation(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterAllPrbation.length / this.AllPrbationperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePageAllPrbation(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesAllPrbation()) {
-    this.currentAllPrbationPage = pageNumber;
-  }
-}
-
-
-nextPageAllPrbation(): void {
-  const totalPages = Math.ceil(
-    this.fillterAllPrbation.length / this.AllPrbationperPage
-  );
-  if (this.currentAllPrbationPage < totalPages) {
-    this.currentAllPrbationPage++;
-  }
-}
-
-
-getTotalPagesAllPrbation(): number {
-  return Math.ceil(
-    this.fillterAllPrbation.length / this.AllPrbationperPage
-  );
-}
-// pagination and search for view probation end
-
-viewPerformanceUpdate: any;
-viewPerformance(item: any){
-  this.viewPerformanceUpdate = item;
-  // this.appraisal.employeeName = item.firstname + ' ' + item.lastname;
-  // this.appraisal.username = item.emailid;
-  console.log("view performance", this.viewPerformanceUpdate);
-  this.loginService.showTable('viewEmployeePerformance');
-}
-
-getOverallReviewForEmployee(reviews: any[]) {
-  // Assuming you want to filter reviews for the month of February
-  const februaryReviews = reviews.filter(review => review.monthAndYear === this.reviewMonth);
-
-console.log("review emp", februaryReviews);
-}
-
-
-
-// view employee appraisal start
-viewEmployeeAppraisal(item: any) {
-  const navigationExtras: NavigationExtras = {
-    queryParams: { id: item.id },
-  };
-  this.router.navigate(['/viewEmployeePerformance'], navigationExtras);
-  this.loginService.showTable('viewEmployeePerformance');
-}
-// view employee appraisal end
-viewProbationData: any;
-viewEmployeeAppraisalData: any;
-viewEmployeePromotionData: any;
-fillterAllPromotionEmployee: any;
-viewEmployeeDemotionData: any;
-viewEmployeePIPData: any;
-viewEmployeeRating: any;
-username: any;
-viewEmoloyeePerformanceData() {
-  this.route.queryParams.subscribe((params) => {
-    const id = params['id'];
-    this.RegisterAndUpdate.fetchData(id).subscribe(
-      (r: any) => {
-        console.log('🚀  🚀  🚀  viewEmoloyeePerformanceData  r:', r);
-
-        this.viewProbationData = r;
-
-        // this.saveDataProbation.id = r.id;
-
-        this.viewEmployeeRating.reviews = r.reviews;
-console.log("hgjhgjyyi????", this.viewEmployeeRating);
-        this.viewEmployeeAppraisalData.employeeName = r.firstname + ' ' + r.lastname;
-        this.viewEmployeeAppraisalData.username = r.emailid;
-
-        this.viewEmployeePromotionData.employeeName = r.firstname + ' ' + r.lastname;
-        this.viewEmployeePromotionData.emailId = r.emailid;
-
-
-        // this.saveDataDemotion.employeeName = r.firstname + ' ' + r.lastname;
-        // this.saveDataDemotion.currentPosition = r.designation;
-        // this.saveDataDemotion.username = r.username;
-        
-        // this.saveDataPIP.employeeName = r.firstname + ' ' + r.lastname;
-        // this.saveDataPIP.employeeEmailId = r.emailid;
-        // this.saveDataPIP.designation = r.designation;
-        // this.saveDataPIP.designation = r.designation;
-      },
-      (e: any) => {
-        console.error('🚀  viewPerformanceData  e:', e);
-        console.error('e', e);
-      }
-    );
-    this.testService.viewEmployeeAppraisal('satyam.kakra@prilient.com').subscribe(
-      (r:any) => {
-        console.warn('viewEmployeeAppraisalData',r);
-        this.viewEmployeeAppraisalData = r.data;
-        console.log("view Employee Appraisal Data", this.viewEmployeeAppraisalData)
-        // this.rtTeamMember = r;
-        // alert(r);
-      },
-      (e:any) => {
-        console.warn('viewEmployeeAppraisalData',e);
-        this.viewEmployeeAppraisalData = []
-        // alert(e);
-      }
-    )
-    this.testService.viewEmployeePromotion(id).subscribe(
-      (r:any) => {
-        console.warn('viewEmployeePromotionData',r);
-        this.viewEmployeePromotionData = r.data;
-        console.log("view Employee Promotion Data", this.viewEmployeePromotionData)
-        // const dataArray = Object.values(r.data);
-
-        // const reversedData = dataArray.reverse();
-  
-        // this.viewEmployeePromotionData = r.data;
-        // this.fillterAllPromotionEmployee = r.data;
-        console.log("view Employee Promotion Data", this.viewEmployeePromotionData)
-      },
-      (e:any) => {
-        console.error('viewEmployeePromotionData',e);
-        this.viewEmployeePromotionData = []
-        // alert(e);
-      }
-    )
-    this.testService.viewEmployeeDemotion(id).subscribe(
-      (r:any) => {
-        console.warn('viewEmployeeDemotionData',r);
-        this.viewEmployeeDemotionData = r;
-        console.log("view Employee demotion Data", this.viewEmployeeDemotionData)
-        // this.rtTeamMember = r;
-        // alert(r);
-      },
-      (e:any) => {
-        console.warn('viewEmployeeDemotionData',e);
-        this.viewEmployeeDemotionData = []
-        // alert(e);
-      }
-    )
-    this.testService.viewEmployeePIP(id).subscribe(
-      (r:any) => {
-        console.warn('viewEmployeePIPData',r);
-        this.viewEmployeePIPData = r;
-        console.log("view Employee PIP Data", this.viewEmployeePIPData)
-        // this.rtTeamMember = r;
-        // alert(r);
-      },
-      (e:any) => {
-        console.warn('viewEmployeePIPData',e);
-        this.viewEmployeePIPData = []
-        // alert(e);
-      }
-    )
-  });
-}
-
-// pagination and search for view employee promotion start
-PromotionEmployeeperPage: number = 5;
-currentPromotionEmployeePage: number = 1;
-
-searchPromotionEmployee: string = '';
-
-
-FilterPromotionEmployee() {
-  this.fillterAllPromotionEmployee = this.viewEmployeePromotionData.filter((item: { employeeName: string }) =>
-    item.employeeName.toLowerCase().includes(this.searchPromotionEmployee.toLowerCase())
-  );
-}
-
-getPaginatedPromotionEmployeeData(): any[] {
-  const startIndex = (this.currentPromotionEmployeePage - 1) * this.PromotionEmployeeperPage;
-  const endIndex = startIndex + this.PromotionEmployeeperPage;
-  return this.fillterAllPromotionEmployee.slice(startIndex, endIndex);
-}
-
-previousPromotionEmployeePage(): void {
-  if (this.currentPromotionEmployeePage > 1) {
-    this.currentPromotionEmployeePage--;
-  }
-}
-
-getPageNumbersPromotionEmployee(): number[] {
-  const totalPages = Math.ceil(
-    this.fillterAllPromotionEmployee.length / this.PromotionEmployeeperPage
-  );
-  return Array.from({ length: totalPages }, (_, index) => index + 1);
-}
-
-changePagePromotionEmployee(pageNumber: number): void {
-  if (pageNumber >= 1 && pageNumber <= this.getTotalPagesPromotionEmployee()) {
-    this.currentPromotionEmployeePage = pageNumber;
-  }
-}
-
-
-nextPagePromotionEmployee(): void {
-  const totalPages = Math.ceil(
-    this.fillterAllPromotionEmployee.length / this.PromotionEmployeeperPage
-  );
-  if (this.currentPromotionEmployeePage < totalPages) {
-    this.currentPromotionEmployeePage++;
-  }
-}
-
-
-getTotalPagesPromotionEmployee(): number {
-  return Math.ceil(
-    this.fillterAllPromotionEmployee.length / this.PromotionEmployeeperPage
-  );
-}
-// pagination and search for view employee Promotion end
-
-
-
-
-ratingMonth: any;
-
-probationData: any;
-addPerformance(item: any) {
-  const navigationExtras: NavigationExtras = {
-    queryParams: { id: item.id },
-  };
-  this.router.navigate(['/addPerformance'], navigationExtras);
-  this.loginService.showTable('addPerformance');
-}
-viewPerformanceData() {
-  this.route.queryParams.subscribe((params) => {
-    const id = params['id'];
-    this.RegisterAndUpdate.fetchData(id).subscribe(
-      (r: any) => {
-        console.log('🚀  🚀  🚀  viewPerformanceData  r:', r);
-        // console.log('r',r);
-        this.probationData.firstname = r.firstname || 'nan';
-        this.probationData.lastname = r.lastname || 'nan';
-        this.probationData.emailid = r.emailid || 'nan';
-
-        this.saveDataProbation.id = r.id;
-        this.saveDataProbation.probationStatus = r.probationStatus;
-
-        this.saveDataRating.username = r.username;
-
-        this.saveDataAppraisal.employeeName = r.firstname + ' ' + r.lastname;
-        this.saveDataAppraisal.username = r.emailid;
-
-        this.saveDataPromotion.employeeName = r.firstname + ' ' + r.lastname;
-        this.saveDataPromotion.emailId = r.emailid;
-        // this.saveDataPromotion.designation = r.designation;
-
-        this.saveDataDemotion.employeeName = r.firstname + ' ' + r.lastname;
-        // this.saveDataDemotion.currentPosition = r.designation;
-        this.saveDataDemotion.username = r.username;
-        
-        this.saveDataPIP.employeeName = r.firstname + ' ' + r.lastname;
-        this.saveDataPIP.employeeEmailId = r.emailid;
-        this.saveDataPIP.designation = r.designation;
-        this.saveDataPIP.designation = r.designation;
-      },
-      (e: any) => {
-        console.error('🚀  viewPerformanceData  e:', e);
-        console.error('e', e);
-      }
-    );
-  });
-}
-
-// add appraisal start
-saveDataAppraisal = {
-  employeeName: '',
-  username: '',
-  appraisalDate: '',
-  employeeRating: '5',
-  currentSalary: '',
-  hike: '',
-};
-
-addAppraisal(data: any) {
-  console.log('appraisal add form', data);
-  this.testService.addAppraisal(data).subscribe(
-    (response) => {
-      console.log('appraisal success', response);
-      Swal.fire({
-        title: 'Success!',
-        text: 'Appraisal Added Successfully.',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      // this.loginService.showTable('performance');
-      this.saveDataAppraisal = {
-        employeeName: '',
-        username: '',
-        appraisalDate: '',
-        employeeRating: '5',
-        currentSalary: '',
-        hike: '',
-      };
-      this.viewPerformanceData();
-      // });
-      // this.getPositionRecruitment();
-      // this.openEmployee();
-    },
-    (error) => {
-      console.error('appraisal error', error);
-      // if (error.status == 400) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Appraisal Already Added!.',
-        icon: 'error',
-        showConfirmButton: false,
-        timer: 3000,
-      });
-    }
-    // }
-  );
-}
-// add appraisal end
-// add star rating start
-saveDataRating = {
-  username: '',
-  monthAndYear: '',
-  performance: 0,
-  accuracyOfWork: 0,
-  dedication: 0,
-  teamWork: 0,
-  abilityToLearn: 0,
-  attendance: 0,
-  punctuality: 0,
-  workHabits: 0,
-  responsiveness: 0,
-};
-opinion: string = '';
-stars: number[] = [0, 1, 2, 3, 4];
-rateStar(index: number, name: any) {
-  // console.warn('index Add',index);
-  if ('SRR' == name) {
-    this.saveDataRating.responsiveness = index + 1;
-  }
-  if ('SRWH' == name) {
-    this.saveDataRating.workHabits = index + 1;
-  }
-  if ('SRPT' == name) {
-    this.saveDataRating.punctuality = index + 1;
-  }
-  if ('SRA' == name) {
-    this.saveDataRating.attendance = index + 1;
-  }
-  if ('SRATL' == name) {
-    this.saveDataRating.abilityToLearn = index + 1;
-  }
-  if ('SRTW' == name) {
-    this.saveDataRating.teamWork = index + 1;
-  }
-  if ('SRPF' == name) {
-    this.saveDataRating.performance = index + 1;
-  }
-  if ('SRD' == name) {
-    this.saveDataRating.dedication = index + 1;
-  }
-  if ('SRAOW' == name) {
-    this.saveDataRating.accuracyOfWork = index + 1;
-  }
-}
-rateStarRemove(index: number, name: any) {
-  // console.warn('index Remove',index);
-  if ('SRR' == name) {
-    this.saveDataRating.responsiveness = index;
-  }
-  if ('SRWH' == name) {
-    this.saveDataRating.workHabits = index;
-  }
-  if ('SRPT' == name) {
-    this.saveDataRating.punctuality = index;
-  }
-  if ('SRA' == name) {
-    this.saveDataRating.attendance = index;
-  }
-  if ('SRATL' == name) {
-    this.saveDataRating.abilityToLearn = index;
-  }
-  if ('SRTW' == name) {
-    this.saveDataRating.teamWork = index;
-  }
-  if ('SRPF' == name) {
-    this.saveDataRating.performance = index;
-  }
-  if ('SRD' == name) {
-    this.saveDataRating.dedication = index;
-  }
-  if ('SRAOW' == name) {
-    this.saveDataRating.accuracyOfWork = index;
-  }
-}
-// add start rating end
-
-// saveDataRating : any;
-saveRating(data: any) {
-  console.warn('data', data);
-  this.testService.saveRating(data).subscribe(
-    (r: any) => {
-      console.log('r', r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Rating saved successfully!',
-      });
-      this.saveDataRating = {
-        username: '',
-        monthAndYear: '',
-        performance: 0,
-        accuracyOfWork: 0,
-        dedication: 0,
-        teamWork: 0,
-        abilityToLearn: 0,
-        attendance: 0,
-        punctuality: 0,
-        workHabits: 0,
-        responsiveness: 0,
-      };
-      this.viewPerformanceData();
-    },
-    (e: any) => {
-      console.error('e', e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the rating. Please try again.',
-      });
-    }
-  );
-}
-
-// saveDataProbation
-saveDataProbation = {
-  id: '',
-  probationStatus: '',
-  endDateOfProbation: '',
-  extensionReason: '',
-  totalDaysOfProbation: 0,
-};
-
-updateTotalDaysOfProbation(dateString1: string, dateString2: string): void {
-  this.updateProbationStatus();
-  const date1 = new Date(dateString1);
-  const date2 = new Date(dateString2);
-  if (isNaN(date1.getTime()) || isNaN(date2.getTime())) {
-    console.error('Invalid date strings provided');
-    return;
-  }
-  const timeDifference = date2.getTime() - date1.getTime();
-  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  this.saveDataProbation.totalDaysOfProbation = daysDifference;
-}
-doFormatInput(data: any) {
-  if (data != '') {
-    this.saveDataProbation.totalDaysOfProbation = parseInt(
-      data
-        .toString()
-        .split('')
-        .map((char: string) => char.replace(/[^0-9]/g, ''))
-        .join('')
-    );
-    console.warn(
-      '🚀🚀🚀🚀',
-      parseInt(
-        data
-          .toString()
-          .split('')
-          .map((char: string) => char.replace(/[^0-9]/g, ''))
-          .join('')
-      )
-    );
-  } else {
-    this.saveDataProbation.totalDaysOfProbation = 0;
-  }
-}
-updateEndDateOfProbation(dateString1: string, daysToAdd: number): void {
-  this.updateProbationStatus();
-  this.doFormatInput(daysToAdd);
-  // console.log("🚀  updateEndDateOfProbation  daysToAdd:", daysToAdd)
-
-  const date1 = new Date(dateString1);
-  if (isNaN(date1.getTime())) {
-    console.error('Invalid date string provided');
-    return;
-  }
-  const date2 = new Date(date1.getTime() + daysToAdd * 24 * 60 * 60 * 1000);
-  this.saveDataProbation.endDateOfProbation = date2
-    .toISOString()
-    .split('T')[0];
-}
-
-updateProbationStatus(): void {
-  const todayDate = new Date().toISOString().split('T')[0]; // Current date
-
-  if (
-    this.probationData.startDateOfProbation &&
-    this.saveDataProbation.endDateOfProbation &&
-    this.saveDataProbation.endDateOfProbation >= todayDate
-  ) {
-    this.saveDataProbation.probationStatus = 'Not Completed';
-  } else if (
-    this.saveDataProbation.endDateOfProbation &&
-    this.saveDataProbation.endDateOfProbation < todayDate
-  ) {
-    this.saveDataProbation.probationStatus = 'Completed';
-  }
-}
-
-saveProbation(data: any) {
-  console.warn('data', data);
-  this.testService.saveProbation(data).subscribe(
-    (r: any) => {
-      console.log('r', r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Probation saved successfully!',
-      });
-      this.saveDataProbation = {
-        id: '',
-        probationStatus: '',
-        endDateOfProbation: '',
-        extensionReason: '',
-        totalDaysOfProbation: 0,
-      };
-      this.viewPerformanceData();
-    },
-    (e: any) => {
-      console.error('e', e);
-      Swal.fire({
-        icon: 'error',
-        title: e.error,
-        text: e.text,
-      });
-    }
-  );
-}
-
-saveDataPromotion = {
-  employeeName : '',
-  emailId : '',
-  date : '',
-  // designation : '',
-  promotedPositionName : '',
-};
-savePromotion(data: any) {
-  console.warn('data', data);
-  this.testService.savePromotion(data).subscribe(
-    (r: any) => {
-      console.log('r', r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Promotion saved successfully!',
-      });
-      this. saveDataPromotion = {
-        employeeName : '',
-        emailId : '',
-        date : '',
-        promotedPositionName : '',
-      };
-      this.viewPerformanceData();
-    },
-    (e: any) => {
-      console.error('e', e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the promotion. Please try again.',
-      });
-    }
-  );
-}
-saveDataDemotion = {
-  employeeName : '',
-  username : '',
-  demotionDate : '',
-  // currentPosition : '',
-  demotedPosition : '',
-  reason : '',
-};
-saveDemotion(data: any) {
-  console.warn('data', data);
-  this.testService.saveDemotion(data).subscribe(
-    (r: any) => {
-      console.log('r', r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'Demotion saved successfully!',
-      });
-      this. saveDataDemotion = {
-        employeeName : '',
-        username : '',
-        demotionDate : '',
-        demotedPosition : '',
-        reason : '',
-      };
-      this.viewPerformanceData();
-    },
-    (e: any) => {
-      console.error('e', e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: e.error,
-      });
-    }
-  );
-}
-
-saveDataPIP = {
-  employeeName : '',
-  employeeEmailId : '',
-  designation : '',
-  
-  startDate: '',
-  endDate: '',
-
-  status: '',
-  terminate: '',
-  reason: ''
-};
-savePIP(data: any) {
-  console.warn('data', data);
-  this.testService.savePIP(data).subscribe(
-    (r: any) => {
-      console.log('r', r);
-      Swal.fire({
-        icon: 'success',
-        title: 'Save Successful',
-        text: 'PIP saved successfully!',
-      });
-      this.saveDataPIP = {
-        employeeName : '',
-        employeeEmailId : '',
-        designation : '',
-        startDate: '',
-        endDate: '',
-        status: '',
-        terminate: '',
-        reason: ''
-      };
-      this.viewPerformanceData();
-    },
-    (e: any) => {
-      console.error('e', e);
-      Swal.fire({
-        icon: 'error',
-        title: 'Save Failed',
-        text: 'There was an error while saving the PIP. Please try again.',
-      });
-    }
-  );
-}
-
->>>>>>> d040e98b633609230b92b80e5f23df3f093e16f9
 }

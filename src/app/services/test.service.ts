@@ -1210,66 +1210,6 @@ viewEmployeeAppraisal(username: any){
 // employee appraisal end
 
 // employee promotion start
-viewEmployeePromotion(id: number){
-  const url = `${this.api.getEmployeePromotion}/${id}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
-  return this.http.get(url, { headers });
-}
-// employee promotion end
-
-// employee demotion start
-viewEmployeeDemotion(id: number){
-  const url = `${this.api.getEmployeeDemotion}/${id}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
-  return this.http.get(url, { headers });
-}
-// employee demotion end
-
-// employee PIP start
-viewEmployeePIP(id: number){
-  const url = `${this.api.getEmployeePIP}/${id}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
-  return this.http.get(url, { headers });
-}
-// employee PIP end
-
-// view all Review list start
-// viewAllReview(){
-//   const url = `${this.api.getAllReviews}`;
-//   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
-  
-//   return this.http.get(url, { headers });
-
-// }
-// view all Review list end
-
-// view all probation list start
-// viewProbation(){
-//   const url = `${this.api.probationList}`;
-//   const token = localStorage.getItem('jwtToken');
-//   const headers = new HttpHeaders().set('Authorization', ` ${token}`);
-  
-//   return this.http.get(url, { headers });
-
-// }
-// view all probation list end
-
-
-
-// employee appraisal start
-viewEmployeeAppraisal(username: any){
-  const url = `${this.api.getEmployeeAppraisal}/${username}`;
-  const token = localStorage.getItem('jwtToken');
-  const headers = new HttpHeaders().set('Authorization', ` ${token}`);
-  return this.http.get(url, { headers });
-}
-// employee appraisal end
-
-// employee promotion start
 viewEmployeePromotion(username: string){
   const url = `${this.api.getEmployeePromotion}/${username}`;
   const token = localStorage.getItem('jwtToken');
